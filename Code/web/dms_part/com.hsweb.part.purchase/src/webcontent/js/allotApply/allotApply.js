@@ -1,9 +1,9 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryPjAllotApplyMainList.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryPjAllotApplyDetailList.biz.ext";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var leftGridUrl = baseUrl+"com.hsapi.part.invoice.allotsettle.queryPjAllotApplyMainList.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.part.invoice.allotsettle.queryPjAllotApplyDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedMorePartWin = null;
 var advancedAddWin = null;
@@ -36,9 +36,11 @@ var partIn=null;
 var isNeedSet = false;
 
 var AuditSignHash = {
-  "0":"未入库",
-  "1":"部分入库",
-  "2":"已入库"
+  "0":"草稿",
+  "1":"待受理",
+  "2":"部分受理",
+  "3":"全部受理",
+  "4":"已拒绝"
 };
 var storeLimitMap={};
 var storeShelfList=[];
@@ -115,12 +117,13 @@ $(document).ready(function(v)
                 brandList.forEach(function(v) {
                     brandHash[v.id] = v;
                 });
-          });
+              });
 
                 quickSearch(6);
 
                 nui.unmask();
-                        
+            
+            
         });
         
     });
@@ -144,12 +147,12 @@ function loadMainAndDetailInfo(row)
        if(row.isDisabled == 1) {
             $('#status').text("已作废");
        }else {
-           $('#status').text(AuditSignHash[row.settleStatus]);
+           $('#status').text(AuditSignHash[row.status]);
        }
        //bottomInfoForm.setData(row);
        nui.get("guestId").setText(row.guestFullName);
 
-       /*var row = leftGrid.getSelected();
+       var row = leftGrid.getSelected();
        if(row.auditSign == 1 || row.isDisabled == 1) {
             setBtnable(false);
             document.getElementById("basicInfoForm").disabled=true;
@@ -158,15 +161,15 @@ function loadMainAndDetailInfo(row)
             setBtnable(true);
             document.getElementById("basicInfoForm").disabled=false;
             setEditable(true);
-       }*/
+       }
 
        if(row.isDisabled == 1) {
-            //nui.get("delBtn").setVisible(false);
-            //nui.get("undelBtn").setVisible(true);
+            nui.get("delBtn").setVisible(false);
+            nui.get("undelBtn").setVisible(true);
             //document.getElementById("delBtn").childNodes[0].innerHTML = '<span class="fa fa-reply fa-lg"></span>&nbsp;反作废';
        }else {
-            //nui.get("delBtn").setVisible(true);
-            //nui.get("undelBtn").setVisible(false);
+            nui.get("delBtn").setVisible(true);
+            nui.get("undelBtn").setVisible(false);
             //document.getElementById("delBtn").childNodes[0].innerHTML = '<span class="fa fa-remove fa-lg"></span>&nbsp;作废';
        }
         
@@ -183,6 +186,14 @@ function loadMainAndDetailInfo(row)
         //form.reset();
         //grid_details.clearRows();
    }
+}
+function onLeftGridBeforeDeselect(e)
+{
+    var row = leftGrid.getSelected(); 
+    if(row.serviceId == '新调拨申请'){
+
+        leftGrid.removeRow(row);
+    }
 }
 function onLeftGridSelectionChanged(){    
    var row = leftGrid.getSelected(); 
@@ -221,20 +232,15 @@ function onLeftGridDrawCell(e)
 {
     var record = e.record;
     switch (e.field){
-        case "settleStatus":
+        case "status":
             if(record.isDisabled == 1) {
                 e.cellHtml = "已作废";
             }else {
-                if(record.auditSign == 0) {
-                    e.cellHtml = "草稿";
+                if(AuditSignHash && AuditSignHash[e.value])
+                {
+                    e.cellHtml = AuditSignHash[e.value];
                 }else {
-                    if(record.settleStatus == 1) {
-                        e.cellHtml = "部分入库";
-                    }else if(record.settleStatus == 2) {
-                        e.cellHtml = "已入库";
-                    }else if(record.settleStatus == 0) {
-                        e.cellHtml = "未入库";
-                    }
+                    e.cellHtml = "草稿";
                 }
             }
             
@@ -304,38 +310,63 @@ function quickSearch(type){
             gsparams.endDate = addDate(getLastMonthEndDate(), 1);
             break;
         case 6:
-            querytypename = "未入库";
+            querytypename = "草稿";
             querysign = 2;
             gsparams.isDisabled = 0;
-            gsparams.settleStatus = 0;
-            gsparams.auditSign = 1;
+            gsparams.status = 0;
+            gsparams.auditSign = null;
             break;
         case 7:
-            querytypename = "部分入库";
+            querytypename = "已提交";
             querysign = 2;
             gsparams.isDisabled = 0;
-            gsparams.settleStatus = 1;
+            gsparams.status = null;
             gsparams.auditSign = 1;
             break;
         case 8:
-            querytypename = "已入库";
-            querysign = 2;
-            gsparams.isDisabled = 0;
-            gsparams.settleStatus = 2;
-            gsparams.auditSign = 1;
-            break;
-        case 9:
             querytypename = "已作废";
             querysign = 2;
             gsparams.isDisabled = 1;
-            gsparams.settleStatus = null;
+            gsparams.status = null;
+            gsparams.auditSign = null;
+            break;
+        case 9:
+            querytypename = "待受理";
+            querysign = 2;
+            gsparams.isDisabled = null;
+            gsparams.status = 1;
             gsparams.auditSign = null;
             break;
         case 10:
+            gsparams.billStatusId = 2;
+            querytypename = "部分受理";
+            querysign = 2;
+            gsparams.isDisabled = null;
+            gsparams.status = 2;
+            gsparams.auditSign = null;
+            break;
+        case 11:
+            gsparams.billStatusId = null;
+            querytypename = "全部受理";
+            querysign = 2;
+            gsparams.isDisabled = null;
+            gsparams.status = 3;
+            gsparams.auditSign = null;
+            break;
+        case 12:
+            gsparams.billStatusId = null;
+            querytypename = "已拒绝";
+            querysign = 2;
+            gsparams.isDisabled = null;
+            gsparams.status = 4;
+            gsparams.auditSign = null;
+            break;
+        case 13:
+            gsparams.billStatusId = null;
             querytypename = "所有";
             querysign = 2;
             gsparams.isDisabled = 0;
-            gsparams.settleStatus = null;
+            gsparams.status = null;
             gsparams.auditSign = null;
             break;
         default:
@@ -346,7 +377,7 @@ function quickSearch(type){
             gsparams.startDate = getNowStartDate();
             gsparams.endDate = addDate(getNowEndDate(), 1);
             gsparams.auditSign = 0;
-            gsparams.settleStatus = null;
+            gsparams.status = null;
             break;
     }
     currType = type;
@@ -378,21 +409,21 @@ function setBtnable(flag)
 {
     if(flag)
     {
-        //nui.get("auditBtn").enable();
-        //nui.get("saveBtn").enable();
+        nui.get("auditBtn").enable();
+        nui.get("saveBtn").enable();
         nui.get("addPartBtn").enable();
         nui.get("deletePartBtn").enable();
-        //nui.get("selectSupplierBtn").enable();
+        nui.get("selectSupplierBtn").enable();
         //nui.get("genePartBtn").enable();
         nui.get("adjustPartBtn").disable();
     }
     else
     {
-        //nui.get("auditBtn").disable();
-        //nui.get("saveBtn").disable();
+        nui.get("auditBtn").disable();
+        nui.get("saveBtn").disable();
         nui.get("addPartBtn").disable();
         nui.get("deletePartBtn").disable();
-        //nui.get("selectSupplierBtn").disable();
+        nui.get("selectSupplierBtn").disable();
         //nui.get("genePartBtn").disable();
         nui.get("adjustPartBtn").enable();
     }
@@ -401,7 +432,7 @@ var requiredField = {
     guestId : "调出方",
     orderDate : "调拨申请日期"
 };
-var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.allotsettle.savePjAllotApply.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.part.invoice.allotsettle.savePjAllotApply.biz.ext";
 function save(type) {
     var data = basicInfoForm.getData();
     for ( var key in requiredField) {
@@ -491,7 +522,7 @@ function save(type) {
 function getMainData()
 {
     var data = basicInfoForm.getData();
-    data.orderTypeId = 3;
+    data.orderTypeId = 1;
     data.isDiffOrder = 0;
     delete data.createDate; 
     if(data.operateDate) {
@@ -525,7 +556,7 @@ function setEditable(flag)
 }
 function doSearch(params) 
 {
-    params.orderTypeId = 3;
+    params.orderTypeId = 1;
     params.isDiffOrder= 0;
     leftGrid.load({
         params : params,
@@ -538,8 +569,8 @@ function doSearch(params)
             basicInfoForm.reset();
             rightGrid.clearRows();
             
-            //setBtnable(false);
-            //setEditable(false);
+            setBtnable(false);
+            setEditable(false);
             
             if(autoNew == 0){
                 //add();
@@ -547,7 +578,7 @@ function doSearch(params)
             }
             
         }else {
-            /*var row = leftGrid.getSelected();
+            var row = leftGrid.getSelected();
             if(row.auditSign == 1 || row.isDisabled == 1) {
                 setBtnable(false);
                 setEditable(false);
@@ -556,7 +587,7 @@ function doSearch(params)
                 setBtnable(true);
                 setEditable(true);
                 document.getElementById("basicInfoForm").disabled=false;
-            }*/
+            }
         }
     });
 }
@@ -636,7 +667,7 @@ function onAdvancedSearchOk()
         searchData.partCodeList = tmpList.join(",");
     }
     searchData.auditSign = gsparams.auditSign;
-    searchData.settleStatus = gsparams.settleStatus;
+    searchData.status = gsparams.status;
   //去除空格
     for(var key in searchData){
         if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){          
@@ -695,16 +726,13 @@ function onRightGridDraw(e)
     }
 }
 
-var delUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.updatePjAllotApplyDisabled.biz.ext";
+var delUrl = baseUrl+"com.hsapi.part.invoice.allotsettle.updatePjAllotApplyDisabled.biz.ext";
 function del()
 {
     var data = basicInfoForm.getData();
     var isDisabled = 1;
     if(data.isDisabled == 1){
         isDisabled = 0;
-    }
-    if(!data.id) {
-        return;
     }
    
     nui.mask({
@@ -731,87 +759,20 @@ function del()
                 leftGrid.updateRow(row,data);
                 basicInfoForm.setData(row);
 
-                /*if(isDisabled == 1) {
+                if(isDisabled == 1) {
                     //document.getElementById("delBtn").childNodes[0].innerHTML = '<span class="fa fa-reply fa-lg"></span>&nbsp;反作废';
-                    //nui.get("delBtn").setVisible(false);
-                    //nui.get("undelBtn").setVisible(true);
+                    nui.get("delBtn").setVisible(false);
+                    nui.get("undelBtn").setVisible(true);
                     setBtnable(false);
                     setEditable(false);
                     document.getElementById("basicInfoForm").disabled=false;
                 }else {
                     //document.getElementById("delBtn").childNodes[0].innerHTML = '<span class="fa fa-remove fa-lg"></span>&nbsp;作废';
-                    //nui.get("delBtn").setVisible(true);
-                    //nui.get("undelBtn").setVisible(false);
+                    nui.get("delBtn").setVisible(true);
+                    nui.get("undelBtn").setVisible(false);
                     setBtnable(true);
                     setEditable(true);
                     document.getElementById("basicInfoForm").disabled=true;
-                }*/
-
-            } else {
-                showMsg(data.errMsg || "操作失败!","W");
-            }
-        },
-        error : function(jqXHR, textStatus, errorThrown) {
-            console.log(jqXHR.responseText);
-        }
-    });
-}
-
-var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.auditAllotApplyRtnEnter.biz.ext";
-function submit()
-{
-    var formJsonThis = nui.encode(basicInfoForm.getData());
-    var rows = rightGrid.getChanges();
-
-    if(formJson != formJsonThis) {
-        showMsg("请先保存数据再入库","W");
-        return;
-    }
-    if(rows && rows.length > 0) {
-        if(rows.length > 1 || (rows.length == 1 && rows[0].partId)) {
-            showMsg("请先保存数据再入库","W");
-            return;
-        }
-    }
-
-    var row = leftGrid.getSelected();
-    if(row){
-        if(row.settleStatus != 0) {
-            showMsg("此单已入库!","W");
-            return;
-        } 
-    }else{
-        return;
-    }
-
-    nui.mask({
-        el: document.body,
-        cls: 'mini-mask-loading',
-        html: '处理中...'
-    });
-
-    nui.ajax({
-        url : auditUrl,
-        type : "post",
-        data : JSON.stringify({
-            mainId : row.id,
-            token : token
-        }),
-        success : function(data) {
-            nui.unmask(document.body);
-            data = data || {};
-            if (data.errCode == "S") {
-                showMsg("入库成功!","S");
-                var pjAllotApplyMainList = data.pjAllotApplyMainList;
-                if(pjAllotApplyMainList && pjAllotApplyMainList.length>0) {
-                    var leftRow = pjAllotApplyMainList[0];
-                    var row = leftGrid.getSelected();
-                    leftGrid.updateRow(row,leftRow);
-
-                    //保存成功后重新加载数据
-                    loadMainAndDetailInfo(leftRow);
-
-                    
                 }
 
             } else {
@@ -824,10 +785,15 @@ function submit()
     });
 }
 
+function submit()
+{
+    save(1);
+}
+
 function addGuest(){
     nui.open({
         // targetWindow: window,
-        url: webPath+contextPath+"/com.hsweb.cloud.part.basic.supplierDetail.flow?token=" + token,
+        url: webPath+contextPath+"/com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
         title: "供应商资料", width: 570, height: 530,
         allowDrag:true,
         allowResize:false,
@@ -873,7 +839,7 @@ function onPrint(){
             mainId :from.id,
             auditSign:from.auditSign
     };
-    var openUrl = webPath + contextPath+"/purchase/allotPrint/allotOutRtnPrint.jsp";
+    var openUrl = webPath + contextPath+"/purchase/allotPrint/allotApplyPrint.jsp";
 
     nui.open({
        url: openUrl,
@@ -890,8 +856,8 @@ function onPrint(){
     if(checkNew() > 0){
         return;
     }
-//    rightGrid.setData([]);
-    //add();
+    rightGrid.setData([]);
+    add();
     
 }
 function add()
@@ -1085,7 +1051,7 @@ function addNewRow(check){
     }
 }
 var partInfoUrl = baseUrl
-        + "com.hsapi.cloud.part.invoicing.paramcrud.queryPartInfoByParam.biz.ext";
+        + "com.hsapi.part.invoice.paramcrud.queryPartInfoByParam.biz.ext";
 function getPartInfo(params){
     var part = null;
     nui.ajax({
@@ -1242,7 +1208,7 @@ function onGuestValueChanged(e)
         addNewRow(true);
     }
 }
-var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
+var getGuestInfo = baseUrl+"com.hsapi.part.baseDataCrud.crud.querySupplierList.biz.ext";
 function setGuestInfo(params)
 {
     params.isInternal = 1;
@@ -1463,7 +1429,7 @@ function selectPart(callback,checkcallback)
 {
     nui.open({
         // targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.cloud.part.common.partSelectView.flow?token="+token,
+        url: webPath + contextPath + "/com.hsweb.part.common.partSelectView.flow?token="+token,
         title: "配件选择", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -1471,7 +1437,7 @@ function selectPart(callback,checkcallback)
         {
             var iframe = this.getIFrameEl();
             var data = {
-                orderTypeId: 3,
+                orderTypeId: 1,
                 guestId: nui.get("guestId").getValue()
             };
             iframe.contentWindow.setCloudPartData("cloudPart",callback,checkcallback);
@@ -1563,7 +1529,7 @@ function selectSupplier(elId) {
     supplier = null;
     nui.open({
         // targetWindow: window,,
-        url : webPath+contextPath+"/com.hsweb.cloud.part.common.guestSelect.flow?token="+token,
+        url : webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title : "供应商资料",
         width : 980,
         height : 560,
@@ -1574,7 +1540,8 @@ function selectSupplier(elId) {
             var params = {
                 isSupplier: 1,
                 guestType:'01020202',
-                isInternal: 1
+                isInternal: 1,
+                allot:1
             };
             iframe.contentWindow.setGuestData(params);
         },
@@ -1609,7 +1576,7 @@ function selectSupplier(elId) {
 var company="";
 var phone ="";
 var addr ="";
-var supplierUrl=baseUrl +"com.hsapi.cloud.part.baseDataCrud.crud.queryGuestList.biz.ext";
+var supplierUrl=baseUrl +"com.hsapi.part.baseDataCrud.crud.queryGuestList.biz.ext";
 function getGuest(guestId){
     $.ajaxSettings.async = false;
     $.post(supplierUrl+"?params/guestId="+guestId+"&token="+token,{},function(text){
@@ -1620,7 +1587,7 @@ function getGuest(guestId){
     });
 }
 
-var partUrl=baseUrl +"com.hsapi.cloud.part.baseDataCrud.crud.queryPartListByOrgid.biz.ext";
+var partUrl=baseUrl +"com.hsapi.part.baseDataCrud.crud.queryPartListByOrgid.biz.ext";
 function getPart(partIdList){
 //  $.ajaxSettings.async = false;
 //  $.post(partUrl+"?params/orgid="+currOrgid+"&params/noPage="+1+"&token="+token,{},function(text){
@@ -1669,14 +1636,14 @@ function adjustPart(){
             showMsg("此单未提交,不能调整!","W");
             return;
         } 
-        if(row.status == 2) {
-            showMsg("此单已全部转订单,不能调整!","W");
+        if(row.status == 3) {
+            showMsg("此单已全部受理,不能调整!","W");
             return; 
         }
 
         nui.open({
             // targetWindow: window,
-            url: webPath + contextPath + "/com.hsweb.cloud.part.purchase.adjustApplyQty.flow?token=" + token,
+            url: webPath + contextPath + "/com.hsweb.part.purchase.adjustApplyQty.flow?token=" + token,
             title: "调拨申请调整",
             width: 900, height: 400,
             allowDrag:true,
@@ -1695,4 +1662,3 @@ function adjustPart(){
         return;
     }
 }
-

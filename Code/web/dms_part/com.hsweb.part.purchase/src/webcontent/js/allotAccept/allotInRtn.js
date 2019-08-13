@@ -2,8 +2,8 @@
  * Created by Administrator on 2018/2/23.
  */
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryPjAllotApplyMainList.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryPjAllotApplyDetailList.biz.ext";
+var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryPjAllotAcceptMainList.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryPjAllotAcceptDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedMorePartWin = null;
 var advancedAddWin = null;
@@ -35,10 +35,17 @@ var autoNew = 0;
 var partIn=null;
 var isNeedSet = false;
 
-var AuditSignHash = {
-  "0":"未入库",
-  "1":"部分入库",
-  "2":"已入库"
+var StatusHash = {
+  "0":"草稿",
+  "1":"待受理",
+  "2":"部分受理",
+  "3":"已受理",
+  "4":"已拒绝"
+};
+var SettleStatusHash = {
+  "0":"未出库",
+  "1":"部分出库",
+  "2":"全部出库"
 };
 var storeLimitMap={};
 var storeShelfList=[];
@@ -115,12 +122,12 @@ $(document).ready(function(v)
                 brandList.forEach(function(v) {
                     brandHash[v.id] = v;
                 });
-          });
-
+            });
                 quickSearch(6);
 
                 nui.unmask();
-                        
+           
+            
         });
         
     });
@@ -144,12 +151,12 @@ function loadMainAndDetailInfo(row)
        if(row.isDisabled == 1) {
             $('#status').text("已作废");
        }else {
-           $('#status').text(AuditSignHash[row.settleStatus]);
+           $('#status').text(StatusHash[row.status]);
        }
        //bottomInfoForm.setData(row);
        nui.get("guestId").setText(row.guestFullName);
 
-       /*var row = leftGrid.getSelected();
+       var row = leftGrid.getSelected();
        if(row.auditSign == 1 || row.isDisabled == 1) {
             setBtnable(false);
             document.getElementById("basicInfoForm").disabled=true;
@@ -158,15 +165,15 @@ function loadMainAndDetailInfo(row)
             setBtnable(true);
             document.getElementById("basicInfoForm").disabled=false;
             setEditable(true);
-       }*/
+       }
 
        if(row.isDisabled == 1) {
-            //nui.get("delBtn").setVisible(false);
-            //nui.get("undelBtn").setVisible(true);
+            nui.get("delBtn").setVisible(false);
+            nui.get("undelBtn").setVisible(true);
             //document.getElementById("delBtn").childNodes[0].innerHTML = '<span class="fa fa-reply fa-lg"></span>&nbsp;反作废';
        }else {
-            //nui.get("delBtn").setVisible(true);
-            //nui.get("undelBtn").setVisible(false);
+            nui.get("delBtn").setVisible(true);
+            nui.get("undelBtn").setVisible(false);
             //document.getElementById("delBtn").childNodes[0].innerHTML = '<span class="fa fa-remove fa-lg"></span>&nbsp;作废';
        }
         
@@ -183,6 +190,14 @@ function loadMainAndDetailInfo(row)
         //form.reset();
         //grid_details.clearRows();
    }
+}
+function onLeftGridBeforeDeselect(e)
+{
+    var row = leftGrid.getSelected(); 
+    if(row.serviceId == '新调入退回'){
+
+        leftGrid.removeRow(row);
+    }
 }
 function onLeftGridSelectionChanged(){    
    var row = leftGrid.getSelected(); 
@@ -221,21 +236,25 @@ function onLeftGridDrawCell(e)
 {
     var record = e.record;
     switch (e.field){
-        case "settleStatus":
+        case "status":
             if(record.isDisabled == 1) {
                 e.cellHtml = "已作废";
             }else {
-                if(record.auditSign == 0) {
-                    e.cellHtml = "草稿";
+                if(StatusHash && StatusHash[e.value])
+                {
+                    e.cellHtml = StatusHash[e.value];
                 }else {
-                    if(record.settleStatus == 1) {
-                        e.cellHtml = "部分入库";
-                    }else if(record.settleStatus == 2) {
-                        e.cellHtml = "已入库";
-                    }else if(record.settleStatus == 0) {
-                        e.cellHtml = "未入库";
-                    }
+                    e.cellHtml = "草稿";
                 }
+            }
+            
+            break;
+        case "settleStatus":
+            if(SettleStatusHash && SettleStatusHash[e.value])
+            {
+                e.cellHtml = SettleStatusHash[e.value];
+            }else {
+                e.cellHtml = "未出库";
             }
             
             break;
@@ -304,39 +323,84 @@ function quickSearch(type){
             gsparams.endDate = addDate(getLastMonthEndDate(), 1);
             break;
         case 6:
-            querytypename = "未入库";
+            querytypename = "草稿";
             querysign = 2;
             gsparams.isDisabled = 0;
-            gsparams.settleStatus = 0;
-            gsparams.auditSign = 1;
+            gsparams.status = 0;
+            gsparams.auditSign = 0;
+            gsparams.settleStatus = null;
             break;
         case 7:
-            querytypename = "部分入库";
+            querytypename = "已提交";
             querysign = 2;
-            gsparams.isDisabled = 0;
-            gsparams.settleStatus = 1;
+            gsparams.isDisabled = null;
+            gsparams.status = null;
             gsparams.auditSign = 1;
+            gsparams.settleStatus = null;
             break;
         case 8:
-            querytypename = "已入库";
-            querysign = 2;
-            gsparams.isDisabled = 0;
-            gsparams.settleStatus = 2;
-            gsparams.auditSign = 1;
-            break;
-        case 9:
             querytypename = "已作废";
             querysign = 2;
             gsparams.isDisabled = 1;
-            gsparams.settleStatus = null;
+            gsparams.status = null;
             gsparams.auditSign = null;
+            gsparams.settleStatus = null;
+            break;
+        case 9:
+            querytypename = "待受理";
+            querysign = 2;
+            gsparams.isDisabled = 0;
+            gsparams.status = 1;
+            gsparams.auditSign = 1;
+            gsparams.settleStatus = null;
             break;
         case 10:
+            querytypename = "已受理";
+            querysign = 2;
+            gsparams.isDisabled = 0;
+            gsparams.status = 3;
+            gsparams.auditSign = 1;
+            gsparams.settleStatus = null;
+            break;
+        case 11:
+            querytypename = "已拒绝";
+            querysign = 2;
+            gsparams.isDisabled = 0;
+            gsparams.status = 4;
+            gsparams.auditSign = 1;
+            gsparams.settleStatus = null;
+            break;
+        case 12:
+            querytypename = "未出库";
+            querysign = 2;
+            gsparams.isDisabled = 0;
+            gsparams.status = null;
+            gsparams.auditSign = 1;
+            gsparams.settleStatus = 0;
+            break;
+        case 13:
+            querytypename = "部分出库";
+            querysign = 2;
+            gsparams.isDisabled = 0;
+            gsparams.status = null;
+            gsparams.auditSign = 1;
+            gsparams.settleStatus = 1;
+            break;
+        case 14:
+            querytypename = "全部出库";
+            querysign = 2;
+            gsparams.isDisabled = 0;
+            gsparams.status = null;
+            gsparams.auditSign = 1;
+            gsparams.settleStatus = 2;
+            break;
+        case 15:
             querytypename = "所有";
             querysign = 2;
             gsparams.isDisabled = 0;
-            gsparams.settleStatus = null;
+            gsparams.status = null;
             gsparams.auditSign = null;
+            gsparams.settleStatus = null;
             break;
         default:
             params.today = 1;
@@ -345,6 +409,8 @@ function quickSearch(type){
             querytypename = "草稿";
             gsparams.startDate = getNowStartDate();
             gsparams.endDate = addDate(getNowEndDate(), 1);
+            gsparams.isDisabled = 0;
+            gsparams.status = 0;
             gsparams.auditSign = 0;
             gsparams.settleStatus = null;
             break;
@@ -378,30 +444,31 @@ function setBtnable(flag)
 {
     if(flag)
     {
-        //nui.get("auditBtn").enable();
-        //nui.get("saveBtn").enable();
+        nui.get("auditBtn").enable();
+        nui.get("saveBtn").enable();
         nui.get("addPartBtn").enable();
         nui.get("deletePartBtn").enable();
-        //nui.get("selectSupplierBtn").enable();
+        nui.get("selectSupplierBtn").enable();
         //nui.get("genePartBtn").enable();
         nui.get("adjustPartBtn").disable();
     }
     else
     {
-        //nui.get("auditBtn").disable();
-        //nui.get("saveBtn").disable();
+        nui.get("auditBtn").disable();
+        nui.get("saveBtn").disable();
         nui.get("addPartBtn").disable();
         nui.get("deletePartBtn").disable();
-        //nui.get("selectSupplierBtn").disable();
+        nui.get("selectSupplierBtn").disable();
         //nui.get("genePartBtn").disable();
         nui.get("adjustPartBtn").enable();
     }
 }
 var requiredField = {
     guestId : "调出方",
-    orderDate : "调拨申请日期"
+    storeId : "调出仓库",
+    orderDate : "申请退回日期"
 };
-var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.allotsettle.savePjAllotApply.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.allotsettle.savePjAllotAccept.biz.ext";
 function save(type) {
     var data = basicInfoForm.getData();
     for ( var key in requiredField) {
@@ -436,19 +503,14 @@ function save(type) {
     var detailAdd = rightGrid.getChanges("added");
     var detailUpdate = rightGrid.getChanges("modified");
     var detailDelete = rightGrid.getChanges("removed");
+    var detailList = rightGrid.getData();
+    detailList = removeChanges(detailAdd, detailUpdate, detailDelete, detailList);
 
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
         html: '数据处理中...'
     });
-
-    var stip = "保存成功";
-    var etip = "保存失败";
-    if(type == 1) {
-        stip = "提交成功";
-        etip = "提交失败";
-    }
 
     nui.ajax({
         url : saveUrl,
@@ -458,18 +520,18 @@ function save(type) {
             detailAdd : detailAdd,
             detailUpdate : detailUpdate,
             detailDelete : detailDelete,
-            auditSign : type,
+            detailList : detailList,
             token : token
         }),
         success : function(data) {
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                showMsg(stip,"S");
+                showMsg("保存成功","S");
                 //onLeftGridRowDblClick({});
-                var pjAllotApplyMainList = data.pjAllotApplyMainList;
-                if(pjAllotApplyMainList && pjAllotApplyMainList.length>0) {
-                    var leftRow = pjAllotApplyMainList[0];
+                var pjAllotAcceptMainList = data.pjAllotAcceptMainList;
+                if(pjAllotAcceptMainList && pjAllotAcceptMainList.length>0) {
+                    var leftRow = pjAllotAcceptMainList[0];
                     var row = leftGrid.getSelected();
                     leftGrid.updateRow(row,leftRow);
 
@@ -479,7 +541,7 @@ function save(type) {
                     
                 }
             } else {
-                showMsg(data.errMsg || etip,"E");
+                showMsg(data.errMsg || "保存失败","E");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -491,7 +553,7 @@ function save(type) {
 function getMainData()
 {
     var data = basicInfoForm.getData();
-    data.orderTypeId = 3;
+    data.orderTypeId = 4;
     data.isDiffOrder = 0;
     delete data.createDate; 
     if(data.operateDate) {
@@ -525,7 +587,7 @@ function setEditable(flag)
 }
 function doSearch(params) 
 {
-    params.orderTypeId = 3;
+    params.orderTypeId = 4;
     params.isDiffOrder= 0;
     leftGrid.load({
         params : params,
@@ -538,8 +600,8 @@ function doSearch(params)
             basicInfoForm.reset();
             rightGrid.clearRows();
             
-            //setBtnable(false);
-            //setEditable(false);
+            setBtnable(false);
+            setEditable(false);
             
             if(autoNew == 0){
                 //add();
@@ -547,7 +609,7 @@ function doSearch(params)
             }
             
         }else {
-            /*var row = leftGrid.getSelected();
+            var row = leftGrid.getSelected();
             if(row.auditSign == 1 || row.isDisabled == 1) {
                 setBtnable(false);
                 setEditable(false);
@@ -556,7 +618,7 @@ function doSearch(params)
                 setBtnable(true);
                 setEditable(true);
                 document.getElementById("basicInfoForm").disabled=false;
-            }*/
+            }
         }
     });
 }
@@ -636,7 +698,7 @@ function onAdvancedSearchOk()
         searchData.partCodeList = tmpList.join(",");
     }
     searchData.auditSign = gsparams.auditSign;
-    searchData.settleStatus = gsparams.settleStatus;
+    searchData.status = gsparams.status;
   //去除空格
     for(var key in searchData){
         if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){          
@@ -655,7 +717,7 @@ function onAdvancedSearchCancel()
 function checkNew() 
 {
     var rows = leftGrid.findRows(function(row){
-        if(row.serviceId == "新调拨申请") return true;
+        if(row.serviceId == "新调入退回") return true;
     });
     
     return rows.length;
@@ -695,16 +757,13 @@ function onRightGridDraw(e)
     }
 }
 
-var delUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.updatePjAllotApplyDisabled.biz.ext";
+var delUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.updatePjAllotAcceptDisabled.biz.ext";
 function del()
 {
     var data = basicInfoForm.getData();
     var isDisabled = 1;
     if(data.isDisabled == 1){
         isDisabled = 0;
-    }
-    if(!data.id) {
-        return;
     }
    
     nui.mask({
@@ -731,21 +790,21 @@ function del()
                 leftGrid.updateRow(row,data);
                 basicInfoForm.setData(row);
 
-                /*if(isDisabled == 1) {
+                if(isDisabled == 1) {
                     //document.getElementById("delBtn").childNodes[0].innerHTML = '<span class="fa fa-reply fa-lg"></span>&nbsp;反作废';
-                    //nui.get("delBtn").setVisible(false);
-                    //nui.get("undelBtn").setVisible(true);
+                    nui.get("delBtn").setVisible(false);
+                    nui.get("undelBtn").setVisible(true);
                     setBtnable(false);
                     setEditable(false);
                     document.getElementById("basicInfoForm").disabled=false;
                 }else {
                     //document.getElementById("delBtn").childNodes[0].innerHTML = '<span class="fa fa-remove fa-lg"></span>&nbsp;作废';
-                    //nui.get("delBtn").setVisible(true);
-                    //nui.get("undelBtn").setVisible(false);
+                    nui.get("delBtn").setVisible(true);
+                    nui.get("undelBtn").setVisible(false);
                     setBtnable(true);
                     setEditable(true);
                     document.getElementById("basicInfoForm").disabled=true;
-                }*/
+                }
 
             } else {
                 showMsg(data.errMsg || "操作失败!","W");
@@ -757,27 +816,27 @@ function del()
     });
 }
 
-var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.auditAllotApplyRtnEnter.biz.ext";
+var submitUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.auditPjAllotInRtn.biz.ext";
 function submit()
 {
     var formJsonThis = nui.encode(basicInfoForm.getData());
     var rows = rightGrid.getChanges();
 
     if(formJson != formJsonThis) {
-        showMsg("请先保存数据再入库","W");
+        showMsg("请先保存数据再提交","W");
         return;
     }
     if(rows && rows.length > 0) {
         if(rows.length > 1 || (rows.length == 1 && rows[0].partId)) {
-            showMsg("请先保存数据再入库","W");
+            showMsg("请先保存数据再提交","W");
             return;
         }
     }
 
     var row = leftGrid.getSelected();
     if(row){
-        if(row.settleStatus != 0) {
-            showMsg("此单已入库!","W");
+        if(row.auditSign == 1) {
+            showMsg("此单已提交!","W");
             return;
         } 
     }else{
@@ -791,7 +850,7 @@ function submit()
     });
 
     nui.ajax({
-        url : auditUrl,
+        url : submitUrl,
         type : "post",
         data : JSON.stringify({
             mainId : row.id,
@@ -801,10 +860,11 @@ function submit()
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                showMsg("入库成功!","S");
-                var pjAllotApplyMainList = data.pjAllotApplyMainList;
-                if(pjAllotApplyMainList && pjAllotApplyMainList.length>0) {
-                    var leftRow = pjAllotApplyMainList[0];
+                showMsg("提交成功，等待受理!","S");
+
+                var pjAllotAcceptMainList = data.pjAllotAcceptMainList;
+                if(pjAllotAcceptMainList && pjAllotAcceptMainList.length>0) {
+                    var leftRow = pjAllotAcceptMainList[0];
                     var row = leftGrid.getSelected();
                     leftGrid.updateRow(row,leftRow);
 
@@ -815,7 +875,61 @@ function submit()
                 }
 
             } else {
-                showMsg(data.errMsg || "操作失败!","W");
+                showMsg(data.errMsg || "提交失败!","W");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
+    });
+
+}
+
+var outUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.auditPjAllotAcceptOut.biz.ext";
+function auditOut() {
+    var row = leftGrid.getSelected();
+    if(row){
+        if(row.status != 3 || row.settleStatus == 2) {
+            showMsg("此单未受理，或已经完成出库!","W");
+            return;
+        } 
+    }else{
+        return;
+    }
+
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '处理中...'
+    });
+
+    nui.ajax({
+        url : outUrl,
+        type : "post",
+        data : JSON.stringify({
+            mainId : row.id,
+            token : token
+        }),
+        success : function(data) {
+            nui.unmask(document.body);
+            data = data || {};
+            if (data.errCode == "S") {
+                showMsg("出库成功!","S");
+
+                var pjAllotAcceptMainList = data.pjAllotAcceptMainList;
+                if(pjAllotAcceptMainList && pjAllotAcceptMainList.length>0) {
+                    var leftRow = pjAllotAcceptMainList[0];
+                    var row = leftGrid.getSelected();
+                    leftGrid.updateRow(row,leftRow);
+
+                    //保存成功后重新加载数据
+                    loadMainAndDetailInfo(leftRow);
+
+                    
+                }
+
+            } else {
+                showMsg(data.errMsg || "提交失败!","W");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -873,7 +987,7 @@ function onPrint(){
             mainId :from.id,
             auditSign:from.auditSign
     };
-    var openUrl = webPath + contextPath+"/purchase/allotPrint/allotOutRtnPrint.jsp";
+    var openUrl = webPath + contextPath+"/purchase/allotPrint/allotInRtnPrint.jsp";
 
     nui.open({
        url: openUrl,
@@ -891,7 +1005,7 @@ function onPrint(){
         return;
     }
 //    rightGrid.setData([]);
-    //add();
+//    add();
     
 }
 function add()
@@ -919,13 +1033,14 @@ function add()
                     basicInfoForm.reset();
                     rightGrid.clearRows();
                     
-                    var newRow = { serviceId: '新调拨申请', auditSign: 0, status: 0, isDisabled: 0};
+                    var newRow = { serviceId: '新调入退回', auditSign: 0, status: 0, isDisabled: 0};
                     leftGrid.addRow(newRow, 0);
                     leftGrid.clearSelect(false);
                     leftGrid.select(newRow, false);
                     
-                    nui.get("serviceId").setValue("新调拨申请");
+                    nui.get("serviceId").setValue("新调入退回");
                     nui.get("status").setValue(0); 
+                    nui.get("settleStatus").setValue(0); 
                     nui.get("orderDate").setValue(new Date());
                     nui.get("orderMan").setValue(currUserName);
                     nui.get("storeId").setValue(FStoreId);
@@ -948,13 +1063,14 @@ function add()
         basicInfoForm.reset();
         rightGrid.clearRows();
         
-        var newRow = { serviceId: '新调拨申请', auditSign: 0, status: 0, isDisabled: 0};
+        var newRow = { serviceId: '新调入退回', auditSign: 0, status: 0, isDisabled: 0};
         leftGrid.addRow(newRow, 0);
         leftGrid.clearSelect(false);
         leftGrid.select(newRow, false);
         
-        nui.get("serviceId").setValue("新调拨申请");
+        nui.get("serviceId").setValue("新调入退回");
         nui.get("status").setValue(0);  
+        nui.get("settleStatus").setValue(0); 
         nui.get("orderDate").setValue(new Date());
         nui.get("orderMan").setValue(currUserName);
         nui.get("storeId").setValue(FStoreId);
@@ -1009,7 +1125,7 @@ function onCellEditEnter(e){
     var orderPrice = record.orderPrice;
     if(cell && cell.length >= 2){
         var column = cell[1];
-        if(column.field == "applyQty"){
+        if(column.field == "acceptQty"){
             if(orderPrice){
                 addNewKeyRow();
             }
@@ -1144,7 +1260,7 @@ function addInsertRow(value, row) {
             comPartBrandId : part.partBrandId,
             comApplyCarModel : part.applyCarModel,
             comUnit : part.unit,
-            applyQty : 1,
+            acceptQty : 1,
             storeId : FStoreId,
             comOemCode : part.oemCode,
             comSpec : part.spec,
@@ -1152,7 +1268,7 @@ function addInsertRow(value, row) {
             partName : part.name,
             fullName : part.fullName,
             systemUnitId : part.unit,
-            enterUnitId : part.unit
+            outUnitId : part.unit
         };
 
         if(row){
@@ -1205,8 +1321,8 @@ function checkRightData()
     var msg = '';
     var rows = rightGrid.findRows(function(row){
         if(row.partId){
-            if(row.applyQty){
-                if(row.applyQty <= 0) return true;
+            if(row.acceptQty){
+                if(row.acceptQty <= 0) return true;
             }else{
                 return true;
             }
@@ -1320,7 +1436,7 @@ function addSelectPart(){
             comPartBrandId : row.partBrandId,
             comApplyCarModel : row.applyCarModel,
             comUnit : row.unit,
-            applyQty : 1,
+            acceptQty : 1,
             storeId : FStoreId,
             comOemCode : row.oemCode,
             comSpec : row.spec,
@@ -1328,7 +1444,7 @@ function addSelectPart(){
             partName : row.name,
             fullName : row.fullName,
             systemUnitId : row.unit,
-            enterUnitId : row.unit
+            outUnitId : row.unit
         };
         
         advancedMorePartWin.hide();
@@ -1340,7 +1456,7 @@ function addSelectPart(){
         }else{
             rightGrid.addRow(newRow);
         }
-        rightGrid.beginEditCell(rightGrid.getSelected(), "applyQty");
+        rightGrid.beginEditCell(rightGrid.getSelected(), "acceptQty");
         
         advancedMorePartWin.hide();
         morePartGrid.setData([]);
@@ -1471,7 +1587,7 @@ function selectPart(callback,checkcallback)
         {
             var iframe = this.getIFrameEl();
             var data = {
-                orderTypeId: 3,
+                orderTypeId: 1,
                 guestId: nui.get("guestId").getValue()
             };
             iframe.contentWindow.setCloudPartData("cloudPart",callback,checkcallback);
@@ -1541,7 +1657,7 @@ function addDetail(rows)
             comPartBrandId : row.fullName,
             comApplyCarModel : row.applyCarModel,
             comUnit : row.unit,
-            applyQty : 1,
+            acceptQty : 1,
             orderPrice : 0,
             orderAmt : 0,
             comOemCode : row.oemCode,
@@ -1550,7 +1666,7 @@ function addDetail(rows)
             partName : row.name,
             fullName : row.fullName,
             systemUnitId : row.unit,
-            enterUnitId : row.unit
+            outUnitId : row.unit
         };
 
 
@@ -1696,3 +1812,36 @@ function adjustPart(){
     }
 }
 
+function removeChanges(added, modified, removed, all) {
+    for(var i=0; i<added.length; i++) {
+    
+       var val = added[i];
+       for(var j=0; j<all.length; j++) {
+        
+           if(all[j] == val)
+           all.splice(j, 1);
+        }
+    }
+    
+    for(var i=0; i<modified.length; i++) {
+    
+       var val = modified[i];
+       for(var j=0; j<all.length; j++) {
+        
+           if(all[j] == val)
+           all.splice(j, 1);
+        }
+    }
+    
+    for(var i=0; i<removed.length; i++) {
+    
+       var val = removed[i];
+       for(var j=0; j<all.length; j++) {
+        
+           if(all[j] == val)
+           all.splice(j, 1);
+        }
+    }
+
+    return all;
+}

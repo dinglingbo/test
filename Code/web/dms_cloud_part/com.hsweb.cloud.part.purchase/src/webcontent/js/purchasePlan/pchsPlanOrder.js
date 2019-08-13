@@ -1086,6 +1086,8 @@ function addNewRow(check){
         }
     }
 }
+
+var stockPartUrl = baseUrl +"com.hsapi.cloud.part.baseDataCrud.query.queryStockLevelPartForPlan.biz.ext";
 var geneInfoUrl = baseUrl
         + "com.hsapi.cloud.part.invoicing.pchsplan.generatePchsPlan.biz.ext";
 function genePart() {
@@ -1120,13 +1122,13 @@ function genePart() {
     var levelId =nui.get("stockLevel").getValue();
     //取备货级别
     if(limitCount == 0 && stockLevel){
-        nui.confirm("是否确定取"+stockLevelt+"的配件数据?", "友情提示",
+        nui.confirm("是否确定取"+stockLevel+"的配件数据?", "友情提示",
                 function (action) { 
                     if (action == "ok") {
                     	var params={};
                     	params.levelId = levelId;
                         nui.ajax({
-                            url : geneInfoUrl,
+                            url : stockPartUrl,
                             type : "post",
                             async: false,
                             data : {
@@ -1136,7 +1138,27 @@ function genePart() {
                             success : function(data) {
                                 if(data.errCode && data.errCode == 'S'){
                                     var data =data.list;
-                                    rightGrid.add(data);
+                                    for(var i=0;i<data.length;i++){
+                                    	data[i].comPartCode =data[i].partCode;
+                                    	data[i].comPartBrandId =data[i].partBrandId;
+                                    	data[i].comApplyCarModel =data[i].applyCarModel;
+                                    	data[i].comUnit = data[i].unit;
+                                    	data[i].orderQty =1;
+                                    	data[i].orderPrice =0;
+                                    	data[i].orderAmt =0;
+                                    	data[i].comOemCode = data[i].oemCode;
+                                    	data[i].comSpec =data[i].spec;
+                                    	data[i].systemUnitId =data[i].unit,
+                                    	data[i].enterUnitId =data[i].unit;
+                                    }
+                                    rightGrid.findRow(function(row){
+                                      var partId = row.partId;
+                                      var partCode = row.comPartCode;
+                                      if(partId == null || partId == "" || partId == undefined || partCode == null || partCode == "" || partCode == undefined){
+                                          rightGrid.removeRow(row);
+                                      }
+                                  });
+                                    rightGrid.addRows(data);
                                     
                                 }else{
                                     //清空行数据
@@ -1156,55 +1178,58 @@ function genePart() {
                 }
             );
     }
-    
-    nui.confirm("是否确定取"+partBrand+"销量排名前"+limitCount+"的配件数据?", "友情提示",
-        function (action) { 
-            if (action == "ok") {
-                var strYear = now.getFullYear()-1;
-                var strDay = now.getDate();        
-                var strMonth = now.getMonth()+1;      
-                if(strMonth<10)        
-                {        
-                   strMonth="0"+strMonth;        
-                }      
-                if(strDay<10)        
-                {        
-                   strDay="0"+strDay;        
-                }      
-                var datastr = strYear+"-"+strMonth+"-"+strDay;
-                nui.ajax({
-                    url : geneInfoUrl,
-                    type : "post",
-                    async: false,
-                    data : {
-                        partBrandId: nui.get("partBrandId").getValue(),
-                        startDate: datastr,
-                        endDate: format(now,"yyyy-MM-dd HH:mm:ss"),
-                        mainId: mainId,
-                        limitCount: limitCount,
-                        token: token
-                    },
-                    success : function(data) {
-                        if(data.errCode && data.errCode == 'S'){
-                            loadRightGridData(mainId);
-                            
-                        }else{
-                            //清空行数据
-                            showMsg("获取配件信息失败!","W");
-                        }
+    else{
+    	 nui.confirm("是否确定取"+partBrand+"销量排名前"+limitCount+"的配件数据?", "友情提示",
+	        function (action) { 
+	            if (action == "ok") {
+	                var strYear = now.getFullYear()-1;
+	                var strDay = now.getDate();        
+	                var strMonth = now.getMonth()+1;      
+	                if(strMonth<10)        
+	                {        
+	                   strMonth="0"+strMonth;        
+	                }      
+	                if(strDay<10)        
+	                {        
+	                   strDay="0"+strDay;        
+	                }      
+	                var datastr = strYear+"-"+strMonth+"-"+strDay;
+	                nui.ajax({
+	                    url : geneInfoUrl,
+	                    type : "post",
+	                    async: false,
+	                    data : {
+	                        partBrandId: nui.get("partBrandId").getValue(),
+	                        startDate: datastr,
+	                        endDate: format(now,"yyyy-MM-dd HH:mm:ss"),
+	                        mainId: mainId,
+	                        limitCount: limitCount,
+	                        token: token
+	                    },
+	                    success : function(data) {
+	                        if(data.errCode && data.errCode == 'S'){
+	                            loadRightGridData(mainId);
+	                            
+	                        }else{
+	                            //清空行数据
+	                            showMsg("获取配件信息失败!","W");
+	                        }
 
-                    },
-                    error : function(jqXHR, textStatus, errorThrown) {
-                        // nui.alert(jqXHR.responseText);
-                        console.log(jqXHR.responseText);
-                    }
-                });
+	                    },
+	                    error : function(jqXHR, textStatus, errorThrown) {
+	                        // nui.alert(jqXHR.responseText);
+	                        console.log(jqXHR.responseText);
+	                    }
+	                });
 
-            }else {
-                return;
-            }
-        }
-    );
+	            }else {
+	                return;
+	            }
+	        }
+	    );
+    	 
+    }
+   
 }
 var partInfoUrl = baseUrl
         + "com.hsapi.cloud.part.invoicing.paramcrud.queryPartInfoByParam.biz.ext";
@@ -1351,7 +1376,17 @@ function deletePart(){
     {
         delete editPartHash[part.detailId];
     }
-    rightGrid.removeRow(part,true);
+    var data = rightGrid.getData();
+    if(data && data.length==1){
+        var row = rightGrid.getSelected();
+        rightGrid.removeRow(row);
+        var newRow = {};
+        rightGrid.addRow(newRow);
+        rightGrid.beginEditCell(newRow, "comPartCode");
+    }else{
+        var row = rightGrid.getSelected();
+        rightGrid.removeRow(row);
+    }
 }
 function checkRightData()
 {
@@ -1674,13 +1709,13 @@ function addPart() {
         return;
     }
 
-    rightGrid.findRow(function(row){
-        var partId = row.partId;
-        var partCode = row.comPartCode;
-        if(partId == null || partId == "" || partId == undefined || partCode == null || partCode == "" || partCode == undefined){
-            rightGrid.removeRow(row);
-        }
-    });
+//    rightGrid.findRow(function(row){
+//        var partId = row.partId;
+//        var partCode = row.comPartCode;
+//        if(partId == null || partId == "" || partId == undefined || partCode == null || partCode == "" || partCode == undefined){
+//            rightGrid.removeRow(row);
+//        }
+//    });
 
     selectPart(function(data) {
         addDetail(data);

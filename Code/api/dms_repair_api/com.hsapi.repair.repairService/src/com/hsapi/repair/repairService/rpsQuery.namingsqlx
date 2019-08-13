@@ -1343,6 +1343,7 @@
 			a.engine_no as boxNo,
 			a.engine_model as boxModel,
 			a.drive_type as driveType,
+			b.file_no as fileNo,
 			<!--(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
 	       inner join rpb_business_type f on e.service_type_id = f.id
 	       where e.service_id = a.id) as serviceTypeName-->
@@ -2823,7 +2824,7 @@
 			wb_repair.rps_maintain a
 		WHERE  a.orgid = #orgid#
 		       and a.bill_type_id in(0,2,4,6)
-		       and a.status != 2
+		       and a.status = 1
 		<dynamic>
             <isNotEmpty prepend="and" property="mtAuditorId">
                 (a.mt_advisor_id = #mtAuditorId#)

@@ -908,6 +908,44 @@
         </dynamic>
 	</select>
 	
+	
+	<!-- 计划采购取备货配件 -->
+	<select id="queryStockLevelPartForPlan" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+
+   		SELECT
+			a.id AS id,
+			a.orgid AS orgid,
+			a.part_id AS partId,	
+			a.level_id as levelId,
+			b.`code` AS partCode,
+			b.`name` AS partName,
+			b.full_name AS fullName,
+			b.part_brand_id as partBrandId,
+			b.apply_car_model as applyCarModel,
+			b.unit as unit,
+			b.oem_code as oemCode,
+			b.spec as spec	
+		FROM
+			pj_stock_level_part a
+		INNER JOIN wb_common.com_attribute b ON a.part_id = b.id
+		WHERE
+			1 = 1
+		<dynamic>
+    		<isNotEmpty prepend="and" property="orgid">  
+                (a.orgid =#orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="levelId">  
+                (a.level_id like '%$levelId$%')
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="partName">  
+                (a.part_name like '%$partName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="sortField">  
+                $sortField$ $sortOrder$
+            </isNotEmpty>  
+        </dynamic>
+	</select>
+	
 	<select id="queryPjDeductPart" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     <!-- 物流公司 -->
    		 SELECT

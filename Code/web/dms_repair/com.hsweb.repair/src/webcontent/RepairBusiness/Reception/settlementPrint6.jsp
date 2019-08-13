@@ -835,19 +835,23 @@
     					       if(data[i].billItemId == 0){
     					          if(itemIndex != -1){//第一次进来不添加行
     					             //计算优惠率：(amt-subtotal)/amt*100
-    					            var rate = parseFloat(data[itemIndex].amt)-parseFloat(data[itemIndex].subtotal);
-					                rate = rate/parseFloat(data[itemIndex].amt)*100;
-					                rate = rate.toFixed(2);
-					                rate = rate + "%";
-					            
+    					             var rate = 0
+    					              if(data[itemIndex].amt>0){
+    					                  rate = parseFloat(data[itemIndex].amt)-parseFloat(data[itemIndex].subtotal);
+					                      rate = rate/parseFloat(data[itemIndex].amt)*100;
+					                      rate = rate.toFixed(2);
+    					              }
+					                 rate = rate + "%";
 					                //单价=金额/数量
 					                var unitPriceTatol = 0
 					                if(params.type){
 					                    unitPriceTatol = data[itemIndex].amt/data[itemIndex].itemTime;
 					                    unitPriceTatol = unitPriceTatol.toFixed(2);
+					                    itemName = data[itemIndex].itemName || "";
 					                }else{
 					                    unitPriceTatol = data[itemIndex].amt/data[itemIndex].qty;
 					                    unitPriceTatol = unitPriceTatol.toFixed(2);
+					                    itemName = data[itemIndex].prdtName || "";
 					                }
 					                
 					                data[itemIndex].subtotal = data[itemIndex].subtotal.toFixed(2);
@@ -881,13 +885,12 @@
     					                    data[itemIndex].amt = parseFloat(data[itemIndex].amt) + parseFloat(data[i].amt);
     					                    //小计
     					                    data[itemIndex].subtotal = parseFloat(data[itemIndex].subtotal) + parseFloat(data[i].subtotal);
-    					                 if(params.type){
+    					                 /* if(params.type){
     						                  data[itemIndex].itemTime = parseFloat(data[itemIndex].itemTime) + parseFloat(data[i].itemTime);
     						              }else{
     						                 //数量
     					                     data[itemIndex].qty = parseFloat(data[itemIndex].qty) + parseFloat(data[i].qty);
-    						              }
-    					               
+    						              } */
     					                }
 					                
 					                }else{
@@ -896,13 +899,12 @@
     					                    data[itemIndex].amt = parseFloat(data[itemIndex].amt) + parseFloat(data[i].amt);
     					                    //小计
     					                    data[itemIndex].subtotal = parseFloat(data[itemIndex].subtotal) + parseFloat(data[i].subtotal);
-    					                 if(params.type){
+    					                 /* if(params.type){
     						                  data[itemIndex].itemTime = parseFloat(data[itemIndex].itemTime) + parseFloat(data[i].itemTime);
     						              }else{
     						                 //数量
     					                     data[itemIndex].qty = parseFloat(data[itemIndex].qty) + parseFloat(data[i].qty);
-    						              }
-    					               
+    						              } */
     					                }
 					                }
     					          }
@@ -918,28 +920,30 @@
     				  } */
     				  //添加最后一行或者只有一个项目的情况下
 	    			  //计算优惠率：(amt-subtotal)/amt*100
-		              var rate2 = parseFloat(data[itemIndex].amt)-parseFloat(data[itemIndex].subtotal);
-		              rate2 = rate2/parseFloat(data[itemIndex].amt)*100;
-		              rate2 = rate2.toFixed(2);
-		              rate2 = rate2 + "%";
-		            
+	    			  var rate2 = 0;
+	    			  if(data[itemIndex].amt>0){
+		    			  rate2 = parseFloat(data[itemIndex].amt)-parseFloat(data[itemIndex].subtotal);
+			              rate2 = rate2/parseFloat(data[itemIndex].amt)*100;
+			              rate2 = rate2.toFixed(2);
+	    			  }
+	    			  rate2 = rate2 + "%";
 		              //单价=金额/数量
 	                 var unitPriceTatol2 = 0
 	                 if(params.type){
 	                    unitPriceTatol2 = data[itemIndex].amt/data[itemIndex].itemTime;
 	                    unitPriceTatol2 = unitPriceTatol2.toFixed(2);
+	                    itemTime = data[itemIndex].itemTime;
+	                    itemName = data[itemIndex].itemName || "";
 	                 }else{
 	                    unitPriceTatol2 = data[itemIndex].amt/data[itemIndex].qty;
 	                    unitPriceTatol2 = unitPriceTatol2.toFixed(2);
+	                    itemTime = data[itemIndex].qty;
+	                    itemName = data[itemIndex].prdtName || "";
 	                 }
 		             
 		              data[itemIndex].subtotal = data[itemIndex].subtotal.toFixed(2);
 		              data[itemIndex].amt = data[itemIndex].amt.toFixed(2);
-		              if(params.type){
-	                    itemTime = data[itemIndex].itemTime;
-	                  }else{
-	                    itemTime = data[itemIndex].qty;
-	                  }
+		             
 		              var tr = $("<tr></tr>");
 		              tr.append(
     				  tds.replace("[id]", data[itemIndex].orderIndex)

@@ -106,6 +106,19 @@
                 <h3>系统模板5</h3>
                 <ul><li><a href="<%= request.getContextPath() %>/com.hsweb.RepairBusiness.previewTemplate5.flow" target='_blank' class="eye">预览</a></li></ul>
             </div>
+            <div class="js_bill" id="temp6">
+                <dl>
+               <div id="temp6_div1" >
+                    <dt></dt><dd><a onclick="save(6)" name="setdefault" templateid="6">设为默认</a></dd>
+                 </div>
+                 <div id="temp6_div2" style="display: none">
+                     <p><i></i><font>默认模板</font></p>
+                 </div>
+                <img src="<%= request.getContextPath() %>/config/img/sys6.png" />
+                </dl>
+                <h3>系统模板6</h3>
+                <ul><li><a href="<%= request.getContextPath() %>/com.hsweb.RepairBusiness.previewTemplate6.flow" target='_blank' class="eye">预览</a></li></ul>
+            </div>
     </div>
     <div style="padding-top:32px;"></div> 
     <script type="text/javascript">
@@ -164,6 +177,9 @@
            if(e==5){
               repairSettPrintUrl = "/com.hsweb.print.settlement5.flow";
            }
+           if(e==6){
+              repairSettPrintUrl = "/com.hsweb.print.settlement6.flow";
+           }
            nui.mask({
 	        el: document.body,
 	        cls: 'mini-mask-loading',
@@ -214,6 +230,9 @@
            }
            if(repairSettPrintUrl == "/com.hsweb.print.settlement5.flow"){
               str = "temp5";
+           }
+           if(repairSettPrintUrl == "/com.hsweb.print.settlement6.flow"){
+              str = "temp6";
            }
            if(str){
               //先把原来选择的去掉样式

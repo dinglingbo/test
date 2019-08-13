@@ -2,8 +2,8 @@
  * Created by Administrator on 2018/2/23.
  */
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryPjAllotAcceptMainList.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryPjAllotAcceptDetailList.biz.ext";
+var leftGridUrl = baseUrl+"com.hsapi.part.invoice.allotsettle.queryPjAllotAcceptMainList.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.part.invoice.allotsettle.queryPjAllotAcceptDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedMorePartWin = null;
 var advancedAddWin = null;
@@ -430,7 +430,7 @@ var requiredField = {
     storeId : "调出仓库",
     orderDate : "调拨受理日期"
 };
-var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.allotsettle.savePjAllotAccept.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.part.invoice.allotsettle.savePjAllotAccept.biz.ext";
 function save(type) {
     var data = basicInfoForm.getData();
     var flag=false;
@@ -766,7 +766,7 @@ function onRightGridDraw(e)
     }
 }
 
-var delUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.updatePjAllotAcceptDisabled.biz.ext";
+var delUrl = baseUrl+"com.hsapi.part.invoice.allotsettle.updatePjAllotAcceptDisabled.biz.ext";
 function del()
 {
     var data = basicInfoForm.getData();

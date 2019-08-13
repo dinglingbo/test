@@ -1,7 +1,7 @@
-var baseUrl = apiPath + cloudPartApi + "/";
+var baseUrl = apiPath + partApi + "/";
 var companyUrl = apiPath + sysApi + "/"+"com.hsapi.system.basic.organization.getCompanyAll.biz.ext";
-var mainGridUrl =baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryPjAllotApplyMains.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.getAllotApplyDetail.biz.ext";
+var mainGridUrl =baseUrl+"com.hsapi.part.invoice.allotsettle.queryPjAllotApplyMains.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.part.invoice.allotsettle.getAllotApplyDetail.biz.ext";
 var orgidsEl =null;
 var orgids="";
 var mainGrid =null;
@@ -270,7 +270,7 @@ function onDrawCell(e){
     }
 }
 
-var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.generateAllotInAccept.biz.ext";
+var auditUrl = baseUrl+"com.hsapi.part.invoice.allotsettle.generateAllotInAccept.biz.ext";
 function audit(){
 	var row =mainGrid.getSelected();
 	if(!row){
@@ -318,7 +318,7 @@ function audit(){
 	});
 }
 
-var refuseUrl=baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.refuseAllotApply.biz.ext";
+var refuseUrl=baseUrl+"com.hsapi.part.invoice.allotsettle.refuseAllotApply.biz.ext";
 function refuse(){
 	var row =mainGrid.getSelected();
 	if(row.status !=1){

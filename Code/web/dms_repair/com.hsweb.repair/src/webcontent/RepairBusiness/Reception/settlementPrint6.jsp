@@ -381,17 +381,17 @@
                    <!--  <div style="float: right; color: #000; margin-right: 12px; line-height: 36px;">
                                                              
                     </div> -->
-                       套餐：<span id="prdt">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;工时：<span id="item">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;配件：<span id="part">0.00</span>
+                       套餐：<span id="prdt">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;项目：<span id="item">0.00</span><!-- <span style="display:none ">&nbsp;&nbsp;&nbsp;&nbsp;配件：<span id="part">0.00</span></span> -->
                &nbsp;&nbsp;&nbsp;&nbsp;其他费用：<span id="expense">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;其他优惠：<span id="expRateAmt">0.00</span>
                 </td>
              </tr>
              <tr>
                 <td height="36" colspan="1" style="border:0px solid #DDD;padding: 8px;" rowspan="1" colspan="1" >
                   
-                      <span> 项目优惠率：<span id="itemRate">0.00</span>%</span>
-                      <span>&nbsp;&nbsp;&nbsp;&nbsp;项目优惠金额：<span id="itemAmt">0.00</span>元</span>
-                      <span>&nbsp;&nbsp;&nbsp;&nbsp; 配件优惠率：<span id="partRate">0.00</span>%</span>
-                     <span>&nbsp;&nbsp;&nbsp;&nbsp;配件优惠金额：<span id="partAmt">0.00</span>元</span>
+                      <span> 优惠率：<span id="itemRate">0.00</span>%</span>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;优惠金额：<span id="itemAmt">0.00</span>元</span>
+                     <!--  <span>&nbsp;&nbsp;&nbsp;&nbsp; 配件优惠率：<span id="partRate">0.00</span>%</span>
+                     <span>&nbsp;&nbsp;&nbsp;&nbsp;配件优惠金额：<span id="partAmt">0.00</span>元</span> -->
                        
                 </td>
              </tr>
@@ -482,7 +482,7 @@
             var params = p;
         	if(params.name != "结账单"){
         	    
-        	   var money = parseFloat(document.getElementById("prdt").innerHTML) + parseFloat(document.getElementById("item").innerHTML) + parseFloat(document.getElementById("part").innerHTML);
+        	   var money = parseFloat(document.getElementById("prdt").innerHTML) + parseFloat(document.getElementById("item").innerHTML);
         	   var expenseAmt = parseFloat(document.getElementById("expense").innerHTML);
         	   /* if(params.type && params.type==1){
     		       money = parseFloat(money) + parseFloat(expenseAmt);      
@@ -811,18 +811,20 @@
     					if(params.type){
     						 itemTime = data[i].itemTime || 0;
     						 itemName = data[i].itemName || "";
-    						 if(data[i].billItemId != 0 ){
+    						  if(data[i].billItemId != 0 ){
     						   //itemName =  itemName;
-    						   document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML) + parseFloat(data[i].subtotal);
+    						   //document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML) + parseFloat(data[i].subtotal);
+    						    document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);
     					      }else{
     						     document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);
-    					      }
+    					      } 
     					}else{
     						itemTime = data[i].qty || "";
     						itemName = data[i].prdtName || "";
     						if(data[i].pid != 0 ){
     						  // itemName = itemName;
-    						   document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML) + parseFloat(data[i].subtotal);
+    						  // document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML) + parseFloat(data[i].subtotal);
+    						   document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);
     					    }else{
     						   document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);
     					   }
@@ -953,9 +955,24 @@
     				      document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML).toFixed(2);
     				   }
     				   
-    				  document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML).toFixed(2);
+    				 // document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML).toFixed(2);
 	    			  document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML).toFixed(2);
 	    			  if(itemAmt>0){
+	    			       if(partAmt>0){
+	        	           var ramt = partAmt - partSubtotal;
+	        	           var ramt2 = itemAmt - itemSubtotal;
+	        	           ramt = ramt + ramt2;
+	        	           var amtTotal =  partAmt + itemAmt;
+	        	           var rate = 0;
+	        	           if(ramt>0){
+	        	             rate  = ramt/amtTotal;
+	        	             rate = rate * 100;
+	        	             rate = rate.toFixed(2);
+	        	             document.getElementById("itemRate").innerHTML = rate;
+	        	           }
+	        	           ramt = ramt.toFixed(2);
+	        	           document.getElementById("itemAmt").innerHTML = ramt;
+	        	        }else{
 	        	           var ramt = itemAmt - itemSubtotal;
 	        	           var rate = 0;
 	        	           if(ramt>0){
@@ -966,20 +983,24 @@
 	        	           }
 	        	           ramt = ramt.toFixed(2);
 	        	           document.getElementById("itemAmt").innerHTML = ramt;
+	        	        }
 	        	           
+	        	           
+	        	        }else{
+		        	        if(partAmt>0){
+		        	           var ramt = partAmt - partSubtotal;
+		        	           var rate = 0;
+		        	           if(ramt>0){
+		        	             rate  = ramt/partAmt;
+		        	             rate = rate * 100;
+		        	             rate = rate.toFixed(2);
+		        	             document.getElementById("itemRate").innerHTML =  rate;
+		        	           }
+		        	           ramt = ramt.toFixed(2);
+		        	           document.getElementById("itemAmt").innerHTML = ramt;
+		        	        }
 	        	        }
-	        	        if(partAmt>0){
-	        	           var ramt = partAmt - partSubtotal;
-	        	           var rate = 0;
-	        	           if(ramt>0){
-	        	             rate  = ramt/partAmt;
-	        	             rate = rate * 100;
-	        	             rate = rate.toFixed(2);
-	        	             document.getElementById("partRate").innerHTML =  rate;
-	        	           }
-	        	           ramt = ramt.toFixed(2);
-	        	           document.getElementById("partAmt").innerHTML = ramt;
-	        	        }
+	        	        
 	        	    }else{
                         $("#showItem").hide();	
                         $("#space2").hide();        	      

@@ -13,7 +13,7 @@
 <head>
 <title>调拨申请受理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotApplyAccept.js?v=1.0.29"></script>
+    <script src="<%=webPath + contextPath%>/purchasePart/js/allotAccept/allotApplyAccept.js?v=1.0.0"></script>
 </head>
 <body>
 <div class="nui-fit">

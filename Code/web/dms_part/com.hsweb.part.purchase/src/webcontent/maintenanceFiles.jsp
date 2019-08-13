@@ -136,8 +136,9 @@
 	                  <div field="serviceCode" name="serviceCode" width="170" headerAlign="center" allowsort="true" header="工单号" summaryType="count"></div>
 	                  <div field="billTypeId" name="billTypeId" width="70" headerAlign="center" allowsort="true"  header="工单类型"></div>
 	                  <div field="serviceTypeName" name="serviceTypeName" width="70" headerAlign="center" allowsort="true" header="业务类型"></div>
-	                  	<div field="guestFullName" name="guestFullName" width="100" headerAlign="center"  allowsort="true" header="客户名称" allowsort="ture"></div> 
-		                  <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌号" allowsort="true"></div>
+	                  <div field="guestFullName" name="guestFullName" width="100" headerAlign="center"  allowsort="true" header="客户名称" allowsort="ture"></div> 
+		              <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌号" allowsort="true"></div>
+		              <div field="fileNo" name="fileNo" width="80" headerAlign="center" header="档案号" allowsort="true"></div>
 	                  <div field="mtAdvisor" name="mtAdvisor" width="110" headerAlign="center" allowsort="true" header="服务顾问"></div>
 	                  <div type="checkboxcolumn" trueValue="1" falseValue="0"  field="isCollectMoney" name="isCollectMoney" width="60" headerAlign="center" header="是否收款" allowsort="true"></div>
 	                   <div field="collectMoneyDate" name="collectMoneyDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="收款日期" allowsort="true"></div>	

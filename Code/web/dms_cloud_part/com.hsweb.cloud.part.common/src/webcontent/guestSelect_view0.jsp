@@ -9,7 +9,7 @@
 -->
 <head>
 <title>往来单位选择界面</title>
-<script src="<%=webPath + contextPath%>/common/js/guestSelect.js?v=1.1.3"></script>
+<script src="<%=webPath + contextPath%>/common/js/guestSelect.js?v=1.1.8"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -84,10 +84,10 @@
                             <div property="columns">
                                 <div allowSort="true" field="shortName" width="80" headerAlign="center" header="简称"></div>
                                 <div allowSort="true" field="fullName" width="200" headerAlign="center" header="全称"></div>
-                                <div allowSort="true" field="isInternal" width="110" headerAlign="center" header="是否内部供应商"></div>
-                                <div allowSort="true" field="advantageCarbrandId" width="200" headerAlign="center" header="优势品牌/产品"></div>
                                 <div allowSort="true" field="billTypeId" width="80" headerAlign="center" header="票据类型"></div>
                                 <div allowSort="true" field="settTypeId" width="100" headerAlign="center" header="结算方式"></div>
+                                <div allowSort="true" field="isInternal" width="110" headerAlign="center" header="是否内部供应商"></div>
+                                <div allowSort="true" field="advantageCarbrandId" width="200" headerAlign="center" header="优势品牌/产品"></div>
                                 <div allowSort="true" field="manager" width="100" headerAlign="center" header="联系人"></div>
                                 <div allowSort="true" field="mobile" width="100" headerAlign="center" header="联系人手机"></div>
                                 <div allowSort="true" field="contactor" width="80" headerAlign="center" header="业务员"></div>

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>计划采购</title>
-<script src="<%=webPath + contextPath%>/purchase/js/purchasePlan/pchsPlanOrder.js?v=1.0.3"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/purchasePlan/pchsPlanOrder.js?v=1.0.19"></script>
 <style type="text/css">
 .title {
 	width: 70px;
@@ -116,7 +116,7 @@ body .mini-grid-row-selected{
                      ondrawcell="onLeftGridDrawCell"
                      onrowdblclick=""
                      onselectionchanged="onLeftGridSelectionChanged"
-                     onbeforedeselect=""
+                     onbeforedeselect="onLeftGridBeforeDeselect"
                      dataField="pjPchsPlanMainList"
                      url="">
                     <div property="columns">
@@ -229,8 +229,25 @@ body .mini-grid-row-selected{
                                          onvaluechanged=""
                                          nullItemText="请选择..."/>
                                   &nbsp;
+                                  <label>备货级别:</label>
+                                  <input name="stockLevel"
+                                         id="stockLevel"
+                                         class="nui-combobox"
+                                         textField="name"
+                                         valueField="id"
+                                         emptyText="请选择..."
+                                         url=""
+                                         dataField="stockLevelList"
+                                         data ="stockLevelList"
+                                         allowInput="true"
+                                         showNullItem="false"
+                                         width="100px"
+                                         valueFromSelect="true"
+                                         onvaluechanged=""
+                                         nullItemText="请选择..."/>
+                                  &nbsp;
                                   <label>销量排名前:</label>
-                                  <input property="editor" id="limitCount" class="nui-textbox" vtype="int" width="50px" value="100"/>
+                                  <input property="editor" id="limitCount" class="nui-textbox" vtype="int" width="50px" value="0"/>
                                   <a class="nui-button" plain="true" iconCls="" onclick="genePart()" id="genePartBtn"><span class="fa fa-download fa-lg"></span>&nbsp;获取配件</a>
                                   <a class="nui-button" plain="true" iconCls="" onclick="adjustPart()" id="adjustPartBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;计划调整</a>
                               </td>

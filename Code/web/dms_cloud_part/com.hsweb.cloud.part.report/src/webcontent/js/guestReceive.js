@@ -97,7 +97,7 @@ $(document).ready(function(v) {
             }
         });
     });
-    quickSearch(0);
+    quickSearch(4);
 });
 
 function getCompany(){

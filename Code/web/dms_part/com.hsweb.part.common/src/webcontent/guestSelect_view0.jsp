@@ -41,7 +41,7 @@
                 <input class="nui-checkbox" width="100" id="showDisabled" trueValue="1" falseValue="0"/>
                 <label style="font-family:Verdana;" id="showGuestText">显示客户：</label>
                 <input class="nui-checkbox" width="100" id="showGuest" trueValue="1" falseValue="0"/>
-                                <label style="font-family:Verdana;" id="showgysText">显示供应商：</label>
+                <label style="font-family:Verdana;" id="showgysText">显示供应商：</label>
                 <input class="nui-checkbox" width="100" id="showgys" trueValue="1" falseValue="0"/>
                 <span class="separator"></span>
 

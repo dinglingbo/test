@@ -9,6 +9,7 @@ var settTypeIdList = [];
 var brandHash = {};
 var brandList = null;
 var guestId =null;
+var PartId = null;
 $(document).ready(function(v){
     sellOrderRecordGrid = nui.get("sellOrderRecordGrid");
     sellOrderRecordGrid.setUrl(sellOrderRecordUrl);
@@ -52,7 +53,8 @@ $(document).ready(function(v){
 	// 	});
     // });
     
-    if(partId){
+    if(partId){ 
+   
         var params = {partId: partId};
         doSearch(params);
     }
@@ -101,6 +103,8 @@ function nowStoreGuestChange(){
 		nui.get("nowGuest").setValue(0);
 		nui.get("chainGuest").setValue(0);
 	}
+	var params={partId :PartId,guestId:guestId};
+	doSearch(params);
 }
 function storeChange(){
 	var storeGuest = nui.get("storeGuest").getValue();
@@ -109,6 +113,8 @@ function storeChange(){
 		nui.get("nowGuest").setValue(0);
 		nui.get("chainGuest").setValue(0);
 	}
+	var params={partId :PartId};
+	doSearch(params);
 }
 function chainChange(){
 	var chainGuest = nui.get("chainGuest").getValue();
@@ -117,6 +123,8 @@ function chainChange(){
 		nui.get("storeGuest").setValue(0);
 		nui.get("nowGuest").setValue(0);
 	}
+	var params={partId :PartId};
+	doSearch(params);
 }
 
 function nowGuestChange(){
@@ -126,6 +134,8 @@ function nowGuestChange(){
 		nui.get("storeGuest").setValue(0);
 		nui.get("chainGuest").setValue(0);
 	}
+	var params={partId :PartId,guestId:guestId};
+	doSearch(params);
 }
 
 function doSearch(params)
@@ -136,6 +146,7 @@ function doSearch(params)
         return;
     }
     guestId = params.guestId || "";
+    PartId =params.partId || "";
     var nowStoreGuest = nui.get("nowStoreGuest").getValue()|| "";
     var storeGuest =nui.get("storeGuest").getValue() || "";
     var nowGuest =nui.get("nowGuest").getValue() || "";

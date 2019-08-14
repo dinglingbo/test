@@ -120,7 +120,7 @@ $(document).ready(function(v) {
             }
         });
     });
-    quickSearch(0);
+    quickSearch(2);
 });
 
 function getCompany(){

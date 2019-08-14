@@ -188,15 +188,21 @@ function onOk()
   //  data.abcType = "";
     data.code =data.code.replace(/\s+/g, "");
     
-    data.fullName = data.name;    
-    data.fullName = data.fullName + " " + partBrandIdHash[data.partBrandId].name;
-    
-    data.customClassId =customClassId;
-    data.customClassName =customClassName;
+    data.fullName = data.name;
     if(data.spec)
     {
         data.fullName = data.fullName + " " + data.spec;
     }
+    if(data.applyCarModel)
+    {
+        data.fullName = data.fullName + " " + data.applyCarModel;
+    }
+    
+    data.fullName = data.fullName + " " + partBrandIdHash[data.partBrandId].name;
+    
+    data.customClassId =customClassId;
+    data.customClassName =customClassName;
+   
     if(!data.id)
     {
         var matches = data.code.match(/([\w\u4e00-\u9fa5]*)/ig);
@@ -489,7 +495,7 @@ function setHotWord(customClassId){
 				
 				for(var i=0;i<list.length;i++){
 					for(var j=0;j<customClassIdList.length;j++){
-						if(customClassIdList[i]==list[i].id){
+						if(customClassIdList[j]==list[i].id){
 							var aEl = "<a href='##' id='"+list[i].id+"' value="+list[i].name+"  name='HotWord' class='hui'>"+list[i].name+"</a>";
 							temp +=aEl;
 						}
@@ -498,7 +504,7 @@ function setHotWord(customClassId){
 				}
 				$("#addAEl").html(temp);
 
-				selectclick();
+//				selectclick();
 			} else {
 				showMsg(data.errMsg || "设置标签失败!","E");
 			}

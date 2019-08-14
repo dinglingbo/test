@@ -2418,3 +2418,11 @@ function rightGridSet(){
         columns: columnsList
     });
 }
+function onLeftGridBeforeDeselect(e)
+{
+    var row = leftGrid.getSelected(); 
+    if(row.serviceId == '新采购退货'){
+
+        leftGrid.removeRow(row);
+    }
+}

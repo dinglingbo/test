@@ -9,7 +9,7 @@
 -->
 <head>
 <title>预售单</title>
-<script src="<%=webPath + contextPath%>/purchase/js/guestOrder/guestOrder.js?v=1.0.5"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/guestOrder/guestOrder.js?v=1.0.7"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -327,8 +327,7 @@ body .mini-grid-row-selected{
                            dataField="guestOrderDetailList"
                            idField="id"
                            showSummaryRow="true"
-                           frozenStartColumn="0"
-                           frozenEndColumn="10"
+                        
                            ondrawcell="onRightGridDraw"
                            allowCellSelect="true"
                            allowCellEdit="true"
@@ -400,7 +399,7 @@ body .mini-grid-row-selected{
     <div id="advancedSearchForm" class="form">
         <table style="width:100%;">
           <tr>
-                <td class="title">退货日期:</td>
+                <td class="title">订单日期:</td>
                 <td>
                     <input id="sOrderDate"
                            name="sCreateDate"
@@ -441,7 +440,7 @@ body .mini-grid-row-selected{
             </tr>
             <tr>
                 <td class="title">
-                    <span style="letter-spacing: 6px;">供应</span>商:
+                    <span style="letter-spacing: 6px;">客户</span>:
                 </td>
                 <td colspan="3">
                     <input id="advanceGuestId"
@@ -454,7 +453,7 @@ body .mini-grid-row-selected{
                 </td>
             </tr>
             <tr>
-                <td class="title">退货单号:</td>
+                <td class="title">预售单号:</td>
                 <td colspan="3">
                     <textarea class="nui-textarea" emptyText="" width="100%" style="height: 60px;" id="serviceIdList" name="serviceIdList"></textarea>
                 </td>
@@ -502,8 +501,6 @@ body .mini-grid-row-selected{
                selectOnLoad="true"
                showPager="false"
                dataField=""
-               frozenStartColumn="0"
-               frozenEndColumn="1"
                onrowdblclick="addSelectPart"
                allowCellSelect="true"
                editNextOnEnterKey="true"

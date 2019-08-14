@@ -345,7 +345,8 @@
 		on a.prev_detail_id = c.id and b.code_id = c.main_id
 		set c.is_finished = case when c.true_enter_qty + a.order_qty + c.adjust_qty = c.order_qty then 1 else 0 end,
 		    c.finish_date = case when c.true_enter_qty + a.order_qty + c.adjust_qty = c.order_qty then SYSDATE() else null end,
-		    c.true_enter_qty = c.true_enter_qty + a.order_qty, c.true_enter_amt = c.true_enter_amt + a.order_amt
+		    c.true_enter_qty = c.true_enter_qty + a.order_qty, c.true_enter_amt = c.true_enter_amt + a.order_amt,
+		    c.not_enter_qty = c.order_qty - c.true_enter_qty, c.not_enter_amt = (c.order_qty - c.true_enter_qty) * c.order_price
 		where b.source_type = 6 and b.id = #mainId#
 	</update>
 	

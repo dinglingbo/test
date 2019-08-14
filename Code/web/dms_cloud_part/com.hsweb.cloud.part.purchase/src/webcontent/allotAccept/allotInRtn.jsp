@@ -201,7 +201,7 @@ body .mini-grid-row-selected{
                                       <td class="title required" style="width:120px">
                                           <label>申请退回日期：</label>
                                       </td>
-                                      <td width="120" style="width:120px">
+                                      <td width="180" style="width:180px">
                                         <input name="orderDate"
                                                id="orderDate"
                                                width="100%"
@@ -225,7 +225,7 @@ body .mini-grid-row-selected{
                                       <td class="title">
                                           <label>申请单号：</label>
                                       </td>
-                                      <td style="width:120px">
+                                      <td style="width:180px">
                                           <input class="nui-textbox" width="100%" id="serviceId" name="serviceId" enabled="false" placeholder="新计划采购单"/>
                                       </td>
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="insertPjAllotApply" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="主表 和 明细表&#xD;&#xA;含税和不含税信息在界面上进行计算&#xD;&#xA;&#xD;&#xA;billtypeid      010101 收据 010102 普票 010103 增票&#xD;&#xA;'010101':  taxSign = 0;  taxRate = 0.07;&#xD;&#xA;'010102':  taxSign = 1;  taxRate = 0.07;&#xD;&#xA;'010103':  taxSign = 1;  taxRate = 0.17;&#xD;&#xA;&#xD;&#xA;单据状态（0草稿、1待发货、2待收货、3部分入库、4全部入库、5已退回、6关闭）&#xD;&#xA;&#xD;&#xA;如果isInner=1，则销售订单受理时，不能添加明细，不能修改数量；&#xD;&#xA;&#xD;&#xA;采购订单做添加入库按钮（全部入库）；库存里面有入库单，可以部分入库；&#xD;&#xA;&#xD;&#xA;如果是内部订单，对方出库后，订单方以自己的采购订单做入库，只需要更新对方的全部导入还是部分导入状态&#xD;&#xA;&#xD;&#xA;orderTypeId  1调拨申请 QDD  DBR；调拨受理 QDC  DBC；3调出退回  DCT  DCR；4调入退回  DRT  DRC&#xD;&#xA;&#xD;&#xA;cloudPartPjAllotApplyMain.versionNo&#xD;&#xA;cloudPartPjAllotApplyDetail.id" title="Administrator&#x9;18-2-25 下午5:09">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="主表 和 明细表&#xD;&#xA;含税和不含税信息在界面上进行计算&#xD;&#xA;&#xD;&#xA;billtypeid      010101 收据 010102 普票 010103 增票&#xD;&#xA;'010101':  taxSign = 0;  taxRate = 0.07;&#xD;&#xA;'010102':  taxSign = 1;  taxRate = 0.07;&#xD;&#xA;'010103':  taxSign = 1;  taxRate = 0.17;&#xD;&#xA;&#xD;&#xA;单据状态（0草稿、1待发货、2待收货、3部分入库、4全部入库、5已退回、6关闭）&#xD;&#xA;&#xD;&#xA;如果isInner=1，则销售订单受理时，不能添加明细，不能修改数量；&#xD;&#xA;&#xD;&#xA;采购订单做添加入库按钮（全部入库）；库存里面有入库单，可以部分入库；&#xD;&#xA;&#xD;&#xA;如果是内部订单，对方出库后，订单方以自己的采购订单做入库，只需要更新对方的全部导入还是部分导入状态&#xD;&#xA;&#xD;&#xA;orderTypeId  1调拨申请 QDD  DBR；调拨受理 QDC  DBC；3调出退回  DCT  DCR；4调入退回  DRT  DRC&#xD;&#xA;&#xD;&#xA;partPjAllotApplyMain.versionNo&#xD;&#xA;partPjAllotApplyDetail.id" title="Administrator&#x9;18-2-25 下午5:09">
     <location x="-686" y="-435"/>
     <size height="406" width="691"/>
   </nodes>
@@ -321,14 +321,14 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.common.uniq.getCompBillNO</process:partner>
+      <process:partner type="literal">com.hsapi.part.common.uniq.getCompBillNO</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="billTypeCode" type="query" value="String" valueType="Primitive" pattern="reference">billNoPreFix</process:inputVariable>
         <process:inputVariable id="1" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.part.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -527,7 +527,7 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="name" type="literal" value="java.lang.String" valueType="Java" pattern="reference">cloudPartPjAllotApplyMain.versionNo</process:inputVariable>
+      <process:inputVariable id="0" name="name" type="literal" value="java.lang.String" valueType="Java" pattern="reference">partPjAllotApplyMain.versionNo</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
       <process:outputVariable id="0" name="out0" type="query" value="long" valueType="Java">main/versionNo</process:outputVariable>
@@ -613,7 +613,7 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="name" type="literal" value="java.lang.String" valueType="Java" pattern="reference">cloudPartPjAllotApplyDetail.id</process:inputVariable>
+      <process:inputVariable id="0" name="name" type="literal" value="java.lang.String" valueType="Java" pattern="reference">partPjAllotApplyDetail.id</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
       <process:outputVariable id="0" name="out0" type="query" value="long" valueType="Java">detailId</process:outputVariable>

@@ -293,10 +293,10 @@
     <location x="735" y="150"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.invoicing.stockcal.updateOutOfStockQty</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.part.invoice.stockcal.updateOutOfStockQty</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="recordList" type="query" value="com.hsapi.cloud.part.data.pts.LockRecord[]" valueType="DataObject" pattern="reference">recordList</process:inputVariable>
+        <process:inputVariable id="0" name="recordList" type="query" value="com.hsapi.part.data.pts.LockRecord[]" valueType="DataObject" pattern="reference">recordList</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -427,7 +427,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjAllotAcceptMain" name="main"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="len" primitiveType="Int"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.LockRecord" name="recordList"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.LockRecord" name="recordList"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="mainId" primitiveType="String"/>

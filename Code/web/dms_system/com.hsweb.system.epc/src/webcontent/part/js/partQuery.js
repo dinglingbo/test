@@ -27,7 +27,7 @@ $(document).ready(function(v) {
         if(field == "action"){
             var html = '<a class="" href="javascript:openDetail(\'' + record.pid + '\')">查看</a>';
             e.cellHtml = html;
-        }else if(field == "brand"){
+        }else if(field == "brandCode"){
             if (brandHash && brandHash[e.value]) {
                 e.cellHtml = brandHash[e.value].name;
             }
@@ -97,61 +97,61 @@ function queryPartWithBrand(data){
     advancedSearchWin.show();
 }
 function queryBasic(brand,pid){
+    var str = "&brandCode="+brand;
+    str = encodeURI(str);
     var params = {
-        "url": llq_pre_url + "/parts/engine_search",//ppypart/parts_baseinfo
-        "params":{
-            "brand":brand,
-            "code":brand,
-            "parts":pid
-        },
-        "method": "post",
-        "token": token
+			url:"llq/parts/info/"+pid,
+			params:str,
+			token:token
     }
     callAjax(url, params, processAjax, setGridData);
       
 }
 function setGridData(data){
     var tData = [];
-    for(var i=0; i<data.length; i++){
+/*    for(var i=0; i<data.length; i++){
         tData = tData.concat(data[i]);
+    }*/
+    if(data.brandCode){
+    	tData.push(data);
     }
     dgbasic.setData(tData);
 }
 function queryDg1(){    
     var params = {
-        "url": llq_pre_url + "/brandsdict",
-        "token": token
+			url:"llq/article/brands/list",
+			params:"",
+			token:token
     }
     
     //$(".groupButton").hide();
     callAjax(url, params, processAjax, setDg1);
 }
 function setDg1(data){
-    var tData = [];
+/*    var tData = [];
     var n = 1;
     for(var i in data){
         data[i].name = n++ + "、" + data[i].name;
         tData.push(data[i]);
-    }
-    applyCarBrandIdEl.setData(tData);
+    }*/
+    applyCarBrandIdEl.setData(data);
 
-    tData.forEach(function(v) {
-        brandHash[v.brand] = v;
+    data.forEach(function(v) {
+        brandHash[v.brandCode] = v;
     });
 }
 function openDetail(pid){ 
-    var row = dgbasic.getSelected();
-    var brand = row.brand;  
+    var row = dgbasic.getSelected();  
     try{
         nui.open({
-            url : contextPath + "/com.hsweb.system.epc.partDetail.flow?brand=" + brand + "&pid=" + pid,
+            url : contextPath + "/com.hsweb.system.epc.partDetail.flow",
             title : "零件详情",
             width : "900px",
             height : "600px",
             showHeader:true,
             onload : function() {
-                //var iframe = this.getIFrameEl();
-                //iframe.contentWindow.setInitData(row, e);
+                var iframe = this.getIFrameEl();
+                iframe.contentWindow.setData(row);
             },
             ondestroy : function(action) {
                 //gridParts.reload();
@@ -160,14 +160,12 @@ function openDetail(pid){
     }finally{}
 }
 function queryPartBrand(pid){    
+    var str = "";
+    str = encodeURI(str);
     var params = {
-        "url": llq_pre_url + "/parts/search",
-        "params":{
-            "parts":pid,
-            "brand": ""
-        },
-        "method": "post",
-        "token": token
+			url:"llq/parts/info/"+pid,
+			params:str,
+			token:token
     }
     
     //$(".groupButton").hide();

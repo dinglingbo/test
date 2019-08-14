@@ -1048,7 +1048,7 @@
     <figSize height="20" width="70"/>
     <node>assign19</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign20" name="赋值11" displayName="赋值" grouped="true" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign20" name="赋值11" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link58" name="link58" displayName="连接线" lineType="inheritance" isDefault="true" type="break">
       <sourceNode>assign20</sourceNode>
       <targetNode>loopend2</targetNode>

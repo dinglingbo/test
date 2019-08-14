@@ -99,7 +99,7 @@
 				 </div> -->
 				 
 		         <div class="nui-splitter" style="width: 100%; height: 100%;" vertical="true">
-		         <div size="60%" showcollapsebutton="true">
+		         <div size="50%" showcollapsebutton="true">
 		         <div class="nui-fit" >
 		            <div id="rightGrid" class="nui-datagrid" dataField="itemList" style="width: 100%; height: 100%;" 
 		             idField="id" 
@@ -170,7 +170,7 @@
 			     <tr>
 		            <td>
 		                <label>车牌号：</label>
-		                <input class="nui-textbox" id="carNo-search" emptyText="" width="120"  onenter="doSearch()"/>
+		                <input class="nui-textbox" id="carNo-search" emptyText="" width="120"  onenter="doSearch2()"/>
 		                <!-- <label>服务顾问：</label>
 	                    <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
 	                        emptyText="服务顾问" url=""  allowInput="true" showNullItem="false" width="120" valueFromSelect="true"  onenter="doSearch()"/>

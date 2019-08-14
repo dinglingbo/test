@@ -183,6 +183,7 @@ function searchBill()
 function doNotStatement(params){
     params.orderTypeId = orderTypeId;
     params.auditSign = 1;
+    params.isDiffOrder =1;
     notStatementGrid.load({
         params:params,
         token: token

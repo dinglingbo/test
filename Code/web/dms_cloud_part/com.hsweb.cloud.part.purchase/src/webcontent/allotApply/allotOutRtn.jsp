@@ -101,7 +101,7 @@ body .mini-grid-row-selected{
          handlerSize="6"
          style="width:100%;height:100%;">
         <div size="220" showCollapseButton="true">
-          <div title="调出退回列表" class="nui-panel"
+          <div title="调出退回入库列表" class="nui-panel"
                  showFooter="true"
                  style="width:100%;height:100%;border: 0;">
                 <div id="leftGrid" class="nui-datagrid" style="width:100%;height:100%;"

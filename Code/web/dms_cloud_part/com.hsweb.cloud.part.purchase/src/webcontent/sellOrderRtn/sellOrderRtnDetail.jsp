@@ -236,7 +236,7 @@
                     <table style="width:100%;">
                         <tr>
                             <td style="white-space:nowrap;">
-                                <a class="nui-button" plain="true" iconCls="" onclick="addPart()" id="addPartBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;选择销售订单</a>
+                                <a class="nui-button" plain="true" iconCls="" onclick="addPart()" id="addPartBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;选择销售出库单</a>
                                 <a class="nui-button" plain="true" iconCls="" onclick="deletePart()" id="deletePartBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                             </td>
                         </tr>
@@ -249,8 +249,8 @@
                          dataField="pjPchsOrderDetailList"
                          idField="id"
                          showSummaryRow="true"
-                         frozenStartColumn="0"
-                         frozenEndColumn="10"
+                         frozenStartColumn=""
+                         frozenEndColumn=""
                          ondrawcell="onRightGridDraw"
                          allowCellSelect="true"
                          allowCellEdit="true"

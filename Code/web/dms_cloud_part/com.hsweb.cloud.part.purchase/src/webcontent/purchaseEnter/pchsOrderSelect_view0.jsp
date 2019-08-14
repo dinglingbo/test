@@ -62,6 +62,10 @@
     padding : 10 10 10 10px !important
 
 }
+/* 隐藏tab**/
+.mini-tab{
+	display:none;
+}
 </style>
 </head>
 <body>
@@ -76,8 +80,8 @@
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
 
                 <span class="separator"></span> 
-                <input id="billStatusId" width="65px" emptyText="状态" textField="name" valueField="id" valuefromselect="true" allowInput="true" class="nui-combobox"/>
-                <input id="serviceId" width="100px" emptyText="订单号" class="nui-textbox"/>
+                <input id="billStatusId" width="90px" emptyText="状态" textField="name" valueField="id" valuefromselect="true" allowInput="true" class="nui-combobox"/>
+                <input id="serviceId" width="130px" emptyText="订单号" class="nui-textbox"/>
                 <input id="serviceMan" width="50px" emptyText="业务员" class="nui-textbox"/>
                 <input id="searchGuestId" class="nui-buttonedit"
                         emptyText="请选择供应商..."
@@ -97,10 +101,10 @@
 </div>
 <div class="nui-fit">
     <div id="mainTabs" class="nui-tabs" name="mainTabs"
-            style="width:100%; height:100%;" 
+            style="width:100%; height:99%;" 
             plain="true" 
             onactivechanged="ontopTabChanged">
-        <div title="采购订单" id="pchsOrderTab" name="pchsOrderTab" visible="false" >
+        <div title="采购订单" id="pchsOrderTab" name="pchsOrderTab" visible="false">
             <div class="nui-fit">
                 <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
                         showPager="true"

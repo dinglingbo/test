@@ -320,9 +320,16 @@ function onMainGridDrawCell(e) {
 }
 function deletePart() {
 	var row = mainGrid.getSelected();
+	 var data = batchInfoForm.getData();
+	//预售单
+	if(data.sourceType==5){
+		parent.showMsg("预售单不能删除明细","W");
+		return;
+	}
 	if (row) {
 		mainGrid.removeRow(row, true);
-	}
+	}	    
+	
 }
 function onCellCommitEdit(e) {
 	var editor = e.editor;
@@ -442,4 +449,23 @@ function CloseWindow(action) {
 }
 function onCancel(e) {
 	CloseWindow("cancel");
+}
+
+function OnrpMainGridCellBeginEdit(e){
+    var field=e.field; 
+    var editor = e.editor;
+    var row = e.row;
+    var column = e.column;
+    var editor = e.editor;
+
+    var data = batchInfoForm.getData();
+    
+	 //预售单
+	 if(data.sourceType==5){
+		 if( field == "orderQty"){
+			 e.cancel = true; 
+		 }
+	 }
+	 
+	
 }

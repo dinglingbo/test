@@ -265,34 +265,45 @@ function audit(){
 		return;
 	}
 	
-	nui.mask({
-		el : document.body,
-		cls : 'mini-mask-loading',
-		html : "受理中"
-	});
-	nui.ajax({
-		url : auditUrl,
-		type : "post",
-		data : JSON.stringify({
-			id :  row.id,
-            storeId : nui.get('storeId').getValue(),
-			token: token
-		}),
-		success : function(data) {
-			nui.unmask(document.body);
-			data = data || {};
-			if (data.errCode == "S") {
-				showMsg("受理成功，生成的调拨入库单号为：" + data.serviceId,"S");
-				var newRow = {isFinished: 1};
-				mainGrid.updateRow(row, newRow);
-			} else {
-				showMsg(data.errMsg || ("受理失败!"),"W");
-			}
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			// nui.alert(jqXHR.responseText);
-			console.log(jqXHR.responseText);
-		}
-	});
+   nui.confirm("是否确定到货并入库?", "友情提示",
+	      function (action) { 
+	          if (action == "ok") {
+	        	  nui.mask({
+	        			el : document.body,
+	        			cls : 'mini-mask-loading',
+	        			html : "受理中"
+	        		});
+	        		nui.ajax({
+	        			url : auditUrl,
+	        			type : "post",
+	        			data : JSON.stringify({
+	        				id :  row.id,
+	        	            storeId : nui.get('storeId').getValue(),
+	        				token: token
+	        			}),
+	        			success : function(data) {
+	        				nui.unmask(document.body);
+	        				data = data || {};
+	        				if (data.errCode == "S") {
+	        					showMsg("受理成功，生成的调拨入库单号为：" + data.serviceId,"S");
+	        					var newRow = {isFinished: 1};
+	        					mainGrid.updateRow(row, newRow);
+	        				} else {
+	        					showMsg(data.errMsg || ("受理失败!"),"W");
+	        				}
+	        			},
+	        			error : function(jqXHR, textStatus, errorThrown) {
+	        				// nui.alert(jqXHR.responseText);
+	        				console.log(jqXHR.responseText);
+	        			}
+	        		});
+	
+	          }else {
+	              return;
+	          }
+	      }
+	  );
+	  
+	
 }
 

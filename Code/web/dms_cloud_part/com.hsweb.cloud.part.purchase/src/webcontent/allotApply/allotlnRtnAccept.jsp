@@ -13,7 +13,7 @@
 <head>
 <title>调入退回受理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotlnRtnAccept.js?v=1.0.29"></script>
+    <script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotlnRtnAccept.js?v=1.0.30"></script>
 </head>
 <body>
 <div class="nui-fit">

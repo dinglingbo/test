@@ -295,7 +295,7 @@ function onLeftGridDrawCell(e)
 }
 var currType = 2;
 function quickSearch(type){
-    var params = {};
+    var params = getSearchParam();
     var querysign = 1;
     var queryname = "本日";
     var querytypename = "草稿";

@@ -59,11 +59,12 @@ function doSearch() {
 		token : token
 	});
 }
-var queryAccountUrl = baseUrl + "com.hsapi.cloud.part.settle.svr.queryFiSettleAccount.biz.ext";
+var queryAccountUrl = baseUrl + "com.hsapi.cloud.part.settle.svr.queryFiSettleAccountForTenant.biz.ext";
 function getAccountList(callback) {
     nui.ajax({
         url : queryAccountUrl,
         data : {
+        	tenantId :currTenantId,
             token: token
         },
         type : "post",

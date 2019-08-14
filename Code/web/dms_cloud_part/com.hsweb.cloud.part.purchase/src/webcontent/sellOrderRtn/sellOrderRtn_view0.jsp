@@ -35,6 +35,13 @@
 .mini-panel-body {
 	padding: 0;
 }
+/* 隐藏tab**/
+.mini-tab{
+	display:none;
+}
+.mini-tabs-header{
+	display:none;
+}
 </style>
 </head>
 <body>
@@ -50,7 +57,7 @@
         <div title="销售退货" id="billmain" name="billmain" >
             <%@include file="/purchase/sellOrderRtn/sellOrderRtnDetail.jsp" %>
         </div>
-        <div title="待处理客户退单" name="guestOrdrTab" url="" >
+        <div title="待处理客户退单" name="guestOrdrTab" url="" visible="false" >
           
         </div>    
     </div>

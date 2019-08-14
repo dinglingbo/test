@@ -9,7 +9,7 @@
 -->
 <head>
 <title>总部应收应付结算</title>
-<script src="<%=webPath + contextPath%>/settlement/js/hqRpAccountSettle.js?v=1.0.5"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/hqRpAccountSettle.js?v=1.0.12"></script>
 <style type="text/css">
 .title {
     width: 90px;

@@ -13,7 +13,7 @@
 <head>
 <title>未对账业务单</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/settlement/js/noBalaRpaAccountSettle.js?v=1.0.96"></script>
+    <script src="<%=webPath + contextPath%>/settlement/js/noBalaRpaAccountSettle.js?v=1.0.3"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -76,9 +76,9 @@
 		        <div property="columns">
 		            <div type="indexcolumn"  width="10">序号</div>
 		            <div field="fullName" width="120" headerAlign="center" header="往来单位"></div>
-		            <div field="rAmt" width="55px" headerAlign="center" allowSort="true" header="应收金额"summaryType="sum"datatype="float"></div>
-		            <div field="pAmt" width="55px" headerAlign="center" allowSort="true" header="应付金额" summaryType="sum" datatype="float"></div>
-		            <div field="billAmt" width="55px" headerAlign="center" allowSort="true" header="未对账金额" summaryType="sum" datatype="float"></div>
+		            <div field="rAmt" width="55px" headerAlign="center" allowSort="true" header="应收金额"summaryType="sum"datatype="float" numberFormat="0.00"></div>
+		            <div field="pAmt" width="55px" headerAlign="center" allowSort="true" header="应付金额" summaryType="sum" datatype="" numberFormat="0.00"></div>
+		            <div field="billAmt" width="55px" headerAlign="center" allowSort="true" header="未对账金额" summaryType="sum" datatype="float" numberFormat="0.00"></div>
 		        </div>
 		     </div>
 			

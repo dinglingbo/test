@@ -70,7 +70,7 @@ var settleStatusList = [
     {id:1,text:"部分结算"},
     {id:2,text:"已结算"}
 ];
-var typeIdHash = {1:"采购订单",2:"销售订单",3:"采购退货",4:"销售退货"};
+var typeIdHash = {1:"采购订单",2:"销售订单",3:"采购退货",4:"销售退货",5:"调拨申请",6:"调拨受理",7:"调出退回",8:"调入退回"};
 
 $(document).ready(function(v)
 {
@@ -297,6 +297,10 @@ function onSearch(){
 }
 function doSearch(params)
 {
+	if(currIsMaster !=1){
+		showMsg("总部才可查看","W");
+//		return;
+	}
     var tab = mainTabs.getActiveTab();
     var name = tab.name;
     switch (name)

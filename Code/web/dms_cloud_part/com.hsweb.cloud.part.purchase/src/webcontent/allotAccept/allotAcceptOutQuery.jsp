@@ -125,8 +125,8 @@
 <!--                 	<div allowSort="true" datatype="float" summaryType="sum" field="hasOutQty" width="60" headerAlign="center" header="已出库数量" visible="true"></div> -->
                 	<div allowSort="true" datatype="float" summaryType="sum" field="orderPrice" width="60" headerAlign="center" header="单价" visible="true"></div>
                 	<div allowSort="true" datatype="float" summaryType="sum" field="orderAmt" width="60" headerAlign="center" header="金额" visible="true"></div>
-<!--                 	<div allowSort="true" datatype="float" summaryType="sum" field="hasInQty" width="60" headerAlign="center" header="已入库数量"  visible="false"></div> -->
                     <div allowSort="true" field="detailRemark" width="60" headerAlign="center" header="备注"></div>
+         			<div allowSort="true" datatype="float" summaryType="sum" field="hasInQty" width="90" headerAlign="center" header="对方已入数量"  visible="true"></div>
                 </div>
             </div>
             <div header="其他" headerAlign="center">

@@ -320,7 +320,7 @@ function doSearch(params)
 {
 	if(currIsMaster !=1){
 		showMsg("总部才可查看","W");
-//		return;
+		return;
 	}
     var tab = mainTabs.getActiveTab();
     var name = tab.name;

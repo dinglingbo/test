@@ -10,7 +10,7 @@
       <sourceNode>assign6</sourceNode>
       <targetNode>assign3</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
           <process:leftOperand type="query">errCode</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
@@ -85,10 +85,25 @@
     <node>end1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="link2" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link12" name="link12" displayName="link2" isDefault="false" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>assign0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">params</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>invokePojo4</targetNode>
-      <process:transitionCondition/>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link15</targetConnections>
     <location x="335" y="292"/>
@@ -101,22 +116,6 @@
     <process:copy>
       <process:from type="query" pattern="reference">maintenanceMap/MAINTENANCEAUTHORIZATION</process:from>
       <process:to type="query">headers/Authorization</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">A1obERxaQlhaTEBLQElaBQ%3D%3D</process:from>
-      <process:to type="query">headers/mcid</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">brandCode</process:from>
-      <process:to type="query">headers/brandCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">BVNA39014SA49922</process:from>
-      <process:to type="query">headers/vin</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">httpStr+params</process:from>
-      <process:to type="query">httpStr</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
@@ -149,7 +148,8 @@
       <targetNode>invokePojo7</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <targetConnections>link12</targetConnections>
+    <targetConnections>link0</targetConnections>
+    <targetConnections>link1</targetConnections>
     <location x="425" y="292"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo4label</nodeLabel>
@@ -269,6 +269,25 @@
     <location x="183" y="327"/>
     <figSize height="17" width="171"/>
     <node>subprocess0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值4" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>invokePojo4</targetNode>
+    </sourceConnections>
+    <targetConnections>link12</targetConnections>
+    <location x="375" y="210"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign0label</nodeLabel>
+    <process:copy>
+      <process:from type="expression" pattern="reference">httpStr+params</process:from>
+      <process:to type="query">httpStr</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
+    <location x="373" y="246"/>
+    <figSize height="17" width="32"/>
+    <node>assign0</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/1/23.
  */
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
-var gridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.queryGuestList.biz.ext";
+var gridUrl = apiPath + sysApi+"/com.hsapi.system.basic.crudBasic.queryGuestList.biz.ext";
 var treeUrl = baseUrl+"";
 var billTypeIdEl=null;
 var settleTypeIdEl=null;

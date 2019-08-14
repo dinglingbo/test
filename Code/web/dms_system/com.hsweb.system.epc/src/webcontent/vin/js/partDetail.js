@@ -15,7 +15,7 @@ var pidHash={};
 var innnerData=[];
 var editFormDetail = null;
 var innerPartGrid=null;
-
+var passPart = {};
 $(document).ready(function(v){
     dgbasic = nui.get("dgbasic");
     dgprice = nui.get("dgprice");
@@ -58,7 +58,7 @@ function changeTabs(e){
 *获取基础信息(基础信息, 渠道价格, 替换件, 品牌件, 组件, 技术信息, 适用车型)
 */
 function queryBasic(){
-    if (!detailCatch['basic']){
+/*    if (!detailCatch['basic']){
         var params = {
             "url": llq_pre_url + "/ppys/partssearchs",//ppypart/parts_baseinfo
             "params":{
@@ -68,10 +68,11 @@ function queryBasic(){
             "token": token
         }
         callAjax(url, params, processAjax, setBasic);
-    }	
+    }	*/
+	setBasic();
 }
-
-function setBasic(data, json){
+//原
+/*function setBasic(data, json){
     var headname = json.headname;
     var tabs = ntab.getTabs();
     for(var i=0; i<headname.length; i++){
@@ -97,31 +98,44 @@ function setBasic(data, json){
     detailCatch['basic'] = data;
     
     setBaseinfo(data, json);
+}*/
+function setBasic(){
+    data = [];
+    var filed = {
+    		field1 : "原厂名",
+    		field2 : passPart.label
+    };
+    data.push(filed);
+     filed = {
+    		field1 : "原厂OE号",
+    		field2 : passPart.pid
+    };
+    data.push(filed);
+    dgbasic.setData(data);
+    detailCatch['basic'] = data;  
+    //setBaseinfo(data, json);
 }
 
 /*
 *获取价格信息
 */
 function queryPrice(){
-    if (!detailCatch['price']){
-        var params = {
-            "url": llq_pre_url + "/ppys/partprices",
-            "params":{
-                "brand":brand,
-                "part":pid
-            },
-            "token": token
-        }
+    var str = "&brandCode="+passPart.brandCode;
+    str = encodeURI(str);
+    var params = {
+			url:"llq/parts/place/"+passPart.pid,
+			params:str,
+			token:token
+    }
         callAjax(url, params, processAjax, setPrice);
-    }	
 }
 
 function setPrice(data){
     var tData = [];
     for(var i=0; i<data.length; i++){
-        tData = tData.concat(data[i].data);
+        data[i].pid=passPart.pid;
     }
-    dgprice.setData(tData);
+    dgprice.setData(data);
     detailCatch['price'] = data;
 }
 
@@ -143,13 +157,12 @@ function onFactoryTypeRender(e) {
 */
 function queryReplace(){
     if (!detailCatch['replace']){
+        var str = "&brandCode="+passPart.brandCode;
+        str = encodeURI(str);
         var params = {
-            "url": llq_pre_url + "/ppys/searchreplace",
-            "params":{
-                "brand":brand,
-                "part":pid
-            },
-            "token": token
+    			url:"llq/parts/replace/"+passPart.pid,
+    			params:str,
+    			token:token
         }
         callAjax(url, params, processAjax, setReplace);
     }	
@@ -170,7 +183,7 @@ function setReplace(data){
 		data[i].ptype='';
 		data[i].brandcn='';
 		
-		if(data[i].isre==1){
+		if(data[i].isRe==1){
 			direct.push(data[i]);
 		}else{
 			indirectd.push(data[i]);
@@ -277,14 +290,12 @@ function setBaseinfo(data, rs){
 var compatible_page = 0;
 function queryCompatible(page){
     if (!detailCatch['compatible']){
+        var str = "";
+        str = encodeURI(str);
         var params = {
-            "url": llq_pre_url + "/ppys/generacars",
-            "params":{
-                "brand":brand,
-                "page":compatible_page,
-                "part":pid
-            },
-            "token": token
+    			url:"llq/parts/car_model/"+passPart.pid,
+    			params:str,
+    			token:token
         }
         callAjax(url, params, processAjax, setCompatible);
     }	
@@ -325,7 +336,7 @@ function setChainStock(data){
 
 function onDeReplaceDraw(e){
 	var field = e.field;
-	var parentnum=e.record.parentnum;
+	var parentnum=e.record.parentNum;
 	if(!pidHash[parentnum]){
 		return;
 	}
@@ -372,4 +383,9 @@ function onShowRowDetail2(e) {
         editFormDetail.style.display = "";
     	innerPartGrid.setData(innnerData[parentnum]);
     }
+}
+
+function setData(row){
+	passPart = row;
+	queryBasic();
 }

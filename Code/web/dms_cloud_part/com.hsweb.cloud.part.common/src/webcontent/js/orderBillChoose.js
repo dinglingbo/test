@@ -27,8 +27,8 @@ var eBillAuditDateEl = null;
 var billSearchGuestIdEl = null;
 var billServiceIdEl = null;
 var billServiceManEl = null;
-var pjSellOrderDetailList =null;
-
+var pjSellOrderDetailList =[];
+var pjPchsOrderDetailList = [];
 $(document).ready(function(v)
 {
 	notStatementGrid = nui.get("notStatementGrid");
@@ -251,6 +251,24 @@ function addStatement()
 
         if(orderTypeId == 1){
             getPchsDetails();
+            if(pjPchsOrderDetailList){
+            	var innerPchsEnterGridRow=innerPchsEnterGrid.getSelecteds();
+            	if(innerPchsEnterGridRow.length>0){
+            		var mainId = innerPchsEnterGridRow[0].mainId;
+                	for(var i=0;i<pjPchsOrderDetailList.length;i++){
+                		if(pjPchsOrderDetailList[i].mainId==mainId){   					
+                			pjPchsOrderDetailList.splice(i--, 1);
+        				}
+                	}
+                	for(var i=0;i<innerPchsEnterGridRow.length;i++){			
+                		pjPchsOrderDetailList.push(innerPchsEnterGridRow[i]);
+        			}
+            	}
+            }
+            
+            callback(pjPchsOrderDetailList);
+            CloseWindow("ok");
+            
         }else if(orderTypeId == 2){
             getSellDetails();
             if(pjSellOrderDetailList){
@@ -363,18 +381,19 @@ function getPchsDetails()
         nui.ajax({
             url : queryPchsUrl,
             type : "post",
+            async: false,
             data : JSON.stringify({
                 params : params,
                 token : token
             }),
             success : function(data) {
                 nui.unmask(document.body);
-                var pjPchsOrderDetailList = data.pjPchsOrderDetailList || [];
+                pjPchsOrderDetailList = data.pjPchsOrderDetailList || [];
                 if (pjPchsOrderDetailList && pjPchsOrderDetailList.length>0) {
                     
-                    callback(pjPchsOrderDetailList);
-
-                    CloseWindow("ok");
+//                    callback(pjPchsOrderDetailList);
+//
+//                    CloseWindow("ok");
                     
                 } else {
                     showMsg(data.errMsg || "操作失败!","W");

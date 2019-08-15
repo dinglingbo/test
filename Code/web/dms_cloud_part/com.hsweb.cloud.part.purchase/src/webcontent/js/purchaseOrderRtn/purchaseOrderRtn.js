@@ -182,7 +182,7 @@ $(document).ready(function(v)
             ow(true);
         }
     });
-    add();
+//    add();
 
     
     //启用APP
@@ -304,7 +304,7 @@ function loadRightGridData(mainId)
 
         var data = rightGrid.getData();
         
-        if(autoNew == 0){
+        if(autoNew == 0){			
 			add();
 			autoNew = 1;
         }

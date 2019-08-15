@@ -1,6 +1,8 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
+
+var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.guestOrder.queryGuestOrderMainList.biz.ext";
 var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.guestOrder.queryPjGuestOrderDetailList.biz.ext";
@@ -46,6 +48,7 @@ var storeLimitMap={};
 var partHash={};
 $(document).ready(function(v)
 {
+	
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
@@ -98,9 +101,9 @@ $(document).ready(function(v)
 
     var dictDefs ={"billTypeId":"DDT20130703000008", "settleTypeId":"DDT20130703000035"};
     
-//    if(currIsCommission ==1){
-//    	nui.get('chooseMemBtn').setVisible(true);
-//    }
+    if(currIsCommission ==1){
+    	nui.get('chooseMemBtn').setVisible(true);
+    }
     initDicts(dictDefs, function(){
         getStorehouse(function(data)
         {
@@ -128,6 +131,7 @@ $(document).ready(function(v)
             });
         });
     });
+    
     
     document.onkeyup=function(event){
 	    var e=event||window.event;
@@ -2263,6 +2267,8 @@ function setInitExportData(main, detail){
 }
 
 function chooseMember(){
+	 //销售单
+	  var serviceType=3;
 	  var row = leftGrid.getSelected();
 	    if(row){
 	    	if(row.auditSign ==1){
@@ -2281,7 +2287,7 @@ function chooseMember(){
 	                onload: function ()
 	                {
 	                    var iframe = this.getIFrameEl();
-	                    iframe.contentWindow.setData(row.id);
+	                    iframe.contentWindow.setData(row.id,serviceType);
 	                },
 	                ondestroy: function (action)
 	                {

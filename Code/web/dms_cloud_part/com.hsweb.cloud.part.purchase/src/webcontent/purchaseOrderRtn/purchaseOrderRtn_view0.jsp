@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购退货</title>
-<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.0.9"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.0.14"></script>
 <style type="text/css">
 .title {
 	width: 70px;
@@ -307,7 +307,7 @@ body .mini-grid-row-selected{
                                   <div property="columns">
                                     <div field="operateBtn" name="operateBtn" width="30" headerAlign="center" header="删除"></div>
                                       <div field="comPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码">
-                                          <input property="editor" class="nui-textbox" />
+<!--                                           <input property="editor" class="nui-textbox" /> -->
                                       </div>
                                       <div field="comPartName" visible="false" headerAlign="center" header="配件名称"></div>
                                       <div field="fullName"  width="200" headerAlign="center" header="配件全称"></div>

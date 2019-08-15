@@ -43,8 +43,9 @@
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="audit()" visible="false"  id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="audit()" visible="false"  id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>               
                 <a class="nui-button" iconCls="" plain="true" onclick="auditToEnter()" visible="false"  id="auditToEnterBtn"><span class="fa fa-check fa-lg"></span>&nbsp;入库</a>
+                <a class="nui-button" plain="true" onclick="chooseMember()" visible="false" id="chooseMemBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选择提成成员</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
                 <span id="status"></span>
                 <!-- <span class="separator"></span>
@@ -72,7 +73,7 @@
                    ondrawcell="onLeftGridDrawCell"
                    onrowdblclick=""
                    onselectionchanged="onLeftGridSelectionChanged"
-                   onbeforedeselect=""
+                   onbeforedeselect="onLeftGridBeforeDeselect"
                    dataField="pjPchsOrderMainList"
                    url="">
                   <div property="columns">
@@ -270,7 +271,7 @@
                                 <div property="columns">
                                     <div field="operateBtn" name="operateBtn" width="50" headerAlign="center" header="操作"></div>
                                     <div field="comPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码">
-                                        <input property="editor" class="nui-textbox" />
+<!--                                         <input property="editor" class="nui-textbox" /> -->
                                     </div>
                                     <div field="comPartName" visible="false" headerAlign="center" header="配件名称">
                                     </div>

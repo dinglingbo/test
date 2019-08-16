@@ -140,7 +140,7 @@ function clickGdSubGroup(row){
     if (row.mid) {
     	//分组零件号
     	subMid=row.mid; 	
-        var str = "&brandCode="+row.brandCode+"&num="+row.num+"&mid="+row.mid+"&subgroup="+row.subgroup+"&mcid="+row.mcid;
+        var str = "&brandCode="+row.brandCode+"&num="+row.num+"&mid="+row.mid+"&subGroup="+row.subgroup+"&mcid="+row.mcid;
         str = encodeURI(str) 
         var params = {
     			url:"llq/vins/cars/parts",
@@ -212,6 +212,9 @@ function setgridMainGroup(data){
 function setSubGroupData(data,json){
 	//分组数据
 	subGroupData =data;
+	for(var i=0;i<data.length;i++){
+		data[i].subGroup = data[i].mid;
+	}
     gridSubGroup.setData(data);
 
     //img

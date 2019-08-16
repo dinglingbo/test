@@ -164,10 +164,6 @@ body {
 #table1,#tableInfo{
     font-size:14px;
 } 
-.tabletext{
-   font-size:14px !important;
-   height: 10px;
-} 
 
 .tabletext i{
    color:#2d95ff;

@@ -86,7 +86,7 @@
 			wb_part.pj_repair_out 
 		WHERE
 			service_id = #serviceId#
-			AND ifnull( return_sign, 0 ) = 0
+			AND ifnull( return_sign, 0 ) = 0 and bill_type_id = '050206'
 	</select>
 	<select id="getMaterialExp" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		SELECT

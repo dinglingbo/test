@@ -14,6 +14,7 @@ var statusHash = {
     "1" : "施工",
     "2" : "完工"
 };
+//var colorList=[{color:"#5da4ff"},{color:"#2e6fff"},{color:"#e3251b"},{color:"#fd5d04"},{color:"#8302fc"},{color:"#ff7e00"},{color:"#ff9f2a"},{color:"#31c2f9"},{color:"#69c0ff"}];
 var colorList=[{color:"#1faeff"},{color:"#ffd666"},{color:"#ff7875"},{color:"#ffc069"},{color:"#8c64279e"},{color:"#d3f261"},{color:"#95de64"},{color:"#5cdbd3"},{color:"#69c0ff"}];
 var oder = 0;//颜色下标
 var homePage = [];//主页图片
@@ -502,15 +503,27 @@ function queryRemind (carExtendQty,contactorQty,messageQty,appQty){
 	var queryAppointment = 0;//6预约到店
 	var queryEmployeeBirthday = 0;//18员工生日
 */	
-
-	$("#queryMaintain span").text(carExtendQty[0].needQuantity);
-	$("#queryBusiness span").text(carExtendQty[0].annualQuantity);
-	$("#queryCompulsoryInsurance span").text(carExtendQty[0].insureQuantity);
-	$("#queryDrivingLicense span").text(contactorQty[0].licenseQuantity);
-	$("#queryCar span").text(carExtendQty[0].veriQuantity);
-	$("#queryAppointment span").text(appQty[0].appQuantity);
-	$("#queryGuestBirthday span").text(contactorQty[0].birQuantity);
-	$("#queryEmployeeBirthday span").text(messageQty[0].ebirQuantity);
+	var date = new Date();
+	var month = date.getMonth()+1;
+	var day = date.getDate();
+	var dateStr = month+"月"+day+"日"+" 8:30";
+	$("#queryMaintain p").text(carExtendQty[0].needQuantity);
+	$("#queryBusiness p").text(carExtendQty[0].annualQuantity);
+	$("#queryCompulsoryInsurance p").text(carExtendQty[0].insureQuantity);
+	$("#queryDrivingLicense p").text(contactorQty[0].licenseQuantity);
+	$("#queryCar p").text(carExtendQty[0].veriQuantity);
+	$("#queryAppointment p").text(appQty[0].appQuantity);
+	$("#queryGuestBirthday p").text(contactorQty[0].birQuantity);
+	$("#queryEmployeeBirthday p").text(messageQty[0].ebirQuantity);
+	
+	$("#queryMaintainDate").innerHTML=dateStr;
+	$("#queryBusinessDate").innerHTML=dateStr;
+	$("#queryCompulsoryInsuranceDate").innerHTML=dateStr;
+	$("#queryDrivingLicenseDate").innerHTML=dateStr;
+	$("#queryCarDate").innerHTML=dateStr;
+	$("#queryAppointmentDate").innerHTML=dateStr;
+	$("#queryGuestBirthdayDate").innerHTML=dateStr;
+	$("#queryEmployeeBirthdayDate").innerHTML=dateStr;
 }
 
 //判断对象是否为{}

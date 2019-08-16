@@ -183,27 +183,29 @@
 	var str = "";
 	var str2 = ""
 		for(var i =0;i<codeList.length;i++){		
-			str =str + imageHtml(codeList[i].img,codeList[i].name);
-			str2 =str2 + imageHtml2(codeList[i].img,codeList[i].name);
+			str =str + imageHtml(codeList[i].img,codeList[i].name,codeList[i].code);
+			str2 =str2 + imageHtml2(codeList[i].img,codeList[i].name,codeList[i].code);
 		}
 			document.getElementById('photos').innerHTML=str;
 			document.getElementById('printBody').innerHTML=str2;	    
 	}
 
-	function imageHtml(imageUrl,name){    
+	function imageHtml(imageUrl,name,code){    
 		var html="";
 		html+='		<div class="webPrint" style="width:250px;height: 270px;float: left;page-break-after:always;" >';
 		html+='			<img style="width:150px;height: 150px;    margin-left: 50px;" id=""  alt="" src="'+imageUrl+'"  >';
-		html+='			<p style="text-align: center;color: black;">'+name+'</p>'		
+		html+='			<p style="text-align: center;color: black;">'+code+'</p>'	
+		html+='			<p style="text-align: center;color: black;">'+name+'</p>'	
 		html+='		</div>';
 	
 		return html;
 	};
-	function imageHtml2(imageUrl,name){    
+	function imageHtml2(imageUrl,name,code){    
 		var html="";
 		html+='		<div class="webPrint" style="width:90%;height: 90%;float: left;page-break-after:always;" >';
 		html+='			<img style="width:90%;height: 88%;    margin-left: 50px;" id=""  alt="" src="'+imageUrl+'"  >';
-		html+='			<p style="text-align: center;color: black;">'+name+'</p>'		
+		html+='			<p style="text-align: center;color: black;">'+code+'</p>'				
+		html+='			<p style="text-align: center;color: black;">'+name+'</p>'
 		html+='		</div>';
 	
 		return html;

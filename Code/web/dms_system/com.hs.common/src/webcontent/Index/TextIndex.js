@@ -532,21 +532,21 @@ function queryRemind (carExtendQty,contactorQty,messageQty,appQty){
 	}else{
 		document.getElementById('queryCar').style.display='none';
 	}
-	if(appQty[0].appQuantity!=0){	
-		$("#queryAppointment p").text(appQty[0].appQuantity);
+	$("#queryAppointment p").text(appQty[0].appQuantity);
+/*	if(appQty[0].appQuantity!=0){	
 	}else{
 		document.getElementById('queryAppointment').style.display='none';
-	}
+	}*/
 	if(contactorQty[0].birQuantity!=0){	
 		$("#queryGuestBirthday p").text(contactorQty[0].birQuantity);
 	}else{
 		document.getElementById('queryGuestBirthday').style.display='none';
 	}
-	if(messageQty[0].ebirQuantity!=0){
-		$("#queryEmployeeBirthday p").text(messageQty[0].ebirQuantity);
+	$("#queryEmployeeBirthday p").text(messageQty[0].ebirQuantity);
+/*	if(messageQty[0].ebirQuantity!=0){
 	}else{
 		document.getElementById('queryEmployeeBirthday').style.display='none';
-	}
+	}*/
 	
 	
 	$("#queryMaintainDate").innerHTML=dateStr;

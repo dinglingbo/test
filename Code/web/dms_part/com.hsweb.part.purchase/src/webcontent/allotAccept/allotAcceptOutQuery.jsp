@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调拨出库明细查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotAcceptOutQuery.js?v=2.0.18"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/allotAccept/allotAcceptOutQuery.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
 	width: 90px;

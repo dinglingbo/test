@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="updateCompStock" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="更新库存表（库存表、分仓库存表）&#xD;&#xA;1、销售次数、取结存作为当前库存；-1代表销售出库&#xD;&#xA;2、结存数量，结存金额，配件销售次数，最高销价等信息；&#xD;&#xA;3、判断类型，如果是入需要判断存在就不更新，不存在需要插入；如果是出，销售出才需要更新销售次数等与销售有关信息；&#xD;&#xA;4、仓库是否计算可售数量，如果计算订单数量需要减少；&#xD;&#xA;5、billPrice采购价格，销售价格&#xD;&#xA;6、不管入库有没有仓位，库存的仓位都跟着变&#xD;&#xA;7、最近入库价-采购；最近出库价-销售&#xD;&#xA;8、入库类型都需要更新仓位&#xD;&#xA;9、采购入库和销售出库时 updateGuestPartPriceInfo&#xD;&#xA;10、所有的仓库都为可售仓（2018.6.26）&#xD;&#xA;11、根据分仓库存表的订单数量，汇总后更新库存表的订单数量" title="DLB&#x9;17-7-18 下午5:14">
-    <location x="2" y="-195"/>
-    <size height="290" width="360"/>
+    <location x="2" y="-309"/>
+    <size height="423" width="360"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="连接线" isDefault="true" type="transition">

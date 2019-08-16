@@ -12,10 +12,10 @@ pageEncoding="UTF-8" session="false" %>
         <head>
             <title>首页</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.3.35"></script>
+            <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.3.45"></script>
             <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
             <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
-            <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css?v=1.0.5" rel="stylesheet" type="text/css" />
+            <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css?v=1.0.6" rel="stylesheet" type="text/css" />
             <script type="text/javascript" src="<%=request.getContextPath()%>/common/nui/echarts.min.js"></script>
             <!-- <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
 <%--             <script src="<%=webPath + contextPath%>/common/js/jquery-1.11.3.min.js?v=1.0.3"></script>
@@ -24,6 +24,38 @@ pageEncoding="UTF-8" session="false" %>
             	#nuifit{
             		height:125px !important;
             	}
+            	.box {
+					width: 32px;
+					height: 23px;
+					background-color: red;
+					text-align: center;
+					border-top-left-radius:20px;
+					border-top-right-radius:25px;
+					border-bottom-right-radius:25px;
+				  	border-bottom-left-radius:0px;
+				  	position: absolute;
+				  	margin-top: -10px;
+				}
+				
+				em.emarrow {
+					color: #E6E6E6;
+					font-size: 40px;
+				}
+				
+				span.arrow {
+					color: #E6E6E6;
+					font-size: 40px;
+				}
+				.shu{
+					color:#f2f5f7;
+					font-size: 15px;
+					margin-top: 2px;
+				}
+				.icon{
+					style="width: 50px;
+					height: 50px;position: relative;
+					float: left;
+				}
             </style>
         </head>
 
@@ -46,7 +78,7 @@ pageEncoding="UTF-8" session="false" %>
 	
 	                </div>            
 				</div>
-                <div id="" class="main" style="margin-top: 5px;height: 205px;">
+                <div id="" class="main" style="margin-top: 5px;height: 300px;">
 
                     <div id="" class="main_child_left">
                         <div class="vpanel">
@@ -62,73 +94,117 @@ pageEncoding="UTF-8" session="false" %>
 
                                             <tr>
                                                 <td class="tabletext">
-                                                    <i class="fa fa-cube fa-lg-custom fa-fw"></i>预约到店提醒：</td>
-                                                <td class="tablenum">
-                                                    <a id="queryAppointment" href="javascript:bookingMgr()" style="color: #61acc9;">
-                                                        <span></span>
-                                                    </a>
-                                                </td>
-                                                <td style="width:0.05%;"></td>
-                                                <td class="tabletext">
-                                                    <i class="fa fa-cube fa-lg-custom fa-fw"></i>保养到期提醒：</td>
-                                                <td class="tablenum">
-                                                    <a id="queryMaintain" href="javascript:toMaintain(8)" style="color: #61acc9;">
-                                                        <span></span>
-                                                    </a>
-                                                </td>
+													<div style="width: 100%;height: 100%;cursor:pointer;margin-left: 20px;margin-top: 30px;position: relative;float: left;" onclick="bookingMgr()">												
+	                                                		<div class="box" style="margin-left: 158px;" id="queryAppointment"><p  class="shu"></p> 
+															</div>
+															<div class="icon">
+																<i class="fa fa-clock-o fa-3x" style="color:#25ab23;"></i>
+															</div>
+															<div style="width: 150px;height: 50px;position: relative;float: left;">
+																<span style="font-size: 17px;">预约到店提醒</span></br><span style="font-size: 12px;color:#ccc" id="queryAppointmentDate"></span>
+															</div>
+	                                                    
+													</div>
+	                                            </td>
+
+                                               <td class="tabletext">
+													<div style="width: 100%;height: 100%;cursor:pointer;margin-left: 20px;margin-top: 30px;position: relative;float: left;" onclick="toMaintain(8)">												
+	                                                		<div class="box" style="margin-left: 158px;" id="queryMaintain"><p  class="shu"></p> 
+															</div>
+															<div class="icon">
+																<i class="fa fa-calendar fa-3x" style="color:#1faeff;"></i>
+															</div>
+															<div style="width: 150px;height: 50px;position: relative;float: left;">
+																<span style="font-size: 15px;">保养到期提醒</span></br><span style="font-size: 12px;color:#ccc" id="queryMaintainDate"></span>
+															</div>
+	                                                    
+													</div>
+	                                            </td>
+                                               <td class="tabletext">
+													<div style="width: 100%;height: 100%;cursor:pointer;margin-left: 20px;margin-top: 30px;position: relative;float: left;" onclick="toMaintain(3)">												
+	                                                		<div class="box" style="margin-left: 158px;" id="queryBusiness"><p  class="shu"></p> 
+															</div>
+															<div class="icon">
+																<i class="fa fa-calendar fa-3x" style="color:#1faeff;"></i>
+															</div>
+															<div style="width: 150px;height: 50px;position: relative;float: left;">
+																<span style="font-size: 15px;">商业险到期提醒</span></br><span style="font-size: 12px;color:#ccc" id="queryBusinessDate"></span>
+															</div>
+	                                                    
+													</div>
+	                                            </td>   
                                             </tr>
 
                                             <tr>
-                                                <td class="tabletext">
-                                                    <i class="fa fa-cube fa-lg-custom fa-fw"></i>商业险到期提醒：</td>
-                                                <td class="tablenum">
-                                                    <a id="queryBusiness" href="javascript:toMaintain(3)" style="color: #61acc9;">
-                                                        <span></span>
-                                                    </a>
-                                                </td>
-                                                <td style="width:0.05%;"></td>
-                                                <td class="tabletext">
-                                                    <i class="fa fa-cube fa-lg-custom fa-fw"></i>交强险到期提醒：</td>
-                                                <td class="tablenum">
-                                                    <a id="queryCompulsoryInsurance" href="javascript:toMaintain(4)" style="color: #61acc9;">
-                                                        <span></span>
-                                                    </a>
-                                                </td>
+                                               <td class="tabletext">
+													<div style="width: 100%;height: 100%;cursor:pointer;margin-left: 20px;margin-top: 30px;position: relative;float: left;" onclick="toMaintain(4)">												
+	                                                		<div class="box" style="margin-left: 158px;" id="queryCompulsoryInsurance"><p  class="shu"></p> 
+															</div>
+															<div style="width: 50px;height: 50px;position: relative;float: left;">
+																<i class="fa fa-calendar fa-3x" style="color:#1faeff;"></i>
+															</div>
+															<div style="width: 150px;height: 50px;position: relative;float: left;">
+																<span style="font-size: 15px;">交强险到期提醒</span></br><span style="font-size: 12px;color:#ccc" id="queryCompulsoryInsuranceDate"></span>
+															</div>
+	                                                    
+													</div>
+	                                            </td> 	
+                                               <td class="tabletext">
+													<div style="width: 100%;height: 100%;cursor:pointer;margin-left: 20px;margin-top: 30px;position: relative;float: left;" onclick="toMaintain(5)">												
+	                                                		<div class="box" style="margin-left: 158px;" id="queryDrivingLicense"><p  class="shu"></p> 
+															</div>
+															<div class="icon">
+																<i class="fa fa-calendar fa-3x" style="color:#1faeff;"></i>
+															</div>
+															<div style="width: 150px;height: 50px;position: relative;float: left;">
+																<span style="font-size: 15px;">驾照年审提醒</span></br><span style="font-size: 12px;color:#ccc" id="queryDrivingLicenseDate"></span>
+															</div>
+	                                                    
+													</div>
+	                                            </td> 	
+                                               <td class="tabletext">
+													<div style="width: 100%;height: 100%;cursor:pointer;margin-left: 20px;margin-top: 30px;position: relative;float: left;" onclick="toMaintain(6)">												
+	                                                		<div class="box" style="margin-left: 158px;" id="queryCar"><p  class="shu"></p> 
+															</div>
+															<div class="icon">
+																<i class="fa fa-calendar fa-3x" style="color:#1faeff;"></i>
+															</div>
+															<div class="icon">
+																<span style="font-size: 15px;">车辆年检提醒</span></br><span style="font-size: 12px;color:#ccc" id="queryCarDate"></span>
+															</div>
+	                                                    
+													</div>
+	                                            </td> 	                                                                                                                                                                             
                                             </tr>
 
                                             <tr>
-                                                <td class="tabletext">
-                                                    <i class="fa fa-cube fa-lg-custom fa-fw"></i>驾照年审提醒：</td>
-                                                <td class="tablenum">
-                                                    <a id="queryDrivingLicense" href="javascript:toMaintain(5)" style="color: #61acc9;">
-                                                        <span></span>
-                                                    </a>
-                                                </td>
-                                                <td></td>
-                                                <td class="tabletext">
-                                                    <i class="fa fa-cube fa-lg-custom fa-fw"></i>车辆年检提醒：</td>
-                                                <td class="tablenum">
-                                                    <a id="queryCar" href="javascript:toMaintain(6)" style="color: #61acc9;">
-                                                        <span></span>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tabletext">
-                                                    <i class="fa fa-cube fa-lg-custom fa-fw"></i>客户生日提醒：</td>
-                                                <td class="tablenum">
-                                                    <a id="queryGuestBirthday" href="javascript:toMaintain(7)" style="color: #61acc9;">
-                                                        <span></span>
-                                                    </a>
-                                                </td>
-                                                <td></td>
-                                                <td class="tabletext">
-                                                    <i class="fa fa-cube fa-lg-custom fa-fw"></i>员工生日提醒：</td>
-                                                <td class="tablenum">
-                                                    <a id="queryEmployeeBirthday" href="javascript:toMaintain(2)" style="color: #61acc9;">
-                                                        <span></span>
-                                                    </a>
-                                                </td>
+                                               <td class="tabletext">
+													<div style="width: 100%;height: 100%;cursor:pointer;margin-left: 20px;margin-top: 30px;position: relative;float: left;" onclick="toMaintain(7)">												
+	                                                		<div class="box" style="margin-left: 158px;" id="queryGuestBirthday"><p  class="shu"></p> 
+															</div>
+															<div class="icon">
+																<i class="fa fa-calendar fa-3x" style="color:#1faeff;"></i>
+															</div>
+															<div style="width: 150px;height: 50px;position: relative;float: left;">
+																<span style="font-size: 15px;">客户生日提醒</span></br><span style="font-size: 12px;color:#ccc" id="queryGuestBirthdayDate"></span>
+															</div>
+	                                                    
+													</div>
+	                                            </td>  
+                                               <td class="tabletext">
+													<div style="width: 100%;height: 100%;cursor:pointer;margin-left: 20px;margin-top: 30px;position: relative;float: left;" onclick="toMaintain(2)">												
+	                                                		<div class="box" style="margin-left: 158px;" id="queryEmployeeBirthday"><p  class="shu"></p> 
+															</div>
+															<div class="icon">
+																<i class="fa fa-calendar fa-3x" style="color:#1faeff;"></i>
+															</div>
+															<div style="width: 150px;height: 50px;position: relative;float: left;">
+																<span style="font-size: 15px;">员工生日提醒</span></br><span style="font-size: 12px;color:#ccc" id="queryEmployeeBirthdayDate"></span>
+															</div>
+	                                                    
+													</div>
+	                                            </td> 
+	                                            	                                                                                      
                                             </tr>
 
                                         </table>

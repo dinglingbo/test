@@ -2084,12 +2084,17 @@
 			a.return_sign as returnSign,
 			b.is_settle   isSsettle,
 			a.out_qty outQty,
-			b.service_type_id serviceTypeId
+			b.service_type_id serviceTypeId,
+			d.enter_date as enterDate,
+			e.full_name as fullName,
+			e.short_name as shortName
 			
 		FROM
 			pj_repair_out a
 		INNER JOIN wb_repair.rps_maintain b ON a.service_id = b.id
 		INNER JOIN wb_common.com_attribute c ON c.id = a.part_id
+		INNER JOIN wb_part.pj_enter_detail_chk d ON a.source_id = d.id
+		INNER JOIN wb_common.com_guest e ON d.guest_id = e.id
 		WHERE 1=1
 		
 		<dynamic>

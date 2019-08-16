@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
         <head>
             <title>首页</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.3.51"></script>
+            <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.0.2"></script>
             <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
             <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
             <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css?v=1.0.6" rel="stylesheet" type="text/css" />
@@ -34,7 +34,7 @@ pageEncoding="UTF-8" session="false" %>
 					border-bottom-right-radius:25px;
 				  	border-bottom-left-radius:0px;
 				  	position: absolute;
-				  	margin-top: -10px;
+				  	margin-top: -14px;
 				}
 				
 				em.emarrow {
@@ -95,7 +95,7 @@ pageEncoding="UTF-8" session="false" %>
                                             <tr>
                                                 <td class="tabletext">
 													<div style="width: 100%;height: 100%;cursor:pointer;margin-left: 20px;margin-top: 30px;position: relative;float: left;" onclick="bookingMgr()">												
-	                                                		<div class="box" style="margin-left: 158px;display: none;" id="queryAppointment"><p  class="shu"></p> 
+	                                                		<div class="box" style="margin-left: 138px;" id="queryAppointment"><p  class="shu"></p> 
 															</div>
 															<div class="icon">
 																<i class="fa fa-clock-o fa-3x" style="color:#25ab23;"></i>
@@ -109,10 +109,10 @@ pageEncoding="UTF-8" session="false" %>
 
                                                <td class="tabletext">
 													<div style="width: 100%;height: 100%;cursor:pointer;margin-left: 20px;margin-top: 30px;position: relative;float: left;" onclick="toMaintain(8)">												
-	                                                		<div class="box" style="margin-left: 158px;" id="queryMaintain"><p  class="shu"></p> 
+	                                                		<div class="box" style="margin-left: 144px;" id="queryMaintain"><p  class="shu"></p> 
 															</div>
 															<div class="icon">
-																<i class="fa fa-calendar fa-3x" style="color:#1faeff;"></i>
+																<i class="fa fa-cubes fa-3x" style="color:#1faeff;"></i>
 															</div>
 															<div style="width: 150px;height: 50px;position: relative;float: left;">
 																<span style="font-size: 15px;">保养到期提醒</span></br><span style="font-size: 12px;color:#ccc" id="queryMaintainDate"></span>
@@ -122,13 +122,13 @@ pageEncoding="UTF-8" session="false" %>
 	                                            </td>
                                                <td class="tabletext">
 													<div style="width: 100%;height: 100%;cursor:pointer;margin-left: 20px;margin-top: 30px;position: relative;float: left;" onclick="toMaintain(3)">												
-	                                                		<div class="box" style="margin-left: 158px;" id="queryBusiness"><p  class="shu"></p> 
+	                                                		<div class="box" style="margin-left: 129px;" id="queryBusiness"><p  class="shu"></p> 
 															</div>
 															<div class="icon">
-																<i class="fa fa-calendar fa-3x" style="color:#1faeff;"></i>
+																<i class="fa fa-cubes fa-3x" style="color:#1faeff;"></i>
 															</div>
 															<div style="width: 150px;height: 50px;position: relative;float: left;">
-																<span style="font-size: 15px;">商业险到期提醒</span></br><span style="font-size: 12px;color:#ccc" id="queryBusinessDate"></span>
+																<span style="font-size: 15px;">商业险提醒</span></br><span style="font-size: 12px;color:#ccc" id="queryBusinessDate"></span>
 															</div>
 	                                                    
 													</div>
@@ -138,23 +138,23 @@ pageEncoding="UTF-8" session="false" %>
                                             <tr>
                                                <td class="tabletext">
 													<div style="width: 100%;height: 100%;cursor:pointer;margin-left: 20px;margin-top: 30px;position: relative;float: left;" onclick="toMaintain(4)">												
-	                                                		<div class="box" style="margin-left: 158px;" id="queryCompulsoryInsurance"><p  class="shu"></p> 
+	                                                		<div class="box" style="margin-left: 137px;" id="queryCompulsoryInsurance"><p  class="shu"></p> 
 															</div>
 															<div style="width: 50px;height: 50px;position: relative;float: left;">
-																<i class="fa fa-calendar fa-3x" style="color:#1faeff;"></i>
+																<i class="fa fa-calendar-o fa-3x" style="color:#1faeff;"></i>
 															</div>
 															<div style="width: 150px;height: 50px;position: relative;float: left;">
-																<span style="font-size: 15px;">交强险到期提醒</span></br><span style="font-size: 12px;color:#ccc" id="queryCompulsoryInsuranceDate"></span>
+																<span style="font-size: 15px;">交强险提醒</span></br><span style="font-size: 12px;color:#ccc" id="queryCompulsoryInsuranceDate"></span>
 															</div>
 	                                                    
 													</div>
 	                                            </td> 	
                                                <td class="tabletext">
 													<div style="width: 100%;height: 100%;cursor:pointer;margin-left: 20px;margin-top: 30px;position: relative;float: left;" onclick="toMaintain(5)">												
-	                                                		<div class="box" style="margin-left: 158px;" id="queryDrivingLicense"><p  class="shu"></p> 
+	                                                		<div class="box" style="margin-left: 138px;" id="queryDrivingLicense"><p  class="shu"></p> 
 															</div>
 															<div class="icon">
-																<i class="fa fa-calendar fa-3x" style="color:#1faeff;"></i>
+																<i class="fa fa-address-card-o fa-3x" style="color:#1faeff;"></i>
 															</div>
 															<div style="width: 150px;height: 50px;position: relative;float: left;">
 																<span style="font-size: 15px;">驾照年审提醒</span></br><span style="font-size: 12px;color:#ccc" id="queryDrivingLicenseDate"></span>
@@ -164,10 +164,10 @@ pageEncoding="UTF-8" session="false" %>
 	                                            </td> 	
                                                <td class="tabletext">
 													<div style="width: 100%;height: 100%;cursor:pointer;margin-left: 20px;margin-top: 30px;position: relative;float: left;" onclick="toMaintain(6)">												
-	                                                		<div class="box" style="margin-left: 158px;" id="queryCar"><p  class="shu"></p> 
+	                                                		<div class="box" style="margin-left: 138px;" id="queryCar"><p  class="shu"></p> 
 															</div>
 															<div class="icon">
-																<i class="fa fa-calendar fa-3x" style="color:#1faeff;"></i>
+																<i class="fa fa-automobile fa-3x" style="color:#1faeff;"></i>
 															</div>
 															<div class="icon">
 																<span style="font-size: 15px;">车辆年检提醒</span></br><span style="font-size: 12px;color:#ccc" id="queryCarDate"></span>
@@ -180,10 +180,10 @@ pageEncoding="UTF-8" session="false" %>
                                             <tr>
                                                <td class="tabletext">
 													<div style="width: 100%;height: 100%;cursor:pointer;margin-left: 20px;margin-top: 30px;position: relative;float: left;" onclick="toMaintain(7)">												
-	                                                		<div class="box" style="margin-left: 158px;" id="queryGuestBirthday"><p  class="shu"></p> 
+	                                                		<div class="box" style="margin-left: 138px;" id="queryGuestBirthday"><p  class="shu"></p> 
 															</div>
 															<div class="icon">
-																<i class="fa fa-calendar fa-3x" style="color:#1faeff;"></i>
+																<i class="fa fa-birthday-cake fa-3x" style="color:#1faeff;"></i>
 															</div>
 															<div style="width: 150px;height: 50px;position: relative;float: left;">
 																<span style="font-size: 15px;">客户生日提醒</span></br><span style="font-size: 12px;color:#ccc" id="queryGuestBirthdayDate"></span>
@@ -193,10 +193,10 @@ pageEncoding="UTF-8" session="false" %>
 	                                            </td>  
                                                <td class="tabletext">
 													<div style="width: 100%;height: 100%;cursor:pointer;margin-left: 20px;margin-top: 30px;position: relative;float: left;" onclick="toMaintain(2)">												
-	                                                		<div class="box" style="margin-left: 158px;" id="queryEmployeeBirthday"><p  class="shu"></p> 
+	                                                		<div class="box" style="margin-left: 138px;" id="queryEmployeeBirthday"><p  class="shu"></p> 
 															</div>
 															<div class="icon">
-																<i class="fa fa-calendar fa-3x" style="color:#1faeff;"></i>
+																<i class="fa fa-birthday-cake fa-3x" style="color:#1faeff;"></i>
 															</div>
 															<div style="width: 150px;height: 50px;position: relative;float: left;">
 																<span style="font-size: 15px;">员工生日提醒</span></br><span style="font-size: 12px;color:#ccc" id="queryEmployeeBirthdayDate"></span>

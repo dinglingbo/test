@@ -507,14 +507,47 @@ function queryRemind (carExtendQty,contactorQty,messageQty,appQty){
 	var month = date.getMonth()+1;
 	var day = date.getDate();
 	var dateStr = month+"月"+day+"日"+" 8:30";
-	$("#queryMaintain p").text(carExtendQty[0].needQuantity);
-	$("#queryBusiness p").text(carExtendQty[0].annualQuantity);
-	$("#queryCompulsoryInsurance p").text(carExtendQty[0].insureQuantity);
-	$("#queryDrivingLicense p").text(contactorQty[0].licenseQuantity);
-	$("#queryCar p").text(carExtendQty[0].veriQuantity);
-	$("#queryAppointment p").text(appQty[0].appQuantity);
-	$("#queryGuestBirthday p").text(contactorQty[0].birQuantity);
-	$("#queryEmployeeBirthday p").text(messageQty[0].ebirQuantity);
+	if(carExtendQty[0].needQuantity!=0){	
+		$("#queryMaintain p").text(carExtendQty[0].needQuantity);
+	}else{
+		document.getElementById('queryMaintain').style.display='none';
+	}
+	if(carExtendQty[0].annualQuantity!=0){	
+		$("#queryBusiness p").text(carExtendQty[0].annualQuantity);
+	}else{
+		document.getElementById('queryBusiness').style.display='none';
+	}
+	if(carExtendQty[0].insureQuantity!=0){	
+		$("#queryCompulsoryInsurance p").text(carExtendQty[0].insureQuantity);
+	}else{
+		document.getElementById('queryCompulsoryInsurance').style.display='none';
+	}
+	if(contactorQty[0].licenseQuantity!=0){	
+		$("#queryDrivingLicense p").text(contactorQty[0].licenseQuantity);
+	}else{
+		document.getElementById('queryDrivingLicense').style.display='none';
+	}
+	if(carExtendQty[0].veriQuantity!=0){	
+		$("#queryCar p").text(carExtendQty[0].veriQuantity);
+	}else{
+		document.getElementById('queryCar').style.display='none';
+	}
+	if(appQty[0].appQuantity!=0){	
+		$("#queryAppointment p").text(appQty[0].appQuantity);
+	}else{
+		document.getElementById('queryAppointment').style.display='none';
+	}
+	if(contactorQty[0].birQuantity!=0){	
+		$("#queryGuestBirthday p").text(contactorQty[0].birQuantity);
+	}else{
+		document.getElementById('queryGuestBirthday').style.display='none';
+	}
+	if(messageQty[0].ebirQuantity!=0){
+		$("#queryEmployeeBirthday p").text(messageQty[0].ebirQuantity);
+	}else{
+		document.getElementById('queryEmployeeBirthday').style.display='none';
+	}
+	
 	
 	$("#queryMaintainDate").innerHTML=dateStr;
 	$("#queryBusinessDate").innerHTML=dateStr;

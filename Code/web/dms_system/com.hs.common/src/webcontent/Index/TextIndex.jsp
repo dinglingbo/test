@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
         <head>
             <title>首页</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.3.45"></script>
+            <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.3.51"></script>
             <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
             <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
             <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css?v=1.0.6" rel="stylesheet" type="text/css" />
@@ -95,7 +95,7 @@ pageEncoding="UTF-8" session="false" %>
                                             <tr>
                                                 <td class="tabletext">
 													<div style="width: 100%;height: 100%;cursor:pointer;margin-left: 20px;margin-top: 30px;position: relative;float: left;" onclick="bookingMgr()">												
-	                                                		<div class="box" style="margin-left: 158px;" id="queryAppointment"><p  class="shu"></p> 
+	                                                		<div class="box" style="margin-left: 158px;display: none;" id="queryAppointment"><p  class="shu"></p> 
 															</div>
 															<div class="icon">
 																<i class="fa fa-clock-o fa-3x" style="color:#25ab23;"></i>

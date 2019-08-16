@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调拨入库明细查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotApplyInQuery.js?v=2.0.20"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/allotApply/allotApplyInQuery.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
 	width: 90px;

@@ -14,12 +14,12 @@
                 <script src="<%=request.getContextPath()%>/common/nui/boot.js" type="text/javascript"></script>
                 <link href="<%=request.getContextPath()%>/coframe/auth/login/css/kefu.css" rel="stylesheet" type="text/css" />
                 <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menu/menu.css" rel="stylesheet" type="text/css" />
-                <script src="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menu/menu.js" type="text/javascript"></script>
+                <script src="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menu/menu.js?v=1.0.2" type="text/javascript"></script>
                 <script src="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menupop.js" type="text/javascript"></script>
                 <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/tabs.css" rel="stylesheet" type="text/css" />
                 <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/frame.css?v=1.0.14" rel="stylesheet" type="text/css"
                 />
-                <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/index.css?v=1.0.11" rel="stylesheet" type="text/css"
+                <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/index.css?v=1.0.13" rel="stylesheet" type="text/css"
                 />
                 <link href="<%=webPath + contextPath%>/common/nui/themes/cupertino/skin.css" rel="stylesheet" type="text/css" />
                 <link href="<%=request.getContextPath()%>/common/nui/res/third-party/scrollbar/jquery.mCustomScrollbar.css" rel="stylesheet"
@@ -230,18 +230,21 @@
                             <a class="kefu">
                                 <span class="kefu-title">换肤</span>
                             <ul class="kefu-dropdown">
-                                <li onclick="updateSkin('#368bf4')" class="toTop">
-                                        <div style="width:10px;height:15px;background-color: #368bf4;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;经典蓝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <li onclick="updateSkin('#369cf4d9')" class="toTop">
+                                        <div style="width:10px;height:15px;background-color: #369cf4d9;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;经典蓝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 </li>
-                                <li onclick="updateSkin('#285e9f')">
-                                        <div style="width:10px;height:15px;background-color: #285e9f;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;深湛蓝
+                                <li onclick="updateSkin('#0067b8')">
+                                        <div style="width:10px;height:15px;background-color: #0067b8;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;深湛蓝
+                      </li>
+  								<li onclick="updateSkin('#f36205a6')">
+                                        <div style="width:10px;height:15px;background-color: #f36205a6;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;秋日橙
                                 </li>
-                                <li onclick="updateSkin('#f36205')">
+<!--                                 <li onclick="updateSkin('#f36205')">
                                         <div style="width:10px;height:15px;background-color: #f36205;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;秋日橙
-                                </li>
-                                <li onclick="updateSkin('#c1c1c1')">
+                                </li> -->
+<!--                                 <li onclick="updateSkin('#c1c1c1')">
                                         <div style="width:10px;height:15px;background-color: #c1c1c1;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;极简灰
-                                </li>
+                                </li> -->
                                 <li onclick="updateSkin('#42485b')">
                                         <div style="width:10px;height:15px;background-color: #42485b;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;炫酷黑
                                 </li>
@@ -537,8 +540,10 @@
                         } else {
                             if (list[0].backgroundColor != null) {
                                 document.getElementById("skin").style.backgroundColor = list[0].backgroundColor;
+                                document.getElementById("mainMenu").style.backgroundColor = list[0].backgroundColor;
                             } else {
-                                document.getElementById("skin").style.backgroundColor = "#368bf4";
+                                document.getElementById("skin").style.backgroundColor = "#0067b8";
+                                document.getElementById("mainMenu").style.backgroundColor = "#0067b8";
                             }
 
                             //list[0]

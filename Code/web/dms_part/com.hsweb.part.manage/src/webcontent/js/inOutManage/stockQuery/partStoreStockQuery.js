@@ -301,9 +301,6 @@ function onDrawCell2(e)
 {
     switch (e.field)
     {
-	    case "manualCode":
-			e.cellHtml ='<a href="##" onclick="edit()">'+e.value+'</a>';
-			break;
 	    case "partBrandId":
 	    	if(partBrandIdHash[e.value])
             {
@@ -516,3 +513,65 @@ function onExport(){
 	}
 	
 }
+
+
+function printCode(){
+	var tabs = nui.get("mainTabs").getActiveTab();
+	var row = [];
+	if(tabs.name=="inventory"){
+		row = rightGrid.getSelecteds();	
+	}else if(tabs.name=="batch"){
+	    row = rightGrid2.getSelecteds();
+	}
+	var codeList = [];
+	//所有配件转化json字符串
+	for(var i = 0;i<row.length;i++){
+		var code ={
+				name : row[i].comPartName||"",
+				code : row[i].partCode||"",
+				id : row[i].codeId||""
+		}; 
+		var strCode = JSON.stringify(code);
+		var towCode = {
+				str : strCode,
+				name : row[i].comPartName||"",
+				code : row[i].partCode||"",
+				id : row[i].codeId||""
+		};
+		codeList.push(towCode);
+	}
+	var createQRCodeByListUrl = webPath + sysDomain + "/com.hs.common.uitls.createQRCodeByList.biz.ext";
+    nui.ajax({
+        url: createQRCodeByListUrl,
+        type:"post",
+        async: false,
+        data:{
+        	codeList:codeList,
+        	"width": 150,
+        	"height" : 150,
+        	token:token
+        },
+        cache: false,
+        success: function (data) {
+        	var codeList = data.codeList;
+            if(data.errCode == "S"){
+                nui.open({
+                    url:  webPath + contextPath + "/com.hsweb.print.codePrint.flow",
+                    title:"打印配件二维码",
+                    height:"100%",
+                    width:"100%",
+                    onload:function(){
+                        var iframe = this.getIFrameEl();
+                        iframe.contentWindow.setData(codeList);
+                    },
+                    ondestroy:function(action){
+                    }
+
+                });
+            }else{
+                showMsg("生成二维码失败!","E");
+            }
+        }
+    });
+}
+

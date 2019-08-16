@@ -348,11 +348,6 @@ function setSubGroupData(data,json){
 	
 	//分组数据
 	subGroupData =data;
-/*	for(var i=0;i<data.length;i++){
-		if(data[i].is_filter!=0){
-			data.splice(i--, 1);
-		}
-	}*/
     gridSubGroup.setData(data);
     
     //img

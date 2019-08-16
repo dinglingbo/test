@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var leftGridUrl = baseUrl+"com.hsapi.part.invoice.allotsettle.queryPjAllotAcceptMainList.biz.ext";
 var rightGridUrl = baseUrl+"com.hsapi.part.invoice.allotsettle.queryPjAllotAcceptDetailList.biz.ext";
 var advancedSearchWin = null;
@@ -883,7 +883,7 @@ function audit(){
 function addGuest(){
     nui.open({
         // targetWindow: window,
-        url: webPath+contextPath+"/com.hsweb.cloud.part.basic.supplierDetail.flow?token=" + token,
+        url: webPath+contextPath+"/com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
         title: "供应商资料", width: 570, height: 530,
         allowDrag:true,
         allowResize:false,
@@ -1144,7 +1144,7 @@ function addNewRow(check){
     }
 }
 var partInfoUrl = baseUrl
-        + "com.hsapi.cloud.part.invoicing.paramcrud.queryPartInfoByParam.biz.ext";
+              + "com.hsapi.part.invoice.paramcrud.queryPartInfoByParam.biz.ext";
 function getPartInfo(params){
     var part = null;
     nui.ajax({
@@ -1301,7 +1301,9 @@ function onGuestValueChanged(e)
         //addNewRow(true);
     }
 }
-var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
+
+var getGuestInfo = baseUrl+"com.hsapi.part.baseDataCrud.crud.querySupplierList.biz.ext";
+
 function setGuestInfo(params)
 {
     params.isInternal = 1;
@@ -1513,7 +1515,7 @@ function selectPart(callback,checkcallback)
 {
     nui.open({
         // targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.cloud.part.common.partSelectView.flow?token="+token,
+        url: webPath + contextPath + "/com.hsweb.part.common.partSelectView.flow?token="+token,
         title: "配件选择", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -1619,7 +1621,7 @@ function selectSupplier(elId) {
     supplier = null;
     nui.open({
         // targetWindow: window,,
-        url : webPath+contextPath+"/com.hsweb.cloud.part.common.guestSelect.flow?token="+token,
+        url : webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title : "供应商资料",
         width : 980,
         height : 560,
@@ -1630,7 +1632,8 @@ function selectSupplier(elId) {
             var params = {
                 isSupplier: 1,
                 guestType:'01020202',
-                isInternal: 1
+                isInternal: 1,
+                allot:1
             };
             iframe.contentWindow.setGuestData(params);
         },
@@ -1665,7 +1668,7 @@ function selectSupplier(elId) {
 var company="";
 var phone ="";
 var addr ="";
-var supplierUrl=baseUrl +"com.hsapi.cloud.part.baseDataCrud.crud.queryGuestList.biz.ext";
+var supplierUrl=baseUrl +"com.hsapi.part.baseDataCrud.crud.queryGuestList.biz.ext";
 function getGuest(guestId){
     $.ajaxSettings.async = false;
     $.post(supplierUrl+"?params/guestId="+guestId+"&token="+token,{},function(text){
@@ -1676,7 +1679,7 @@ function getGuest(guestId){
     });
 }
 
-var partUrl=baseUrl +"com.hsapi.cloud.part.baseDataCrud.crud.queryPartListByOrgid.biz.ext";
+var partUrl=baseUrl +"com.hsapi.part.baseDataCrud.crud.queryPartListByOrgid.biz.ext";
 function getPart(partIdList){
 //  $.ajaxSettings.async = false;
 //  $.post(partUrl+"?params/orgid="+currOrgid+"&params/noPage="+1+"&token="+token,{},function(text){
@@ -1732,7 +1735,7 @@ function adjustPart(){
 
         nui.open({
             // targetWindow: window,
-            url: webPath + contextPath + "/com.hsweb.cloud.part.purchase.adjustApplyQty.flow?token=" + token,
+            url: webPath + contextPath + "/com.hsweb.part.purchase.adjustApplyQty.flow?token=" + token,
             title: "调拨申请调整",
             width: 900, height: 400,
             allowDrag:true,

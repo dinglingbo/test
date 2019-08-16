@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调拨申请明细查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotApllyQuery.js?v=2.0.27"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/allotApply/allotApllyQuery.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
 	width: 90px;

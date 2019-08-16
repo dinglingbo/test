@@ -170,7 +170,7 @@ function rowClickDg8(){
     if (row.hasChild == "1") {
         setTopNav(9, row.name);
         var str = "&brandCode="+row.brandCode+"&name="+row.name+"&level="+row.level+"&fullConditionPath="+row.fullConditionPath;
-        str = encodeURI(str) 
+        str = encodeURI(str); 
         var params = {
     			url:"llq/carTypes",
     			params:str,
@@ -183,15 +183,14 @@ function rowClickDg8(){
 }
 function rowClickDg9(){
     var row = dg9.getSelected();
-    if (row.auth && row.has_next == "1") {
+    if (row.hasChild == "1") {
         setTopNav(10, row.name);
+        var str = "&brandCode="+row.brandCode+"&name="+row.name+"&level="+row.level+"&fullConditionPath="+row.fullConditionPath;
+        str = encodeURI(str); 
         var params = {
-            "url": llq_pre_url + "/cars/litsx",
-            "params":{
-                "code": brand,
-                "auth": unescape(row.auth)                                                                           
-            },
-            "token": token
+    			url:"llq/carTypes",
+    			params:str,
+    			token:token
         }
         callAjax(url, params, processAjax, setDg10);
     }else{

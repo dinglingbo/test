@@ -1001,4 +1001,47 @@
 				
 	</select>
 	
+	<!--查询账户 -->
+	<select id="queryFiSettleAccount" parameterClass="java.util.HashMap"  resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id AS id,
+			a.orgid AS orgid,
+			a.`code` AS code,
+			a.`name` AS name,
+			a.account_type_id AS accontTypeId,
+			a.parent_id AS parentId,
+			a.is_end AS isEnd,
+			a.level_num AS levelNum,
+			a.is_disabled AS isDisabled,
+			a.is_init AS isInit,
+			a.init_balance AS initBalance,
+			a.cur_balance AS curBalance,
+			a.recorder AS recorder,
+			a.record_date AS recordDate,
+			a.modifier AS modifier,
+			a.modify_date AS modifyDate,
+			a.remark AS remark,
+			b.tenant_id AS tenantId
+		FROM
+			fi_settle_account a
+		INNER JOIN wb_common.com_company b ON a.orgid = b.orgid
+		WHERE 1=1 
+			<dynamic>
+				
+            	<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
+                                               
+                <isNotEmpty prepend="and" property="tenantId"> 
+                    (b.tenant_id = #tenantId#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="isDisabled"> 
+                    (a.is_disabled = #isDisabled#)
+                </isNotEmpty>
+                        
+            </dynamic> 
+				
+	</select>
+	
 </sqlMap>

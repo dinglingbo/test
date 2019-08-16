@@ -1,6 +1,7 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
+var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var leftGridUrl = baseUrl
         + "com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderMainList.biz.ext";
@@ -175,6 +176,11 @@ $(document).ready(function(v) {
             addNewRow(true);
         }
     });
+    
+    if(currIsCommission ==1){
+    	nui.get('chooseMemBtn').setVisible(true);
+    }
+    
     //启用APP
     if(currIsOpenApp==1){
     	nui.get('auditToEnterBtn').setVisible(false);
@@ -2360,3 +2366,50 @@ function rightGridSet(){
         columns: columnsList
     });
 }
+
+function onLeftGridBeforeDeselect(e)
+{
+    var row = leftGrid.getSelected(); 
+    if(row.serviceId == '新销售退货'){
+
+        leftGrid.removeRow(row);
+    }
+}
+
+function chooseMember(){
+	  //销售单
+	  var serviceType=2;
+	  var row = leftGrid.getSelected();
+	    if(row){
+	    	if(row.auditSign ==1){
+	    		showMsg("单据已审核,不能修改");
+	    		return;
+	    	}
+	        if(row.id) {
+	            nui.open({
+	                // targetWindow: window,
+	                url: webBaseUrl+"com.hsweb.cloud.part.basic.selectMember.flow?token="+token,
+	                title: "选择提成成员", 
+	                width: 880, height: 650,
+	                showHeader:true,
+	                allowDrag:true,
+	                allowResize:true,
+	                onload: function ()
+	                {
+	                    var iframe = this.getIFrameEl();
+	                    iframe.contentWindow.setData(row.id,serviceType);
+	                },
+	                ondestroy: function (action)
+	                {
+
+	                }
+	            });
+	        }else{
+	            showMsg("请先选择订单!","W");
+	            return;
+	        }
+	    }else{
+	        return;
+	    }
+}
+

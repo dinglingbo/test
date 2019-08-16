@@ -228,7 +228,10 @@ body .mini-grid-row-selected{
                                          valueFromSelect="true"
                                          onvaluechanged=""
                                          nullItemText="请选择..."/>
-                                  &nbsp;
+                                  &nbsp;                 
+                                  <label>销量排名前:</label>
+                                  <input property="editor" id="limitCount" class="nui-textbox" vtype="int" width="50px" value="0"/>
+                                  <span class="separator"></span>
                                   <label>备货级别:</label>
                                   <input name="stockLevel"
                                          id="stockLevel"
@@ -246,8 +249,6 @@ body .mini-grid-row-selected{
                                          onvaluechanged=""
                                          nullItemText="请选择..."/>
                                   &nbsp;
-                                  <label>销量排名前:</label>
-                                  <input property="editor" id="limitCount" class="nui-textbox" vtype="int" width="50px" value="0"/>
                                   <a class="nui-button" plain="true" iconCls="" onclick="genePart()" id="genePartBtn"><span class="fa fa-download fa-lg"></span>&nbsp;获取配件</a>
                                   <a class="nui-button" plain="true" iconCls="" onclick="adjustPart()" id="adjustPartBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;计划调整</a>
                               </td>

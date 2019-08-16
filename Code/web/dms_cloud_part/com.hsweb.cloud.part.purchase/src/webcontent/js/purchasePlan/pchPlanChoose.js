@@ -13,7 +13,7 @@ var sOrderDateEl = null;
 var eOrderDateEl = null;
 var pickManHash={};
 var AuditSignHash = {
-  "0":"未下订单",
+  "0":"未转订单",
   "1":"部分转订单",
   "2":"全部转订单"
 };

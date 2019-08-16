@@ -133,7 +133,7 @@ $(document).ready(function(v)
         }
     });
 
-    //add();
+    add();
     
 });
 
@@ -1017,7 +1017,7 @@ function add()
         nui.get("orderMan").setValue(currUserName);
         nui.get("storeId").setValue(FStoreId);
 
-        //addNewRow();
+        addNewRow();
         var guestId = nui.get("guestId");
         guestId.focus();
     }

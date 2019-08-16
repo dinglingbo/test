@@ -1143,7 +1143,7 @@
     </select>
     
     <!-- 根据主表ID查询，用于释放占用库存 -->
-    <select id="getPjAllotAcceptPartLockList" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.pts.LockRecord">
+    <select id="getPjAllotAcceptPartLockList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.LockRecord">
     	
          SELECT 
 			a.id as detailId,
@@ -1680,9 +1680,19 @@
 		set is_allot_finished = case when has_cancel_qty + #adjQty# + has_accept_qty >= apply_qty then 1 else 0 end,
 		    allot_finished_date = case when has_cancel_qty + #adjQty# + has_accept_qty >= apply_qty then sysdate() else null end,
 		    has_cancel_qty = has_cancel_qty + #adjQty#,
-		    b.is_finished = case when has_in_qty + has_cancel_qty = apply_qty then 1 else 0 end,
-		    b.finish_date = case when has_in_qty + has_cancel_qty = apply_qty then SYSDATE() else NULL end
+		    is_finished = case when has_in_qty + has_cancel_qty = apply_qty then 1 else 0 end,
+		    finish_date = case when has_in_qty + has_cancel_qty = apply_qty then SYSDATE() else NULL end
 		where main_id = #mainId# and id = #detailId#
 	</update>
+	
+	 <select id="queryAllotApplyMainIsAllotFinish" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">   	
+		SELECT
+			id
+		FROM
+			pj_allot_apply_detail
+		WHERE
+			is_allot_finished = 0
+           	and main_id = #mainId#
+    </select>
 
 </sqlMap>

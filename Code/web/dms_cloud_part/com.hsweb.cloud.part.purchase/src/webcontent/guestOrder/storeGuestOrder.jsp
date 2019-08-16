@@ -13,7 +13,7 @@
 <head>
 <title>预销售单受理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchase/js/guestOrder/storeGuestOrder.js?v=1.0.2"></script>
+    <script src="<%=webPath + contextPath%>/purchase/js/guestOrder/storeGuestOrder.js?v=1.0.3"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -86,14 +86,14 @@
 		            <div field="orgid" width="40" visible="false" headerAlign="center" header="id"></div>
 		            <div field="orgName" width="60" headerAlign="center" header="公司"></div>
 		            <div field="guestFullName" width="60" headerAlign="center" header="客户"></div>
-		            <div field="serviceId" width="100px" headerAlign="center" allowSort="true" header="预售单号"></div>
+		            <div field="serviceId" width="120px" headerAlign="center" allowSort="true" header="预售单号"></div>
 		            <div field="status" width="40px" headerAlign="center" allowSort="true" header="状态"></div>
 		            <div field="storeId" width="55px" headerAlign="center" allowSort="true" header="仓库" visible="false"></div>
 		            <div field="orderQty" width="30px" headerAlign="center" allowSort="true" header="订单数量"></div>
 		            <div field="orderAmt" width="30px" headerAlign="center" allowSort="true" header="订单金额"></div>
 		            <div field="auditDate" width="80px" headerAlign="center" allowSort="true" header="提交日期"  dateFormat="yyyy-MM-dd HH:mm"></div>
-		            <div field="plansendDate" width="65px" headerAlign="center" allowSort="true" header="预计发货日期"  dateFormat="yyyy-MM-dd HH:mm"></div>
-		            <div field="planArriveDate" width="65px" headerAlign="center" allowSort="true" header="预计到货日期"  dateFormat="yyyy-MM-dd HH:mm"></div>
+		            <div field="planSendDate" width="85px" headerAlign="center" allowSort="true" header="预计发货日期"  dateFormat="yyyy-MM-dd HH:mm"></div>
+		            <div field="planArriveDate" width="85px" headerAlign="center" allowSort="true" header="预计到货日期"  dateFormat="yyyy-MM-dd HH:mm"></div>
 		            <div field="remark" width="55px" headerAlign="center" allowSort="true" header="备注"></div>  
 		            <div field="pchsMainCode" width="100px" headerAlign="center" allowSort="true" header="采购单号"></div>
 		            <div field="settleMan" width="80px" headerAlign="center" allowSort="true" header="受理人"></div>
@@ -120,8 +120,8 @@
 						 sizeList=[100,200,500,1000]
 				         showSummaryRow="false">
 				        <div property="columns">
-				            <div type="indexcolumn" summaryType="count">序号</div>
-				            <div field="comPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
+				            <div type="indexcolumn" >序号</div>
+				            <div field="comPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码" summaryType="count"></div>
                             <div field="comPartName" visible="false" headerAlign="center" header="配件名称"></div>
                             <div field="fullName"  width="200" headerAlign="center" header="配件全称"></div>
                             <div field="comPartBrandId" visible="false"width="60" headerAlign="center" header="品牌"></div>

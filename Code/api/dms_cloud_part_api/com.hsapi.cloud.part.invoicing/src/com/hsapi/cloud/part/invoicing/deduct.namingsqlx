@@ -9,13 +9,23 @@
     </resultMap>
     
 
-	<!-- 汇总订单特定产品金额 -->
+	<!-- 汇总订单特定产品金额(销售) -->
 	<select id="queryDeductPartSum" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">	
 		SELECT sum(b.order_amt) as partAmt
 		from pj_deduct_part a 
 		inner join pj_sell_order_detail_chk b
 		on a.part_id = b.part_id
 		inner join pj_sell_order_main_chk c
+		on b.main_id = c.id and a.orgid = c.orgid
+		where c.id = #orderId#
+	</select>
+	<!-- 汇总订单特定产品金额(退货) -->
+	<select id="queryDeductPartSumRtn" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">	
+		SELECT sum(b.order_amt) as partAmt
+		from pj_deduct_part a 
+		inner join pj_pchs_order_detail_chk b
+		on a.part_id = b.part_id
+		inner join pj_pchs_order_main_chk c
 		on b.main_id = c.id and a.orgid = c.orgid
 		where c.id = #orderId#
 	</select>
@@ -33,6 +43,27 @@
 		inner join pj_sell_order_detail_chk b
 		on a.part_id = b.part_id
 		inner join pj_sell_order_main_chk c
+		on b.main_id = c.id and a.orgid = c.orgid
+		where c.id = #orderId#
+		group by a.part_id, a.part_code, a.part_name, a.full_name, a.type, a.deduct_rate) m
+		inner join pj_bill_deduct_mem n
+		on m.serviceId = n.service_id
+		where n.service_id = #orderId#
+	</select>
+	
+	 <!-- 查询订单特定产品提成(退货) -->
+	<select id="queryDeductPartRtn" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT m.serviceId, m.partId, m.partCode, m.partName, m.fullName,
+		       m.type, m.deductRate, m.partAmt, n.deduct_mem_id as deductMemId,
+		       n.deduct_mem_name as deductMemName, n.deduct_mem_type as deductMemType
+		from (
+		SELECT a.part_id as partId, a.part_code as partCode, a.part_name as partName, 
+					 a.full_name as fullName, a.type as type, a.deduct_rate as deductRate,
+					 sum(b.order_amt) as partAmt, c.id as serviceId
+		from pj_deduct_part a 
+		inner join pj_pchs_order_detail_chk b
+		on a.part_id = b.part_id
+		inner join pj_pchs_order_main_chk c
 		on b.main_id = c.id and a.orgid = c.orgid
 		where c.id = #orderId#
 		group by a.part_id, a.part_code, a.part_name, a.full_name, a.type, a.deduct_rate) m
@@ -62,6 +93,17 @@
 		where c.id = #outId#
 	</select>
 	
+	<!-- 汇总订单特定产品金额(退货) -->
+	<select id="queryOutDeductPartSumRtn" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">	
+		SELECT sum(b.enter_amt) as partAmt
+		from pj_deduct_part a 
+		inner join pj_enter_detail_chk b
+		on a.part_id = b.part_id
+		inner join pj_enter_main_chk c
+		on b.main_id = c.id and a.orgid = c.orgid
+		where c.id = #enterId#
+	</select>
+	
 	<!-- 查询出库单特定产品提成   deduct_type = 2 -->
 	<select id="queryOutDeductPart" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT m.outId, m.outCode, m.partId, m.partCode, m.partName, m.fullName,
@@ -89,7 +131,58 @@
 		where n.order_id = #orderId# and n.deduct_type = 2
 	</select>
 	
+	<!-- 查询入库单特定产品提成   deduct_type = 2 -->
+	<select id="queryEnterDeductPart" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT m.outId, m.outCode, m.partId, m.partCode, m.partName, m.fullName,
+			   m.type, m.deductRate, m.partAmt, m.partGross,  
+		       n.deduct_mem_id as deductMemId, n.deduct_mem_name as deductMemName, 
+		       n.order_id as orderId, n.order_code as orderCode, n.type, n.begin_amt as beginAmt,
+			   n.order_amt as orderAmt, n.end_amt as endAmt, n.deduct_rate as deductRate,
+		       case when n.type = 1 then m.partAmt * n.deduct_rate * 1.0 / 100 else 
+		       m.partGross * n.deduct_rate * 1.0 / 100 end as deductAmt
+		from (
+			SELECT a.part_id as partId, a.part_code as partCode, a.part_name as partName, 
+				   a.full_name as fullName, a.type as type, a.deduct_rate as deductRate,
+				   sum(b.enter_amt) as partAmt, sum(b.sell_amt - d.sell_amt) as partGross, 
+				   c.id as outId, c.service_id as outCode
+			from pj_deduct_part a 
+			inner join pj_out_detail_chk b
+			on a.part_id = b.part_id
+			inner join pj_out_main_chk c
+			on b.main_id = c.id and a.orgid = c.orgid
+			INNER JOIN pj_out_detail_chk d 
+			on b.source_id =d.id
+			where c.id = #enterId#
+			group by a.part_id, a.part_code, a.part_name, a.full_name, a.type, a.deduct_rate, c.id, c.service_id
+		) m
+		inner join pj_bill_deduct_params n
+		on m.partId = n.part_id
+		where n.order_id = #orderId# and n.deduct_type = 2
+	</select>
+	
 	<!-- 查询出库单提成 deduct_type = 1 -->
 
-
+	<!-- 查询入库单数据（包含成本） -->
+	<select id="queryEnters" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT
+			a.id as id,
+			a.service_id as serviceId,
+			a.orgid as orgid,
+			a.guest_id as guestId,
+			a.enter_type_id as enterTypeId,
+			a.code_id as codeId,
+			a.`code` as code,
+			a.order_man as orderMan,
+			a.enter_qty as enterQty,
+			a.enter_amt as enterAmt,
+			a.audit_sign as auditSign,
+			b.source_id as sourceId,
+			IFNULL(Sum(c.sell_amt),0) AS gross
+		FROM
+			pj_enter_main_chk a
+		INNER JOIN pj_enter_detail_chk b ON a.id = b.main_id
+		INNER JOIN pj_out_detail_chk c ON b.source_id = c.id
+		WHERE a.id = #enterId#
+	</select>
+	
 </sqlMap>

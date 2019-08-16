@@ -7,6 +7,10 @@ var rightGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.queryRPAccounts.biz.
 var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
 var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList.biz.ext";
 var innerStateGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.getPJStatementDetailById.biz.ext";
+
+var innerAllotAcceptGridUrl= baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryAllotAcceptDetails.biz.ext";
+var innerAllotApplyGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryAllotApplyDetails.biz.ext";
+
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -70,7 +74,7 @@ var settleStatusList = [
     {id:1,text:"部分结算"},
     {id:2,text:"已结算"}
 ];
-var typeIdHash = {1:"采购订单",2:"销售订单",3:"采购退货",4:"销售退货"};
+var typeIdHash = {1:"采购订单",2:"销售订单",3:"采购退货",4:"销售退货",5:"调拨申请",6:"调拨受理",7:"调出退回",8:"调入退回"};
 
 $(document).ready(function(v)
 {
@@ -108,6 +112,18 @@ $(document).ready(function(v)
     innerStatementGrid = nui.get("innerStatementGrid");
     editFormStatementDetail = document.getElementById("editFormStatementDetail");
     innerStatementGrid.setUrl(innerStateGridUrl);
+    
+    innerAllotAcceptGrid = nui.get("innerAllotAcceptGrid");
+    innerAllotAcceptGrid.setUrl(innerAllotAcceptGridUrl);
+    
+    innerAllotAcceptRtnGrid = nui.get("innerAllotAcceptRtnGrid");
+    innerAllotAcceptRtnGrid.setUrl(innerAllotAcceptGridUrl);
+        
+    innerAllotApplyGrid = nui.get("innerAllotApplyGrid");
+    innerAllotApplyGrid.setUrl(innerAllotApplyGridUrl);
+    
+    innerAllotApplyRtnGrid = nui.get("innerAllotApplyRtnGrid");
+    innerAllotApplyRtnGrid.setUrl(innerAllotApplyGridUrl);
 
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
@@ -118,6 +134,11 @@ $(document).ready(function(v)
     pchsRtnWin = nui.get("pchsRtnWin");
     sellOutWin = nui.get("sellOutWin");
     sellRtnWin = nui.get("sellRtnWin");
+    
+    allotInWin = nui.get("allotInWin");
+    allotOutRtnWin = nui.get("allotOutRtnWin");
+    allotOutWin = nui.get("allotOutWin");
+    allotInRtnWin = nui.get("allotInRtnWin");
 
     searchBeginDate.setValue(getNowStartDate());
     searchEndDate.setValue(addDate(getNowEndDate(), 1));
@@ -297,6 +318,10 @@ function onSearch(){
 }
 function doSearch(params)
 {
+	if(currIsMaster !=1){
+		showMsg("总部才可查看","W");
+		return;
+	}
     var tab = mainTabs.getActiveTab();
     var name = tab.name;
     switch (name)
@@ -759,8 +784,53 @@ function onStatementDbClick(e){
                 params:params,
                 token: token
             });
-
+            
             break;
+        case "5":
+        	allotInWin.show();
+            
+            var params = {};
+            params.mainId = mainId;
+            innerAllotApplyGrid.load({
+                params:params,
+                token: token
+            });      
+            
+            break;
+        case "6":
+        	
+        	allotOutWin.show();
+            var params = {};
+            params.mainId = mainId;
+            innerAllotAcceptGrid.load({
+                params:params,
+                token: token
+            });     
+            
+            break;
+        case "7":        	
+        	allotOutRtnWin.show();
+        	
+            var params = {};
+            params.mainId = mainId;
+            innerAllotApplyRtnGrid.load({
+                params:params,
+                token: token
+            });      
+            
+            break;
+        case "8":
+        	allotInRtnWin.show();
+            
+            var params = {};
+            params.mainId = mainId;
+            innerAllotAcceptRtnGrid.load({
+                params:params,
+                token: token
+            });     
+            
+            break;
+       
         default:
             break;
     }

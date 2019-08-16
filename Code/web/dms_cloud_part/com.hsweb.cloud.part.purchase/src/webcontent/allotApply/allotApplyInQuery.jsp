@@ -98,7 +98,7 @@
             <div header="订单信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="serviceId" width="190" summaryType="count" headerAlign="center" header="订单单号"></div>
-                    <div field="orgName" width="200" headerAlign="center" header="调入方"></div>
+                    <div field="orgName" width="200" headerAlign="center" header="调出方"></div>
                     <div field="orderMan" width="80" headerAlign="center" header="受理人"></div>
                     <div allowSort="true" field="settleStatus" width="80" headerAlign="center" header="状态"></div>
                     <div allowSort="true" field="orderDate"width="120" headerAlign="center" header="订单日期" dateFormat="yyyy-MM-dd HH:mm"></div>
@@ -129,6 +129,7 @@
             </div>
             <div header="其他" headerAlign="center">
                 <div property="columns">
+                	<div allowSort="true" field="code" width="160" headerAlign="center" header="调拨申请单号"></div>
                     <div field="auditor" width="70" headerAlign="center" header="审核人"></div>
                     <div allowSort="true"  width="120"field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                 </div>

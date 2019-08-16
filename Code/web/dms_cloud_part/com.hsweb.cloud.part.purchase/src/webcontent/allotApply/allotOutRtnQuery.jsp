@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调出退回明细查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotOutRtnQuery.js?v=1.0.10"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotOutRtnQuery.js?v=1.0.12"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -64,7 +64,8 @@
                 <!-- <label style="font-family:Verdana;">配件编码：</label> -->
                 <input id="partCode" width="120px" emptyText="配件编码"  class="nui-textbox" onenter="onSearch()"/>
                <!--  <label style="font-family:Verdana;">订单单号：</label> -->
-                <input id="serviceId" width="120px" emptyText="订单单号"  class="nui-textbox" onenter="onSearch()"/>
+                <input id="serviceId" width="160px" emptyText="订单单号"  class="nui-textbox" onenter="onSearch()"/>
+                <input id="code" width="160px" emptyText="调入退回单号"  class="nui-textbox" onenter="onSearch()"/>
                 <!-- <label style="font-family:Verdana;">客户：</label> -->
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择客户..."
@@ -128,6 +129,7 @@
             </div>
             <div header="其他" headerAlign="center">
                 <div property="columns">
+                    <div field="code" width="170" headerAlign="center" header="调入退回单号"></div>
                     <div field="auditor" width="70" headerAlign="center" header="审核人"></div>
                     <div allowSort="true"  width="120"field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                 </div>

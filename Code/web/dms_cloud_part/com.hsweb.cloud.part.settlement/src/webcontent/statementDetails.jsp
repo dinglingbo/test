@@ -12,7 +12,7 @@
 <head>
 <title>Title</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/settlement/js/statementDetails.js?v=1.0.22"></script>
+    <script src="<%=webPath + contextPath%>/settlement/js/statementDetails.js?v=1.0.39"></script>
     
 </head>
 <body>
@@ -44,16 +44,12 @@
                      showNullItem="false"
                      width="100%"/>
         
-            	<input class="nui-combobox" id ="orgids" name="orgids" value="" allowInput="true" showNullItem="false" 
-			            		 valueFromSelect="true" nullitemtext="请选择..." emptyText="选择公司" data="" width="200px"
-			            		 textField="name" valueField="orgid" onenter="onSearch()" />
+            	
                 <label style="font-family:Verdana;">快速查询：</label>
                 
-                <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+                <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本周</a>
 
                 <ul id="popupMenuDate" class="nui-menu" style="display:none;">
-                	<li iconCls="" onclick="quickSearch(-1)" id="type-1">全部</li>
-                    <li class="separator"></li>
                     <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
                     <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
                     <li class="separator"></li>
@@ -71,6 +67,10 @@
                 <label style="font-family:Verdana;">至</label>
             	<input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>			               
 		        <span class="separator"></span> 
+		        <input class="nui-combobox" id ="orgids" name="orgids" value="" allowInput="true" showNullItem="false" 
+			            		 valueFromSelect="true" nullitemtext="请选择..." emptyText="选择公司" data="" width="200px"
+			            		 textField="name" valueField="orgid" onenter="onSearch()" />
+			            		 
  		        <input id="guestName" width="120px" emptyText="客户" class="nui-textbox" onenter="onSearch()"/> 
                 
                 <a class="nui-button" iconCls="" plain="true" visible="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
@@ -192,7 +192,7 @@
               <div allowSort="true" field="showFullName" headerAlign="center" header="配件名称"></div>
               <div allowSort="true" field="showOemCode" headerAlign="center" header="OE码"></div>
               <div allowSort="true" field="showBrandName" width="60" headerAlign="center" header="品牌"></div>
-              <div allowSort="true" field="showCarModel" width="60" headerAlign="center" header="品牌车型"></di
+              <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></di
               <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>
               <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
               <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="销售数量"></div>
@@ -204,6 +204,59 @@
       </div>
   </div>
 
+  <div id="editFormAllotAcceptDetail" style="display:none;">
+      <div id="innerAllotAcceptGrid" class="nui-datagrid" style="width:100%;height:150px;"
+           showPager="false"
+           dataField="pjAllotAcceptMainList"
+           idField="detailId"
+           ondrawcell="onDrawCell"
+           sortMode="client"
+           url=""
+           showSummaryRow="true">
+          <div property="columns">
+              <div type="indexcolumn">序号</div>
+              <div allowSort="true" field="partCode" width="60" headerAlign="center" header="配件编码"></div>
+              <div allowSort="true" field="partName" headerAlign="center" header="配件名称"></div>
+              <div allowSort="true" field="oemCode" headerAlign="center" header="OE码"></div>
+              <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
+              <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="品牌车型"></di
+              <div allowSort="true" field="systemUnitId" width="40" headerAlign="center" header="单位"></div>
+              <div allowSort="true" datatype="float" field="acceptQty" summaryType="sum" width="60" headerAlign="center" header="数量"></div>
+              <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="单价"></div>
+              <div allowSort="true" datatype="float" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="金额"></div>
+              <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
+        
+          </div>
+      </div>
+  </div>
+	
+  <div id="editFormAllotApplyDetail" style="display:none;">
+      <div id="innerAllotApplyGrid" class="nui-datagrid" style="width:100%;height:150px;"
+           showPager="false"
+           dataField="pjAllotApplyDetails"
+           idField="detailId"
+           ondrawcell="onDrawCell"
+           sortMode="client"
+           url=""
+           showSummaryRow="true">
+          <div property="columns">
+              <div type="indexcolumn">序号</div>
+              <div allowSort="true" field="partCode" width="60" headerAlign="center" header="配件编码"></div>
+              <div allowSort="true" field="partName" headerAlign="center" header="配件名称"></div>
+              <div allowSort="true" field="oemCode" headerAlign="center" header="OE码"></div>
+              <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
+              <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="品牌车型"></di
+              <div allowSort="true" field="systemUnitId" width="40" headerAlign="center" header="单位"></div>
+              <div allowSort="true" datatype="float" field="applyQty" summaryType="sum" width="60" headerAlign="center" header="数量"></div>
+              <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="单价"></div>
+              <div allowSort="true" datatype="float" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="金额"></div>
+              <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
+        
+          </div>
+      </div>
+  </div>
+	
+	
 <div id="exportDiv" style="display:none">  
     <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
         

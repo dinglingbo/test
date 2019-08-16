@@ -454,8 +454,8 @@ hr {
 		    			$('#settleTypeId').text("结算方式:"+settleTypeIdHash[formParms.settleTypeId].name);
 		    		}
 		    		$('#storeId').text("仓库:"+storeHash[formParms.storeId].name);
-		    		$('#planSendDate').text("预计发货时间:"+formParms.planSendDate?null:format(formParms.planSendDate,"yyyy-MM-dd HH:mm"));
-		    		$('#planArriveDate').text("预计到货时间:"+formParms.planArriveDate?null:format(formParms.planArriveDate,"yyyy-MM-dd HH:mm"));
+		    		$('#planSendDate').text(formParms.planSendDate?"预计发货时间:"+format(formParms.planSendDate,"yyyy-MM-dd HH:mm"):"预计发货时间:");
+		    		$('#planArriveDate').text(formParms.planArriveDate?"预计到货时间:"+format(formParms.planArriveDate,"yyyy-MM-dd HH:mm"): "预计到货时间:");
 		    		
 	    		});
 	    	}

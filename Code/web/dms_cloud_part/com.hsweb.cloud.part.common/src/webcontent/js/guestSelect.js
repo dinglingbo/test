@@ -17,6 +17,7 @@ var supplierType = null;
 var guestType = null;
 var nameEl = null;
 var isInternal = null;
+var typeEl =null;
 
 var billTypeIdList = [];
 var billTypeIdHash = {};
@@ -32,6 +33,7 @@ $(document).ready(function(v)
     grid.on("beforeload",function(e){
         e.data.token = token;
     });
+    typeEl = nui.get("type");
     grid.on("drawcell",function(e)
     {
         var field = e.field;
@@ -140,35 +142,37 @@ $(document).ready(function(v)
     });
 });
 function setGuestData(data){
-	$.ajaxSettings.async = false;
+//	$.ajaxSettings.async = false;
 	if(data) {
 		
-	  initDicts({
-	        billTypeId:BILL_TYPE,//票据类型
-	        settType:SETT_TYPE //结算方式
-	    },function(){
-	        //grid.load();
-	    	billTypeIdList = billTypeIdEl.getData();
-	    	settTypeIdList = settleTypeIdEl.getData();
-	    	billTypeIdList.filter(function(v)
-	        {
-	            billTypeIdHash[v.customid] = v;
-	            return true;
-	        });
-
-	        settTypeIdList.filter(function(v)
-	        {
-	            settTypeIdHash[v.customid] = v;
-	            return true;
-	        });
-	    });
-
         if(data.isSupplier){
             isSupplier = data.isSupplier;
             if(isSupplier == 1){
                 initDicts({
-                    type:GUEST_TYPE_S
-                },null);
+                    type:GUEST_TYPE_S,
+                    billTypeId:BILL_TYPE,//票据类型
+                    settType:SETT_TYPE //结算方式
+                },function(){
+                	billTypeIdList = billTypeIdEl.getData();
+        	    	settTypeIdList = settleTypeIdEl.getData();
+        	    	billTypeIdList.filter(function(v)
+        	        {
+        	            billTypeIdHash[v.customid] = v;
+        	            return true;
+        	        });
+        
+        	        settTypeIdList.filter(function(v)
+        	        {
+        	            settTypeIdHash[v.customid] = v;
+        	            return true;
+        	        });
+        	        
+        	        if(data.guestType){
+        	            guestType = data.guestType;
+
+        	            typeEl.setValue(guestType);
+        	        }
+                });
             }
             nui.get("type").show();
         }
@@ -176,16 +180,33 @@ function setGuestData(data){
             isClient = data.isClient;
             if(isClient == 1){
                 initDicts({
-                    type:GUEST_TYPE
-                },null);
+                    type:GUEST_TYPE,
+                    billTypeId:BILL_TYPE,//票据类型
+                    settType:SETT_TYPE //结算方式
+                },function(){
+                	billTypeIdList = billTypeIdEl.getData();
+        	    	settTypeIdList = settleTypeIdEl.getData();
+        	    	billTypeIdList.filter(function(v)
+        	        {
+        	            billTypeIdHash[v.customid] = v;
+        	            return true;
+        	        });
+        
+        	        settTypeIdList.filter(function(v)
+        	        {
+        	            settTypeIdHash[v.customid] = v;
+        	            return true;
+        	        });
+        	        if(data.guestType){
+        	            guestType = data.guestType;
+
+        	            typeEl.setValue(guestType);
+        	        }
+                });
             }
             nui.get("type").show();
         }
-        if(data.guestType){
-            guestType = data.guestType;
-
-            nui.get("type").setValue(guestType);
-        }
+       
         if(data.supplierType){
             supplierType = data.supplierType;
         }

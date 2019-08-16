@@ -2,12 +2,12 @@
 /**
  * Created by Administrator on 2018/8/8.
  */
-var baseUrl = apiPath + cloudPartApi + "/";
+var baseUrl = apiPath + partApi + "/";
 var mainGrid = null;
 var detailGrid = null;
 var queryInfoForm = null;
-var mainGridUrl = baseUrl+ "com.hsapi.cloud.part.invoicing.allotsettle.queryPjAllotApplyMains.biz.ext";
-var detailGridUrl = baseUrl+ "com.hsapi.cloud.part.invoicing.allotsettle.getAllotApplyDetail.biz.ext";
+var mainGridUrl = baseUrl+ "com.hsapi.part.invoice.allotsettle.queryPjAllotApplyMains.biz.ext";
+var detailGridUrl = baseUrl+ "com.hsapi.part.invoice.allotsettle.getAllotApplyDetail.biz.ext";
 
 var sOrderDateEl = null;
 var eOrderDateEl = null;
@@ -121,7 +121,7 @@ function selectSupplier(elId) {
     supplier = null;
     nui.open({
         // targetWindow: window,,
-        url : webPath+contextPath+"/com.hsweb.cloud.part.common.guestSelect.flow?token="+token,
+        url : webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title : "供应商资料",
         width : 980,
         height : 560,

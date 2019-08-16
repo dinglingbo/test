@@ -71,7 +71,7 @@
     	var carTypeIdS=[];
     	var carTypeIdT=[];
     	var typeHash={};
-    	var partUrl = apiPath + partApi + "/";
+    	var partUrl = apiPath + cloudPartApi + "/";
     	var requiredField = {
 			namestd : "标准名称",
 			namecn : "别名",
@@ -158,7 +158,7 @@
 	            html: '数据处理中...'
 	        });
             nui.ajax({
-            	url:partUrl + "com.hsapi.part.common.svr.savePartName.biz.ext",
+            	url:partUrl + "com.hsapi.cloud.part.common.svr.savePartName.biz.ext",
             	type:"post",
             	data:JSON.stringify({
 						data : data,					

@@ -182,7 +182,7 @@ $(document).ready(function(v)
             ow(true);
         }
     });
-    add();
+//    add();
 
     
     //启用APP
@@ -304,7 +304,7 @@ function loadRightGridData(mainId)
 
         var data = rightGrid.getData();
         
-        if(autoNew == 0){
+        if(autoNew == 0){			
 			add();
 			autoNew = 1;
         }
@@ -1099,7 +1099,7 @@ function submit()
 
                     //保存成功后重新加载数据
                     loadMainAndDetailInfo(leftRow);
-                    nui.confirm("是否打印？", "友情提示", function(action) {
+                    nui.confirm("提交成功，是否打印？", "友情提示", function(action) {
     					if(action== 'ok'){
     						onPrint();
     					}else{
@@ -1170,7 +1170,7 @@ function auditToOut()
 
                 setBtnable(false);
 				loadMainAndDetailInfo(leftRow);
-                nui.confirm("是否打印？", "友情提示", function(action) {
+                nui.confirm("出库成功，是否打印？", "友情提示", function(action) {
 					if(action== 'ok'){
 						onPrint();
 					}else{

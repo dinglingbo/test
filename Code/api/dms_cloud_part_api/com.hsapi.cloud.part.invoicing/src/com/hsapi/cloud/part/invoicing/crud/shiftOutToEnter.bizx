@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="shiftOutToEnter.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="根据移仓出库信息生成移仓入库信息&#xD;&#xA;生成流水记录&#xD;&#xA;更新库存信息" title="Administrator&#x9;18-2-25 下午5:09">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="根据移仓出库信息生成移仓入库信息&#xD;&#xA;生成流水记录&#xD;&#xA;更新库存信息&#xD;&#xA;050107" title="Administrator&#x9;18-2-25 下午5:09">
     <location x="-300" y="-85"/>
-    <size height="106" width="591"/>
+    <size height="116" width="591"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
@@ -168,7 +168,7 @@
       <process:to type="query">enterMain/storeId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">050104</process:from>
+      <process:from type="literal" pattern="reference">050107</process:from>
       <process:to type="query">enterMain/enterTypeId</process:to>
     </process:copy>
     <process:copy>

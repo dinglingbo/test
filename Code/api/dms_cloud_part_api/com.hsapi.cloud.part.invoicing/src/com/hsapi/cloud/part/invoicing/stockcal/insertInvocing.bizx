@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="insertInvocing" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="插入进销存流水表&#xD;&#xA;1、来源：采购入库、销售出库、采购退货、销售退货、盘点等；&#xD;&#xA;2、接收当前类型，方向，数量、金额；&#xD;&#xA;3、取最近一条流水记录（当前结存记录）；&#xD;&#xA;4、插入新的流水记录；&#xD;&#xA;" title="DLB&#x9;17-7-18 下午5:15">
-    <location x="25" y="-30"/>
-    <size height="106" width="346"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="插入进销存流水表&#xD;&#xA;1、来源：采购入库、销售出库、采购退货、销售退货、盘点等；&#xD;&#xA;2、接收当前类型，方向，数量、金额；&#xD;&#xA;3、取最近一条流水记录（当前结存记录）；&#xD;&#xA;4、插入新的流水记录；&#xD;&#xA;&#xD;&#xA;1调拨申请 QDD  DBR；2调拨受理 QDC  DBC；3调出退回  DCT  DCR；4调入退回  DRT  DRC&#xD;&#xA;调拨申请   QDD&#xD;&#xA;调拨入库   DBR   050104&#xD;&#xA;调拨受理   QDC&#xD;&#xA;调拨出库   DBC  050204&#xD;&#xA;调出退回   DCT&#xD;&#xA;调出退货   DCR   050111&#xD;&#xA;调入退回   DRT&#xD;&#xA;调入退货   DRC  050211" title="DLB&#x9;17-7-18 下午5:15">
+    <location x="14" y="-135"/>
+    <size height="211" width="584"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">

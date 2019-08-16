@@ -834,7 +834,7 @@ function submit()
     save(1);
 }
 
-var auditUrl= baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.auditPjAllotAcceptOut.biz.ext";
+var auditUrl= baseUrl+"com.hsapi.part.invoice.allotsettle.auditPjAllotAcceptOut.biz.ext";
 function audit(){
 	 var flag =save(1);
 	 if(flag !=true){

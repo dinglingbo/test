@@ -658,6 +658,12 @@
             <isNotEmpty prepend="and" property="id"> 
                 (a.id = #id#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="mainId"> 
+                (a.main_id = #mainId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mainIds"> 
+                (a.main_id in ($mainIds$) )
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="isDisabled"> 
                 (b.is_disabled = #isDisabled#)
             </isNotEmpty>
@@ -795,6 +801,8 @@
 			b.auditor as auditor,
 			b.audit_date as auditDate,
 			b.settle_status as settleStatus,
+			b.code as code,
+			b.code_id as codeId,
 			c.`name` as orgName,
 			D.part_brand_id AS partBrandId,
 			D.apply_car_model AS applyCarModel,
@@ -828,6 +836,14 @@
                 (b.status = #status#)
             </isNotEmpty>
  
+ 			<isNotEmpty prepend="and" property="mainId"> 
+                (a.main_id = #mainId#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="mainIds"> 
+                (a.main_id in ($mainIds$) )
+            </isNotEmpty>
+            
             <isNotEmpty prepend="and" property="isAllotFinished"> 
                 (b.is_allot_finished = #isAllotFinished#)
             </isNotEmpty>
@@ -864,6 +880,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">  
                 (b.service_id like '%$serviceId$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="code">  
+                (b.code like '%$code$%')
             </isNotEmpty>
             <!--审核日期 -->
             <isNotEmpty prepend="and" property="sAuditDate">  

@@ -285,35 +285,45 @@ function audit(){
 		return;
 	}
 	
-	nui.mask({
-		el : document.body,
-		cls : 'mini-mask-loading',
-		html : "受理中"
-	});
-	nui.ajax({
-		url : auditUrl,
-		type : "post",
-		data : JSON.stringify({
-			mainId :  row.id,
-            storeId : nui.get('storeId').getValue(),
-			token: token
-		}),
-		success : function(data) {
-			nui.unmask(document.body);
-			data = data || {};
-			if (data.errCode == "S") {
-				showMsg("受理成功，生成的受理单号为：" + data.serviceId ||data.errMsg,"S");
-				var newRow = {status: 3};
-				mainGrid.updateRow(row, newRow);
-			} else {
-				showMsg(data.errMsg || ("受理失败!"),"W");
-			}
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			// nui.alert(jqXHR.responseText);
-			console.log(jqXHR.responseText);
-		}
-	});
+	nui.confirm("是否确认受理，受理后生成【调出退回单】?", "友情提示",
+          function (action) { 
+              if (action == "ok") {
+            	  nui.mask({
+            			el : document.body,
+            			cls : 'mini-mask-loading',
+            			html : "受理中"
+            		});
+            		nui.ajax({
+            			url : auditUrl,
+            			type : "post",
+            			data : JSON.stringify({
+            				mainId :  row.id,
+            	            storeId : nui.get('storeId').getValue(),
+            				token: token
+            			}),
+            			success : function(data) {
+            				nui.unmask(document.body);
+            				data = data || {};
+            				if (data.errCode == "S") {
+            					showMsg("受理成功，生成的受理单号为：" + data.serviceId ||data.errMsg,"S");
+            					var newRow = {status: 3};
+            					mainGrid.updateRow(row, newRow);
+            				} else {
+            					showMsg(data.errMsg || ("受理失败!"),"W");
+            				}
+            			},
+            			error : function(jqXHR, textStatus, errorThrown) {
+            				// nui.alert(jqXHR.responseText);
+            				console.log(jqXHR.responseText);
+            			}
+            		});
+
+              }else {
+                  return;
+              }
+          }
+      );
+	
 }
 
 var refuseUrl=baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.refuseAllotInRtn.biz.ext";

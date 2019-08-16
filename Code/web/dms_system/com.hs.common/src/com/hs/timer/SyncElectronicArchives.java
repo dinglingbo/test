@@ -149,12 +149,17 @@ public class SyncElectronicArchives {
 	    		jsonObj.put("header", header);*/
 	    		
 	    		Map <String, String> basicInfo = new HashMap <String, String>();
-	    		//车牌号
-	    		basicInfo.put("vehicleplatenumber", carNo);
+	    		
 	    		basicInfo.put("vehicleplatecolor", "黑");
 	    		//维修企业名称
 	    		basicInfo.put("companyname", orgName);
+	    		//结算编号
+	    		basicInfo.put("costlistcode", id);
+	    		
 	    		basicInfo.put("vin", carVin);
+	    		//车牌号
+	    		basicInfo.put("vehicleplatenumber", carNo);
+	    		
 	    		//送修日期
 	    		basicInfo.put("repairdate", enterDate);
 	    		//送修里程
@@ -163,8 +168,7 @@ public class SyncElectronicArchives {
 	    		basicInfo.put("settledate", outDate);
 	    		//故障描述
 	    		basicInfo.put("faultdescription", faultPhen == "" ? "-": faultPhen);
-	    		//结算编号
-	    		basicInfo.put("costlistcode", id);
+	    		
 	    		getFormatData(basicInfo);
 	    		jsonObj.put("basicInfo", basicInfo);
 	    		

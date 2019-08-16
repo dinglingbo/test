@@ -515,7 +515,7 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="name" type="literal" value="java.lang.String" valueType="Java" pattern="reference">cloudPartPjAllotAcceptMain.versionNo</process:inputVariable>
+      <process:inputVariable id="0" name="name" type="literal" value="java.lang.String" valueType="Java" pattern="reference">partPjAllotAcceptMain.versionNo</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
       <process:outputVariable id="0" name="out0" type="query" value="long" valueType="Java">main/versionNo</process:outputVariable>
@@ -641,7 +641,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.invoicing.stockcal.updateSellQtyTempRecordD</process:partner>
+      <process:partner type="literal">com.hsapi.part.invoice.stockcal.updateSellQtyTempRecordD</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="detailId" type="query" value="Long" valueType="Primitive" pattern="reference">tmp/id</process:inputVariable>
         <process:inputVariable id="1" name="mainId" type="query" value="Long" valueType="Primitive" pattern="reference">main/id</process:inputVariable>

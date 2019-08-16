@@ -130,6 +130,10 @@
       <process:to type="query">stateMain/stateMan</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">main/serviceId</process:from>
+      <process:to type="query">stateMain/remark</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">main/orderAmt</process:from>
       <process:to type="query">stateDetail/billAmt</process:to>
     </process:copy>
@@ -168,10 +172,6 @@
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">stateDetail/rpDc</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">main/serviceId</process:from>
-      <process:to type="query">stateDetail/remark</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">

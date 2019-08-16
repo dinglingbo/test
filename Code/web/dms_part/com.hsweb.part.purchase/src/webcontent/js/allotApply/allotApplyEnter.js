@@ -1,9 +1,9 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryPjAllotApplyMainList.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryPjAllotApplyDetailList.biz.ext";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var leftGridUrl = baseUrl+"com.hsapi.part.invoice.allotsettle.queryPjAllotApplyMainList.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.part.invoice.allotsettle.queryPjAllotApplyDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedMorePartWin = null;
 var advancedAddWin = null;
@@ -352,7 +352,7 @@ var requiredField = {
     guestId : "调出方",
     orderDate : "调拨申请日期"
 };
-var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.allotsettle.savePjAllotApply.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.part.invoice.allotsettle.savePjAllotApply.biz.ext";
 function save(type) {
     var data = basicInfoForm.getData();
     for ( var key in requiredField) {
@@ -641,7 +641,7 @@ function onRightGridDraw(e)
     }
 }
 
-var delUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.updatePjAllotApplyDisabled.biz.ext";
+var delUrl = baseUrl+"com.hsapi.part.invoice.allotsettle.updatePjAllotApplyDisabled.biz.ext";
 function del()
 {
     var data = basicInfoForm.getData();
@@ -700,7 +700,7 @@ function del()
     });
 }
 
-var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.auditAllotApplyEnter.biz.ext";
+var auditUrl = baseUrl+"com.hsapi.part.invoice.allotsettle.auditAllotApplyEnter.biz.ext";
 function submit()
 {
     var formJsonThis = nui.encode(basicInfoForm.getData());
@@ -770,7 +770,7 @@ function submit()
 function addGuest(){
     nui.open({
         // targetWindow: window,
-        url: webPath+contextPath+"/com.hsweb.cloud.part.basic.supplierDetail.flow?token=" + token,
+        url: webPath+contextPath+"/com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
         title: "供应商资料", width: 570, height: 530,
         allowDrag:true,
         allowResize:false,
@@ -1010,7 +1010,7 @@ function OnrpMainGridCellBeginEdit(e){
 var company="";
 var phone ="";
 var addr ="";
-var supplierUrl=baseUrl +"com.hsapi.cloud.part.baseDataCrud.crud.queryGuestList.biz.ext";
+var supplierUrl=baseUrl +"com.hsapi.part.baseDataCrud.crud.queryGuestList.biz.ext";                   
 function getGuest(guestId){
     $.ajaxSettings.async = false;
     $.post(supplierUrl+"?params/guestId="+guestId+"&token="+token,{},function(text){
@@ -1036,7 +1036,7 @@ function selectApply() {
 
     nui.open({
         // targetWindow: window,,
-        url : webPath+contextPath+"/com.hsweb.cloud.part.purchase.allotApplyChoose.flow?token="+token,
+        url : webPath+contextPath+"/com.hsweb.part.baseData.allotApplyChoose.flow?token="+token,
         title : "调拨申请单选择",
         width : 980,
         height : 560,
@@ -1058,7 +1058,7 @@ function selectApply() {
     });
 }
 
-var geneUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.allotApplyEnter.biz.ext";
+var geneUrl = baseUrl+"com.hsapi.part.invoice.allotsettle.allotApplyEnter.biz.ext";
 function generateApplyToEnter(mainId, id) {
     nui.mask({
         el: document.body,

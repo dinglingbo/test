@@ -118,8 +118,8 @@
             </div>
             <div header="数量单价" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" datatype="float" summaryType="sum" field="applyQty" width="60" headerAlign="center" header="数量"></div>
-<!--                     <div allowSort="true" datatype="float" summaryType="sum" field="acceptQty" width="90" headerAlign="center" header="调拨受理数量"></div> -->
+<!--                     <div allowSort="true" datatype="float" summaryType="sum" field="applyQty" width="60" headerAlign="center" header="数量"></div> -->
+                    <div allowSort="true" datatype="float" summaryType="sum" field="acceptQty" width="90" headerAlign="center" header="数量"></div>
 <!--                 	<div allowSort="true" datatype="float" summaryType="sum" field="hasAcceptQty" width="60" headerAlign="center" header="已受理数量"></div> -->
 <!--                 	<div allowSort="true" datatype="float" summaryType="sum" field="hasCamcelQty" width="60" headerAlign="center" header="已拒绝数量"></div> -->
                 	<div allowSort="true" datatype="float" summaryType="sum" field="orderPrice" width="60" headerAlign="center" header="单价" visible="true"></div>

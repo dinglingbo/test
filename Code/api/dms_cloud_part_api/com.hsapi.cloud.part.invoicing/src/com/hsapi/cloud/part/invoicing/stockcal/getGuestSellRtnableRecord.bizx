@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getGuestSellRtnableRecord" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="如果rtnRecord不为空；&#xD;&#xA;取客户记录时需要排除这些&#xD;&#xA;&#xD;&#xA;剩余的数量做入库处理" title="Administrator&#x9;18-4-18 下午12:03">
-    <location x="-85" y="23"/>
-    <size height="100" width="204"/>
+    <location x="-85" y="0"/>
+    <size height="123" width="252"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link27" name="link27" displayName="link9" isDefault="true" type="transition">
@@ -99,6 +99,7 @@
     <location x="185" y="192"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="guestOutRecord" iterableElement="temp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">

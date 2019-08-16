@@ -1,8 +1,8 @@
 /**
  * Created by Administrator on 2018/2/1.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryAllotAcceptDetails.biz.ext";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var rightGridUrl = baseUrl+"com.hsapi.part.invoice.allotsettle.queryAllotAcceptDetails.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -277,7 +277,7 @@ function selectSupplier(elId)
     supplier = null;
     nui.open({
         // targetWindow: window,
-        url: webPath+contextPath+"/com.hsweb.cloud.part.common.customerSelect.flow",
+        url: webPath+contextPath+"/com.hsweb.part.common.customerSelect.flow",
         title: "客户资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -305,7 +305,7 @@ function selectSupplier(elId) {
     supplier = null;
     nui.open({
         // targetWindow: window,,
-        url : webPath+contextPath+"/com.hsweb.cloud.part.common.guestSelect.flow?token="+token,
+        url : webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title : "供应商资料",
         width : 980,
         height : 560,
@@ -316,7 +316,8 @@ function selectSupplier(elId) {
             var params = {
                 isSupplier: 1,
                 guestType:'01020202',
-                isInternal: 1
+                isInternal: 1,
+                allot:1
             };
             iframe.contentWindow.setGuestData(params);
         },

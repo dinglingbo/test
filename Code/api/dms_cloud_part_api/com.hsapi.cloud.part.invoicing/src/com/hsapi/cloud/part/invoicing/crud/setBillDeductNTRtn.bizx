@@ -350,7 +350,7 @@
       <process:to type="query">deductRate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">deductRate*enterAmt*1.0/100</process:from>
+      <process:from type="expression" pattern="reference">-(deductRate*enterAmt*1.0/100)</process:from>
       <process:to type="query">deductTemp/deductAmt</process:to>
     </process:copy>
     <process:copy>
@@ -598,6 +598,7 @@
     <sourceConnections xsi:type="process:tLink" id="link32" name="link32" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign7</sourceNode>
       <targetNode>loopstart0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link17</targetConnections>
     <targetConnections>link11</targetConnections>
@@ -713,6 +714,7 @@
     <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="link10" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>invokePojo2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link23</targetConnections>
     <location x="310" y="290"/>
@@ -812,7 +814,7 @@
       <process:to type="query">gross</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">enterAmt-gross</process:from>
+      <process:from type="expression" pattern="reference">gross-enterAmt</process:from>
       <process:to type="query">gross</process:to>
     </process:copy>
     <process:copy>

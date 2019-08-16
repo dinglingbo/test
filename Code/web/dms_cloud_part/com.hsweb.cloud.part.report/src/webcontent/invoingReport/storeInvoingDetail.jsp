@@ -9,9 +9,9 @@
 -->
 <head>
     <title>仓库进销存明细</title>
-    <script src="<%=webPath + contextPath%>/manage/js/report/storeInvoingDetail.js?v=1.0.2"></script>
-    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
-    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/report/js/invoing/storeInvoingDetail.js?v=1.0.4"></script>
+    <link href="<%=webPath + contextPath%>/common/js/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/common/js/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
     .title {
       width: 60px;

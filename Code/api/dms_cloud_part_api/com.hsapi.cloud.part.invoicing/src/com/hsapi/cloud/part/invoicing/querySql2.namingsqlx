@@ -1,0 +1,1571 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:chenziming -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    
+	<resultMap class="commonj.sdo.DataObject" id="resultMap1">
+        <result column="orgName" javaType="string" property="orgName"/>
+        <result column="code" javaType="string" property="code"/>
+        <result column="name" javaType="string" property="name"/>
+        <result column="Jan" javaType="double" property="Jan"/>
+        <result column="Feb" javaType="double" property="Feb"/>
+        <result column="Mar" javaType="double" property="Mar"/>
+        <result column="Apr" javaType="double" property="Apr"/>
+        <result column="May" javaType="double" property="May"/>
+        <result column="Jun" javaType="double" property="Jun"/>
+        <result column="Jul" javaType="double" property="Jul"/>
+        <result column="Aug" javaType="double" property="Aug"/>
+        <result column="Jan" javaType="double" property="Jan"/>
+        <result column="Feb" javaType="double" property="Feb"/>
+        <result column="Sep" javaType="double" property="Sep"/>
+        <result column="Oct" javaType="double" property="Oct"/>
+        <result column="Nov" javaType="double" property="Nov"/>
+        <result column="Dece" javaType="double" property="Dec"/>
+    </resultMap>
+	<select id="queryPurEnterAnalysis" parameterClass="java.util.HashMap" resultMap="resultMap1">
+    	SELECT
+			SUM( Jan ) Jan,
+			SUM( Feb ) Feb,
+			SUM( Mar ) Mar,
+			SUM( Apr ) Apr,
+			SUM( May ) May,
+			SUM( Jun ) Jun,
+			SUM( Jul ) Jul,
+			SUM( Aug ) Aug,
+			SUM( Sep ) Sep,
+			SUM( Oct ) Oct,
+			SUM( Nov ) Nov,
+			SUM( Dece ) Dece,
+			orgName,
+			CODE,
+		NAME 
+		FROM
+			(
+		SELECT
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 1 THEN (case b.tax_sign when 1 then b.tax_amt else b.no_tax_amt end) END), 0 ) AS Jan,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 2 THEN (case b.tax_sign when 1 then b.tax_amt else b.no_tax_amt end) END ), 0 ) AS Feb,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 3 THEN (case b.tax_sign when 1 then b.tax_amt else b.no_tax_amt end) END ), 0 ) AS Mar,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 4 THEN (case b.tax_sign when 1 then b.tax_amt else b.no_tax_amt end) END ), 0 ) AS Apr,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 5 THEN (case b.tax_sign when 1 then b.tax_amt else b.no_tax_amt end) END ), 0 ) AS May,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 6 THEN (case b.tax_sign when 1 then b.tax_amt else b.no_tax_amt end) END ), 0 ) AS Jun,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 7 THEN (case b.tax_sign when 1 then b.tax_amt else b.no_tax_amt end) END ), 0 ) AS Jul,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 8 THEN (case b.tax_sign when 1 then b.tax_amt else b.no_tax_amt end) END ), 0 ) AS Aug,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 9 THEN (case b.tax_sign when 1 then b.tax_amt else b.no_tax_amt end) END ), 0 ) AS Sep,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 10 THEN (case b.tax_sign when 1 then b.tax_amt else b.no_tax_amt end) END ), 0 ) AS Oct,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 11 THEN (case b.tax_sign when 1 then b.tax_amt else b.no_tax_amt end) END ), 0 ) AS Nov,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 12 THEN (case b.tax_sign when 1 then b.tax_amt else b.no_tax_amt end) END ), 0 ) AS Dece,
+			d.ORGNAME orgName,
+		<dynamic>
+			<isNotEmpty prepend="" property="groupbyGuestId">
+			<!--按供应商-->
+			a.guest_id CODE,
+			g.full_name NAME
+			FROM
+			pj_enter_main_chk a
+			LEFT JOIN dms_system.org_organization d ON ( a.orgid = d.ORGID )
+			JOIN pj_enter_detail_chk b ON ( a.id = b.main_id )
+			LEFT JOIN wb_common.com_guest g ON ( a.guest_id = g.id )
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="groupbyPartBrandId">
+			<!--按品牌 -->
+			c.part_brand_id CODE,
+			e.name NAME 
+			FROM
+			pj_enter_main_chk a
+			LEFT JOIN dms_system.org_organization d ON ( a.orgid = d.ORGID )
+			JOIN pj_enter_detail_chk b ON ( a.id = b.main_id )
+			LEFT JOIN wb_common.com_attribute c ON ( b.part_id = c.id )
+			LEFT JOIN wb_common.com_part_brand e ON ( c.part_brand_id = e.id )
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="groupbyCarTypeIdF">
+			<!--按类型 -->
+			c.car_type_id_f CODE,
+			e.name NAME 
+			FROM
+			pj_enter_main_chk a
+			LEFT JOIN dms_system.org_organization d ON ( a.orgid = d.ORGID )
+			JOIN pj_enter_detail_chk b ON ( a.id = b.main_id ) 
+			LEFT JOIN wb_common.com_attribute c ON ( b.part_id = c.id )
+			LEFT JOIN wb_common.com_part_type e ON ( e.id = c.car_type_id_f )
+			</isNotEmpty>
+		</dynamic>
+		WHERE
+			1=1
+		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">
+			(a.orgid = #orgid#)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="enterTypeId">
+			(a.enter_type_id = #enterTypeId#)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="thisMonth"> 
+            <!--本月 --> 
+            (date_format(a.audit_date,'%Y-%m')=date_format(now(),'%Y-%m'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastMonth"> 
+            <!--上月 --> 
+            (date_format(a.audit_date,'%Y-%m')=date_format(DATE_SUB(NOW(), INTERVAL 1 MONTH),'%Y-%m'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisQuarter">  
+            <!--本季度-->
+            (QUARTER(a.audit_date)=QUARTER(now())
+            and
+            YEAR(a.audit_date)=YEAR(NOW()))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastQuarter">  
+            <!--上季度-->
+            (QUARTER(a.audit_date)=QUARTER(DATE_SUB(now(),interval 1 QUARTER))
+            and
+            YEAR(a.audit_date)=YEAR(DATE_SUB(now(),interval 1 QUARTER)))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisYear">  
+            <!--本年-->
+            (YEAR(a.audit_date)=YEAR(NOW()))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastYear">  
+            <!--上年-->
+            (year(a.audit_date)=year(date_sub(now(),interval 1 year)))
+            </isNotEmpty>
+		</dynamic>
+			) f 
+		GROUP BY
+			orgName,
+			CODE,
+		NAME
+    </select>
+    <select id="queryPurOutAnalysis" parameterClass="java.util.HashMap" resultMap="resultMap1">
+    	SELECT
+			SUM( Jan ) Jan,
+			SUM( Feb ) Feb,
+			SUM( Mar ) Mar,
+			SUM( Apr ) Apr,
+			SUM( May ) May,
+			SUM( Jun ) Jun,
+			SUM( Jul ) Jul,
+			SUM( Aug ) Aug,
+			SUM( Sep ) Sep,
+			SUM( Oct ) Oct,
+			SUM( Nov ) Nov,
+			SUM( Dece ) Dece,
+			orgName,
+			CODE,
+		NAME 
+		FROM
+			(
+		SELECT
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 1 THEN b.sell_amt END ), 0 ) AS Jan,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 2 THEN b.sell_amt END ), 0 ) AS Feb,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 3 THEN b.sell_amt END ), 0 ) AS Mar,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 4 THEN b.sell_amt END ), 0 ) AS Apr,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 5 THEN b.sell_amt END ), 0 ) AS May,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 6 THEN b.sell_amt END ), 0 ) AS Jun,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 7 THEN b.sell_amt END ), 0 ) AS Jul,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 8 THEN b.sell_amt END ), 0 ) AS Aug,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 9 THEN b.sell_amt END ), 0 ) AS Sep,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 10 THEN b.sell_amt END ), 0 ) AS Oct,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 11 THEN b.sell_amt END ), 0 ) AS Nov,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 12 THEN b.sell_amt END ), 0 ) AS Dece,
+			d.ORGNAME orgName,
+		<dynamic>
+			<isNotEmpty prepend="" property="groupbyGuestId">
+			<!--按供应商-->
+			a.guest_id CODE,
+			a.guest_full_name NAME
+			FROM
+			pj_out_main a
+			LEFT JOIN dms_system.org_organization d ON ( a.orgid = d.ORGID )
+			JOIN pj_out_detail b ON ( a.id = b.out_id )
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="groupbyPartBrandId">
+			<!--按品牌 -->
+			c.part_brand_id CODE,
+			e.name NAME 
+			FROM
+			pj_out_main a
+			LEFT JOIN dms_system.org_organization d ON ( a.orgid = d.ORGID )
+			JOIN pj_out_detail b ON ( a.id = b.out_id )
+			LEFT JOIN wb_common.com_attribute c ON ( b.part_id = c.id )
+			LEFT JOIN wb_common.com_part_brand e ON ( c.part_brand_id = e.id )
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="groupbyBackReasonId">
+			<!--按退货原因 -->
+			a.back_reason_id CODE,
+			c.name NAME 
+			FROM
+			pj_out_main a
+			LEFT JOIN dms_system.org_organization d ON ( a.orgid = d.ORGID )
+			JOIN pj_out_detail b ON ( a.id = b.out_id ) 
+			LEFT JOIN wb_common.com_dataitems c on (c.customid = a.back_reason_id)
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="groupbyStoreId">
+			<!--按仓库 -->
+			a.store_id CODE,
+			c.name NAME 
+			FROM
+			pj_out_main a
+			LEFT JOIN dms_system.org_organization d ON ( a.orgid = d.ORGID )
+			JOIN pj_out_detail b ON ( a.id = b.out_id ) 
+			LEFT JOIN wb_common.com_store c on (c.id = a.store_id)
+			</isNotEmpty>
+		</dynamic>
+		WHERE
+			1=1
+		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">
+			(a.orgid = #orgid#)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="outTypeId">
+			(a.out_type_id = #outTypeId#)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="thisMonth"> 
+            <!--本月 --> 
+            (date_format(a.audit_date,'%Y-%m')=date_format(now(),'%Y-%m'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastMonth"> 
+            <!--上月 --> 
+            (date_format(a.audit_date,'%Y-%m')=date_format(DATE_SUB(NOW(), INTERVAL 1 MONTH),'%Y-%m'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisQuarter">  
+            <!--本季度-->
+            (QUARTER(a.audit_date)=QUARTER(now())
+            and
+            YEAR(a.audit_date)=YEAR(NOW()))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastQuarter">  
+            <!--上季度-->
+            (QUARTER(a.audit_date)=QUARTER(DATE_SUB(now(),interval 1 QUARTER))
+            and
+            YEAR(a.audit_date)=YEAR(DATE_SUB(now(),interval 1 QUARTER)))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisYear">  
+            <!--本年-->
+            (YEAR(a.audit_date)=YEAR(NOW()))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastYear">  
+            <!--上年-->
+            (year(a.audit_date)=year(date_sub(now(),interval 1 year)))
+            </isNotEmpty>
+		</dynamic>
+			) f 
+		GROUP BY
+			orgName,
+			CODE,
+		NAME
+    </select>
+    
+    <resultMap class="commonj.sdo.DataObject" id="resultMap2">
+        <result column="part_id" javaType="string" property="partId"/>
+        <result column="part_code" javaType="string" property="partCode"/>
+        <result column="part_name" javaType="string" property="partName"/>
+      <!--  <result column="part_full_name" javaType="string" property="partFullName"/>-->
+      	<!--采购-->
+        <result column="purchaseEnter" javaType="string" property="purchaseEnter"/>
+        <result column="purchaseOut" javaType="string" property="purchaseOut"/>
+        <!--维修-->
+        <result column="repairEnter" javaType="string" property="repairEnter"/>
+        <result column="sellOut" javaType="string" property="sellOut"/>
+        <result column="sellEnter" javaType="string" property="sellEnter"/>
+        <result column="repairOut" javaType="string" property="repairOut"/>
+        <!--盘盈-->
+        <result column="inventoryProfit" javaType="string" property="inventoryProfit"/>
+        <!--盘亏-->
+        <result column="inventoryLoss" javaType="string" property="inventoryLoss"/>
+        <result column="allotEnter" javaType="string" property="allotEnter"/>
+        <result column="allotOut" javaType="string" property="allotOut"/>
+        <!--耗材-->
+        <result column="materialEnter" javaType="string" property="materialEnter"/>
+        <result column="materialOut" javaType="string" property="materialOut"/>
+    </resultMap>
+    <select id="queryInvoicingStoreDetailList" parameterClass="java.util.HashMap" resultMap="resultMap2">
+    	SELECT
+			part_id,
+			part_name,
+			part_code,
+		<!--	part_full_name,-->
+			sum( purchaseEnter ) purchaseEnter,
+			sum( purchaseOut ) purchaseOut,
+			sum( repairEnter ) repairEnter,
+			sum( sellOut ) sellOut,
+			sum( sellEnter ) sellEnter,
+			sum( repairOut ) repairOut,
+			sum( inventoryProfit ) inventoryProfit,
+			sum( inventoryLoss ) inventoryLoss,
+			sum( allotEnter ) allotEnter,
+			sum( allotOut ) allotOut,
+			sum( materialEnter ) materialEnter,
+			sum( materialOut ) materialOut 
+		FROM
+			(
+		SELECT
+			a.part_id,
+			a.part_name,
+			a.part_code,
+		<!--	a.part_full_name,-->
+		    <dynamic>
+		    	<isNotEmpty prepend="" property="amt">   
+		            IFNULL( ( CASE a.bill_type_id WHEN '050101' THEN a.amt END ), 0 ) purchaseEnter,
+					IFNULL( ( CASE a.bill_type_id WHEN '050201' THEN a.amt END ), 0 ) purchaseOut,
+					IFNULL( ( CASE WHEN (a.bill_type_id='050106' and a.dc='1') THEN a.amt END ), 0 ) repairEnter,
+					IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.amt END ), 0 ) sellOut,
+					IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.amt END ), 0 ) sellEnter,
+					IFNULL( ( CASE WHEN  (a.bill_type_id='050206' and a.dc='-1') THEN a.amt END ), 0 ) repairOut,
+					IFNULL( ( CASE a.bill_type_id WHEN '050103' THEN a.amt END ), 0 ) inventoryProfit,
+					IFNULL( ( CASE a.bill_type_id WHEN '050203' THEN a.amt END ), 0 ) inventoryLoss,
+					IFNULL( ( CASE a.bill_type_id WHEN '050104' THEN a.amt END ), 0 ) allotEnter,
+					IFNULL( ( CASE a.bill_type_id WHEN '050204' THEN a.amt END ), 0 ) allotOut,
+					IFNULL( ( CASE WHEN  (a.bill_type_id='050107' and a.dc='1') THEN a.amt END ), 0 ) materialEnter,
+					IFNULL( ( CASE WHEN  (a.bill_type_id='050207' and a.dc='-1') THEN a.amt END ), 0 ) materialOut
+		    	</isNotEmpty>
+		    	<isNotEmpty prepend="" property="qty">   
+		            IFNULL( ( CASE a.bill_type_id WHEN '050101' THEN a.qty END ), 0 ) purchaseEnter,
+					IFNULL( ( CASE a.bill_type_id WHEN '050201' THEN a.qty END ), 0 ) purchaseOut,
+					IFNULL( ( CASE WHEN (a.bill_type_id='050106' and a.dc='1') THEN a.qty END ), 0 ) repairEnter,
+					IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.qty END ), 0 ) sellOut,
+					IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.qty END ), 0 ) sellEnter,
+					IFNULL( ( CASE WHEN (a.bill_type_id='050206' and a.dc='-1') THEN a.qty END ), 0 ) repairOut,
+					IFNULL( ( CASE a.bill_type_id WHEN '050103' THEN a.qty END ), 0 ) inventoryProfit,
+					IFNULL( ( CASE a.bill_type_id WHEN '050203' THEN a.qty END ), 0 ) inventoryLoss,
+					IFNULL( ( CASE a.bill_type_id WHEN '050104' THEN a.qty END ), 0 ) allotEnter,
+					IFNULL( ( CASE a.bill_type_id WHEN '050204' THEN a.qty END ), 0 ) allotOut,
+					IFNULL( ( CASE WHEN (a.bill_type_id='050107' and a.dc='1') THEN a.qty END ), 0 ) materialEnter,
+					IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='-1')THEN a.qty END ), 0 ) materialOut 
+		    	</isNotEmpty>  
+		    </dynamic>
+		       FROM
+					pj_store_invocing a 
+				WHERE
+					a.orgid = #orgid#
+					AND a.store_id = #storeId#
+					<dynamic>
+						<isNotEmpty prepend="and" property="startDate">  
+							(date_format(a.create_date,'%Y-%m-%d')&gt;=#startDate#)
+						</isNotEmpty>
+						<isNotEmpty prepend="and" property="endDate">  
+							(date_format(a.create_date,'%Y-%m-%d')&lt;=#endDate#)
+						</isNotEmpty>
+						<isNotEmpty prepend="and" property="today">  
+			            <!--本日-->
+			                (date_format(a.create_date,'%Y-%m-%d')=date_format(now(),'%Y-%m-%d'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="yesterday">  
+			            <!--昨日-->
+			                (date_format(a.create_date,'%Y-%m-%d')=date_format(ADDDATE(NOW(), INTERVAL -1 DAY),'%Y-%m-%d'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="thisMonth"> 
+			            <!--本月 --> 
+			                (date_format(a.create_date,'%Y-%m')=date_format(now(),'%Y-%m'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="thisWeek">  
+			            <!--本周-->
+			                (date_format(a.create_date,'%X-%V') = date_format(now(),'%X-%V'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="lastWeek">  
+			            <!--上周-->
+			                (date_format(a.create_date,'%X-%V')=date_format(ADDDATE(NOW(), INTERVAL -7 DAY),'%X-%V'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="lastMonth"> 
+			            <!--上月 --> 
+			                (date_format(a.create_date,'%Y-%m')=date_format(ADDDATE(NOW(), INTERVAL -1 MONTH),'%Y-%m'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="thisYear">  
+			            <!--本年-->
+			                (date_format(a.create_date,'%Y')=date_format(now(),'%Y'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="lastYear">  
+			            <!--上年-->
+			                (date_format(a.create_date,'%Y')=date_format(ADDDATE(NOW(), INTERVAL -1 YEAR),'%Y'))
+			            </isNotEmpty>
+			        </dynamic>
+					) b 
+				GROUP BY
+					b.part_id,
+					b.part_name,
+					b.part_code
+				<!--	b.part_full_name-->
+    </select>
+    
+    
+    <resultMap class="commonj.sdo.DataObject" id="resultMap3">
+        <result column="PART_ID" javaType="string" property="partId"/>
+        <result column="balaAmt" javaType="string" property="balaAmt"/>
+    </resultMap>
+    <select id="queryBeginInventoryStore" parameterClass="java.util.HashMap" resultMap="resultMap3">
+    	SELECT A.PART_ID,
+    		<dynamic>
+		    	<isNotEmpty prepend="" property="amt">   
+		            SUM(A.BALA_AMT) balaAmt
+		    	</isNotEmpty>
+		    	<isNotEmpty prepend="" property="qty">   
+		            SUM(A.BALA_qty) balaAmt
+		    	</isNotEmpty>  
+		    </dynamic>
+			  FROM pj_store_invocing A
+			 WHERE A.id IN
+			       (SELECT MAX(id)
+			          FROM pj_store_invocing
+			         where store_id = #storeId# and orgid = #orgid#
+			      <dynamic>
+			      		<isNotEmpty prepend="and" property="startDate">  
+							(date_format(a.create_date,'%Y-%m-%d')&lt;#startDate#)
+						</isNotEmpty>
+					  	<isNotEmpty prepend="and" property="today">  
+			            <!--本日-->
+			                (date_format(create_date,'%Y-%m-%d') &lt; date_format(now(),'%Y-%m-%d'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="yesterday">  
+			            <!--昨日-->
+			                (date_format(create_date,'%Y-%m-%d') &lt; date_format(ADDDATE(NOW(), INTERVAL -1 DAY),'%Y-%m-%d'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="thisWeek">  
+			            <!--本周-->
+			                (date_format(create_date,'%X-%V') &lt; date_format(now(),'%X-%V'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="lastWeek">  
+			            <!--上周-->
+			                (date_format(create_date,'%X-%V')  &lt; date_format(ADDDATE(NOW(), INTERVAL -7 DAY),'%X-%V'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="thisMonth"> 
+			            <!--本月 --> 
+			                (date_format(create_date,'%Y-%m') &lt; date_format(now(),'%Y-%m'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="lastMonth"> 
+			            <!--上月 --> 
+			                (date_format(create_date,'%Y-%m') &lt; date_format(ADDDATE(NOW(), INTERVAL -1 MONTH),'%Y-%m'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="thisYear">  
+			            <!--本年-->
+			                (date_format(create_date,'%Y') &lt; date_format(now(),'%Y'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="lastYear">  
+			            <!--上年-->
+			                (date_format(create_date,'%Y') &lt; date_format(ADDDATE(NOW(), INTERVAL -1 YEAR),'%Y'))
+			            </isNotEmpty>
+				  </dynamic>
+			         GROUP BY PART_ID)
+			 GROUP BY A.PART_ID
+    </select>
+    
+    <select id="queryEndInventoryStore" parameterClass="java.util.HashMap" resultMap="resultMap3">
+    	SELECT A.PART_ID,
+    		<dynamic>
+		    	<isNotEmpty prepend="" property="amt">   
+		            SUM(A.BALA_AMT) balaAmt
+		    	</isNotEmpty>
+		    	<isNotEmpty prepend="" property="qty">   
+		            SUM(A.BALA_qty) balaAmt
+		    	</isNotEmpty>  
+		    </dynamic>
+			  FROM pj_store_invocing A
+			 WHERE A.id IN
+			       (SELECT MAX(id)
+			          FROM pj_store_invocing
+			         where store_id = #storeId# and orgid = #orgid#
+			      <dynamic>
+						<isNotEmpty prepend="and" property="endDate">  
+							(date_format(a.create_date,'%Y-%m-%d')&lt;=#endDate#)
+						</isNotEmpty>
+					  	<isNotEmpty prepend="and" property="today">  
+			            <!--本日-->
+			                (date_format(create_date,'%Y-%m-%d') &lt;= date_format(now(),'%Y-%m-%d'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="yesterday">  
+			            <!--昨日-->
+			                (date_format(create_date,'%Y-%m-%d') &lt;= date_format(ADDDATE(NOW(), INTERVAL -1 DAY),'%Y-%m-%d'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="thisWeek">  
+			            <!--本周-->
+			                (date_format(create_date,'%X-%V') &lt;= date_format(now(),'%X-%V'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="lastWeek">  
+			            <!--上周-->
+			                (date_format(create_date,'%X-%V')  &lt;= date_format(ADDDATE(NOW(), INTERVAL -7 DAY),'%X-%V'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="thisMonth"> 
+			            <!--本月 --> 
+			                (date_format(create_date,'%Y-%m') &lt;= date_format(now(),'%Y-%m'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="lastMonth"> 
+			            <!--上月 --> 
+			                (date_format(create_date,'%Y-%m') &lt;= date_format(ADDDATE(NOW(), INTERVAL -1 MONTH),'%Y-%m'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="thisYear">  
+			            <!--本年-->
+			                (date_format(create_date,'%Y') &lt;= date_format(now(),'%Y'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="lastYear">  
+			            <!--上年-->
+			                (date_format(create_date,'%Y') &lt;= date_format(ADDDATE(NOW(), INTERVAL -1 YEAR),'%Y'))
+			            </isNotEmpty>
+				  </dynamic>
+			         GROUP BY PART_ID)
+			 GROUP BY A.PART_ID
+    </select>
+    
+    <select id="queryCurrInventoryStore" parameterClass="java.util.HashMap" resultMap="resultMap3">
+    	SELECT A.PART_ID,
+    		<dynamic>
+		    	<isNotEmpty prepend="" property="amt">   
+		            SUM(A.BALA_AMT) balaAmt
+		    	</isNotEmpty>
+		    	<isNotEmpty prepend="" property="qty">   
+		            SUM(A.BALA_qty) balaAmt
+		    	</isNotEmpty>  
+		    </dynamic>
+			  FROM pj_store_invocing A
+			 WHERE A.id IN
+			       (SELECT MAX(id)
+			          FROM pj_store_invocing
+			         where store_id = #storeId# and orgid = #orgid#
+			         GROUP BY PART_ID)
+			 GROUP BY A.PART_ID
+    </select>
+    
+    
+    <resultMap class="commonj.sdo.DataObject" id="resultMap4">
+        <result column="name" javaType="string" property="name"/>
+        <result column="code" javaType="string" property="code"/>
+        <result column="purchaseEnter" javaType="string" property="purchaseEnter"/>
+        <result column="purchaseOut" javaType="string" property="purchaseOut"/>
+        <result column="repairEnter" javaType="string" property="repairEnter"/>
+        <result column="sellOut" javaType="string" property="sellOut"/>
+        <result column="sellEnter" javaType="string" property="sellEnter"/>
+        <result column="repairOut" javaType="string" property="repairOut"/>
+        <result column="inventoryProfit" javaType="string" property="inventoryProfit"/>
+        <result column="inventoryLoss" javaType="string" property="inventoryLoss"/>
+        <result column="allotEnter" javaType="string" property="allotEnter"/>
+        <result column="allotOut" javaType="string" property="allotOut"/>
+        <result column="materialEnter" javaType="string" property="materialEnter"/>
+        <result column="materialOut" javaType="string" property="materialOut"/>
+    </resultMap>
+    <select id="queryInvoicingDetailList" parameterClass="java.util.HashMap" resultMap="resultMap4">
+    	SELECT
+			name,
+			code,
+			sum( purchaseEnter ) purchaseEnter,
+			sum( purchaseOut ) purchaseOut,
+			sum( repairEnter ) repairEnter,
+			sum( sellOut ) sellOut,
+			sum( sellEnter ) sellEnter,
+			sum( repairOut ) repairOut,
+			sum( inventoryProfit ) inventoryProfit,
+			sum( inventoryLoss ) inventoryLoss,
+			sum( allotEnter ) allotEnter,
+			sum( allotOut ) allotOut,
+			sum( materialEnter ) materialEnter,
+			sum( materialOut ) materialOut 
+		FROM
+			(
+		SELECT
+			IFNULL( ( CASE a.bill_type_id WHEN '050101' THEN a.amt END ), 0 ) purchaseEnter,
+			IFNULL( ( CASE a.bill_type_id WHEN '050201' THEN a.amt END ), 0 ) purchaseOut,
+			IFNULL( ( CASE WHEN (a.bill_type_id='050106' and a.dc='1') THEN a.amt END ), 0 ) repairEnter,
+			IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.amt END ), 0 ) sellOut,
+			IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.amt END ), 0 ) sellEnter,
+			IFNULL( ( CASE WHEN  (a.bill_type_id='050206' and a.dc='-1') THEN a.amt END ), 0 ) repairOut,
+			IFNULL( ( CASE a.bill_type_id WHEN '050103' THEN a.amt END ), 0 ) inventoryProfit,
+			IFNULL( ( CASE a.bill_type_id WHEN '050203' THEN a.amt END ), 0 ) inventoryLoss,
+			IFNULL( ( CASE a.bill_type_id WHEN '050104' THEN a.amt END ), 0 ) allotEnter,
+			IFNULL( ( CASE a.bill_type_id WHEN '050204' THEN a.amt END ), 0 ) allotOut,
+			IFNULL( ( CASE WHEN (a.bill_type_id='050107' and a.dc='1') THEN a.amt END ), 0 ) materialEnter,
+			IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='-1') THEN a.amt END ), 0 ) materialOut,
+		<dynamic>
+			<isNotEmpty prepend="" property="org">   
+		            b.ORGNAME name,
+		            a.orgid code
+		       	FROM
+				pj_invocing a
+				LEFT JOIN dms_system.org_organization b ON ( a.orgid = b.ORGID )
+		    </isNotEmpty>
+		    <isNotEmpty prepend="" property="partBrand">   
+		            c.name name,
+		            b.part_brand_id code
+		       	FROM
+				pj_invocing a
+				LEFT JOIN wb_common.com_attribute b on (a.part_id = b.id)
+				LEFT JOIN wb_common.com_part_brand c on ( b.part_brand_id = c.id)
+		    </isNotEmpty>
+		    <isNotEmpty prepend="" property="carTypeIdF">   
+		            c.name name,
+					b.car_type_id_f code
+		       	FROM
+				pj_invocing a
+				LEFT JOIN wb_common.com_attribute b on (a.part_id = b.id)
+				LEFT JOIN wb_common.com_part_type c on (b.car_type_id_f = c.id)
+		    </isNotEmpty>
+		    where a.orgid = #orgid#
+		    <isNotEmpty prepend="and" property="startDate">  
+				(date_format(a.create_date,'%Y-%m-%d')&gt;=#startDate#)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="endDate">  
+				(date_format(a.create_date,'%Y-%m-%d')&lt;=#endDate#)
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="today">  
+			<!--本日-->
+				(date_format(a.create_date,'%Y-%m-%d')=date_format(now(),'%Y-%m-%d'))
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="yesterday">  
+			<!--昨日-->
+			  	(date_format(a.create_date,'%Y-%m-%d')=date_format(ADDDATE(NOW(), INTERVAL -1 DAY),'%Y-%m-%d'))
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="thisMonth"> 
+			<!--本月 --> 
+			    (date_format(a.create_date,'%Y-%m')=date_format(now(),'%Y-%m'))
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="thisWeek">  
+			<!--本周-->
+			    (date_format(a.create_date,'%X-%V') = date_format(now(),'%X-%V'))
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lastWeek">  
+			<!--上周-->
+			    (date_format(a.create_date,'%X-%V')=date_format(ADDDATE(NOW(), INTERVAL -7 DAY),'%X-%V'))
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lastMonth"> 
+			<!--上月 --> 
+			    (date_format(a.create_date,'%Y-%m')=date_format(ADDDATE(NOW(), INTERVAL -1 MONTH),'%Y-%m'))
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="thisYear">  
+			<!--本年-->
+				(date_format(a.create_date,'%Y')=date_format(now(),'%Y'))
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="lastYear">  
+			<!--上年-->
+			    (date_format(a.create_date,'%Y')=date_format(ADDDATE(NOW(), INTERVAL -1 YEAR),'%Y'))
+			</isNotEmpty>
+		</dynamic>
+		 ) d
+		 GROUP BY
+			code,name
+    </select>
+	
+	<resultMap class="commonj.sdo.DataObject" id="resultMap5">
+        <result column="code" javaType="string" property="code"/>
+        <result column="balaAmt" javaType="string" property="balaAmt"/>
+    </resultMap>
+	<select id="queryBeginInventory" parameterClass="java.util.HashMap" resultMap="resultMap5">
+    	SELECT
+			d.code,
+			sum( d.bala_amt ) balaAmt 
+		FROM
+			(
+		SELECT
+			a.bala_amt,
+			<dynamic>
+			<isNotEmpty prepend="" property="org">   
+		            a.orgid code
+		       	FROM
+				pj_invocing a
+		    </isNotEmpty>
+		    <isNotEmpty prepend="" property="partBrand">
+		            b.part_brand_id code
+		       	FROM
+				pj_invocing a
+				LEFT JOIN wb_common.com_attribute b on (a.part_id = b.id)
+		    </isNotEmpty>
+		    <isNotEmpty prepend="" property="carTypeIdF">
+					b.car_type_id_f code
+		       	FROM
+				pj_invocing a
+				LEFT JOIN wb_common.com_attribute b on (a.part_id = b.id)
+		    </isNotEmpty>
+		</dynamic>
+		WHERE
+			a.id IN ( SELECT MAX( id ) FROM pj_invocing WHERE orgid = #orgid# 
+				<dynamic>
+					<isNotEmpty prepend="and" property="startDate">  
+						(date_format(a.create_date,'%Y-%m-%d')&lt;#startDate#)
+					</isNotEmpty>
+					  	<isNotEmpty prepend="and" property="today">  
+			            <!--本日-->
+			                (date_format(create_date,'%Y-%m-%d') &lt; date_format(now(),'%Y-%m-%d'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="yesterday">  
+			            <!--昨日-->
+			                (date_format(create_date,'%Y-%m-%d') &lt; date_format(ADDDATE(NOW(), INTERVAL -1 DAY),'%Y-%m-%d'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="thisWeek">  
+			            <!--本周-->
+			                (date_format(create_date,'%X-%V') &lt; date_format(now(),'%X-%V'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="lastWeek">  
+			            <!--上周-->
+			                (date_format(create_date,'%X-%V')  &lt; date_format(ADDDATE(NOW(), INTERVAL -7 DAY),'%X-%V'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="thisMonth"> 
+			            <!--本月 --> 
+			                (date_format(create_date,'%Y-%m') &lt; date_format(now(),'%Y-%m'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="lastMonth"> 
+			            <!--上月 --> 
+			                (date_format(create_date,'%Y-%m') &lt; date_format(ADDDATE(NOW(), INTERVAL -1 MONTH),'%Y-%m'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="thisYear">  
+			            <!--本年-->
+			                (date_format(create_date,'%Y') &lt; date_format(now(),'%Y'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="lastYear">  
+			            <!--上年-->
+			                (date_format(create_date,'%Y') &lt; date_format(ADDDATE(NOW(), INTERVAL -1 YEAR),'%Y'))
+			            </isNotEmpty>
+				  </dynamic>
+			GROUP BY part_id ) 
+			) d 
+		GROUP BY
+			code
+    </select>
+    
+    <select id="queryEndInventory" parameterClass="java.util.HashMap" resultMap="resultMap5">
+    	SELECT
+			d.code,
+			sum( d.bala_amt ) balaAmt 
+		FROM
+			(
+		SELECT
+			a.bala_amt,
+			<dynamic>
+			<isNotEmpty prepend="" property="org">   
+		            a.orgid code
+		       	FROM
+				pj_invocing a
+		    </isNotEmpty>
+		    <isNotEmpty prepend="" property="partBrand">
+		            b.part_brand_id code
+		       	FROM
+				pj_invocing a
+				LEFT JOIN wb_common.com_attribute b on (a.part_id = b.id)
+		    </isNotEmpty>
+		    <isNotEmpty prepend="" property="carTypeIdF">
+					b.car_type_id_f code
+		       	FROM
+				pj_invocing a
+				LEFT JOIN wb_common.com_attribute b on (a.part_id = b.id)
+		    </isNotEmpty>
+		</dynamic>
+		WHERE
+			a.id IN ( SELECT MAX( id ) FROM pj_invocing WHERE orgid = #orgid# 
+				<dynamic>
+					<isNotEmpty prepend="and" property="endDate">  
+						(date_format(a.create_date,'%Y-%m-%d')&lt;=#endDate#)
+					</isNotEmpty>
+					  	<isNotEmpty prepend="and" property="today">  
+			            <!--本日-->
+			                (date_format(create_date,'%Y-%m-%d') &lt;= date_format(now(),'%Y-%m-%d'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="yesterday">  
+			            <!--昨日-->
+			                (date_format(create_date,'%Y-%m-%d') &lt;= date_format(ADDDATE(NOW(), INTERVAL -1 DAY),'%Y-%m-%d'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="thisWeek">  
+			            <!--本周-->
+			                (date_format(create_date,'%X-%V') &lt;= date_format(now(),'%X-%V'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="lastWeek">  
+			            <!--上周-->
+			                (date_format(create_date,'%X-%V')  &lt;= date_format(ADDDATE(NOW(), INTERVAL -7 DAY),'%X-%V'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="thisMonth"> 
+			            <!--本月 --> 
+			                (date_format(create_date,'%Y-%m') &lt;= date_format(now(),'%Y-%m'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="lastMonth"> 
+			            <!--上月 --> 
+			                (date_format(create_date,'%Y-%m') &lt;= date_format(ADDDATE(NOW(), INTERVAL -1 MONTH),'%Y-%m'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="thisYear">  
+			            <!--本年-->
+			                (date_format(create_date,'%Y') &lt;= date_format(now(),'%Y'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="lastYear">  
+			            <!--上年-->
+			                (date_format(create_date,'%Y') &lt;= date_format(ADDDATE(NOW(), INTERVAL -1 YEAR),'%Y'))
+			            </isNotEmpty>
+				  </dynamic>
+			GROUP BY part_id ) 
+			) d 
+		GROUP BY
+			code
+    </select>
+    
+    <select id="queryCurrInventory" parameterClass="java.util.HashMap" resultMap="resultMap5">
+    	SELECT
+			d.code,
+			sum( d.bala_amt ) balaAmt 
+		FROM
+			(
+		SELECT
+			a.bala_amt,
+		<dynamic>
+			<isNotEmpty prepend="" property="org">   
+		            a.orgid code
+		       	FROM
+				pj_invocing a
+		    </isNotEmpty>
+		    <isNotEmpty prepend="" property="partBrand">
+		            b.part_brand_id code
+		       	FROM
+				pj_invocing a
+				LEFT JOIN wb_common.com_attribute b on (a.part_id = b.id)
+		    </isNotEmpty>
+		    <isNotEmpty prepend="" property="carTypeIdF">
+					b.car_type_id_f code
+		       	FROM
+				pj_invocing a
+				LEFT JOIN wb_common.com_attribute b on (a.part_id = b.id)
+		    </isNotEmpty>
+		</dynamic>
+		WHERE
+			a.id IN ( SELECT MAX( id ) FROM pj_invocing WHERE orgid = #orgid# GROUP BY part_id ) 
+			) d 
+		GROUP BY
+			code
+    </select>
+    
+    <parameterMap class="HashMap" id="procqueryinvocingParamWrap">   
+		<parameter property="orgid"  javaType="java.lang.Integer" jdbcType="int" mode="IN"/> 
+		<parameter property="startDate"  javaType="java.sql.Date" jdbcType="DATE" mode="IN"/> 
+		<parameter property="endDate"  javaType="java.sql.Date" jdbcType="DATE" mode="IN"/> 
+	</parameterMap>
+	<parameterMap class="HashMap" id="procquerystoreinvocingParamWrap">   
+		<parameter property="storeId"  javaType="java.lang.Integer" jdbcType="int" mode="IN"/> 
+		<parameter property="startDate"  javaType="java.sql.Date" jdbcType="DATE" mode="IN"/> 
+		<parameter property="endDate"  javaType="java.sql.Date" jdbcType="DATE" mode="IN"/> 
+	</parameterMap>
+	
+	<procedure id="proc_query_invocing" parameterMap="procqueryinvocingParamWrap" resultClass="java.util.HashMap">
+		{call proc_query_invocing(?,?,?)}
+	</procedure>
+	<procedure id="proc_query_store_invocing" parameterMap="procquerystoreinvocingParamWrap" resultClass="java.util.HashMap">
+		{call proc_query_store_invocing(?,?,?)}
+	</procedure>
+    
+    <!--门店进销存统计-->
+    <select id="queryPjInvoing" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT
+			b.part_id as partId,
+			b.part_name as partName,
+			b.part_code as partCode,
+			c.oem_code as oemCode,
+			c.part_brand_id as partBrandId,
+			sum(b.qc_qty ) as qcQty,
+			sum(b.qc_amt) as qcAmt,
+			sum(purchaseEnterQty) as purchaseEnterQty,
+			sum(purchaseEnterAmt) as purchaseEnterAmt,
+			sum(purchaseOutQty) as purchaseOutQty,
+			sum(purchaseOutAmt) as purchaseOutAmt,
+			sum(repairEnterQty) as repairEnterQty,
+			sum(repairEnterAmt) as repairEnterAmt,
+			sum(repairOutQty) as repairOutQty,
+			sum(repairOutAmt) as repairOutAmt,
+			sum(returnOutQty) as returnOutQty,
+			sum(returnOutAmt) as returnOutAmt,
+			sum(shiftEnterQty) as shiftEnterQty,
+			sum(shiftEnterAmt) as shiftEnterAmt,
+			sum(shiftOutQty) as shiftOutQty,
+			sum(shiftOutAmt) as shiftOutAmt,
+			sum(consumableEnterQty) as consumableEnterQty,
+			sum(consumableEnterAmt) as consumableEnterAmt,
+			sum(consumableOutQty) as consumableOutQty,
+			sum(consumableOutAmt) as consumableOutAmt,
+			sum(inventoryProfitQty) as inventoryProfitQty,
+			sum(inventoryProfitAmt) as inventoryProfitAmt,
+			sum(inventoryLossQty) as inventoryLossQty,
+			sum(inventoryLossAmt) as inventoryLossAmt,
+			sum(b.bala_qty) as balaQty,
+			sum(b.bala_amt)as balaAmt 
+		FROM
+			(
+				SELECT
+					a.part_id ,
+					a.part_name,
+					a.part_code,
+					a.qc_qty ,
+					a.qc_amt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050101' THEN a.qty END ), 0 ) purchaseEnterQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050101' THEN a.amt END ), 0 ) purchaseEnterAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050201' THEN a.qty END ), 0 ) purchaseOutQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050201' THEN a.amt END ), 0 ) purchaseOutAmt,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050106' and a.dc='1') THEN a.qty END ), 0 ) repairEnterQty,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050106' and a.dc='1') THEN a.amt END ), 0 ) repairEnterAmt,
+		IFNULL( ( CASE WHEN  (a.bill_type_id='050206' and a.dc='-1') THEN a.qty END ), 0 ) repairOutQty,
+		IFNULL( ( CASE WHEN  (a.bill_type_id='050206' and a.dc='-1') THEN a.amt END ), 0 ) repairOutAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.qty END ), 0 ) returnOutQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.amt END ), 0 ) returnOutAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050104' THEN a.qty END ), 0 ) shiftEnterQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050104' THEN a.amt END ), 0 ) shiftEnterAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050204' THEN a.qty END ), 0 ) shiftOutQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050204' THEN a.amt END ), 0 ) shiftOutAmt,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050107' and a.dc='1') THEN a.qty END ), 0 ) consumableEnterQty,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050107' and a.dc='1') THEN a.amt END ), 0 ) consumableEnterAmt,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='-1')THEN a.qty END ), 0 ) consumableOutQty,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='-1')THEN a.amt END ), 0 ) consumableOutAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050103' THEN a.qty END ), 0 ) inventoryProfitQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050103' THEN a.amt END ), 0 ) inventoryProfitAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050203' THEN a.qty END ), 0 ) inventoryLossQty, 
+		IFNULL( ( CASE a.bill_type_id WHEN '050203' THEN a.amt END ), 0 ) inventoryLossAmt, 
+					a.bala_qty,
+					a.bala_amt
+		FROM pj_invocing a
+			WHERE 1=1
+			<dynamic>
+				<isNotEmpty prepend="and" property="orgid">  
+					a.orgid= #orgid#
+				</isNotEmpty>
+				
+				 <isNotEmpty prepend="and" property="startDate">  
+					(date_format(a.create_date,'%Y-%m-%d')&gt;=#startDate#)
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="endDate">  
+					(date_format(a.create_date,'%Y-%m-%d')&lt;=#endDate#)
+				</isNotEmpty>
+			
+			</dynamic>
+		)b INNER JOIN wb_common.com_attribute  c on b.part_id=c.id
+		GROUP BY
+			b.part_id,
+			b.part_name,
+			b.part_code
+
+    </select>
+    
+    <!--仓库进销存统计-->
+    <select id="queryPjStoreInvoing" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT
+			b.part_id as partId,
+			b.part_name as partName,
+			b.part_code as partCode,
+			c.oem_code as oemCode,
+			c.part_brand_id as partBrandId,
+			sum(b.qc_qty ) as qcQty,
+			sum(b.qc_amt) as qcAmt,
+			sum(purchaseEnterQty) as purchaseEnterQty,
+			sum(purchaseEnterAmt) as purchaseEnterAmt,
+			sum(purchaseOutQty) as purchaseOutQty,
+			sum(purchaseOutAmt) as purchaseOutAmt,
+			sum(repairEnterQty) as repairEnterQty,
+			sum(repairEnterAmt) as repairEnterAmt,
+			sum(repairOutQty) as repairOutQty,
+			sum(repairOutAmt) as repairOutAmt,
+			sum(returnOutQty) as returnOutQty,
+			sum(returnOutAmt) as returnOutAmt,
+			sum(shiftEnterQty) as shiftEnterQty,
+			sum(shiftEnterAmt) as shiftEnterAmt,
+			sum(shiftOutQty) as shiftOutQty,
+			sum(shiftOutAmt) as shiftOutAmt,
+			sum(consumableEnterQty) as consumableEnterQty,
+			sum(consumableEnterAmt) as consumableEnterAmt,
+			sum(consumableOutQty) as consumableOutQty,
+			sum(consumableOutAmt) as consumableOutAmt,
+			sum(inventoryProfitQty) as inventoryProfitQty,
+			sum(inventoryProfitAmt) as inventoryProfitAmt,
+			sum(inventoryLossQty) as inventoryLossQty,
+			sum(inventoryLossAmt) as inventoryLossAmt,
+			sum(b.bala_qty) as balaQty,
+			sum(b.bala_amt)as balaAmt 
+		FROM
+			(
+				SELECT
+					a.part_id ,
+					a.part_name,
+					a.part_code,
+					a.qc_qty ,
+					a.qc_amt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050101' THEN a.qty END ), 0 ) purchaseEnterQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050101' THEN a.amt END ), 0 ) purchaseEnterAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050201' THEN a.qty END ), 0 ) purchaseOutQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050201' THEN a.amt END ), 0 ) purchaseOutAmt,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050106' and a.dc='1') THEN a.qty END ), 0 ) repairEnterQty,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050106' and a.dc='1') THEN a.amt END ), 0 ) repairEnterAmt,
+		IFNULL( ( CASE WHEN  (a.bill_type_id='050206' and a.dc='-1') THEN a.qty END ), 0 ) repairOutQty,
+		IFNULL( ( CASE WHEN  (a.bill_type_id='050206' and a.dc='-1') THEN a.amt END ), 0 ) repairOutAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.qty END ), 0 ) returnOutQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.amt END ), 0 ) returnOutAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050104' THEN a.qty END ), 0 ) shiftEnterQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050104' THEN a.amt END ), 0 ) shiftEnterAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050204' THEN a.qty END ), 0 ) shiftOutQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050204' THEN a.amt END ), 0 ) shiftOutAmt,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050107' and a.dc='1') THEN a.qty END ), 0 ) consumableEnterQty,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050107' and a.dc='1') THEN a.amt END ), 0 ) consumableEnterAmt,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='-1')THEN a.qty END ), 0 ) consumableOutQty,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='-1')THEN a.amt END ), 0 ) consumableOutAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050103' THEN a.qty END ), 0 ) inventoryProfitQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050103' THEN a.amt END ), 0 ) inventoryProfitAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050203' THEN a.qty END ), 0 ) inventoryLossQty, 
+		IFNULL( ( CASE a.bill_type_id WHEN '050203' THEN a.amt END ), 0 ) inventoryLossAmt, 
+					a.bala_qty,
+					a.bala_amt
+		FROM pj_store_invocing a
+			WHERE 1=1
+			<dynamic>
+				<isNotEmpty prepend="and" property="orgid">  
+					a.orgid= #orgid#
+				</isNotEmpty>
+				
+				<isNotEmpty prepend="and" property="storeId">  
+					a.store_id= #storeId#
+				</isNotEmpty>
+				
+				 <isNotEmpty prepend="and" property="startDate">  
+					(date_format(a.create_date,'%Y-%m-%d')&gt;=#startDate#)
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="endDate">  
+					(date_format(a.create_date,'%Y-%m-%d')&lt;=#endDate#)
+				</isNotEmpty>
+			
+			</dynamic>
+		)b INNER JOIN wb_common.com_attribute  c on b.part_id=c.id
+		GROUP BY
+			b.part_id,
+			b.part_name,
+			b.part_code
+
+    </select>
+    
+    <select id="queryPjInvoingDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT
+			a.service_id AS serviceId,
+			a.bill_type_id AS billTypeId,
+			a.dc as dc,
+			a.guest_id AS guestId,
+			b.full_name AS guestName,
+			a.part_id AS partId,
+			a.part_code AS partCode,
+			a.part_name AS partName,
+			c.part_brand_id AS partBrandId,
+			c.apply_car_model AS applyCarModel,
+			c.direction AS direction,
+			a.qty AS qty,
+			a.cost_price AS costPrice,
+			a.cost_amt AS costAmt,
+			a.bala_qty AS balaQty,
+			a.bala_price AS balaPrice,
+			a.bala_amt AS balaAmt,
+			a.operator AS operator,
+			a.operate_date as operateDate,
+			a.orgid as orgid
+		FROM
+			pj_invocing a
+		INNER JOIN wb_common.com_guest b ON a.guest_id = b.id
+		INNER JOIN wb_common.com_attribute c ON a.part_id = c.id
+		WHERE 1=1
+		
+		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">  
+				a.orgid= #orgid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
+
+			<isNotEmpty prepend="and" property="partCodeOrName">  
+				a.part_code like '%$partCodeOrName$%'or a.part_name like '%$partCodeOrName$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="partId">  
+				a.part_id like '%$partId$%'
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="and" property="partBrandId">  
+				c.part_brand_id like '%$partBrandId$%'
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="and" property="serviceId">  
+				a.service_id like '%$serviceId$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="guestId">  
+                (a.guest_id = #guestId#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="guestName">  
+                (b.full_name like '%$guestName$%' or b.short_name like '%$guestName$%')
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="operatorId">  
+                (a.operator_id = #operatorId#)
+            </isNotEmpty>
+			
+			<isNotEmpty prepend="and" property="operator">  
+                (a.operator= #operator#)
+            </isNotEmpty>
+            
+			 <isNotEmpty prepend="and" property="startDate">  
+				(date_format(a.create_date,'%Y-%m-%d')&gt;=#startDate#)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="endDate">  
+				(date_format(a.create_date,'%Y-%m-%d')&lt;=#endDate#)
+			</isNotEmpty>
+			
+			 <isNotEmpty prepend="and" property="OstartDate">  
+				(date_format(a.operate_date,'%Y-%m-%d')&gt;=#OstartDate#)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="OendDate">  
+				(date_format(a.operate_date,'%Y-%m-%d')&lt;=#OendDate#)
+			</isNotEmpty>
+		
+		</dynamic>
+		
+    </select>
+    
+       <select id="queryPjStoreInvoingDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT
+			a.service_id AS serviceId,
+			a.bill_type_id AS billTypeId,
+			a.dc as dc,
+			a.guest_id AS guestId,
+			b.full_name AS guestName,
+			a.part_id AS partId,
+			a.part_code AS partCode,
+			a.part_name AS partName,
+			c.part_brand_id AS partBrandId,
+			c.apply_car_model AS applyCarModel,
+			c.direction AS direction,
+			a.qty AS qty,
+			a.cost_price AS costPrice,
+			a.cost_amt AS costAmt,
+			a.bala_qty AS balaQty,
+			a.bala_price AS balaPrice,
+			a.bala_amt AS balaAmt,
+			a.operator AS operator,
+			a.operate_date as operateDate,
+			a.orgid as orgid,
+			a.store_id as storeId
+		FROM
+			pj_store_invocing a
+		INNER JOIN wb_common.com_guest b ON a.guest_id = b.id
+		INNER JOIN wb_common.com_attribute c ON a.part_id = c.id
+		WHERE 1=1
+		
+		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">  
+				a.orgid= #orgid#
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
+			
+			<isNotEmpty prepend="and" property="storeId">  
+				a.store_id= #storeId#
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="and" property="partCodeOrName">  
+				a.part_code like '%$partCodeOrName$%'or a.part_name like '%$partCodeOrName$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="partId">  
+				a.part_id like '%$partId$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="serviceId">  
+				a.service_id like '%$serviceId$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="guestId">  
+                (a.guest_id = #guestId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partBrandId">  
+				c.part_brand_id like '%$partBrandId$%'
+			</isNotEmpty>
+			
+            <isNotEmpty prepend="and" property="guestName">  
+                (b.full_name like '%$guestName$%' or b.short_name like '%$guestName$%')
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="operatorId">  
+                (a.operator_id = #operatorId#)
+            </isNotEmpty>
+            
+             <isNotEmpty prepend="and" property="operator">  
+                (a.operator= #operator#)
+            </isNotEmpty>
+		
+			 <isNotEmpty prepend="and" property="startDate">  
+				(date_format(a.create_date,'%Y-%m-%d')&gt;=#startDate#)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="endDate">  
+				(date_format(a.create_date,'%Y-%m-%d')&lt;=#endDate#)
+			</isNotEmpty>
+			
+			 <isNotEmpty prepend="and" property="OstartDate">  
+				(date_format(a.operate_date,'%Y-%m-%d')&gt;=#OstartDate#)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="OendDate">  
+				(date_format(a.operate_date,'%Y-%m-%d')&lt;=#OendDate#)
+			</isNotEmpty>
+		
+		</dynamic>
+		
+    </select>
+    <!--库存周转明细表查询-->
+    
+    <select id="queryTurnOverDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT
+    		 b.orgid as orgid,
+			 b.part_code AS partCode,
+			 b.part_name AS partName,
+			 c.oem_code AS oemCode,
+			 c.part_brand_id AS partBrandId,
+			 c.apply_car_model AS applyCarModel,
+			 c.unit AS unit,
+			 c.car_type_id_f AS carTypeIdF,
+			 c.car_type_id_s AS carTypeIdS,
+			 c.car_type_id_t AS carTypeIdT,
+			 c.spec AS spec,
+			 sum(b.qc_qty) AS qcQty,
+			 sum(b.qc_amt) AS qcAmt,
+			 sum(b.bala_qty) AS balaQty,
+			 sum(b.bala_amt) AS balaAmt,
+			 <!--销售数量-->
+			 (sum(repairOutQty)-sum(repairEnterQty)-sum(returnOutQty)+sum(inventoryLossQty)
+			-sum(inventoryProfitQty)+sum(consumableOutQty)-sum(consumableEnterQty))as sellQty,
+			<!--销售总成本-->
+			(sum(repairOutAmt)-sum(repairEnterAmt)-sum(returnOutAmt)+sum(inventoryLossAmt)
+			-sum(inventoryProfitAmt)+sum(consumableOutAmt)-sum(consumableEnterAmt))as sellAmt,
+			<!-- 平均库存余额-->
+			((sum(b.qc_amt)+sum(b.bala_amt))/2) as AvgAmt,
+			<!--库存周转率=销售总成本/平均库存余额-->
+			((sum(repairOutAmt)-sum(repairEnterAmt)-sum(returnOutAmt)+sum(inventoryLossAmt)
+			-sum(inventoryProfitAmt)+sum(consumableOutAmt)-sum(consumableEnterAmt))
+			/((sum(b.qc_amt)+sum(b.bala_amt))/2)) as turnOverRate,
+			<!--库存周转天数=计算期天数/库存周转率 -->
+			(dateDiff (#endDate#,#startDate#)/((sum(repairOutAmt)-sum(repairEnterAmt)-sum(returnOutAmt)+sum(inventoryLossAmt)
+			-sum(inventoryProfitAmt)+sum(consumableOutAmt)-sum(consumableEnterAmt))
+			/((sum(b.qc_amt)+sum(b.bala_amt))/2))) as turnOverDay
+		FROM
+			(
+				SELECT
+					a.part_id ,
+					a.part_name,
+					a.part_code,
+					a.qc_qty ,
+					a.qc_amt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050101' THEN a.qty END ), 0 ) purchaseEnterQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050101' THEN a.amt END ), 0 ) purchaseEnterAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050201' THEN a.qty END ), 0 ) purchaseOutQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050201' THEN a.amt END ), 0 ) purchaseOutAmt,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050106' and a.dc='1') THEN a.qty END ), 0 ) repairEnterQty,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050106' and a.dc='1') THEN a.amt END ), 0 ) repairEnterAmt,
+		IFNULL( ( CASE WHEN  (a.bill_type_id='050206' and a.dc='-1') THEN a.qty END ), 0 ) repairOutQty,
+		IFNULL( ( CASE WHEN  (a.bill_type_id='050206' and a.dc='-1') THEN a.amt END ), 0 ) repairOutAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.qty END ), 0 ) returnOutQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.amt END ), 0 ) returnOutAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050104' THEN a.qty END ), 0 ) shiftEnterQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050104' THEN a.amt END ), 0 ) shiftEnterAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050204' THEN a.qty END ), 0 ) shiftOutQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050204' THEN a.amt END ), 0 ) shiftOutAmt,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050107' and a.dc='1') THEN a.qty END ), 0 ) consumableEnterQty,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050107' and a.dc='1') THEN a.amt END ), 0 ) consumableEnterAmt,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='-1')THEN a.qty END ), 0 ) consumableOutQty,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='-1')THEN a.amt END ), 0 ) consumableOutAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050103' THEN a.qty END ), 0 ) inventoryProfitQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050103' THEN a.amt END ), 0 ) inventoryProfitAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050203' THEN a.qty END ), 0 ) inventoryLossQty, 
+		IFNULL( ( CASE a.bill_type_id WHEN '050203' THEN a.amt END ), 0 ) inventoryLossAmt, 
+					a.bala_qty,
+					a.bala_amt,
+					a.orgid
+		FROM pj_invocing a
+			WHERE 1=1
+			<dynamic>
+				<isNotEmpty prepend="and" property="orgid">  
+					a.orgid= #orgid#
+				</isNotEmpty>
+				
+				 <isNotEmpty prepend="and" property="orgids">
+	                (a.orgid in ($orgids$))
+	            </isNotEmpty>
+
+				<isNotEmpty prepend="and" property="partCodeOrName">  
+				a.part_code like '%$partCodeOrName$%'or a.part_name like '%$partCodeOrName$%'
+				</isNotEmpty>
+				
+				<isNotEmpty prepend="and" property="partId">  
+					a.part_id like '%$partId$%'
+				</isNotEmpty>
+				
+				<isNotEmpty prepend="and" property="serviceId">  
+					a.service_id like '%$serviceId$%'
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="guestId">  
+	                (a.guest_id = #guestId#)
+	            </isNotEmpty>
+	                        
+	            <isNotEmpty prepend="and" property="operatorId">  
+	                (a.operator_id = #operatorId#)
+	            </isNotEmpty>
+				
+				<isNotEmpty prepend="and" property="operator">  
+	                (a.operator= #operator#)
+	            </isNotEmpty>
+	            
+				 <isNotEmpty prepend="and" property="startDate">  
+					(date_format(a.create_date,'%Y-%m-%d')&gt;=#startDate#)
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="endDate">  
+					(date_format(a.create_date,'%Y-%m-%d')&lt;=#endDate#)
+				</isNotEmpty>
+			
+			</dynamic>
+		)b INNER JOIN wb_common.com_attribute  c on b.part_id=c.id
+		 where 1=1
+		 <dynamic>				
+				<isNotEmpty prepend="and" property="partBrandId">  
+					c.part_brand_id = #partBrandId#
+				</isNotEmpty>
+				
+				<isNotEmpty prepend="and" property="partTypeId">  
+					c.car_type_id_f = #partTypeId# or c.car_type_id_s = #partTypeId# or c.car_type_id_t = #partTypeId#
+				</isNotEmpty>
+				
+			
+			</dynamic>
+		GROUP BY
+			b.part_id,
+			b.part_name,
+			b.part_code
+
+    </select>
+    
+    <!--库存周转汇总-查总-->
+    <select id="queryTurnOverCount" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT    	
+			 sum(b.qc_qty) AS qcQty,
+			 sum(b.qc_amt) AS qcAmt,
+			 sum(b.bala_qty) AS balaQty,
+			 sum(b.bala_amt) AS balaAmt,
+			 <!--销售数量-->
+			 (sum(repairOutQty)-sum(repairEnterQty)-sum(returnOutQty)+sum(inventoryLossQty)
+			-sum(inventoryProfitQty)+sum(consumableOutQty)-sum(consumableEnterQty))as sellQty,
+			<!--销售总成本-->
+			(sum(repairOutAmt)-sum(repairEnterAmt)-sum(returnOutAmt)+sum(inventoryLossAmt)
+			-sum(inventoryProfitAmt)+sum(consumableOutAmt)-sum(consumableEnterAmt))as sellAmt,
+			<!-- 平均库存余额-->
+			((sum(b.qc_amt)+sum(b.bala_amt))/2) as AvgAmt,
+			<!--库存周转率=销售总成本/平均库存余额-->
+			((sum(repairOutAmt)-sum(repairEnterAmt)-sum(returnOutAmt)+sum(inventoryLossAmt)
+			-sum(inventoryProfitAmt)+sum(consumableOutAmt)-sum(consumableEnterAmt))
+			/((sum(b.qc_amt)+sum(b.bala_amt))/2)) as turnOverRate,
+			<!--库存周转天数=计算期天数/库存周转率 -->
+			(dateDiff (#endDate#,#startDate#)/((sum(repairOutAmt)-sum(repairEnterAmt)-sum(returnOutAmt)+sum(inventoryLossAmt)
+			-sum(inventoryProfitAmt)+sum(consumableOutAmt)-sum(consumableEnterAmt))
+			/((sum(b.qc_amt)+sum(b.bala_amt))/2))) as turnOverDay
+		FROM
+			(
+				SELECT
+					a.part_id ,
+					a.part_name,
+					a.part_code,
+					a.qc_qty ,
+					a.qc_amt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050101' THEN a.qty END ), 0 ) purchaseEnterQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050101' THEN a.amt END ), 0 ) purchaseEnterAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050201' THEN a.qty END ), 0 ) purchaseOutQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050201' THEN a.amt END ), 0 ) purchaseOutAmt,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050106' and a.dc='1') THEN a.qty END ), 0 ) repairEnterQty,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050106' and a.dc='1') THEN a.amt END ), 0 ) repairEnterAmt,
+		IFNULL( ( CASE WHEN  (a.bill_type_id='050206' and a.dc='-1') THEN a.qty END ), 0 ) repairOutQty,
+		IFNULL( ( CASE WHEN  (a.bill_type_id='050206' and a.dc='-1') THEN a.amt END ), 0 ) repairOutAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.qty END ), 0 ) returnOutQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.amt END ), 0 ) returnOutAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050104' THEN a.qty END ), 0 ) shiftEnterQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050104' THEN a.amt END ), 0 ) shiftEnterAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050204' THEN a.qty END ), 0 ) shiftOutQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050204' THEN a.amt END ), 0 ) shiftOutAmt,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050107' and a.dc='1') THEN a.qty END ), 0 ) consumableEnterQty,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050107' and a.dc='1') THEN a.amt END ), 0 ) consumableEnterAmt,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='-1')THEN a.qty END ), 0 ) consumableOutQty,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='-1')THEN a.amt END ), 0 ) consumableOutAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050103' THEN a.qty END ), 0 ) inventoryProfitQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050103' THEN a.amt END ), 0 ) inventoryProfitAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050203' THEN a.qty END ), 0 ) inventoryLossQty, 
+		IFNULL( ( CASE a.bill_type_id WHEN '050203' THEN a.amt END ), 0 ) inventoryLossAmt, 
+					a.bala_qty,
+					a.bala_amt
+		FROM pj_invocing a
+			WHERE 1=1
+			<dynamic>
+				<isNotEmpty prepend="and" property="orgid">  
+					a.orgid= #orgid#
+				</isNotEmpty>
+				 <isNotEmpty prepend="and" property="orgids">
+	                (a.orgid in ($orgids$))
+	            </isNotEmpty>
+					
+				 <isNotEmpty prepend="and" property="startDate">  
+					(date_format(a.create_date,'%Y-%m-%d')&gt;=#startDate#)
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="endDate">  
+					(date_format(a.create_date,'%Y-%m-%d')&lt;=#endDate#)
+				</isNotEmpty>
+			
+			</dynamic>
+		)b 
+		 
+
+    </select>
+    <!--库存周转汇总-查分仓-->
+    <select id="queryTurnOverStoreCount" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT
+    		 b.store_id as storeId,
+			 sum(b.qc_qty) AS qcQty,
+			 sum(b.qc_amt) AS qcAmt,
+			 sum(b.bala_qty) AS balaQty,
+			 sum(b.bala_amt) AS balaAmt,
+			 <!--销售数量-->
+			 (sum(repairOutQty)-sum(repairEnterQty)-sum(returnOutQty)+sum(inventoryLossQty)
+			-sum(inventoryProfitQty)+sum(consumableOutQty)-sum(consumableEnterQty))as sellQty,
+			<!--销售总成本-->
+			(sum(repairOutAmt)-sum(repairEnterAmt)-sum(returnOutAmt)+sum(inventoryLossAmt)
+			-sum(inventoryProfitAmt)+sum(consumableOutAmt)-sum(consumableEnterAmt))as sellAmt,
+			<!-- 平均库存余额-->
+			((sum(b.qc_amt)+sum(b.bala_amt))/2) as AvgAmt,
+			<!--库存周转率=销售总成本/平均库存余额-->
+			((sum(repairOutAmt)-sum(repairEnterAmt)-sum(returnOutAmt)+sum(inventoryLossAmt)
+			-sum(inventoryProfitAmt)+sum(consumableOutAmt)-sum(consumableEnterAmt))
+			/((sum(b.qc_amt)+sum(b.bala_amt))/2)) as turnOverRate,
+			<!--库存周转天数=计算期天数/库存周转率 -->
+			(dateDiff (#endDate#,#startDate#)/((sum(repairOutAmt)-sum(repairEnterAmt)-sum(returnOutAmt)+sum(inventoryLossAmt)
+			-sum(inventoryProfitAmt)+sum(consumableOutAmt)-sum(consumableEnterAmt))
+			/((sum(b.qc_amt)+sum(b.bala_amt))/2))) as turnOverDay
+		FROM
+			(
+				SELECT
+					a.store_id,
+					a.part_id ,
+					a.part_name,
+					a.part_code,
+					a.qc_qty ,
+					a.qc_amt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050101' THEN a.qty END ), 0 ) purchaseEnterQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050101' THEN a.amt END ), 0 ) purchaseEnterAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050201' THEN a.qty END ), 0 ) purchaseOutQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050201' THEN a.amt END ), 0 ) purchaseOutAmt,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050106' and a.dc='1') THEN a.qty END ), 0 ) repairEnterQty,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050106' and a.dc='1') THEN a.amt END ), 0 ) repairEnterAmt,
+		IFNULL( ( CASE WHEN  (a.bill_type_id='050206' and a.dc='-1') THEN a.qty END ), 0 ) repairOutQty,
+		IFNULL( ( CASE WHEN  (a.bill_type_id='050206' and a.dc='-1') THEN a.amt END ), 0 ) repairOutAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.qty END ), 0 ) returnOutQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.amt END ), 0 ) returnOutAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050104' THEN a.qty END ), 0 ) shiftEnterQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050104' THEN a.amt END ), 0 ) shiftEnterAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050204' THEN a.qty END ), 0 ) shiftOutQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050204' THEN a.amt END ), 0 ) shiftOutAmt,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050107' and a.dc='1') THEN a.qty END ), 0 ) consumableEnterQty,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050107' and a.dc='1') THEN a.amt END ), 0 ) consumableEnterAmt,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='-1')THEN a.qty END ), 0 ) consumableOutQty,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='-1')THEN a.amt END ), 0 ) consumableOutAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050103' THEN a.qty END ), 0 ) inventoryProfitQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050103' THEN a.amt END ), 0 ) inventoryProfitAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050203' THEN a.qty END ), 0 ) inventoryLossQty, 
+		IFNULL( ( CASE a.bill_type_id WHEN '050203' THEN a.amt END ), 0 ) inventoryLossAmt, 
+					a.bala_qty,
+					a.bala_amt
+		FROM pj_store_invocing a
+			WHERE 1=1
+			<dynamic>
+				<isNotEmpty prepend="and" property="orgid">  
+					a.orgid= #orgid#
+				</isNotEmpty>
+				 <isNotEmpty prepend="and" property="orgids">
+	                (a.orgid in ($orgids$))
+	            </isNotEmpty>
+				 <isNotEmpty prepend="and" property="startDate">  
+					(date_format(a.create_date,'%Y-%m-%d')&gt;=#startDate#)
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="endDate">  
+					(date_format(a.create_date,'%Y-%m-%d')&lt;=#endDate#)
+				</isNotEmpty>
+			
+			</dynamic>
+			
+		)b 
+		group by b.store_id
+
+    </select>
+<!--    <select id="getStockListByLocIdList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.part_id partId,
+			a.part_code partCode,
+			a.part_name partName,
+			a.part_name_id partNameId,
+			a.part_full_name partFullName,
+			a.unit unit,
+			a.store_location_id storeLocationId,
+			a.store_location storeLocation,
+			ifnull(a.stock_price,0) balaUnitPrice,
+			ifnull(a.stock_qty,0) paperQty,
+			ifnull(a.stock_qty,0) trueQty,
+			0 invtLossQty,
+			b.apply_car_model applyCarModel,
+			c.NAME partBrandName 
+		FROM
+			pts_cyc_store a
+			LEFT JOIN wb_common.com_attribute b ON ( a.part_id = b.id )
+			LEFT JOIN wb_common.com_part_brand c ON ( b.part_brand_id = c.id ) 
+		WHERE
+			a.store_location_id IN ($idList$)
+		<dynamic>
+			<isNotEmpty prepend="and" property="notGenerateZero">   
+		        a.stock_qty &gt; 0
+		    </isNotEmpty>
+		</dynamic>
+    </select>-->
+    
+    <select id="getStockCheckListByCheckId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id id,
+			a.part_code partCode,
+			a.part_name partName,
+			a.unit unit,
+			a.store_location storeLocation,
+			a.paper_qty paperQty,
+			a.true_qty trueQty,
+			a.invt_loss_qty invtLossQty,
+			a.flag flag,
+			a.remark remark,
+			b.apply_car_model applyCarModel,
+			c.NAME partBrandName 
+		FROM
+			pj_stock_check_detail a
+			LEFT JOIN wb_common.com_attribute b ON ( a.part_id = b.id )
+			LEFT JOIN wb_common.com_part_brand c ON ( b.part_brand_id = c.id ) 
+		WHERE
+			a.check_id = #checkId#
+    </select>
+    
+    <!--<select id="genPtsEnterByCheckId" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PtsEnterDetail">
+    	SELECT
+			a.part_id partId,
+			a.part_name partName,
+			a.part_code partCode,
+			a.part_name_id partNameId,
+			a.part_full_name partFullName,
+			a.unit unit,
+			a.invt_loss_qty enterQty,
+			a.bala_unit_price noTaxUnitPrice 
+		FROM
+			pts_stock_check_detail a
+			LEFT JOIN pts_stock_check_main c ON ( a.check_id = c.id )
+			LEFT JOIN pts_cyc_store b ON ( c.store_id = b.store_id AND a.part_id = b.part_id AND a.paper_qty = b.stock_qty ) 
+		WHERE
+			a.check_id = #checkId#
+			AND a.invt_loss_qty &gt; 0
+    </select>-->
+<!-- <select id="genPtsOutByCheckId" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PtsOutDetail">
+    	SELECT
+			a.part_id partId,
+			a.part_name partName,
+			a.part_code partCode,
+			a.part_name_id partNameId,
+			a.part_full_name partFullName,
+			a.unit unit,
+			a.invt_loss_qty outQty,
+			a.bala_unit_price noTaxCostUnitPrice 
+		FROM
+			pts_stock_check_detail a
+			LEFT JOIN pts_stock_check_main c ON ( a.check_id = c.id )
+			LEFT JOIN pts_cyc_store b ON ( c.store_id = b.store_id AND a.part_id = b.part_id AND a.paper_qty = b.stock_qty ) 
+		WHERE
+			a.check_id = #checkId#
+			AND a.invt_loss_qty &lt; 0
+    </select>-->
+</sqlMap>

@@ -1773,4 +1773,78 @@
         ORDER BY a.id asc
     </select>
     
+     <!-- 根据对账单ID查询 -->
+    <select id="queryPjPchsOrderDetailCheckBill" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT
+                A.ID AS id,
+                A.MAIN_ID AS mainId,
+                A.STORE_ID AS storeId,
+                A.PART_ID AS partId,
+                A.PART_CODE AS partCode,
+                A.PART_NAME AS partName,
+                A.FULL_NAME AS fullName,
+                A.ENTER_UNIT_ID AS enterUnitId,
+                A.SYSTEM_UNIT_ID AS systemUnitId,
+                A.ORDER_QTY AS orderQty,
+                A.ORDER_PRICE AS orderPrice,
+                A.ORDER_AMT AS orderAmt,
+                A.TAX_SIGN AS taxSign,
+                A.TAX_RATE AS taxRate,
+                A.TAX_PRICE AS taxPrice,
+                A.TAX_AMT AS taxAmt,
+                A.NO_TAX_PRICE AS noTaxPrice,
+                A.NO_TAX_AMT AS noTaxAmt,
+                A.TAX_DIFF AS taxDiff,
+                A.TRUE_ENTER_QTY AS trueEnterQty,
+                A.TRUE_ENTER_AMT AS trueEnterAmt,
+                A.NOT_ENTER_QTY AS notEnterQty,
+                A.NOT_ENTER_AMT AS notEnterAmt,
+                A.ADJUST_QTY AS adjustQty,
+                A.IS_FINISHED AS isFinished,
+                A.FINISH_DATE AS finishDate,
+                A.PREV_DETAIL_ID AS prevDetailId,
+                A.SOURCE_DETAIL_ID AS sourceDetailId,
+                A.SOURCE_MAIN_ID AS sourceMainId,
+                A.SOURCE_BILL_TYPE_ID AS sourceBillTypeId,
+                A.REMARK AS remark,
+                a.store_shelf as storeShelf,
+                B.CODE AS comPartCode,
+                B.NAME AS comPartName,
+                B.FULL_NAME AS comFullName,
+                B.BRAND_CODE AS comBrandCode,
+                B.OEM_CODE AS comOemCode,
+                B.QUALITY_TYPE_ID AS comQualityTypeId,
+                B.PART_BRAND_ID AS comPartBrandId,
+                B.APPLY_CAR_MODEL AS comApplyCarModel,
+                B.UNIT AS comUnit,
+                B.SPEC AS comSpec,
+                B.DIRECTION AS comDirection,
+                d.id as billMainId
+            FROM
+            DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL_chk A
+            INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
+            INNER JOIN DMS_CLOUD_PART.pj_statement_detail c on c.bill_main_id = a.main_id
+			INNER JOIN DMS_CLOUD_PART.pj_statement_main d on c.main_id =d.id 
+                where 1=1
+            <dynamic>
+                <isNotEmpty prepend="and" property="mainId">  
+                    (A.MAIN_ID = #mainId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="mainIds">  
+                    (A.MAIN_ID in ($mainIds$))
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="billMainId">  
+                    (d.id = #billMainId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="billMainIds">  
+                    (d.id in ($billMainIds$))
+                </isNotEmpty>
+            </dynamic>  
+           
+        
+        ORDER BY a.id asc
+    </select>
+    
 </sqlMap>

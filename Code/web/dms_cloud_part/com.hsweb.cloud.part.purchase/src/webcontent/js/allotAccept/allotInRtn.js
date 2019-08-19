@@ -142,6 +142,41 @@ $(document).ready(function(v)
 
     //add();
     
+    document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;
+      
+        if((keyCode==78)&&(event.altKey))  {  //新建
+            add();  
+        } 
+      
+        if((keyCode==83)&&(event.altKey))  {   //保存
+            save('0');
+        } 
+        
+        if((keyCode==84)&&(event.altKey))  {   //提交 Alt+T
+        	submit();
+        } 
+
+		if((keyCode==66)&&(event.altKey))  {   //作废 Alt+B
+	    	del();
+        } 
+		if((keyCode==89)&&(event.altKey))  {   //出库 Alt+Y
+			auditOut();
+        } 
+      
+        if((keyCode==80)&&(event.altKey))  {   //打印
+            onPrint();
+        } 
+        if((keyCode==27))  {  
+            if(partShow ==1){
+            	onPartClose();
+            }
+        }
+        
+     
+    }
+    
 });
 
 function loadMainAndDetailInfo(row)

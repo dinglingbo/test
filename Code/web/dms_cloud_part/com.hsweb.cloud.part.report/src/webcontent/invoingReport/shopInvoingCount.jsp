@@ -9,7 +9,7 @@
 -->
 <head>
     <title>门店进销存统计</title>
-    <script src="<%=webPath + contextPath%>/report/js/invoing/shopInvoingCount.js?v=1.0.4"></script>
+    <script src="<%=webPath + contextPath%>/report/js/invoing/shopInvoingCount.js?v=1.0.13"></script>
     <style type="text/css">
     .title {
       width: 60px;

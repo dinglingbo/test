@@ -224,6 +224,7 @@
       <process:partner type="literal">this.setBillDeductMembers</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="id" type="query" value="Int" valueType="Primitive" pattern="reference">orderMain/id</process:inputVariable>
+        <process:inputVariable id="1" name="serviceType" type="literal" value="Int" valueType="Primitive" pattern="reference">2</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

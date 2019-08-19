@@ -138,6 +138,45 @@ $(document).ready(function(v)
 
     //add();
     
+    document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;
+      
+        if((keyCode==78)&&(event.altKey))  {  //新建  Alt+N
+            add();  
+        } 
+        
+        if((keyCode==73)&&(event.altKey))  {   //添加配件  Alt+I
+        	addPart();
+        } 
+      
+        if((keyCode==83)&&(event.altKey))  {   //保存 Alt+S
+            save(0);
+        } 
+        
+        if((keyCode==84)&&(event.altKey))  {   //提交 Alt+T
+        	submit();
+        } 
+      
+        if((keyCode==66)&&(event.altKey))  {   //作废/反作废 Alt+B
+	    	del();
+        } 
+        
+        if((keyCode==80)&&(event.altKey))  {   //打印  Alt+P
+            onPrint();
+        } 
+        if((keyCode==27))  {  
+         
+            if(advancedSearchShow==1){
+            	onAdvancedSearchCancel();
+            }if(partShow ==1){
+            	onPartClose();
+            }
+        }
+       
+     
+    }
+    
 });
 
 function loadMainAndDetailInfo(row)

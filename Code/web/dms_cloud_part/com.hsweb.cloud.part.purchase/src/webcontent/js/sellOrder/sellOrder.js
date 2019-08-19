@@ -285,16 +285,24 @@ $(document).ready(function(v)
     document.onkeyup=function(event){
         var e=event||window.event;
         var keyCode=e.keyCode||e.which;
-      
-        if((keyCode==78)&&(event.altKey))  {  //新建
+        
+        if((keyCode==78)&&(event.altKey))  {  //新建  Alt+N
             add();  
         } 
       
-        if((keyCode==83)&&(event.altKey))  {   //保存
+        if((keyCode==83)&&(event.altKey))  {   //保存 Alt+S
             save();
         } 
+        
+        if((keyCode==84)&&(event.altKey))  {   //提交 Alt+T
+        	audit();
+        } 
       
-        if((keyCode==80)&&(event.altKey))  {   //打印
+        if((keyCode==89)&&(event.altKey))  {   //出库 Alt+Y
+        	auditToOut();
+        } 
+      
+        if((keyCode==80)&&(event.altKey))  {   //打印  Alt+P
             onPrint();
         } 
         if((keyCode==27))  {  

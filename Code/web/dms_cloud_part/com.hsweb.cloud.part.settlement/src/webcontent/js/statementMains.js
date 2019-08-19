@@ -1,11 +1,11 @@
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var companyUrl = apiPath + sysApi + "/"+"com.hsapi.system.basic.organization.getCompanyAll.biz.ext";
 var rightGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.queryStatementDetails.biz.ext";
-var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
-var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList.biz.ext";
+var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailListBill.biz.ext";
+var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailListBill.biz.ext";
 
-var innerAllotAcceptGridUrl= baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryAllotAcceptDetails.biz.ext";
-var innerAllotApplyGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryAllotApplyDetails.biz.ext";
+var innerAllotAcceptGridUrl= baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryAllotAcceptDetailsBill.biz.ext";
+var innerAllotApplyGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryAllotApplyDetailsBill.biz.ext";
 var orgidsEl =null; 
 var orgids="";
 var rightGrid =null;
@@ -38,11 +38,10 @@ var settTypeIdList = [];
 var billTypeIdEl = null;
 var settleTypeIdEl = null;
 
-var mainTabs = null;
+
 
 $(document).ready(function(v) {
-	
-	mainTabs = nui.get("mainTabs");
+
 	
 	orgidsEl = nui.get("orgids");
 	getCompany();
@@ -116,19 +115,6 @@ $(document).ready(function(v) {
     quickSearch(2);
 });
 
-function ontopTabChanged(e){
-	var tab = e.tab;
-	var name = tab.name;
-	var url = tab.url;
-	if(!url){
-		if(name == "billMainTab"){
-			mainTabs.loadTab(webPath + contextPath + "/settlement/stateMentMains.jsp", tab);
-		}else if(name == "purchaseAdvanceTab"){
-//			mainTabs.loadTab(webPath + contextPath + "", tab);		
-		}
-	}
-	
-}
 
 function getCompany(){
 	var params = {};
@@ -327,6 +313,7 @@ function onDrawCell(e)
 function onShowRowDetail(e) {
     var row = e.record;
     var mainId = row.billMainId;
+    var billMainId =row.id;
     
     //将editForm元素，加入行详细单元格内
     var td = rightGrid.getRowDetailCellEl(row);
@@ -337,7 +324,7 @@ function onShowRowDetail(e) {
     	editFormPchsEnterDetail.style.display = "";
 
     	var params = {};
-    	params.mainId = mainId;
+    	params.billMainId = billMainId;
     	innerPchsEnterGrid.load({
     		params:params,
     		token: token
@@ -348,7 +335,7 @@ function onShowRowDetail(e) {
 		editFormSellOutDetail.style.display = "";
 
         var params = {};
-        params.mainId = mainId;
+        params.billMainId = billMainId;
         innerSellOutGrid.load({
             params:params,
             token: token
@@ -359,7 +346,7 @@ function onShowRowDetail(e) {
         editFormPchsRtnDetail.style.display = "";
 
         var params = {};
-        params.mainId = mainId;
+        params.billMainId = billMainId;
         innerPchsRtnGrid.load({
             params:params,
             token: token
@@ -371,7 +358,7 @@ function onShowRowDetail(e) {
     	editFormAllotApplyDetail.style.display = "";
 
         var params = {};
-        params.mainId = mainId;
+        params.billMainId = billMainId;
         innerAllotApplyGrid.load({
             params:params,
             token: token
@@ -383,7 +370,7 @@ function onShowRowDetail(e) {
     	editFormAllotAcceptDetail.style.display = "";
 
         var params = {};
-        params.mainId = mainId;
+        params.billMainId = billMainId;
         innerAllotAcceptGrid.load({
             params:params,
             token: token

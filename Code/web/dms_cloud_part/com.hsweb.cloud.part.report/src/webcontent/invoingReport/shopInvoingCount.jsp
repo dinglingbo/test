@@ -113,7 +113,7 @@
         </div>
         <div header="销售退货" headerAlign="center">
             <div property="columns">
-                <div summaryType="sum" allowSort="true" datatype="float" field="sellRtntQty" width="60" headerAlign="center" header="数量"  align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="sellRtnQty" width="60" headerAlign="center" header="数量"  align="right"></div>
                 <div summaryType="sum" allowSort="true" datatype="float" field="sellRtnAmt" headerAlign="center" header="金额"  align="right"></div>
             </div>
         </div>

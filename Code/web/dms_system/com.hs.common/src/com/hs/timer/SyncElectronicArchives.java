@@ -126,6 +126,7 @@ public class SyncElectronicArchives {
 	        	DataObject d = mainList.get(i);
 	        	
 	        	String id = d.getString("id");
+	        	String serviceCode = d.getString("serviceCode");
 	        	String carNo = d.getString("carNo");
 	        	String carVin = d.getString("carVin");
 	        	String enterDate = d.getString("enterDate");
@@ -154,7 +155,7 @@ public class SyncElectronicArchives {
 	    		//维修企业名称
 	    		basicInfo.put("companyname", orgName);
 	    		//结算编号
-	    		basicInfo.put("costlistcode", id);
+	    		basicInfo.put("costlistcode", serviceCode);
 	    		
 	    		basicInfo.put("vin", carVin);
 	    		//车牌号
@@ -234,8 +235,8 @@ public class SyncElectronicArchives {
 	/*
 	 * 查询需要提交电子档案的公司信息
 	 */
-	private static DataObject[] getCompanyInfo() {
-		DataObject criteria = com.eos.foundation.data.DataObjectUtil
+	private static List<DataObject> getCompanyInfo() {
+		/*DataObject criteria = com.eos.foundation.data.DataObjectUtil
 				.createDataObject("com.primeton.das.criteria.criteriaType");
     	criteria.set("_entity", "com.hs.common.com.ComCompany");
     	criteria.set("_expr[1]/isOpenSystem", 0);
@@ -244,19 +245,32 @@ public class SyncElectronicArchives {
     	criteria.set("_expr[2]/_op", "notnull");
     	criteria.set("_expr[3]/_property", "eRecordPwd");
     	criteria.set("_expr[3]/_op", "notnull");
-    	/*criteria.set("_expr[4]/tenantId", 121);
-    	criteria.set("_expr[4]/_op", "=");*/
+    	criteria.set("_expr[4]/tenantId", 121);
+    	criteria.set("_expr[4]/_op", "=");
+    	criteria.set("_expr[5]/orgid", 601);
+    	criteria.set("_expr[5]/_op", "=");
     	DataObject[] result = com.eos.foundation.database.DatabaseUtil
-    	.queryEntitiesByCriteriaEntity("common", criteria);
+    	.queryEntitiesByCriteriaEntity("common", criteria);*/
+    	
+		DataObject param = DataObjectUtil
+				.createDataObject("com.primeton.das.datatype.AnyType");
+		param.setString("isOpenSystem", "0");
+		param.setString("keyidId", "1030");
+		param.setString("keyidValue", "1");
+    	Object[] objResult = DatabaseExt.queryByNamedSql("common",
+				"com.hs.repair.query.queryCompany",
+				param);
+        List<DataObject> result = new ArrayList<DataObject>();
+    	CollectionUtils.addAll(result, objResult);
     	return result;
 	}
 	
 	@Bizlet("推送维修数据")
 	public static String pushElectricData() {
-		DataObject[] compList = getCompanyInfo();
-		if(compList != null && compList.length > 0) {
-			for(int i=0; i<compList.length; i++) {
-				DataObject compObj = compList[i];
+		List<DataObject> compList = getCompanyInfo();
+		if(compList != null && compList.size() > 0) {
+			for(int i=0; i<compList.size(); i++) {
+				DataObject compObj = compList.get(i);
 				String orgid = compObj.getString("orgid");
 				String compName = compObj.getString("name");
 				String eRecordUser = compObj.getString("eRecordUser");
@@ -277,7 +291,7 @@ public class SyncElectronicArchives {
 					Calendar cal = Calendar.getInstance();
 					cal.add(Calendar.DATE, 1);
 				    String endDate = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());
-				    cal.add(Calendar.DATE, -30);
+				    cal.add(Calendar.DATE, -1);
 				    String startDate = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());
 				    if(ePushUrl != null && !"".equals(ePushUrl)){
 				    	pushRepairData(orgid, compName, startDate, endDate, accessToken,ePushUrl);

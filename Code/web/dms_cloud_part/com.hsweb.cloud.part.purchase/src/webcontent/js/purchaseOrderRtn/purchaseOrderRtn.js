@@ -141,6 +141,18 @@ $(document).ready(function(v)
 			save();
 	    } 
 	  
+	    if((keyCode==84)&&(event.altKey))  {   //提交 Alt+T
+        	submit();
+        } 
+      
+        if((keyCode==89)&&(event.altKey))  {   //退货  Alt+Y
+        	audit();
+        } 
+        
+        if((keyCode==73)&&(event.altKey))  {   //选择采购入库单  Alt+I
+        	addPart();
+        } 
+        
 	    if((keyCode==80)&&(event.altKey))  {   //打印
 			onPrint();
 	    } 

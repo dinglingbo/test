@@ -763,6 +763,82 @@
 
     </select>
     
+    <!-- 调拨受理、调入退回明细查询(根据对账单ID) -->
+    <select id="queryAllotAcceptDetails" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+	    SELECT
+			
+			a.id as id,
+			a.main_id as mainId,
+			a.store_id as storeId,
+			a.part_id as partId,
+			a.part_code as partCode,
+			a.part_name as partName,
+			a.full_name as fullName,
+			a.out_unit_id as outUnitId,
+			a.system_unit_id as systemUnitId,
+			a.apply_qty as applyQty,
+			a.accept_qty as acceptQty,
+			a.order_price as orderPrice,
+			a.order_amt as orderAmt,
+			a.tax_price as taxPrice,
+			a.tax_amt as taxAmt,
+			a.no_tax_price as noTaxPrice,
+			a.no_tax_amt as noTaxAmt,
+			a.has_accept_qty as hasAcceptQty,
+			a.has_cancel_qty as hasCamcelQty,
+			a.has_out_qty as hasOutQty,
+			a.has_in_qty as hasInQty,
+			a.occupy_qty as occupyQty,
+			a.stock_out_qty as stockOutQty,
+			a.is_finished as isFinished,
+			a.finish_date as finishDate,
+			a.is_allot_finished as isAllotFinished,
+			a.remark as remark,
+			b.guest_id as guestId,
+			b.guest_orgid as guestOrgId,
+			b.service_id as serviceId,
+			b.order_man as orderMan,
+			b.order_date as orderDate,
+			b.create_date as createDate,
+			b.auditor as auditor,
+			b.audit_date as auditDate,
+			b.settle_status as settleStatus,
+			d.id as billMainId
+		FROM
+			pj_allot_accept_detail a
+		INNER JOIN pj_allot_accept_main b ON a.main_id = b.id
+		INNER JOIN DMS_CLOUD_PART.pj_statement_detail c on c.bill_main_id = a.main_id
+		INNER JOIN DMS_CLOUD_PART.pj_statement_main d on c.main_id =d.id 
+		WHERE 1=1
+		 <dynamic>
+		 	<isNotEmpty prepend="and" property="tenantId"> 
+                (c.tenant_id = #tenantId#)
+            </isNotEmpty>
+        	<isNotEmpty prepend="and" property="orgid"> 
+                (b.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="id"> 
+                (a.id = #id#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mainId"> 
+                (a.main_id = #mainId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mainIds"> 
+                (a.main_id in ($mainIds$) )
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="billMainId">  
+                (d.id = #billMainId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="billMainIds">  
+                (d.id in ($billMainIds$))
+            </isNotEmpty>
+           
+        </dynamic>  
+
+    </select>
+    
      <!-- 调拨申请、调出退回明细查询 -->
     <select id="queryAllotApplyDetails" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	
@@ -929,6 +1005,86 @@
              <isNotEmpty prepend="and" property="creator">  
                 (b.creator = #creator#)
             </isNotEmpty>
+        </dynamic>  
+
+    </select>
+    
+     <!-- 调拨申请、调出退回明细查询(根据对账单Id查询) -->
+    <select id="queryAllotApplyDetailsBill" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+	    SELECT
+			
+			a.id as id,
+			a.main_id as mainId,
+			a.store_id as storeId,
+			a.part_id as partId,
+			a.part_code as partCode,
+			a.part_name as partName,
+			a.full_name as fullName,
+			a.enter_unit_id as enterUnitId,
+			a.system_unit_id as systemUnitId,
+			a.apply_qty as applyQty,
+			a.order_price as orderPrice,
+			a.order_amt as orderAmt,
+			a.tax_price as taxPrice,
+			a.tax_amt as taxAmt,
+			a.no_tax_price as noTaxPrice,
+			a.no_tax_amt as noTaxAmt,
+			a.has_accept_qty as hasAcceptQty,
+			a.has_cancel_qty as hasCamcelQty,
+			a.has_out_qty as hasOutQty,
+			a.has_in_qty as hasInQty,
+			a.is_finished as isFinished,
+			a.finish_date as finishDate,
+			a.is_allot_finished as isAllotFinished,
+			a.remark as remark,
+			b.guest_id as guestId,
+			b.guest_orgid as guestOrgId,
+			b.service_id as serviceId,
+			b.order_man as orderMan,
+			b.order_date as orderDate,
+			b.create_date as createDate,
+			b.auditor as auditor,
+			b.audit_date as auditDate,
+			b.settle_status as settleStatus,
+			b.code as code,
+			b.code_id as codeId,
+			c.`name` as orgName,
+			D.part_brand_id AS partBrandId,
+			D.apply_car_model AS applyCarModel,
+			d.oem_code as oemCode
+		FROM
+			pj_allot_apply_detail a
+		INNER JOIN pj_allot_apply_main b ON a.main_id = b.id
+		INNER JOIN DMS_CLOUD_PART.pj_statement_detail c on c.bill_main_id = a.main_id
+		INNER JOIN DMS_CLOUD_PART.pj_statement_main d on c.main_id =d.id 
+		WHERE 1=1
+		 <dynamic>
+		 	<isNotEmpty prepend="and" property="tenantId"> 
+                (c.tenant_id = #tenantId#)
+            </isNotEmpty>
+        	<isNotEmpty prepend="and" property="orgid"> 
+                (b.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="id"> 
+                (a.id = #id#)
+            </isNotEmpty>
+             
+ 			<isNotEmpty prepend="and" property="mainId"> 
+                (a.main_id = #mainId#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="mainIds"> 
+                (a.main_id in ($mainIds$) )
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="billMainId">  
+                (d.id = #billMainId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="billMainIds">  
+                (d.id in ($billMainIds$))
+            </isNotEmpty>
+           
         </dynamic>  
 
     </select>

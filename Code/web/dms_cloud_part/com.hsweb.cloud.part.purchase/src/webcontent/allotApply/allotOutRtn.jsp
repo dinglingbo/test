@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调出退回</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotOutRtn.js?v=1.0.4"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotOutRtn.js?v=1.0.6"></script>
 <style type="text/css">
 .title {
   width: 70px;

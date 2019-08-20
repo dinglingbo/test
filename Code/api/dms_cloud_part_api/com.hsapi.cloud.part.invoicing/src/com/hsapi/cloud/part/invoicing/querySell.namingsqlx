@@ -1579,6 +1579,89 @@
         ORDER BY a.id asc
     </select>
     
+      <!-- 根据对账单id查询 -->
+    <select id="queryPjSellOrderDetailCheckBill" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT 
+			A.id as id,
+			A.main_id as mainId,
+			A.store_id as storeId,
+			A.part_id partId,
+			A.part_code as partCode,
+			A.part_name as partName,
+			A.full_name as fullName,
+			A.out_unit_id as outUnitId,
+			A.system_unit_id as systemUnitId,
+			A.order_qty as orderQty,
+			A.order_price as orderPrice,
+			A.order_amt as orderAmt,
+			A.true_out_qty as trueOutQty,
+			A.true_out_amt as trueOutAmt,
+			A.not_out_qty as notOutQty,
+			A.not_out_amt as notOutAmt,
+			A.adjust_qty as adjustQty,
+			A.occupy_qty as occupyQty,
+			A.is_finished as isFinished,
+			A.finish_date as finishDate,
+			A.prev_detail_id as prevDetailId,
+			A.source_detail_id as sourceDetailId,
+			A.source_main_id as sourceMainId,
+			A.source_bill_type_id as sourceBillTypeId,
+			A.remark as remark,
+			A.stock_out_qty as stockOutQty,
+			a.is_mark_batch as isMarkBatch,
+			a.batch_source_id as batchSourceId,
+			A.store_shelf as storeShelf,
+			B.`code` AS comPartCode,
+			B.`name` AS comPartName,
+			B.full_name AS comFullName,
+			B.brand_code AS comBrandCode,
+			B.oem_code AS comOemCode,
+			B.quality_type_id AS comQualityTypeId,
+			B.part_brand_id AS comPartBrandId,
+			B.apply_car_model AS comApplyCarModel,
+			B.unit AS comUnit,
+			B.spec AS comSpec,
+			B.direction AS comDirection,
+			a.show_part_id as showPartId,
+			a.show_part_code as showPartCode,
+			a.show_brand_name as showBrandName,
+			a.show_full_name as showFullName,
+			a.show_brand_name as showBrandName,
+			a.show_car_model as showCarModel,
+			a.show_oem_code as showOemCode,
+			a.show_spec as showSpec,
+			a.show_price as showPrice,
+			a.show_amt as showAmt,
+			d.id as billMainId
+			FROM
+			DMS_CLOUD_PART.PJ_SELL_ORDER_DETAIL_chk A
+			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
+			INNER JOIN DMS_CLOUD_PART.pj_statement_detail c on c.bill_main_id = a.main_id
+			INNER JOIN DMS_CLOUD_PART.pj_statement_main d on c.main_id =d.id 
+			where 1=1
+
+            <dynamic>
+                <isNotEmpty prepend="and" property="mainId">  
+                    (A.MAIN_ID = #mainId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="mainIds">  
+                    (A.MAIN_ID in ($mainIds$))
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="billMainId">  
+                    (d.id = #billMainId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="billMainIds">  
+                    (d.id in ($billMainIds$))
+                </isNotEmpty>
+                
+            </dynamic>  
+            
+        
+        ORDER BY a.id asc
+    </select>
+    
     <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->
     <select id="queryNotSettlePchsRtnOrderMainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 

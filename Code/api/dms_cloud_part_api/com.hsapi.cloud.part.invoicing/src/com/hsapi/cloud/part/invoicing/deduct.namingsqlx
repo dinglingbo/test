@@ -143,12 +143,12 @@
 		from (
 			SELECT a.part_id as partId, a.part_code as partCode, a.part_name as partName, 
 				   a.full_name as fullName, a.type as type, a.deduct_rate as deductRate,
-				   sum(b.enter_amt) as partAmt, sum(b.sell_amt - d.sell_amt) as partGross, 
+				   sum(b.enter_amt) as partAmt, sum(d.enter_amt-b.enter_amt) as partGross, 
 				   c.id as outId, c.service_id as outCode
 			from pj_deduct_part a 
-			inner join pj_out_detail_chk b
+			inner join pj_enter_detail_chk b
 			on a.part_id = b.part_id
-			inner join pj_out_main_chk c
+			inner join pj_enter_main_chk c
 			on b.main_id = c.id and a.orgid = c.orgid
 			INNER JOIN pj_out_detail_chk d 
 			on b.source_id =d.id
@@ -177,7 +177,7 @@
 			a.enter_amt as enterAmt,
 			a.audit_sign as auditSign,
 			b.source_id as sourceId,
-			IFNULL(Sum(c.sell_amt),0) AS gross
+			IFNULL(Sum(c.enter_amt),0) AS gross
 		FROM
 			pj_enter_main_chk a
 		INNER JOIN pj_enter_detail_chk b ON a.id = b.main_id

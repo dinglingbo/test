@@ -1109,6 +1109,7 @@
            SELECT
 				id as id,
 				orgid as orgid,
+				service_type as serviceType,
 				deduct_type as deductType,
 				deduct_mem_id as deductMemId ,
 				deduct_mem_name as deductMemName,

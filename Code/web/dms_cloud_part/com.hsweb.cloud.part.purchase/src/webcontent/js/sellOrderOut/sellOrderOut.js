@@ -248,6 +248,10 @@ $(document).ready(function(v)
             save();
         } 
       
+        if((keyCode==89)&&(event.altKey))  {   //出库 Alt+Y
+        	audit();
+        } 
+        
         if((keyCode==80)&&(event.altKey))  {   //打印
             onPrint();
         } 
@@ -3144,6 +3148,8 @@ function partChange(){
 }
 
 function chooseMember(){
+	 //销售单
+	  var serviceType=1;
 	  var row = leftGrid.getSelected();
 	    if(row){
 	    	if(row.auditSign ==1){
@@ -3162,7 +3168,7 @@ function chooseMember(){
 	                onload: function ()
 	                {
 	                    var iframe = this.getIFrameEl();
-	                    iframe.contentWindow.setData(row.id);
+	                    iframe.contentWindow.setData(row.id,serviceType);
 	                },
 	                ondestroy: function (action)
 	                {

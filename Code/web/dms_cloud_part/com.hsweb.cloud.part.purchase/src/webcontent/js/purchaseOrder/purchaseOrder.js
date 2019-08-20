@@ -312,6 +312,18 @@ $(document).ready(function(v) {
 	    if((keyCode==83)&&(event.altKey))  {   //保存
 			save();
 	    } 
+	    
+	    if((keyCode==84)&&(event.altKey))  {   //提交 Alt+T
+        	audit();
+        } 
+      
+	    if((keyCode==66)&&(event.altKey))  {   //返单 Alt+B
+	    	unAudit();
+        } 
+	    
+        if((keyCode==89)&&(event.altKey))  {   //入库 Alt+Y
+        	auditToEnter();
+        } 
 	  
 	    if((keyCode==80)&&(event.altKey))  {   //打印
 			onPrint();

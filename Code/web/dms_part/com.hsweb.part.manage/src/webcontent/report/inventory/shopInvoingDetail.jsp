@@ -8,7 +8,7 @@
 -->
 <head>
     <title>门店进销存明细</title>
-    <script src="<%=webPath + contextPath%>/manage/js/report/shopInvoingDetail.js?v=1.0.0"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/report/shopInvoingDetail.js?v=1.0.1"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">

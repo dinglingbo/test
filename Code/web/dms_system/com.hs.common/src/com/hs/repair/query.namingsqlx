@@ -10,11 +10,37 @@
     
 	<select id="queryRpsMaintain" parameterClass="commonj.sdo.DataObject" resultClass="commonj.sdo.DataObject">
 		select id, car_id as carId, car_no as carNo, car_vin as carVin, enter_date as enterDate, 
-		       out_date as outDate, fault_phen as faultPhen, enter_kilometers as enterKilometers
+		       out_date as outDate, fault_phen as faultPhen, enter_kilometers as enterKilometers,
+		       service_code as serviceCode
 		from wb_repair.rps_maintain 
 		where orgid = #orgid# and is_settle = 1 
-		      and out_date &gt;= #startDate# and out_date &lt; #endDate#
+		      and out_date &gt;= #startDate# 
+		      and out_date &lt; #endDate#
+		      and is_electronics = 1
 	</select>
+	
+	<select id="queryCompany" parameterClass="commonj.sdo.DataObject" resultClass="commonj.sdo.DataObject">
+		select 
+			distinct a.orgid as orgid,
+			a.tenant_id as tenantId,
+			a.code as code,
+			a.name as name,
+			a.short_name as shortName,
+			a.e_record_province as eRecordProvince,
+			a.e_record_repair_no as eRecordRepairNo,
+			a.e_record_user as eRecordUser,
+			a.e_record_pwd as eRecordPwd,
+			a.e_token_url as eTokenUrl,
+			a.e_push_url as ePushUrl
+		from wb_common.com_company a
+		INNER JOIN wb_common.com_params b ON (a.orgid = b.orgid)
+		where a.is_open_system = #isOpenSystem# 
+		      and a.e_record_user is not null 
+		      and a.e_record_pwd is not null
+		      and b.keyid_id = #keyidId#
+              and b.keyid_value = #keyidValue#
+	</select>
+	
 	
 	<select id="queryRpsItem" parameterClass="commonj.sdo.DataObject" resultClass="commonj.sdo.DataObject">
 		select a.service_id as serviceId, a.item_name as itemName, a.item_time as itemItem

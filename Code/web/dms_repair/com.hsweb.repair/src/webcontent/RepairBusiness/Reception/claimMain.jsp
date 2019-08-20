@@ -69,7 +69,7 @@
                     <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
                     <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="onenterSearch(this.value)"/>
                     <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
-                        emptyText="服务顾问" url=""  allowInput="true" showNullItem="false" width="80" valueFromSelect="true" onenter="onenterMtAdvisor(this.value)"/>
+                        emptyText="服务顾问" url=""  allowInput="true" showNullItem="true" nullItemText="所有" width="80" valueFromSelect="true" onenter="onenterMtAdvisor(this.value)"/>
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <!-- <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> -->
                     <span class="separator"></span>

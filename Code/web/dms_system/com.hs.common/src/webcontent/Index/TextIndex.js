@@ -316,7 +316,7 @@ function queryHomePage(callback) {
 	});
 }
 function setGridTodayData(data){
-	$("#newCarQty").text(0);
+/*	$("#newCarQty").text(0);
 	$("#recordBillQty").text(0);
 	$("#settleQty").text(0);
 	$("#serviceBillQty").text(0);
@@ -338,8 +338,10 @@ function setGridTodayData(data){
         $("#serviceBillQty ").text(serviceBillQty);
         $("#bookingBillQty ").text(bookingBillQty);
         $("#receiveAmt ").text(receiveAmt);
-	}
-
+	}*/
+	var todayNum = [data.newCarQty||0,data.recordBillQty||0,data.settleQty||0,data.serviceBillQty||0,data.bookingBillQty||0];
+	var todayType = ["首修车辆","今日进厂","结算车次","在修车辆","预约车辆"];
+	open(todayType,todayNum);
 }
 function setHomePage(data){
     for(var i=0;i<data.length;i++){
@@ -385,7 +387,7 @@ function queryGuestCarData(p,callback) {
 	});
 }
 function setGridGuestCarData(data){
-	$("#addGuestQty").text(0);
+/*	$("#addGuestQty").text(0);
 	$("#guestQty").text(0);
 	$("#addCarQty").text(0);
 	$("#carQty").text(0);
@@ -400,6 +402,24 @@ function setGridGuestCarData(data){
         $("#guestQty").text(guestQty);
         $("#addCarQty").text(addCarQty);
         $("#carQty").text(carQty);
+	}*/
+	if(data){
+		var options = {
+				useEasing : true, 
+				useGrouping : true, 
+				separator : ',', 
+				decimal : '.', 
+				prefix : '', 
+				suffix : '' 
+		};
+		var addGuestQty = new CountUp("addGuestQty", 0, data.addGuestQty||0, 0, 1.5, options);
+		var guestQty = new CountUp("guestQty", 0, data.guestQty||0, 0, 1.5, options);
+		var addCarQty = new CountUp("addCarQty", 0, data.addCarQty||0, 0, 1.5, options);
+		var carQty = new CountUp("carQty", 0, data.carQty||0, 0, 1.5, options);
+		addGuestQty.start();
+		guestQty.start();
+		addCarQty.start();
+		carQty.start();	
 	}
 
 }
@@ -507,56 +527,90 @@ function queryRemind (carExtendQty,contactorQty,messageQty,appQty){
 	var month = date.getMonth()+1;
 	var day = date.getDate();
 	var dateStr = month+"月"+day+"日"+" 8:30";
-	if(carExtendQty[0].needQuantity!=0){	
-		$("#queryMaintain p").text(carExtendQty[0].needQuantity);
+	//等于0不显示，不等于0才显示
+	if(carExtendQty[0].needQuantity!=0){
+		//大于99条显示99+
+		if(carExtendQty[0].needQuantity>99){
+			$("#queryMaintain p").text("99+");
+		}else{			
+			$("#queryMaintain p").text(carExtendQty[0].needQuantity);
+		}
 	}else{
 		document.getElementById('queryMaintain').style.display='none';
 	}
-	if(carExtendQty[0].annualQuantity!=0){	
-		$("#queryBusiness p").text(carExtendQty[0].annualQuantity);
+	if(carExtendQty[0].annualQuantity!=0){
+		if(carExtendQty[0].annualQuantity>99){			
+			$("#queryBusiness p").text("99+");
+		}else{
+			$("#queryBusiness p").text(carExtendQty[0].annualQuantity);
+		}
 	}else{
 		document.getElementById('queryBusiness').style.display='none';
 	}
 	if(carExtendQty[0].insureQuantity!=0){	
-		$("#queryCompulsoryInsurance p").text(carExtendQty[0].insureQuantity);
+		if(carExtendQty[0].insureQuantity>99){			
+			$("#queryCompulsoryInsurance p").text("99+");
+		}else{
+			$("#queryCompulsoryInsurance p").text(carExtendQty[0].insureQuantity);
+		}
 	}else{
 		document.getElementById('queryCompulsoryInsurance').style.display='none';
 	}
-	if(contactorQty[0].licenseQuantity!=0){	
-		$("#queryDrivingLicense p").text(contactorQty[0].licenseQuantity);
+	if(contactorQty[0].licenseQuantity!=0){
+		if(carExtendQty[0].licenseQuantity>99){			
+			$("#queryDrivingLicense p").text("99+");
+		}else{
+			$("#queryDrivingLicense p").text(contactorQty[0].licenseQuantity);
+		}
 	}else{
 		document.getElementById('queryDrivingLicense').style.display='none';
 	}
-	if(carExtendQty[0].veriQuantity!=0){	
-		$("#queryCar p").text(carExtendQty[0].veriQuantity);
+	if(carExtendQty[0].veriQuantity!=0){
+		if(carExtendQty[0].veriQuantity>99){			
+			$("#queryCar p").text("99+");
+		}else{
+			$("#queryCar p").text(carExtendQty[0].veriQuantity);	
+		}
 	}else{
 		document.getElementById('queryCar').style.display='none';
 	}
-	$("#queryAppointment p").text(appQty[0].appQuantity);
-/*	if(appQty[0].appQuantity!=0){	
+	if(appQty[0].appQuantity!=0){
+		if(carExtendQty[0].appQuantity>99){		
+			$("#queryAppointment p").text("99+");
+		}else{
+			$("#queryAppointment p").text(appQty[0].appQuantity);	
+		}
 	}else{
 		document.getElementById('queryAppointment').style.display='none';
-	}*/
+	}
 	if(contactorQty[0].birQuantity!=0){	
-		$("#queryGuestBirthday p").text(contactorQty[0].birQuantity);
+		if(carExtendQty[0].birQuantity>99){			
+			$("#queryGuestBirthday p").text("99+");
+		}else{
+			$("#queryGuestBirthday p").text(contactorQty[0].birQuantity);			
+		}
 	}else{
 		document.getElementById('queryGuestBirthday').style.display='none';
 	}
-	$("#queryEmployeeBirthday p").text(messageQty[0].ebirQuantity);
-/*	if(messageQty[0].ebirQuantity!=0){
+	if(messageQty[0].ebirQuantity!=0){
+		if(carExtendQty[0].ebirQuantity>99){			
+			$("#queryEmployeeBirthday p").text("99+");
+		}else{
+			$("#queryEmployeeBirthday p").text(messageQty[0].ebirQuantity);			
+		}
 	}else{
 		document.getElementById('queryEmployeeBirthday').style.display='none';
-	}*/
+	}
 	
 	
-	$("#queryMaintainDate").innerHTML=dateStr;
-	$("#queryBusinessDate").innerHTML=dateStr;
-	$("#queryCompulsoryInsuranceDate").innerHTML=dateStr;
-	$("#queryDrivingLicenseDate").innerHTML=dateStr;
-	$("#queryCarDate").innerHTML=dateStr;
-	$("#queryAppointmentDate").innerHTML=dateStr;
-	$("#queryGuestBirthdayDate").innerHTML=dateStr;
-	$("#queryEmployeeBirthdayDate").innerHTML=dateStr;
+	document.getElementById('queryMaintainDate').innerHTML=dateStr;
+	document.getElementById('queryBusinessDate').innerHTML=dateStr;
+	document.getElementById('queryCompulsoryInsuranceDate').innerHTML=dateStr;
+	document.getElementById('queryDrivingLicenseDate').innerHTML=dateStr;
+	document.getElementById('queryCarDate').innerHTML=dateStr;
+	document.getElementById('queryAppointmentDate').innerHTML=dateStr;
+	document.getElementById('queryGuestBirthdayDate').innerHTML=dateStr;
+	document.getElementById('queryEmployeeBirthdayDate').innerHTML=dateStr;
 }
 
 //判断对象是否为{}
@@ -746,3 +800,158 @@ function tojump(address,name,iconId){
     var params = {};
     window.parent.activeTabAndInit(item,params);
 }
+
+function open2(todayType,todayNum){
+
+	option = {
+/*			title : {
+			    text: '今日数据表',
+			    //subtext: '纯属虚构'
+			},*/
+			tooltip : {
+			    trigger: 'axis'
+			},
+			legend: {
+			    data:['数量']
+			},
+			toolbox: {
+			    show : true,
+			    feature : {
+			        mark : {show: true},
+			        dataView : {show: true, readOnly: false},
+			        magicType : {show: true, type: ['line', 'bar']},
+			        restore : {show: true},
+			        saveAsImage : {show: true}
+			    }
+			},
+			calculable : true,
+
+			xAxis : [
+			    {
+			        type : 'category',
+			        data : todayType,
+			        barGap: '10px',            // 柱间距离，默认为柱形宽度的30%，可设固定值
+			        barWidth: '30%',
+			        barCategoryGap : '50px',   // 类目间柱形距离，默认为类目间距的20%，可设固定值
+			    }
+			],
+			yAxis : [
+			    {
+			        type : 'value'
+			    }
+			],
+			series : [
+			    {
+			        name:'数量',
+			        type:'bar',
+			        data:todayNum,
+			        markPoint : {
+			            data : [
+			                {type : 'max', name: '最大值'},
+			                {type : 'min', name: '最小值'}
+			            ]
+			        },
+			        markLine : {
+			            data : [
+			                {type : 'average', name: '平均值'}
+			            ]
+			        }
+			    },
+			]
+			};
+			var orgChart1 = echarts.init(document.getElementById('todayData'));
+			            orgChart1.setOption(option);
+}
+
+function open(todayType,todayNum){
+
+	option = {
+			tooltip : {
+			    trigger: 'axis'
+			},
+			grid: {  
+				top: '32px', 
+				bottom :"25px",
+				containLabel: true  
+			},
+
+			xAxis : [
+			    {
+
+			        data : todayType,
+			        triggerEvent:true,
+			        barGap: '10px',            // 柱间距离，默认为柱形宽度的30%，可设固定值
+			        barWidth: '30px',
+			        barCategoryGap : '50px'   // 类目间柱形距离，默认为类目间距的20%，可设固定		        
+	       
+			    }
+			],
+			yAxis : [
+			    {
+			        type : 'value'
+			    }
+			],
+			color:['#1e90ff'],//颜色 
+
+			series : [
+			    {
+			        name:'数量',
+			        type:'bar',
+			        clickable : true, 
+			        data:todayNum,
+			        barWidth : 30,//柱图宽度
+			        markPoint : {
+			            data : [
+			            ]
+			        },
+			        itemStyle: {        //上方显示数值
+			                normal: {
+			                    label: {
+			                        show: true, //开启显示
+			                        position: 'top', //在上方显示
+			                        textStyle: { //数值样式
+			                            color: '#1e90ff',
+			                            fontSize: 14
+			                        }
+			                    }
+			                }
+			            },
+			        markLine : {
+			            data : [
+
+			            ]
+			        }
+			    },
+			]
+			};
+			var orgChart1 = echarts.init(document.getElementById('todayData'));
+			            orgChart1.setOption(option);
+			orgChart1.on('click', function (params) {
+					if(params.componentType=="xAxis"){
+						if(params.value=="首修车辆"){
+					    	toMaintain(12);
+					    }else if(params.value=="今日进厂"){
+					    	toMaintain(9);
+					    }else if(params.value=="结算车次"){
+					    	toMaintain(10);
+					    }else if(params.value=="在修车辆"){
+					    	toMaintain(11);
+					    }else if(params.value=="预约车辆"){
+					    	toMaintain(13);
+					    }				
+					}else if(params.componentType=="series"){						
+					    if(params.name=="首修车辆"){
+					    	toMaintain(12);
+					    }else if(params.name=="今日进厂"){
+					    	toMaintain(9);
+					    }else if(params.name=="结算车次"){
+					    	toMaintain(10);
+					    }else if(params.name=="在修车辆"){
+					    	toMaintain(11);
+					    }else if(params.name=="预约车辆"){
+					    	toMaintain(13);
+					    }
+					}
+				});
+				
+}	

@@ -869,7 +869,11 @@ function open(todayType,todayNum){
 			tooltip : {
 			    trigger: 'axis'
 			},
-
+			grid: {  
+				top: '32px', 
+				bottom :"25px",
+				containLabel: true  
+			},
 
 			xAxis : [
 			    {

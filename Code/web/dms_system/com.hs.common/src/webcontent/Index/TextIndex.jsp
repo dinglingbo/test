@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
         <head>
             <title>首页</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.0.9"></script>
+            <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.0.8"></script>
             <script src="<%=webPath + contextPath%>/common/js/count.js?v=1.0.0"></script>
             <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
             <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
@@ -330,7 +330,7 @@ pageEncoding="UTF-8" session="false" %>
 
                                         </table>
                                     </div> -->
-                                    <div style="height:270px;top: -20px !important;" id="todayData"></div>
+                                    <div class="nui-fit" style="height:500px;" id="todayData"></div>
                                 </div>
                             </div>
                         </div>

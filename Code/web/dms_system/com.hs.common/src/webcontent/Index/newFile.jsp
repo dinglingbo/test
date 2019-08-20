@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
-
+    <%@include file="/common/sysCommon.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -11,49 +11,35 @@
 <head>
 <title>Title</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%= request.getContextPath() %>/common/nui/nui.js"
-	type="text/javascript"></script>
+<script src="<%=webPath + contextPath%>/common/js/count.js?v=1.0.3"></script>
 
-<style>
-div.box {
-	width: 50px;
-	height: 23px;
-	background-color: red;
-	border-radius:5px;
-	text-align: center;
-}
 
-em.emarrow {
-	color: #E6E6E6;
-	font-size: 40px;
-}
-
-span.arrow {
-	color: #E6E6E6;
-	font-size: 40px;
-}
-.san{	
-	width:0;
-	height:0;
-	border-right:5px solid transparent;
-	border-left:2px solid transparent;
-	border-top:5px solid red;
-    margin-left: 3px;
-}
-</style>
 
 </head>
 <body>
 
-
-	<div>
-		<div class="box"><span>99</span> 
-		</div>
-		<div class="san"></div>
-	</div>
-
-	<script type="text/javascript">
-    	nui.parse();
-    </script>
+<div id="wrap">
+<section>
+<spen  id="aa"></spen>
+<h1 class="jumbo" id="myTargetElement2"></h1>
+<h1 class="jumbo" id="myTargetElement3"></h1>
+</section>
+</div>
+<script type="text/javascript">
+	var options = {
+  useEasing : true, 
+  useGrouping : true, 
+  separator : ',', 
+  decimal : '.', 
+  prefix : '', 
+  suffix : '' 
+};
+var demo = new CountUp("aa", 0, 1890, 0, 2.5, options);
+var demo2 = new CountUp("myTargetElement2", 0, 15894, 0, 2.5, options);
+var demo3 = new CountUp("myTargetElement3", 0, 385, 0, 2.5, options);
+		demo.start();
+		demo2.start();
+		demo3.start();			
+</script>
 </body>
 </html>

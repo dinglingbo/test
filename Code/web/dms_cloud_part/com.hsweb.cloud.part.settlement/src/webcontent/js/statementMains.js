@@ -1,30 +1,16 @@
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var companyUrl = apiPath + sysApi + "/"+"com.hsapi.system.basic.organization.getCompanyAll.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.queryStatementDetails.biz.ext";
-var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailListBill.biz.ext";
-var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailListBill.biz.ext";
+var rightGridUrl = baseUrl+"/com.hsapi.cloud.part.settle.svr.queryPJStatementList.biz.ext";
+var innerOrderUrl =  baseUrl+"/com.hsapi.cloud.part.invoicing.svr.queryBillOrders.biz.ext";
 
-var innerAllotAcceptGridUrl= baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryAllotAcceptDetailsBill.biz.ext";
-var innerAllotApplyGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryAllotApplyDetailsBill.biz.ext";
+var editFormOrderDetail =null;
+var innerOrderGrid =null;
 var orgidsEl =null; 
 var orgids="";
 var rightGrid =null;
 var searchBeginDate = null;
 var searchEndDate = null;
 var enterTypeIdHash = {1:"采购订单",2:"销售订单",3:"采购退货",4:"销售退货",5:"调拨申请",6:"调拨受理",7:"调出退回",8:"调入退回"};
-
-var editFormPchsEnterDetail = null;
-var innerPchsEnterGrid = null;
-var editFormPchsRtnDetail = null;
-var innerPchsRtnGrid = null;
-var editFormSellOutDetail = null;
-var innerSellOutGrid = null;
-var editFormSellRtnDetail = null;
-
-var editFormAllotAcceptDetail =null;
-var innerAllotAcceptGrid = null;
-var editFormAllotApplyDetail = null;
-var innerAllotApplyGrid = null;
 
 var brandHash = {};
 var brandList = [];
@@ -50,25 +36,11 @@ $(document).ready(function(v) {
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);  
     
-    innerPchsEnterGrid = nui.get("innerPchsEnterGrid");
-    editFormPchsEnterDetail = document.getElementById("editFormPchsEnterDetail");
-    innerPchsEnterGrid.setUrl(innerPchsGridUrl);
+    innerOrderGrid = nui.get("innerOrderGrid");
+    editFormOrderDetail = document.getElementById("editFormOrderDetail");
+    innerOrderGrid.setUrl(innerOrderUrl);
 
-    innerPchsRtnGrid = nui.get("innerPchsRtnGrid");
-    editFormPchsRtnDetail = document.getElementById("editFormPchsRtnDetail");
-    innerPchsRtnGrid.setUrl(innerSellGridUrl);
-    
-    innerSellOutGrid = nui.get("innerSellOutGrid");
-    editFormSellOutDetail = document.getElementById("editFormSellOutDetail");
-    innerSellOutGrid.setUrl(innerSellGridUrl);
-    
-    innerAllotAcceptGrid = nui.get("innerAllotAcceptGrid");
-    editFormAllotAcceptDetail = document.getElementById("editFormAllotAcceptDetail");
-    innerAllotAcceptGrid.setUrl(innerAllotAcceptGridUrl);
-    
-    innerAllotApplyGrid = nui.get("innerAllotApplyGrid");
-    editFormAllotApplyDetail = document.getElementById("editFormAllotApplyDetail");
-    innerAllotApplyGrid.setUrl(innerAllotApplyGridUrl);
+   
     
     billTypeIdEl = nui.get("billTypeId");
     settleTypeIdEl = nui.get("settleTypeId");
@@ -253,10 +225,10 @@ function onRightGridDraw(e)
     switch (e.field)
     {
      
-        case "typeCode":
-            if(enterTypeIdHash && enterTypeIdHash[e.value])
+        case "voidAmt":
+            if(!e.value)
             {
-                e.cellHtml = enterTypeIdHash[e.value];
+                e.cellHtml = 0;
             }
             break;
        
@@ -317,106 +289,17 @@ function onShowRowDetail(e) {
     
     //将editForm元素，加入行详细单元格内
     var td = rightGrid.getRowDetailCellEl(row);
-    var rpDc = row.rpDc;    
-    var typeCode =row.typeCode;
-    if(typeCode == 1 || typeCode ==4){
-    	td.appendChild(editFormPchsEnterDetail);
-    	editFormPchsEnterDetail.style.display = "";
-
-    	var params = {};
-    	params.billMainId = billMainId;
-    	innerPchsEnterGrid.load({
-    		params:params,
-    		token: token
-    	});
-    }
-    if(typeCode ==2){
-    	td.appendChild(editFormSellOutDetail);
-		editFormSellOutDetail.style.display = "";
-
-        var params = {};
-        params.billMainId = billMainId;
-        innerSellOutGrid.load({
-            params:params,
-            token: token
-        });  
-    }
-    if(typeCode ==3){
-    	td.appendChild(editFormPchsRtnDetail);
-        editFormPchsRtnDetail.style.display = "";
-
-        var params = {};
-        params.billMainId = billMainId;
-        innerPchsRtnGrid.load({
-            params:params,
-            token: token
-        });          
-    }
     
-    if(typeCode == 5 || typeCode ==7){
-    	td.appendChild(editFormAllotApplyDetail);
-    	editFormAllotApplyDetail.style.display = "";
+	td.appendChild(editFormOrderDetail);
+	editFormOrderDetail.style.display = "";
 
-        var params = {};
-        params.billMainId = billMainId;
-        innerAllotApplyGrid.load({
-            params:params,
-            token: token
-        });       
-    }
-    
-    if(typeCode == 6 || typeCode ==8){
-    	td.appendChild(editFormAllotAcceptDetail);
-    	editFormAllotAcceptDetail.style.display = "";
-
-        var params = {};
-        params.billMainId = billMainId;
-        innerAllotAcceptGrid.load({
-            params:params,
-            token: token
-        });       
-    }
-    
-//    switch (rpDc)
-//    {
-//        case -1:
-//            td.appendChild(editFormPchsEnterDetail);
-//            editFormPchsEnterDetail.style.display = "";
-//
-//            var params = {};
-//            params.mainId = mainId;
-//            innerPchsEnterGrid.load({
-//                params:params,
-//                token: token
-//            });
-//            break;
-//        case 1:
-//        	//销售单
-//        	if(row.typeCode ==2){
-//        		td.appendChild(editFormSellOutDetail);
-//        		editFormSellOutDetail.style.display = "";
-//
-//                var params = {};
-//                params.mainId = mainId;
-//                innerSellOutGrid.load({
-//                    params:params,
-//                    token: token
-//                });  
-//        	}else{
-//        		td.appendChild(editFormPchsRtnDetail);
-//                editFormPchsRtnDetail.style.display = "";
-//
-//                var params = {};
-//                params.mainId = mainId;
-//                innerPchsRtnGrid.load({
-//                    params:params,
-//                    token: token
-//                });               
-//        	}
-//        	break;
-//        default:
-//            break;
-//    }
+	var params = {};
+	params.billMainId = billMainId;
+	innerOrderGrid.load({
+		params:params,
+		token: token
+	});
+  
 }
 
 function onExport(){
@@ -433,86 +316,42 @@ function onExport(){
 function getPartHash(){
 	var partHash={};
 	var detail = rightGrid.getSelecteds();
-	var pchMainIds ="";
-	var sellMainIds ="";
-	var pchList=[];
-	var sellList=[];
-	var applyMainIds ="";
-	var acceptMainIds ="";
-	var applyList=[];
-	var acceptList=[];
+	var billMainIds="";
+	var partList=[];
 	for(var i=0;i<detail.length;i++){
-		//采购表
-		if(detail[i].typeCode ==1 || detail[i].typeCode ==4){
-			pchMainIds =pchMainIds +detail[i].billMainId+","
-		}
-		//销售表
-		else if(detail[i].typeCode ==2 || detail[i].typeCode ==3){
-			sellMainIds = sellMainIds +detail[i].billMainId+","
-		}
-		//调申表
-		else if(detail[i].typeCode ==5 || detail[i].typeCode ==7){
-			applyMainIds = applyMainIds +detail[i].billMainId+","
-		}
-		//调出表
-		else if(detail[i].typeCode ==6 || detail[i].typeCode ==8){
-			acceptMainIds = acceptMainIds +detail[i].billMainId+","
-		}
+		
+		billMainIds = billMainIds +detail[i].id+","
 		
 	}
 	$.ajaxSettings.async = false;
-	if(pchMainIds !=""){		
-		pchMainIds =pchMainIds.substring(0,pchMainIds.length-1);
-		$.post(innerPchsGridUrl+"?params/mainIds="+pchMainIds+"&params/auditSign=1&token="+token,{},function(text){
-			pchList =text.pjPchsOrderDetailList; 
-			
-		});
-	}
-	if(sellMainIds !=""){		
-		sellMainIds =sellMainIds.substring(0,sellMainIds.length-1);
-		$.post(innerSellGridUrl+"?params/mainIds="+sellMainIds+"&params/auditSign=1&token="+token,{},function(text){
-			sellList =text.pjSellOrderDetailList;  	
-			
-		});
-	}
-	if(applyMainIds !=""){		
-		applyMainIds =applyMainIds.substring(0,applyMainIds.length-1);
-		$.post(innerAllotApplyGridUrl+"?params/mainIds="+applyMainIds+"&params/auditSign=1&token="+token,{},function(text){
-			applyList =text.pjAllotApplyDetails;  	
-			
-		});
-	}
-	if(acceptMainIds !=""){		
-		acceptMainIds =acceptMainIds.substring(0,acceptMainIds.length-1);
-		$.post(innerAllotAcceptGridUrl+"?params/mainIds="+acceptMainIds+"&params/auditSign=1&token="+token,{},function(text){
-			acceptList =text.pjAllotAcceptMainList;  	
+	if(billMainIds !=""){		
+		billMainIds =billMainIds.substring(0,billMainIds.length-1);
+		$.post(innerOrderUrl+"?params/billMainIds="+billMainIds+"&token="+token,{},function(text){
+			partList =text.data; 
 			
 		});
 	}
 	
-	partHash.pchList=pchList;
-	partHash.sellList = sellList;
-	partHash.applyList = applyList;
-	partHash.acceptList = acceptList;
+	partHash.partList=partList;
 	return partHash;
 }
 function setInitExportData(detail,partHash){
-	var pchList = partHash.pchList;
-	var sellList = partHash.sellList;
-	var applyList= partHash.applyList;
-	var acceptList= partHash.acceptList;
+	var partList = partHash.partList;
 	
 	var tableExportContent =  $("#tableExportContent");
 	tableExportContent.empty();
 	
 	//单据
 	var tds = '<td  colspan="1" align="left">[guestName]</td>' +
-			  '<td  colspan="1" align="left">[typeCode]</td>' +
-			  "<td  colspan='1' align='left'>[billAmt]</td>" +
-			  "<td  colspan='1' align='left'>[orderMan]</td>" +
-			  "<td  colspan='1' align='left'>[billDate]</td>" +
-			  "<td  colspan='1' align='left'>[remark]</td>" +
-			  "<td  colspan='1' align='left'>[billServiceId]</td>" ;
+			  "<td  colspan='1' align='left'>[serviceId]</td>" +
+			  "<td  colspan='1' align='left'>[rpAmt]</td>" +
+			  "<td  colspan='1' align='left'>[voidAmt]</td>" +
+			  "<td  colspan='1' align='left'>[trueRpAmt]</td>" +
+			  "<td  colspan='1' align='left'>[rAmt]</td>" +
+			  "<td  colspan='1' align='left'>[pAmt]</td>" +
+			  "<td  colspan='1' align='left'>[stateMan]</td>" +
+			  "<td  colspan='1' align='left'>[auditDate]</td>" +
+			  "<td  colspan='1' align='left'>[remark]</td>" ;
 	//配件
 	var tdsp ='<td  colspan="1" align="left">[partCode]</td>' +
 			  '<td  colspan="1" align="left">[fullName]</td>' +
@@ -520,7 +359,6 @@ function setInitExportData(detail,partHash){
 			  "<td  colspan='1' align='left'>[partBrand]</td>" +
 			  "<td  colspan='1' align='left'>[carModel]</td>" +
 			  "<td  colspan='1' align='left'>[unit]</td>" +
-			  "<td  colspan='1' align='left'>[storeId]</td>" +
 			  "<td  colspan='1' align='left'>[qty]</td>" +
 			  "<td  colspan='1' align='left'>[price]</td>" +
 			  "<td  colspan='1' align='left'>[amt]</td>" +
@@ -529,12 +367,15 @@ function setInitExportData(detail,partHash){
 		var row = detail[i];
 		var tr0 = $("<tr></tr>");
 		var tds0='<td colspan="1" align="center">往来单位</td>'+ 
-				 '<td colspan="1" align="center">业务类型</td>'+
-				 '<td colspan="1" align="center">金额</td>'+
+				 '<td colspan="1" align="center">对账单号</td>'+ 
+				 '<td colspan="1" align="center">对账金额</td>'+
+				 '<td colspan="1" align="center">优惠金额</td>'+
+				 '<td colspan="1" align="center">应结金额</td>'+
+				 '<td colspan="1" align="center">应收金额</td>'+
+				 '<td colspan="1" align="center">应付金额</td>'+
 				 '<td colspan="1" align="center">业务员</td>'+
 				 '<td colspan="1" align="center">审核日期</td>'+
-				 '<td colspan="1" align="center">备注</td>'+
-				 '<td colspan="1" align="center">业务单号</td>';
+				 '<td colspan="1" align="center">备注</td>';
 		tr0.append(tds0);
 		var tr1 =$("<tr></tr>");
 		var tds1='<td colspan="1" align="center">配件编码</td>'+ 
@@ -543,7 +384,6 @@ function setInitExportData(detail,partHash){
 				 '<td colspan="1" align="center">品牌</td>'+
 				 '<td colspan="1" align="center">品牌车型</td>'+
 				 '<td colspan="1" align="center">单位</td>'+
-				 '<td colspan="1" align="center">仓库</td>'+
 				 '<td colspan="1" align="center">数量</td>'+
 				 '<td colspan="1" align="center">单价</td>'+
 				 '<td colspan="1" align="center">金额</td>'+
@@ -552,127 +392,38 @@ function setInitExportData(detail,partHash){
 		tableExportContent.append(tr0);
 		var tr = $("<tr></tr>");
 		tr.append(tds.replace("[guestName]", row.guestName?row.guestName:"")
-					 .replace("[typeCode]", row.typeCode? enterTypeIdHash[row.typeCode]:"")
-		             .replace("[billAmt]", row.billAmt?row.billAmt:"")
-		             .replace("[orderMan]", row.orderMan?row.orderMan:"")
-		             .replace("[billDate]", row.billDate?format(row.billDate, 'yyyy-MM-dd HH:mm:ss'):"")
-		             .replace("[remark]", row.remark?row.remark:"")
-		             .replace("[billServiceId]", row.billServiceId?row.billServiceId:""));
+					 .replace("[serviceId]", row.serviceId?row.serviceId:"")
+		             .replace("[rpAmt]", row.rpAmt?row.rpAmt:"")
+		             .replace("[voidAmt]", row.voidAmt?row.voidAmt:0)
+		             .replace("[trueRpAmt]", row.trueRpAmt?row.trueRpAmt:"")
+		             .replace("[rAmt]", row.rAmt?row.rAmt:0)
+		             .replace("[pAmt]", row.pAmt?row.pAmt:0)
+		             .replace("[stateMan]", row.stateMan?row.stateMan:"")
+		             .replace("[auditDate]", row.auditDate?format(row.auditDate, 'yyyy-MM-dd HH:mm:ss'):"")
+		             .replace("[remark]", row.remark?row.remark:""));
+		      
 		tableExportContent.append(tr);
 		tableExportContent.append(tr1);
 		
-		//销售单
-		if(row.typeCode==2){
-			for(var j =0;j<sellList.length;j++){
-				var sellHash =sellList[j];
-				if(sellHash.mainId ==row.billMainId){
-					var trp = $("<tr></tr>");
-					trp.append(tdsp.replace("[partCode]", sellHash.showPartCode?sellHash.showPartCode:"")
-								   .replace("[fullName]", sellHash.showFullName?sellHash.showFullName:"")
-					               .replace("[oemCode]", sellHash.showOemCode?sellHash.showOemCode:"")
-					               .replace("[partBrand]",sellHash.showBrandName?sellHash.showBrandName:"")
-					               .replace("[carModel]", sellHash.showCarModel?sellHash.showCarModel :"")
-					               .replace("[unit]", sellHash.comUnit?sellHash.comUnit:"")
-					               .replace("[storeId]",storeHash[sellHash.storeId].name?storeHash[sellHash.storeId].name:"")
-					               .replace("[qty]",sellHash.orderQty?sellHash.orderQty:"")
-					               .replace("[price]",sellHash.showPrice?sellHash.showPrice:"")
-				                   .replace("[amt]",sellHash.showAmt?sellHash.showAmt:"")
-					               .replace("[remark]",sellHash.remark?sellHash.remark:""));
-					tableExportContent.append(trp);
-				}
-			}
-			
-		}
 		
-		//采购订单、采购退货、销售退货
-		else if(row.typeCode == 3 || row.typeCode ==4 || row.typeCode ==1) {
-			//采购退货
-			if(row.typeCode==3){
-				for(var j =0;j<sellList.length;j++){
-					var sellHash =sellList[j];
-					if(sellHash.mainId ==row.billMainId){
-						var trp = $("<tr></tr>");
-						trp.append(tdsp.replace("[partCode]", sellHash.comPartCode?sellHash.comPartCode:"")
-									   .replace("[fullName]", sellHash.fullName?sellHash.fullName:"")
-						               .replace("[oemCode]", sellHash.comOemCode?sellHash.comOemCode:"")
-						               .replace("[partBrand]",brandHash[sellHash.comPartBrandId].name?brandHash[sellHash.comPartBrandId].name:"")
-						               .replace("[carModel]", sellHash.comApplyCarModel?sellHash.comApplyCarModel :"")
-						               .replace("[unit]", sellHash.comUnit?sellHash.comUnit:"")
-						               .replace("[storeId]",storeHash[sellHash.storeId].name?storeHash[sellHash.storeId].name:"")
-						               .replace("[qty]",sellHash.orderQty?sellHash.orderQty:"")
-						               .replace("[price]",sellHash.orderPrice?sellHash.orderPrice:"")
-					                   .replace("[amt]",sellHash.orderAmt?sellHash.orderAmt:"")
-						               .replace("[remark]",sellHash.remark?sellHash.remark:""));
-						tableExportContent.append(trp);
-					}
-				}
-			}else{
-				for(var j =0;j<pchList.length;j++){
-					var pchHash =pchList[j];
-					if(pchHash.mainId ==row.billMainId){
-						var trp = $("<tr></tr>");
-						trp.append(tdsp.replace("[partCode]", pchHash.comPartCode?pchHash.comPartCode:"")
-									   .replace("[fullName]", pchHash.fullName?pchHash.fullName:"")
-						               .replace("[oemCode]", pchHash.comOemCode?pchHash.comOemCode:"")
-						               .replace("[partBrand]",brandHash[pchHash.comPartBrandId].name?brandHash[pchHash.comPartBrandId].name:"")
-						               .replace("[carModel]", pchHash.comApplyCarModel?pchHash.comApplyCarModel :"")
-						               .replace("[unit]", pchHash.comUnit?pchHash.comUnit:"")
-						               .replace("[storeId]",storeHash[pchHash.storeId].name?storeHash[pchHash.storeId].name:"")
-						               .replace("[qty]",pchHash.orderQty?pchHash.orderQty:"")
-						               .replace("[price]",pchHash.orderPrice?pchHash.orderPrice:"")
-					                   .replace("[amt]",pchHash.orderAmt?pchHash.orderAmt:"")
-						               .replace("[remark]",pchHash.remark?pchHash.remark:""));
-						tableExportContent.append(trp);
-					}
-				}
+		for(var j =0;j<partList.length;j++){
+			var partRow =partList[j];
+			if(partRow.billMainId ==row.id){
+				var trp = $("<tr></tr>");
+				trp.append(tdsp.replace("[partCode]", partRow.partCode?partRow.partCode:"")
+							   .replace("[fullName]", partRow.fullName?partRow.fullName:"")
+				               .replace("[oemCode]", partRow.oemCode?partRow.oemCode:"")
+				               .replace("[partBrand]",partRow.partBrandName?partRow.partBrandName:"")
+				               .replace("[carModel]", partRow.carModel?partRow.carModel :"")
+				               .replace("[unit]", partRow.unit?partRow.unit:"")  
+				               .replace("[qty]",partRow.orderQty?partRow.orderQty:"")
+				               .replace("[price]",partRow.orderPrice?partRow.orderPrice:"")
+			                   .replace("[amt]",partRow.orderAmt?partRow.orderAmt:"")
+				               .replace("[remark]",partRow.remark?partRow.remark:""));
+				tableExportContent.append(trp);
 			}
 		}
-		//调拨申请、调出退回
-		else if(row.typeCode == 5 || row.typeCode ==7){
-			
-			for(var j =0;j<applyList.length;j++){
-				var applyHash =applyList[j];
-				if(applyHash.mainId ==row.billMainId){
-					var trp = $("<tr></tr>");
-					trp.append(tdsp.replace("[partCode]", applyHash.partCode?applyHash.partCode:"")
-								   .replace("[fullName]", applyHash.fullName?applyHash.fullName:"")
-					               .replace("[oemCode]", applyHash.oemCode?applyHash.oemCode:"")
-					               .replace("[partBrand]",brandHash[applyHash.partBrandId].name?brandHash[applyHash.partBrandId].name:"")
-					               .replace("[carModel]", applyHash.applyCarModel?applyHash.applyCarModel :"")
-					               .replace("[unit]", applyHash.systemUnitId?applyHash.systemUnitId:"")
-					               .replace("[storeId]","")
-					               .replace("[qty]",applyHash.applyQty?applyHash.applyQty:"")
-					               .replace("[price]",applyHash.orderPrice?applyHash.orderPrice:"")
-				                   .replace("[amt]",applyHash.orderAmt?applyHash.orderAmt:"")
-					               .replace("[remark]",applyHash.remark?applyHash.remark:""));
-					tableExportContent.append(trp);
-				}
-			}
-			
-		}
-		//调拨受理、调入退回
-		else if(row.typeCode == 6 || row.typeCode ==8){
-			
-			for(var j =0;j<acceptList.length;j++){
-				var acceptHash =acceptList[j];
-				if(acceptHash.mainId ==row.billMainId){
-					var trp = $("<tr></tr>");
-					trp.append(tdsp.replace("[partCode]", acceptHash.partCode?acceptHash.partCode:"")
-								   .replace("[fullName]", acceptHash.fullName?acceptHash.fullName:"")
-					               .replace("[oemCode]", acceptHash.oemCode?acceptHash.oemCode:"")
-					               .replace("[partBrand]",brandHash[acceptHash.partBrandId].name?brandHash[acceptHash.partBrandId].name:"")
-					               .replace("[carModel]", acceptHash.applyCarModel?acceptHash.applyCarModel :"")
-					               .replace("[unit]", acceptHash.systemUnitId?acceptHash.systemUnitId:"")
-					               .replace("[storeId]","")
-					               .replace("[qty]",acceptHash.acceptQty?acceptHash.acceptQty:"")
-					               .replace("[price]",acceptHash.orderPrice?acceptHash.orderPrice:"")
-				                   .replace("[amt]",acceptHash.orderAmt?acceptHash.orderAmt:"")
-					               .replace("[remark]",acceptHash.remark?acceptHash.remark:""));
-					tableExportContent.append(trp);
-				}
-			}
-			
-		}
+				
 		
 	}
 //	 var serviceId = main.serviceId?main.serviceId:"";

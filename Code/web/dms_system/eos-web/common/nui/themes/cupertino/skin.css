@@ -20,7 +20,7 @@ body .mini-pager-num
 {
     border-color:#aed0ea;
     background:#f2f5f7;
-    color:#362b36
+/*     color:#362b36 */
 }
 
 .mini-widget-header,
@@ -107,7 +107,7 @@ body .mini-error .mini-textboxlist-border
 {
     border-color:#ffa8a8;
     background-color:#fff8f8;
-    color:#362b36;   
+    /* color:#362b36;  */  
 }
 
 .mini-state-disabled, .mini-button-disabled

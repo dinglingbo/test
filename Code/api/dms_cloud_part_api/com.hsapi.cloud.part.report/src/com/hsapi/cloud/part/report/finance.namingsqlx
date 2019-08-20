@@ -100,7 +100,7 @@
             SELECT a.bill_main_id as billMainId, a.bill_service_id as billServiceId, a.bill_type_id as billTypeId,
 			       a.bill_type_code as billTypeCode, c.sett_account_id settAccountId, c.char_off_amt as charOffAmt,
 			       d.full_name as fullName, d.short_name as shortName, b.auditor as auditor, b.audit_date as auditDate,
-			       e.is_primary_business as isPrimaryBusiness, b.rp_dc as rpDc
+			       e.is_primary_business as isPrimaryBusiness, b.rp_dc as rpDc,f.name as orgName
 			from fi_rp_account_detail a
 			inner join fi_rp_account b
 			on a.main_id = b.id
@@ -110,6 +110,8 @@
 			on b.guest_id = d.id
 			inner join fib_income_expenses e
 			on a.bill_type_id = e.id
+			inner join wb_common.com_company f
+			on f.orgid= b.orgid
 			where b.audit_sign = 1 
 				<isNotEmpty prepend="and" property="orgid"> 
                     (b.orgid = #orgid#)
@@ -133,6 +135,10 @@
                 <isNotEmpty prepend="and" property="isMain">  
                     (e.is_primary_business = #isMain#)
                 </isNotEmpty>
+                 <isNotEmpty prepend="and" property="batchId">  
+                    (b.batch_id = #batchId#)
+                </isNotEmpty>
+                
                 <isNotEmpty prepend="order by" property="sortField">  
 	                $sortField$ $sortOrder$
 	            </isNotEmpty> 
@@ -149,6 +155,7 @@
 				b.audit_date AS auditDate,
 				e.is_primary_business AS isPrimaryBusiness,
 				f.id AS id,
+				f.orgid as orgid,
 				f.tenant_id AS tenantId,
 				f.guest_id AS guestId,
 				f.guest_name AS guestName,
@@ -172,8 +179,8 @@
 			INNER JOIN fi_rp_account_batch f ON b.batch_id = f.id
 			WHERE
 				b.audit_sign = 1
-				<isNotEmpty prepend="and" property="orgid"> 
-                    (b.orgid = #orgid#)
+				<isNotEmpty prepend="and" property="tenantId"> 
+                    (f.tenant_id = #tenantId#)
                 </isNotEmpty>
 				<isNotEmpty prepend="and" property="orgid"> 
                     (b.orgid = #orgid#)
@@ -192,7 +199,7 @@
                     (c.sett_account_id = #settAccountId#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="rpDc">  
-                    (b.rp_dc = #rpDc#)
+                    (f.rp_dc = #rpDc#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="isMain">  
                     (e.is_primary_business = #isMain#)
@@ -200,6 +207,7 @@
                 <isNotEmpty prepend="order by" property="sortField">  
 	                $sortField$ $sortOrder$
 	            </isNotEmpty> 
+	            GROUP BY f.id
     </select>
     
     <!--往来单位余额表 -->

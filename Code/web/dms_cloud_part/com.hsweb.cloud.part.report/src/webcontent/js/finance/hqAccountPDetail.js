@@ -2,7 +2,8 @@
  * Created by Administrator on 2018/5/5.
  */
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
-var queryUrl = baseUrl + "com.hsapi.cloud.part.report.finance.queryRPAccountDetail.biz.ext";
+var queryUrl = baseUrl + "com.hsapi.cloud.part.report.finance.queryHqRPAccountDetail.biz.ext";
+var innerGridUrl = baseUrl +"com.hsapi.cloud.part.report.finance.queryRPAccountDetail.biz.ext";
 var mainGrid = null;
 var accountIdEl = null;
 var beginDateEl = null;
@@ -14,6 +15,9 @@ var accountHash = {};
 var enterTypeIdList = [];
 var enterTypeIdHash = {};
 
+var editFormtDetail =null;
+var innerGrid = null;
+
 $(document).ready(function(v) {
 	mainGrid = nui.get("mainGrid");
 	mainGrid.setUrl(queryUrl);
@@ -23,6 +27,10 @@ $(document).ready(function(v) {
 	endDateEl = nui.get("endDate");
     advanceGuestIdEl = nui.get("advanceGuestId");
     isMainEl = nui.get("isMain");
+    
+    innerGrid = nui.get("innerGrid");
+	editFormtDetail = document.getElementById("editFormtDetail");
+	innerGrid.setUrl(innerGridUrl);
 
 	beginDateEl.setValue(getMonthStartDate());
 	endDateEl.setValue(addDate(getMonthEndDate(), 1));
@@ -53,6 +61,7 @@ function doSearch() {
     params.guestId = advanceGuestIdEl.getValue();
     params.isMain = isMainEl.getValue();
     params.rpDc = -1;
+    params.tenantId =currTenantId;
 
 	mainGrid.load({
 		params:params,
@@ -169,4 +178,20 @@ function getItemType(callback) {
             console.log(jqXHR.responseText);
         }
     });
+}
+
+function onShowRowDetail(e) {
+    var row = e.record;
+    var batchId = row.id;
+    var params={};
+    params.batchId =batchId;
+    //将editForm元素，加入行详细单元格内
+    var td = mainGrid.getRowDetailCellEl(row);
+    td.appendChild(editFormtDetail);
+    editFormtDetail.style.display = "";
+    innerGrid.load({
+        params:params,
+        token: token
+    });
+    
 }

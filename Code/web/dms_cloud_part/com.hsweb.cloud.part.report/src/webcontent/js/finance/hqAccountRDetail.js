@@ -2,26 +2,47 @@
  * Created by Administrator on 2018/5/5.
  */
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
-var queryUrl = baseUrl + "com.hsapi.cloud.part.report.finance.queryRPBillDetail.biz.ext";
+var queryUrl = baseUrl + "com.hsapi.cloud.part.report.finance.queryHqRPAccountDetail.biz.ext";
+var innerGridUrl = baseUrl +"com.hsapi.cloud.part.report.finance.queryRPAccountDetail.biz.ext";
 var mainGrid = null;
+var accountIdEl = null;
 var beginDateEl = null;
 var endDateEl = null;
+var isMainEl = null;
 var advanceGuestIdEl = null;
-var settleStatusEl = null;
+var accountList = null;
+var accountHash = {};
 var enterTypeIdList = [];
 var enterTypeIdHash = {};
+var pList = [];
+var pHash = {};
 
+var editFormtDetail =null;
+var innerGrid = null;
 $(document).ready(function(v) {
 	mainGrid = nui.get("mainGrid");
 	mainGrid.setUrl(queryUrl);
 
+	accountIdEl = nui.get("accountId");
 	beginDateEl = nui.get("beginDate");
 	endDateEl = nui.get("endDate");
     advanceGuestIdEl = nui.get("advanceGuestId");
-    settleStatusEl = nui.get("settleStatus");
+    isMainEl = nui.get("isMain");
 
 	beginDateEl.setValue(getMonthStartDate());
 	endDateEl.setValue(addDate(getMonthEndDate(), 1));
+	
+	innerGrid = nui.get("innerGrid");
+	editFormtDetail = document.getElementById("editFormtDetail");
+	innerGrid.setUrl(innerGridUrl);
+
+	getAccountList(function(data) {
+        accountList = data.settleAccount;
+        accountIdEl.setData(accountList);
+        accountList.forEach(function(v) {
+            accountHash[v.id] = v;
+        });
+    });
 
     getItemType(function(data) {
         enterTypeIdList = data.list || [];
@@ -35,16 +56,38 @@ $(document).ready(function(v) {
 });
 function doSearch() {
 	var params = {};
-    params.settleStatus = settleStatusEl.getValue();
+	params.id = accountIdEl.getValue();
 	params.startDate = beginDateEl.getFormValue();
     params.endDate = endDateEl.getFormValue();;
     params.guestId = advanceGuestIdEl.getValue();
-    params.billDc = 1;
+    params.isMain = isMainEl.getValue();
+    params.rpDc = 1;
+    params.tenantId =currTenantId;
 
 	mainGrid.load({
 		params:params,
 		token : token
 	});
+}
+var queryAccountUrl = baseUrl + "com.hsapi.cloud.part.settle.svr.queryFiSettleAccountForTenant.biz.ext";
+function getAccountList(callback) {
+    nui.ajax({
+        url : queryAccountUrl,
+        data : {
+        	tenantId :currTenantId,
+            token: token
+        },
+        type : "post",
+        success : function(data) {
+            if (data && data.settleAccount) {
+                callback && callback(data);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
 }
 var supplier = null;
 function selectSupplier(elId) {
@@ -80,24 +123,37 @@ function selectSupplier(elId) {
         }
     });
 }
-var settleStatusHash = {
-    "0":"未结算",
-    "1":"部分结算",
-    "2":"已结算"
-};
-var settleStatusList = [{id:0,text:"未结算"},{id:1,text:"部分结算"},{id:2,text:"已结算"}];
+var pList = [{id:1,text:"是"},{id:0,text:"否"}];
+var pHash = {"1":"是","0":"否"};
 function onDrawCell(e){
     switch (e.field) {
+        case "settAccountId":
+            if (accountHash[e.value]) {
+                if(e.column.header == "账户编码"){
+                    e.cellHtml = accountHash[e.value].code || "";
+                }else if(e.column.header == "账户名称"){
+                    e.cellHtml = accountHash[e.value].name || "";
+                }else{
+                    e.cellHtml = "";
+                }
+            } else {
+                e.cellHtml = "";
+            }
+            break;
         case "billTypeId":
             if(enterTypeIdHash && enterTypeIdHash[e.value])
             {
                 e.cellHtml = enterTypeIdHash[e.value].name;
+            } else {
+                e.cellHtml = "";
             }
             break;
-        case "settleStatus":
-            if(settleStatusHash && settleStatusHash[e.value])
+        case "isPrimaryBusiness":
+            if(pHash && pHash[e.value])
             {
-                e.cellHtml = settleStatusHash[e.value];
+                e.cellHtml = pHash[e.value];
+            } else {
+                e.cellHtml = "";
             }
             break;
         default:
@@ -124,3 +180,20 @@ function getItemType(callback) {
         }
     });
 }
+
+function onShowRowDetail(e) {
+    var row = e.record;
+    var batchId = row.id;
+    var params={};
+    params.batchId =batchId;
+    
+    //将editForm元素，加入行详细单元格内
+    var td = mainGrid.getRowDetailCellEl(row);
+    td.appendChild(editFormtDetail);
+    editFormtDetail.style.display = "";
+    innerGrid.load({
+        params:params,
+        token: token
+    });
+}
+

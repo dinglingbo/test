@@ -27,8 +27,8 @@ pageEncoding="UTF-8" session="false" %>
                     }
 
                     .box {
-                        width: 32px;
-                        height: 23px;
+                        width: 28px;
+                        height: 20px;
                         background-color: red;
                         text-align: center;
                         border-top-left-radius: 20px;
@@ -37,6 +37,7 @@ pageEncoding="UTF-8" session="false" %>
                         border-bottom-left-radius: 0px;
                         position: absolute;
                         margin-top: -14px;
+                        margin-left: 130px;
                     }
 
                     .daBox {
@@ -61,12 +62,12 @@ pageEncoding="UTF-8" session="false" %>
 
                     .shu {
                         color: #f2f5f7;
-                        font-size: 15px;
+                        font-size: 12px;
                         margin-top: 2px;
                     }
 
                     .icon {
-                        style="width: 50px;
+                        width: 30px;
  						height: 50px;
                         position: relative;
                         float: left;
@@ -112,7 +113,7 @@ pageEncoding="UTF-8" session="false" %>
                                             <tr>
                                                 <td class="tabletext">
                                                     <div class="daBox" onclick="toMaintain(8)">
-                                                        <div class="box" style="margin-left: 144px;" id="queryMaintain">
+                                                        <div class="box"  id="queryMaintain">
                                                             <p class="shu"></p>
                                                         </div>
                                                         <div class="icon">
@@ -128,14 +129,14 @@ pageEncoding="UTF-8" session="false" %>
                                                 </td>
                                                 <td class="tabletext">
                                                     <div class="daBox" onclick="toMaintain(3)">
-                                                        <div class="box" style="margin-left: 131px;" id="queryBusiness">
+                                                        <div class="box"  id="queryBusiness">
                                                             <p class="shu"></p>
                                                         </div>
-                                                        <div class="icon">
+                                                        <div class="icon" style="margin-right: 7px;">
                                                             <i class="fa fa-cubes fa-2x" style="color:#12c050;"></i>
                                                         </div>
                                                         <div style="width: 150px;height: 50px;position: relative;float: left;">
-                                                            <span style="font-size: 15px;">商业险提醒</span>
+                                                            <span style="font-size: 15px;">商 业 险 提 醒</span>
                                                             </br>
                                                             <span style="font-size: 12px;color:#ccc" id="queryBusinessDate"></span>
                                                         </div>
@@ -144,14 +145,14 @@ pageEncoding="UTF-8" session="false" %>
                                                 </td>
                                                 <td class="tabletext">
                                                     <div class="daBox" onclick="toMaintain(4)">
-                                                        <div class="box" style="margin-left: 137px;" id="queryCompulsoryInsurance">
+                                                        <div class="box"  id="queryCompulsoryInsurance">
                                                             <p class="shu"></p>
                                                         </div>
-                                                        <div style="width: 50px;height: 50px;position: relative;float: left;">
+                                                        <div class="icon" style="margin-right: 7px;">
                                                             <i class="fa fa-cubes fa-2x" style="color:#12c050;"></i>
                                                         </div>
                                                         <div style="width: 150px;height: 50px;position: relative;float: left;">
-                                                            <span style="font-size: 15px;">交强险提醒</span>
+                                                            <span style="font-size: 15px;">交 强 险 提 醒</span>
                                                             </br>
                                                             <span style="font-size: 12px;color:#ccc" id="queryCompulsoryInsuranceDate"></span>
                                                         </div>
@@ -164,14 +165,14 @@ pageEncoding="UTF-8" session="false" %>
                                             <tr>
                                                 <td class="tabletext">
                                                     <div class="daBox" onclick="bookingMgr()">
-                                                        <div class="box" style="margin-left: 141px;" id="queryAppointment">
+                                                        <div class="box"  id="queryAppointment">
                                                             <p class="shu"></p>
                                                         </div>
                                                         <div class="icon">
                                                             <i class="fa fa-bell-o fa-2x" style="color:#1faeff;"></i>
                                                         </div>
                                                         <div style="width: 150px;height: 50px;position: relative;float: left;">
-                                                            <span style="font-size: 17px;">预约到店提醒</span>
+                                                            <span style="font-size: 15px;">预约到店提醒</span>
                                                             </br>
                                                             <span style="font-size: 12px;color:#ccc" id="queryAppointmentDate"></span>
                                                         </div>
@@ -180,7 +181,7 @@ pageEncoding="UTF-8" session="false" %>
                                                 </td>
                                                 <td class="tabletext">
                                                     <div class="daBox" onclick="toMaintain(5)">
-                                                        <div class="box" style="margin-left: 138px;" id="queryDrivingLicense">
+                                                        <div class="box"  id="queryDrivingLicense">
                                                             <p class="shu"></p>
                                                         </div>
                                                         <div class="icon">
@@ -196,13 +197,13 @@ pageEncoding="UTF-8" session="false" %>
                                                 </td>
                                                 <td class="tabletext">
                                                     <div class="daBox" onclick="toMaintain(6)">
-                                                        <div class="box" style="margin-left: 138px;" id="queryCar">
+                                                        <div class="box"  id="queryCar">
                                                             <p class="shu"></p>
                                                         </div>
                                                         <div class="icon">
                                                             <i class="fa fa-automobile fa-2x" style="color:#0084f;"></i>
                                                         </div>
-                                                        <div class="icon">
+                                                        <div style="width: 150px;height: 50px;position: relative;float: left;">
                                                             <span style="font-size: 15px;">车辆年检提醒</span>
                                                             </br>
                                                             <span style="font-size: 12px;color:#ccc" id="queryCarDate"></span>
@@ -215,7 +216,7 @@ pageEncoding="UTF-8" session="false" %>
                                             <tr>
                                                 <td class="tabletext">
                                                     <div class="daBox" onclick="toMaintain(7)">
-                                                        <div class="box" style="margin-left: 138px;" id="queryGuestBirthday">
+                                                        <div class="box"  id="queryGuestBirthday">
                                                             <p class="shu"></p>
                                                         </div>
                                                         <div class="icon">
@@ -231,7 +232,7 @@ pageEncoding="UTF-8" session="false" %>
                                                 </td>
                                                 <td class="tabletext">
                                                     <div class="daBox" onclick="toMaintain(2)">
-                                                        <div class="box" style="margin-left: 138px;" id="queryEmployeeBirthday">
+                                                        <div class="box"  id="queryEmployeeBirthday">
                                                             <p class="shu"></p>
                                                         </div>
                                                         <div class="icon">
@@ -245,7 +246,7 @@ pageEncoding="UTF-8" session="false" %>
 
                                                     </div>
                                                 </td>
-
+												<td class="tabletext"></td>
                                             </tr>
 
                                         </table>

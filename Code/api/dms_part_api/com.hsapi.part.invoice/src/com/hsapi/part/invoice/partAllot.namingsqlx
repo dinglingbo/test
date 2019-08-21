@@ -9,7 +9,7 @@
     </resultMap>
     
     <!-- 可以调拨 调拨申请 调出退回  调拨入库  调出退货 -->
-    <select id="queryPjAllotApplyMainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    <select id="queryPjAllotMainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 
             SELECT DISTINCT
 				a.id as id,
@@ -47,7 +47,6 @@
 				a.state_man as stateMan,
 				a.state_sign as stateSign,
 				a.state_date as stateDate,
-				a.source_type as sourceType,
 				B.FULL_NAME AS guestFullName,
 				B.SHORT_NAME AS guestShortName
 			FROM
@@ -151,11 +150,51 @@
                  <isNotEmpty prepend="and" property="creator">  
                     (a.creator = #creator#)
                 </isNotEmpty>
-            </dynamic>  
-            
-    	
-        
+            </dynamic>      
         ORDER BY A.operate_date DESC
     </select>
 	
+	  <!-- 根据主表ID查询 -->
+    <select id="queryPjAllotDetailList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+         SELECT 
+			a.id,
+			a.main_id as mainId,
+			a.part_id as partId,
+			a.part_code as partCode,
+			a.part_name as partName,
+			a.full_name as fullName,
+			a.enter_unit_id as enterUnitId,
+			a.system_unit_id as systemUnitId,
+			a.order_price as orderPrice,
+			a.order_qty as orderQty,
+			a.order_amt as orderAmt,
+			a.tax_price as taxPrice,
+			a.tax_amt as taxAmt,
+			a.no_tax_price as noTaxPrice,
+			a.no_tax_amt as noTaxAmt,
+			a.remark as remark,
+			B.`code` AS comPartCode,
+			B.`name` AS comPartName,
+			B.full_name AS comFullName,
+			B.brand_code AS comBrandCode,
+			B.oem_code AS comOemCode,
+			B.quality_type_id AS comQualityTypeId,
+			B.part_brand_id AS comPartBrandId,
+			B.apply_car_model AS comApplyCarModel,
+			B.unit AS comUnit,
+			B.spec AS comSpec,
+			B.direction AS comDirection
+		FROM
+			pj_allot_detail A
+			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
+			where 1=1 and (A.MAIN_ID = #mainId#)
+            <isNotEmpty prepend="and" property="isAllotFinished">  
+                <!--审核状态-->
+                    (a.is_allot_finished = #isAllotFinished#)
+                </isNotEmpty>
+                
+        ORDER BY a.id asc
+    </select>
+
 </sqlMap>

@@ -908,6 +908,45 @@
         </dynamic>
 	</select>
 	
+	<!-- 查询配比清单明细 -->
+	<select id="queryPartMatchingDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+
+   		 SELECT
+			a.id as id,
+			a.orgid as orgid,
+			a.parent_id as parentId,
+			a.part_id as partId,
+			a.part_code as partCode,
+			a.part_name as partName,
+			a.full_name as fullName,
+			a.qty as  qty,
+			a.ratio as ratio,
+			a.is_disabled as disabled,
+			a.creator_id as creatorId,
+			a.creator as creator,
+			a.create_date as createDate,
+			a.operator_id as operatorId,
+			a.operator as operator,
+			a.operate_date as operateDate,
+			a.remark as remark
+		FROM
+			pj_part_matching_detail a
+		where 1=1
+		<dynamic>
+    		<isNotEmpty prepend="and" property="orgid">  
+                (a.orgid =#orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="parentId">  
+                (a.parent_id = #parentId#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="partName">  
+                (a.part_name like '%$partName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="sortField">  
+                $sortField$ $sortOrder$
+            </isNotEmpty>  
+        </dynamic>
+	</select>
 	
 	<!-- 计划采购取备货配件 -->
 	<select id="queryStockLevelPartForPlan" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">

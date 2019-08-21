@@ -54,6 +54,10 @@ $(document).ready(function(v) {
 	doSearch();
 });
 function doSearch() {
+	if(currIsMaster !=1){
+		showMsg("总部才可以查看","W");
+		return;
+	}
 	var params = {};
 	params.id = accountIdEl.getValue();
 	params.startDate = beginDateEl.getFormValue();

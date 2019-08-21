@@ -184,9 +184,9 @@
                                 <span class="kefu-title" id="currUserName"></span>
                             	<ul class="kefu-dropdown">
 	                                <!--  <li id="orgName" ><a href="#">所属：</a></li> -->
-	                                <li onclick="myMessage()" class="toTop">
-	                                        <span   class="fa fa-comments-o"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我的消息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                </li>
+<!-- 	                                <li onclick="myMessage()" class="toTop"> -->
+<!-- 	                                        <span   class="fa fa-comments-o"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我的消息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+<!-- 	                                </li> -->
 	                                <li onclick="updateEmployee()">
 	                                        <span class="fa fa-pencil-square-o"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;个人设置
 	                                </li>

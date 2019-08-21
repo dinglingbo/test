@@ -4,6 +4,8 @@
     <sourceConnections xsi:type="process:tActionLink" id="link0" name="link0" lineType="reference" isDefault="true" type="action" actionName="action0">
       <sourceNode>start0</sourceNode>
       <targetNode>view0</targetNode>
+      <process:validateRules/>
+      <process:inputParameters/>
     </sourceConnections>
     <location x="100" y="150"/>
     <size height="28" width="28"/>
@@ -25,7 +27,7 @@
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
-  <nodes xsi:type="process:tView" description="" id="view0" name="视图" displayName="allotDetail.jsp" type="view" contextPath="" method="forward" uri="/purchasePart/allotDetail.jsp">
+  <nodes xsi:type="process:tView" description="" id="view0" name="视图" displayName="allotDetail.jsp" type="view" contextPath="" method="forward" uri="/purchasePart/partAllot/allotDetail.jsp">
     <sourceConnections xsi:type="process:tActionLink" id="link1" name="link1" lineType="reference" isDefault="true" type="action" actionName="action1">
       <sourceNode>view0</sourceNode>
       <targetNode>end0</targetNode>

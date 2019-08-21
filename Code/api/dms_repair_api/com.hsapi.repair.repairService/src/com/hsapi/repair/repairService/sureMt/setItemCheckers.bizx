@@ -123,7 +123,7 @@
       <sourceNode>assign0</sourceNode>
       <targetNode>assign1</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NE">
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
           <process:leftOperand type="query">item/id</process:leftOperand>
           <process:rightOperand type="literal">0</process:rightOperand>
         </process:simpleCondition>
@@ -134,7 +134,7 @@
       <targetNode>assign8</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

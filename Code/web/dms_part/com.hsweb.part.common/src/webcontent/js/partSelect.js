@@ -22,9 +22,10 @@ var rightGrid = null;
 var protoken = "";
 var qtySign = null;
 var isChooseClose = 1;//默认选择后就关闭窗体
+var queryForm = null;
+
 var statusList = [{id:"0",name:"品牌车型"},{id:"1",name:"拼音"},{id:"2",name:"规格"}];
 
-var queryForm = null;
 $(document).ready(function(v)
 {
     queryForm = new nui.Form("#queryForm");

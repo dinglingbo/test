@@ -133,7 +133,6 @@ a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}
 		                                <div allowSort="true" field="spec" width="60" headerAlign="center" allowSort="true">规格</div>
 		
 		                                <div allowSort="true" field="model" width="60" headerAlign="center" allowSort="true">型号</div>
-		
 		                               
 		                                <div allowSort="true" field="carTypeIdF" width="80" headerAlign="center" allowSort="true">一级分类</div>
 		                                <div allowSort="true" field="carTypeIdS" width="80" headerAlign="center" allowSort="true">二级分类</div>

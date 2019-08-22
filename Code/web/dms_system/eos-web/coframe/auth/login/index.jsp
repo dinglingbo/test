@@ -19,7 +19,7 @@
                 <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/tabs.css" rel="stylesheet" type="text/css" />
                 <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/frame.css?v=1.0.14" rel="stylesheet" type="text/css"
                 />
-                <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/index.css?v=1.0.13" rel="stylesheet" type="text/css"
+                <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/index.css?v=1.0.0" rel="stylesheet" type="text/css"
                 />
                 <link href="<%=webPath + contextPath%>/common/nui/themes/cupertino/skin.css？v=1.0.3" rel="stylesheet" type="text/css" />
                 <link href="<%=request.getContextPath()%>/common/nui/res/third-party/scrollbar/jquery.mCustomScrollbar.css" rel="stylesheet"
@@ -144,19 +144,19 @@
                 </div>
             </div>
             <div id="toolData" class="sidebar">
-                <div id="tu" style="overflow-y:auto;overflow-x:auto; width:800px; height:50px;">
+<%--                  <div id="tu" style="overflow-y:auto;overflow-x:auto; width:800px; height:50px;background-color: #055594;">
                     <a>
                         <img class="icon" id="icon" src="<%=webPath + contextPath%>/coframe/auth/images/icon.jpg" style="background-color: #fff;"
                         />
                     </a>
-                </div>
-                <div id="mainMenu" style="overflow:auto; width:800px;">
+                </div>  --%>
+                <div id="mainMenu" style="overflow:auto; width:800px;margin-top: 50px;">
 
                 </div>
             </div>
 
             <div class="container">
-                <div class="navbar" id="skin">
+                <div class="navbar" id="skin" style="margin-left: -80px;">
                     <div class="navbar-brand" id="systemName">链车云修SAAS系统</div>
                     <ul class="nav navbar-nav navbar-right">
                         <!-- <li><a href="#"><i class="fa fa-paper-plane"></i> 代办事项</a></li>
@@ -350,9 +350,9 @@
                 
             }); */
 
-            if (currSystemImg != "") {
+/*             if (currSystemImg != "") {
                 $("#icon").attr("src", currSystemImg || webPath + contextPath + "/common/images/logo.jpg");
-            }
+            } */
             if (currSystemName != "") {
                 $('#systemName').html(currSystemName);
             }

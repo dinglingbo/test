@@ -85,7 +85,7 @@
       <targetNode>assign2</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -412,14 +412,14 @@
   <process:info author="Administrator" createTime="2019-08-21 16:28:43" date="2019-08-21Z" description="" name="saveCarCoin" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="Date" primitiveType="Date"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.system.data.sys.ComCarCoin" name="addCarCoin"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.system.data.sys.ComCarCoin" name="updateCarCoin"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.ComCarCoin" name="carCoinTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.system.data.sys.ComSysCoin" name="addCarCoin"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.system.data.sys.ComSysCoin" name="updateCarCoin"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.ComSysCoin" name="carCoinTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="giveCoin" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="rechargeCoin" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="true" modelType="com.hsapi.system.data.sys.ComCarCoin" name="carCoin"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.system.data.sys.ComSysCoin" name="carCoin"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

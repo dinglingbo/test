@@ -46838,7 +46838,7 @@
       </viewField>
     </columnProperty>
   </nodes>
-  <nodes xsi:type="model:PEntityNode" id="node38" name="ComCarCoin" nodeType="table" displayName="ComCarCoin" author="Administrator" allUseViewModel="true" table="com_car_coin" genStrategy="assigned">
+  <nodes xsi:type="model:PEntityNode" id="node38" name="ComSysCoin" nodeType="table" displayName="ComSysCoin" author="Administrator" allUseViewModel="true" table="com_sys_coin" genStrategy="assigned">
     <location x="60" y="17916"/>
     <size height="250" width="150"/>
     <figSize height="20" width="150"/>
@@ -46908,9 +46908,9 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property802" name="salePrice" displayName="salePrice" columnName="sale_price" nullAble="true" defaultValue="0.0000" columnType="DECIMAL" eosDataType="Decimal" length="18" precision="4" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.0000">
+    <columnProperty id="property802" name="sellPrice" displayName="sellPrice" columnName="sell_price" nullAble="true" defaultValue="0.0000" columnType="DECIMAL" eosDataType="Decimal" length="18" precision="4" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.0000">
       <comment>销售价</comment>
-      <viewField dict="false" dictTypeId="" displayName="salePrice" entityField="salePrice" id="salePrice" label="salePrice" name="salePrice" userDefined="true">
+      <viewField dict="false" dictTypeId="" displayName="sellPrice" entityField="sellPrice" id="sellPrice" label="sellPrice" name="sellPrice" userDefined="true">
         <fieldView showAllAttr="false">
           <type name="write"/>
           <attr defaultValue="" name="iterateId"/>
@@ -46974,9 +46974,9 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property803" name="orderNumber" displayName="orderNumber" columnName="order_number" nullAble="true" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
+    <columnProperty id="property803" name="orderIndex" displayName="orderIndex" columnName="order_index" nullAble="true" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
       <comment>顺序</comment>
-      <viewField dict="false" displayName="orderNumber" id="orderNumber" label="orderNumber" name="orderNumber" userDefined="true">
+      <viewField dict="false" displayName="orderIndex" id="orderIndex" label="orderIndex" name="orderIndex" userDefined="true">
         <fieldView>
           <type name="write"/>
           <attr name="formatPattern"/>
@@ -47269,9 +47269,9 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property808" name="status" displayName="status" columnName="status" nullAble="true" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
+    <columnProperty id="property808" name="isDisabled" displayName="isDisabled" columnName="is_disabled" nullAble="true" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
       <comment>状态（0启用，1禁用）</comment>
-      <viewField dict="false" dictTypeId="" displayName="status" entityField="status" id="status" label="status" name="status" userDefined="true">
+      <viewField dict="false" dictTypeId="" displayName="isDisabled" entityField="isDisabled" id="isDisabled" label="isDisabled" name="isDisabled" userDefined="true">
         <fieldView showAllAttr="false">
           <type name="write"/>
           <attr defaultValue="" name="iterateId"/>

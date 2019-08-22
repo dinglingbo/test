@@ -1,13 +1,12 @@
 var isTrue = [ {id : 1,text : "是"}, {id : 0,text : "否"} ];
 var typeList = [{id:0,name:"功能模块"},{id:1,name:"接口调用"}];
-var form = new nui.Form("#form1");
-
-nui.parse();
-var productLimitedCycle = nui.get("cycle");//产品限定周期
-var costNumCycle = nui.get("consumptionTimes");//周期消费次数
-var isLimitedCycle = nui.get("isCycle");//是否限定周期
+var form = null;
 
 $(document).ready(function(v) {
+	var form = new nui.Form("#form1");
+	var productLimitedCycle = nui.get("cycle");//产品限定周期
+	var costNumCycle = nui.get("consumptionTimes");//周期消费次数
+	var isLimitedCycle = nui.get("isCycle");//是否限定周期
 
 });
 function isLimitedCycleChanged() {
@@ -80,4 +79,11 @@ function onCancel(e) {
 
 function SetInitData(s) {
 	new nui.Form("#form1").setData(s);
+}
+
+function typeChanged(){
+	var typrValue = nui.get("type").getValue();
+	if(typrValue==0){
+		
+	}
 }

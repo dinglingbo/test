@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调入退回</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotInRtn.js?v=1.0.13"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotInRtn.js?v=1.0.15"></script>
 <style type="text/css">
 .title {
   width: 70px;
@@ -240,7 +240,7 @@ body .mini-grid-row-selected{
                           <tr>
                               <td style="white-space:nowrap;" style="width:120px;">
                                   <a class="nui-button" plain="true" iconCls="" onclick="addPart()" id="addPartBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a>
-                                  <a class="nui-button" plain="true" iconCls="" onclick="addAllotPart()" id="addPartBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;选择调拨入库单</a>
+                                  <a class="nui-button" plain="true" iconCls="" onclick="addAllotPart()" id="addAllotPartBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;选择调拨入库单</a>
                                   <a class="nui-button" plain="true" iconCls="" onclick="deletePart()" id="deletePartBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                                   <a class="nui-button" plain="true" iconCls="" onclick="adjustPart()" id="adjustPartBtn" visible="false"><span class="fa fa-edit fa-lg"></span>&nbsp;计划调整</a>
                               </td>

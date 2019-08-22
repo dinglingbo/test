@@ -482,6 +482,7 @@ function setBtnable(flag)
         nui.get("auditBtn").enable();
         nui.get("saveBtn").enable();
         nui.get("addPartBtn").enable();
+        nui.get("addAllotPartBtn").enable();
         nui.get("deletePartBtn").enable();
         nui.get("selectSupplierBtn").enable();
         //nui.get("genePartBtn").enable();
@@ -492,6 +493,7 @@ function setBtnable(flag)
         nui.get("auditBtn").disable();
         nui.get("saveBtn").disable();
         nui.get("addPartBtn").disable();
+        nui.get("addAllotPartBtn").disable();
         nui.get("deletePartBtn").disable();
         nui.get("selectSupplierBtn").disable();
         //nui.get("genePartBtn").disable();
@@ -1690,7 +1692,7 @@ function addAllotDetail(rows){
             comPartBrandId : row.fullName,
             comApplyCarModel : row.applyCarModel,
             comUnit : row.systemUnitId,
-            acceptQty : 1,
+            acceptQty : row.applyQty,
             orderPrice : 0,
             orderAmt : 0,
             comOemCode : row.oemCode,

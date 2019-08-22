@@ -9,7 +9,7 @@
 -->
 <head>
 <title>业务单选择</title>
-<script src="<%=webPath + contextPath%>/common/js/orderBillChoose.js?v=1.0.2"></script>
+<script src="<%=webPath + contextPath%>/common/js/orderBillChoose.js?v=1.0.33"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -93,7 +93,7 @@
               <div type="expandcolumn" width="20" >#</div>
               <div field="guestFullName" width="150" headerAlign="center" header="往来单位名称"></div>
               <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
-              <div field="orderTypeId" width="60" headerAlign="center" header="业务类型"></div>
+              <div field="orderTypeId" width="80" headerAlign="center" header="业务类型"></div>
               <div field="orderAmt" width="60" headerAlign="center" summaryType="sum" header="金额"></div>
               <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
               <div field="remark" width="120" headerAlign="center" header="备注"></div>
@@ -160,6 +160,33 @@
           </div>
       </div>
   </div>
+  
+  <div id="editFormAllotApplyDetail" style="display:none;">
+      <div id="innerAllotApplyGrid" class="nui-datagrid" style="width:100%;height:150px;"
+           showPager="false"
+           dataField="pjAllotApplyDetails"
+           idField="detailId"
+           ondrawcell="onDrawCell"
+           sortMode="client"
+           url=""
+           multiSelect="true" 
+           allowCellSelect="true"
+           showSummaryRow="true">
+          <div property="columns">
+              <div type="indexcolumn">序号</div>
+              <div type="checkcolumn"></div>
+              <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
+              <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
+              <div allowSort="true" field="comOemCode" headerAlign="center" header="OE码"></div>
+              <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
+              <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
+              <div allowSort="true" field="systemUnitId" width="40" headerAlign="center" header="单位"></div>
+              <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="数量"></div>
+              <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
+          </div>
+      </div>
+  </div>
+  
 
 </div>
 

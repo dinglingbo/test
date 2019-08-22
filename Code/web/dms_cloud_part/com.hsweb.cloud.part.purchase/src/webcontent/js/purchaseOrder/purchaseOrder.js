@@ -629,6 +629,9 @@ function loadMainAndDetailInfo(row) {
 		if(row.sourceType==5){
 			$('#sourceServiceId').text("往来单单号:"+row.code);
 		}
+		else{
+			$('#sourceServiceId').text("");
+		}
 		//bottomInfoForm.setData(row);
 		nui.get("guestId").setText(row.guestFullName);
 

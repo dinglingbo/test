@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件资料</title>
-<script src="<%=webPath + contextPath%>/basic/js/partDetail.js?v=1.0.75"></script>
+<script src="<%=webPath + contextPath%>/basic/js/partDetail.js?v=1.0.76"></script>
 <style type="text/css">
 .title {
 	text-align: right;

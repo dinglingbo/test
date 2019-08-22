@@ -1,6 +1,6 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%@include file="/common/common.jsp"%>
-<%@include file="/common/commonPart.jsp"%>
+<%@include file="/common/sysCommon.jsp"%>
+<%@include file="/common/commonCloudPart.jsp"%>
 <html>
 <!-- 
   - Author(s): chenziming
@@ -9,7 +9,7 @@
 -->
 <head>
     <title>仓库进销存明细</title>
-    <script src="<%=webPath + contextPath%>/report/js/invoing/storeInvoingDetail.js?v=1.0.4"></script>
+    <script src="<%=webPath + contextPath%>/report/js/invoing/storeInvoingDetail.js?v=1.0.5"></script>
     <link href="<%=webPath + contextPath%>/common/js/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/common/js/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">

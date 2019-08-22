@@ -1,6 +1,6 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%@include file="/common/common.jsp"%>
-<%@include file="/common/commonPart.jsp"%>
+<%@include file="/common/sysCommon.jsp"%>
+<%@include file="/common/commonCloudPart.jsp"%>
 <html>
 <!-- 
   - Author(s): chenziming
@@ -9,7 +9,7 @@
 -->
 <head>
     <title>门店进销存统计</title>
-    <script src="<%=webPath + contextPath%>/report/js/invoing/shopInvoingCount.js?v=1.0.4"></script>
+    <script src="<%=webPath + contextPath%>/report/js/invoing/shopInvoingCount.js?v=1.0.13"></script>
     <style type="text/css">
     .title {
       width: 60px;
@@ -113,7 +113,7 @@
         </div>
         <div header="销售退货" headerAlign="center">
             <div property="columns">
-                <div summaryType="sum" allowSort="true" datatype="float" field="sellRtntQty" width="60" headerAlign="center" header="数量"  align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="sellRtnQty" width="60" headerAlign="center" header="数量"  align="right"></div>
                 <div summaryType="sum" allowSort="true" datatype="float" field="sellRtnAmt" headerAlign="center" header="金额"  align="right"></div>
             </div>
         </div>

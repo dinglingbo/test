@@ -135,6 +135,28 @@ $(document).ready(function(v)
 
     //add();
     
+    document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;
+      
+        if((keyCode==89)&&(event.altKey))  {   //入库 Alt+Y
+        	submit();
+        } 
+      
+        if((keyCode==80)&&(event.altKey))  {   //打印
+            onPrint();
+        } 
+        if((keyCode==27))  {  
+       
+           if(partShow ==1){
+            	onPartClose();
+            }
+        }
+        
+     
+    }
+    
+    
 });
 
 function loadMainAndDetailInfo(row)

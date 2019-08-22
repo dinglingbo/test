@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调入退回</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotInRtn.js?v=1.0.3"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotInRtn.js?v=1.0.5"></script>
 <style type="text/css">
 .title {
   width: 70px;

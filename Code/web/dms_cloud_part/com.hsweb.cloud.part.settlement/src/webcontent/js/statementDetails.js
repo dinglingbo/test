@@ -38,7 +38,12 @@ var settTypeIdList = [];
 var billTypeIdEl = null;
 var settleTypeIdEl = null;
 
+var mainTabs = null;
+
 $(document).ready(function(v) {
+	
+	mainTabs = nui.get("mainTabs");
+	
 	orgidsEl = nui.get("orgids");
 	getCompany();
     searchBeginDate = nui.get("beginDate");
@@ -110,6 +115,20 @@ $(document).ready(function(v) {
     
     quickSearch(2);
 });
+
+function ontopTabChanged(e){
+	var tab = e.tab;
+	var name = tab.name;
+	var url = tab.url;
+	if(!url){
+		if(name == "billMainTab"){
+			mainTabs.loadTab(webPath + contextPath + "/settlement/stateMentMains.jsp", tab);
+		}else if(name == "purchaseAdvanceTab"){
+//			mainTabs.loadTab(webPath + contextPath + "", tab);		
+		}
+	}
+	
+}
 
 function getCompany(){
 	var params = {};

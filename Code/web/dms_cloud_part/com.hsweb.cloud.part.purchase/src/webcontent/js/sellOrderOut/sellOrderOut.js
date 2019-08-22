@@ -248,6 +248,10 @@ $(document).ready(function(v)
             save();
         } 
       
+        if((keyCode==89)&&(event.altKey))  {   //出库 Alt+Y
+        	audit();
+        } 
+        
         if((keyCode==80)&&(event.altKey))  {   //打印
             onPrint();
         } 

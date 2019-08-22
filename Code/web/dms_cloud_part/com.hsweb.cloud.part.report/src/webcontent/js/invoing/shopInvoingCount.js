@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/2/1.
  */
-var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var rightGridUrl = baseUrl+"com.hsapi.cloud.part.report.report.queryPjInvoing.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
@@ -22,7 +22,12 @@ $(document).ready(function(v)
     startDateEl =nui.get('startDate');
     endDateEl = nui.get('endDate');
     orgidsEl = nui.get("orgids");
-    orgidsEl.setData(currOrgList);
+    if(currOrgList[0]==null){
+    	orgidsEl.setData([]);
+    }else{
+    	 orgidsEl.setData(currOrgList);
+    }
+   
     if(currOrgList.length==1){
     	orgidsEl.hide();
     }else{

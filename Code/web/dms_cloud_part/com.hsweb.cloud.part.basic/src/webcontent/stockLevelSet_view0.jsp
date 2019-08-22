@@ -13,7 +13,7 @@
 <head>
 <title>备货级别设置</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<script src="<%=webPath + contextPath%>/basic/js/stockLevelSet.js?v=1.0.65"></script>
+		<script src="<%=webPath + contextPath%>/basic/js/stockLevelSet.js?v=1.0.70"></script>
    
 <style type="text/css">
 .table-label {

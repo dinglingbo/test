@@ -21,7 +21,7 @@
                 />
                 <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/index.css?v=1.0.13" rel="stylesheet" type="text/css"
                 />
-                <link href="<%=webPath + contextPath%>/common/nui/themes/cupertino/skin.css" rel="stylesheet" type="text/css" />
+                <link href="<%=webPath + contextPath%>/common/nui/themes/cupertino/skin.css？v=1.0.3" rel="stylesheet" type="text/css" />
                 <link href="<%=request.getContextPath()%>/common/nui/res/third-party/scrollbar/jquery.mCustomScrollbar.css" rel="stylesheet"
                     type="text/css" />
                 <link href="<%=request.getContextPath()%>/coframe/auth/login/feedback/feedback.css" rel="stylesheet" type="text/css" />
@@ -35,8 +35,7 @@
                 <script src="<%=request.getContextPath()%>/coframe/imjs/websocketconfig.js?v=1.3.2"></script>
                 <style type="text/css">
                     a {
-                        cursor: pointer;
-                        color: black;
+                        cursor: pointer;                     
                     }
 
                     .groupSize {
@@ -230,12 +229,12 @@
                             <a class="kefu">
                                 <span class="kefu-title">换肤</span>
                             <ul class="kefu-dropdown">
-                                <li onclick="updateSkin('#369cf4d9')" class="toTop">
-                                        <div style="width:10px;height:15px;background-color: #369cf4d9;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;经典蓝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <li onclick="updateSkin('#055594')" class="toTop">
+                                        <div style="width:10px;height:15px;background-color: #055594;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;经典蓝
+                      			</li>
+                                <li onclick="updateSkin('#369cf4d9')" >
+                                        <div style="width:10px;height:15px;background-color: #369cf4d9;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;亮蓝
                                 </li>
-                                <li onclick="updateSkin('#0067b8')">
-                                        <div style="width:10px;height:15px;background-color: #0067b8;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;深湛蓝
-                      </li>
   								<li onclick="updateSkin('#f36205a6')">
                                         <div style="width:10px;height:15px;background-color: #f36205a6;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;秋日橙
                                 </li>

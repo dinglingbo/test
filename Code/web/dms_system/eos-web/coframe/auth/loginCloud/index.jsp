@@ -11,7 +11,7 @@
       
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/common/nui/boot.js" type="text/javascript"></script>
-
+    <link href="<%=request.getContextPath()%>/coframe/auth/login/css/kefu.css" rel="stylesheet" type="text/css" />
     <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menu/menu.css" rel="stylesheet" type="text/css" />
     <script src="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menu/menu.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menupop.js" type="text/javascript"></script>
@@ -157,7 +157,7 @@
             <!-- <li><a href="#"><i class="fa fa-paper-plane"></i> 代办事项</a></li>
             <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li> -->
             <li class="dropdown">
-                <a  onClick="OrgShow()" style="padding-top: 18px; ">
+                <a  onClick="OrgShow()" style="padding-top: 20px; ">
 <!--                        <i class="fa fa-align-justify"></i> -->
                         <span  class="org_hover" id="currOrgName">公司</span>
 <!--                        <i class="fa fa-angle-down"></i> -->
@@ -171,37 +171,66 @@
                     </li> -->
                 </ul>
             </li>
-            <li class="dropdown">
-                <!--<a class="dropdown-toggle userinfo">
+                        <li class="dropdown">
+
+                            <!--<a class="dropdown-toggle userinfo">
                     <img class="user-img" src="res/images/user.jpg" />个人资料<i class="fa fa-angle-down"></i>
                 </a>-->
-                <a class="dropdown-toggle userinfo" style="padding-top: 18px;">
-                    <!--<img class="user-img" src="res/images/user.jpg" />-->
-                    <span id="currUserName">当前登录人:</span><i class="fa fa-angle-down"></i>
-                </a>
-                <ul class="dropdown-menu pull-right">
-                   <!--  <li id="orgName" ><a href="#">所属：</a></li> -->
-                     <li><a href="javascript:myMessage();"><i class="fa fa-comments-o"></i> 我的消息</a></li>
-                     <li><a href="javascript:updateEmployee();"><i class="fa fa-pencil-square-o"></i> 个人设置</a></li> 
-                     <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li> 
-                    <!-- <li><a href="#"><i class="fa fa-eye "></i> 用户信息</a></li> -->
-                    <li><a href="<%=request.getContextPath()%>/coframe/auth/loginCloud/logout.jsp"><i class="fa fa-user"></i> 退出登录</a></li>
-                </ul>
-            </li>
-            <li class="dropdown" width="10px">
-                <a class="dropdown-toggle" style="padding-top: 18px;" >
-                    <span >换肤</span><i class="fa fa-angle-down" ></i>
-                </a>
-                <ul class="dropdown-menu pull-right" >
-                     <li ><a href="javascript:updateSkin('#368bf4');" ><div style="width:10px;height:15px;background-color: #368bf4;float:left;"></div>经典蓝</a></li>
-                     <li ><a href="javascript:updateSkin('#285e9f');" ><div style="width:10px;height:15px;background-color: #285e9f;float:left;"></div>深湛蓝</a></li>
-                     <li><a href="javascript:updateSkin('#f36205');"><div style="width:10px;height:15px;background-color: #f36205;float:left;"></div>秋日橙</a></li> 
-                     <li><a href="javascript:updateSkin('#c1c1c1');"><div style="width:10px;height:15px;background-color: #c1c1c1;float:left;"></div>极简灰</a></li>
-                     <li><a href="javascript:updateSkin('#42485b');"><div style="width:10px;height:15px;background-color: #42485b;float:left;"></div>炫酷黑</a></li>
-                </ul>
-            </li>
+
+
+                               
+                            <a class="kefu" >
+                                <!--<img class="user-img" src="res/images/user.jpg" />-->
+                                <!-- <span  > 当前登录人:</span> -->
+                                <span class="kefu-title" id="currUserName"></span>
+                            	<ul class="kefu-dropdown">
+	                                <!--  <li id="orgName" ><a href="#">所属：</a></li> -->
+	                                <li onclick="myMessage()" class="toTop">
+	                                        <span   class="fa fa-comments-o"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我的消息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                                </li>
+	                                <li onclick="updateEmployee()">
+	                                        <span class="fa fa-pencil-square-o"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;个人设置
+	                                </li>
+	                                <li onclick="updatePassWord()">
+	                                        <span class="fa fa-pencil-square-o"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;修改密码
+	                                </li>
+	                                <!-- <li><a href="javascript:resetIM();"><i class="fa fa-pencil-square-o"></i> 登录IM</a></li> -->
+	                                <!-- <li><a href="javascript:updateSkin();"><i class="fa fa-pencil-square-o"></i> 皮肤中心</a></li> -->
+	                                <!-- <li><a href="#"><i class="fa fa-eye "></i> 用户信息</a></li> -->
+	                                <li onclick="cancellation()">
+<%-- 	                                    <a href="<%=request.getContextPath()%>/coframe/auth/login/logout.jsp"> --%>
+	                                        <span class="fa fa-user"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;退出登录
+	                                </li>
+                            	</ul>
+                        </a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="kefu">
+                                <span class="kefu-title">换肤</span>
+                            <ul class="kefu-dropdown">
+                                <li onclick="updateSkin('#055594')" class="toTop">
+                                        <div style="width:10px;height:15px;background-color: #055594;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;经典蓝
+                      			</li>
+                                <li onclick="updateSkin('#369cf4d9')" >
+                                        <div style="width:10px;height:15px;background-color: #369cf4d9;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;亮蓝
+                                </li>
+  								<li onclick="updateSkin('#f36205a6')">
+                                        <div style="width:10px;height:15px;background-color: #f36205a6;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;秋日橙
+                                </li>
+<!--                                 <li onclick="updateSkin('#f36205')">
+                                        <div style="width:10px;height:15px;background-color: #f36205;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;秋日橙
+                                </li> -->
+<!--                                 <li onclick="updateSkin('#c1c1c1')">
+                                        <div style="width:10px;height:15px;background-color: #c1c1c1;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;极简灰
+                                </li> -->
+                                <li onclick="updateSkin('#42485b')">
+                                        <div style="width:10px;height:15px;background-color: #42485b;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;炫酷黑
+                                </li>
+                            </ul>
+                            </a>
+                        </li>
             <li class="dropdown">
-           		<a class="feedback-bt FeedBackButton" style="padding-top: 18px; ">
+           		<a class="feedback-bt FeedBackButton" style="padding-top: 20px; ">
 				    反馈
 				</a>
            	</li>
@@ -430,11 +459,13 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
 	            if(list.length==0){
 	                showMsg("此用户无法修改","W");
 	            }else{
-	      			if(list[0].backgroundColor!=null){
-	      				document.getElementById("skin").style.backgroundColor =list[0].backgroundColor; 
-	      			}else{
-	      				document.getElementById("skin").style.backgroundColor ="#368bf4"; 
-	      			}
+                    if (list[0].backgroundColor != null) {
+                        document.getElementById("skin").style.backgroundColor = list[0].backgroundColor;
+                        document.getElementById("mainMenu").style.backgroundColor = list[0].backgroundColor;
+                    } else {
+                        document.getElementById("skin").style.backgroundColor = "#0067b8";
+                        document.getElementById("mainMenu").style.backgroundColor = "#0067b8";
+                    }
 					
 	                    //list[0]
 	            }
@@ -654,7 +685,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
         
        //document.getElementById('orgName').innerHTML = '<a href="#">所属：'+currOrgName+'</a>';
        document.getElementById('currOrgName').innerHTML = currOrgName;
-       document.getElementById('currUserName').innerHTML = "当前登录人:" + currUserName + " ";
+       document.getElementById('currUserName').innerHTML = currUserName;
        
        $.ajax({
             url:  apiPath + sysApi + "/com.hs.common.login.authRequried.biz.ext",
@@ -813,5 +844,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
 	        }
 	    });
 	}
-
+ 	function cancellation(){
+ 		window.location="<%=request.getContextPath()%>/coframe/auth/loginCloud/logout.jsp";
+ 	} 
 </script>

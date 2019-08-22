@@ -108,6 +108,18 @@ $(document).ready(function(v) {
         if((keyCode==83)&&(event.altKey))  {   //保存
             save();
         } 
+        
+        if((keyCode==73)&&(event.altKey))  {   //选择销售出库单  Alt+I
+        	addPart();
+        } 
+        
+        if((keyCode==84)&&(event.altKey))  {   //提交 Alt+T
+        	audit();
+        } 
+      
+        if((keyCode==89)&&(event.altKey))  {   //入库 Alt+Y
+        	auditToEnter();
+        } 
       
         if((keyCode==80)&&(event.altKey))  {   //打印
             onPrint();

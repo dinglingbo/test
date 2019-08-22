@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
     <title>付款明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/report/js/finance/accountPDetail.js?v=1.0.2"></script>
+    <script src="<%=webPath + contextPath%>/report/js/finance/accountPDetail.js?v=1.0.3"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -51,6 +51,7 @@ pageEncoding="UTF-8" session="false" %>
                 <div type="indexcolumn"  headeralign="center" width="30">序号</div>
                 <div field="settAccountId" name="code" width="60" summaryType="count"  headeralign="center" >账户编码</div>
                 <div field="settAccountId" name="name" width="100"  headeralign="center" >账户名称</div>
+                <div field="orgName" name="name" width="100"  headeralign="center" >公司名称</div>
                 <div field="billServiceId" name="name" width="180"  headeralign="center" >业务单号</div>
                 <div field="billTypeId" name="name" width="100"  headeralign="center" >收支类型</div>
                 <div field="isPrimaryBusiness" name="name" width="100"  headeralign="center" >是否主营业务</div>

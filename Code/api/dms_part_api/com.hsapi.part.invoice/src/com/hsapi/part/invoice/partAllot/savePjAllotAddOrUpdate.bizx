@@ -168,7 +168,7 @@
     <process:inputVariables>
       <process:inputVariable id="0" name="conColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">id</process:inputVariable>
       <process:inputVariable id="1" name="conContent" type="query" value="int" valueType="Java" pattern="reference">main/id</process:inputVariable>
-      <process:inputVariable id="2" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.part.data.pts.PjAllotApplyMain</process:inputVariable>
+      <process:inputVariable id="2" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.part.data.pts.PjAllotMain</process:inputVariable>
       <process:inputVariable id="3" name="resColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">auditSign</process:inputVariable>
       <process:inputVariable id="4" name="dataSource" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
     </process:inputVariables>
@@ -329,7 +329,7 @@
     <process:inputVariables>
       <process:inputVariable id="0" name="conColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">id</process:inputVariable>
       <process:inputVariable id="1" name="conContent" type="query" value="int" valueType="Java" pattern="reference">main/id</process:inputVariable>
-      <process:inputVariable id="2" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.part.data.pts.PjAllotApplyMain</process:inputVariable>
+      <process:inputVariable id="2" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.part.data.pts.PjAllotMain</process:inputVariable>
       <process:inputVariable id="3" name="resColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">versionNo</process:inputVariable>
       <process:inputVariable id="4" name="dataSource" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
     </process:inputVariables>

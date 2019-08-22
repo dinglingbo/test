@@ -57,7 +57,7 @@
             where 1=1
             <dynamic>
             	<isNotEmpty prepend="and" property="orgid"> 
-                    (a.orgid = #orgid#)
+                    (a.orgid = #orgid# or a.guest_orgid = #orgid#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="id"> 
                     (a.id = #id#)

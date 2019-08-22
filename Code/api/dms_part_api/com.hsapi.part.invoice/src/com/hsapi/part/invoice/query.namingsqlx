@@ -323,6 +323,7 @@
     <!-- 批次-->
         <select id="queryPjPchsEnterMainDetailListBatch" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
 		SELECT
+		    a.id as id,
 			a.service_id as serviceId,
 			b.store_id as storeId,
 			a.orgid as orgid,

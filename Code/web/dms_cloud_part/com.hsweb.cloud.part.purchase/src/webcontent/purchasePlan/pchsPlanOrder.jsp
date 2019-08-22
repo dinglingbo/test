@@ -9,7 +9,7 @@
 -->
 <head>
 <title>计划采购</title>
-<script src="<%=webPath + contextPath%>/purchase/js/purchasePlan/pchsPlanOrder.js?v=1.0.23"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/purchasePlan/pchsPlanOrder.js?v=1.0.26"></script>
 <style type="text/css">
 .title {
 	width: 70px;
@@ -90,6 +90,7 @@ body .mini-grid-row-selected{
                 <a class="nui-button" iconCls="" plain="true" onclick="del()" visible="true" id="delBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="del()" visible="true" id="undelBtn"><span class="fa fa-reply fa-lg"></span>&nbsp;反作废</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
+                <a class="nui-button " iconCls="" plain="true" onclick="importPart()" ><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
                 <span id="status"></span>
             </td>
         </tr>

@@ -212,6 +212,8 @@
 				DMS_CLOUD_PART.pj_allot_apply_main A
 				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
 				INNER JOIN WB_COMMON.COM_COMPANY C ON C.orgid = A.orgid
+				LEFT JOIN DMS_CLOUD_PART.pj_allot_apply_detail D ON A.ID = D.MAIN_ID
+				
             where 1=1
             <dynamic>
             	<isNotEmpty prepend="and" property="orgid"> 
@@ -287,10 +289,10 @@
                     (A.CREATE_DATE &lt; #endDate#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partId">  
-                    (C.PART_ID = #partId#)
+                    (d.PART_ID = #partId#)
                 </isNotEmpty>
                  <isNotEmpty prepend="and" property="partCode">  
-                    (D.CODE like '%$partCode$%')
+                    (d.part_code like '%$partCode$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
                     (A.guest_id = #guestId#)
@@ -299,7 +301,7 @@
                     (A.guest_orgid = #guestOrgId#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partName">  
-                    (D.FULL_NAME like '%$partName$%')
+                    (E.FULL_NAME like '%$partName$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="auditSign">  
                 <!--审核状态-->
@@ -309,7 +311,7 @@
                     (A.service_id in ($serviceIdList$))
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCodeList">  
-                    (D.CODE in ($partCodeList$))
+                    (d.part_code in ($partCodeList$))
                 </isNotEmpty> 
                  <isNotEmpty prepend="and" property="creator">  
                     (a.creator = #creator#)
@@ -828,6 +830,7 @@
 			a.enter_unit_id as enterUnitId,
 			a.system_unit_id as systemUnitId,
 			a.apply_qty as applyQty,
+			a.apply_qty as orderQty,
 			a.order_price as orderPrice,
 			a.order_amt as orderAmt,
 			a.tax_price as taxPrice,
@@ -855,7 +858,12 @@
 			b.code_id as codeId,
 			c.`name` as orgName,
 			D.part_brand_id AS partBrandId,
+			D.part_brand_id AS comPartBrandId,
 			D.apply_car_model AS applyCarModel,
+			D.apply_car_model AS comApplyCarModel,
+			d.code as comPartCode,
+			d.name as  comPartName,
+			d.oem_code as comOemCode,
 			d.oem_code as oemCode
 		FROM
 			pj_allot_apply_detail a

@@ -4,6 +4,7 @@
 baseUrl = apiPath + sysApi + "/";;
 var gridUrl = baseUrl + "com.primeton.tenant.comProduct.comProductQuery.biz.ext";
 var timeUrl = baseUrl + "com.hsapi.system.employee.comCompany.getTime.biz.ext";
+var statusList = [{id:0,name:"启用"},{id:1,name:"禁用"}];
 var grid;
 var time;
 var person;
@@ -13,7 +14,6 @@ var cityList=[];
 var cityHash={};
 var queryForm;
 var provinceCode;
-nui.parse();
 var productStatus;
 var types;
 
@@ -33,13 +33,13 @@ $(document).ready(function(v) {
     			
     		}
     };   
-    grid.load(request,function(){
+/*    grid.load(request,function(){
         //成功;
        // nui.alert("数据成功！");
     },function(){
         //失败;
         nui.alert("数据失败！");
-    });
+    });*/
 	
 
 });
@@ -79,9 +79,9 @@ function getSearchParam() {
 }
 
 function doSearch(params) {
-    grid.load({
+/*    grid.load({
         params:params
-    });
+    });*/
 }
 
 
@@ -260,14 +260,14 @@ function ViewType(e){
         },
         ondestroy: function (action) {
         	var request;
-            grid.load(request,function(){
+/*            grid.load(request,function(){
                 //成功;
               
             	 nui.alert("数据成功！");
             },function(){
                 //失败;
                 nui.alert("数据失败！");
-            });
+            });*/
         }
     });
 
@@ -298,14 +298,14 @@ function remove(){
                	nui.unmask(document.body);
                	nui.alert("删除成功！");
               	var request;
-                grid.load(request,function(){
+/*                grid.load(request,function(){
                     //成功;
                   
                 	 nui.alert("数据成功！");
                 },function(){
                     //失败;
                     nui.alert("数据失败！");
-                });
+                });*/
                    }else {
                    nui.unmask(document.body);
                    nui.alert("删除失败！");
@@ -353,11 +353,11 @@ function upOrDown(types){
                	nui.unmask(document.body);
                	nui.alert("成功！");
               	var request;
-                grid.load(request,function(){
+/*                grid.load(request,function(){
                     nui.alert("数据成功！");
                 },function(){
                     nui.alert("数据失败！");
-                });
+                });*/
                    }else {
                    nui.unmask(document.body);
                    nui.alert("失败！");

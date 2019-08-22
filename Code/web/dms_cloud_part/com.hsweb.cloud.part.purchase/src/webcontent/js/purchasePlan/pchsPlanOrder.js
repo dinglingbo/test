@@ -1981,3 +1981,85 @@ function getStockLevel(){
         }
     });
 }
+
+function importPart(){
+    var row = leftGrid.getSelected();
+    if(!row){
+    	showMsg("请选择订单!","W");
+		return;
+    }
+	if(row.auditSign == 1){
+		showMsg("此单已审核!","W");
+		return;
+	}
+
+	var main = basicInfoForm.getData();
+	if(!main.id){
+		showMsg("请先保存单据!","W");
+		return;
+	}
+
+    nui.open({
+        // targetWindow: window,
+        url: webPath + contextPath + "/com.hsweb.cloud.part.purchase.getPartInfoImoprt.flow?token="+token,
+        title: "配件导入", 
+        width: 930, 
+        height: 560,
+        allowDrag:true,
+        allowResize:true,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.initData(function(data,msg){
+				if(data && data.length > 0){
+					addImportList(data,msg);
+				}
+			});
+        },
+        ondestroy: function (action)
+        {
+            var mainId = data.id;
+            loadRightGridData(mainId);
+        }
+    });
+}
+
+function addImportList(partList,msg){
+	if(partList && partList.length>0){		
+		var rows = [];
+		for (var i = 0; i < partList.length; i++) {
+			var part = partList[i];
+			var orderQty = parseFloat(part.orderQty);
+			var orderPrice = parseFloat(part.orderPrice);
+			var newRow = {
+				partId : part.partId,
+				comPartCode : part.partCode,
+				comPartName : part.partName,
+				comPartBrandId : part.partBrandId,
+				comApplyCarModel : part.applyCarModel,
+				comUnit : part.unit,
+				orderQty : orderQty,
+				orderPrice : orderPrice,
+				orderAmt : orderQty * orderPrice,
+				comOemCode : part.oemCode,
+				comSpec : part.spec,
+				partCode : part.partCode,
+				partName : part.partName,
+				fullName : part.fullName,
+				systemUnitId : part.unit,
+				enterUnitId : part.unit,
+				remark: part.remark
+			};
+
+			rows.push(newRow);
+		}	
+
+		rightGrid.addRows(rows);		
+		
+	}
+	if(msg){
+		nui.get("imprtPastCodeList").setValue("");
+		nui.get("imprtPastCodeList").setValue(msg);
+		advancedTipWin.show();
+	}
+}

@@ -10,9 +10,9 @@ pageEncoding="UTF-8" session="false" %>
 - Description:
 -->
 <head>
-    <title>收款明细</title>
+    <title>总部收款明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/report/js/finance/accountRDetail.js?v=1.0.2"></script>
+    <script src="<%=webPath + contextPath%>/report/js/finance/hqAccountRDetail.js?v=1.0.14"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -44,17 +44,21 @@ pageEncoding="UTF-8" session="false" %>
     </div>
     <div class="nui-fit">
         <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" 
-             ondrawcell="onDrawCell" showPager="true"  dataField="list"   url="" sortMode="client" 
+             ondrawcell="onDrawCell" showPager="true"  dataField="list"   url="" sortMode="client"  onshowrowdetail="onShowRowDetail"
              pageSize="100" sizeList="[50,100,200,500]" showSummaryRow="true">
             <div property="columns">
                 <div type="indexcolumn"  headeralign="center" width="30">序号</div>
+                <div type="expandcolumn"  width="20" >#</div>
                 <div field="settAccountId" name="code" width="60" summaryType="count"  headeralign="center" >账户编码</div>
                 <div field="settAccountId" name="name" width="100"  headeralign="center" >账户名称</div>
-                <div field="billServiceId" name="name" width="180"  headeralign="center" >业务单号</div>
-                <div field="billTypeId" name="name" width="100"  headeralign="center" >收支类型</div>
                 <div field="isPrimaryBusiness" name="name" width="100"  headeralign="center" >是否主营业务</div>
                 <div field="shortName" name="name" width="120"  headeralign="center" >客户简称</div>
-                <div field="charOffAmt" name="charOffAmt" width="60" summaryType="sum" headeralign="center" >收款金额</div>
+               <div field="rAmt" name="rAmt" width="50" summaryType="sum" headeralign="center" >应收金额</div>
+                <div field="pAmt" name="charOffAmt" width="50" summaryType="sum" headeralign="center" >应付金额</div>
+                <div field="sumAmt" name="charOffAmt" width="70" summaryType="sum" headeralign="center" >应收应付金额</div>
+                <div field="rBillQty" name="charOffAmt" width="70" summaryType="sum" headeralign="center" >应收单据数量</div>
+                <div field="pBillQty" name="charOffAmt" width="80" summaryType="sum" headeralign="center" >应付单据数量</div>
+                <div field="sumQty" name="sumQty" width="70" summaryType="sum" headeralign="center" >总单据数量</div>
                 <div field="auditor" name="auditor" width="60"  headeralign="center" >收款人</div>
                 <div field="remark" name="remark" width="100"  headeralign="center" >备注</div>
                 <div field="auditDate" name="auditDate" width="120" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" >收款日期</div>
@@ -64,6 +68,39 @@ pageEncoding="UTF-8" session="false" %>
         </div>
 
     </div>
+
+
+<div id="editFormtDetail" style="display:none;">
+    <div id="innerGrid" class="nui-datagrid" style="width:100%;height:150px"
+        showPager="false"
+       dataField="list"
+       idField="id"
+       showSummaryRow="true"     
+       ondrawcell="onDrawCell" 
+       oncellbeginedit=""
+       showModified="false"
+       multiSelect="true"
+       editNextOnEnterKey="true"
+       onshowrowdetail=""
+       url="">
+      <div property="columns">
+        <div type="indexcolumn"  headeralign="center" width="30">序号</div>
+        <div field="settAccountId" name="code" width="60" summaryType="count"  headeralign="center" >账户编码</div>
+        <div field="settAccountId" name="name" width="100"  headeralign="center" >账户名称</div>
+        <div field="orgName" name="name" width="100"  headeralign="center" >公司名称</div>
+        <div field="billServiceId" name="name" width="180"  headeralign="center" >业务单号</div>
+        <div field="billTypeId" name="name" width="100"  headeralign="center" >收支类型</div>
+        <div field="isPrimaryBusiness" name="name" width="100"  headeralign="center" >是否主营业务</div>
+        <div field="shortName" name="name" width="120"  headeralign="center" >客户简称</div>
+        <div field="charOffAmt" name="charOffAmt" width="60" summaryType="sum" headeralign="center" >收款金额</div>
+        <div field="auditor" name="auditor" width="60"  headeralign="center" >收款人</div>
+        <div field="remark" name="remark" width="100"  headeralign="center" >备注</div>
+        <div field="auditDate" name="auditDate" width="120" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" >收款日期</div>
+        <div field="fullName" name="name" width="180"  headeralign="center" >客户全称</div>
+   
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

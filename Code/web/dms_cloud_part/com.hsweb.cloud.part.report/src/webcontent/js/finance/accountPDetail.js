@@ -53,6 +53,7 @@ function doSearch() {
     params.guestId = advanceGuestIdEl.getValue();
     params.isMain = isMainEl.getValue();
     params.rpDc = -1;
+    params.orgid =currOrgId;
 
 	mainGrid.load({
 		params:params,

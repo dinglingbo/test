@@ -410,6 +410,11 @@ function onStraGridClick(e){
 	var params={};
 	var row = e.row;
 	var levelId = row.id ||0;
-	var params = {levelId: levelId,token:token};	
-	rightUnifyGrid.load({params:params,token:token});
+	if(levelId>0){
+		var params = {levelId: levelId,token:token};	
+		rightUnifyGrid.load({params:params,token:token});
+	}else{
+		rightUnifyGrid.setData([]);
+	}
+	
 }

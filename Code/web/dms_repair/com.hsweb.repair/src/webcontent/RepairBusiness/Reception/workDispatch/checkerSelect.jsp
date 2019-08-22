@@ -13,7 +13,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>质检员选择</title>
 <script
-	src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/workDispatch/js/checkerSelect.js?v=1.0.0"></script>
+	src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/workDispatch/js/checkerSelect.js?v=1.0.1"></script>
 	<style type="text/css">
 
 				body,

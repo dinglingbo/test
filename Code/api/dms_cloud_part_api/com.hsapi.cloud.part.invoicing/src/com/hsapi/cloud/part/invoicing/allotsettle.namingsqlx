@@ -828,6 +828,7 @@
 			a.enter_unit_id as enterUnitId,
 			a.system_unit_id as systemUnitId,
 			a.apply_qty as applyQty,
+			a.apply_qty as orderQty,
 			a.order_price as orderPrice,
 			a.order_amt as orderAmt,
 			a.tax_price as taxPrice,
@@ -855,7 +856,12 @@
 			b.code_id as codeId,
 			c.`name` as orgName,
 			D.part_brand_id AS partBrandId,
+			D.part_brand_id AS comPartBrandId,
 			D.apply_car_model AS applyCarModel,
+			D.apply_car_model AS comApplyCarModel,
+			d.code as comPartCode,
+			d.name as  comPartName,
+			d.oem_code as comOemCode,
 			d.oem_code as oemCode
 		FROM
 			pj_allot_apply_detail a

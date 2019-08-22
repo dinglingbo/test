@@ -1679,6 +1679,33 @@ function checkPartIDExists(partid){
     return null;
     
 }
+
+function addAllotDetail(rows){
+	for(var i=0; i<rows.length; i++){
+        var row = rows[i];
+        var newRow = {
+            partId : row.partId,
+            comPartCode : row.comPartCode,
+            comPartName : row.comPartName,
+            comPartBrandId : row.fullName,
+            comApplyCarModel : row.applyCarModel,
+            comUnit : row.systemUnitId,
+            acceptQty : 1,
+            orderPrice : 0,
+            orderAmt : 0,
+            comOemCode : row.oemCode,
+            comSpec : row.spec,
+            partCode : row.code,
+            partName : row.name,
+            fullName : row.fullName,
+            systemUnitId : row.systemUnitId,
+            outUnitId : row.unit
+        };
+
+
+        rightGrid.addRow(newRow);
+    }
+}
 function addDetail(rows)
 {
     //var iframe = this.getIFrameEl();
@@ -1879,4 +1906,59 @@ function removeChanges(added, modified, removed, all) {
     }
 
     return all;
+}
+
+function addAllotPart(){
+	  var row = leftGrid.getSelected();
+	    if(row){
+	        if(row.auditSign == 1) {
+	            return;
+	        } 
+	    }
+
+	    var guestId = nui.get("guestId").getValue();
+	    if(!guestId) {
+	        showMsg("请选择供应商!","W");
+	        return;
+	    }
+
+	    rightGrid.findRow(function(row){
+	        var partId = row.partId;
+	        var partCode = row.comPartCode;
+	        if(partId == null || partId == "" || partId == undefined || partCode == null || partCode == "" || partCode == undefined){
+	            rightGrid.removeRow(row);
+	        }
+	    });
+
+	    selectPart(function(data) {
+	    	addAllotDetail(data);
+	    },function(data) {
+	        var part = data.part;
+	        var partid = part.id;
+	        //var rtn = checkPartIDExists(partid);
+	        return rtn;
+	    });
+}
+
+function selectPart(callback,checkcallback)
+{
+    nui.open({
+        // targetWindow: window,
+        url: webPath + contextPath + "/com.hsweb.cloud.part.common.orderBillChoose.flow?token="+token,
+        title: "调拨入库单选择", width: 930, height: 560,
+        allowDrag:true,
+        allowResize:true,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            var data = {
+                orderTypeId: 3,
+                guestId: nui.get("guestId").getValue()
+            };
+            iframe.contentWindow.setInitData(data,callback,checkcallback);
+        },
+        ondestroy: function (action)
+        {
+        }
+    });
 }

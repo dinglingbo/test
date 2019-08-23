@@ -184,10 +184,12 @@
 			B.apply_car_model AS comApplyCarModel,
 			B.unit AS comUnit,
 			B.spec AS comSpec,
-			B.direction AS comDirection
+			B.direction AS comDirection,
+			C.outable_qty as outableQty
 		FROM
 			pj_allot_detail A
 			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
+			INNER JOIN pj_enter_detail_chk C ON a.enter_id = c.main_id and a.part_id = c.part_id
 			where 1=1 and (A.MAIN_ID = #mainId#)
             <isNotEmpty prepend="and" property="isAllotFinished">  
                 <!--审核状态-->

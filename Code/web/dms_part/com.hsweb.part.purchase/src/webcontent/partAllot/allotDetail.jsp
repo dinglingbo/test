@@ -34,6 +34,8 @@
 body .mini-grid-row-selected{
     background:#89c3d6 !important; 
 }
+.statusview{background:#78c800; color:#fff; padding:3px 20px; border-radius:20px;}
+.nvstatusview{color: #5a78a0;padding:3px 20px; border-radius:20px;border: 1px solid;}
 </style>
 </head>
 <body>
@@ -42,6 +44,8 @@ body .mini-grid-row-selected{
     <table style="width:100%;">
         <tr>
             <td style="width:100%;" align="right">
+                <label style="font-family:Verdana;"><span id="repairStatus" name="statusvi" class="nvstatusview" >草稿</span></label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save('0')" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="submit()" visible="true"  id="submitBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>
@@ -69,6 +73,7 @@ body .mini-grid-row-selected{
                               <input class="nui-hidden" name="operateDate"/>
                               <input class="nui-hidden" name="versionNo"/>
                               <input class="nui-hidden" name="status" id="status"/>
+                               <input class="nui-hidden" name="stockStatus" id="stockStatus"/>
                               <input class="nui-hidden" name="isDisabled" id="isDisabled"/>
                               <input class="nui-hidden" name="guestOrgid" id="guestOrgid"/>
                                <input class="nui-hidden" name="orgid" id="orgid"/>
@@ -264,7 +269,7 @@ body .mini-grid-row-selected{
                                       <div field="enterId" visible="false"width="60" headerAlign="center" header="入库ID"></div>
                                   </div>
                               </div>
-                              <div header="库存信息" headerAlign="center">
+                             <!--  <div header="库存信息" headerAlign="center">
                                   <div property="columns">
                                       <div field="storeStockQty" summaryType="sum"  width="60" headerAlign="center" header="库存">
                                       </div>
@@ -272,12 +277,12 @@ body .mini-grid-row-selected{
                                       </div>
                                       <div field="downLimit" width="60" headerAlign="center" allowSort="false" header="库存下限">
                                       </div>
-                                      <!-- <div field="upLimitWinter" width="80" headerAlign="center" allowSort="true" header="库存上限(冬季)">
+                                      <div field="upLimitWinter" width="80" headerAlign="center" allowSort="true" header="库存上限(冬季)">
                                       </div>
                                       <div field="downLimitWinter" width="80" headerAlign="center" allowSort="true" header="库存下限(冬季)">
-                                      </div> -->
+                                      </div>
                                   </div>
-                              </div> 
+                              </div>  -->
                               <div header="数量/价格信息" headerAlign="center">
                                   <div property="columns">
                                       <div field="orderQty" name="orderQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="申请数量">
@@ -292,6 +297,9 @@ body .mini-grid-row-selected{
                                       <div field="remark" width="120" headerAlign="center" allowSort="true" header="备注">
                                         <input property="editor" class="nui-textbox"/>
                                       </div>
+                                      <!-- <div field="remark" width="120" headerAlign="center" allowSort="true" header="备注" >
+                                        <input property="editor" class="nui-textbox"/>
+                                      </div> -->
                                   </div>
                               </div>
                               <div header="辅助信息" headerAlign="center">

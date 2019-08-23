@@ -212,7 +212,7 @@ function loadAuxiliaryGridData(maintain)
         return;
     }
     var params = {
-        pickType: "050204"
+        pickType: "050210"
     };
     auxiliaryGrid.load({
         token:token,

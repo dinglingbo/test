@@ -158,7 +158,7 @@ function quickSearch(type){
 }
 function doSearch(params)
 {
-    params.enterTypeId = '050104';//销售退货
+    params.enterTypeId = '050110';//销售退货
     rightGrid.load({
         params:params
     });

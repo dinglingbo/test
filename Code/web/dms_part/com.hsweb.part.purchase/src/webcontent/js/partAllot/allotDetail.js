@@ -146,6 +146,14 @@ $(document).ready(function(v)
             	 e.cancel = true;
              }
          }
+         if(field == 'comPartCode'){
+        	 if( data.orgid == currOrgid){
+                 e.cancel = false ;
+             }else{
+            	 e.cancel = true;
+             }
+         }
+         
     });
     
 	/*
@@ -187,7 +195,8 @@ $(document).ready(function(v)
     });
 
     //add();
-    
+	document.getElementById("repairStatus").style.display='none';
+
 });
 
 function loadMainAndDetailInfo(row)
@@ -786,6 +795,7 @@ function add()
 	addNewRow();
 	setInputModel();
 	showButton();
+	document.getElementById("repairStatus").style.display='none';
 }
 //提交单元格编辑数据前激发
 function onCellCommitEdit(e) {
@@ -1171,6 +1181,10 @@ function adjustPart(){
  */
 var supplier = null;
 function selectSupplier(elId) {
+	var data = basicInfoForm.getData();
+	 if( data.orgid != currOrgid){
+		 return;
+	 }
     supplier = null;
     nui.open({
         // targetWindow: window,,
@@ -1304,7 +1318,7 @@ function addDetail(rows)
     var row = rows.part||{};
     if(row) {
         var newRow = {
-        		enterId:row.id,
+        		enterId:row.detailId,
         		partId : row.partId,
                 comPartCode :  row.partCode,
                 comPartName : row.partName,
@@ -1362,12 +1376,90 @@ function refuse(){
 	save(3);
 }
 //入库
+var enterStoreUrl = baseUrl + "com.hsapi.part.invoice.partAllot.allotPartEnter.biz.ext";
 function inStock(){
 	//save(4);
+	var bool = checkStatus(4);
+    if(!bool){
+    	return;
+    }
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '出库中...'
+    });
+    var main = basicInfoForm.getData();
+    var id = main.id;
+    var guestName = nui.get("guestId").getText();
+    nui.ajax({
+        url : enterStoreUrl,
+        type : "post",
+        data : JSON.stringify({
+        	mainId : id,
+        	guestName : guestName,
+            token : token
+        }),
+        success : function(data) {
+            nui.unmask(document.body);
+            data = data || {};
+            if (data.errCode == "S") {
+                showMsg("入库成功","S");
+                nui.get("stockStatus").setVualue=4;
+                main.stockStatus = 4;
+                doSetStyle(main);
+            } else {
+                showMsg(data.errMsg,"E");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            // nui.alert(jqXHR.responseText);
+        	 nui.unmask(document.body);
+            console.log(jqXHR.responseText);
+        }
+    });
 }
 //出库
+var outStoreUrl = baseUrl + "com.hsapi.part.invoice.partAllot.allotPartOut.biz.ext";
 function outStock(){
 	//save(5);
+	var bool = checkStatus(5);
+    if(!bool){
+    	return;
+    }
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '出库中...'
+    });
+    var main = basicInfoForm.getData();
+    var mainId = main.id;
+    var guestName = nui.get("guestId2").getText();
+    nui.ajax({
+        url : outStoreUrl,
+        type : "post",
+        data : JSON.stringify({
+        	mainId : mainId,
+        	guestName : guestName,
+            token : token
+        }),
+        success : function(data) {
+            nui.unmask(document.body);
+            data = data || {};
+            if (data.errCode == "S") {
+                showMsg("出库成功","S");
+                nui.get("stockStatus").setVualue=3;
+                main.stockStatus = 3;
+                doSetStyle(main)
+            } else {
+                showMsg(data.errMsg,"E");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            // nui.alert(jqXHR.responseText);
+        	 nui.unmask(document.body);
+            console.log(jqXHR.responseText);
+        }
+    });
 }
 
 var saveUrl = baseUrl + "com.hsapi.part.invoice.partAllot.savePjAllot.biz.ext";
@@ -1399,11 +1491,11 @@ function save(type) {
     }*/
     
     //var rightRow =rightGrid.getData();
-    checkStatus(type);
-    data = getMainData();
-    if(type==1){
-    	
+    var bool = checkStatus(type);
+    if(!bool){
+    	return;
     }
+    data = getMainData();
     var orderManId = nui.get("orderMan").value;
     data.orderManId = orderManId;
     var orderMan = nui.get("orderMan").getText();
@@ -1445,11 +1537,8 @@ function save(type) {
                 var pjAllotMainList = data.pjAllotMainList;
                 if(pjAllotMainList && pjAllotMainList.length>0) {
                     var leftRow = pjAllotMainList[0];
-                  /*  var row = leftGrid.getSelected();
-                    leftGrid.updateRow(row,leftRow);
-                    //保存成功后重新加载数据
-                    loadMainAndDetailInfo(leftRow);*/
                     basicInfoForm.setData(leftRow);
+                    doSetStyle(leftRow);
                     loadRightGridData(leftRow.id);
                 }
             } else {
@@ -1502,8 +1591,10 @@ function setInitData(p){
 			 }else{
 				 //受理方
 				 if(allotMian.enterStoreId && allotMian.outStoreId){
-					 nui.get('enterStoreId').setText(storeHashAll[allotMian.enterStoreId].name);
-					 nui.get('outStoreId').setText(storeHashAll[allotMian.outStoreId].name);
+					 nui.get('enterStoreId').setData(storehouseAll);
+					 nui.get('enterStoreId').setValue(allotMian.enterStoreId);
+					 nui.get('outStoreId').setData(storehouseAll);
+					 nui.get('outStoreId').setValue(allotMian.outStoreId);
 				 }
 				 nui.get('orderMan').setText(allotMian.orderMan);
 				 setReadOnlyMsg();//只读
@@ -1638,6 +1729,7 @@ function queryMain(mainId,callback){
  		       /*nui.get("outStoreId").setValue(allotMian.outStoreId);
  		       nui.get("enterStoreId").setValue(allotMian.enterStoreId);*/
  		       showButton(allotMian);
+ 		       doSetStyle(allotMian);
  		       callback && callback(allotMian);
  			}else{
  				nui.unmask(document.body);
@@ -1818,14 +1910,17 @@ function checkStatus(type){
 		if(type==0){
 			if(status==1){
 				showMsg("调拨单已提交,不能修改","W");
+				return false;
 			}
 			if(status==4){
 				showMsg("调拨单已作废,不能修改","W");
+				return false;
 			}
 		}
 		if(type==1){
 			if(status>1){
 				showMsg("调拨单已提交","W");
+				return false;
 			}
 		}
 		//入库
@@ -1838,27 +1933,32 @@ function checkStatus(type){
 			}*/
 			if(stockStatus!=3){
 				showMsg("调拨单出库,不能入库","W");
+				return false;
 			}
 		}
 	}else{
 		if(type==2){
-			if(status>2){
+			if(status>1){
 				showMsg("调拨单已受理","W");
+				return false;
 			}
 		}
 		if(type==3){
 			if(status>3){
 				showMsg("调拨单已拒绝","W");
+				return false;
 			}
 		}
 		//出库
 		if(type==5){
 			if(status<3){
 				showMsg("调拨单未受理，不能出库","W");
+				return false;
 			}
 		}
 		
 	}
+	return true;
 }
 
 
@@ -1994,7 +2094,7 @@ function addSelectPart(){
             enterUnitId : row.unit
         };*/
         var newRow = {
-        		enterId:row.id,
+        		enterId:row.detailId,
         		partId : row.partId,
                 comPartCode :  row.partCode,
                 comPartName : row.partName,
@@ -2032,3 +2132,35 @@ function addSelectPart(){
     }
 }
 
+//
+function doSetStyle(data){
+	document.getElementById("repairStatus").style.display = "";
+	if(data.status==0){
+		document.getElementById("repairStatus").innerHTML = "草稿";
+		$("#repairStatus").attr("class", "statusview");
+	}else if(data.status==1){
+		if(data.orgid == currOrgid){
+			document.getElementById("repairStatus").innerHTML = "已提交";
+		}else{
+			document.getElementById("repairStatus").innerHTML = "待受理";
+		}
+		$("#repairStatus").attr("class", "statusview");
+	}else if(data.status==2){
+		if(data.stockStatus == 1){
+			document.getElementById("repairStatus").innerHTML = "待入库";
+		}else if(data.stockStatus == 2){
+			document.getElementById("repairStatus").innerHTML = "待出库";
+		}else if(data.stockStatus == 3){
+			document.getElementById("repairStatus").innerHTML = "已出库";
+		}else if(data.stockStatus == 4){
+			document.getElementById("repairStatus").innerHTML = "已入库";
+		}
+		$("#repairStatus").attr("class", "statusview");
+	}else if(data.status==3){
+		document.getElementById("repairStatus").innerHTML = "已拒绝";
+		$("#repairStatus").attr("class", "statusview");
+	}else if(data.status==4 ){
+		document.getElementById("repairStatus").innerHTML = "已作废";
+		$("#repairStatus").attr("class", "statusview");
+	}
+}

@@ -273,6 +273,8 @@ public class MenuUtil {
 
 	}
 	
+	//checkActionAuth 20190823前判断是否有功能权限
+	//20190823修改：先判断产品是否在有效期，然后再判断是否有功能权限，过了有效期根据产品编码跳转对应充值，没有权限跳转/coframe/auth/noAuth.jsp	
 	@SuppressWarnings("finally")
 	@Bizlet
 	public static boolean checkActionAuth(ServletRequest request) {
@@ -302,6 +304,11 @@ public class MenuUtil {
 			
 	        String sysDomain = Env.getContributionConfig("system", "url", "webDomain", "SYS");
 	        String webPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();  
+	        
+	        //20190823 根据页面地址查询产品ID，根据产品ID和租户ID查询是否在有效期内
+	        //如果根据页面地址查询不到产品ID，则说明此功能不属于某一产品，不受有效期的控制
+	        //产品对应功能中，产品直接对应页面地址，如果页面地址有变，则需要修改产品对应功能中的页面地址
+	        //页面地址 + 产品ID 缓存， 产品ID、租户ID + 租户产品有效期  缓存， 产品ID 对应  功能列表 缓存  key + value
 	    	
 			DataObject[] appArr = ResauthUtils.getAppFunction();
 			if(appArr.length > 0) {

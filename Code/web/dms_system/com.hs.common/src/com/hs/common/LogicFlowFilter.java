@@ -91,14 +91,19 @@ public class LogicFlowFilter implements Filter {
 					(HttpServletRequest) req);
 		}
 		if(url.indexOf(".flow") > 0) {
+			//checkActionAuth 20190823前判断是否有功能权限
+			//20190823修改：先判断产品是否在有效期，然后再判断是否有功能权限，过了有效期根据产品编码跳转对应充值，没有权限跳转/coframe/auth/noAuth.jsp
 			boolean check = MenuUtil.checkActionAuth(requestWrapper);
 			if(!check) {
 				//String contextPath = StringUtil.htmlFilter(req.getContextPath());
 				//url=contextPath + "/coframe/auth/noAuth.jsp";
 				//RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 				//dispatcher.forward(requestWrapper, response);
+				request.getRequestDispatcher("/tenant/chainCarCoin/chainCarCoinRecharge.jsp?type=charge").forward(request, response);
 				request.getRequestDispatcher("/coframe/auth/noAuth.jsp").forward(request, response);
 				return;
+				//request.getRequestDispatcher("/coframe/auth/noAuth.jsp").forward(request, response);
+				//return;
 			}
 		}
 		   

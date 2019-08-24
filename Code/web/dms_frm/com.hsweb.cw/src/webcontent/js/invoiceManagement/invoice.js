@@ -183,6 +183,7 @@ function checkValue(e){//实时监听税率输出的值
 }
 
 function onCellEditEnter(e) {
+	type = null;
 	var record = e.record;
 	var cell = grid.getCurrentCell();//行，列
 	if(cell && cell.length >= 2){
@@ -202,6 +203,17 @@ function onCellEditEnter(e) {
 			}
 		}
 	}
+}
+
+var type = null;
+function addRepair() {
+	type = "add";
+	advancedMorePartWin.show();
+	var params = {
+			token:token
+	};
+	moreGrid.setUrl(baseUrl+"com.hsapi.repair.repairService.query.querySettleList.biz.ext");
+	moreGrid.load({params : params,token : token});
 }
 
 //提交单元格编辑数据前激发
@@ -226,7 +238,18 @@ function addSelect(){
 				guestName : row.guestName
 		};
 		row = grid.getSelected();
-		grid.updateRow(row,newRow);
+		if(type == "add"){
+			var data = grid.getData();
+			if(data.length==1){
+				var temp = data[0];
+				if(temp.serviceCode==""){
+					grid.removeRow(temp);
+				}
+			}
+			grid.addRow(newRow);
+		}else{
+			grid.updateRow(row,newRow);
+		}
 		advancedMorePartWin.hide();
 	}
 }

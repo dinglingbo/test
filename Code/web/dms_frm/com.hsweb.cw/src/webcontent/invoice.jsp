@@ -12,7 +12,7 @@
 <head>
 	<title>开票单</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<script src="<%= request.getContextPath() %>/cw/js/invoiceManagement/invoice.js?v=1.2" type="text/javascript"></script>
+	<script src="<%= request.getContextPath() %>/cw/js/invoiceManagement/invoice.js?v=1.3" type="text/javascript"></script>
 </head>
 <style type="text/css">
         a.optbtn {
@@ -106,6 +106,16 @@
 			</form>
 
 		</div>
+		<div class="nui-toolbar" style="padding:2px;border-left:2px;">
+          <table style="width:100%;">
+              <tr>
+                  <td style="white-space:nowrap;" style="width:120px;">
+                      <a class="nui-button" plain="true" iconCls="" onclick="addRepair()" id="addPartBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;选择</a>
+                      <a class="nui-button" plain="true" iconCls="" onclick="remove()" id="deletePartBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
+                  </td>
+              </tr>
+          </table>
+      </div>
 		<div class="nui-fit">
 			<div id="grid" class="nui-datagrid " datafield="ticketDetail"  showsummaryrow="true" ondrawsummarycell="onDrawSummaryCell"editNextOnEnterKey="true" onCellEditEnter="onCellEditEnter"oncellbeginedit="oncellbeginedit" allowCellEdit="true"allowHeaderWrap="true"allowCellSelect="true" allowcelledit="true" url="" allowcellwrap="true" style="width:100%;height:100%;" allowcellselect="true">
 				<div property="columns">

@@ -20,7 +20,7 @@ var sOrderDate = null;
 var eOrderDate = null;
 var dataList = null;
 var FStoreId = null;
-var isNeedSet = false;
+
 
 var AuditSignHash = {
   "0":"草稿",
@@ -95,18 +95,7 @@ $(document).ready(function(v)
         }
 	}
     
-    getStorehouse(function(data) {
-		storehouse = data.storehouse || [];
-		nui.get('storeId').setData(storehouse);
-		if(storehouse && storehouse.length>0){
-			FStoreId = storehouse[0].id;
-			storehouse.forEach(function(v){
-        		storeHash[v.id]=v;
-        	});
-		}else{
-			isNeedSet = true;
-		}
-    });
+   
    
     add();
 
@@ -329,7 +318,7 @@ function setBtnable(flag)
     }
 }
 var requiredField = {
-	storeId  : "仓库",
+ 
     orderMan : "业务员",
     orderDate : "订单日期",
 
@@ -339,7 +328,7 @@ function save() {
     var data = basicInfoForm.getData();
     for ( var key in requiredField) {
         if (!data[key] || $.trim(data[key]).length == 0) {
-            parent.showMsg(requiredField[key] + "不能为空!","W");
+            showMsg(requiredField[key] + "不能为空!","W");
             return;
         }
     }
@@ -347,7 +336,7 @@ function save() {
     var row = leftGrid.getSelected();
     if(row){
         if(row.auditSign == 1) {
-            parent.showMsg("此单已提交!","W");
+            showMsg("此单已提交!","W");
             return;
         } 
     }else{
@@ -362,7 +351,7 @@ function save() {
 	for(var i=0;i<rightRow.length;i++){
 		if(Object.getOwnPropertyNames(storeLimitMap ).length >0){
 			if(!storeLimitMap.hasOwnProperty(rightRow[i].storeId)  && storeHash[rightRow[i].storeId]){
-				parent.showMsg("没有选择"+storeHash[rightRow[i].storeId].name+"的权限","W");
+				showMsg("没有选择"+storeHash[rightRow[i].storeId].name+"的权限","W");
 				return;
 			}
 		}
@@ -399,7 +388,7 @@ function save() {
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                parent.showMsg("保存成功!","S");
+                showMsg("保存成功!","S");
                 //onLeftGridRowDblClick({});
                 var pjSellOrderMainList = data.pjSellOrderMainList;
                 if(pjSellOrderMainList && pjSellOrderMainList.length>0) {
@@ -413,7 +402,7 @@ function save() {
                     
                 }
             } else {
-                parent.showMsg(data.errMsg || "保存失败!","E");
+                showMsg(data.errMsg || "保存失败!","E");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -538,7 +527,7 @@ function doSearch(params)
 function checkNew() 
 {
     var rows = leftGrid.findRows(function(row){
-        if(row.serviceId == "新配件组装") return true;
+        if(row.serviceId == "新配件拆分") return true;
     });
     
     return rows.length;
@@ -581,7 +570,7 @@ function audit()
     var data = basicInfoForm.getData();
     for ( var key in requiredField) {
         if (!data[key] || $.trim(data[key]).length == 0) {
-            parent.showMsg(requiredField[key] + "不能为空!","W");
+            showMsg(requiredField[key] + "不能为空!","W");
             return;
         }
     }
@@ -589,7 +578,7 @@ function audit()
     var row = leftGrid.getSelected();
     if(row){
         if(row.auditSign == 1) {
-            parent.showMsg("此单已出库!","W");
+            showMsg("此单已出库!","W");
             return;
         } 
     }else{
@@ -599,13 +588,13 @@ function audit()
     //审核时，数量，单价，金额，仓库不能为空
     var msg = checkStockOutQty();
     if(msg){
-        parent.showMsg(msg,"W");
+        showMsg(msg,"W");
         return;
     }
     //审核时，判断是否存在缺货信息
     var msg = checkRightData();
     if(msg){
-        parent.showMsg(msg,"W");
+        showMsg(msg,"W");
         return;
     }
 
@@ -616,7 +605,7 @@ function audit()
     var sellOrderDetailDelete = rightGrid.getChanges("removed");
     var sellOrderDetailList = rightGrid.getData();
     if(sellOrderDetailList.length <= 0) {
-        parent.showMsg("销售明细为空，不能提交!","W");
+        showMsg("销售明细为空，不能提交!","W");
         return;
     }
     
@@ -625,7 +614,7 @@ function audit()
 	for(var i=0;i<rightRow.length;i++){
 		if(Object.getOwnPropertyNames(storeLimitMap ).length >0){
 			if(!storeLimitMap.hasOwnProperty(rightRow[i].storeId) && storeHash[rightRow[i].storeId]){
-				parent.showMsg("没有选择"+storeHash[rightRow[i].storeId].name+"的权限","W");
+				showMsg("没有选择"+storeHash[rightRow[i].storeId].name+"的权限","W");
 				return;
 			}
 		}
@@ -658,7 +647,7 @@ function audit()
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                parent.showMsg("退货成功!","S");
+                showMsg("退货成功!","S");
                 //onLeftGridRowDblClick({});
                 var pjSellOrderMainList = data.pjSellOrderMainList;
                 if(pjSellOrderMainList && pjSellOrderMainList.length>0) {
@@ -678,7 +667,7 @@ function audit()
     				});
                 }
             } else {
-                parent.showMsg(data.errMsg || "退货失败!","W");
+                showMsg(data.errMsg || "退货失败!","W");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -692,13 +681,10 @@ function audit()
 function add()
 {
   
-	if(isNeedSet){
-		parent.parent.showMsg("请先到仓库定义功能设置仓库!","W");
-		return;
-	}
+
     if(checkNew() > 0) 
     {
-        parent.parent.showMsg("请先保存数据!","W");
+        showMsg("请先保存数据!","W");
         return;
     }
 
@@ -730,8 +716,6 @@ function add()
                     nui.get("orderMan").setValue(currUserName);
                     
                     addNewRow();
-                    var storeId = nui.get("storeId");
-                    storeId.focus();
                    
 
                 }else {
@@ -758,9 +742,6 @@ function add()
         nui.get("orderMan").setValue(currUserName);
 
         addNewRow();
-        
-        var storeId = nui.get("storeId");
-        storeId.focus();
       
     }
 
@@ -930,7 +911,7 @@ function onStoreValueChange(e){
 		}
 		if(Object.getOwnPropertyNames(storeLimitMap ).length >0){
 			if(!storeLimitMap.hasOwnProperty(id) && storeHash[id].name){
-				parent.showMsg("没有选择"+storeHash[id].name+"的权限","W");
+				showMsg("没有选择"+storeHash[id].name+"的权限","W");
 				return;
 			}
 		}
@@ -1012,7 +993,7 @@ function addSelectPart(){
         morePartGrid.setData([]);
         
     }else{
-        parent.showMsg("请选择配件!","W");
+        showMsg("请选择配件!","W");
         return;
     }
 }

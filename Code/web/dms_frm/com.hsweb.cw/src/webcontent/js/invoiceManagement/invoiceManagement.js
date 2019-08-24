@@ -10,7 +10,7 @@ $(document).ready(function () {
 	
 	grid = nui.get("grid");
 	grid.setUrl(baseUrl+"com.hsapi.repair.repairService.query.selectInvoiceMain.biz.ext");
-	grid.load({token : token});
+	refresh();
 	
 	  var filter = new HeaderFilter(grid, {
 	        columns: [
@@ -46,7 +46,7 @@ $(document).ready(function () {
      		}
 		}
      });
-	 grid.on("rowdbclick",function(){
+	 grid.on("rowdblclick",function(){
 		 newBill(2);
 	 });
 	 var dicDefs = {"invoiceType":"DDT20130703000008"};
@@ -85,18 +85,23 @@ function refresh(){
 function newBill(e) {
     var item={};
     item.id = "TicketOpeningMgr";
-    item.text = "开票单";
+    item.text = "开票单详情";
     var url = null;
+    var params = {}
     if(e == 1){
-    	url = "/cwY.invoice.flow?token="+token;
+    	url = webPath + contextPath + "/cwY.invoice.flow?token="+token;
     }else{
     	row = grid.getSelected();
     	if(row){
-    		url = "/cwY.invoice.flow?state=1&serviceCode="+row.serviceCode+"&main="+row.main;
+    		url = webPath + contextPath + "/cwY.invoice.flow?state=1&serviceCode="+row.serviceCode+"&main="+row.main;
+    		params = row;
+    	}else{
+    		showMsg("请选择一条记录","W");
+    		return;
     	}
     }
     item.url = webPath + contextPath + url;
     item.iconCls = "fa fa-cog";
-    window.parent.activeTab(item);
+    window.parent.activeTabAndInit(item,params);
 }
 

@@ -52,7 +52,7 @@
                </td>
               <td style="width:500px">
                  <a class="nui-button" iconCls="" plain="true" onclick="search"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                 <a class="nui-button" iconCls="" plain="true" onclick="onOk" id="onOk">
+                 <a class="nui-button" iconCls="" plain="true" onclick="onCommon()" id="onOk">
                  <span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
                  <a class="nui-button" iconCls="" plain="true" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
               </td>
@@ -95,7 +95,7 @@
               <div header="其他信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="storeId" width="90" headerAlign="center" header="仓库"></div>
-                    <div allowSort="true" field="storeShelf" width="60" headerAlign="center" header="仓位"></div>
+                    <!-- <div allowSort="true" field="storeShelf" width="60" headerAlign="center" header="仓位"></div> -->
                    <!--  <div allowSort="true" field="chainStockAge" width="60" headerAlign="center" header="库龄"></div> -->
                     <div field="guestFullName" name="guestFullName" width="180" headerAlign="center" header="供应商" allowSort="true"></div>
                     <!-- <div field="orderMan" name="orderMan" width="60" headerAlign="center" header="采购员"></div>

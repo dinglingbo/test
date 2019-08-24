@@ -54,17 +54,18 @@
             <tr>
                 <td>
              <label>快速查询：</label>
-             <a class="nui-menubutton " menu="#popupMenuType" id="menunametype">所有</a>
+             <a class="nui-menubutton " menu="#popupMenuType" id="menunamestatus">所有</a>
                 <ul id="popupMenuType" class="nui-menu" style="display:none;">
-              <li iconCls="" onclick="quickSearch(13)" id="type10">所有</li>
+              <li iconCls="" onclick="quickSearch(0)" id="type0">所有</li>
               <span class="separator"></span>
-                <li iconCls="" onclick="quickSearch(6)" id="type6">草稿</li>
-                 <li iconCls="" onclick="quickSearch(7)" id="type7">已提交</li>
-                <li iconCls="" onclick="quickSearch(7)" id="type7">待受理</li>
-                <li iconCls="" onclick="quickSearch(8)" id="type8">已受理</li>
-                <li iconCls="" onclick="quickSearch(6)" id="type6">待出库</li>
-                <li iconCls="" onclick="quickSearch(7)" id="type7">已出库</li>
-                <li iconCls="" onclick="quickSearch(8)" id="type8">待入库</li>
+              <li iconCls="" onclick="quickSearch(0)" id="type0">所有</li>
+                <li iconCls="" onclick="quickSearch(1)" id="type1">草稿</li>
+                 <li iconCls="" onclick="quickSearch(2)" id="type2">已提交</li>
+                <li iconCls="" onclick="quickSearch(3)" id="type3">待受理</li>
+                <li iconCls="" onclick="quickSearch(4)" id="type4">已受理</li>
+                <li iconCls="" onclick="quickSearch(5)" id="type5">待出库</li>
+                <li iconCls="" onclick="quickSearch(6)" id="type6">已出库</li>
+                <li iconCls="" onclick="quickSearch(7)" id="type7">待入库</li>
                 <li iconCls="" onclick="quickSearch(8)" id="type8">已入库</li>
             </ul>
           <label>调入仓库：</label>
@@ -105,8 +106,8 @@
      	<span class="separator"></span>
      	<a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
         <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
-     	<span class="separator"></span>
-		 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a> 
+     	<!-- <span class="separator"></span>
+		 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a> --> 
          </td>
             </tr>
         </table>
@@ -134,7 +135,7 @@
 			<div property="columns">
                   <div type="indexcolumn">序号</div>
                     <div field="serviceId" headerAlign="center" width="150" header="单号"></div>
-                    <!-- <div field="outStoreId" headerAlign="center" width="150" header="调出仓库"></div> -->
+                    <div field="outStoreId" headerAlign="center" width="150" header="调出仓库"></div>
                     <div field="guestOrgid" headerAlign="center" width="150" header="调出门店"></div>
                     <div field="enterStoreId" headerAlign="center" width="150" header="调入仓库"></div>
                     <div field="orgid" headerAlign="center" width="150" header="调入门店"></div>

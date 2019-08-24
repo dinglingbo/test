@@ -1,7 +1,9 @@
 var carCoin = [];//全部链车币
+
 $(document).ready(function(v) {
 	loadCarCoin();
 
+	nui.alert(type);
 });
 
 

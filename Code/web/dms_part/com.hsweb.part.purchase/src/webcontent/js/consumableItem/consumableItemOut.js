@@ -73,7 +73,7 @@ function onSearch2()
 }
 function doSearchRight(params)
 {
-    params.pickType = "050204";
+    params.pickType = "050210";
     params.serviceId = "0";
     params.orgid = currOrgid;
     rightGrid.load({

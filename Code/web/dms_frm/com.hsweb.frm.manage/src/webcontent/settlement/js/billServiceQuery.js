@@ -489,7 +489,7 @@ function onShowRowDetail(e) {
                 token: token
             });
             break;
-        case "050104":
+        case "050110":
             td.appendChild(editFormPchsEnterDetail);
             editFormPchsEnterDetail.style.display = "";
 
@@ -500,7 +500,7 @@ function onShowRowDetail(e) {
                 token: token
             });
             break;
-        case "050204":
+        case "050210":
             td.appendChild(editFormSellOutDetail);
             editFormSellOutDetail.style.display = "";
 

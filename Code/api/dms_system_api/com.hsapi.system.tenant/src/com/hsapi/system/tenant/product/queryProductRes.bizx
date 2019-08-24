@@ -16,7 +16,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.system.data.sys.ComTenantMenu[]" name="list" type="query" valueType="DataObject">list</process:return>
+      <process:return id="0" language="com.hsapi.system.data.sys.ComSysProductRes[]" name="list" type="query" valueType="DataObject">list</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -39,12 +39,12 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.system.data.sys.ComTenantMenu</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.system.data.sys.ComSysProductRes</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">tenantId</process:from>
-      <process:to type="query">cond/_expr[1]/tenantId</process:to>
+      <process:from type="query" pattern="reference">productId</process:from>
+      <process:to type="query">cond/_expr[1]/productId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
@@ -113,13 +113,13 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" name="tenantId" primitiveType="String"/>
+    <process:input description="" isArray="false" name="productId" primitiveType="Int"/>
     <process:input description="APP,PC" isArray="false" name="type" primitiveType="String"/>
     <process:input description="" isArray="false" name="resName" primitiveType="String"/>
     <process:input description="" isArray="false" name="resId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.system.data.sys.ComTenantMenu" name="list"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.system.data.sys.ComSysProductRes" name="list"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

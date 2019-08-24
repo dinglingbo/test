@@ -3,64 +3,64 @@ var typeList = [{id:0,name:"功能模块"},{id:1,name:"接口调用"}];
 var form = null;
 
 $(document).ready(function(v) {
-	var form = new nui.Form("#form1");
-	var productLimitedCycle = nui.get("cycle");//产品限定周期
-	var costNumCycle = nui.get("consumptionTimes");//周期消费次数
-	var isLimitedCycle = nui.get("isCycle");//是否限定周期
-
+	form = new nui.Form("#form1");
+/*	nui.get("type").setValue(0);
+	nui.get("isDisabled").setValue(0);*/
+	typeChanged();
 });
-function isLimitedCycleChanged() {
-	var isLimitedCycle_value = isLimitedCycle.getValue();
-	if (isLimitedCycle_value == "0") {
-		costNumCycle.setVisible(false);
-		costNumCycle.setValue(null);
-		costNumCycle.setRequired(false);
-		costNumCycle.setIsValid(true);
-		productLimitedCycle.setVisible(false);
-		productLimitedCycle.setValue(null);
-		productLimitedCycle.setRequired(false);
-		productLimitedCycle.setIsValid(true);
+function typeChanged() {
+	var type = nui.get("type").getValue();
+	if (type == 1) {
+		$("#proUrl").show();
+		$("#callNeedCoin").show();
+		$("#sellPrice").hide();
+		$("#periodValidity").hide();
+		$("#proUrlAll").show();
+		$("#callNeedCoinAll").show();
+		$("#sellPriceAll").hide();
+		$("#periodValidityAll").hide();
+		
+		nui.get("sellPrice").setValue("");
+		nui.get("periodValidity").setValue("");
 	} else {
-		costNumCycle.setVisible(true);
-		costNumCycle.enable();
-		costNumCycle.setRequired(true);//设置为必填
-		productLimitedCycle.setVisible(true);
-		productLimitedCycle.setRequired(true);
-		productLimitedCycle.enable();
+		$("#proUrlAll").hide();
+		$("#callNeedCoinAll").hide();
+		$("#sellPriceAll").show();
+		$("#periodValidityAll").show();
+		$("#proUrl").hide();
+		$("#callNeedCoin").hide();
+		$("#sellPrice").show();
+		$("#periodValidity").show();
+		
+		nui.get("proUrl").setValue("");
+		nui.get("callNeedCoin").setValue("");
 	}
 }
 
-function onOk(e) {
 
-	var s = new nui.Form("#form1").getData();
-	saveData(s);
-}
-baseUrl = apiPath + sysApi + "/";
-;
-var savetUrl = baseUrl + "com.primeton.tenant.comProduct.updateProduct.biz.ext";
-function saveData(row) {
-
+function save() {
+	var saveProductUrl = apiPath + sysApi + "/com.hsapi.system.tenant.product.saveProduct.biz.ext";
+	var comSysProduct = new nui.Form("#form1").getData();
 	nui.mask({
 		el : document.body,
 		cls : 'mini-mask-loading',
 		html : '保存中...'
 	});
 	nui.ajax({
-		url : savetUrl,
+		url : saveProductUrl,
 		type : 'post',
 		data : nui.encode({
-			params : row
+			comSysProduct : comSysProduct
 		}),
 		cache : false,
 		success : function(data) {
 			if (data.errCode == "S") {
 				nui.unmask(document.body);
-				nui.alert("保存成功！");
+				showMsg("保存成功！","S");
 				CloseOwnerWindow('ok');
 			} else {
 				nui.unmask(document.body);
-				nui.alert("保存失败！");
-				CloseOwnerWindow('ok');
+				showMsg("保存失败！","W");
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -77,13 +77,7 @@ function onCancel(e) {
 		window.close();
 }
 
-function SetInitData(s) {
-	new nui.Form("#form1").setData(s);
-}
-
-function typeChanged(){
-	var typrValue = nui.get("type").getValue();
-	if(typrValue==0){
-		
-	}
+function setData(row){
+	form.setData(row);
+	typeChanged();
 }

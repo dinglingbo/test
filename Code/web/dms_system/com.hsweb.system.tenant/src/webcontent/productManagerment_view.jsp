@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
     <title>产品管理-弹出窗</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp"%>
-	 <script src="<%= request.getContextPath() %>/tenant/js/productManagerment_view.js?v=1.0.1" type="text/javascript"></script>
+	 <script src="<%= request.getContextPath() %>/tenant/js/productManagerment_view.js?v=1.0.2" type="text/javascript"></script>
     <style type="text/css">
     html, body{
         margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;
@@ -31,7 +31,16 @@ pageEncoding="UTF-8" session="false" %>
 </style>
 </head>
 <body>
-
+	     <div class="nui-toolbar" style="padding:0px;">
+            <table style="width:80%;">
+                <tr>
+                <td style="width:80%;">
+                            <a class="nui-button" onclick="save()" plain="true" ><span class="fa fa-save fa-lg"></span>&nbsp;保存 </a>
+                            <a class="nui-button" onclick="onClose()" plain="true" ><span class="fa fa-close fa-lg"></span>&nbsp;取消 </a>
+                  </td>
+                </tr>
+            </table>
+            </div> 
     <div id="form1"  style="width:630px;height:auto;margin-top:15px;margin-left:auto; margin-right:auto;" class="nui-form" >
         <table style="margin-top:15px;left:0;right:0;margin:0 auto;"> 
             <tr> 
@@ -43,17 +52,17 @@ pageEncoding="UTF-8" session="false" %>
                 <td><input class="nui-textbox" style="width: 150px;" name="id" visible="false"/></td>
             </tr>
             <tr> 
-                <td class="tbtext">接口地址：</td>
-                <td colspan="3"><input class="nui-textbox" style="width:100%" name="remark"/></td>
+                <td class="tbtext" ><span id="proUrlAll">接口地址：</span></td>
+                <td colspan="3"><input class="nui-textbox" style="width:100%" name="proUrl" id="proUrl" style="display:none" /></td>
 
             </tr>                
-                <td class="tbtext">单次扣减链车币：</td>
-                <td><input name="salesPrice1" class="nui-textbox" style="width: 150px;"/></td>
+                <td class="tbtext" ><span id="callNeedCoinAll">单次扣减链车币：</span></td>
+                <td><input name="callNeedCoin" id="callNeedCoin" class="nui-textbox" style="width: 150px;" vtype="float" style="display:none" /></td>
             <tr>
-                <td class="tbtext">销售价：</td>
-                <td><input name="consumptionTimes"  id="consumptionTimes" class="nui-textbox" style="width: 150px;"  enabled="false"/></td>
-                <td class="tbtext">有效期：</td>
-                <td><input name="cycle" class="nui-textbox" id="cycle" style="width: 150px;" enabled="false"/></td>
+                <td class="tbtext" ><span id="sellPriceAll">销售价：</span></td>
+                <td><input name="sellPrice"  id="sellPrice" class="nui-textbox" style="width: 150px;" vtype="float"  style="display:none" /></td>
+                <td class="tbtext" ><span id="periodValidityAll">有效期(天)：</span></td>
+                <td><input name="periodValidity" id="periodValidity" class="nui-textbox" id="cycle" vtype="float" style="width: 150px;"  style="display:none" /></td>
             </tr>
             <tr> 
                 <td class="tbtext">产品描述：</td>
@@ -63,16 +72,11 @@ pageEncoding="UTF-8" session="false" %>
  
             <tr>
                 <td class="tbtext">是否禁用：</td>
-                <td><input name="isRecommend" class="nui-combobox" style="width: 150px;" data="isTrue" idFeild="id" textFeild="text"/></td>
+                <td><input name="isDisabled" id="isDisabled" class="nui-combobox" style="width: 150px;" value="0" data="isTrue" idFeild="id" textFeild="text"/></td>
 
             </tr>
 
         </table> 
-
-        <div style="text-align: center; padding: 10px;">
-            <a class="nui-button" onclick="onOk()" style="margin-right: 20px;"><i class="fa fa-save"></i>&nbsp;保存</a> 
-            <a class="nui-button" onclick="onCancel()"><i class="fa fa-times"></i>&nbsp;取消</a>
-        </div>
     </div>
    
     <script type="text/javascript">

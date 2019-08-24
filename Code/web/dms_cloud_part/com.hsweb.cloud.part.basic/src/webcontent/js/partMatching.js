@@ -116,8 +116,10 @@ function doSearch(){
 	straGrid.load({
     	params: params,
 		token:token
+		},function(){
+			onUnifySearch();
 		});
-    
+
 }
 
 //删除策略价格节点
@@ -236,13 +238,11 @@ function onCellCommitEdit(e) {
 	    	 showMsg("不能大于1!","W");
 		     e.cancel = true;
 	    }
-	    for(var i=0;i<data.length;i++){
-	    	ratio+=new Number(data[i].ratio).toFixed(2);
+	    if(!editor.value || editor.value<0){
+	    	 showMsg("输入的成本比例有误!","W");
+		     e.cancel = true;
 	    }
-	    if(ratio !=1 ){
-    		showMsg("合计比例应为1!","W");
-	        e.cancel = true;
-	    }
+	    
 	    
    }
  
@@ -284,11 +284,16 @@ function addUnifyDetail(row){
 			showMsg("已经存在该配件","W");
 			return;
 		}
+		if(strRow.partId == row.id){
+			showMsg("添加的配件不能与要合成的配件相同","W");
+			return;
+		}
 	}
     var newRow = {
     	parentId :strRow.id,
         partId: row.id,
         partCode: row.code,
+        qty: 1,
         partName: row.name,
         fullName: row.fullName,
         operator: currUserName 
@@ -312,7 +317,7 @@ function saveUnifyPart(){
     if (rightUnifyGrid.isValid() == false) return;
 
     var ratio=0
-    var data = rightUnifyGrid.getChanges();
+    var data = rightUnifyGrid.getData();
     for(var i=0;i<data.length;i++){
     	ratio+=new Number(data[i].ratio);
     }

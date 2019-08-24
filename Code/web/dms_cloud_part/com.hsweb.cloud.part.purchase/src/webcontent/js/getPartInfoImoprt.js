@@ -162,14 +162,18 @@ function saveEnterPart(partList){
 				if (data.errCode == "S") {
 					var errMsg = data.errMsg||"";
 	                if(errMsg){
-						var rt = errMsg.split("：");
-						if(rt && rt.length>=2){
-							var rs = rt[1];
-							var partList = rs.split(";");
-
-							parts = partList.join("\r\n");
-							
-						}
+//						var rt = errMsg.split("：");
+//						if(rt && rt.length>=2){
+//							var rs = rt[1];
+//							var partList = rs.split(";");
+//
+//							parts = partList.join("\r\n");
+//							
+//						}
+	                	nui.get("fastCodeList").setValue(errMsg);
+						advancedTipWin.show();
+					}else{
+						parent.parent.showMsg("导入成功!","S");
 					}
 					
 					callback(rtnList,errMsg);
@@ -177,7 +181,9 @@ function saveEnterPart(partList){
 					CloseWindow("ok");
 					
 				} else {
-					showMsg(data.errMsg || "导入数据失败!","W");
+					nui.get("fastCodeList").setValue(data.errMsg);
+					advancedTipWin.show();
+//					showMsg(data.errMsg || "导入数据失败!","W");
 				}
 
 	        },

@@ -169,7 +169,7 @@
       <process:to type="query">enterMain/storeId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">050104</process:from>
+      <process:from type="literal" pattern="reference">050110</process:from>
       <process:to type="query">enterMain/enterTypeId</process:to>
     </process:copy>
     <process:copy>

@@ -10,7 +10,7 @@ $(document).ready(function(v) {
 	
 	dgGrid.on("drawcell",function(e){
         switch (e.field) {
-            case "status":
+            case "isDisabled":
                 if (statusHash[e.value]) {
                     e.cellHtml = statusHash[e.value] || "";
                 } else {
@@ -35,7 +35,7 @@ $(document).ready(function(v) {
 //	});
 });
 function addR(){
-  var newRow = {status:0};
+  var newRow = {isDisabled:0};
     dgGrid.addRow(newRow);
 
 }
@@ -43,7 +43,7 @@ function addR(){
 function save(){
     var carCoin = dgGrid.getData();
 	for(var i = 0;i<carCoin.length;i++){
-		carCoin[i].orderNumber = i;
+		carCoin[i].orderIndex = i;
 		if(carCoin[i].salePrice==null||carCoin[i].rechargeCoin==null||carCoin[i].giveCoin==null){
 			showMsg("请规范第"+i+"行数据！","W");
 		}
@@ -124,7 +124,7 @@ function loadCarCoin(){
 		var newCarCoinList = [];
 		for(var i = 0;i<carCoinList.length;i++){
 			for(var j = 0;j<carCoinList.length;j++){
-				if(carCoinList[j].orderNumber==i){
+				if(carCoinList[j].orderIndex==i){
 					newCarCoinList.push(carCoinList[j]);
 				}
 			}

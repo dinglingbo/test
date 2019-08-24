@@ -190,7 +190,7 @@
       <process:transitionCondition>
         <process:simpleCondition operator="OBJEQ">
           <process:leftOperand type="query">main/orgid</process:leftOperand>
-          <process:rightOperand type="literal">main/guestOrgid</process:rightOperand>
+          <process:rightOperand type="query">main/guestOrgid</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>

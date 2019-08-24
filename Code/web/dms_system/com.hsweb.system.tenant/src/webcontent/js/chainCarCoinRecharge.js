@@ -1,7 +1,9 @@
 var carCoin = [];//全部链车币
+
 $(document).ready(function(v) {
 	loadCarCoin();
 
+	nui.alert(type);
 });
 
 
@@ -26,7 +28,7 @@ function loadCarCoin(){
 			if (data.errCode == "S") {
 				for(var i = 0;i<data.carCoin.length;i++){
 					for(var j = 0;j<data.carCoin.length;j++){
-						if(data.carCoin[j].orderNumber==i&&data.carCoin[j].status==0){
+						if(data.carCoin[j].orderIndex==i&&data.carCoin[j].isDisabled==0){
 							addDiv(data.carCoin[j]);
 						}
 					}
@@ -45,18 +47,15 @@ var index = 1;
 //生成 div
 function addDiv(carCoin){
 	var html="";
-/*	if(carCoin.orderNumber%3==0&&carCoin.orderNumber!=0){
-		html=html+"<br/>";
-	}*/
 	//是否赠送
 	if(carCoin.giveCoin>0){		
-		html+='<a  href="#"  id="'+carCoin.id+'" itemmoney="'+carCoin.salePrice+'" onclick="selectCoin('+carCoin.id+')">';		
-		html+='		¥<font>'+carCoin.salePrice+'</font> ';
+		html+='<a  href="#"  id="'+carCoin.id+'" itemmoney="'+carCoin.sellPrice+'" onclick="selectCoin('+carCoin.id+')">';		
+		html+='		¥<font>'+carCoin.sellPrice+'</font> ';
 		html+='		<p>充值'+carCoin.rechargeCoin+'个送'+carCoin.giveCoin+'个</p>';
 		html+='	</a> ';
 	}else{
-		html+='<a  href="#"  id="'+carCoin.id+'" itemmoney="'+carCoin.salePrice+'" onclick="selectCoin('+carCoin.id+')">';		
-		html+='		¥<font>'+carCoin.salePrice+'</font> ';
+		html+='<a  href="#"  id="'+carCoin.id+'" itemmoney="'+carCoin.sellPrice+'" onclick="selectCoin('+carCoin.id+')">';		
+		html+='		¥<font>'+carCoin.sellPrice+'</font> ';
 		html+='		<p>充值'+carCoin.rechargeCoin+'个</p>';
 		html+='	</a> ';
 	}
@@ -68,8 +67,7 @@ function selectCoin(id){
 	var money = 0;
     for(var i = 0;i<carCoin.length;i++){
     	if(carCoin[i].id==id){
-    		money = carCoin[i].salePrice;
-    		
+    		money = carCoin[i].sellPrice;  		
     	}
     }
     $(".cztc a").removeClass("xz");

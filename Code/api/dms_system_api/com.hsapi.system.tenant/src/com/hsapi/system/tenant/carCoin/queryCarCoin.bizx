@@ -75,7 +75,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.system.data.sys.ComCarCoin</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.system.data.sys.ComSysCoin</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>

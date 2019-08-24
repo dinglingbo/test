@@ -1381,7 +1381,7 @@
 			on a.prev_detail_id = c.id
 			inner join pj_guest_order_detail d
 			on c.order_detail_id = d.accept_detail_id and c.order_main_id = d.accept_main_id
-		where b.id = #enterMainId# and b.enter_type_id = '050104'
+		where b.id = #enterMainId# and b.enter_type_id = '050110'
 
     </select>
     

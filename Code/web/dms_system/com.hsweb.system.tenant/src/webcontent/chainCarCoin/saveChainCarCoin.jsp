@@ -13,7 +13,7 @@
 <title>链车币定义</title>
 <%@include file="/common/sysCommon.jsp"%>
 <script
-	src="<%=webPath + contextPath%>/tenant/js/saveChainCarCoin.js?v=1.0.9"></script>
+	src="<%=webPath + contextPath%>/tenant/js/saveChainCarCoin.js?v=1.0.0"></script>
 
 </head>
 <body>
@@ -32,7 +32,7 @@
 				style="width: 100%; height: 100%;">
 				<div property="columns">
 					<div type="indexcolumn" headerAlign="center">排序号</div>
-					<div allowSort="true" field="salePrice" summaryType="count"
+					<div allowSort="true" field="sellPrice" summaryType="count"
 						headerAlign="center" header="销售价(元)">
 						<input property="editor" vtype="float" required="true" class="nui-textbox" />
 					</div>
@@ -44,7 +44,7 @@
 						summaryType="count" headerAlign="center" header="赠送链车币(个)">
 						<input property="editor" vtype="int" required="true" class="nui-textbox" />
 					</div>
-					<div  allowSort="true" field="status"
+					<div  allowSort="true" field="isDisabled"
 						summaryType="count" headerAlign="center" header="状态">
 						 <input  property="editor" enabled="true" name="statusList" dataField="statusList" 
                                 class="nui-combobox" valueField="id" textField="name" data="statusList" /> 

@@ -107,7 +107,7 @@ pageEncoding="UTF-8" session="false" %>
                             </div>
                             <div class="nui-fit">
                                 <div class="nui-fit">
-                                    <div style="padding:0px 0px 0px 0px;">
+                                    <div style="margin:0px 0px 0px 40px;">
                                         <table id="table1">
 
                                             <tr>

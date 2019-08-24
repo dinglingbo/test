@@ -770,6 +770,7 @@
     <select id="queryStore" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT
 			a.id as id,
+			a.tenant_id as tenantId,
 			a.orgid as orgid,
 			a.`name` as name
 		FROM
@@ -778,6 +779,11 @@
 			<dynamic>
 	            <isNotEmpty prepend="and" property="orgid">
 	            	(a.orgid = #orgid#)
+	            </isNotEmpty>
+	        </dynamic>
+	        <dynamic>
+	            <isNotEmpty prepend="and" property="tenantId">
+	            	(a.tenant_id = #tenantId#)
 	            </isNotEmpty>
 	        </dynamic>
     </select> 

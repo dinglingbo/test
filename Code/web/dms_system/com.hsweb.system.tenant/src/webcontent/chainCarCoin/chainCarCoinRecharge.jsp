@@ -12,7 +12,7 @@
 <title>链车币充值</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
             <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%= request.getContextPath() %>/tenant/js/chainCarCoinRecharge.js?v=1.0.0" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/tenant/js/chainCarCoinRecharge.js?v=1.0.4" type="text/javascript"></script>
     <style type="text/css">
     	.sfbz em {
 		    color: #5fc8d7;
@@ -85,6 +85,36 @@
 		.kaitong {
 		    float: right;
 		}
+	.popbox {
+	    background: #fff;
+	    position: fixed;
+	    left: 50%;
+	    top: 50%;
+	    box-shadow: 0px 0px 15px #888;
+	    z-index: 2244;
+	    margin: -220px 0 0 -360px;
+	    width: 720px;
+	    height: 440px;
+	    border-radius: 5px;
+    }	
+	 a.close2 {
+	    width: 14px;
+	    height: 14px;
+	    background: url(../img/close.png) no-repeat;
+	    display: block;
+	    position: absolute;
+	    right: 15px;
+	    text-decoration: none;
+	    top: 17px;
+	}
+	.popbox h2 {
+	    background: #f8f8f8;
+	    height: 50px;
+	    line-height: 50px;
+	    font-size: 18px;
+	    padding-left: 14px;
+	    border-radius: 5px 5px 0 0;
+	}	   	
     </style>
 </head>
 <body>
@@ -114,7 +144,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td width="80" height="60" class="color999">剩余余额：</td>
-                                                    <td><b style="color: #00b400;">0</b>&nbsp;个</td>
+                                                    <td><b style="color: #00b400;" id="remainingCoin">0</b>&nbsp;个</td>
                                                 </tr>
                                                 <tr>
                                                     <td valign="top" class="color999">选择套餐：</td>
@@ -149,7 +179,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td valign="top" class="color999">&nbsp;</td>
-                                                    <td valign="top"><a href="#" class="btn" itemid="0">确认充值</a></td>
+                                                    <td valign="top"><a href="#" class="btn" itemid="0" onclick="sellCoin()">确认充值</a></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -167,6 +197,30 @@
 
     </div>
 </div>
-
+<div class="popbox" id="popbox_1" style="width: 500px; height: 440px; margin: -220px 0 0 -250px; display: none">
+    <h2><a class="close2" href="#" title="关闭" onclick="onclosePopbox_1()" >&nbsp;</a>微信支付</h2>
+    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top: 15px;">
+        <tr>
+            <td height="66" align="center" class="color999" style="font-size: 18px;">待支付: <span style="font-weight: bold; font-size: 24px; color: #00b400;" id="payqrcodemoney">20</span>元</td>
+        </tr>
+        <tr>
+            <td align="center">
+                <img src="../img/sell.jpg" width="220" height="220" />
+            </td>
+        </tr>
+        <tr>
+            <td height="50" align="center" class="color999" style="font-size: 13px;">用微信扫此二维码结算 (10分钟有效)</td>
+        </tr>
+    </table>
+</div>
+<div class="popbox" id="popbox_2" style="width: 500px; height: 200px; margin: -120px 0 0 -250px; display: none">
+    <h2><a class="close2" href="#" title="关闭" onclick="onclosePopbox_2()" >&nbsp;</a>微信支付成功</h2>
+		<p  style="font-size: 18px;">支付成功，剩余  <span style="font-weight: bold; font-size: 20px;" id="dtime"></span> 关闭本页面...</p>
+</div>
+<script type="text/javascript">
+	var type = null;
+	type = "<%= request.getParameter("type")%>";
+	
+</script>
 </body>
 </html>

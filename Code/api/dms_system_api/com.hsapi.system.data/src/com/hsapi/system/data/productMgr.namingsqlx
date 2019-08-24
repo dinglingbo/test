@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:dlb -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    
+	<!-- 根据产品id获取产品对应的功能信息 -->
+	<select id="queryProductRes" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+       SELECT
+			a.id as id,
+			a.product_id as productId,
+			a.res_id as resId,
+			a.res_type as resType,
+			a.res_name as resName,
+			a.res_url as resUrl,
+			a.res_parent_id as resParentId,
+			a.is_disabled as isDisabled,
+			a.scope as scope,
+			a.type as type
+	   FROM com_sys_product_res AS a
+	   WHERE a.product_id = #productId# and a.is_disabled = 0
+	</select>
+	
+	<!-- 根据页面地址获取产品ID -->
+	<select id="queryProductIdByResUrl" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+       SELECTa.product_id as productId
+	   FROM com_sys_product_res AS a
+	   WHERE a.res_url = #resUrl#
+	</select>
+    
+    
+    
+</sqlMap>

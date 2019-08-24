@@ -13,7 +13,7 @@
 <head>
 <title>配件清单设置</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<script src="<%=webPath + contextPath%>/basic/js/partMatching.js?v=1.0.90"></script>
+		<script src="<%=webPath + contextPath%>/basic/js/partMatching.js?v=1.0.5"></script>
    
 <style type="text/css">
 .table-label {
@@ -103,6 +103,7 @@
 					oncellcommitedit="onCellCommitEdit"
 					multiSelect="true"
 					selectOnLoad="true"
+					showSummaryRow="true"
 					sortMode="client"
 					totalField="page.count"
 					allowCellWrap = true
@@ -115,10 +116,10 @@
 						<div field="partCode" name="partCode" headerAlign="center" allowSort="true">配件编码</div>
 						<div field="partName" name="partName" headerAlign="center" allowSort="true">配件名称</div>
 						<div field="fullName" name="partName" headerAlign="center" allowSort="true">配件全称</div>
-						<div field="qty" name="qty" headerAlign="center" allowSort="true" header="数量">
+						<div field="qty" name="qty" headerAlign="center" allowSort="true" header="数量"  summaryType="sum" >
 							<input  property="editor" vtype="required;float"  class="nui-textbox"/>
 						</div>
-						<div field="ratio" name="ratio" headerAlign="center" allowSort="true" header="成本比例">
+						<div field="ratio" name="ratio" headerAlign="center" allowSort="true" header="成本比例(0~1)"  summaryType="sum" >
 							<input  property="editor" vtype="required;float" class="nui-textbox"/>
 						</div>
 						<div field="remark" name="remark" headerAlign="center" allowSort="true" header="备注">

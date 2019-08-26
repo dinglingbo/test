@@ -139,7 +139,7 @@
                         <table width="840" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top: 60px;">
                             <tbody>
                                 <tr>
-                                    <td height="420" valign="top" style="border: 1px #dce1e5 solid; border-radius: 8px; background: url(images/ystopbg.png) 0 -30px repeat-x; box-shadow: 0px 2px 4px rgba(230, 235, 242, 0.5);">
+                                    <td height="420" valign="top" style="border: 1px #dce1e5 solid; border-radius: 8px;  box-shadow: 0px 2px 4px rgba(230, 235, 242, 0.5);">
                                         <table width="92%" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top: 10px;">
                                             <tbody>
                                                 <tr>

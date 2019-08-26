@@ -36,6 +36,12 @@ $(document).ready(function(v) {
                 e.cellHtml = typeList[e.value].name;
             }
         }
+        if (e.field == "isDisabled") {
+        	if(statusList && statusList[e.value])
+            {
+                e.cellHtml = statusList[e.value].name;
+            }
+        }    
     });
 
 });

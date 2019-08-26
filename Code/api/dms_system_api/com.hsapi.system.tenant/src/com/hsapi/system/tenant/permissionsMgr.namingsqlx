@@ -360,8 +360,8 @@
 		FROM
 			wb_common.com_sys_product AS a
 		where 1 = 1 
-		  <isNotEmpty prepend="and" property="tenantId">
-                b.TENANT_ID =  #tenantId#
+		  <isNotEmpty prepend="and" property="id">
+                a.id =  #id#
           </isNotEmpty>
     </select>  
 </sqlMap>

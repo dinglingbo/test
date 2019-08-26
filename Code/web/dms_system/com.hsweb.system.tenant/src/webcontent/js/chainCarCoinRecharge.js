@@ -85,7 +85,8 @@ function sellCoin(){
 	//赋值线上订单
 	var comTenantOrder = {};
 	comTenantOrder.productName = "充值链车币";
-	comTenantOrder.productAmt = sellCarCoin.sellAmt;
+	comTenantOrder.productAmt = sellCarCoin.sellPrice;
+	comTenantOrder.type = 1;
 	nui.ajax({
 		url : saveComTenantOrderUrl,
 		type : "post",

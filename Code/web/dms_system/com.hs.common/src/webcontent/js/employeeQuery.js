@@ -358,7 +358,7 @@ function stoporstart(){
                     showMsg('开通帐号成功!',"s");
                     search();
                 }else{
-                	showMsg('开通帐号失败!',"s");
+                	showMsg('开通帐号失败!',"E");
                 }
             }
         });

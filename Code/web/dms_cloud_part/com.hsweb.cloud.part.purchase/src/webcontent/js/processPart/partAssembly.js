@@ -338,7 +338,7 @@ var requiredField = {
     orderDate : "订单日期",
 
 };
-var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.savePjSellOrder.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.process.saveProcess.biz.ext";
 function save() {
     var data = basicInfoForm.getData();
     for ( var key in requiredField) {
@@ -359,20 +359,7 @@ function save() {
     }
     
     var rightRow =rightGrid.getData();
-	var orderMan =nui.get('orderMan').value;
-//	if(orderMan !=currUserName){
-		getStoreLimit();
-//	}
-	for(var i=0;i<rightRow.length;i++){
-		if(Object.getOwnPropertyNames(storeLimitMap ).length >0){
-			if(!storeLimitMap.hasOwnProperty(rightRow[i].storeId)  && storeHash[rightRow[i].storeId]){
-				parent.showMsg("没有选择"+storeHash[rightRow[i].storeId].name+"的权限","W");
-				return;
-			}
-		}
-	}
-
-	
+	var orderMan =nui.get('orderMan').value;	
 
     data = getMainData();
 
@@ -479,7 +466,7 @@ function getMainData()
   
     rightGrid.findRow(function(row){
         var partId = row.partId;
-        var partCode = row.comPartCode;
+        var partCode = row.partCode;
         if(partId == null || partId == "" || partId == undefined || partCode == null || partCode == "" || partCode == undefined){
             rightGrid.removeRow(row);
         }
@@ -1085,7 +1072,7 @@ function selectPart()
         	if(action=='ok'){
         		var iframe = this.getIFrameEl();
         		var data = iframe.contentWindow.getData();
-        		rightGrid.addRow(data.rightData);
+        		rightGrid.setData(data.rightData);
         		detailGrid.setData(data.detailData);
         	}
         }
@@ -1107,11 +1094,12 @@ function addPart() {
 
     rightGrid.findRow(function(row){
         var partId = row.partId;
-        var partCode = row.comPartCode;
+        var partCode = row.partCode;
         if(partId == null || partId == "" || partId == undefined || partCode == null || partCode == "" || partCode == undefined){
             rightGrid.removeRow(row);
         }
     });
+   
 
     selectPart();
 }

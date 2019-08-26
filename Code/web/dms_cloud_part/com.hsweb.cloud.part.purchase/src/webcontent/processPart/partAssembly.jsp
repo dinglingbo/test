@@ -34,7 +34,7 @@ body .mini-grid-row-selected{
 <head>
 <title>配件组装</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchase/js/processPart/partAssembly.js?v=1.0.40"></script>
+    <script src="<%=webPath + contextPath%>/purchase/js/processPart/partAssembly.js?v=1.0.56"></script>
 </head>
 <body>
 	
@@ -241,18 +241,18 @@ body .mini-grid-row-selected{
 		                              <div header="配件信息" headerAlign="center">
 		                                  <div property="columns">
 		                                   
-		                                      <div field="comPartCode" name="comPartCode" width="100" summaryType="count" headerAlign="center" header="配件编码">
+		                                      <div field="partCode" name="partCode" width="100" summaryType="count" headerAlign="center" header="配件编码">
 		                                          <input property="editor" class="nui-textbox" />
 		                                      </div>
-		                                      <div field="comPartName" visible="false" headerAlign="center" header="配件名称"></div>
+		                                      <div field="partName" visible="false" headerAlign="center" header="配件名称"></div>
 		                                      <div field="fullName"  width="200" headerAlign="center" header="配件全称"></div>
-		                                      <div field="comPartBrandId" visible="false"width="60" headerAlign="center" header="品牌"></div>
+		                                      <div field="partBrandId" visible="false"width="60" headerAlign="center" header="品牌"></div>
 		                                  </div>
 		                              </div>
 		                              
 		                              <div header="数量信息" headerAlign="center">
 		                                  <div property="columns">
-		                                      <div field="orderQty" name="applyQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="数量">
+		                                      <div field="orderQty" name="orderQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="数量">
 		                                        <input property="editor" vtype="float" class="nui-textbox"/>
 		                                      </div>
 		                                       
@@ -263,10 +263,10 @@ body .mini-grid-row-selected{
 		                              </div>
 		                              <div header="辅助信息" headerAlign="center">
 		                                  <div property="columns">
-		                                      <div field="comApplyCarModel" width="80" headerAlign="center" header="品牌车型"></div>
-		                                      <div field="comUnit" name="comUnit" width="60" headerAlign="center" header="单位"></div>
-		                                      <div field="comOemCode" width="50" headerAlign="center" allowSort="true" header="OE码"></div>   
-		                                      <div field="comSpec" width="50" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div> 
+		                                      <div field="applyCarModel" width="80" headerAlign="center" header="品牌车型"></div>
+		                                      <div field="unit" name="comUnit" width="60" headerAlign="center" header="单位"></div>
+		                                      <div field="oemCode" width="50" headerAlign="center" allowSort="true" header="OE码"></div>   
+		                                      <div field="spec" width="50" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div> 
 		                                                                             
 		                                  </div>
 		                              </div>
@@ -280,7 +280,33 @@ body .mini-grid-row-selected{
 			        </div>
 			        
 			         <div size="" showCollapseButton="true">
-			         	<div>测试</div>
+			         	
+						<div id="detailGrid" class="nui-datagrid" style="width:100%;height:100%;"
+		                           showPager="false"
+		                           dataField=""
+		                           idField="id"
+		                           frozenStartColumn=""
+		                           frozenEndColumn=""
+		                           showSummaryRow="true"
+		                        
+		   						   sortMode="client"
+		                           editNextOnEnterKey="true"
+		                           allowCellWrap = "true"
+		                           url="">
+		                	<div property="columns">
+		                		<div type="indexcolumn">序号</div>
+		                		<div field="partCode" visible="" headerAlign="center" header="配件编码"></div>
+		                		<div field="partName" visible="false" headerAlign="center" header="配件名称"></div>
+                                <div field="fullName"  width="200" headerAlign="center" header="配件全称"></div>
+                                <div field="applyCarModel" width="80" headerAlign="center" header="品牌车型"></div>
+                                <div field="unit" name="comUnit" width="60" headerAlign="center" header="单位"></div>
+		                		<div field="qty" name="qty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="需要数量"></div>
+		                		<div field="stockQty" name="stockQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="库存"></div>
+		                		<div field="stockOutQty" name="stockOutQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="缺货数量"></div>
+		                		<div field="costPrice" name="costPrice" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="库存单价"></div>
+		                	</div>
+		                 </div>
+
 			        </div>
 			        
 			    </div>

@@ -296,6 +296,9 @@ public class MenuUtil {
 			
 	        Map attr = u.getAttributes();
 	        String tenantId = (String) attr.get("tenantId");
+	        if(tenantId == null || tenantId == "") {
+	        	return false;
+	        }
 	        
 	        //20190823 根据页面地址查询产品ID，根据产品ID和租户ID查询是否在有效期内
 	        //如果根据页面地址查询不到产品ID，则说明此功能不属于某一产品，不受有效期的控制
@@ -321,7 +324,13 @@ public class MenuUtil {
 	        			if(status == 1) {
 	        				check = false;
 	    					return check;
+	        			}else {
+	        				check = true;
+	    					return check;
 	        			}
+	        		}else {
+	        			check = false;
+    					return check;
 	        		}
 	        	}
 	        }

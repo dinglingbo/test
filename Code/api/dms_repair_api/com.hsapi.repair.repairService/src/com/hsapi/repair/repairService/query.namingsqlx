@@ -303,6 +303,13 @@
                 (a.record_date &lt; #recordEndDate#)
               </isNotEmpty>
               
+              <isNotEmpty prepend="and" property="sOutDate"> 
+                (a.out_date &gt;= #sOutDate#)
+              </isNotEmpty>
+              <isNotEmpty prepend="and" property="eOutDate"> 
+                (a.out_date &lt; #eOutDate#)
+              </isNotEmpty>
+              
               <isNotEmpty prepend="and" property="modifyStartDate"> 
                 (a.modify_date &gt;= #modifyStartDate#)
               </isNotEmpty>
@@ -511,6 +518,7 @@
 	    <isNotEmpty prepend="and" property="rid"> 
 	                (c.id = #rid#)
 	    </isNotEmpty>
+	     order by a.record_date desc
 </select>
 
 	    <select id="queryRepairOut" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">

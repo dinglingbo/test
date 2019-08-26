@@ -3,33 +3,31 @@
  */
 var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var partGridUrl = baseUrl+"com.hsapi.part.invoice.partAllot.queryPjPchsOrderEnterDetailChkListBatch.biz.ext";
+var queryStoreHouseUrl = apiPath + sysApi + "/" + "com.hsapi.system.tenant.employee.queryMemStoreBytenantId.biz.ext";
 var data = {};
 var resultData = {};
 var queryForm = null;
-
-var isChooseClose = 1;//默认选择后就关闭窗体
+var partBrandIdHash = {};
 var rpsPartGrid = null;
+var storehouseAll = [];
+var storeHashAll = {};
+
+
+
+/*var isChooseClose = 1;//默认选择后就关闭窗体
 var resultData = {};
-var tempGrid2 = null;
+var tempGrid2 = null;*/
+
 $(document).ready(function(v)
 {
 	queryForm = new nui.Form("#queryForm");
 	rpsPartGrid = nui.get("rpsPartGrid");
 	rpsPartGrid.setUrl(partGridUrl);
-	
+	getStorehouseAll();
 	rpsPartGrid.on("rowdblclick",function(e){
 		onCommon();
 	});
-	
-	/*params.guestId = mainData.guestId;
-	rpsPartGrid.load({
-		params:params,
-		token:token
-	});
-	rpsPartGrid.on("rowdblclick",function(e){
-		onOk();
-	});
-   rpsPartGrid.on("drawcell",function(e)
+    rpsPartGrid.on("drawcell",function(e)
     {
 	  var grid = e.sender;
       var record = e.record;
@@ -39,25 +37,37 @@ $(document).ready(function(v)
           case "kqty":
           	e.cellHtml = record.qty - record.outReturnQty;
           	break;
+          case "partBrandId":
+    		 if(partBrandIdHash[e.value])
+    	    {
+//        	        e.cellHtml = partBrandIdHash[e.value].name||"";
+    	    	if(partBrandIdHash[e.value].imageUrl){
+    	    		
+    	    		e.cellHtml = "<img src='"+ partBrandIdHash[e.value].imageUrl+ "'alt='配件图片' height='25px' weight=' '/><br> "+partBrandIdHash[e.value].name||"";
+    	    	}else{
+    	    		e.cellHtml =partBrandIdHash[e.value].name||"";
+    	    	}
+    	    }
+    	    else{
+    	        e.cellHtml = "";
+    	    }
+    	    break;
+          case "storeId":
+            	e.cellHtml = storeHashAll[e.value].name;
+            	break;	
+          default:
+              break;
       }
     });
-    nui.get("onOk").focus();
-    /*tempGrid2.on("cellclick",function(e){ 
-		var field=e.field;
-		var row = e.row;
-        if(field=="check" ){
-			tempGrid2.removeRow(row);
-			partList = tempGrid2.getData();
-        }
-    });*/
-	/*document.onkeyup=function(event){
-      var e=event||window.event;
-      var keyCode=e.keyCode||e.which;//38向上 40向下
-
-      if((keyCode==27))  {  //ESC
-          onCancel();
-      }
-    };*/
+    getAllPartBrand(function(data)
+    {
+        var partBrandList = data.brand;
+        nui.get("partBrandId").setData(partBrandList);
+        partBrandList.forEach(function(v)
+        {
+            partBrandIdHash[v.id] = v;
+        });
+    });
    
 });
 
@@ -121,57 +131,7 @@ function onCommon()
         }
 
     }
-   /* if(chooseType && chooseType == "cloudPart"){
-        resultData = {
-            part:nodec
-        };
-        if(!callback)
-        {
-            CloseWindow("ok");
-        }
-        else{
-            //需要判断是否已经添加了此配件??
-            var checkMsg = checkcallback(resultData);
-            if(checkMsg) 
-            {
-                nui.confirm(checkMsg, "友情提示",
-                    function (action) { 
-                        if (action == "ok") {
-                            callback(resultData);
-                        }else {
-                            return;
-                        }
-                    }
-                );
-            }else
-            {
-                //弹出数量，单价和金额的编辑界面
-                callback(resultData);
-            }
-
-        }
-    }else{
-        var tmp = list.filter(function(v){
-            return v.partId == nodec.id;
-        });
-        if(tmp && tmp.length>0)
-        {
-            showMsg("此配件已在明细中，不能重复选择","W");
-            return;
-        }
-        resultData = {
-            part:nodec
-        };
-        if(!callback)
-        {
-            CloseWindow("ok");
-        }
-        else{
-            callback(resultData);
-        }
-    }
-    */
-
+ 
 }
 
 
@@ -185,68 +145,30 @@ function CloseWindow(action)
     else window.close();
 }
 
-
-function reloadData()
-{
-    if(partGrid)
-    {
-        partGrid.reload();
-    }
+function getStorehouseAll(){
+	var json = {};
+	nui.ajax({
+ 		url : queryStoreHouseUrl,
+ 		type : "post",
+ 		data : json,
+ 		async: false,
+ 		success : function(data) {
+ 			storehouseAll = data.storehouse;
+ 			storehouseAll.forEach(function(v){
+                storeHashAll[v.id]=v;
+            });
+ 			
+ 		},
+ 		error : function(jqXHR, textStatus, errorThrown) {
+ 			console.log(jqXHR.responseText);
+ 		}
+ 	});	
 }
-function getDataAll(){
-	var row = partGrid.getSelecteds();
-	return row;
-}
 
-/*function onOk()
-{
-	var row = rpsPartGrid.getSelected();
-	if(row)
-	{
-		if(ckcallback){
-			var rs = ckcallback(row);
-			if(rs){
-				 parent.showMsg("此配件已添加,请返回查看!","W");
-				return;
-			}else{
-				if(callback){
-					nui.mask({
-						el: document.body,
-						cls: 'mini-mask-loading',
-						html: '处理中...'
-					});
-                    //把工时的ID绑定上
-					row.itemId = itemId;
-					callback(row,function(data){
-						if(data){
-							data.check = 1;
-							tempGrid.addRow(data);
-						}
-					},function(){
-						nui.unmask(document.body);
-					})
-				}
-			}
-		}else{
-			if(callback){
-				callback(row,function(data){
-					if(data){
-						data.check = 1;
-						tempGrid.addRow(data);
-					}
-				})
-			}
-		}
-		resultData.part = row;
-		if(isChooseClose == 1){
-			CloseWindow("ok");
-		}
-	}
-	else{
-		 parent.showMsg("请选择一个配件", "W");
-	}
-}*/
-var partList = [];
+
+
+
+/*var partList = [];
 function onOk(){
 	var row = rpsPartGrid.getSelected();
 	if(row)
@@ -290,13 +212,13 @@ function getData(){
     return resultData;
 }
 
-/*function setData(data,ck)
+function setData(data,ck)
 {
 	data = data||{};
 	list = data.list||[];
     callback = ck;
     
-}*/
+}
 var checkcallback = null;
 function setCloudPartData(type,ck,cck){
     chooseType = type;
@@ -324,4 +246,4 @@ function onSearch(){
 
 function getPartList(){
 	return partList;
-}
+}*/

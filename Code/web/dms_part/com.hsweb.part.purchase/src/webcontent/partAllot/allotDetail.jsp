@@ -55,8 +55,8 @@ body .mini-grid-row-selected{
                 <a class="nui-button" iconCls="" plain="true" onclick="outStock()" visible="true"  id="outStockBtn"><span class="fa fa-check fa-lg"></span>&nbsp;出库</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="del()" visible="true" id="delBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="delReturn()" visible="false" id="delReturnBtn"><span class="fa fa-reply fa-lg"></span>&nbsp;反作废</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
-                <span id="status"></span>
+                <!-- <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a> -->
+                <!-- <span id="status"></span> -->
             </td>
         </tr>
     </table>
@@ -73,7 +73,8 @@ body .mini-grid-row-selected{
                               <input class="nui-hidden" name="operateDate"/>
                               <input class="nui-hidden" name="versionNo"/>
                               <input class="nui-hidden" name="status" id="status"/>
-                               <input class="nui-hidden" name="stockStatus" id="stockStatus"/>
+                              <input class="nui-hidden" name="stockStatus" id="stockStatus"/>
+                              <input class="nui-hidden" name="enterGuestId" id="enterGuestId"/>
                               <input class="nui-hidden" name="isDisabled" id="isDisabled"/>
                               <input class="nui-hidden" name="guestOrgid" id="guestOrgid"/>
                                <input class="nui-hidden" name="orgid" id="orgid"/>
@@ -289,10 +290,10 @@ body .mini-grid-row-selected{
                                         <input property="editor" vtype="float" class="nui-textbox"/>
                                       </div>
                                       <div field="orderPrice" name="orderPrice" summaryType="sum" numberFormat="0.00" width="65" headerAlign="center" header="单价(出货方填写)">
-                                        <input property="editor" vtype="float" class="nui-textbox"/>
+                                        <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="changeOrderPrice"/>
                                       </div>
                                       <div field="orderAmt" name="orderAmt" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="金额">
-                                        <input property="editor" vtype="float" class="nui-textbox"/>
+                                        <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="changeOrderAmt"/>
                                       </div>
                                       <div field="remark" width="120" headerAlign="center" allowSort="true" header="备注">
                                         <input property="editor" class="nui-textbox"/>

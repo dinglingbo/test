@@ -3,29 +3,32 @@
 */
 var baseUrl = apiPath + partApi + "/";
 var mainGridUrl = baseUrl+"com.hsapi.part.invoice.partAllot.queryPjAllotMainList.biz.ext";
+var queryStoreHouseUrl = apiPath + sysApi + "/" + "com.hsapi.system.tenant.employee.queryMemStoreBytenantId.biz.ext";
 var webBaseUrl = webPath + contextPath + "/";
 var storehouse = [];
-var storehouse = [];
 var storeHash={};
+var storehouseAll = [];
+var storeHashAll = {};
 var mainGrid = null;
+var beginDateEl = null;
+var endDateEl = null;
 var stockStatusHash = {
 		"1":"待入库",
 		"2":"待出库",
 		"3":"已出库",
 		"4":"已入库"
 }
+//受理状态：0草稿、1待受理(提交)、2已受理、3已拒绝，4作废
+var statusHash = ["草稿","已提交","待受理","已拒绝","作废"];
+var typeF = 0;
 
-var statusHash = ["草稿","预结算","已结算"];
-var beginDateEl =null;
-var endDateEl =null;
-var form =null;
-var currType = 0;//日期范围 
-var statusType = null;//状态类型 
+
 $(document).ready(function ()
 {
-    
     mainGrid = nui.get("mainGrid");
     mainGrid.setUrl(mainGridUrl);
+    beginDateEl = nui.get("sEnterDate");
+	endDateEl = nui.get("eEnterDate");
     getStorehouse(function(data){
         storehouse = data.storehouse || [];
         nui.get('storeId').setData(storehouse);
@@ -36,10 +39,25 @@ $(document).ready(function ()
             });
         }
     });
+    getStorehouseAll();
     mainGrid.on("drawcell", function (e) {
    	 var record = e.record;
        if (e.field == "status") {
-           e.cellHtml = statusHash[e.value];
+    	   if(e.value==1){
+    		   if(record.orgid==currOrgid){
+    			   e.cellHtml = statusHash[e.value]; 
+    		   }else{
+    			   if(record.auditSign==1){
+    				   e.cellHtml = "已受理";
+    			   }else{
+    				   e.cellHtml = "未受理";
+    			   }
+    			  
+    		   }
+    	   }else{
+    		   e.cellHtml = statusHash[e.value]; 
+    	   }
+           
        }else if(e.field == "carNo"){
        	e.cellHtml ='<a href="##" onclick="showCarInfo('+e.record._uid+')">'+e.record.carNo+'</a>';
        }else if(e.field == "serviceCode"){
@@ -56,16 +74,24 @@ $(document).ready(function ()
     			e.cellHtml = currOrgList[i].shortName;
     		}
     	}
-      }/*else if(e.field == "enterStoreId"){
-    	  e.cellHtml = storeHash[e.value].name;
-      }else if(e.field == "stockStatus"){
+      }else if(e.field == "enterStoreId"){
+    	  e.cellHtml = storeHashAll[e.value].name;
+      }else if(e.field == "outStoreId"){
+    	  e.cellHtml = storeHashAll[e.value].name;
+      }
+      else if(e.field == "stockStatus"){
     	  e.cellHtml = stockStatusHash[e.value];
-      }*/else if(e.field == "serviceId"){
+      }else if(e.field == "serviceId"){
       	e.cellHtml ='<a href="##" onclick="edit('+e.record._uid+')">'+e.record.serviceId+'</a>';
       }
        
    });
-    doSearch();
+    beginDateEl.setValue(getMonthStartDate());
+    endDateEl.setValue(addDate(getMonthEndDate(), 1));
+    mainGrid.on("rowdblclick", function (e) {
+    	edit();
+    })
+    onSearch();
   /* form = new nui.Form("#toolbar1");
     
     beginDateEl = nui.get("startDate");
@@ -123,11 +149,12 @@ function onAdvancedSearchClear(){
 
 
 
-function quickSearch(type){
+function quickSearch2(type){
     var params = {};
     var querysign = 1;
     var queryname = "本日";
     var querystatusname = "所有";
+    typeF = type;
     switch (type)
     {
         case 0:
@@ -231,20 +258,71 @@ function doShowCarInfo(params) {
 /*
  * .................................................................................................................
  */
-function doSearch() {
-   /* var params = form.getData(true);
-    var eDate = endDateEl.getFormValue()+ " 23:59:59";
-    params.orgid = currOrgId;
-    params.status = statusType;
-    params.endDate = eDate;*/
-	var params = {};
+function quickSearch(type) {
+    var params = {};
+    var queryname = "所有";
+    switch (type) {
+        case 0:
+            queryname = "所有";
+            break;
+        case 1:
+            params.status = 0;  
+            queryname = "草稿";
+            break;
+        case 2:
+            params.status = 1;  
+            queryname = "已提交";
+            break;
+        case 3:
+            params.status = 1; 
+            params.auditSign = 0; 
+            queryname = "待受理";
+            break;
+        case 4:
+        	 params.status = 1; 
+             params.auditSign = 1; 
+             queryname = "已受理";
+             break;
+        case 5:
+       	    params.stockStatus = 2; 
+            queryname = "待出库";
+            break;
+        case 6:
+        	 params.stockStatus = 3; 
+             queryname = "已出库";
+             break;
+        case 7:
+       	    params.stockStatus = 1; 
+            queryname = "待入库";
+            break;
+        case 8:
+        	 params.stockStatus = 4; 
+             queryname = "已入库";
+             break;
+        default:
+            break;
+    }
+    var menunamestatus = nui.get("menunamestatus");
+    menunamestatus.setText(queryname);
+    doSearch(params);
+}
+
+function doSearch(params) {
 	params.orgid = currOrgId;
+   var startDate = beginDateEl.getValue();
+   var endDate = addDate(endDateEl.getValue(),1);
+   params.startDate = startDate;
+   params.endDate = endDate;
+   params.outStoreId = nui.get("storeId2").getValue();
+   params.enterStoreId = nui.get("storeId").getValue();
     mainGrid.load({
         token:token, 
         params: params
     });
 }
-
+function onSearch() {
+	quickSearch(typeF);
+}
 
 function add() {
     var item={};
@@ -273,4 +351,24 @@ function edit(row_uid){
     item.url = webPath + contextPath + "/com.hsweb.part.purchase.allotDetail.flow?token="+token;
     item.iconCls = "fa fa-cog";
     window.parent.activeTabAndInit(item,row);
+}
+
+function getStorehouseAll(){
+	var json = {};
+	nui.ajax({
+ 		url : queryStoreHouseUrl,
+ 		type : "post",
+ 		data : json,
+ 		async: false,
+ 		success : function(data) {
+ 			storehouseAll = data.storehouse;
+ 			storehouseAll.forEach(function(v){
+                storeHashAll[v.id]=v;
+            });
+ 			
+ 		},
+ 		error : function(jqXHR, textStatus, errorThrown) {
+ 			console.log(jqXHR.responseText);
+ 		}
+ 	});	
 }

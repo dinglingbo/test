@@ -128,27 +128,55 @@ $(document).ready(function(v)
              }
          }
          if(field == 'remark'){
-             if( data.orgid != currOrgid){
-                 e.cancel = true;
+        	 if( data.orgid == currOrgid){
+        		 if(data.status==0){
+        			 e.cancel = false ;
+        		 }else{
+        			 e.cancel = true ; 
+        		 }
              }else{
-            	 e.cancel = false;
+            	 e.cancel = true;
              }
          }
          if(field == 'orderAmt'){
-        	 if( data.orgid == currOrgid){
-                 e.cancel = true;
+        	 if( data.orgid != currOrgid){
+        		 if(data.auditSign==1){
+        			 e.cancel = true;
+        		 }else{
+        			 e.cancel = false;
+        		 }
+                
+             }else{
+            	 e.cancel = true; 
+             }
+         }
+         if(field == 'orderPrice'){
+        	 if( data.orgid != currOrgid){
+        		 if(data.auditSign==1){
+        			 e.cancel = true;
+        		 }else{
+        			 e.cancel = false;
+        		 }
              }
          }
          if(field == 'orderQty'){
         	 if( data.orgid == currOrgid){
-                 e.cancel = false ;
+        		 if(data.status==0){
+        			 e.cancel = false ;
+        		 }else{
+        			 e.cancel = true ; 
+        		 }
              }else{
             	 e.cancel = true;
              }
          }
          if(field == 'comPartCode'){
         	 if( data.orgid == currOrgid){
-                 e.cancel = false ;
+        		 if(data.status==0){
+        			 e.cancel = false ;
+        		 }else{
+        			 e.cancel = true ; 
+        		 }
              }else{
             	 e.cancel = true;
              }
@@ -799,6 +827,13 @@ function add()
 }
 //提交单元格编辑数据前激发
 function onCellCommitEdit(e) {
+	var data = basicInfoForm.getData();
+    for ( var key in requiredField) {
+        if (!data[key] || $.trim(data[key]).length == 0) {
+            showMsg(requiredField[key] + "不能为空!","W");
+            return;
+        }
+    }
     var editor = e.editor;
     var record = e.record;
     var row = e.row;
@@ -1185,6 +1220,10 @@ function selectSupplier(elId) {
 	 if( data.orgid != currOrgid){
 		 return;
 	 }
+	
+    if(data.status>0){
+    	return;
+    }
     supplier = null;
     nui.open({
         // targetWindow: window,,
@@ -1266,12 +1305,22 @@ function addPart() {
 	            return;
 	        } 
 	    }*/
-
+	var data = basicInfoForm.getData();
+    for ( var key in requiredField) {
+        if (!data[key] || $.trim(data[key]).length == 0) {
+            showMsg(requiredField[key] + "不能为空!","W");
+            return;
+        }
+    }
+    if(data.status>0){
+    	return;
+    }
     var guestId = nui.get("guestId").getValue();
     if(!guestId) {
         showMsg("请选择调出门店!","W");
         return;
     }
+    
 
     rightGrid.findRow(function(row){
         var partId = row.partId;
@@ -1294,6 +1343,10 @@ function addPart() {
 function selectPart(callback,checkcallback)
 {
     var data = basicInfoForm.getData();
+    if(!data.outStoreId){
+    	showMsg("请选择调出仓库","W");
+    	return;
+    }
     nui.open({
         // targetWindow: window,
         url: webPath + contextPath + "/purchasePart/partAllot/selectPart.jsp?token="+token,
@@ -1325,7 +1378,7 @@ function addDetail(rows)
                 comPartBrandId : row.partBrandId,
                 comApplyCarModel : row.applyCarModel,
                 comUnit : row.enterUnitId,
-                applyQty : 1,
+                orderQty : 1,
                 storeId : FStoreId,
                 comOemCode : row.oemCode,
                 comSpec : row.spec,
@@ -1375,6 +1428,9 @@ function accept()
 function refuse(){
 	save(3);
 }
+function del(){
+	save(6)
+}
 //入库
 var enterStoreUrl = baseUrl + "com.hsapi.part.invoice.partAllot.allotPartEnter.biz.ext";
 function inStock(){
@@ -1395,7 +1451,7 @@ function inStock(){
         url : enterStoreUrl,
         type : "post",
         data : JSON.stringify({
-        	mainId : id,
+        	id : id,
         	guestName : guestName,
             token : token
         }),
@@ -1516,7 +1572,14 @@ function save(type) {
         stip = "提交成功";
         etip = "提交失败";
     }
-
+    if(type == 2){
+    	stip = "受理成功";
+        etip = "受理失败";
+    }
+    if(type == 6){
+    	stip = "作废成功";
+        etip = "作废失败";
+    }
     nui.ajax({
         url : saveUrl,
         type : "post",
@@ -1538,6 +1601,12 @@ function save(type) {
                 if(pjAllotMainList && pjAllotMainList.length>0) {
                     var leftRow = pjAllotMainList[0];
                     basicInfoForm.setData(leftRow);
+                    if(leftRow.status>0){
+                    	setReadOnlyMsg();
+                    }
+                    if(leftRow.isDisabled==1){
+                    	setReadOnlyMsg();
+                    }
                     doSetStyle(leftRow);
                     loadRightGridData(leftRow.id);
                 }
@@ -1587,7 +1656,12 @@ function setInitData(p){
 			    		}
 			    	});	
 				 //nui.get('storeId2').setData(main.storehouse);
-			      setInputModel();//可输入
+			      if(allotMian.status>0){
+			    	  setReadOnlyMsg();//只读
+			      }else{
+			    	  setInputModel();//可输入
+			      }
+			      
 			 }else{
 				 //受理方
 				 if(allotMian.enterStoreId && allotMian.outStoreId){
@@ -1629,7 +1703,7 @@ function setInitData(p){
 }
 
 var requiredField = {
-		guestOrgid : "调出门店",
+		guestId : "调出门店",
 	    outStoreId:"调出仓库",
 	    planComeDate : "申请到货日期",
 	    orgid:"调入门店",
@@ -1784,13 +1858,16 @@ function addNewRow(check){
             rightGrid.beginEditCell(row, "comPartCode");
         }
     }else{
-        rightGrid.addRow(newRow);
-        if(focusGuest){
-            var guestId = nui.get("guestId");
-            guestId.focus();
-        }else{
-            rightGrid.beginEditCell(newRow, "comPartCode");
-        }
+    	if(data.status==0){
+    		rightGrid.addRow(newRow);
+            if(focusGuest){
+                var guestId = nui.get("guestId");
+                guestId.focus();
+            }else{
+                rightGrid.beginEditCell(newRow, "comPartCode");
+            }
+    	}
+        
     }
 }
 
@@ -1847,6 +1924,9 @@ function deletePart(){
     if(row.codeId && data.codeId>0) return;*/
 	var data = basicInfoForm.getData();
     if(data.guestOrgid == currOrgid){
+    	return;
+    }
+    if(data.status>0){
     	return;
     }
     var part = rightGrid.getSelected();
@@ -1918,7 +1998,7 @@ function checkStatus(type){
 			}
 		}
 		if(type==1){
-			if(status>1){
+			if(status>0){
 				showMsg("调拨单已提交","W");
 				return false;
 			}
@@ -1932,13 +2012,37 @@ function checkStatus(type){
 				showMsg("调拨单未受理,不能入库","W");
 			}*/
 			if(stockStatus!=3){
-				showMsg("调拨单出库,不能入库","W");
+				showMsg("调拨单未出库,不能入库","W");
 				return false;
 			}
 		}
+		
+		//作废
+		if(type==6){
+			if(data.sattus!=0){
+				showMsg("草稿下的调拨单才能作废","W");
+				return false;
+			}else{
+				if(data.isDisabled==1){
+					showMsg("调拨单已作废","W");
+					return false;
+				}
+			}
+		}
+		
 	}else{
+		if(type==0){
+			if(status==1){
+				showMsg("调拨单已提交,不能修改","W");
+				return false;
+			}
+			if(status==4){
+				showMsg("调拨单已作废,不能修改","W");
+				return false;
+			}
+		}
 		if(type==2){
-			if(status>1){
+			if(data.auditSign==1){
 				showMsg("调拨单已受理","W");
 				return false;
 			}
@@ -1951,12 +2055,23 @@ function checkStatus(type){
 		}
 		//出库
 		if(type==5){
-			if(status<3){
+			if(data.auditSign!=1){
 				showMsg("调拨单未受理，不能出库","W");
 				return false;
 			}
 		}
-		
+		//作废
+		if(type==6){
+			if(data.sattus!=0){
+				showMsg("草稿下的调拨单才能作废","W");
+				return false;
+			}else{
+				if(data.isDisabled==1){
+					showMsg("调拨单已作废","W");
+					return false;
+				}
+			}
+		}
 	}
 	return true;
 }
@@ -2101,7 +2216,7 @@ function addSelectPart(){
                 comPartBrandId : row.partBrandId,
                 comApplyCarModel : row.applyCarModel,
                 comUnit : row.enterUnitId,
-                applyQty : 1,
+                orderQty : 1,
                 storeId : FStoreId,
                 comOemCode : row.oemCode,
                 comSpec : row.spec,
@@ -2164,3 +2279,50 @@ function doSetStyle(data){
 		$("#repairStatus").attr("class", "statusview");
 	}
 }
+
+function changeOrderPrice(e){
+	var flag = isNaN(e.value);
+	if(flag){
+	   showMsg("请输入数字!","W");
+	   return;
+	}
+    if(e.value<0){
+    	showMsg("单价不能小于0","W");
+    	 return;
+    }
+	var row = rightGrid.getSelected();
+	var newRow = row;
+	var orderAmt = 0;
+	var qty = row.orderQty;
+	if(qty>0){
+		orderAmt = e.value * qty;
+		orderAmt = orderAmt.toFixed(2); 
+	}
+	newRow.orderAmt = orderAmt;
+	newRow.orderPrice = e.value;
+	rightGrid.updateRow(row,newRow);
+} 
+
+function changeOrderAmt(e){
+	var flag = isNaN(e.value);
+	if(flag){
+	   showMsg("请输入数字!","W");
+	   return;
+	}
+    if(e.value<0){
+    	showMsg("金额不能小于0","W");
+    	 return;
+    }
+	var row = rightGrid.getSelected();
+	var newRow = row;
+	var orderPrice = 0;
+	var qty = row.orderQty;
+	if(qty>0){
+		orderPrice = e.value/qty;
+		orderPrice = orderPrice.toFixed(2); 
+	}
+	newRow.orderAmt = e.value;
+	newRow.orderPrice = orderPrice;
+	rightGrid.updateRow(row,newRow);
+}
+

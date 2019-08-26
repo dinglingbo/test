@@ -12,7 +12,7 @@
 <head>
     <title>开票管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/cw/js/invoiceManagement/invoiceManagement.js?v=1.0.6" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/cw/js/invoiceManagement/invoiceManagement.js?v=1.0.7" type="text/javascript"></script>
     <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/date.js" type="text/javascript"></script>
     		    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
@@ -36,7 +36,7 @@
 		        <td style="width:100%;">
 		                   源单日期:<input class="nui-datepicker" id="start"onblur="valueChane()"/>-<input class="nui-datepicker" id="end"/>
 		            <input class="nui-combobox" data="data" textfield="text" valuefield="id" value="1" id="type"/>
-		           <input id="message"name="message" class="nui-textbox" style="width:18%"  >
+		           <input id="message"name="message" class="nui-textbox" style="width:18%" onenter="refresh()">
 		           <input name="invoiceType"
 	                        id="invoiceType"
 	                        class="nui-combobox width1"
@@ -50,7 +50,7 @@
 	                        width="150px"
 	                        visible="false"
 	                        />
-		            <a class="nui-button" iconCls="" plain="true" onclick="refresh()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+		             <a class="nui-button" iconCls="" plain="true" onclick="refresh()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 		             <a class="nui-button" plain="true" iconCls="" onclick="newBill(1)" ><span class="fa fa-plus fa-lg"></span>&nbsp;增加</a>
 		             <a class="nui-button" plain="true" iconCls="" onclick="newBill(2)" ><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
 	            </td>

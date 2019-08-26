@@ -214,7 +214,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">调拨单已审核</process:from>
+      <process:from type="literal" pattern="reference">调拨单已受理</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
     <process:copy>

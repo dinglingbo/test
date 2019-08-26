@@ -122,16 +122,16 @@
     <!--保险单主表   删除wb_repair.rps_insurance_main + detail-->
     <delete id="deleteRpsInsuranceMain" parameterClass="HashMap">
      DELETE wb_repair.rps_insurance_main , wb_repair.rps_insurance_detail  FROM wb_repair.rps_insurance_main 
-			LEFT JOIN wb_repair.rps_insurance_detail on wb_repair.rps_insurance_main.id = wb_repair.rps_insurance_detail.main_id
+			LEFT JOIN wb_repair.rps_insurance_detail on wb_repair.rps_insurance_main.id = wb_repair.rps_insurance_detail.service_id
  			where wb_repair.rps_insurance_main.orgid = #orgid#
     </delete>
     
      <!--工单表   删除wb_repair.rps_maintain-->
     <delete id="deleteRpsMaintain" parameterClass="HashMap">
-     DELETE wb_repair.rps_maintain , wb_repair.rps_expense ,wb_repair.rps_items,wb_repair.rps_item_quote,wb_repair.rps_part_quote, wb_repair.rps_item_workers,wb_repair.rps_package,wb_repair.rps_part,wb_repair.rps_repair_record,wb_repair.rps_service_type 
+     DELETE wb_repair.rps_maintain , wb_repair.rps_expense ,wb_repair.rps_item,wb_repair.rps_item_quote,wb_repair.rps_part_quote, wb_repair.rps_item_workers,wb_repair.rps_package,wb_repair.rps_part,wb_repair.rps_repair_record,wb_repair.rps_service_type 
      FROM wb_repair.rps_maintain 
 			LEFT JOIN wb_repair.rps_expense on wb_repair.rps_maintain.id = wb_repair.rps_expense.service_id
-			LEFT JOIN wb_repair.rps_items on wb_repair.rps_maintain.id = wb_repair.rps_items.service_id
+			LEFT JOIN wb_repair.rps_item on wb_repair.rps_maintain.id = wb_repair.rps_item.service_id
 			LEFT JOIN wb_repair.rps_item_quote on wb_repair.rps_maintain.id = wb_repair.rps_item_quote.service_id
 			LEFT JOIN wb_repair.rps_part_quote on wb_repair.rps_maintain.id = wb_repair.rps_part_quote.service_id
 			LEFT JOIN wb_repair.rps_item_workers on wb_repair.rps_maintain.id = wb_repair.rps_item_workers.service_id
@@ -145,8 +145,8 @@
     
      <!--报销单主表   删除wb_repair.rps_maintain_bill-->
     <delete id="deleteRpsMaintainBill" parameterClass="HashMap">
-     DELETE wb_repair.rps_maintain_bill , wb_repair.rps_items_bill,wb_repair.rps_package_bill  FROM wb_repair.rps_maintain_bill
-			LEFT JOIN  wb_repair.rps_items_bill on wb_repair.rps_maintain_bill.id = wb_repair.rps_items_bill.service_id
+     DELETE wb_repair.rps_maintain_bill , wb_repair.rps_item_bill,wb_repair.rps_package_bill  FROM wb_repair.rps_maintain_bill
+			LEFT JOIN  wb_repair.rps_item_bill on wb_repair.rps_maintain_bill.id = wb_repair.rps_item_bill.service_id
 			LEFT JOIN  wb_repair.rps_package_bill on wb_repair.rps_maintain_bill.id = wb_repair.rps_package_bill.service_id
  			where wb_repair.rps_maintain_bill.orgid = #orgid#
     </delete> 
@@ -161,7 +161,7 @@
     <!--预约表   删除wb_repair.rps_prebook + tel_scout-->
     <delete id="deleteRpsPrebook" parameterClass="HashMap">
      DELETE wb_repair.rps_prebook , wb_repair.rps_prebook_tel_scout  FROM wb_repair.rps_prebook
-			LEFT JOIN wb_repair.rps_prebook_tel_scout on wb_repair.rps_prebook.id = wb_repair.rps_prebook_tel_scout.main_id
+			LEFT JOIN wb_repair.rps_prebook_tel_scout on wb_repair.rps_prebook.id = wb_repair.rps_prebook_tel_scout.service_id
  			where wb_repair.rps_prebook.orgid = #orgid#
     </delete> 
     

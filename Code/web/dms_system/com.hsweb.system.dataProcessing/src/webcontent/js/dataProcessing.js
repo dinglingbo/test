@@ -60,8 +60,14 @@ $(document).ready(function () {
 var saveUrl = apiPath + sysApi + "/com.hsapi.system.dataProcessing.wbPart.dataProcessing.biz.ext";
 function save(){
 	var rows = tree.getCheckedNodes();
+	var orgid = nui.get("orgid").getValue()
+	if(!orgid>0){
+		showMsg("请输入门店orgid！","W");
+		return;
+	}
 	if(rows.length==0){
 		showMsg("请选择清除数据！","W");
+		return;
 	}else{
 	    nui.mask({
 	        el: document.body,
@@ -72,7 +78,7 @@ function save(){
 	}
 
 	var params = {};
-	
+	params.orgid = orgid;
 	for(var i = 0;i<rows.length;i++){
 		if(rows[i].id=="wbRps"){
 			params.wbRps = 1;

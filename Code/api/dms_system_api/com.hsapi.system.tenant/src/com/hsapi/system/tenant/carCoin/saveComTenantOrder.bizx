@@ -19,7 +19,7 @@
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-      <process:return id="2" language="com.hsapi.system.data.sys.ComTenantOrder" name="comTenantOrder" type="query" valueType="DataObject">comTenantOrder</process:return>
+      <process:return id="2" language="com.primeton.tenant.tenant.ComTenantOrder" name="comTenantOrder" type="query" valueType="DataObject">comTenantOrder</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -49,7 +49,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hs.common.com.ComBillRecord[]" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hs.common.com.ComBillRecord[]" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -261,12 +261,12 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="date" primitiveType="Date"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.system.data.sys.ComTenantOrder" name="comTenantOrder"/>
+    <process:input description="" isArray="false" modelType="com.primeton.tenant.tenant.ComTenantOrder" name="comTenantOrder"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
-    <process:output description="" isArray="false" modelType="com.hsapi.system.data.sys.ComTenantOrder" name="comTenantOrder"/>
+    <process:output description="" isArray="false" modelType="com.primeton.tenant.tenant.ComTenantOrder" name="comTenantOrder"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

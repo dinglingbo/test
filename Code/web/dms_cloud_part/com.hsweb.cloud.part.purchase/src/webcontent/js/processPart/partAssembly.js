@@ -4,11 +4,12 @@
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderMainList.biz.ext";
 var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList.biz.ext";
-
+var detailGridUrl = baseUrl+"";
 var basicInfoForm = null;
 
 var leftGrid = null;
 var rightGrid = null;
+var detailGrid =null;
 var formJson = null;
 var brandHash = {};
 var brandList = [];
@@ -39,6 +40,9 @@ $(document).ready(function(v)
 
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
+    
+    detailGrid = nui.get("detailGrid");
+    detailGrid.setUrl(detailGridUrl);
   
     basicInfoForm = new nui.Form("#basicInfoForm");
    
@@ -1045,15 +1049,7 @@ function OnrpMainGridCellBeginEdit(e){
     if(e.field == 'storeId'){
     	editor.setData(storehouse);
     }
-    if(advancedMorePartWin.visible) {
-		e.cancel = true;
-		morePartGrid.focus();
-		var row = morePartGrid.getRow(0);   //默认不能选中，回车事件会有影响
-        if(row){
-            morePartGrid.select(row,true);
-        }
-        partIn=false;
-	}
+    
     if (field == "storeShelf") {
 	    var value = e.record.storeId;
 	    var editor = e.editor;
@@ -1070,24 +1066,28 @@ function OnrpMainGridCellBeginEdit(e){
 
 }
 
-function selectPart(callback,checkcallback)
+function selectPart()
 {
     nui.open({
         // targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.cloud.part.common.orderBillChoose.flow?token="+token,
-        title: "采购订单选择", width: 930, height: 560,
+        url: webPath + contextPath + "/com.hsweb.cloud.part.purchase.productChoose.flow?token="+token,
+        title: "配件成品选择", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,
         onload: function ()
         {
             var iframe = this.getIFrameEl();
-            var data = {
-                orderTypeId: 1
-            };
-            iframe.contentWindow.setInitData(data,callback,checkcallback);
+            
+            iframe.contentWindow.setInitData();
         },
         ondestroy: function (action)
         {
+        	if(action=='ok'){
+        		var iframe = this.getIFrameEl();
+        		var data = iframe.contentWindow.getData();
+        		rightGrid.addRow(data.rightData);
+        		detailGrid.setData(data.detailData);
+        	}
         }
     });
 }
@@ -1098,7 +1098,11 @@ function addPart() {
             return;
         } 
     }
-
+    var storeId =nui.get('storeId').getValue();
+    if(!storeId){
+    	parent.showMsg("请先选择仓库","W");
+    	return;
+    }
   
 
     rightGrid.findRow(function(row){
@@ -1109,14 +1113,7 @@ function addPart() {
         }
     });
 
-    selectPart(function(data) {
-        addDetail(data);
-    },function(data) {
-        var part = data.part;
-        var partid = part.id;
-        //var rtn = checkPartIDExists(partid);
-        return rtn;
-    });
+    selectPart();
 }
 function checkPartIDExists(partid){
     var row = rightGrid.findRow(function(row){
@@ -1217,4 +1214,32 @@ function onLeftGridBeforeDeselect(e)
 
         leftGrid.removeRow(row);
     }
+}
+
+//提交单元格编辑数据前激发
+function onCellCommitEdit(e) {
+	var editor = e.editor;
+	var record = e.record;
+	var row = e.row;
+
+	editor.validate();
+	if (editor.isValid() == false) {
+		showMsg("请输入数字!","W");
+		e.cancel = true;
+	} else {
+		var newRow = {};
+		if (e.field == "orderQty") {
+			var orderQty = e.value;
+			var orderPrice = record.orderPrice;
+
+			if (e.value == null || e.value == '') {
+				e.value = 0;
+				orderQty = 0;
+			} else if (e.value < 0) {
+				e.value = 0;
+				orderQty = 0;
+			}
+
+		}
+	}
 }

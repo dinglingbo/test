@@ -51,6 +51,13 @@
  			where wb_part.pj_out_main_chk.orgid = #orgid#
     </delete>
     
+     <!-- 调拨  pj_allot_main +pj_allot_detail -->
+    <delete id="deletePjAllotMain" parameterClass="HashMap">
+     DELETE wb_part.pj_allot_main , wb_part.pj_allot_detail  FROM wb_part.pj_allot_main
+			LEFT JOIN wb_part.pj_allot_detail on wb_part.pj_allot_main.id = wb_part.pj_allot_detail.main_id
+ 			where wb_part.pj_allot_main.orgid = #orgid#
+    </delete>
+    
       <!--流水   删除pj_store_invocing-->
     <delete id="deletepjStoreInvocing" parameterClass="HashMap">
      DELETE wb_part.pj_store_invocing   FROM wb_part.pj_store_invocing 			
@@ -104,7 +111,7 @@
         <!-- 删除pj_stock_check_main_chk +detail -->
     <delete id="deletePjStockCheckMainChk" parameterClass="HashMap">
      DELETE wb_part.pj_stock_check_main_chk , wb_part.pj_stock_check_detail_chk  FROM wb_part.pj_stock_check_main_chk 
-			LEFT JOIN wb_part.pj_stock_check_detail_chk on wb_part.pj_stock_check_main_chk.id = wb_part.pj_stock_check_detail_chk.main_id
+			LEFT JOIN wb_part.pj_stock_check_detail_chk on wb_part.pj_stock_check_main_chk.id = wb_part.pj_stock_check_detail_chk.mid
  			where wb_part.pj_stock_check_main_chk.orgid = #orgid#
     </delete>   
     
@@ -125,14 +132,14 @@
      <!--供应商   删除com_guest-->
     <delete id="deleteComGuest" parameterClass="HashMap">
      DELETE wb_common.com_guest , wb_repair.rpb_guest FROM wb_common.com_guest	
-     		LEFT JOIN wb_common.com_guest on wb_common.com_guest.id =wb_repair.rpb_guest.id		
+     		LEFT JOIN wb_repair.rpb_guest on wb_common.com_guest.id =wb_repair.rpb_guest.id		
  			where wb_common.com_guest.orgid = #orgid# and wb_common.com_guest.is_supplier = 1
     </delete> 
     
          <!--客户   删除com_guest-->
     <delete id="deleteGuest" parameterClass="HashMap">
      DELETE wb_common.com_guest , wb_repair.rpb_guest FROM wb_common.com_guest	
-     		LEFT JOIN wb_common.com_guest on wb_common.com_guest.id =wb_repair.rpb_guest.id		
+     		LEFT JOIN wb_repair.rpb_guest on  wb_repair.rpb_guest.id = wb_common.com_guest.id	
  			where wb_common.com_guest.orgid = #orgid# and wb_common.com_guest.is_client = 1 and wb_common.com_guest.guest_type = '01020103'
     </delete>   
 </sqlMap>

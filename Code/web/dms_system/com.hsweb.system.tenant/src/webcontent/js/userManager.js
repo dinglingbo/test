@@ -433,3 +433,31 @@ function ViewType(e){
 
 
 }
+function dataProcessing(){
+    nui.open({
+        url: webPath + contextPath + "/com.hsweb.system.dataProcessing.dataProcessing.flow?token="+token,
+        title: "数据清除", 
+        width: "90%", 
+        height: "90%",
+        onload: function () {
+
+        },
+        ondestroy: function (action) {  //弹出页面关闭前    
+        	  if(action=="ok"){
+        		  showMsg("清除成功！","S")
+        	  }
+           	   // var params;
+           	   
+               // nui.alert("修改成功！");
+               /* grid.load(params,function(){
+                    //成功;
+                   // nui.alert("数据成功！");
+                },function(){
+                    //失败;
+                    nui.alert("数据失败！");
+                });*/
+           	    
+            
+        }
+    });
+}

@@ -273,6 +273,66 @@ public class MenuUtil {
 
 	}
 	
+	@Bizlet
+	public static boolean checkActionProductAuth(ServletRequest request) {
+		boolean check = true;
+		HttpServletRequest req = (HttpServletRequest) request;
+		String actionUrl = req.getRequestURL().toString();
+		try {
+			HttpSession session = req.getSession(false);
+			IUserObject u = null;
+			if (session == null || session.getAttribute("userObject") == null) {
+				check = false;
+				return check;
+			}else{
+				u = (IUserObject) session.getAttribute("userObject");	
+				if (u != null) {
+					
+				}else {
+					check = false;
+					return check;
+				}
+			}
+			
+	        Map attr = u.getAttributes();
+	        String tenantId = (String) attr.get("tenantId");
+	        
+	        //20190823 根据页面地址查询产品ID，根据产品ID和租户ID查询是否在有效期内
+	        //如果根据页面地址查询不到产品ID，则说明此功能不属于某一产品，不受有效期的控制
+	        //产品对应功能中，产品直接对应页面地址，如果页面地址有变，则需要修改产品对应功能中的页面地址
+	        //页面地址 + 产品ID 缓存， 产品ID、租户ID + 租户产品有效期  缓存， 产品ID 对应  功能列表 缓存  key + value
+	        //取第一个 / 到最后一个 ？ 之间的内容，作为页面流的地址
+	        String actionFlowUrl = actionUrl.substring(actionUrl.lastIndexOf("/")+1);
+	        int inx = actionFlowUrl.indexOf("?");
+	        if(inx > 0) {
+	        	actionFlowUrl = actionFlowUrl.substring(0,inx);
+	        }
+	        
+	        DataObject[] productIds = ResauthUtils.getProductIdByResUrl(actionFlowUrl);
+	        if(productIds != null && productIds.length > 0) {
+	        	String productId = productIds[0].getString("productId");
+	        	//根据租户ID和产品ID查询产品是否有效
+	        	if(productId != null) {
+	        		DataObject[] productObjs = ResauthUtils.getTenantProductValidity(tenantId, productId);
+	        		if(productObjs != null && productObjs.length > 0) {
+	        			DataObject productObj = productObjs[0];
+	        			int status = productObj.getInt("status");
+	        			//status 0正常，1已过期
+	        			if(status == 1) {
+	        				check = false;
+	    					return check;
+	        			}
+	        		}
+	        	}
+	        }
+	    	
+		}catch (Throwable ex) {
+				ex.printStackTrace();
+		}finally {
+			return check;
+		}
+	}
+	
 	//checkActionAuth 20190823前判断是否有功能权限
 	//20190823修改：先判断产品是否在有效期，然后再判断是否有功能权限，过了有效期根据产品编码跳转对应充值，没有权限跳转/coframe/auth/noAuth.jsp	
 	@SuppressWarnings("finally")
@@ -304,11 +364,6 @@ public class MenuUtil {
 			
 	        String sysDomain = Env.getContributionConfig("system", "url", "webDomain", "SYS");
 	        String webPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();  
-	        
-	        //20190823 根据页面地址查询产品ID，根据产品ID和租户ID查询是否在有效期内
-	        //如果根据页面地址查询不到产品ID，则说明此功能不属于某一产品，不受有效期的控制
-	        //产品对应功能中，产品直接对应页面地址，如果页面地址有变，则需要修改产品对应功能中的页面地址
-	        //页面地址 + 产品ID 缓存， 产品ID、租户ID + 租户产品有效期  缓存， 产品ID 对应  功能列表 缓存  key + value
 	    	
 			DataObject[] appArr = ResauthUtils.getAppFunction();
 			if(appArr.length > 0) {

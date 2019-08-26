@@ -9,7 +9,7 @@
     </resultMap>
     
 	<!-- 根据产品id获取产品对应的功能信息 -->
-	<select id="queryProductRes" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+	<select id="queryProductRes" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
        SELECT
 			a.id as id,
 			a.product_id as productId,
@@ -21,15 +21,39 @@
 			a.is_disabled as isDisabled,
 			a.scope as scope,
 			a.type as type
-	   FROM com_sys_product_res AS a
+	   FROM wb_common.com_sys_product_res AS a
 	   WHERE a.product_id = #productId# and a.is_disabled = 0
 	</select>
 	
 	<!-- 根据页面地址获取产品ID -->
-	<select id="queryProductIdByResUrl" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-       SELECTa.product_id as productId
-	   FROM com_sys_product_res AS a
+	<select id="queryProductIdByResUrl" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+       SELECT a.product_id as productId
+	   FROM wb_common.com_sys_product_res AS a
 	   WHERE a.res_url = #resUrl#
+	</select>
+	
+	<!-- 根据租户ID和产品ID获取租户产品信息（有效期）信息 -->
+	<select id="queryTenantProductByTenantAndProduct" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        SELECT
+			a.id as id,
+			a.tenant_id as tenantId,
+			a.product_id as productId,
+			a.product_name as productName,
+			a.`status` as status,
+			a.start_date as startDate,
+			a.end_date as endDate,
+			a.last_charge_amt as lastChargeAmt,
+			a.last_charge_date as lastChargeDate,
+			a.total_charge_amt as totalChargeAmt,
+			a.order_index as orderIndex,
+			a.remark as remark,
+			a.recorder as recorder,
+			a.record_date as recordDate,
+			a.modifier as modifier,
+			a.modify_date as modifyDate
+		FROM
+			wb_common.com_tenant_product AS a
+	    WHERE a.tenant_id = #tenantId# and a.product_id = #productId#
 	</select>
     
     

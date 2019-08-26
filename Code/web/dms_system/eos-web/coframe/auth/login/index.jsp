@@ -16,12 +16,12 @@
                 <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menu/menu.css" rel="stylesheet" type="text/css" />
                 <script src="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menu/menu.js?v=1.0.2" type="text/javascript"></script>
                 <script src="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menupop.js" type="text/javascript"></script>
-                <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/tabs.css" rel="stylesheet" type="text/css" />
+                <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/tabs.css?v=1.0.2" rel="stylesheet" type="text/css" />
                 <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/frame.css?v=1.0.14" rel="stylesheet" type="text/css"
                 />
                 <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/index.css?v=1.0.0" rel="stylesheet" type="text/css"
                 />
-                <link href="<%=webPath + contextPath%>/common/nui/themes/cupertino/skin.css？v=1.0.3" rel="stylesheet" type="text/css" />
+                <link href="<%=webPath + contextPath%>/common/nui/themes/cupertino/skin.css?v=1.0.7" rel="stylesheet" type="text/css" />
                 <link href="<%=request.getContextPath()%>/common/nui/res/third-party/scrollbar/jquery.mCustomScrollbar.css" rel="stylesheet"
                     type="text/css" />
                 <link href="<%=request.getContextPath()%>/coframe/auth/login/feedback/feedback.css" rel="stylesheet" type="text/css" />

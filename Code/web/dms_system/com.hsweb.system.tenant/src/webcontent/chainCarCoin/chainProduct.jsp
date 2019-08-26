@@ -9,10 +9,10 @@
   - Description:
 -->
 <head>
-<title>链车币充值</title>
+<title>产品充值</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
             <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%= request.getContextPath() %>/tenant/js/chainCarCoinRecharge.js?v=1.0.4" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/tenant/js/chainProduct.js?v=1.0.3" type="text/javascript"></script>
     <style type="text/css">
     	.sfbz em {
 		    color: #5fc8d7;
@@ -125,7 +125,7 @@
                     <td>
                         <div style="padding: 15px; background: #fbf7f2; border: 1px #e9e2d9 solid; height: auto; overflow: hidden;">
                             <p class="kaitong"><a href="/Main/Tool/ConsumeRecord" style="width:120px; font-size:14px;">充值消费记录</a></p>
-                            <font class="sfbz" style="line-height: 34px; margin-left: 10px;"><b>注：</b><b style="color:#ff9600; margin:0 5px;">1元人民币</b>= <em>100个链车币</em></font>
+                            <font class="sfbz" style="line-height: 34px; margin-left: 10px;"><b>注：</b><b style="color:#ff9600; margin:0 5px;">产品总天数=剩余天数+充值天数</b> <em></em></font>
                         </div>
                     </td>
                 </tr>
@@ -139,43 +139,24 @@
                         <table width="840" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top: 60px;">
                             <tbody>
                                 <tr>
-                                    <td height="420" valign="top" style="border: 1px #dce1e5 solid; border-radius: 8px;  box-shadow: 0px 2px 4px rgba(230, 235, 242, 0.5);">
+                                    <td height="420" valign="top" style="border: 1px #dce1e5 solid; border-radius: 8px; box-shadow: 0px 2px 4px rgba(230, 235, 242, 0.5);">
                                         <table width="92%" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top: 10px;">
                                             <tbody>
                                                 <tr>
-                                                    <td width="80" height="60" class="color999">剩余余额：</td>
-                                                    <td><b style="color: #00b400;" id="remainingCoin">0</b>&nbsp;个</td>
+                                                     <td width="80" height="60" class="color999">产品名称：</td>
+                                                    <td><b style="color: #00b400;" id="name"></b></td>
                                                 </tr>
                                                 <tr>
-                                                    <td valign="top" class="color999">选择套餐：</td>
-                                                    <td valign="top">
-                                                        <div class="cztc" id="demo">
-<!--                                                             <a href="#" itemid="1" itemmoney="20">
-                                                                ¥<font>20</font>
-                                                                <p>充值2000个</p>
-                                                            </a>
-                                                            <a href="#" itemid="2" itemmoney="100">
-                                                                ¥<font>100</font>
-                                                                <p>充10000个送1000个</p>
-                                                            </a>
-                                                            <a href="#" itemid="3" itemmoney="500">
-                                                                ¥<font>500</font>
-                                                                <p>充50000个送10000个</p>
-                                                            </a>
-                                                            <a href="#" itemid="4" itemmoney="1000">
-                                                                ¥<font>1000</font>
-                                                                <p>充100000个送30000个</p>
-                                                            </a>
-                                                            <a href="#" itemid="5" itemmoney="2000">
-                                                                ¥<font>2000</font>
-                                                                <p>充200000个送80000个</p>
-                                                            </a> -->
-                                                        </div>
-                                                    </td>
+                                                     <td width="80" height="60" class="color999">充值天数：</td>
+                                                    <td><b style="color: #00b400;" id="periodValidity"></b>&nbsp;天</td>
                                                 </tr>
+                                                <tr>
+                                                     <td width="80" height="60" class="color999">产品描述：</td>
+                                                    <td><p id="remark"></p></td>
+                                                </tr>                                                
                                                 <tr>
                                                     <td height="60" class="color999">支付金额：</td>
-                                                    <td id="paymoney">0元</td>
+                                                    <td ><b style="color: #00b400;" id="sellPrice"></b>&nbsp;元</td>
                                                 </tr>
                                                 <tr>
                                                     <td valign="top" class="color999">&nbsp;</td>
@@ -218,9 +199,9 @@
 		<p  style="font-size: 18px;">支付成功，剩余  <span style="font-weight: bold; font-size: 20px;" id="dtime"></span> 关闭本页面...</p>
 </div>
 <script type="text/javascript">
-	var type = null;
-	type = "<%= request.getParameter("type")%>";
-	
+	var productId = null;
+	productId = "<%= request.getParameter("productId")%>";
+	loadCarCoin(productId);
 </script>
 </body>
 </html>

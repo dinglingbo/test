@@ -11,7 +11,7 @@
     <title>产品管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp"%>
-	 <script src="<%= request.getContextPath() %>/tenant/js/productManager.js?v=1.0.9" type="text/javascript"></script>
+	 <script src="<%= request.getContextPath() %>/tenant/js/productManager.js?v=1.0.2" type="text/javascript"></script>
     <style type="text/css">
     body {
      margin: 0;
@@ -59,7 +59,7 @@
         <div field="periodValidity" width="90" headerAlign="center" align="center" id="isCycle">有效期</div>
 <!--         <div field="orderNumber" width="80" headerAlign="center" align="center" id="orderNumber">排序号</div> -->
         <div field="sellPrice" width="80" headerAlign="center" align="center" id="salesPrice2">销售价</div>
-<!--         <div field="status" width="80" headerAlign="center" align="center" id="status">产品状态</div> -->
+        <div field="isDisabled" width="80" headerAlign="center" align="center" id="status">是否禁用</div>
         <div field="remark" width="80" headerAlign="center" align="center" id="type">产品描述</div>
         <div field="recorder" width="80" headerAlign="center" align="center" id="recorder">建档人</div>
         <div field="recordDate" width="80" headerAlign="center" align="center" id="recordDate" dateFormat="yyyy-MM-dd HH:mm">建档时间</div>

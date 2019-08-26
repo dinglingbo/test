@@ -331,6 +331,16 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link64" name="link64" displayName="连接线" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>assign17</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">enterTypeId</process:leftOperand>
+          <process:rightOperand type="literal">050104</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link10</targetConnections>
     <targetConnections>link56</targetConnections>
     <location x="610" y="238"/>
@@ -981,6 +991,16 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link71" name="link71" displayName="连接线" type="transition">
+      <sourceNode>assign11</sourceNode>
+      <targetNode>assign18</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">enterTypeId</process:leftOperand>
+          <process:rightOperand type="literal">050104</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link27</targetConnections>
     <location x="941" y="105"/>
     <size height="28" width="28"/>
@@ -1047,6 +1067,7 @@
       <targetNode>assign9</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link65" name="link65" displayName="连接线" type="transition">
+      <bendPoint heightToEnd="37" heightToStart="-37" widthToEnd="-44" widthToStart="-43"/>
       <sourceNode>subprocess2</sourceNode>
       <targetNode>assign31</targetNode>
       <process:transitionCondition>
@@ -1057,12 +1078,23 @@
       </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link66" name="link66" displayName="连接线" type="transition">
+      <bendPoint heightToEnd="34" heightToStart="-40" widthToEnd="39" widthToStart="40"/>
       <sourceNode>subprocess2</sourceNode>
       <targetNode>assign31</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query">enterTypeId</process:leftOperand>
           <process:rightOperand type="literal">050105</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link63" name="link63" displayName="连接线" type="transition">
+      <sourceNode>subprocess2</sourceNode>
+      <targetNode>assign31</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">enterTypeId</process:leftOperand>
+          <process:rightOperand type="literal">050104</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -1229,6 +1261,7 @@
     </sourceConnections>
     <targetConnections>link36</targetConnections>
     <targetConnections>link5</targetConnections>
+    <targetConnections>link64</targetConnections>
     <location x="690" y="174"/>
     <size height="28" width="28"/>
     <nodeLabel>assign17label</nodeLabel>
@@ -1730,6 +1763,7 @@
     </sourceConnections>
     <targetConnections>link65</targetConnections>
     <targetConnections>link66</targetConnections>
+    <targetConnections>link63</targetConnections>
     <location x="470" y="30"/>
     <size height="28" width="28"/>
     <nodeLabel>assign31label</nodeLabel>
@@ -1791,6 +1825,7 @@
     </sourceConnections>
     <targetConnections>link38</targetConnections>
     <targetConnections>link0</targetConnections>
+    <targetConnections>link71</targetConnections>
     <location x="942" y="174"/>
     <size height="28" width="28"/>
     <nodeLabel>assign18label</nodeLabel>

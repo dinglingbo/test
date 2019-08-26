@@ -18,9 +18,9 @@
 </head>
 <body>
 <div class="nui-toolbar">
-    <a class="nui-button" plain="true" onclick="addR()"><i class="fa fa-plus"></i>&nbsp;新增</a>
-    <a class="nui-button" plain="true" onclick="save()"><i class="fa fa-pencil"></i>&nbsp;保存</a>
-    <a class="nui-button" plain="true" onclick="doSearch()"><i class="fa fa-trash-o"></i>&nbsp;禁用/启用</a>
+    <a class="nui-button" plain="true" onclick="addR()"><i class="fa fa-plus fa-lg"></i>&nbsp;新增</a>
+    <a class="nui-button" plain="true" onclick="save()"><i class="fa fa-pencil fa-lg"></i>&nbsp;保存</a>
+    <a class="nui-button" plain="true" onclick="doSearch()"><i class="fa fa-trash-o fa-lg"></i>&nbsp;禁用/启用</a>
 </div>
 
 	<div class="nui-fit">

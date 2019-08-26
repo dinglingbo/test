@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
     <title>产品管理-弹出窗</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp"%>
-	 <script src="<%= request.getContextPath() %>/tenant/js/productManagerment_view.js?v=1.0.2" type="text/javascript"></script>
+	 <script src="<%= request.getContextPath() %>/tenant/js/productManagerment_view.js?v=1.0.10" type="text/javascript"></script>
     <style type="text/css">
     html, body{
         margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;
@@ -36,7 +36,7 @@ pageEncoding="UTF-8" session="false" %>
                 <tr>
                 <td style="width:80%;">
                             <a class="nui-button" onclick="save()" plain="true" ><span class="fa fa-save fa-lg"></span>&nbsp;保存 </a>
-                            <a class="nui-button" onclick="onClose()" plain="true" ><span class="fa fa-close fa-lg"></span>&nbsp;取消 </a>
+                            <a class="nui-button" onclick="onCancel()" plain="true" ><span class="fa fa-close fa-lg"></span>&nbsp;取消 </a>
                   </td>
                 </tr>
             </table>
@@ -62,7 +62,7 @@ pageEncoding="UTF-8" session="false" %>
                 <td class="tbtext" ><span id="sellPriceAll">销售价：</span></td>
                 <td><input name="sellPrice"  id="sellPrice" class="nui-textbox" style="width: 150px;" vtype="float"  style="display:none" /></td>
                 <td class="tbtext" ><span id="periodValidityAll">有效期(天)：</span></td>
-                <td><input name="periodValidity" id="periodValidity" class="nui-textbox" id="cycle" vtype="float" style="width: 150px;"  style="display:none" /></td>
+                <td><input name="periodValidity" id="periodValidity" class="nui-textbox" id="cycle" vtype="float" style="width: 100%"  style="display:none" /></td>
             </tr>
             <tr> 
                 <td class="tbtext">产品描述：</td>

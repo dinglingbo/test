@@ -5,6 +5,7 @@ var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/
 var rightGridUrl = baseUrl+"com.hsapi.part.invoice.partAllot.queryPjAllotDetailList.biz.ext";
 var queryUrl = baseUrl + "com.hsapi.part.invoice.partAllot.queryPjAllotMainList.biz.ext";
 var queryStoreHouseUrl = apiPath + sysApi + "/" + "com.hsapi.system.tenant.employee.queryMemStoreBytenantId.biz.ext";
+var queryCompanyUrl = apiPath + sysApi + "/" + "com.hsapi.part.baseDataCrud.crud.queryGuestListNopage.biz.ext";
 var storehouseAll = [];
 var storeHashAll = {};
 var guestIdEl=null;
@@ -14,6 +15,11 @@ var rightGrid = null;
 var advancedMorePartWin = null;
 var storehouse = [];
 var storeHash={};
+var companyList = [];
+var companyHash={};
+
+
+
 
 var advancedSearchWin = null;
 var advancedAddWin = null;
@@ -108,6 +114,7 @@ $(document).ready(function(v)
             nui.unmask();*/
     });
     getStorehouseAll();
+    getCompanyAll();
     getMtadvisor(function(text){
     	orderManIdEl.setData(text.data);
     	orderManIdEl.setValue(currEmpId);
@@ -1789,15 +1796,15 @@ function queryMain(mainId,callback){
  		        nui.get("guestId").setText(allotMian.guestFullName);
  		        nui.get("guestId").setValue(allotMian.guestId);
  		        if(allotMian.orgid != currOrgid){
- 		        	var name = null;
+ 		        	/*var name = null;
  		        	for(var i=0;i<currOrgList.length;i++){
 			       		if(currOrgList[i].orgid==allotMian.orgid){
 			       			name = currOrgList[i].shortName;
 			       			break;
 			       		}
 			       		
- 		       	    }
- 		        	nui.get("guestId2").setText(name);
+ 		       	    }*/
+ 		        	nui.get("guestId2").setText(companyHash[allotMian.orgid].shortName);
  	 		        nui.get("guestId2").setValue(allotMian.orgid);
  		        }
  		       /*nui.get("outStoreId").setValue(allotMian.outStoreId);
@@ -1963,6 +1970,32 @@ function getStorehouseAll(){
 }
 
 
+function getCompanyAll(){
+	var params = {};
+	params.guestType = "01020202";
+	params.isDisabled = 0;
+	params.isInternal = 1;
+	params.isSupplier = 1;
+	var json = {
+			params:params
+	};
+	nui.ajax({
+ 		url : queryCompanyUrl,
+ 		type : "post",
+ 		data : json,
+ 		async: false,
+ 		success : function(data) {
+ 			    companyList = data.guest;
+				companyList.forEach(function(v){
+	 				companyHash[v.orgid]=v;
+	            });
+ 		},
+ 		error : function(jqXHR, textStatus, errorThrown) {
+ 			console.log(jqXHR.responseText);
+ 		}
+ 	});	
+}
+
 function setInputModel() { //恢复表格为输入模式
     var fields = basicInfoForm.getFields();
     for (var i = 0, l = fields.length; i < l; i++) {
@@ -1988,7 +2021,7 @@ function checkStatus(type){
 	var stockStatus = data.stockStatus;
 	if(data.orgid == currOrgId){
 		if(type==0){
-			if(status==1){
+			if(status==1 || data.auditSign==1){
 				showMsg("调拨单已提交,不能修改","W");
 				return false;
 			}
@@ -2015,6 +2048,10 @@ function checkStatus(type){
 				showMsg("调拨单未出库,不能入库","W");
 				return false;
 			}
+			if(data.stockStatus==4){
+				showMsg("调拨单已入库","W");
+				return false;
+			}
 		}
 		
 		//作废
@@ -2032,18 +2069,26 @@ function checkStatus(type){
 		
 	}else{
 		if(type==0){
-			if(status==1){
-				showMsg("调拨单已提交,不能修改","W");
-				return false;
-			}
 			if(status==4){
 				showMsg("调拨单已作废,不能修改","W");
 				return false;
 			}
+			if(data.auditSign==1){
+				showMsg("调拨单已受理,不能修改","W");
+				return false;
+			}
 		}
 		if(type==2){
+			if(data.status == 0){
+				showMsg("调拨单未提交，不能受理","W");
+				return false;
+			}
 			if(data.auditSign==1){
 				showMsg("调拨单已受理","W");
+				return false;
+			}
+			if(data.status==3){
+				showMsg("调拨单已拒绝，不能受理","W");
 				return false;
 			}
 		}
@@ -2052,11 +2097,19 @@ function checkStatus(type){
 				showMsg("调拨单已拒绝","W");
 				return false;
 			}
+			if(data.auditSign==1){
+				showMsg("调拨单已受理,不能拒绝","W");
+				return false;
+			}
 		}
 		//出库
 		if(type==5){
 			if(data.auditSign!=1){
 				showMsg("调拨单未受理，不能出库","W");
+				return false;
+			}
+			if(data.stockStatus==3){
+				showMsg("调拨单已出库","W");
 				return false;
 			}
 		}
@@ -2078,11 +2131,19 @@ function checkStatus(type){
 
 
 function addInsertRow(value, row) {    
-    var guestId = nui.get("guestId").getValue();
+    /*var guestId = nui.get("guestId").getValue();
     if(!guestId) {
         showMsg("请先选择调出方再添加配件!","W");
         return;
+    }*/
+    var data = basicInfoForm.getData();
+    for ( var key in requiredField) {
+        if (!data[key] || $.trim(data[key]).length == 0) {
+            showMsg(requiredField[key] + "不能为空!","W");
+            return;
+        }
     }
+ 
     var params = {partCode:value};
     var part = getPartInfo(params);
     if(part){

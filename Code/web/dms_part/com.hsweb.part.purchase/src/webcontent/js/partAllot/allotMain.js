@@ -4,11 +4,14 @@
 var baseUrl = apiPath + partApi + "/";
 var mainGridUrl = baseUrl+"com.hsapi.part.invoice.partAllot.queryPjAllotMainList.biz.ext";
 var queryStoreHouseUrl = apiPath + sysApi + "/" + "com.hsapi.system.tenant.employee.queryMemStoreBytenantId.biz.ext";
+var queryCompanyUrl = apiPath + sysApi + "/" + "com.hsapi.part.baseDataCrud.crud.queryGuestListNopage.biz.ext";
 var webBaseUrl = webPath + contextPath + "/";
 var storehouse = [];
 var storeHash={};
 var storehouseAll = [];
 var storeHashAll = {};
+var companyList = [];
+var companyHash={};
 var mainGrid = null;
 var beginDateEl = null;
 var endDateEl = null;
@@ -40,6 +43,7 @@ $(document).ready(function ()
         }
     });
     getStorehouseAll();
+    getCompanyAll();
     mainGrid.on("drawcell", function (e) {
    	 var record = e.record;
        if (e.field == "status") {
@@ -63,17 +67,9 @@ $(document).ready(function ()
        }else if(e.field == "serviceCode"){
        	e.cellHtml ='<a href="##" onclick="view('+e.record._uid+')">'+e.record.serviceCode+'</a>';
        }else if(e.field == "orgid"){
-       	for(var i=0;i<currOrgList.length;i++){
-    		if(currOrgList[i].orgid==e.value){
-    			e.cellHtml = currOrgList[i].shortName;
-    		}
-    	}
+    	  e.cellHtml = companyHash[e.value].shortName;
       }else if(e.field == "guestOrgid"){
-     	for(var i=0;i<currOrgList.length;i++){
-    		if(currOrgList[i].orgid==e.value){
-    			e.cellHtml = currOrgList[i].shortName;
-    		}
-    	}
+     	  e.cellHtml = companyHash[e.value].shortName;
       }else if(e.field == "enterStoreId"){
     	  e.cellHtml = storeHashAll[e.value].name;
       }else if(e.field == "outStoreId"){
@@ -366,6 +362,32 @@ function getStorehouseAll(){
                 storeHashAll[v.id]=v;
             });
  			
+ 		},
+ 		error : function(jqXHR, textStatus, errorThrown) {
+ 			console.log(jqXHR.responseText);
+ 		}
+ 	});	
+}
+
+function getCompanyAll(){
+	var params = {};
+	params.guestType = "01020202";
+	params.isDisabled = 0;
+	params.isInternal = 1;
+	params.isSupplier = 1;
+	var json = {
+			params:params
+	};
+	nui.ajax({
+ 		url : queryCompanyUrl,
+ 		type : "post",
+ 		data : json,
+ 		async: false,
+ 		success : function(data) {
+ 			    companyList = data.guest;
+				companyList.forEach(function(v){
+	 				companyHash[v.orgid]=v;
+	            });
  		},
  		error : function(jqXHR, textStatus, errorThrown) {
  			console.log(jqXHR.responseText);

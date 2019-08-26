@@ -150,13 +150,13 @@
                         />
                     </a>
                 </div>  --%>
-                <div id="mainMenu" style="overflow:auto; width:800px;margin-top: 50px;">
+                <div id="mainMenu" style="overflow:auto; width:800px;margin-top: 50px;background-color:#0067b8;">
 
                 </div>
             </div>
 
             <div class="container">
-                <div class="navbar" id="skin" style="margin-left: -80px;">
+                <div class="navbar" id="skin" style="margin-left: -80px;    background-color: #0067b8;">
                     <div class="navbar-brand" id="systemName">链车云修SAAS系统</div>
                     <ul class="nav navbar-nav navbar-right">
                         <!-- <li><a href="#"><i class="fa fa-paper-plane"></i> 代办事项</a></li>
@@ -536,6 +536,8 @@
                         var list = text.rs || {};
                         if (list.length == 0) {
                             // showMsg("此用户无法修改","W");
+/*                                 document.getElementById("skin").style.backgroundColor = "#0067b8";
+                                document.getElementById("mainMenu").style.backgroundColor = "#0067b8"; */
                         } else {
                             if (list[0].backgroundColor != null) {
                                 document.getElementById("skin").style.backgroundColor = list[0].backgroundColor;

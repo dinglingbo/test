@@ -21,7 +21,7 @@
     <!--获取所有应用功能，用于租户资源分配-->
     <select id="queryComAppFunction" parameterClass="HashMap" resultClass="HashMap">
     	SELECT funccode as id, funcname text, funcgroupid as parentId, 0 as isCheck,   
-			   'function' as type, funcdesc as scope, 
+			   'function' as type, funcdesc as scope,  FUNCACTION as resUrl,
 		       case when functype = 'app' then 'app' else 'pc' end as appPc
 		from dms_system.com_app_function
     </select>

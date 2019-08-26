@@ -68,7 +68,7 @@ function save(e){
         tit="修改产品";
      	s=grid.getSelected ();
     	if(s==undefined){
-    		nui.alert("请选中一行")
+    		showMsg("请选中一行","W");
     		return;
     	}
     }
@@ -86,6 +86,28 @@ function save(e){
             grid.load();
         }
     });
-
-
 }
+
+function showProductRes() {
+	var row = grid.getSelected();
+	if(!row) {
+		showMsg("请选中一行","W");
+		return;
+	}
+	
+	nui.open({
+        url: webPath + contextPath + "/com.hsweb.system.tenant.productRes.flow",
+        title: "产品资源", 
+        width: "90%",  
+        height: "80%",
+        onload: function(){
+            var iframe = this.getIFrameEl();      
+            iframe.contentWindow.setInitData(row.id);
+        },
+        ondestroy: function (action) {
+        }
+    });
+}
+
+
+

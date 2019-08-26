@@ -274,7 +274,8 @@ public class MenuUtil {
 	}
 	
 	@Bizlet
-	public static boolean checkActionProductAuth(ServletRequest request) {
+	public static Map checkActionProductAuth(ServletRequest request) {
+		Map map = new HashMap();
 		boolean check = true;
 		HttpServletRequest req = (HttpServletRequest) request;
 		String actionUrl = req.getRequestURL().toString();
@@ -283,21 +284,25 @@ public class MenuUtil {
 			IUserObject u = null;
 			if (session == null || session.getAttribute("userObject") == null) {
 				check = false;
-				return check;
+				map.put("check", check);
+				return map;
 			}else{
 				u = (IUserObject) session.getAttribute("userObject");	
 				if (u != null) {
 					
 				}else {
 					check = false;
-					return check;
+					map.put("check", check);
+					return map;
 				}
 			}
 			
 	        Map attr = u.getAttributes();
 	        String tenantId = (String) attr.get("tenantId");
 	        if(tenantId == null || tenantId == "") {
-	        	return false;
+	        	check = false;
+	        	map.put("check", check);
+				return map;
 	        }
 	        
 	        //20190823 根据页面地址查询产品ID，根据产品ID和租户ID查询是否在有效期内
@@ -305,7 +310,7 @@ public class MenuUtil {
 	        //产品对应功能中，产品直接对应页面地址，如果页面地址有变，则需要修改产品对应功能中的页面地址
 	        //页面地址 + 产品ID 缓存， 产品ID、租户ID + 租户产品有效期  缓存， 产品ID 对应  功能列表 缓存  key + value
 	        //取第一个 / 到最后一个 ？ 之间的内容，作为页面流的地址
-	        String actionFlowUrl = actionUrl.substring(actionUrl.lastIndexOf("/")+1);
+	        String actionFlowUrl = actionUrl.substring(actionUrl.lastIndexOf("/"));
 	        int inx = actionFlowUrl.indexOf("?");
 	        if(inx > 0) {
 	        	actionFlowUrl = actionFlowUrl.substring(0,inx);
@@ -323,22 +328,26 @@ public class MenuUtil {
 	        			//status 0正常，1已过期
 	        			if(status == 1) {
 	        				check = false;
-	    					return check;
 	        			}else {
 	        				check = true;
-	    					return check;
 	        			}
 	        		}else {
 	        			check = false;
-    					return check;
 	        		}
+
+        			map.put("check", check);
+        			map.put("productId", productId);
+        			return map;
 	        	}
 	        }
+	        
+	        map.put("check", true);
+	        return map;
 	    	
 		}catch (Throwable ex) {
 				ex.printStackTrace();
 		}finally {
-			return check;
+			return map;
 		}
 	}
 	

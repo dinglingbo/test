@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveProductRes" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com_sys_product_res&#xD;&#xA;产品对应的功能列表&#xD;&#xA;&#xD;&#xA;" title="Administrator&#x9;18-6-17 下午3:39">
-    <location x="37" y="-120"/>
-    <size height="181" width="376"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com_sys_product_res&#xD;&#xA;产品对应的功能列表&#xD;&#xA;&#xD;&#xA;产品资源添加后，不能随意删除；删除后不会回收租户资源，即删除后表示资源不需要收费，免费使用&#xD;&#xA;" title="Administrator&#x9;18-6-17 下午3:39">
+    <location x="25" y="-135"/>
+    <size height="166" width="726"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -212,6 +212,7 @@
     <location x="206" y="144"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="addList" iterableElement="tp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -410,8 +411,8 @@
         <process:inputVariable id="0" name="productId" type="query" value="String" valueType="Primitive" pattern="reference">productId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>

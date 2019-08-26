@@ -34,4 +34,41 @@
         </isNotEmpty>
 	
 	 </select>
+	 
+	 //取租户的最后一条记录充值/消费记录
+	 <select id="getBalanceRecord" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject"> 
+		SELECT
+			a.id as id,
+			a.tenant_id as tenantId,
+			a.orgid as orgid,
+			a.dc as dc,
+			a.product_id as productId,
+			a.product_name as productName,
+			a.type as type,
+			a.call_params as callParams,
+			a.call_status as callStatus,
+			a.call_result as callResult,
+			a.cost_price as costPrice,
+			a.cost_coin as costCoin,
+			a.qc_coin as qcCoin,
+			a.bala_coin as balaCoin,
+			a.recorder_id as recorderId,
+			a.recorder as recorder,
+			a.record_date as recordDate,
+			a.modifier_id as modifierId,
+			a.modifier as modifier,
+			a.modify_date as modifyDate
+		FROM
+		com_sys_coin_record AS a
+               where 1 = 1 and 
+               A.ID = (
+                    select max(B.ID) from com_sys_coin_record B
+               		where 1 = 1 
+	                <isNotNull prepend = "" property = "tenantId">
+							AND b.tenant_id = #tenantId#					
+					</isNotNull>
+                )
+		
+    </select>
+    
 </sqlMap>

@@ -263,7 +263,7 @@
              <tr>
                 <td class="tbtext">短信签名内容：</td>
                 <td class="tbCtrl" >
-                    <input id="messageSignature" name="messageSignature" class="nui-textbox" >
+                    <input id="messageSignature" name="messageSignature" class="nui-textbox" maxLength="8" onvaluechanged="setMessageSignature">
                     <span>(长度3到8个字)</span>
                 </td>
             </tr>           

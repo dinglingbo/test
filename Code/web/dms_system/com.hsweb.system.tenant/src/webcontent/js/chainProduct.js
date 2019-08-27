@@ -81,7 +81,7 @@ function sellCoin(){
 						bodyDes : "功能购买",
 						timeStart:format(now,'yyyyMMddHHmmss'),
 						timeExpire:format(n, 'yyyyMMddHHmmss'),
-						width : 220,
+						width : 250,
 						height : 180,
 						token: token
 					}),
@@ -133,8 +133,7 @@ function validationPost(){
 		}),
 		success : function(data) {
 			data = data || {};
-			if (data.errCode == "S") {
-				var tradeState = data.data.tradeState;
+				var tradeState = data.data.data.tradeState;
 				if(tradeState=="SUCCESS"){
 					//去掉定时器的方法 
 					window.clearInterval(t1);
@@ -156,8 +155,6 @@ function validationPost(){
 									document.getElementById('popbox_2').style.display='block';
 									t1 = window.setInterval(daoTime,1000); 
 							} else {
-								//去掉定时器的方法 
-								window.clearInterval(t1);
 								document.getElementById('popbox_1').style.display='none';
 								parent.showMsg(data.errMsg || "订单异常!","E");
 							}
@@ -172,9 +169,6 @@ function validationPost(){
 					window.clearInterval(t1);
 					document.getElementById('popbox_1').style.display='none';
 				}
-			} else {
-				parent.showMsg(data.errMsg || "订单异常!","E");
-			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			// nui.alert(jqXHR.responseText);
@@ -201,7 +195,7 @@ function daoTime(){
 		document.getElementById('popbox_2').style.display='none';
 		//关掉计时器
 		window.clearInterval(t2);
-		toRefresh();
+		parent.toRefresh();
 	}
 }
 

@@ -12,7 +12,7 @@
 <title>链车币充值</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
             <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%= request.getContextPath() %>/tenant/js/chainCarCoinRecharge.js?v=1.0.6" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/tenant/js/chainCarCoinRecharge.js?v=1.0.8" type="text/javascript"></script>
     <style type="text/css">
     	.sfbz em {
 		    color: #5fc8d7;

@@ -1,7 +1,7 @@
 var product = {};//充值的产品
 var sellCarCoinId = null;
 $(document).ready(function(v) {
-	//loadCarCoin(2);
+	loadCarCoin(2);
 
 });
 

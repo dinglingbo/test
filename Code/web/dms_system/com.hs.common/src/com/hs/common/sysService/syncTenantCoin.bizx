@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="syncTenantCoin.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="syncTenantCoin" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="更新租户剩余链车币" title="dlb&#x9;19-8-26 下午6:41">
     <location x="0" y="-30"/>
     <size height="100" width="496"/>
@@ -274,7 +274,7 @@
   <process:info author="dlb" createTime="2019-08-26 18:41:13" date="2019-08-26Z" description="更新租户剩余链车币" name="syncTenantCoin" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="链车币总充值金额" historyStateLocation="client" isArray="false" name="totalChargeAmt" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.ComTenant" name="comTenant"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hs.common.com.ComTenant" name="comTenant"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="len" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">

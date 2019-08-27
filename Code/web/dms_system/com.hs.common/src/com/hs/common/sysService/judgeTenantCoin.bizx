@@ -152,11 +152,11 @@
       <process:to type="query">callNeedCoin</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">product/productId</process:from>
+      <process:from type="query" pattern="reference">product/id</process:from>
       <process:to type="query">productId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">product/productName</process:from>
+      <process:from type="query" pattern="reference">product/name</process:from>
       <process:to type="query">productName</process:to>
     </process:copy>
   </nodes>

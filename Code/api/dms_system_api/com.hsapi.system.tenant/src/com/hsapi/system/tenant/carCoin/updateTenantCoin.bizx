@@ -65,7 +65,7 @@
         <process:inputVariable id="5" name="callParams" type="query" value="String" valueType="Primitive" pattern="reference">callParams</process:inputVariable>
         <process:inputVariable id="6" name="callStatus" type="query" value="Int" valueType="Primitive" pattern="reference">callStatus</process:inputVariable>
         <process:inputVariable id="7" name="callResult" type="query" value="Int" valueType="Primitive" pattern="reference">callResult</process:inputVariable>
-        <process:inputVariable id="8" name="costPrice" type="literal" value="Float" valueType="Primitive" pattern="reference">0</process:inputVariable>
+        <process:inputVariable id="8" name="costPrice" type="query" value="Float" valueType="Primitive" pattern="reference">costPrice</process:inputVariable>
         <process:inputVariable id="9" name="costCoin" type="query" value="Float" valueType="Primitive" pattern="reference">costCoin</process:inputVariable>
         <process:inputVariable id="10" name="creator" type="query" value="String" valueType="Primitive" pattern="reference">creator</process:inputVariable>
         <process:inputVariable id="11" name="dc" type="literal" value="Int" valueType="Primitive" pattern="reference">1</process:inputVariable>
@@ -113,7 +113,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.syncTenantCoin</process:partner>
+      <process:partner type="literal">com.hs.common.sysService.syncTenantCoin</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="tenantId" type="query" value="String" valueType="Primitive" pattern="reference">tenantId</process:inputVariable>
         <process:inputVariable id="1" name="costPrice" type="query" value="Float" valueType="Primitive" pattern="reference">costPrice</process:inputVariable>

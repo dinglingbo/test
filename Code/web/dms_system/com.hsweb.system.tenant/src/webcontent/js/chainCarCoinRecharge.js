@@ -150,7 +150,8 @@ function validationPost(){
 						}),
 						success : function(data) {
 							data = data || {};
-							if (data.errCode == "S") {																		
+							if (data.errCode == "S") {	
+									queryCoin();
 									//关闭支付，打开倒计时
 									document.getElementById('popbox_1').style.display='none';
 									document.getElementById('popbox_2').style.display='block';
@@ -195,7 +196,6 @@ function daoTime(){
 		//关掉计时器
 		window.clearInterval(t2);
 		//查询剩余链车币
-		queryCoin();
 		
 	}
 }
@@ -212,7 +212,7 @@ function queryCoin(){
 		success : function(data) {
 			data = data || {};
 			if (data.errCode == "S") {																		
-				document.getElementById('remainingCoin').innerHTML=date.comTenant.remainCoin;
+				document.getElementById('remainingCoin').innerHTML=data.comTenant.remainCoin;
 			} else {
 				parent.showMsg(data.errMsg || "剩余链车币查询异常!","E");
 			}

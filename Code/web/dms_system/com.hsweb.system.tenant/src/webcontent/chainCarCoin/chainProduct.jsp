@@ -125,7 +125,9 @@
                     <td>
                         <div style="padding: 15px; background: #fbf7f2; border: 1px #e9e2d9 solid; height: auto; overflow: hidden;">
                             <p class="kaitong"><a href="/Main/Tool/ConsumeRecord" style="width:120px; font-size:14px;">充值消费记录</a></p>
-                            <font class="sfbz" style="line-height: 34px; margin-left: 10px;"><b>注：</b><b style="color:#ff9600; margin:0 5px;">产品总天数=剩余天数+充值天数</b> <em></em></font>
+<!--                             <font class="sfbz" style="line-height: 34px; margin-left: 10px;"><b>注：</b><b style="color:#ff9600; margin:0 5px;">产品总天数=剩余天数+充值天数</b> <em></em></font> -->
+                            <p style="margin-left: 10px;">剩余天数：<b style="color:#ff9600; margin:0 5px;" >10</b> 天</p>
+                            <p style="margin-left: 10px;">到期日期：<b style="color:#00b400; margin:0 5px;" >2019-9-07</b></p>
                         </div>
                     </td>
                 </tr>
@@ -201,7 +203,7 @@
 <script type="text/javascript">
 	var productId = null;
 	productId = "<%= request.getParameter("productId")%>";
-	loadCarCoin(productId);
+	//loadCarCoin(productId);
 </script>
 </body>
 </html>

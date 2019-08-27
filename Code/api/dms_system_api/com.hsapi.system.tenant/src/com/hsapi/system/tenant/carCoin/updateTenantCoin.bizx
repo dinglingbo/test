@@ -54,7 +54,7 @@
     <location x="270" y="225"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="13" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.system.tenant.product.insertRecord</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="tenantId" type="query" value="String" valueType="Primitive" pattern="reference">tenantId</process:inputVariable>
@@ -70,6 +70,7 @@
         <process:inputVariable id="10" name="creator" type="query" value="String" valueType="Primitive" pattern="reference">creator</process:inputVariable>
         <process:inputVariable id="11" name="dc" type="literal" value="Int" valueType="Primitive" pattern="reference">1</process:inputVariable>
         <process:inputVariable id="12" name="creatorId" type="query" value="Int" valueType="Primitive" pattern="reference">creatorId</process:inputVariable>
+        <process:inputVariable id="13" name="callUrl" type="query" value="String" valueType="Primitive" pattern="reference">callUrl</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -149,6 +150,7 @@
     <process:input description="" isArray="false" name="chargeCoin" primitiveType="Float"/>
     <process:input description="" isArray="false" name="giveCoin" primitiveType="Float"/>
     <process:input description="" isArray="false" name="costPrice" primitiveType="Float"/>
+    <process:input description="" isArray="false" name="callUrl" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

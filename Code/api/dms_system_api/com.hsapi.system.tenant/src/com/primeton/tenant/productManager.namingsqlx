@@ -45,6 +45,7 @@
 			a.product_id as productId,
 			a.product_name as productName,
 			a.type as type,
+			a.call_url as callUrl,
 			a.call_params as callParams,
 			a.call_status as callStatus,
 			a.call_result as callResult,

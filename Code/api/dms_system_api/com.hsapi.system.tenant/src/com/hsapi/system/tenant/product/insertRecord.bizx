@@ -131,6 +131,10 @@
       <process:to type="query">nrecord/productName</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">callUrl</process:from>
+      <process:to type="query">nrecord/callUrl</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">callParams</process:from>
       <process:to type="query">nrecord/callParams</process:to>
     </process:copy>
@@ -261,6 +265,7 @@
     <process:input description="" isArray="false" name="creator" primitiveType="String"/>
     <process:input description="1增加链车币 -1减少链车币" isArray="false" name="dc" primitiveType="Int"/>
     <process:input description="" isArray="false" name="creatorId" primitiveType="Int"/>
+    <process:input description="接口地址" isArray="false" name="callUrl" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

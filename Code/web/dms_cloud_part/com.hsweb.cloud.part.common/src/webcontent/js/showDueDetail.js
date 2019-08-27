@@ -129,7 +129,7 @@ $(document).ready(function(v)
 
     });
     
-    
+    quickSearch(4);
 });
 var queryUrl = baseUrl
         + "com.hsapi.cloud.part.settle.svr.queryFibInComeExpenses.biz.ext";
@@ -168,7 +168,7 @@ function getSearchParam(){
 var currType = 2;
 function quickSearch(type){
     var params = getSearchParam();
-    var queryname = "全部";
+    var queryname = "本月";
     switch (type)
     {
         case 0:

@@ -163,6 +163,15 @@ function save(){
     }
 
     var data = basicInfoForm.getData();
+    var str = data.messageSignature;
+    str = str.trim();
+	if (str.length != 0){
+		str = str.replace(/\s+/g,"");
+		if(str.length<3 || str.length>8){
+			parent.showMsg("短信签名内容长度3到8个字","W");
+			return;
+		}
+	}
     var paramsList = [];
     for(var key in data){
         var value = data[key];
@@ -226,4 +235,19 @@ function getStore(){
 			console.log(jqXHR.responseText);
 		}
 	});
+}
+
+function setMessageSignature(e){
+	var str = e.value;
+	//str = str.replace(/\s+/g,"");
+	str = str.trim();
+	if (str.length == 0){
+		return;
+	}else{
+		str = str.replace(/\s+/g,"");
+		if(str.length<3 || str.length>8){
+			parent.showMsg("短信签名内容长度3到8个字","W");
+			return;
+		}
+	}
 }

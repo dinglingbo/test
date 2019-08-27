@@ -124,8 +124,7 @@
 	                  <div type="checkboxcolumn" trueValue="1" falseValue="0"  field="isCollectMoney" name="isCollectMoney" width="60" headerAlign="center" header="是否收款" allowsort="true"></div>
 	                  <div field="guestFullName" name="guestFullName" width="110" headerAlign="center" header="客户名称" allowsort="true"></div>
 		              <div field="carNo" name="carNo" width="90" headerAlign="center" header="车牌号" allowsort="true"></div>
-		              
-
+		              <div field="mtAdvisor" name="mtAdvisor" width="90" headerAlign="center" allowsort="true" header="服务顾问"></div>
 	                 </div>
                   </div>
 

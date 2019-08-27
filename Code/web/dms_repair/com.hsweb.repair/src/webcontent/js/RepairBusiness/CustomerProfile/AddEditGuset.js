@@ -1938,7 +1938,7 @@ function getLicense(imgPath){
 	        	}      		
 	        	showMsg("行驶证识别成功","S");
 	        }else{
-	            showMsg("行驶证识别失败","W");
+	            showMsg(data.errMsg||"行驶证识别失败","W");
 	            return;
 	        }
 	        

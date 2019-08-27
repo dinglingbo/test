@@ -44,7 +44,7 @@ function save(){
     var carCoin = dgGrid.getData();
 	for(var i = 0;i<carCoin.length;i++){
 		carCoin[i].orderIndex = i;
-		if(carCoin[i].salePrice==null||carCoin[i].rechargeCoin==null||carCoin[i].giveCoin==null){
+		if(carCoin[i].sellPrice==null||carCoin[i].rechargeCoin==null||carCoin[i].giveCoin==null){
 			showMsg("请规范第"+i+"行数据！","W");
 		}
 	}

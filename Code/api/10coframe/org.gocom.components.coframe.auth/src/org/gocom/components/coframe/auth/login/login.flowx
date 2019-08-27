@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process:tPageFlow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="login.flowx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0" state="stateless">
+  <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
+    <sourceConnections xsi:type="process:tActionLink" description="" id="link0" name="link0" lineType="reference" isDefault="true" type="action" actionName="action0" dataConvertClass="">
+      <sourceNode>start0</sourceNode>
+      <targetNode>subprocess0</targetNode>
+      <process:validateRules errorPage="" onError="default"/>
+      <process:inputParameters>
+        <process:parameter description="" historyStateLocation="client" isArray="false" name="userId" primitiveType="String"/>
+        <process:parameter description="" historyStateLocation="client" isArray="false" name="password" primitiveType="String"/>
+        <process:parameter description="" historyStateLocation="client" isArray="false" name="original_url" primitiveType="String"/>
+        <process:parameter description="" historyStateLocation="client" isArray="false" name="ret" primitiveType="String"/>
+        <process:parameter anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="map"/>
+        <process:parameter anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="resMap"/>
+      </process:inputParameters>
+    </sourceConnections>
+    <location x="60" y="134"/>
+    <size height="28" width="28"/>
+    <nodeLabel>start0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="process:tEnd" description="" id="end0" name="登录界面" displayName="结束" type="end" contextPath="" method="forward" uri="/coframe/auth/login/login.jsp" variableUri="false">
+    <targetConnections>link4</targetConnections>
+    <location x="355" y="60"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end0label</nodeLabel>
+    <process:inputVariables/>
+    <process:returns/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
+    <location x="62" y="170"/>
+    <figSize height="17" width="25"/>
+    <node>start0</node>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
+    <location x="345" y="96"/>
+    <figSize height="17" width="49"/>
+    <node>end0</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="验证登录" displayName="login" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess0</sourceNode>
+      <targetNode>end0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal"/>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link3" name="link3" displayName="连接线" isDefault="false" type="transition">
+      <sourceNode>subprocess0</sourceNode>
+      <targetNode>assign0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand>result</process:leftOperand>
+          <process:rightOperand>1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link0</targetConnections>
+    <location x="208" y="135"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess0label</nodeLabel>
+    <process:flow index="0" varArgs="false">
+      <process:partner type="literal">org.gocom.components.coframe.auth.LoginManager.login</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="userId" type="query" value="String" valueType="Primitive" pattern="reference">userId</process:inputVariable>
+        <process:inputVariable id="1" name="password" type="query" value="String" valueType="Primitive" pattern="reference">password</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="retCode" type="query" value="Int" valueType="Primitive">result</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
+    <location x="197" y="170"/>
+    <figSize height="17" width="49"/>
+    <node>subprocess0</node>
+  </nodes>
+  <nodes xsi:type="process:tEnd" description="" id="end1" name="主页" displayName="结束" type="end" contextPath="" method="forward" uri="/coframe/auth/login/redirect.jsp">
+    <targetConnections>link6</targetConnections>
+    <location x="690" y="405"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end1label</nodeLabel>
+    <process:inputVariables/>
+    <process:returns/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
+    <location x="692" y="441"/>
+    <figSize height="17" width="25"/>
+    <node>end1</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="sendPost" displayName="sendPost" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>invokePojo1</targetNode>
+    </sourceConnections>
+    <targetConnections>link1</targetConnections>
+    <location x="405" y="255"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo0label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true">
+      <process:partner type="literal">org.gocom.components.coframe.auth.HttpUtils.sendPost</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="urlParam" type="literal" value="java.lang.String" valueType="Java" pattern="reference">http://qxy60.hszb.harsons.cn/dms/com.hsapi.system.auth.LoginManager.userLogin.biz.ext</process:inputVariable>
+      <process:inputVariable id="1" name="params" type="query" value="java.util.Map&lt;java.lang.String,java.lang.Object>" valueType="Java" pattern="reference">map</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java">ret</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
+    <location x="389" y="291"/>
+    <figSize height="17" width="54"/>
+    <node>invokePojo0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link3</targetConnections>
+    <location x="324" y="210"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign0label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">000000</process:from>
+      <process:to type="query">map/password</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">YX001</process:from>
+      <process:to type="query">map/userId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
+    <location x="326" y="246"/>
+    <figSize height="17" width="25"/>
+    <node>assign0</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="str2Map" displayName="str2Map" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo1</sourceNode>
+      <targetNode>assign1</targetNode>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="510" y="310"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo1label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true">
+      <process:partner type="literal">org.gocom.components.coframe.auth.Utils.str2Map</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="param" type="query" value="java.lang.String" valueType="Java" pattern="reference">ret</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.util.HashMap&lt;java.lang.String,java.lang.Object>" valueType="Java">resMap</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
+    <location x="496" y="346"/>
+    <figSize height="17" width="50"/>
+    <node>invokePojo1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>end1</targetNode>
+    </sourceConnections>
+    <targetConnections>link5</targetConnections>
+    <location x="585" y="346"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">resMap/data/userId</process:from>
+      <process:to type="query">s:userObject/userId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">resMap/data/userName</process:from>
+      <process:to type="query">s:userObject/userName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">resMap/data/userOrgId</process:from>
+      <process:to type="query">s:userObject/userOrgId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">resMap/data/userOrgName</process:from>
+      <process:to type="query">s:userObject/userOrgName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">resMap/data/attributes/loginName</process:from>
+      <process:to type="query">s:userObject/attributes/loginName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">resMap/data/attributes/token</process:from>
+      <process:to type="query">s:userObject/attributes/token</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">resMap/data/attributes/userOrgId</process:from>
+      <process:to type="query">s:userObject/attributes/userOrgId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">resMap/data/attributes/userOrgName</process:from>
+      <process:to type="query">s:userObject/attributes/userOrgName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">resMap/data/attributes/tenantId</process:from>
+      <process:to type="query">s:userObject/attributes/tenantId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
+    <location x="583" y="382"/>
+    <figSize height="17" width="32"/>
+    <node>assign1</node>
+  </nodes>
+  <topRuler/>
+  <leftRuler/>
+  <process:info author="cuizhichao" createTime="2014-07-23 13:47:13" date="2014-07-23Z" description="" name="login" version="7.0.0.0"/>
+  <process:variables>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="result" primitiveType="Int"/>
+  </process:variables>
+</process:tPageFlow>

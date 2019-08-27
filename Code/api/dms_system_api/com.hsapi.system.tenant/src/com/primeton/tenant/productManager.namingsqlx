@@ -45,6 +45,7 @@
 			a.product_id as productId,
 			a.product_name as productName,
 			a.type as type,
+			a.call_url as callUrl,
 			a.call_params as callParams,
 			a.call_status as callStatus,
 			a.call_result as callResult,
@@ -74,7 +75,7 @@
     <!--取租户的最后一条记录充值/消费记录-->
 	 <insert id="syncRes" parameterClass="java.util.HashMap" > 
 		INSERT into com_tenant_menu(tenant_id, orgid, res_id, res_type, res_name, res_parent_id, is_disabled, scope, type)
-		SELECT #tenantId#, #tenantId#, a.res_id, a.res_type, a.res_name, a.res_parent_id, 0, a.scope, a.type
+		SELECT #tenantId#, #orgid#, a.res_id, a.res_type, a.res_name, a.res_parent_id, 0, a.scope, a.type
 		from com_sys_product_res a
 		where a.product_id = #productId# and not EXISTS(
 			select 1 from com_tenant_menu b where a.res_id = b.res_id and b.tenant_id = #tenantId#

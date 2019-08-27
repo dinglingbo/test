@@ -3,7 +3,6 @@ var sellCarCoin = {};//支付的链车币
 var sellCarCoinId = null;
 $(document).ready(function(v) {
 	loadCarCoin();
-
 });
 
 
@@ -26,6 +25,8 @@ function loadCarCoin(){
 			data = data || {};
 			carCoin = data.carCoin;
 			if (data.errCode == "S") {
+				//查询剩余链车币
+				queryCoin();
 				for(var i = 0;i<data.carCoin.length;i++){
 					for(var j = 0;j<data.carCoin.length;j++){
 						if(data.carCoin[j].orderIndex==i&&data.carCoin[j].isDisabled==0){
@@ -86,6 +87,8 @@ function sellCoin(){
 	var comTenantOrder = {};
 	comTenantOrder.productName = "充值链车币";
 	comTenantOrder.productAmt = sellCarCoin.sellPrice;
+	comTenantOrder.rechargeCoin = sellCarCoin.rechargeCoin;
+	comTenantOrder.giveCoin = sellCarCoin.giveCoin;
 	comTenantOrder.type = 1;
 	nui.ajax({
 		url : saveComTenantOrderUrl,
@@ -136,10 +139,32 @@ function validationPost(){
 				if(data.comTenantOder.isPayment==1){
 					//去掉定时器的方法 
 					window.clearInterval(t1);
-					//关闭支付，打开倒计时
-					document.getElementById('popbox_1').style.display='none';
-					document.getElementById('popbox_2').style.display='block';
-					t1 = window.setInterval(daoTime,1000); 
+					var weChatBCoinUrl = apiPath + sysApi + "/com.hsapi.system.tenant.carCoin.weChatBCoin.biz.ext";
+					//充值成功后
+					nui.ajax({
+						url : weChatBCoinUrl,
+						type : "post",
+						data : JSON.stringify({
+							params : {id:data.comTenantOder.id},
+							token: token
+						}),
+						success : function(data) {
+							data = data || {};
+							if (data.errCode == "S") {	
+									queryCoin();
+									//关闭支付，打开倒计时
+									document.getElementById('popbox_1').style.display='none';
+									document.getElementById('popbox_2').style.display='block';
+									t1 = window.setInterval(daoTime,1000); 
+							} else {
+								parent.showMsg(data.errMsg || "订单异常!","E");
+							}
+						},
+						error : function(jqXHR, textStatus, errorThrown) {
+							// nui.alert(jqXHR.responseText);
+							console.log(jqXHR.responseText);
+						}
+					});
 				}
 			} else {
 				parent.showMsg(data.errMsg || "订单异常!","E");
@@ -170,7 +195,31 @@ function daoTime(){
 		document.getElementById('popbox_2').style.display='none';
 		//关掉计时器
 		window.clearInterval(t2);
-		document.getElementById('remainingCoin').innerHTML=20;
+		//查询剩余链车币
 		
 	}
+}
+
+//查询剩余链车币 
+function queryCoin(){
+	var queryTenantCoinUrl = apiPath + sysApi + "/com.hsapi.system.tenant.carCoin.queryTenantCoin.biz.ext";
+	nui.ajax({
+		url : queryTenantCoinUrl,
+		type : "post",
+		data : JSON.stringify({
+			token: token
+		}),
+		success : function(data) {
+			data = data || {};
+			if (data.errCode == "S") {																		
+				document.getElementById('remainingCoin').innerHTML=data.comTenant.remainCoin;
+			} else {
+				parent.showMsg(data.errMsg || "剩余链车币查询异常!","E");
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
 }

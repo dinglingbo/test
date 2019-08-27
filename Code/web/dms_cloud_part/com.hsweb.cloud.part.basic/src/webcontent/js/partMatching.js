@@ -293,7 +293,7 @@ function addUnifyDetail(row){
     	parentId :strRow.id,
         partId: row.id,
         partCode: row.code,
-        unit :unit,
+        unit :row.unit,
         qty: 1,
         partName: row.name,
         fullName: row.fullName,
@@ -320,8 +320,9 @@ function saveUnifyPart(){
     var ratio=0
     var data = rightUnifyGrid.getData();
     for(var i=0;i<data.length;i++){
-    	ratio+=new Number(data[i].ratio);
+    	ratio=parseFloat(data[i].ratio)+ratio;
     }
+    ratio=ratio.toFixed(2);
     if(ratio!=1){
     	showMsg("成本比例合计应该等于1","W");
     	return;

@@ -34,7 +34,7 @@ body .mini-grid-row-selected{
 <head>
 <title>配件组装</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchase/js/processPart/partAssembly.js?v=1.0.57"></script>
+    <script src="<%=webPath + contextPath%>/purchase/js/processPart/partAssembly.js?v=1.0.73"></script>
 </head>
 <body>
 	
@@ -101,12 +101,11 @@ body .mini-grid-row-selected{
                      onrowdblclick=""
                      onselectionchanged="onLeftGridSelectionChanged"
                      onbeforedeselect="onLeftGridBeforeDeselect"
-                     dataField="pjAllotApplyMainList"
+                     dataField="processMain"
                      url="">
                     <div property="columns">
                       	<div type="indexcolumn">序号</div>
                         <div field="auditSign" width="65" visible="true" headerAlign="center" header="状态"></div>
-                        <div field="guestFullName" width="120" headerAlign="center" header="调出方"></div>
                         <div field="orderDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="创建日期"></div>
                         <div field="creator" width="60" headerAlign="center" header="操作员"></div>
                         <div field="serviceId" headerAlign="center" width="150" header="配件组装单号"></div>
@@ -218,7 +217,7 @@ body .mini-grid-row-selected{
 		                   		
 	                   		   <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
 		                           showPager="false"
-		                           dataField="pjAllotApplyDetailList"
+		                           dataField="data"
 		                           idField="id"
 		                           frozenStartColumn=""
 		                           frozenEndColumn=""
@@ -264,7 +263,7 @@ body .mini-grid-row-selected{
 		                              <div header="辅助信息" headerAlign="center">
 		                                  <div property="columns">
 		                                      <div field="applyCarModel" width="80" headerAlign="center" header="品牌车型"></div>
-		                                      <div field="unit" name="comUnit" width="60" headerAlign="center" header="单位"></div>
+		                                      <div field="unit" name="unit" width="60" headerAlign="center" header="单位"></div>
 		                                      <div field="oemCode" width="50" headerAlign="center" allowSort="true" header="OE码"></div>   
 		                                      <div field="spec" width="50" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div> 
 		                                                                             
@@ -300,8 +299,8 @@ body .mini-grid-row-selected{
                                 <div field="fullName"  width="200" headerAlign="center" header="配件全称"></div>
                                 <div field="applyCarModel" width="80" headerAlign="center" header="品牌车型"></div>
                                 <div field="unit" name="comUnit" width="60" headerAlign="center" header="单位"></div>
-		                		<div field="qty" name="qty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="需要数量"></div>
-		                		<div field="stockQty" name="stockQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="库存"></div>
+		                		<div field="orderQty" name="orderQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="需要数量"></div>
+		                		<div field="storeStockQty" name="stockQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="库存"></div>
 		                		<div field="stockOutQty" name="stockOutQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="缺货数量"></div>
 		                		<div field="costPrice" name="costPrice" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="库存单价"></div>
 		                	</div>

@@ -259,7 +259,14 @@
                         repeatDirection="" repeatLayout="table" 
                         textField="text" valueField="id" ></div>
                 </td>      
-            </tr>            
+            </tr> 
+             <tr>
+                <td class="tbtext">短信签名内容：</td>
+                <td class="tbCtrl" >
+                    <input id="messageSignature" name="messageSignature" class="nui-textbox" >
+                    <span>(长度3到8个字)</span>
+                </td>
+            </tr>           
             <tr>
                 <td class="tbtext"></td>
                 <td class="tbCtrl" >

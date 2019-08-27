@@ -34,7 +34,7 @@ body .mini-grid-row-selected{
 <head>
 <title>配件组装</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchase/js/processPart/partAssembly.js?v=1.0.56"></script>
+    <script src="<%=webPath + contextPath%>/purchase/js/processPart/partAssembly.js?v=1.0.57"></script>
 </head>
 <body>
 	
@@ -72,7 +72,7 @@ body .mini-grid-row-selected{
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save('0')" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="submit()" visible="true"  id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="audit()" visible="true"  id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
                
                 <span id="status"></span>
             </td>

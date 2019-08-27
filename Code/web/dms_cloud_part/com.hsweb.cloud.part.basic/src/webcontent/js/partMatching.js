@@ -293,6 +293,7 @@ function addUnifyDetail(row){
     	parentId :strRow.id,
         partId: row.id,
         partCode: row.code,
+        unit :unit,
         qty: 1,
         partName: row.name,
         fullName: row.fullName,

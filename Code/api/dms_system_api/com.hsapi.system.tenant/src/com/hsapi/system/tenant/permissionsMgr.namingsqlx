@@ -378,6 +378,8 @@
 			a.product_amt as productAmt,
 			a.order_date as orderDate,
 			a.period_validity as periodValidity,
+			a.recharge_coin as rechargeCoin,
+			a.give_coin as giveCoin,
 			a.status as status,
 			a.is_payment as isPayment,
 			a.payment_date as paymentDate,

@@ -1,7 +1,7 @@
 var product = {};//充值的产品
 var sellCarCoinId = null;
 $(document).ready(function(v) {
-	//loadCarCoin(2);
+	//loadCarCoin(1);
 });
 
 
@@ -171,18 +171,34 @@ function queryTenantProduct(){
 		url : queryTenantProductUrl,
 		type : "post",
 		data : JSON.stringify({
-			params:{"productId":product.id},
+			params:{
+				"productId":product.id,
+				"tenantId":currTenantId
+			},
 			token: token
 		}),
 		success : function(data) {
 			data = data || {};
-			if (data.errCode == "S") {		
-				var comTenantProduct = data.comTenantProduct[0];
-				var endDate = comTenantProduct.endDate;
-				document.getElementById('endDate').innerHTML=new Date(endDate).getFullYear()+"年 "+(parseFloat(new Date(endDate).getMonth())+1)+"月 "+new Date(endDate).getDate()+"日";
-				//计算剩余天数
-				var endDay = DateMinus(comTenantProduct.endDate);
-				document.getElementById('endDay').innerHTML=endDay;
+			if (data.errCode == "S") {	
+				//是否充值过
+				if(data.comTenantProduct.length>0){
+					var comTenantProduct = data.comTenantProduct[0];
+					//已过期不用计算剩余天数  直接为0
+					if(comTenantProduct.status==1){
+						var endDate = comTenantProduct.endDate;
+						document.getElementById('endDate').innerHTML=new Date(endDate).getFullYear()+"年 "+(parseFloat(new Date(endDate).getMonth())+1)+"月 "+new Date(endDate).getDate()+"日";
+						document.getElementById('endDay').innerHTML=0;
+					}else{
+						var endDate = comTenantProduct.endDate;
+						document.getElementById('endDate').innerHTML=new Date(endDate).getFullYear()+"年 "+(parseFloat(new Date(endDate).getMonth())+1)+"月 "+new Date(endDate).getDate()+"日";
+						//计算剩余天数
+						var endDay = DateMinus(comTenantProduct.endDate);
+						document.getElementById('endDay').innerHTML=endDay;						
+					}
+				}else{
+					document.getElementById('endDate').innerHTML="未购买";
+					document.getElementById('endDay').innerHTML=0;
+				}
 			} else {
 				parent.showMsg(data.errMsg || "到期日期查询异常!","E");
 			}

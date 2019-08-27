@@ -12,7 +12,7 @@
 <title>产品充值</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
             <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%= request.getContextPath() %>/tenant/js/chainProduct.js?v=1.0.6" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/tenant/js/chainProduct.js?v=1.0.7" type="text/javascript"></script>
     <style type="text/css">
     	.sfbz em {
 		    color: #5fc8d7;
@@ -55,7 +55,7 @@
 		.cztc a.xz {
 		    border: 1px #ff6600 solid;
 		    color: #ff6600;
-		    background: url(../img/cztcbtn.gif) right bottom no-repeat;
+		    background: url(<%= request.getContextPath() %>/tenant/img/cztcbtn.gif) right bottom no-repeat;
 		}
 		.cztc a font {
 		    font-size: 18px;
@@ -100,7 +100,7 @@
 	 a.close2 {
 	    width: 14px;
 	    height: 14px;
-	    background: url(../img/close.png) no-repeat;
+	    background: url(<%= request.getContextPath() %>/tenant/img/close.png) no-repeat;
 	    display: block;
 	    position: absolute;
 	    right: 15px;

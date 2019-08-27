@@ -55,7 +55,7 @@
 		.cztc a.xz {
 		    border: 1px #ff6600 solid;
 		    color: #ff6600;
-		    background: url(../img/cztcbtn.gif) right bottom no-repeat;
+		    background: url(<%= request.getContextPath() %>/tenant/img/cztcbtn.gif) right bottom no-repeat;
 		}
 		.cztc a font {
 		    font-size: 18px;
@@ -100,7 +100,7 @@
 	 a.close2 {
 	    width: 14px;
 	    height: 14px;
-	    background: url(../img/close.png) no-repeat;
+	    background: url(<%= request.getContextPath() %>/tenant/img/close.png) no-repeat;
 	    display: block;
 	    position: absolute;
 	    right: 15px;

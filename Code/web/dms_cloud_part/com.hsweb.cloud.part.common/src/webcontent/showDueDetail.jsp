@@ -12,7 +12,7 @@
 <head>
 <title>客户欠款明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/js/showDueDetail.js?v=1.0.60"></script>
+    <script src="<%=webPath + contextPath%>/common/js/showDueDetail.js?v=1.0.62"></script>
     
 </head>
 <body>
@@ -23,11 +23,10 @@
 		        <tr>
 		            <td style="white-space:nowrap;">
 		                <label style="font-family:Verdana;">快速查询：</label>
-		                <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">全部</a>
+		                <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本月</a>
 		
 		                <ul id="popupMenuDate" class="nui-menu" style="display:none;">
-		                    <li iconCls="" onclick="quickSearch(0)" id="type0">全部</li>
-		                    <li class="separator"></li>
+		                  
 		                    <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
 		                    <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
 		                    <li class="separator"></li>

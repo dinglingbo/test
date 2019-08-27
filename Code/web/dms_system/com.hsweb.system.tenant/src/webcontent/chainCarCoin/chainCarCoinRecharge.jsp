@@ -12,7 +12,7 @@
 <title>链车币充值</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
             <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%= request.getContextPath() %>/tenant/js/chainCarCoinRecharge.js?v=1.0.4" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/tenant/js/chainCarCoinRecharge.js?v=1.0.8" type="text/javascript"></script>
     <style type="text/css">
     	.sfbz em {
 		    color: #5fc8d7;
@@ -55,7 +55,7 @@
 		.cztc a.xz {
 		    border: 1px #ff6600 solid;
 		    color: #ff6600;
-		    background: url(../img/cztcbtn.gif) right bottom no-repeat;
+		    background: url(<%= request.getContextPath() %>/tenant/img/cztcbtn.gif) right bottom no-repeat;
 		}
 		.cztc a font {
 		    font-size: 18px;
@@ -100,7 +100,7 @@
 	 a.close2 {
 	    width: 14px;
 	    height: 14px;
-	    background: url(../img/close.png) no-repeat;
+	    background: url(<%= request.getContextPath() %>/tenant/img/close.png) no-repeat;
 	    display: block;
 	    position: absolute;
 	    right: 15px;
@@ -214,12 +214,12 @@
     </table>
 </div>
 <div class="popbox" id="popbox_2" style="width: 500px; height: 200px; margin: -120px 0 0 -250px; display: none">
-    <h2><a class="close2" href="#" title="关闭" onclick="onclosePopbox_2()" >&nbsp;</a>微信支付成功</h2>
-		<p  style="font-size: 18px;">支付成功，剩余  <span style="font-weight: bold; font-size: 20px;" id="dtime"></span> 关闭本页面...</p>
+    <h2><a class="close2" href="#" title="关闭" onclick="onclosePopbox_2()" >&nbsp;</a>支付成功</h2>
+		<p  style="font-size: 18px;margin-left: 20px;margin-top: 40px;color: #21c064;">支付成功，剩余  <span style="font-weight: bold; font-size: 20px;" id="dtime"></span> 关闭本页面...</p>
 </div>
 <script type="text/javascript">
-	var type = null;
-	type = "<%= request.getParameter("type")%>";
+<%-- 	var type = null;
+	type = "<%= request.getParameter("type")%>"; --%>
 	
 </script>
 </body>

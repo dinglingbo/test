@@ -2,9 +2,9 @@
  * Created by Administrator on 2018/2/23.
  */
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderMainList.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList.biz.ext";
-var detailGridUrl = baseUrl+"";
+var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.process.queryProcessMain.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.process.queryProcessProduct.biz.ext";
+var detailGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.process.queryProcessDetail.biz.ext";
 var basicInfoForm = null;
 
 var leftGrid = null;
@@ -110,6 +110,7 @@ $(document).ready(function(v)
 		}else{
 			isNeedSet = true;
 		}
+		 quickSearch(0);
     });
    
     add();
@@ -171,19 +172,23 @@ function loadRightGridData(mainId)
         token:token
     },function(){
 
-        var data = rightGrid.getData();
+//        var data = rightGrid.getData();
+//        
+//       
+//        if(data && data.length <= 0){
+//            addNewRow(false);
+//        }else{
+//
+//          
+//        } 
         
-        if(autoNew == 0){			
-			add();
-			autoNew = 1;
-        }
-        if(data && data.length <= 0){
-            addNewRow(false);
-        }else{
 
-          
-        }   
-
+    });
+    var p ={};
+    p.codeId= mainId;
+    detailGrid.load({
+    	params:p,
+    	token : token
     });
 }
 function onLeftGridDrawCell(e)
@@ -363,11 +368,10 @@ function save() {
 
     data = getMainData();
 
-    var sellOrderDetailAdd = rightGrid.getChanges("added");
-    var sellOrderDetailUpdate = rightGrid.getChanges("modified");
-    var sellOrderDetailDelete = rightGrid.getChanges("removed");
-    var sellOrderDetailList = rightGrid.getData();
-    sellOrderDetailList = removeChanges(sellOrderDetailAdd, sellOrderDetailUpdate, sellOrderDetailDelete, sellOrderDetailList);
+    var processProductData = rightGrid.getData();
+    var processProduct=processProductData[0];
+ 
+//    sellOrderDetailList = removeChanges(sellOrderDetailAdd, sellOrderDetailUpdate, sellOrderDetailDelete, sellOrderDetailList);
 
     nui.mask({
         el: document.body,
@@ -379,11 +383,8 @@ function save() {
         url : saveUrl,
         type : "post",
         data : JSON.stringify({
-            sellOrderMain : data,
-            sellOrderDetailAdd : sellOrderDetailAdd,
-            sellOrderDetailUpdate : sellOrderDetailUpdate,
-            sellOrderDetailDelete : sellOrderDetailDelete,
-            sellOrderDetailList : sellOrderDetailList,
+        	processMain : data,
+        	processProduct : processProduct,
             token : token
         }),
         success : function(data) {
@@ -392,17 +393,17 @@ function save() {
             if (data.errCode == "S") {
                 parent.showMsg("保存成功!","S");
                 //onLeftGridRowDblClick({});
-                var pjSellOrderMainList = data.pjSellOrderMainList;
-                if(pjSellOrderMainList && pjSellOrderMainList.length>0) {
-                    var leftRow = pjSellOrderMainList[0];
-                    var row = leftGrid.getSelected();
-                    leftGrid.updateRow(row,leftRow);
-
-                    //保存成功后重新加载数据
-                    loadMainAndDetailInfo(leftRow);
-
-                    
-                }
+//                var pjSellOrderMainList = data.pjSellOrderMainList;
+//                if(pjSellOrderMainList && pjSellOrderMainList.length>0) {
+//                    var leftRow = pjSellOrderMainList[0];
+//                    var row = leftGrid.getSelected();
+//                    leftGrid.updateRow(row,leftRow);
+//
+//                    //保存成功后重新加载数据
+//                    loadMainAndDetailInfo(leftRow);
+//
+//                    
+//                }
             } else {
                 parent.showMsg(data.errMsg || "保存失败!","E");
             }
@@ -450,11 +451,9 @@ function getMainData()
 {
     var data = basicInfoForm.getData();
     //汇总明细数据到主表
-    data.isFinished = 0;
     data.auditSign = 0;
-    data.billStatusId = '';
     data.printTimes = 0;
-    data.orderTypeId = 3;
+    data.orderTypeId = 1;
     delete data.createDate;	
     if(data.operateDate) {
         data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
@@ -488,7 +487,7 @@ function setEditable(flag)
 function doSearch(params) 
 {
     //目前没有区域销售订单，采退受理  params.enterTypeId = '050101';
-    params.orderTypeId = 3;
+    params.orderTypeId = 1;
   //是业务员且业务员禁止可见
 	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
 		params.creator= currUserName;
@@ -506,10 +505,6 @@ function doSearch(params)
             setBtnable(false);
             setEditable(false);
             
-            if(autoNew == 0){
-				add();
-				autoNew = 1;
-			}
             
         }else {
             var row = leftGrid.getSelected();
@@ -709,6 +704,7 @@ function add()
 
                     basicInfoForm.reset();
                     rightGrid.clearRows();
+                    detailGrid.clearRows();
                     
                     var newRow = { serviceId: '新配件组装', auditSign: 0};
                     leftGrid.addRow(newRow, 0);
@@ -736,6 +732,7 @@ function add()
 
         basicInfoForm.reset();
         rightGrid.clearRows();
+        detailGrid.clearRows();
         
         var newRow = { serviceId: '新配件组装', auditSign: 0};
         leftGrid.addRow(newRow, 0);

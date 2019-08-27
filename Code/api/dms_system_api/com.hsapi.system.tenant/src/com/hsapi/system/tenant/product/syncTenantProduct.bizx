@@ -380,11 +380,11 @@
     <location x="690" y="225"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.getProductResToTenant</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="productId" type="query" value="Int" valueType="Primitive" pattern="reference">productId</process:inputVariable>
-        <process:inputVariable id="1" name="tenantId" type="query" value="Int" valueType="Primitive" pattern="reference">tenantId</process:inputVariable>
+        <process:inputVariable id="1" name="tenantId" type="query" value="String" valueType="Primitive" pattern="reference">tenantId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -473,6 +473,10 @@
       <process:from type="query" pattern="reference">operateDate</process:from>
       <process:to type="query">startDate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tpList[1]</process:from>
+      <process:to type="query">tp</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
     <location x="234" y="396"/>
@@ -514,8 +518,8 @@
         <process:inputVariable id="1" name="productId" type="query" value="String" valueType="Primitive" pattern="reference">productId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

@@ -70,6 +70,9 @@ function onOk()
     	nodec[i].orderQty =1;
     }
     var detailData =detailGrid.getData(); 
+    for(var i=0;i<detailData.length;i++){
+    	detailData[i].orderQty =detailData[i].qty
+    }
     
     if(!nodec)
     {

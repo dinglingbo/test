@@ -8,4 +8,5 @@ encoding//com.hsapi.system.dict/eosdebug/com/hsapi/system/dict/dictMgr/queryDict
 encoding//com.hsapi.system.dict/eosdebug/com/hsapi/system/dict/dictMgr/queryDictTypeTree.bizx.eosdebug=UTF-8
 encoding//com.hsapi.system.dict/eosdebug/com/hsapi/system/dict/dictMgr/saveDictList.bizx.eosdebug=UTF-8
 encoding//com.hsapi.system.llq/eosdebug/com/hsweb/system/llq/call/doCall.bizx.eosdebug=UTF-8
+encoding//com.hsapi.system.tenant/eosdebug/com/hsapi/system/tenant/carCoin/weChatBCoin.bizx.eosdebug=UTF-8
 encoding//com.hsapi.system.tenant/eosdebug/com/hsapi/system/tenant/permissions/saveFunctionAuths.bizx.eosdebug=UTF-8

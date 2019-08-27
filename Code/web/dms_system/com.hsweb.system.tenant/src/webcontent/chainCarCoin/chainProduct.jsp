@@ -12,7 +12,7 @@
 <title>产品充值</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
             <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%= request.getContextPath() %>/tenant/js/chainProduct.js?v=1.0.3" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/tenant/js/chainProduct.js?v=1.0.7" type="text/javascript"></script>
     <style type="text/css">
     	.sfbz em {
 		    color: #5fc8d7;
@@ -55,7 +55,7 @@
 		.cztc a.xz {
 		    border: 1px #ff6600 solid;
 		    color: #ff6600;
-		    background: url(../img/cztcbtn.gif) right bottom no-repeat;
+		    background: url(<%= request.getContextPath() %>/tenant/img/cztcbtn.gif) right bottom no-repeat;
 		}
 		.cztc a font {
 		    font-size: 18px;
@@ -100,7 +100,7 @@
 	 a.close2 {
 	    width: 14px;
 	    height: 14px;
-	    background: url(../img/close.png) no-repeat;
+	    background: url(<%= request.getContextPath() %>/tenant/img/close.png) no-repeat;
 	    display: block;
 	    position: absolute;
 	    right: 15px;
@@ -125,7 +125,8 @@
                     <td>
                         <div style="padding: 15px; background: #fbf7f2; border: 1px #e9e2d9 solid; height: auto; overflow: hidden;">
                             <p class="kaitong"><a href="/Main/Tool/ConsumeRecord" style="width:120px; font-size:14px;">充值消费记录</a></p>
-                            <font class="sfbz" style="line-height: 34px; margin-left: 10px;"><b>注：</b><b style="color:#ff9600; margin:0 5px;">产品总天数=剩余天数+充值天数</b> <em></em></font>
+<!--                             <font class="sfbz" style="line-height: 34px; margin-left: 10px;"><b>注：</b><b style="color:#ff9600; margin:0 5px;">产品总天数=剩余天数+充值天数</b> <em></em></font> -->
+                            <p style="margin-left: 50px;font-size: 15px;">到期日期：<b style="color:#00b400; margin:0 5px;" id="endDate"></b>(剩余：<b style="color:#ff9600; margin:0 5px;" id="endDay"></b> 天)</p>
                         </div>
                     </td>
                 </tr>
@@ -195,8 +196,8 @@
     </table>
 </div>
 <div class="popbox" id="popbox_2" style="width: 500px; height: 200px; margin: -120px 0 0 -250px; display: none">
-    <h2><a class="close2" href="#" title="关闭" onclick="onclosePopbox_2()" >&nbsp;</a>微信支付成功</h2>
-		<p  style="font-size: 18px;">支付成功，剩余  <span style="font-weight: bold; font-size: 20px;" id="dtime"></span> 关闭本页面...</p>
+    <h2><a class="close2" href="#" title="关闭" onclick="onclosePopbox_2()" >&nbsp;</a>支付成功</h2>
+		<p  style="font-size: 18px;margin-left: 20px;margin-top: 40px;color: #21c064;">支付成功，剩余  <span style="font-weight: bold; font-size: 20px;" id="dtime"></span> 关闭本页面...</p>
 </div>
 <script type="text/javascript">
 	var productId = null;

@@ -38,10 +38,13 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
+import com.eos.data.datacontext.DataContextManager;
+import com.eos.data.datacontext.IMUODataContext;
 import com.eos.data.datacontext.IMapContextFactory;
 import com.eos.data.datacontext.ISessionMap;
 import com.eos.data.datacontext.UserObject;
 import com.eos.system.annotation.Bizlet;
+import com.hs.utils.APIUtils;
 import com.primeton.ext.infra.security.BASE64Decoder;
 import com.primeton.ext.infra.security.BASE64Encoder;
 
@@ -765,7 +768,7 @@ public class Utils {
             e.printStackTrace();
         }
         String bodys = requestObj.toString();
-
+        
             HttpResponse response = HttpUtils.doPost(host, path, method, headers, querys, bodys);
             int stat = response.getStatusLine().getStatusCode();
     		if (stat == 200) {
@@ -773,14 +776,17 @@ public class Utils {
                 JSONObject res_obj = JSON.parseObject(res);
     			
     			if (res_obj.getBoolean("success")) {
-    				outResult.put("data", res_obj);
+    				outResult.put("data", res_obj);   
+    				outResult.put("errMsg", "success"); 				
     				return outResult;
     			} else {
     				outResult.put("errCode", "E");
+    				outResult.put("errMsg", "fail");
     				return outResult;
     			}
     		} else {
     			outResult.put("errCode", "E");
+				outResult.put("errMsg", "error");
     			return outResult;
     		}
     }

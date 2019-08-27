@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="generatePayCode.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="http://127.0.0.1:8080/default/com.hsapi.wechat.autoServiceBackstage.weChatStoreOrder.weChatPayOrder.biz.ext?timeStart=20190827195510&amp;timeExpire=20190827203210&amp;sellPrice=100&amp;serviceId=OOD10060119082700039&amp;bodyDes=%E5%8A%9F%E8%83%BD%E5%85%85%E5%80%BC&amp;productId=1&amp;attach=123&#xD;&#xA;" title="dlb&#x9;19-8-27 下午8:17">
+    <location x="45" y="-45"/>
+    <size height="136" width="785"/>
+  </nodes>
+  <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
+    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <location x="100" y="150"/>
+    <size height="28" width="28"/>
+    <nodeLabel>start0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
+    <targetConnections>link3</targetConnections>
+    <targetConnections>link4</targetConnections>
+    <location x="735" y="150"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end0label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="String" name="imgUrl" type="query" valueType="Primitive">imgUrl</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
+    <location x="99" y="186"/>
+    <figSize height="20" width="31"/>
+    <node>start0</node>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
+    <location x="734" y="186"/>
+    <figSize height="20" width="31"/>
+    <node>end0</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="sendPostApi" displayName="sendPostApi" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess0</sourceNode>
+      <targetNode>subprocess1</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="连接线" type="transition">
+      <bendPoint heightToEnd="-62" heightToStart="-61" widthToEnd="-202" widthToStart="189"/>
+      <sourceNode>subprocess0</sourceNode>
+      <targetNode>end0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">data/data/codeUrl</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link1</targetConnections>
+    <location x="345" y="150"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess0label</nodeLabel>
+    <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.system.basic.smsPush.sendPostApi</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="key" type="query" value="String" valueType="Primitive" pattern="reference">WECHAT</process:inputVariable>
+        <process:inputVariable id="1" name="apiName" type="literal" value="String" valueType="Primitive" pattern="reference">com.hsapi.wechat.autoServiceBackstage.weChatStoreOrder.weChatPayOrder.biz.ext</process:inputVariable>
+        <process:inputVariable id="2" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">params</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="2" name="result" type="query" value="java.util.HashMap" valueType="Java">data</process:outputVariable>
+        <process:outputVariable id="3" name="turl" type="query" value="String" valueType="Primitive"></process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
+    <location x="312" y="185"/>
+    <figSize height="20" width="93"/>
+    <node>subprocess0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>subprocess0</targetNode>
+    </sourceConnections>
+    <targetConnections>link0</targetConnections>
+    <location x="225" y="150"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign0label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">timeStart</process:from>
+      <process:to type="query">params/timeStart</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">timeExpire</process:from>
+      <process:to type="query">params/timeExpire</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">sellPrice</process:from>
+      <process:to type="query">params/sellPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">serviceId</process:from>
+      <process:to type="query">params/serviceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">bodyDes</process:from>
+      <process:to type="query">params/bodyDes</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">productId</process:from>
+      <process:to type="query">params/productId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
+    <location x="224" y="186"/>
+    <figSize height="20" width="31"/>
+    <node>assign0</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="createQRCode" displayName="createQRCode" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess1</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="540" y="150"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess1label</nodeLabel>
+    <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hs.common.uitls.createQRCode</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="text" type="query" value="String" valueType="Primitive" pattern="reference">data/data/codeUrl</process:inputVariable>
+        <process:inputVariable id="1" name="width" type="query" value="Int" valueType="Primitive" pattern="reference">width</process:inputVariable>
+        <process:inputVariable id="2" name="height" type="query" value="Int" valueType="Primitive" pattern="reference">height</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="path" type="query" value="String" valueType="Primitive">imgUrl</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
+    <location x="499" y="185"/>
+    <figSize height="20" width="108"/>
+    <node>subprocess1</node>
+  </nodes>
+  <topRuler/>
+  <leftRuler/>
+  <process:info author="dlb" createTime="2019-08-27 20:12:46" date="2019-08-27Z" description="" name="generatePayCode" version="7.0.0.0"/>
+  <process:variables>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="data"/>
+  </process:variables>
+  <process:inputs varArgs="false">
+    <process:input description="" isArray="false" name="productId" primitiveType="String"/>
+    <process:input description="" isArray="false" name="sellPrice" primitiveType="String"/>
+    <process:input description="" isArray="false" name="serviceId" primitiveType="String"/>
+    <process:input description="购买功能" isArray="false" name="bodyDes" primitiveType="String"/>
+    <process:input description="" isArray="false" name="timeStart" primitiveType="String"/>
+    <process:input description="" isArray="false" name="timeExpire" primitiveType="String"/>
+    <process:input description="" isArray="false" name="width" primitiveType="String"/>
+    <process:input description="" isArray="false" name="height" primitiveType="String"/>
+  </process:inputs>
+  <process:outputs>
+    <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
+    <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
+    <process:output description="" isArray="false" name="imgUrl" primitiveType="String"/>
+  </process:outputs>
+  <process:extAttribute1>public</process:extAttribute1>
+  <process:transactionType>true</process:transactionType>
+</process:tBusinessLogic>

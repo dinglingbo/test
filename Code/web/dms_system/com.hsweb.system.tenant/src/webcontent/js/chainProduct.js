@@ -160,7 +160,7 @@ function daoTime(){
 		document.getElementById('popbox_2').style.display='none';
 		//关掉计时器
 		window.clearInterval(t2);
-		
+		toRefresh();
 	}
 }
 

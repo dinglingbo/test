@@ -13,7 +13,7 @@
 <title>链车币定义</title>
 <%@include file="/common/sysCommon.jsp"%>
 <script
-	src="<%=webPath + contextPath%>/tenant/js/saveChainCarCoin.js?v=1.0.0"></script>
+	src="<%=webPath + contextPath%>/tenant/js/saveChainCarCoin.js?v=1.0.2"></script>
 
 </head>
 <body>

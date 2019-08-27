@@ -42,6 +42,7 @@ import com.eos.data.datacontext.IMapContextFactory;
 import com.eos.data.datacontext.ISessionMap;
 import com.eos.data.datacontext.UserObject;
 import com.eos.system.annotation.Bizlet;
+import com.hs.utils.APIUtils;
 import com.primeton.ext.infra.security.BASE64Decoder;
 import com.primeton.ext.infra.security.BASE64Encoder;
 
@@ -774,6 +775,27 @@ public class Utils {
     			
     			if (res_obj.getBoolean("success")) {
     				outResult.put("data", res_obj);
+    				
+    				List<Object> p = new ArrayList<Object>();
+    				/*p.add(tenantId);
+    				p.add(orgid);
+    				p.add(productId);
+    				p.add(productName);
+    				p.add(callParams);
+    				p.add(callStatus);
+    				p.add(callResult);
+    				p.add(costCoin);
+    				p.add(creator);
+    				p.add(dc);
+    				p.add(creatorId);
+    				p.add(callUrl);*/
+    				
+    				try {
+    					Object[] resultRes = APIUtils.callLogicFlowMethd("com.hs.common.sysService", "callRecord", p.toArray(new Object[p.size()]));
+    				} catch (Throwable e) {
+    					e.printStackTrace();
+    				}
+    				
     				return outResult;
     			} else {
     				outResult.put("errCode", "E");

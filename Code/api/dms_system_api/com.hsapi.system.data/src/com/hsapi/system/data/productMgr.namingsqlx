@@ -55,6 +55,30 @@
 			wb_common.com_tenant_product AS a
 	    WHERE a.tenant_id = #tenantId# and a.product_id = #productId#
 	</select>
+	
+	<!-- 根据接口地址查询产品查询-->
+	<select id="queryProductByProUrl" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        SELECT 
+			a.id as id,
+			a.`code` as code,
+			a.`name` as name,
+			a.type as type,
+			a.pro_url as proUrl,
+			a.period_validity as periodValidity,
+			a.sell_price as sellPrice,
+			a.call_need_coin as callNeedCoin,
+			a.order_index as orderIndex,
+			a.remark as remark,
+			a.is_disabled as isDisabled,
+			a.recorder as recorder,
+			a.record_date as recordDate,
+			a.modifier as modifier,
+			a.modify_date as modifyDate
+		FROM
+			com_sys_product AS a
+	    WHERE a.pro_url = #proUrl# and a.is_disabled = 0
+	    limit 1
+	</select>
     
     
     

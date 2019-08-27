@@ -323,12 +323,10 @@
     <location x="839" y="123"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.resetInterfaceCache</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="proUrl" type="query" value="String" valueType="Primitive" pattern="reference">comSysProduct/proUrl</process:inputVariable>
-        <process:inputVariable id="1" name="callNeedCoin" type="query" value="Int" valueType="Primitive" pattern="reference">comSysProduct/callNeedCoin</process:inputVariable>
-        <process:inputVariable id="2" name="isDisabled" type="query" value="Int" valueType="Primitive" pattern="reference">comSysProduct/isDisabled</process:inputVariable>
+        <process:inputVariable id="0" name="id" type="query" value="Int" valueType="Primitive" pattern="reference">comSysProduct/id</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>

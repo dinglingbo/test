@@ -1,8 +1,7 @@
 var product = {};//充值的产品
 var sellCarCoinId = null;
 $(document).ready(function(v) {
-	loadCarCoin(2);
-
+	//loadCarCoin(2);
 });
 
 
@@ -32,6 +31,7 @@ function loadCarCoin(productId){
 					document.getElementById('periodValidity').innerHTML=product.periodValidity||0;
 					document.getElementById('remark').innerHTML=product.remark||"";
 					document.getElementById('sellPrice').innerHTML=product.sellPrice||0;
+					queryTenantProduct();
 				}
 			} else {
 				parent.showMsg(data.errMsg || "加载失败!","E");
@@ -104,10 +104,32 @@ function validationPost(){
 				if(data.comTenantOder.isPayment==1){
 					//去掉定时器的方法 
 					window.clearInterval(t1);
-					//关闭支付，打开倒计时
-					document.getElementById('popbox_1').style.display='none';
-					document.getElementById('popbox_2').style.display='block';
-					t1 = window.setInterval(daoTime,1000); 
+					var weChatBCoinUrl = apiPath + sysApi + "/com.hsapi.system.tenant.product.weChatProduct.biz.ext";
+					//充值成功后
+					nui.ajax({
+						url : weChatBCoinUrl,
+						type : "post",
+						data : JSON.stringify({
+							params : {id:data.comTenantOder.id},
+							token: token
+						}),
+						success : function(data) {
+							data = data || {};
+							if (data.errCode == "S") {	
+									queryTenantProduct();
+									//关闭支付，打开倒计时
+									document.getElementById('popbox_1').style.display='none';
+									document.getElementById('popbox_2').style.display='block';
+									t1 = window.setInterval(daoTime,1000); 
+							} else {
+								parent.showMsg(data.errMsg || "订单异常!","E");
+							}
+						},
+						error : function(jqXHR, textStatus, errorThrown) {
+							// nui.alert(jqXHR.responseText);
+							console.log(jqXHR.responseText);
+						}
+					});
 				}
 			} else {
 				parent.showMsg(data.errMsg || "订单异常!","E");
@@ -138,7 +160,45 @@ function daoTime(){
 		document.getElementById('popbox_2').style.display='none';
 		//关掉计时器
 		window.clearInterval(t2);
-		document.getElementById('remainingCoin').innerHTML=20;
 		
 	}
+}
+
+//查询剩余天数
+function queryTenantProduct(){
+	var queryTenantProductUrl = apiPath + sysApi + "/com.hsapi.system.tenant.product.queryTenantProduct.biz.ext";
+	nui.ajax({
+		url : queryTenantProductUrl,
+		type : "post",
+		data : JSON.stringify({
+			params:{"productId":product.id},
+			token: token
+		}),
+		success : function(data) {
+			data = data || {};
+			if (data.errCode == "S") {		
+				var comTenantProduct = data.comTenantProduct[0];
+				var endDate = comTenantProduct.endDate;
+				document.getElementById('endDate').innerHTML=new Date(endDate).getFullYear()+"年 "+(parseFloat(new Date(endDate).getMonth())+1)+"月 "+new Date(endDate).getDate()+"日";
+				//计算剩余天数
+				var endDay = DateMinus(comTenantProduct.endDate);
+				document.getElementById('endDay').innerHTML=endDay;
+			} else {
+				parent.showMsg(data.errMsg || "到期日期查询异常!","E");
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+
+//计算日期相减天数 
+function DateMinus(sDate){ 
+   var sdate = new Date(sDate.replace(/-/g, "/")); 
+   var now = new Date(); 
+   var days = sdate.getTime()-now.getTime();
+   var day = parseInt(days / (1000 * 60 * 60 * 24)); 
+  return day; 
 }

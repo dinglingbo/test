@@ -218,8 +218,8 @@
 		<p  style="font-size: 18px;">支付成功，剩余  <span style="font-weight: bold; font-size: 20px;" id="dtime"></span> 关闭本页面...</p>
 </div>
 <script type="text/javascript">
-	var type = null;
-	type = "<%= request.getParameter("type")%>";
+<%-- 	var type = null;
+	type = "<%= request.getParameter("type")%>"; --%>
 	
 </script>
 </body>

@@ -398,4 +398,37 @@
                 a.service_id =  #serviceId#
           </isNotEmpty>          
     </select> 
+    
+        <select id="queryTenantProduct" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	
+    	SELECT
+			a.id as id,
+			a.tenant_id as tenantId,
+			a.product_id as productId,
+			a.product_name as productName,
+			a.status as status,
+			a.start_date as startDate,
+			a.end_date as endDate,
+			a.last_charge_amt as lastChargeAmt,
+			a.last_charge_date as lastChargeDate,
+			a.total_charge_amt as totalChargeAmt,
+			a.order_index as orderIndex,
+			a.remark as remark,
+			a.recorder as recorder,
+			a.record_date as recordDate,
+			a.modifier as modifier,
+			a.modify_date as modifyDate			
+		FROM
+			wb_common.com_tenant_product AS a
+		where 1 = 1 
+		  <isNotEmpty prepend="and" property="id">
+                a.id =  #id#
+          </isNotEmpty>
+		  <isNotEmpty prepend="and" property="tenantId">
+                a.tenant_Id =  #tenantId#
+          </isNotEmpty>  
+		  <isNotEmpty prepend="and" property="productId">
+                a.product_id =  #productId#
+          </isNotEmpty>                   
+    </select> 
 </sqlMap>

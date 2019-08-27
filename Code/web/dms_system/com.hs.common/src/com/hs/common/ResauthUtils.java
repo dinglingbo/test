@@ -360,19 +360,19 @@ public class ResauthUtils {
 	}
 	
 	@Bizlet("根接口地址获取单次请求需要扣减的链车币数量")
-	public static int getProUrlCoin(String proUrl) throws Throwable {
+	public static DataObject getProUrlCoin(String proUrl) throws Throwable {
 		HashMap pm = new HashMap();
 		pm.put("proUrl", proUrl);
-		
-		HashMap cachePm = genenCacheKey("com.product.interface", pm);
+				
+		HashMap cachePm = genenCacheKey("com.hsapi.system.data.productMgr.queryProductByProUrl", pm);
 		String cacheName = (String) cachePm.get("cacheName");
 		String key = cachePm.get("key").toString();
 		if(cacheName == null || cacheName.equals("")) {
-			return -1;
+			return null;
 		}
 		
 		String cacheValue = hgetAndExtend(cacheName, key, -1);
-		return (Integer) Utils.gzipStr2Obj(cacheValue);
+		return (DataObject) Utils.gzipStr2Obj(cacheValue);
 	}
 	
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="syncTenantCoin.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="更新租户剩余链车币" title="dlb&#x9;19-8-26 下午6:41">
-    <location x="0" y="-15"/>
+    <location x="0" y="-30"/>
     <size height="100" width="496"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
@@ -61,7 +61,7 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="expandEntity" displayName="expandEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
-      <targetNode>assign2</targetNode>
+      <targetNode>assign4</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link3" name="link3" displayName="连接线" type="transition">
       <sourceNode>invokePojo0</sourceNode>
@@ -127,8 +127,8 @@
       <sourceNode>assign2</sourceNode>
       <targetNode>invokePojo1</targetNode>
     </sourceConnections>
-    <targetConnections>link2</targetConnections>
-    <location x="420" y="150"/>
+    <targetConnections>link10</targetConnections>
+    <location x="468" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
@@ -165,7 +165,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="414" y="186"/>
+    <location x="462" y="186"/>
     <figSize height="20" width="40"/>
     <node>assign2</node>
   </nodes>
@@ -179,6 +179,7 @@
       <targetNode>assign3</targetNode>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
+    <targetConnections>link12</targetConnections>
     <location x="570" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
@@ -220,6 +221,54 @@
     <figSize height="20" width="40"/>
     <node>assign3</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>assign2</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link11" name="link11" displayName="连接线" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>assign5</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">type</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="392" y="150"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign4label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
+    <location x="386" y="186"/>
+    <figSize height="20" width="40"/>
+    <node>assign4</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>invokePojo1</targetNode>
+    </sourceConnections>
+    <targetConnections>link11</targetConnections>
+    <location x="470" y="75"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign5label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">remainCoin</process:from>
+      <process:to type="query">comTenant/remainCoin</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">comTenant/lastUseCoinDate</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
+    <location x="464" y="111"/>
+    <figSize height="20" width="40"/>
+    <node>assign5</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="dlb" createTime="2019-08-26 18:41:13" date="2019-08-26Z" description="更新租户剩余链车币" name="syncTenantCoin" version="7.0.0.0"/>
@@ -234,6 +283,7 @@
     <process:input description="" isArray="false" name="rechargeCoin" primitiveType="Float"/>
     <process:input description="" isArray="false" name="giveCoin" primitiveType="Float"/>
     <process:input description="剩余链车币" isArray="false" name="remainCoin" primitiveType="Float"/>
+    <process:input description="0充值；1扣减" isArray="false" name="type" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

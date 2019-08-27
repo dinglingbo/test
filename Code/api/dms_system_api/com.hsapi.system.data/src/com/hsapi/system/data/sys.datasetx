@@ -50789,7 +50789,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property814" name="tenantId" displayName="tenantId" columnName="tenant_id" nullAble="false" PK="false" columnType="VARCHAR" eosDataType="String" length="100" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
+    <columnProperty id="property814" name="tenantId" displayName="tenantId" columnName="tenant_id" nullAble="false" PK="false" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>租户ID</comment>
       <viewField dict="false" dictTypeId="" displayName="tenantId" entityField="tenantId" id="tenantId" label="tenantId" name="tenantId" userDefined="true">
         <fieldView showAllAttr="false">
@@ -51053,7 +51053,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property818" name="productName" displayName="productName" columnName="product_name" nullAble="true" PK="false" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="100" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
+    <columnProperty id="property818" name="productName" displayName="productName" columnName="product_name" nullAble="true" PK="false" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="200" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
       <comment>产品名称</comment>
       <viewField dict="false" dictTypeId="" displayName="productName" entityField="productName" id="productName" label="productName" name="productName" userDefined="true">
         <fieldView showAllAttr="false">

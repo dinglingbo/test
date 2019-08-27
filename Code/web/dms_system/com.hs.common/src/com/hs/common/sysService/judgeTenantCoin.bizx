@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="judgeTenantCoin.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="judgeTenantCoin" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="判断租户链车币是否足够" title="dlb&#x9;19-8-27 上午10:45">
     <location x="45" y="0"/>
     <size height="100" width="826"/>
@@ -9,7 +9,7 @@
       <sourceNode>start0</sourceNode>
       <targetNode>subprocess0</targetNode>
     </sourceConnections>
-    <location x="100" y="150"/>
+    <location x="3" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
@@ -23,10 +23,12 @@
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
       <process:return id="2" language="Int" name="callNeedCoin" type="query" valueType="Primitive">callNeedCoin</process:return>
+      <process:return id="3" language="String" name="productId" type="query" valueType="Primitive">productId</process:return>
+      <process:return id="4" language="String" name="productName" type="query" valueType="Primitive">productName</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="99" y="186"/>
+    <location x="2" y="186"/>
     <figSize height="20" width="31"/>
     <node>start0</node>
   </nodes>
@@ -41,10 +43,10 @@
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="225" y="150"/>
+    <location x="128" y="150"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.getTenantCoin</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="tenantId" type="query" value="Int" valueType="Primitive" pattern="reference">tenantId</process:inputVariable>
@@ -55,27 +57,17 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="184" y="185"/>
+    <location x="87" y="185"/>
     <figSize height="20" width="109"/>
     <node>subprocess0</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="getProUrlCoin" displayName="getProUrlCoin" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="getProUrlCoin" displayName="getProUrlCoin" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
-      <targetNode>assign0</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="连接线" type="transition">
-      <sourceNode>invokePojo0</sourceNode>
-      <targetNode>assign1</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="GT">
-          <process:leftOperand type="query">callNeedCoin</process:leftOperand>
-          <process:rightOperand type="query">remainCoin</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
+      <targetNode>assign2</targetNode>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
-    <location x="397" y="150"/>
+    <location x="300" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -86,11 +78,11 @@
       <process:inputVariable id="0" name="proUrl" type="query" value="java.lang.String" valueType="Java" pattern="reference">proUrl</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java">callNeedCoin</process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="commonj.sdo.DataObject" valueType="Java">product</process:outputVariable>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="356" y="186"/>
+    <location x="259" y="186"/>
     <figSize height="20" width="105"/>
     <node>invokePojo0</node>
   </nodes>
@@ -99,7 +91,7 @@
       <sourceNode>assign0</sourceNode>
       <targetNode>end0</targetNode>
     </sourceConnections>
-    <targetConnections>link2</targetConnections>
+    <targetConnections>link6</targetConnections>
     <location x="542" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
@@ -136,11 +128,49 @@
     <figSize height="20" width="40"/>
     <node>assign1</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="连接线" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>assign1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="GT">
+          <process:leftOperand type="query">callNeedCoin</process:leftOperand>
+          <process:rightOperand type="query">remainCoin</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="420" y="150"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign2label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">product/callNeedCoin</process:from>
+      <process:to type="query">callNeedCoin</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">product/productId</process:from>
+      <process:to type="query">productId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">product/productName</process:from>
+      <process:to type="query">productName</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <location x="414" y="186"/>
+    <figSize height="20" width="40"/>
+    <node>assign2</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="dlb" createTime="2019-08-27 10:45:07" date="2019-08-27Z" description="判断租户链车币是否足够" name="judgeTenantCoin" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="remainCoin" primitiveType="Int"/>
+    <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="product"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="tenantId" primitiveType="Int"/>
@@ -150,6 +180,8 @@
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
     <process:output description="" isArray="false" name="callNeedCoin" primitiveType="Int"/>
+    <process:output description="" isArray="false" name="productId" primitiveType="String"/>
+    <process:output description="" isArray="false" name="productName" primitiveType="String"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

@@ -3,7 +3,7 @@
   <nodes xsi:type="model:PEntityNode" id="node0" name="CapUser" nodeType="table" displayName="CapUser" author="Guine" instanceClass="" table="CAP_USER" genStrategy="assigned">
     <location x="60" y="60"/>
     <size height="390" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="203"/>
     <columnProperty id="property0" name="operatorId" displayName="operatorId" columnName="OPERATOR_ID" nullAble="false" PK="true" columnType="NUMBER" eosDataType="Long" length="18" dasType="long" overWriteDefaultColumnType="false" showType="Long" update="true" insert="true">
       <comment xsi:nil="true"/>
       <viewField dict="false" dictTypeId="" displayName="operatorId" entityField="operatorId" id="operatorId" label="operatorId" name="operatorId" userDefined="true">
@@ -1358,7 +1358,7 @@
   <nodes xsi:type="model:PEntityNode" id="node1" name="CapRole" nodeType="table" displayName="CapRole" author="Guine" instanceClass="" table="CAP_ROLE" genStrategy="assigned">
     <location x="60" y="510"/>
     <size height="156" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="201"/>
     <columnProperty id="property19" name="roleId" displayName="roleId" columnName="ROLE_ID" nullAble="false" PK="true" columnType="VARCHAR2" eosDataType="String" length="64" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
       <comment xsi:nil="true"/>
       <viewField dict="false" dictTypeId="" displayName="roleId" entityField="roleId" id="roleId" label="roleId" name="roleId" userDefined="true">
@@ -1830,7 +1830,7 @@
   <nodes xsi:type="model:PEntityNode" id="node2" name="OrgDuty" nodeType="table" displayName="OrgDuty" author="Guine" instanceClass="" table="ORG_DUTY" genStrategy="assigned">
     <location x="60" y="726"/>
     <size height="246" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="156"/>
     <columnProperty id="property27" name="dutyid" displayName="dutyid" columnName="DUTYID" nullAble="false" PK="true" columnType="NUMBER" eosDataType="Int" length="10" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment xsi:nil="true"/>
       <viewField dict="false" dictTypeId="" displayName="dutyid" entityField="dutyid" id="dutyid" label="dutyid" name="dutyid" userDefined="true">
@@ -2627,7 +2627,7 @@
   <nodes xsi:type="model:PEntityNode" id="node3" name="OrgOrganization" nodeType="table" displayName="OrgOrganization" author="Guine" instanceClass="" table="ORG_ORGANIZATION" genStrategy="assigned">
     <location x="60" y="1032"/>
     <size height="570" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="201"/>
     <columnProperty id="property39" name="orgid" displayName="orgid" columnName="ORGID" nullAble="false" PK="true" columnType="NUMBER" eosDataType="Int" length="10" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment xsi:nil="true"/>
       <viewField dict="false" dictTypeId="" displayName="orgid" entityField="orgid" id="orgid" label="orgid" name="orgid" userDefined="true">
@@ -4632,7 +4632,7 @@
   <nodes xsi:type="model:PEntityNode" id="node4" name="OrgPosition" nodeType="table" displayName="OrgPosition" author="Guine" table="ORG_POSITION" genStrategy="assigned">
     <location x="60" y="1662"/>
     <size height="372" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="169"/>
     <columnProperty id="property69" name="positionid" displayName="positionid" columnName="POSITIONID" nullAble="false" PK="true" columnType="NUMBER" eosDataType="Int" length="10" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment xsi:nil="true"/>
       <viewField dict="false" displayName="positionid" id="positionid" label="positionid" name="positionid" userDefined="true">
@@ -5234,7 +5234,7 @@
   <nodes xsi:type="model:SPEntityNode" id="node6" name="VwUserOrg" nodeType="table" displayName="VwUserOrg" author="Guine" open="true" entType="SPEntity" table="vw_user_org">
     <location x="60" y="2094"/>
     <size height="642" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="196"/>
     <columnProperty id="property143" name="orgid" displayName="orgid" columnName="ORGID" nullAble="false" columnType="DECIMAL" eosDataType="Decimal" length="10" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true">
       <viewField dict="false" displayName="orgid" id="orgid" label="orgid" name="orgid" userDefined="true">
         <fieldView>
@@ -6300,7 +6300,7 @@
   <nodes xsi:type="model:SPEntityNode" id="node8" name="VwUserPosition" nodeType="table" displayName="VwUserPosition" author="Guine" open="true" entType="SPEntity" table="vw_user_position">
     <location x="60" y="2796"/>
     <size height="1038" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="176"/>
     <columnProperty id="property177" name="orgid" displayName="orgid" columnName="orgId" nullAble="false" columnType="DECIMAL" eosDataType="Decimal" length="10" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true">
       <viewField dict="false" displayName="orgid" id="orgid" label="orgid" name="orgid" userDefined="true">
         <fieldView>
@@ -8036,7 +8036,7 @@
   <nodes xsi:type="model:PEntityNode" id="node9" name="SysCache" nodeType="table" displayName="SysCache" author="Guine" instanceClass="" table="sys_cache">
     <location x="60" y="3894"/>
     <size height="192" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="203"/>
     <columnProperty id="property258" name="sid" displayName="sid" columnName="SID" nullAble="false" PK="false" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
       <comment>ID</comment>
       <viewField dict="false" dictTypeId="" displayName="sid" entityField="sid" id="sid" label="sid" name="sid" userDefined="true">
@@ -8645,7 +8645,7 @@
   <nodes xsi:type="model:PEntityNode" id="node10" name="OrgEmployee" nodeType="table" displayName="OrgEmployee" author="lilium_ll" instanceClass="" table="org_employee" genStrategy="assigned">
     <location x="60" y="4146"/>
     <size height="750" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="222"/>
     <columnProperty id="property267" name="empid" displayName="empid" columnName="EMPID" nullAble="false" PK="true" columnType="DECIMAL" eosDataType="Decimal" length="10" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="empid" entityField="empid" id="empid" label="empid" name="empid" userDefined="true">
         <fieldView showAllAttr="false">
@@ -11610,7 +11610,7 @@
   <nodes xsi:type="model:PEntityNode" id="node14" name="CapPartyauth" nodeType="table" displayName="CapPartyauth" author="steven" instanceClass="" table="cap_partyauth">
     <location x="60" y="5136"/>
     <size height="156" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="201"/>
     <columnProperty id="property389" name="roleType" displayName="roleType" columnName="ROLE_TYPE" nullAble="false" PK="true" columnType="VARCHAR" eosDataType="String" length="64" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="roleType" entityField="roleType" id="roleType" label="roleType" name="roleType" userDefined="true">
         <fieldView showAllAttr="false">
@@ -12075,7 +12075,7 @@
   <nodes xsi:type="model:PEntityNode" id="node15" name="CapResauth" nodeType="table" displayName="CapResauth" author="steven" instanceClass="" table="cap_resauth">
     <location x="60" y="5352"/>
     <size height="192" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="201"/>
     <columnProperty id="property396" name="partyId" displayName="partyId" columnName="PARTY_ID" nullAble="false" PK="true" columnType="VARCHAR" eosDataType="String" length="64" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="partyId" entityField="partyId" id="partyId" label="partyId" name="partyId" userDefined="true">
         <fieldView showAllAttr="false">
@@ -12670,7 +12670,7 @@
   <nodes xsi:type="model:PEntityNode" id="node17" name="ComStore" nodeType="table" displayName="ComStore" author="Administrator" instanceClass="" table="com_store" genStrategy="assigned">
     <location x="60" y="5604"/>
     <size height="264" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property457" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -13543,7 +13543,7 @@
   <nodes xsi:type="model:PEntityNode" id="node23" name="ComTenantShareUrl" nodeType="table" displayName="ComTenantShareUrl" author="Administrator" allUseViewModel="true" instanceClass="" table="com_tenant_share_url" genStrategy="native">
     <location x="60" y="5928"/>
     <size height="228" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property527" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
@@ -14280,7 +14280,7 @@
   <nodes xsi:type="model:SPEntityNode" id="node5" name="VwDmsUserinfo" nodeType="table" displayName="VwDmsUserinfo" author="Guine" open="true" entType="SPEntity" allUseViewModel="true" instanceClass="" table="vw_dms_userinfo">
     <location x="60" y="6216"/>
     <size height="1038" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="222"/>
     <columnProperty id="property88" name="empid" displayName="empid" columnName="EMPID" nullAble="false" PK="false" columnType="DECIMAL" eosDataType="Decimal" length="10" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="empid" entityField="empid" id="empid" label="empid" name="empid" userDefined="true">
         <fieldView showAllAttr="false">
@@ -18013,7 +18013,7 @@
   <nodes xsi:type="model:PEntityNode" id="node24" name="ComAppFunction" nodeType="table" displayName="ComAppFunction" author="Administrator" instanceClass="" table="com_app_function" genStrategy="assigned">
     <location x="60" y="7314"/>
     <size height="246" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="256"/>
     <entPojoProperty id="assproperty0" name="appFuncgroup" displayName="appFuncgroup" persistent="false" userDefined="true" refId="com.hsapi.system.data.sys.AppFuncgroup">
       <entViewField dict="false" dictTypeId="" entityField="appFuncgroup.createtime" id="appFuncgroup.createtime" label="createtime">
         <fieldView showAllAttr="false">
@@ -19181,7 +19181,7 @@
   <nodes xsi:type="model:PEntityNode" id="node25" name="ComCapPartyauth" nodeType="table" displayName="ComCapPartyauth" author="Administrator" instanceClass="" table="com_cap_partyauth">
     <location x="60" y="7620"/>
     <size height="156" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="201"/>
     <columnProperty id="property554" name="roleType" displayName="roleType" columnName="ROLE_TYPE" nullAble="false" PK="true" columnType="VARCHAR" eosDataType="String" length="64" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="roleType" entityField="roleType" id="roleType" label="roleType" name="roleType" userDefined="true">
         <fieldView showAllAttr="false">
@@ -19646,7 +19646,7 @@
   <nodes xsi:type="model:PEntityNode" id="node26" name="ComCapResauth" nodeType="table" displayName="ComCapResauth" author="Administrator" instanceClass="" table="com_cap_resauth">
     <location x="60" y="7836"/>
     <size height="192" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="201"/>
     <columnProperty id="property561" name="partyId" displayName="partyId" columnName="PARTY_ID" nullAble="false" PK="true" columnType="VARCHAR" eosDataType="String" length="64" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="partyId" entityField="partyId" id="partyId" label="partyId" name="partyId" userDefined="true">
         <fieldView showAllAttr="false">
@@ -20241,7 +20241,7 @@
   <nodes xsi:type="model:PEntityNode" id="node27" name="AppFuncgroup" nodeType="table" displayName="AppFuncgroup" author="Administrator" table="app_funcgroup" genStrategy="assigned">
     <location x="60" y="8088"/>
     <size height="210" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="199"/>
     <columnProperty id="property570" name="funcgroupid" displayName="funcgroupid" columnName="FUNCGROUPID" nullAble="false" PK="true" columnType="DECIMAL" eosDataType="Decimal" length="10" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true">
       <viewField dict="false" displayName="funcgroupid" id="funcgroupid" label="funcgroupid" name="funcgroupid" userDefined="true">
         <fieldView>
@@ -20546,7 +20546,7 @@
   <nodes xsi:type="model:PEntityNode" id="node28" name="ComQrcodeLogin" nodeType="table" displayName="ComQrcodeLogin" author="Administrator" allUseViewModel="true" instanceClass="" table="com_qrcode_login" genStrategy="native">
     <location x="60" y="8358"/>
     <size height="138" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="205"/>
     <columnProperty id="property584" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
@@ -20956,7 +20956,7 @@
   <nodes xsi:type="model:PEntityNode" id="node16" name="ComGuest" nodeType="table" displayName="ComGuest" author="Administrator" allUseViewModel="true" instanceClass="" table="com_guest" genStrategy="assigned">
     <location x="60" y="8556"/>
     <size height="1038" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="240"/>
     <columnProperty id="property412" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -24671,7 +24671,7 @@
   <nodes xsi:type="model:PEntityNode" id="node19" name="ComTenantMenu" nodeType="table" displayName="ComTenantMenu" author="Administrator" allUseViewModel="true" instanceClass="" table="com_tenant_menu" genStrategy="native">
     <location x="60" y="9654"/>
     <size height="246" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property483" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
@@ -25470,7 +25470,7 @@
   <nodes xsi:type="model:PEntityNode" id="node30" name="SysCarAutoService" nodeType="table" displayName="SysCarAutoService" author="Administrator" allUseViewModel="true" instanceClass="" table="sys_car_auto_service" genStrategy="native">
     <location x="60" y="9960"/>
     <size height="336" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="282"/>
     <columnProperty id="property625" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
@@ -26578,7 +26578,7 @@
   <nodes xsi:type="model:PEntityNode" id="node29" name="SysFeedbackRecord" nodeType="table" displayName="SysFeedbackRecord" author="Administrator" allUseViewModel="true" table="sys_feedback_record" genStrategy="native">
     <location x="60" y="10356"/>
     <size height="462" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="206"/>
     <columnProperty id="property601" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
@@ -28140,7 +28140,7 @@
   <nodes xsi:type="model:PEntityNode" id="node31" name="ComAttribute" nodeType="table" displayName="ComAttribute" author="Administrator" table="com_attribute" genStrategy="assigned">
     <location x="60" y="10878"/>
     <size height="1254" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="220"/>
     <columnProperty id="property623" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>配件内码</comment>
       <viewField dict="false" displayName="id" id="id" label="id" name="id" userDefined="true">
@@ -30268,7 +30268,7 @@
   <nodes xsi:type="model:PEntityNode" id="node32" name="ComStoreMember" nodeType="table" displayName="ComStoreMember" author="Administrator" instanceClass="" table="com_store_member">
     <location x="60" y="12192"/>
     <size height="138" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="205"/>
     <columnProperty id="property714" name="empId" displayName="empId" columnName="emp_id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>员工ID</comment>
       <viewField dict="false" dictTypeId="" displayName="empId" entityField="empId" id="empId" label="empId" name="empId" userDefined="true">
@@ -30674,7 +30674,7 @@
   <nodes xsi:type="model:PEntityNode" id="node18" name="ComTrialRegister" nodeType="table" displayName="ComTrialRegister" author="Administrator" allUseViewModel="true" instanceClass="" table="com_trial_register" genStrategy="native">
     <location x="60" y="12390"/>
     <size height="282" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property470" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>id</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -31613,7 +31613,7 @@
   <nodes xsi:type="model:PEntityNode" id="node22" name="ComParams" nodeType="table" displayName="ComParams" author="Administrator" allUseViewModel="true" instanceClass="" table="com_params" genStrategy="native">
     <location x="60" y="12732"/>
     <size height="282" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property514" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -32552,7 +32552,7 @@
   <nodes xsi:type="model:PEntityNode" id="node12" name="ComCompany" nodeType="table" displayName="ComCompany" author="lilium_ll" allUseViewModel="true" table="com_company" genStrategy="assigned">
     <location x="60" y="13074"/>
     <size height="1056" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="239"/>
     <columnProperty id="property326" name="orgid" displayName="orgid" columnName="orgid" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="orgid" entityField="orgid" id="orgid" label="orgid" name="orgid" userDefined="true">
@@ -36309,7 +36309,7 @@
   <nodes xsi:type="model:PEntityNode" id="node33" name="SysUpdateLog" nodeType="table" displayName="SysUpdateLog" author="Administrator" allUseViewModel="true" table="sys_update_log" genStrategy="assigned">
     <location x="60" y="14190"/>
     <size height="192" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="205"/>
     <columnProperty id="property735" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="BIGINT" eosDataType="Long" dasType="long" overWriteDefaultColumnType="false" showType="Long" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
@@ -36843,7 +36843,7 @@
   <nodes xsi:type="model:PEntityNode" id="node7" name="ComMember" nodeType="table" displayName="ComMember" author="Administrator" allUseViewModel="true" instanceClass="" table="com_member" genStrategy="assigned">
     <location x="60" y="14442"/>
     <size height="894" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="248"/>
     <columnProperty id="property218" name="empid" displayName="empid" columnName="empid" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>员工ID</comment>
       <viewField dict="false" dictTypeId="" displayName="empid" entityField="empid" id="empid" label="empid" name="empid" userDefined="true">
@@ -40029,7 +40029,7 @@
   <nodes xsi:type="model:PEntityNode" id="node20" name="ComMemberGroup" nodeType="table" displayName="ComMemberGroup" author="Administrator" allUseViewModel="true" instanceClass="" table="com_member_group" genStrategy="assigned">
     <location x="60" y="15396"/>
     <size height="192" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property497" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
@@ -40637,7 +40637,7 @@
   <nodes xsi:type="model:PEntityNode" id="node21" name="ComMemberLevel" nodeType="table" displayName="ComMemberLevel" author="Administrator" allUseViewModel="true" instanceClass="" table="com_member_level" genStrategy="assigned">
     <location x="60" y="15648"/>
     <size height="210" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property506" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
@@ -41311,7 +41311,7 @@
   <nodes xsi:type="model:PEntityNode" id="node35" name="SysTimerExecuteLog" nodeType="table" displayName="SysTimerExecuteLog" author="Administrator" instanceClass="" table="sys_timer_execute_log" genStrategy="native">
     <location x="60" y="15918"/>
     <size height="192" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="205"/>
     <columnProperty id="property766" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
@@ -41924,7 +41924,7 @@
   <nodes xsi:type="model:PEntityNode" id="node34" name="ComHomePage" nodeType="table" displayName="ComHomePage" author="Administrator" allUseViewModel="true" instanceClass="" table="com_home_page" genStrategy="native">
     <location x="60" y="16170"/>
     <size height="336" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="179"/>
     <columnProperty id="property749" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
@@ -43059,7 +43059,7 @@
   <nodes xsi:type="model:PEntityNode" id="node37" name="ComCustomerAssociated" nodeType="table" displayName="ComCustomerAssociated" author="Administrator" instanceClass="" table="com_customer_associated" genStrategy="native">
     <location x="60" y="16566"/>
     <size height="156" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property793" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -43536,7 +43536,7 @@
   <nodes xsi:type="model:PEntityNode" id="node36" name="ComCustomer" nodeType="table" displayName="ComCustomer" author="Administrator" allUseViewModel="true" table="com_customer" genStrategy="native">
     <location x="60" y="16782"/>
     <size height="372" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property775" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -44773,7 +44773,7 @@
   <nodes xsi:type="model:PEntityNode" id="node38" name="ComSysCoin" nodeType="table" displayName="ComSysCoin" author="Administrator" allUseViewModel="true" instanceClass="" table="com_sys_coin" genStrategy="native">
     <location x="60" y="17214"/>
     <size height="246" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property801" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -45580,7 +45580,7 @@
   <nodes xsi:type="model:PEntityNode" id="node39" name="ComSysCoinRecord" nodeType="table" displayName="ComSysCoinRecord" author="dlb" instanceClass="" table="com_sys_coin_record" genStrategy="native">
     <location x="60" y="17520"/>
     <size height="390" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property813" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
@@ -46912,7 +46912,7 @@
   <nodes xsi:type="model:PEntityNode" id="node40" name="ComSysProduct" nodeType="table" displayName="ComSysProduct" author="dlb" instanceClass="" table="com_sys_product" genStrategy="native">
     <location x="60" y="17970"/>
     <size height="300" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property833" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
@@ -47916,7 +47916,7 @@
   <nodes xsi:type="model:PEntityNode" id="node41" name="ComSysProductRes" nodeType="table" displayName="ComSysProductRes" author="dlb" allUseViewModel="true" table="com_sys_product_res" genStrategy="native">
     <location x="60" y="18330"/>
     <size height="246" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property848" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
@@ -49011,7 +49011,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property864" name="startDate" displayName="startDate" columnName="start_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="date" overWriteDefaultColumnType="false" showType="Date" update="true" insert="true">
+    <columnProperty id="property864" name="startDate" displayName="startDate" columnName="start_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <comment>产品开始日期</comment>
       <viewField dict="false" dictTypeId="" displayName="startDate" entityField="startDate" id="startDate" label="startDate" name="startDate" userDefined="true">
         <fieldView showAllAttr="false">
@@ -49082,7 +49082,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property865" name="endDate" displayName="endDate" columnName="end_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="date" overWriteDefaultColumnType="false" showType="Date" update="true" insert="true">
+    <columnProperty id="property865" name="endDate" displayName="endDate" columnName="end_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <comment>产品结束日期</comment>
       <viewField dict="false" dictTypeId="" displayName="endDate" entityField="endDate" id="endDate" label="endDate" name="endDate" userDefined="true">
         <fieldView showAllAttr="false">
@@ -49219,7 +49219,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property867" name="lastChargeDate" displayName="lastChargeDate" columnName="last_charge_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="date" overWriteDefaultColumnType="false" showType="Date" update="true" insert="true">
+    <columnProperty id="property867" name="lastChargeDate" displayName="lastChargeDate" columnName="last_charge_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <comment>最近充值日期</comment>
       <viewField dict="false" dictTypeId="" displayName="lastChargeDate" entityField="lastChargeDate" id="lastChargeDate" label="lastChargeDate" name="lastChargeDate" userDefined="true">
         <fieldView showAllAttr="false">
@@ -49766,7 +49766,7 @@
   <nodes xsi:type="model:PEntityNode" id="node11" name="ComTenant" nodeType="table" displayName="ComTenant" author="Administrator" allUseViewModel="true" table="com_tenant" genStrategy="assigned">
     <location x="60" y="19014"/>
     <size height="772" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="237"/>
     <columnProperty id="property312" name="tenantId" displayName="tenantId" columnName="tenant_id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>租户内码</comment>
       <viewField dict="false" dictTypeId="" displayName="tenantId" entityField="tenantId" id="tenantId" label="tenantId" name="tenantId" userDefined="true">

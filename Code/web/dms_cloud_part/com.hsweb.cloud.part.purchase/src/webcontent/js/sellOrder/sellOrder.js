@@ -285,16 +285,24 @@ $(document).ready(function(v)
     document.onkeyup=function(event){
         var e=event||window.event;
         var keyCode=e.keyCode||e.which;
-      
-        if((keyCode==78)&&(event.altKey))  {  //新建
+        
+        if((keyCode==78)&&(event.altKey))  {  //新建  Alt+N
             add();  
         } 
       
-        if((keyCode==83)&&(event.altKey))  {   //保存
+        if((keyCode==83)&&(event.altKey))  {   //保存 Alt+S
             save();
         } 
+        
+        if((keyCode==84)&&(event.altKey))  {   //提交 Alt+T
+        	audit();
+        } 
       
-        if((keyCode==80)&&(event.altKey))  {   //打印
+        if((keyCode==89)&&(event.altKey))  {   //出库 Alt+Y
+        	auditToOut();
+        } 
+      
+        if((keyCode==80)&&(event.altKey))  {   //打印  Alt+P
             onPrint();
         } 
         if((keyCode==27))  {  
@@ -309,11 +317,11 @@ $(document).ready(function(v)
         }
         if((keyCode==13))  { 
         	if(partShow==1){
-        		if(partIn==true){
-                	addSelectPart2();
+//        		if(partIn==true){
+//                	addSelectPart2();
                 	
-                }
-        		partIn=true;
+//                }
+//        		partIn=true;
         	}
             
             
@@ -360,6 +368,10 @@ $(document).ready(function(v)
   	  nui.get('unAuditBtn').setVisible(false);
   	  getStoreLocation();
 //  	  getPart();
+    }
+    
+    if(currIsOpenApp !=1){
+    	nui.get('auditToOutBtn').setVisible(true);
     }
     
     rightGrid.on("preload",function(e){
@@ -3058,7 +3070,9 @@ function onMoreTabChanged(e){
     }
     
 }
-var auditToOutUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditSellOrderToOutTran.biz.ext";
+
+//直接出库，生成isDifferOrder =1数据
+var auditToOutUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjPchsOrderRtn.biz.ext";
 function auditToOut()
 {
 
@@ -3079,6 +3093,10 @@ function auditToOut()
     var data = basicInfoForm.getData();
     var mainId = data.id;
 
+    var main = getMainData();
+
+    var sellOrderDetailList = rightGrid.getData();
+    
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
@@ -3090,6 +3108,8 @@ function auditToOut()
         type : "post",
         data : JSON.stringify({
             mainId : mainId,
+            main : main,
+            detail :sellOrderDetailList,
             token : token
         }),
         success : function(data) {
@@ -3097,7 +3117,7 @@ function auditToOut()
             data = data || {};
             if (data.errCode == "S") {
                 showMsg("出库成功!","S");
-                var newRow = {isOut: 1};
+                var newRow = {isOut: 1,billStatusId :2};
                 leftGrid.updateRow(row, newRow);
 
                 setBtnable(false);
@@ -3234,6 +3254,8 @@ function getDueAmt(pr,pp){
 }
 
 function chooseMember(){
+	  //销售单
+	  var serviceType=1;
 	  var row = leftGrid.getSelected();
 	    if(row){
 	    	if(row.auditSign ==1){
@@ -3252,7 +3274,7 @@ function chooseMember(){
 	                onload: function ()
 	                {
 	                    var iframe = this.getIFrameEl();
-	                    iframe.contentWindow.setData(row.id);
+	                    iframe.contentWindow.setData(row.id,serviceType);
 	                },
 	                ondestroy: function (action)
 	                {

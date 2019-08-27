@@ -138,6 +138,45 @@ $(document).ready(function(v)
 
     //add();
     
+    document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;
+      
+        if((keyCode==78)&&(event.altKey))  {  //新建  Alt+N
+            add();  
+        } 
+        
+        if((keyCode==73)&&(event.altKey))  {   //添加配件  Alt+I
+        	addPart();
+        } 
+      
+        if((keyCode==83)&&(event.altKey))  {   //保存 Alt+S
+            save(0);
+        } 
+        
+        if((keyCode==84)&&(event.altKey))  {   //提交 Alt+T
+        	submit();
+        } 
+      
+        if((keyCode==66)&&(event.altKey))  {   //作废/反作废 Alt+B
+	    	del();
+        } 
+        
+        if((keyCode==80)&&(event.altKey))  {   //打印  Alt+P
+            onPrint();
+        } 
+        if((keyCode==27))  {  
+         
+            if(advancedSearchShow==1){
+            	onAdvancedSearchCancel();
+            }if(partShow ==1){
+            	onPartClose();
+            }
+        }
+       
+     
+    }
+    
 });
 
 function loadMainAndDetailInfo(row)
@@ -186,6 +225,14 @@ function loadMainAndDetailInfo(row)
         //form.reset();
         //grid_details.clearRows();
    }
+}
+function onLeftGridBeforeDeselect(e)
+{
+    var row = leftGrid.getSelected(); 
+    if(row.serviceId == '新调拨申请'){
+
+        leftGrid.removeRow(row);
+    }
 }
 function onLeftGridSelectionChanged(){    
    var row = leftGrid.getSelected(); 
@@ -831,7 +878,7 @@ function onPrint(){
             mainId :from.id,
             auditSign:from.auditSign
     };
-    var openUrl = webPath + contextPath+"/purchase/allotApply/allotApplyPrint.jsp";
+    var openUrl = webPath + contextPath+"/purchase/allotPrint/allotApplyPrint.jsp";
 
     nui.open({
        url: openUrl,
@@ -1627,8 +1674,8 @@ function adjustPart(){
             showMsg("此单未提交,不能调整!","W");
             return;
         } 
-        if(row.status == 2) {
-            showMsg("此单已全部转订单,不能调整!","W");
+        if(row.status == 3) {
+            showMsg("此单已全部受理,不能调整!","W");
             return; 
         }
 

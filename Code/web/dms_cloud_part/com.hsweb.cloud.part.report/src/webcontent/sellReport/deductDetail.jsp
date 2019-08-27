@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售提成明细</title>
-<script src="<%=webPath + contextPath%>/report/js/deductDetail.js?v=2.0.9"></script>
+<script src="<%=webPath + contextPath%>/report/js/deductDetail.js?v=2.0.19"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -90,8 +90,9 @@
                 <div property="columns">
                     <div field="deductMemName" width="80" headerAlign="center" header="提成成员名称"></div>
                     <div field="deductType" width="80" headerAlign="center" header="提成类型"></div>
-                    <div allowSort="true" field="orderCode" width="170" headerAlign="center" header="销售订单号"></div>
-                    <div allowSort="true" field="outCode" summaryType="sum" width="170" headerAlign="center" header="出库单号"></div>  
+                    <div allowSort="true" field="orderCode" width="170" headerAlign="center" header="订单号"></div>
+                    <div allowSort="true" field="serviceType" width="90" headerAlign="center" header="订单类型"></div>
+                    <div allowSort="true" field="outCode" summaryType="sum" width="170" headerAlign="center" header="出入库单号"></div>  
                     <div allowSort="true" field="orderAmt" summaryType="sum" width="80" headerAlign="center" header="订单总金额"></div>     
                     <div allowSort="true" field="outAmt"summaryType="sum" width="80" headerAlign="center" header="当前出库金额"></div> 
                     <div allowSort="true" field="outGross" summaryType="sum" width="80" headerAlign="center" header="当前出库毛利"></div>                                                       

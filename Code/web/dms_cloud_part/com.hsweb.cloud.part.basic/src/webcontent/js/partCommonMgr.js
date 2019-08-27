@@ -227,7 +227,7 @@ function msearch() {
 	doMSearch(params);
 }
 function doMSearch(params) {
-    params.orgids = currOrgId;
+    params.tenantId = currTenantId;
     var page={length:1000,size:1000};
 	partGrid.load({
 		params : params,
@@ -467,7 +467,7 @@ function ssearch() {
 	doSSearch(params);
 }
 function doSSearch(params) {
-    params.orgids = currOrgId;
+	params.tenantId = currTenantId;
     var page={length:1000,size:1000};
 	partSGrid.load({
 		params : params,

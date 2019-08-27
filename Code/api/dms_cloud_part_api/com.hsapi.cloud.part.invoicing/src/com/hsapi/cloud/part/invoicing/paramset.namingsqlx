@@ -445,7 +445,7 @@
     		
     			<!-- 不显示库存-->
 				<isEqual prepend = "" property = "showStock" compareValue="0">
-					and (a.orgid = #orgid# or a.orgid = 0) 
+					and (a.tenant_id = #tenantId# or a.orgid = 0) 
 				</isEqual>
 				<!-- 显示库存-->
 				<isEqual prepend = "" property = "showStock" compareValue="1">
@@ -456,7 +456,7 @@
 				
 				<!-- （不显示库存）仓先生目前不支持选择orgid=0）-->
 				<isEqual prepend = "" property = "showStock" compareValue="2">
-					and (a.orgid = #orgid#) 
+					and (a.tenant_id = #tenantId# or a.orgid = 0) 
 				</isEqual>
 				
 				<!-- <isNotEqual prepend = "" property = "showStock" compareValue="1">
@@ -467,7 +467,7 @@
 			
 			<isNull prepend = "" property = "showStock">
     		
-				and (a.orgid = #orgid# or a.orgid = 0) 
+				and (a.tenant_id = #tenantId# or a.orgid = 0) 
 				
 			</isNull>
 			

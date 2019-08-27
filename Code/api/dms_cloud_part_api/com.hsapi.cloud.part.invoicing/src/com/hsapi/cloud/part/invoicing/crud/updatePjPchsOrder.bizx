@@ -285,7 +285,7 @@
       <sourceNode>loopstart1</sourceNode>
       <targetNode>assign18</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="LE">
+        <process:simpleCondition operator="NULLOREMPTY">
           <process:leftOperand type="query">tmp/storeId</process:leftOperand>
           <process:rightOperand type="literal">0</process:rightOperand>
         </process:simpleCondition>
@@ -330,6 +330,7 @@
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="link1" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>loopend1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link31" name="link31" displayName="连接线" type="transition">
       <sourceNode>assign4</sourceNode>
@@ -434,7 +435,7 @@
       <sourceNode>loopstart2</sourceNode>
       <targetNode>assign19</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="LE">
+        <process:simpleCondition operator="NULLOREMPTY">
           <process:leftOperand type="query">tmp/storeId</process:leftOperand>
           <process:rightOperand type="literal">0</process:rightOperand>
         </process:simpleCondition>

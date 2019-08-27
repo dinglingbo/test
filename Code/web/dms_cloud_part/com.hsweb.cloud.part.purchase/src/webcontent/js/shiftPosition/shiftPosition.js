@@ -198,7 +198,7 @@ function onRightGridDrawCell(e)
 var currType = 2;
 function quickSearch(type){
     var params = {};
-    params.enterTypeId = '050204';
+    params.enterTypeId = '050207';
     var querysign = 1;
     var queryname = "本日";
     var querytypename = "未审";
@@ -304,7 +304,7 @@ function onSearch(){
 function search()
 {
     var param = getSearchParam();
-    param.enterTypeId = '050204';
+    param.enterTypeId = '050207';
     doSearch(param);
 }
 function getSearchParam(){
@@ -347,7 +347,7 @@ function setEditable(flag)
 }
 function doSearch(params) 
 {
-    params.enterTypeId = '050204';
+    params.enterTypeId = '050207';
 	//目前没有区域盘亏出库，采退入库  params.enterTypeId = '050101';
 	leftGrid.load({
 		params : params,
@@ -495,7 +495,7 @@ function add()
                     leftGrid.select(newRow, false);
                     
                     nui.get("serviceId").setValue("新移仓单");
-                    nui.get("enterTypeId").setValue("050204");
+                    nui.get("enterTypeId").setValue("050207");
                     nui.get("taxRate").setValue(0.17);
                     nui.get("taxSign").setValue(1);
                     nui.get("outDate").setValue(new Date());
@@ -519,7 +519,7 @@ function add()
         leftGrid.select(newRow, false);
         
         nui.get("serviceId").setValue("新移仓单");
-        nui.get("enterTypeId").setValue("050204");
+        nui.get("enterTypeId").setValue("050207");
         nui.get("taxRate").setValue(0.17);
         nui.get("taxSign").setValue(1);
         nui.get("outDate").setValue(new Date());
@@ -627,7 +627,7 @@ function getMainData()
     var data = basicInfoForm.getData();
     //汇总明细数据到主表
     data.isFinished = 0;
-    data.enterTypeId = '050204';
+    data.enterTypeId = '050207';
     data.guestId = 2;
     data.auditSign = 0;
     data.billStatusId = '';

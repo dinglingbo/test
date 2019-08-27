@@ -14,7 +14,7 @@ $(document).ready(function () {
 	advancedMorePartWin = nui.get("advancedMorePartWin");
 	moreGrid = nui.get("moreGrid");
 	form = new nui.Form("#form");
-	if(nui.get("main").value){
+	/*if(nui.get("main").value){
 		grid.setUrl(baseUrl+"com.hsapi.repair.repairService.query.searchTicketDetail.biz.ext");
     	grid.load({mainId : nui.get("main").value,token : token});
     	nui.ajax({
@@ -41,7 +41,7 @@ $(document).ready(function () {
 	}else{
 		newRow = {serviceCode : nui.get("serviceCode").value};
 		grid.addRow(newRow , 0);
-	}
+	}*/
 	grid.on("drawcell",function(e){
 		var field = e.field,
 		value = e.value;
@@ -77,6 +77,7 @@ $(document).ready(function () {
 	});
 	
 	advancedMorePartWin.on("load",function(e){
+		
 		var data = advancedMorePartWin.getData();
 		if(data.length == 0){
 			showMsg("该源单号暂没数据","W");
@@ -104,7 +105,47 @@ $(document).ready(function () {
 			}
 		}
 	});
+	moreGrid.on("rowdblclick",function(e){
+		addSelect();
+	});
 });
+
+
+
+function setInitData(params){
+	if(params.main){
+		nui.get("main").setValue(params.main);
+		nui.get("serviceCode").setValue(params.serviceCode);
+		grid.setUrl(baseUrl+"com.hsapi.repair.repairService.query.searchTicketDetail.biz.ext");
+    	grid.load({mainId : params.main,token : token});
+    	nui.ajax({
+            url: baseUrl+"com.hsapi.repair.repairService.query.selectInvoiceMain.biz.ext",
+            type : "post",
+            data : {
+            	rid : params.main
+            },
+            success: function (text) {
+            	if(text.errCode == "S"){
+            		var list = nui.decode(text.list);
+            		document.getElementById("rate").value = list[0].rate;
+            		form.setData(list[0]);
+            		nui.get("invoiceType").setText(list[0].invoiceType);
+            		nui.get("invoiceType").setValue(list[0].invoiceType);
+            		
+            	}
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.responseText);
+                showMsg("网络出错！", "W");
+            }
+    	});
+	}else{
+		form.setData([]);
+		grid.setData([]);
+		newRow = {serviceCode : nui.get("serviceCode").value};
+		grid.addRow(newRow , 0);
+	}
+}
 
 function addRow(){//新增
 	var row = grid.getSelected();
@@ -128,6 +169,14 @@ function remove(){//删除
 
 function saveData(){//保存
 	var data = form.getData();
+	var allData = grid.getData();
+	/*var updatData = [];
+	for(var i = 0;i<allData.length;i++){
+		var temp = allData[i];
+		if(temp.id && temp.id>0){
+			updatData.push(temp);
+		}
+	}*/
 	//data.invoiceType = nui.get("invoiceType").getValue();
 	nui.ajax({
         url: baseUrl+"com.hsapi.repair.repairService.insurance.saveInvoice.biz.ext",
@@ -183,6 +232,7 @@ function checkValue(e){//实时监听税率输出的值
 }
 
 function onCellEditEnter(e) {
+	type = null;
 	var record = e.record;
 	var cell = grid.getCurrentCell();//行，列
 	if(cell && cell.length >= 2){
@@ -202,6 +252,19 @@ function onCellEditEnter(e) {
 			}
 		}
 	}
+}
+
+var type = null;
+function addRepair() {
+	type = "add";
+	advancedMorePartWin.show();
+	//默认查询今天结算的工单
+	var params = {};
+	params.today = 1;
+    params.sOutDate = getNowStartDate();
+    params.eOutDate = addDate(getNowEndDate(), 1);
+	moreGrid.setUrl(baseUrl+"com.hsapi.repair.repairService.query.querySettleList.biz.ext");
+	moreGrid.load({params : params,token : token});
 }
 
 //提交单元格编辑数据前激发
@@ -226,7 +289,18 @@ function addSelect(){
 				guestName : row.guestName
 		};
 		row = grid.getSelected();
-		grid.updateRow(row,newRow);
+		if(type == "add"){
+			var data = grid.getData();
+			if(data.length==1){
+				var temp = data[0];
+				if(temp.serviceCode==""){
+					grid.removeRow(temp);
+				}
+			}
+			grid.addRow(newRow);
+		}else{
+			grid.updateRow(row,newRow);
+		}
 		advancedMorePartWin.hide();
 	}
 }
@@ -246,4 +320,92 @@ function onDrawSummaryCell(e) { //汇总
 	if (e.field == "rateAmt") {
 		e.cellHtml = '<div align="center" >合计：' + e.cellHtml + '</div>';
 	}
+}
+
+var typeF = 0;
+function quickSearch(type){
+    var params ={};
+    var querysign = 1;
+    var queryname = "本日";
+    typeF = type;
+    switch (type)
+    {
+        case 0:
+            params.today = 1;
+            params.sOutDate = getNowStartDate();
+            params.eOutDate = addDate(getNowEndDate(), 1);
+            querysign = 1;
+            queryname = "本日";
+            break;
+        case 1:
+            params.yesterday = 1;
+            params.sOutDate = getPrevStartDate();
+            params.eOutDate = addDate(getPrevEndDate(), 1);
+            querysign = 1;
+            queryname = "昨日";
+            break;
+        case 2:
+            params.thisWeek = 1;
+            params.sOutDate = getWeekStartDate();
+            params.eOutDate = addDate(getWeekEndDate(), 1);
+            querysign = 1;
+            queryname = "本周";
+            break;
+        case 3:
+            params.lastWeek = 1;
+            params.sOutDate = getLastWeekStartDate();
+            params.eOutDate = addDate(getLastWeekEndDate(), 1);
+            querysign = 1;
+            queryname = "上周";
+            break;
+        case 4:
+            params.thisMonth = 1;
+            params.sOutDate = getMonthStartDate();
+            params.eOutDate = addDate(getMonthEndDate(), 1);
+            querysign = 1;
+            queryname = "本月";
+            break;
+        case 5:
+            params.lastMonth = 1;
+            params.sOutDate = getLastMonthStartDate();
+            params.eOutDate = addDate(getLastMonthEndDate(), 1);
+            querysign = 1;
+            queryname = "上月";
+            break;
+        case 10:
+            params.thisYear = 1;
+            params.sOutDate = getYearStartDate();
+            params.eOutDate = getYearEndDate();
+            querysign = 1;
+            queryname = "本年";
+            break;
+        case 11:
+            params.lastYear = 1;
+            params.sOutDate = getPrevYearStartDate();
+            params.eOutDate = getPrevYearEndDate();
+            querysign = 1;
+            queryname = "上年";
+            break;
+       
+        default:
+            break;
+    }
+    
+    /*beginDateEl.setValue(params.sOutDate);
+    endDateEl.setValue(addDate(params.eOutDate,-1));*/
+    if(querysign == 1){
+    	var menunamedate = nui.get("menunamedate");
+    	menunamedate.setText(queryname); 	
+    }
+    //车牌号
+    var carNo = nui.get("carNo-search").getValue();
+    var guestName = nui.get("name-search").getValue();
+    params.carNo = carNo;
+    params.guestName = guestName;
+    moreGrid.setUrl(baseUrl+"com.hsapi.repair.repairService.query.querySettleList.biz.ext");
+	moreGrid.load({params : params,token : token});
+}
+
+function doSearch(){
+	quickSearch(typeF);
 }

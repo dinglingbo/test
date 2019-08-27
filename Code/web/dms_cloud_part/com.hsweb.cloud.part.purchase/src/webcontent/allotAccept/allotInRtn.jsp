@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调入退回</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotInRtn.js?v=1.0.2"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotInRtn.js?v=1.0.15"></script>
 <style type="text/css">
 .title {
   width: 70px;
@@ -110,7 +110,7 @@ body .mini-grid-row-selected{
          handlerSize="6"
          style="width:100%;height:100%;">
         <div size="300" showCollapseButton="true">
-          <div title="调拨申请列表" class="nui-panel"
+          <div title="调入退回申请列表" class="nui-panel"
                  showFooter="true"
                  style="width:100%;height:100%;border: 0;">
                 <div id="leftGrid" class="nui-datagrid" style="width:100%;height:100%;"
@@ -122,7 +122,7 @@ body .mini-grid-row-selected{
                      ondrawcell="onLeftGridDrawCell"
                      onrowdblclick=""
                      onselectionchanged="onLeftGridSelectionChanged"
-                     onbeforedeselect=""
+                     onbeforedeselect="onLeftGridBeforeDeselect"
                      dataField="pjAllotAcceptMainList"
                      url="">
                     <div property="columns">
@@ -201,7 +201,7 @@ body .mini-grid-row-selected{
                                       <td class="title required" style="width:120px">
                                           <label>申请退回日期：</label>
                                       </td>
-                                      <td width="120" style="width:120px">
+                                      <td width="180" style="width:180px">
                                         <input name="orderDate"
                                                id="orderDate"
                                                width="100%"
@@ -225,7 +225,7 @@ body .mini-grid-row-selected{
                                       <td class="title">
                                           <label>申请单号：</label>
                                       </td>
-                                      <td style="width:120px">
+                                      <td style="width:180px">
                                           <input class="nui-textbox" width="100%" id="serviceId" name="serviceId" enabled="false" placeholder="新计划采购单"/>
                                       </td>
 
@@ -240,6 +240,7 @@ body .mini-grid-row-selected{
                           <tr>
                               <td style="white-space:nowrap;" style="width:120px;">
                                   <a class="nui-button" plain="true" iconCls="" onclick="addPart()" id="addPartBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a>
+                                  <a class="nui-button" plain="true" iconCls="" onclick="addAllotPart()" id="addAllotPartBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;选择调拨入库单</a>
                                   <a class="nui-button" plain="true" iconCls="" onclick="deletePart()" id="deletePartBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                                   <a class="nui-button" plain="true" iconCls="" onclick="adjustPart()" id="adjustPartBtn" visible="false"><span class="fa fa-edit fa-lg"></span>&nbsp;计划调整</a>
                               </td>

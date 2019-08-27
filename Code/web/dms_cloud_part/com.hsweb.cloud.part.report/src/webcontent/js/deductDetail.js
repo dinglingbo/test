@@ -21,7 +21,8 @@ var settTypeIdHash = {};
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
 var deductTypeHash={1:"单据提成",2:"特定产品提成"};
-var typeHash ={1:"按销售金额分成",2:"按销售毛利分成"};
+var typeHash ={1:"按订单金额分成",2:"按订单毛利分成"};
+var serviceTypeHash={"1":"销售单","-1":"退货单"};
 $(document).ready(function(v)
 {
 	rightGrid = nui.get("rightGrid");
@@ -149,6 +150,12 @@ function onDrawCell(e)
             if(typeHash && typeHash[e.value])
             {
                 e.cellHtml = typeHash[e.value];
+            }
+            break;
+        case "serviceType":
+            if(serviceTypeHash && serviceTypeHash[e.value])
+            {
+                e.cellHtml = serviceTypeHash[e.value];
             }
      
         default:

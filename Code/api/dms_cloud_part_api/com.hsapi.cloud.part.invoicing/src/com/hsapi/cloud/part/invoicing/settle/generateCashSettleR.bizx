@@ -130,6 +130,10 @@
       <process:to type="query">stateMain/stateMan</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">main/serviceId</process:from>
+      <process:to type="query">stateMain/remark</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">main/orderAmt</process:from>
       <process:to type="query">stateDetail/billAmt</process:to>
     </process:copy>

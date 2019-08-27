@@ -244,6 +244,10 @@
       <process:to type="query">m:userObject/attributes/repairSettPrintUrl</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">billParams/isOpenApp</process:from>
+      <process:to type="query">m:userObject/attributes/isOpenApp</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject</process:from>
       <process:to type="query">userObject</process:to>
     </process:copy>

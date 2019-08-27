@@ -16,6 +16,7 @@ var typehash = {
 }
 var roleHash ={};
 var serviceId =null;
+var serviceType=null;
 var typeList = [{id:"1",name:"按销售金额提成"},{id:"2",name:"按销售毛利提成"}];
 var haveSelectHash={};
 $(document).ready(function(v)
@@ -116,10 +117,19 @@ function save(){
 	var roleId =roleGrid.getSelected().id;
 	var data =[];
 	var rows = deductMemGrid.getSelecteds();
+	var serviceType = nui.get('serviceType').getValue();
+	if(serviceType ==1 || serviceType ==3){
+		var type=1;
+	}
+	else if(serviceType ==2){
+		var type=-1;
+	}
 	for(var i=0;i<rows.length;i++){
 		var temp={};
 		temp.orgid =currOrgid;
 		temp.serviceId = nui.get("serviceId").getValue();
+		temp.type = type;
+		temp.serviceType =serviceType;
 		temp.roleId =roleId;
 		temp.deductMemId =rows[i].id;
 		temp.deductMemName =rows[i].name;
@@ -143,6 +153,7 @@ function save(){
         	data:data,
         	orgid: currOrgid,
         	serviceId :nui.get("serviceId").getValue(),
+        	serviceType : nui.get("serviceType").getValue(),
         	roleId:roleId,
             token:token
         }),
@@ -204,10 +215,12 @@ function CloseWindow(action) {
 	else
 		return window.close();
 }
-function setData(serviceId){
+function setData(serviceId,serviceType){
 	nui.get('serviceId').setValue(serviceId);
+	nui.get('serviceType').setValue(serviceType);
 	serviceId =serviceId;
-	haveSelectGrid.load({serviceId:serviceId,orgid:currOrgid,token:token},function(data){
+	serviceType =serviceType;
+	haveSelectGrid.load({serviceId:serviceId,orgid:currOrgid,serviceType:serviceType,token:token},function(data){
 		var data =data.data;
 		haveSelectHash={};
 		data.forEach(function(v){

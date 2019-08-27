@@ -13,7 +13,7 @@
 <head>
 <title>预销售单受理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchase/js/guestOrder/storeGuestOrder.js?v=1.0.106"></script>
+    <script src="<%=webPath + contextPath%>/purchase/js/guestOrder/storeGuestOrder.js?v=1.0.3"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -25,15 +25,12 @@
 			        <tr>
 			            <td style="white-space:nowrap;">
 			             	<label style="font-family:Verdana;">快速查询：</label>
-			            	<input class="nui-combobox" id ="orgids" name="orgids" value="" allowInput="true" showNullItem="false" 
-			            		 valueFromSelect="true" nullitemtext="请选择..." emptyText="选择公司" data="" width="200px"
-			            		 textField="name" valueField="orgid" onEnter="onSearch()" />
+			            	
 			               
-			                <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">全部</a>
+			                <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本周</a>
 			
 			                <ul id="popupMenuDate" class="nui-menu" style="display:none;">
-			                    <li iconCls="" onclick="quickSearch(0)" id="type0">全部</li>
-			                    <li class="separator"></li>
+			  
 			                    <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
 			                    <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
 			                    <li class="separator"></li>
@@ -55,7 +52,11 @@
 		            		 textField="name" valueField="id" onEnter="onSearch()" />
 		               
  		                    <input id="guestName" width="120px" emptyText="客户" onEnter="onSearch()" class="nui-textbox"/> 
-	
+							
+							<input class="nui-combobox" id ="orgids" name="orgids" value="" allowInput="true" showNullItem="false" 
+			            		 valueFromSelect="true" nullitemtext="请选择..." emptyText="选择公司" data="" width="200px"
+			            		 textField="name" valueField="orgid" onEnter="onSearch()" />
+			            		 
 			                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 			                <span class="separator"></span>
         			        <a class="nui-button" iconCls="" plain="true" onclick="audit()" visible=""  id="auditBtn"><span class="fa fa-check fa-lg""></span>&nbsp;受理</a>
@@ -65,7 +66,7 @@
 			    </table>
 			</div>
 			
-			 <div id="mainGrid" class="nui-datagrid" style="width:100%;height:92%;"
+			 <div id="mainGrid" class="nui-datagrid" style="width:100%;height:90%;"
 		         showPager="true"
 		         dataField="guestOrderMainList"
 		         ondrawcell="onMainDrawCell"
@@ -75,6 +76,8 @@
 		         multiSelect="false"				
 				 totalField="page.count"
 		         pageSize="50"
+		         selectOnLoad="true"
+		       
 		         onselectionchanged="onMainGridSelectionChanged"
 		         sizeList="[50,100,200]">
 		        <div property="columns">
@@ -83,14 +86,14 @@
 		            <div field="orgid" width="40" visible="false" headerAlign="center" header="id"></div>
 		            <div field="orgName" width="60" headerAlign="center" header="公司"></div>
 		            <div field="guestFullName" width="60" headerAlign="center" header="客户"></div>
-		            <div field="serviceId" width="100px" headerAlign="center" allowSort="true" header="预售单号"></div>
+		            <div field="serviceId" width="120px" headerAlign="center" allowSort="true" header="预售单号"></div>
 		            <div field="status" width="40px" headerAlign="center" allowSort="true" header="状态"></div>
-		            <div field="storeId" width="55px" headerAlign="center" allowSort="true" header="仓库"></div>
+		            <div field="storeId" width="55px" headerAlign="center" allowSort="true" header="仓库" visible="false"></div>
 		            <div field="orderQty" width="30px" headerAlign="center" allowSort="true" header="订单数量"></div>
 		            <div field="orderAmt" width="30px" headerAlign="center" allowSort="true" header="订单金额"></div>
-		            <div field="auditDate" width="65px" headerAlign="center" allowSort="true" header="审核日期"  dateFormat="yyyy-MM-dd HH:mm"></div>
-		            <div field="plansendDate" width="65px" headerAlign="center" allowSort="true" header="预计发货日期"  dateFormat="yyyy-MM-dd HH:mm"></div>
-		            <div field="planArriveDate" width="65px" headerAlign="center" allowSort="true" header="预计到货日期"  dateFormat="yyyy-MM-dd HH:mm"></div>
+		            <div field="auditDate" width="80px" headerAlign="center" allowSort="true" header="提交日期"  dateFormat="yyyy-MM-dd HH:mm"></div>
+		            <div field="planSendDate" width="85px" headerAlign="center" allowSort="true" header="预计发货日期"  dateFormat="yyyy-MM-dd HH:mm"></div>
+		            <div field="planArriveDate" width="85px" headerAlign="center" allowSort="true" header="预计到货日期"  dateFormat="yyyy-MM-dd HH:mm"></div>
 		            <div field="remark" width="55px" headerAlign="center" allowSort="true" header="备注"></div>  
 		            <div field="pchsMainCode" width="100px" headerAlign="center" allowSort="true" header="采购单号"></div>
 		            <div field="settleMan" width="80px" headerAlign="center" allowSort="true" header="受理人"></div>
@@ -105,19 +108,20 @@
         	<div class="nui-fit">
                	                	
                       <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
-				         showPager="true"
+				         showPager="false"
 				         dataField="guestOrderDetailList"
 				         idField="detailId"
 				         ondrawcell="onDrawCell"
 				         sortMode="client"
 				         url=""
 				         totalField="page.count"
+				         showSummaryRow="true"
 						 pageSize="100"
 						 sizeList=[100,200,500,1000]
 				         showSummaryRow="false">
 				        <div property="columns">
-				            <div type="indexcolumn">序号</div>
-				            <div field="comPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
+				            <div type="indexcolumn" >序号</div>
+				            <div field="comPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码" summaryType="count"></div>
                             <div field="comPartName" visible="false" headerAlign="center" header="配件名称"></div>
                             <div field="fullName"  width="200" headerAlign="center" header="配件全称"></div>
                             <div field="comPartBrandId" visible="false"width="60" headerAlign="center" header="品牌"></div>
@@ -126,7 +130,7 @@
 				            <div field="orderQty" name="orderQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="数量"></div>
                             <div field="orderPrice" numberFormat="0.0000" width="90" headerAlign="center" header="单价"></div>
                             <div field="orderAmt" summaryType="sum" numberFormat="0.0000" width="95" headerAlign="center" header="金额"> </div>
-                            <div field="remark" width="30" headerAlign="center" allowSort="true" header="备注"></div>
+                            <div field="remark" width="130" headerAlign="center" allowSort="true" header="备注"></div>
 				            
 				        </div>
 				    </div>

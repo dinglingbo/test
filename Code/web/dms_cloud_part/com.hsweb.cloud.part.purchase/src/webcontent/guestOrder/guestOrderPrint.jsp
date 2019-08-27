@@ -80,7 +80,7 @@ table#ybk td{
 	text-align:right;
 }
 #sumOrderAmt{
-	padding-left:65px;
+	padding-left:95px;
 	width:20%;
 }
  #currOrgName{
@@ -454,8 +454,8 @@ hr {
 		    			$('#settleTypeId').text("结算方式:"+settleTypeIdHash[formParms.settleTypeId].name);
 		    		}
 		    		$('#storeId').text("仓库:"+storeHash[formParms.storeId].name);
-		    		$('#planSendDate').text("预计发货时间:"+formParms.planSendDate?null:format(formParms.planSendDate,"yyyy-MM-dd HH:mm"));
-		    		$('#planArriveDate').text("预计到货时间:"+formParms.planArriveDate?null:format(formParms.planArriveDate,"yyyy-MM-dd HH:mm"));
+		    		$('#planSendDate').text(formParms.planSendDate?"预计发货时间:"+format(formParms.planSendDate,"yyyy-MM-dd HH:mm"):"预计发货时间:");
+		    		$('#planArriveDate').text(formParms.planArriveDate?"预计到货时间:"+format(formParms.planArriveDate,"yyyy-MM-dd HH:mm"): "预计到货时间:");
 		    		
 	    		});
 	    	}
@@ -499,13 +499,13 @@ hr {
 									.replace("[comPartCode]",data[i].comPartCode ||"")
 									.replace("[comOemCode]",data[i].comOemCode ||"")
 									.replace("[comPartName]",data[i].comPartName ||"")
-									.replace("[comPartBrindId]",data[i].comPartName || "")
+									.replace("[comPartBrindId]",data[i].comPartBrandId?brandHash[data[i].comPartBrandId].name :"")
 									.replace("[comApplyCarModel]",data[i].comApplyCarModel ||"")
 									.replace("[comSpec]",data[i].comSpec ||"")
 									.replace("[comUnit]",data[i].comUnit ||"")
 									.replace("[orderQty]",data[i].orderQty ||"")
 									.replace("[orderPrice]",data[i].orderPrice ||"")
-									.replace("[orderAmt]",data[i].showAmt ||"")
+									.replace("[orderAmt]",data[i].orderAmt ||"")
 									.replace("[remark]",data[i].remark ||""));
 							tBody.append(tr);
 							sumOrderQty +=parseFloat(data[i].orderQty);

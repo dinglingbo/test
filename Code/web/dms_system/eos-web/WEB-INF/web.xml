@@ -45,7 +45,7 @@
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
 	</filter-mapping>
-	<!-- 
+	 
     <filter-mapping>
 		<filter-name>LogicFilter</filter-name>
 		<url-pattern>*.flow</url-pattern>
@@ -53,7 +53,7 @@
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
 	</filter-mapping>
-	
+	<!--
 	<filter>
 		<filter-name>InterceptorFilter</filter-name>
 		<filter-class>com.eos.access.http.InterceptorFilter</filter-class>

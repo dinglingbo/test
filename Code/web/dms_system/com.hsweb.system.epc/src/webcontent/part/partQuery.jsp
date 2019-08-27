@@ -13,7 +13,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>
     <script src="<%=contextPath%>/epc/common/llqCommon.js?v=1.0.2" type="text/javascript"></script>
-    <script src="<%=contextPath%>/epc/part/js/partQuery.js?v=1.2" type="text/javascript"></script>
+    <script src="<%=contextPath%>/epc/part/js/partQuery.js?v=1.0.8" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -90,7 +90,7 @@
                                    id="applyCarBrandId"
                                    class="nui-combobox"
                                    textField="name"
-                                   valueField="brand"
+                                   valueField="brandCode"
                                    emptyText="全部品牌"
                                    url=""
                                    valueFromSelect="true"
@@ -124,7 +124,7 @@
                             <div field="pid" headerAlign="center" width="20%" align="center">零件号</div>
                             <div field="label" headerAlign="center" width="50%" align="center">名称</div>
                             <div field="prices" headerAlign="center" visible="false" width="10%"  align="center">价格</div>
-                            <div field="brand" headerAlign="center" width="10%"  align="center">品牌</div>
+                            <div field="brandCode" headerAlign="center" width="10%"  align="center">品牌</div>
                             <div field="remark" headerAlign="center" width="10%"  align="center">备注</div>
                             <div field="action" headerAlign="center" width="10%" align="center">说明</div>
                             <!-- <div field="opt" width="10%" headerAlign="center" align="center" allowSort=false></div> -->

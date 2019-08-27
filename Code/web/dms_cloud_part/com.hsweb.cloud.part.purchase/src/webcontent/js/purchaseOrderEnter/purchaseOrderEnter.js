@@ -1026,7 +1026,7 @@ function savePrice(){
 			if(gridData[i][key]){
 				var partId=gridData[i].partId;
 				//匹配
-				if(StratePrice[partId][StrateHash[key].name]){
+				if(StratePrice[partId+"-"+StrateHash[key].name]){
 					var obj=StratePrice[partId+"-"+StrateHash[key].name][StrateHash[key].name];
 					obj.sellPrice=gridData[i][key];
 					data.push(obj);
@@ -1922,12 +1922,18 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 				var pchsOrderDetailUpdate = getModifyData(detailData, pchsOrderDetailAdd, pchsOrderDetailDelete);
 	
 	
-				nui.mask({
-					el : document.body,
-					cls : 'mini-mask-loading',
-					html : flagStr
-				});
+//				nui.mask({
+//					el : document.body,
+//					cls : 'mini-mask-loading',
+//					html : flagStr
+//				});
 	
+				nui.mask({
+			        el : document.body,
+			        cls : 'mini-mask-loading',
+			        html : '入库中...'
+			    });
+				
 				nui.ajax({
 					url : auditUrl,
 					type : "post",
@@ -1997,12 +2003,18 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 				var pchsOrderDetailUpdate = getModifyData(detailData, pchsOrderDetailAdd, pchsOrderDetailDelete);
 	
 	
-				nui.mask({
-					el : document.body,
-					cls : 'mini-mask-loading',
-					html : flagStr
-				});
+//				nui.mask({
+//					el : document.body,
+//					cls : 'mini-mask-loading',
+//					html : flagStr
+//				});
 	
+				nui.mask({
+			        el : document.body,
+			        cls : 'mini-mask-loading',
+			        html : '入库中...'
+			    });
+				
 				nui.ajax({
 					url : auditUrl,
 					type : "post",
@@ -2508,11 +2520,11 @@ function addMorePart(){
 		showMsg("请先保存数据!","W");
 		return;
 	}
-	var data = rightGrid.getChanges()||[];
-	if (data.length>0) {
-		showMsg("请先保存数据!","W");
-		return;
-	}
+//	var data = rightGrid.getChanges()||[];
+//	if (data.length>0) {
+//		showMsg("请先保存数据!","W");
+//		return;
+//	}
 	advancedAddForm.setData([]);
 	advancedAddWin.show();
 	quickAddShow = 1;
@@ -2754,7 +2766,7 @@ function addPchsOrder(type)
 	nui.open({
 		// targetWindow: window,
 		url: webPath+contextPath+"/com.hsweb.cloud.part.purchase.pchsOrderSelect.flow?token="+token,
-		title: title, width: 930, height: 560,
+		title: title, width: 1000, height: 560,
 		allowDrag:true,
 		allowResize:true,
 		onload: function ()

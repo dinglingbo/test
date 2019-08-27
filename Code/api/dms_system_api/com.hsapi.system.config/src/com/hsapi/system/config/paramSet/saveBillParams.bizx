@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveBillParams.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node3" name="注释3" displayName="注释" nodeType="note" type="note" content="1041：短信签名" title="Administrator&#x9;19-8-26 下午6:42">
+    <location x="-12" y="-106"/>
+    <size height="100" width="197"/>
+  </nodes>
   <nodes xsi:type="model:Note" id="node2" name="注释2" displayName="注释" nodeType="note" type="note" content="以 orgid = -1 为基础 匹配前端传的属性，进行赋值保存，循环处理" title="Administrator&#x9;19-6-19 下午6:12">
     <location x="-15" y="-390"/>
     <size height="100" width="468"/>
@@ -84,6 +88,7 @@
     <location x="-48" y="183"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="billParams" iterableElement="paramObj"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">
@@ -364,6 +369,7 @@
     <location x="48" y="183"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="list" iterableElement="listTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart1label" name="label" nodeType="label">
@@ -449,8 +455,8 @@
         <process:inputVariable id="0" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">params</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

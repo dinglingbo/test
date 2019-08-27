@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件资料</title>
-<script src="<%=webPath + contextPath%>/basic/js/partDetail.js?v=1.0.53"></script>
+<script src="<%=webPath + contextPath%>/basic/js/partDetail.js?v=1.0.76"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -33,7 +33,7 @@
     width: 60px;
 }
 .fwidthb{
-    width: 60px;
+    width: 70px;
 }
 .htr{
     height: 20px;
@@ -67,6 +67,19 @@
     color: red;
 }
 
+  html, body{
+        margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;
+    }
+    
+    .addyytime a.ztedit{ height:18px; display:inline-block; background:url(../images/sjde.png) 40px -1px no-repeat; padding-right:22px; color:#888; text-decoration:none;}
+    .addyytime a.hui{padding-left: 5px;padding-right: 5px;height:;line-height:24px;border:1px #a6e0f5 solid;display:block;float:left;text-decoration:none;
+        text-align:center;color:#00b4f6;border-radius:4px;margin:0 5px 5px 0;}
+    .addyytime a.hui{border:1px #e6e6e6 solid;color:#555555;background:#ccc;}
+    .addyytime a.xz{ font-size: 13px; color: #555555 !important; background:#5ab1ef !important;}
+    .addyytime a:link, a:visited { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 13px; color: #555555; text-decoration: none; }
+    .addyytime a.hui:hover { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 13px;background-color: #9fe6b8 ; color: #FFF; text-decoration: none; }
+    .addyytime a .hui{text-decoration:none;transition:all .4s ease;}
+    .addyytime a.backRed{border:1px #e6e6e6 solid;color:#555555;background:#f17171 ;}
 </style>
 </head>
 <body>
@@ -196,12 +209,12 @@
                        nullItemText="请选择..."/>
                      </td>
                      <td colspan="6">
-                      <input name="applyCarModel" id="applyCarModel" width="215px" class="nui-textbox"/>
+                      <input name="applyCarModel" id="applyCarModel" width="220px" class="nui-textbox"/>
                      </td>
                 </tr>
                 <tr class="htr">
                     <td class=" right fwidthb">通用编码:</td>
-                    <td colspan="3"><input name="commonCode" class="nui-textbox" width="370px"/></td>
+                    <td colspan="3"><input name="commonCode" class="nui-textbox" width="375px"/></td>
                 </tr>
                 <tr class="htr">  
                     <td class=" right fwidthb">生产厂家:</td>
@@ -211,17 +224,36 @@
                 </tr>
                 <tr>
                     <td class=" right fwidthb">配件全称:</td>
-                    <td colspan="3"><input name="fullName" class="nui-textbox" width="370px" enabled="false"/></td>
+                    <td colspan="3"><input name="fullName" class="nui-textbox" width="375px" enabled="false"/></td>
+                </tr>
+                <tr class="htr">
+                    <td style="padding-left: 18px;"class=""  colspan="3">配件全称 = 名称+规格+车型+品牌</td>
+                   
                 </tr>
                 <tr class="htr">
                     <td class=" right fwidthb">是否禁用:</td>
                     <td ><input name="isDisabled" class="nui-checkbox" width="150px" trueValue="1" falseValue="0"/><!-- </td><td class=" right fwidthb">统一售价:</td>
                     <td ><input name="isUniform" class="nui-checkbox" width="150px" trueValue="1" falseValue="0"/></td> -->
-                    <td class=" right fwidthb">备注:</td>
-                    <td ><input name="remark" class="nui-textbox" width="150px" enabled="true"/></td>
+                    <td class=" right fwidthb">自定义分类:</td>
+                    <td > <input name="customClassId" id="customClassId"
+                        class="nui-buttonedit" emptyText=""
+                        allowInput="false" width="150px"
+                        onbuttonclick="onButtonEdit2" selectOnFocus="true" />
+                    </td>
                 </tr>
-
+				<tr class="htr">
+                    <td class=" right fwidthb">备注:</td>
+                    <td colspan="3"><input name="remark" class="nui-textbox" width="375px" enabled="true"/></td>
+                </tr>
             </table>
+            
+             <div class="addyytime" style="display:''" id="showHot" >
+                     <table style="width:100%;height:30px;">
+                        <tr>
+		                    <td id="addAEl"></td>		                   
+                       </tr>
+                 </table>
+              </div>
     </div>
 </div>
 

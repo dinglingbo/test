@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
+    
+    <select id="queryProcessDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT
+			a.part_id AS part_id,
+			a.part_code AS partCode,
+			a.part_name AS partName,
+			a.full_name AS fullName,
+			a.unit AS systemUnitId,
+			(a.qty * c.order_qty) AS orderQty,
+			d.order_qty AS stockQty,
+			(d.order_qty - a.qty) AS stockOutQty,
+			d.cost_price as costPrice
+		FROM
+			pj_part_matching_detail a
+		INNER JOIN pj_part_matching b ON a.parent_id = b.id
+		INNER JOIN pj_process_product c ON c.part_id = b.part_id
+		INNER JOIN pj_part_store_stock d ON a.part_id = d.part_id
+		WHERE 1=1
+		<dynamic>
+			<isNotEmpty prepend="and" property="partId">  
+                (a.PART_ID = #partId#)
+            </isNotEmpty>
+        </dynamic>  	
+    </select>
+</sqlMap>

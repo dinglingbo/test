@@ -33,6 +33,9 @@ $(document).ready(function() {
 	advancedStopWin = nui.get("advancedStopWin");
 	mainGrid.setUrl(mainGridUrl);
 	mainGrid2.setUrl(mainGridUrl2);
+	getMtadvisor(function(text){
+    	mtAdvisorIdEl.setData(text.data);
+    });
 	initTearm();
 	rightGrid.on("drawcell",function(e) {
 		var record = e.record;
@@ -87,7 +90,8 @@ $(document).ready(function() {
 	            	s = s + hours + '小时';
 	            }
 	            var leavel2 = leavel % 3600; // 计算剩余小时后剩余的毫秒数
-	            var minutes = Math.floor(leavel2 / 60); // 计算剩余的分钟数
+	           // var minutes = Math.floor(leavel2 / 60); // 计算剩余的分钟数
+	            var minutes = Math.ceil(leavel2 / 60);
 	            if(minutes>0){
 	            	s = s + minutes + '分';
 	            }
@@ -107,13 +111,38 @@ $(document).ready(function() {
 	            	s = s + hours + '小时';
 	            }
 	            var leavel2 = leavel % 3600; // 计算剩余小时后剩余的毫秒数
-	            var minutes = Math.floor(leavel2 / 60); // 计算剩余的分钟数
+	            //var minutes = Math.floor(leavel2 / 60); // 计算剩余的分钟数
+	            var minutes = Math.ceil(leavel2 / 60);
 	            if(minutes>0){
 	            	s = s + minutes + '分';
 	            }
 	            e.cellHtml = s;
            }
-        }
+        }else if (e.field == "planFinishDate") {
+			if(e.cellHtml!=""&&e.cellHtml!=null){
+				var tr =e.cellHtml.slice(0,16);
+				var str = tr.split(" ");
+				var qian = str[0].split("-");
+				var time = qian[1]+"月"+qian[2]+"日"+" "+str[1];
+				e.cellHtml = time;
+			}
+		}else if (e.field == "beginDate") {
+			if(e.cellHtml!=""&&e.cellHtml!=null){
+				var tr =e.cellHtml.slice(0,16);
+				var str = tr.split(" ");
+				var qian = str[0].split("-");
+				var time = qian[1]+"月"+qian[2]+"日"+" "+str[1];
+				e.cellHtml = time;
+			}
+		}else if (e.field == "finishDate") {
+			if(e.cellHtml!=""&&e.cellHtml!=null){
+				var tr =e.cellHtml.slice(0,16);
+				var str = tr.split(" ");
+				var qian = str[0].split("-");
+				var time = qian[1]+"月"+qian[2]+"日"+" "+str[1];
+				e.cellHtml = time;
+			}
+		}
 	});
 	rightGrid2.on("drawcell",function(e) {
 		var record = e.record;
@@ -148,7 +177,7 @@ $(document).ready(function() {
 	            	s = s + hours + '小时';
 	            }
 	            var leavel2 = leavel % 3600; // 计算剩余小时后剩余的毫秒数
-	            var minutes = Math.floor(leavel2 / 60); // 计算剩余的分钟数
+	            var minutes = Math.ceil(leavel2 / 60); // 计算剩余的分钟数
 	            if(minutes>0){
 	            	s = s + minutes + '分';
 	            }
@@ -168,7 +197,7 @@ $(document).ready(function() {
 	            	s = s + hours + '小时';
 	            }
 	            var leavel2 = leavel % 3600; // 计算剩余小时后剩余的毫秒数
-	            var minutes = Math.floor(leavel2 / 60); // 计算剩余的分钟数
+	            var minutes = Math.ceil(leavel2 / 60); // 计算剩余的分钟数
 	            if(minutes>0){
 	            	s = s + minutes + '分';
 	            }
@@ -181,7 +210,31 @@ $(document).ready(function() {
         	}
         	s = s + '<a href="javascript:checkerSelect(\'' + uid + '\')" title="设置质检员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>';
         	e.cellHtml = s;
-        }
+        }else if (e.field == "planFinishDate") {
+			if(e.cellHtml!=""&&e.cellHtml!=null){
+				var tr =e.cellHtml.slice(0,16);
+				var str = tr.split(" ");
+				var qian = str[0].split("-");
+				var time = qian[1]+"月"+qian[2]+"日"+" "+str[1];
+				e.cellHtml = time;
+			}
+		}else if (e.field == "beginDate") {
+			if(e.cellHtml!=""&&e.cellHtml!=null){
+				var tr =e.cellHtml.slice(0,16);
+				var str = tr.split(" ");
+				var qian = str[0].split("-");
+				var time = qian[1]+"月"+qian[2]+"日"+" "+str[1];
+				e.cellHtml = time;
+			}
+		}else if (e.field == "finishDate") {
+			if(e.cellHtml!=""&&e.cellHtml!=null){
+				var tr =e.cellHtml.slice(0,16);
+				var str = tr.split(" ");
+				var qian = str[0].split("-");
+				var time = qian[1]+"月"+qian[2]+"日"+" "+str[1];
+				e.cellHtml = time;
+			}
+		}
 	});
 	mainGrid.on("drawcell",function(e) {
 		var record = e.record;
@@ -253,7 +306,7 @@ $(document).ready(function() {
 function doSearch() {
 	var gsparams ={};
 	gsparams.mtAuditorId = nui.get("mtAdvisorId").getValue();
-    var carNo = nui.get("carNo-search").getValue();
+    var carNo = nui.get("carNo").getValue();
     gsparams.carNo = carNo;
     gsparams.memberGroupId = nui.get("memberGroupId").getValue();
 	gsparams.isDisabled = 0;
@@ -385,7 +438,12 @@ function startWork(row_uid){
 	if(row.status==0){
 		second = 1;
 	}else{
-		second = 2;
+		if(row.isBack==1){
+			second = 1;
+		}else{
+			second = 2;
+		}
+		
 	}
     if(row){
     	nui.mask({
@@ -473,6 +531,7 @@ function stopWork(e){
             	}else{
             		showMsg("中断失败","E")
             	}
+            	advancedStopWin.hide();
             	nui.unmask(document.body);
             },
             error:function(jqXHR, textStatus, errorThrown){
@@ -531,7 +590,7 @@ document.onmousemove = function(e){
             FItemRow = {};
             return;
         }
-        if(y - my > 10 || my - y > 130){
+        if(y - my > 10 || my - y > 200){
         	advancedStopWin.hide();
             FItemRow = {};
             return;
@@ -728,4 +787,39 @@ function checkBackWork(rowu_id){
  			}
  		}
  	});
+}
+
+function setItemWorkers(){
+	var main = mainGrid.getSelected();
+    if(main){
+    	 var status = main.status||0;
+         if(status == 2){
+             showMsg("工单已完工,不能修改!","W");
+             return;
+         }else{
+         	nui.open({
+         		url :  webPath + contextPath + "/com.hsweb.repair.DataBase.dispatchWorkers.flow?token="+token,
+         		title : "派工处理",
+         		width : 600,
+         		height : 630,
+         		allowResize: false,
+         		onload : function() {
+         			var iframe = this.getIFrameEl(); 
+         			var data = {
+         					type : "all",
+         					serviceId : main.id
+         			};// 传入页面的json数据
+         			iframe.contentWindow.setData(data);
+         		},
+         		ondestroy : function(action){// 弹出页面关闭前
+         			if (action=="ok"){
+         				selectionChanged();
+         			}
+         		}
+         	});
+         }
+       
+    }else{
+    	 return;
+    }
 }

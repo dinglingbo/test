@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>计划采购单选择</title>
-    <script src="<%=webPath + contextPath%>/purchase/js/purchasePlan/pchPlanChoose.js?v=1.0.2"></script>
+    <script src="<%=webPath + contextPath%>/purchase/js/purchasePlan/pchPlanChoose.js?v=1.0.7"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -87,11 +87,11 @@ pageEncoding="UTF-8" session="false"%>
                 <div property="columns">
                    <div type="checkcolumn" width="40" class="mini-radiobutton" header="选择"></div> 
                    <div type="indexcolumn" width="40" headerAlign="center">序号</div>
-                   <div allowSort="true" field="serviceId" name="serviceId" width="150" headerAlign="center" header="计划单号" summaryType="count"></div>
+                   <div allowSort="true" field="serviceId" name="serviceId" width="170" headerAlign="center" header="计划单号" summaryType="count"></div>
                    <div allowSort="true" field="guestFullName" name="guestFullName" width="160" headerAlign="center" header="供应商名称"></div>
                    <div allowSort="true" field="status" name="status" width="60" headerAlign="center" header="订单状态"></div>
                    <div allowSort="true" field="orderDate" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="120px" header="计划采购日期" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>
-                   <div allowSort="true" field="auditor" name="auditor" width="90" headerAlign="center" header="计划员"></div>
+                   <div allowSort="true" field="auditor" name="auditor" width="70" headerAlign="center" header="计划员"></div>
                    <div allowSort="true" field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="120px" header="提交日期" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>
                    <div allowSort="true" field="remark" visible="true"  name="remark" width="150" headerAlign="center" header="备注">
                    </div>
@@ -110,7 +110,7 @@ pageEncoding="UTF-8" session="false"%>
          sortMode="client" showPager="false"
         totalField="page.count" allowSortColumn="true"   allowCellSelect="true" 
         allowCellEdit="true"  multiSelect="false" allowCellWrap = true showSummaryRow="true"
-        frozenStartColumn="0" frozenEndColumn="0">
+        frozenStartColumn="" frozenEndColumn="">
         <div property="columns">
             <div allowSort="true" type="indexcolumn" headerAlign="center" width="30">序号</div> 
             
@@ -118,8 +118,8 @@ pageEncoding="UTF-8" session="false"%>
             <div field="partName" name="fullName" headerAlign="center" allowSort="true" visible="true" width="150" header="配件全称"></div>
             <div field="orderQty" headerAlign="center" allowSort="true" visible="true" width="50" summaryType="sum" header="计划采购数量"></div>
             <div field="adjustQty" headerAlign="center" allowSort="true" visible="true" width="50" summaryType="sum" header="调整数量"></div>
-            <div field="trueEnterQty" headerAlign="center" allowSort="true" visible="true" width="50" summaryType="sum" header="已入库数量"></div>
-            <div field="notEnterQty" headerAlign="center" allowSort="true" visible="true" width="50" summaryType="sum" header="未入库数量"></div>
+            <div field="trueEnterQty" headerAlign="center" allowSort="true" visible="true" width="50" summaryType="sum" header="已转订单数量"></div>
+            <div field="notEnterQty" headerAlign="center" allowSort="true" visible="true" width="50" summaryType="sum" header="未转订单数量"></div>
             <div field="remark" id="remark" name="remark" headerAlign="center" allowSort="true" visible="true" width="200" header="备注"></div>
            
        </div>

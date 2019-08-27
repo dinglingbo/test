@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件管理</title>
-<script src="<%=webPath + contextPath%>/commonPart/js/partSelect.js?v=1.0.37"></script>
+<script src="<%=webPath + contextPath%>/commonPart/js/partSelect.js?v=1.0.38"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -133,7 +133,6 @@ a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}
 		                                <div allowSort="true" field="spec" width="60" headerAlign="center" allowSort="true">规格</div>
 		
 		                                <div allowSort="true" field="model" width="60" headerAlign="center" allowSort="true">型号</div>
-		
 		                               
 		                                <div allowSort="true" field="carTypeIdF" width="80" headerAlign="center" allowSort="true">一级分类</div>
 		                                <div allowSort="true" field="carTypeIdS" width="80" headerAlign="center" allowSort="true">二级分类</div>
@@ -200,7 +199,6 @@ a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}
 				      		 activeIndex="0" 
 				      		 style="width:100%; height: 100%;" 
 				      		 plain="false" 
-				      		 onactivechanged="showTabInfo"
 				      		 ontabload="onMainTabLoad"
 				      		 >
 						    <div title="库存分布" name="chainStock" url="">

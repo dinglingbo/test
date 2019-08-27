@@ -10,7 +10,7 @@
 <head>
 <title>添加采购车/销售车</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%=webPath + contextPath%>/common/js/shopCartPop.js?v=1.0.10"></script>
+<script src="<%=webPath + contextPath%>/common/js/shopCartPop.js?v=1.0.24"></script>
 <style type="text/css">
 .title {
 	width: 80px;
@@ -52,7 +52,7 @@
     <table style="width: 100%" id="list_table">
         <tr>
             <td class="title required">
-                <label>往来单位：</label>
+                <label id="guest">往来单位：</label>
             </td>
             <td colspan="3">
                 <input id="guestId"
@@ -120,7 +120,7 @@
 </div>
 <div class="nui-fit">
     <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
-         selectOnLoad="true" showPager="false" oncellcommitedit="onCellCommitEdit"
+         selectOnLoad="true" showPager="false" oncellcommitedit="onCellCommitEdit"  oncellbeginedit="OnrpMainGridCellBeginEdit"
          dataField="" idField="id" allowCellSelect="true" allowCellEdit="true" ondrawcell="onMainGridDrawCell"
          showModified="false" showColumnsMenu="true" editNextOnEnterKey="true" url="">
         <div property="columns">
@@ -135,7 +135,7 @@
             <div field="orderQty" name="orderQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="数量">
                 <input property="editor" vtype="float" class="nui-textbox"/>
             </div>
-            <div field="orderPrice" numberFormat="0.0000" width="50" headerAlign="center" header="单价">
+            <div field="orderPrice" numberFormat="0.0000" width="50" headerAlign="center" header="单价(成本)">
                 <input property="editor" vtype="float" class="nui-textbox"/>
             </div>
 

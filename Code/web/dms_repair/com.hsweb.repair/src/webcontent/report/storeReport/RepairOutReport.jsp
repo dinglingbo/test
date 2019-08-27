@@ -207,6 +207,8 @@
         </div>
         <div header="其他" headerAlign="center">
             <div property="columns">
+                <div allowSort="true" field="fullName" width="150" headerAlign="center" header="供应商"></div>
+                <div allowSort="true" field="enterDate" width="120" headerAlign="center" header="采购日期" dateFormat="yyyy-MM-dd HH:mm"></div>
             	<div allowSort="true"  field="recorder" width="80" name="recorder" headerAlign="center" header="创建人"  align="left"></div>
                 <div allowSort="true" width="130"  dateFormat="yyyy-MM-dd HH:mm" field="recordDate" headerAlign="center" header="创建日期" align="left"></div>
                <div allowSort="true" field="returnSign" width="80" headerAlign="center" header="是否归库" ></div>

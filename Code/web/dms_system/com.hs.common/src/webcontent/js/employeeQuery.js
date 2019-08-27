@@ -357,6 +357,8 @@ function stoporstart(){
                 if (action == "OK") {       //如果点击“确定”
                     showMsg('开通帐号成功!',"s");
                     search();
+                }else{
+                	showMsg('开通帐号失败!',"E");
                 }
             }
         });

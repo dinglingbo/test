@@ -133,7 +133,50 @@ $(document).ready(function(v)
         }
     });
 
-    //add();
+    add();
+    
+    document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;
+      
+        if((keyCode==78)&&(event.altKey))  {  //新建  Alt+N
+            add();  
+        } 
+        
+        if((keyCode==73)&&(event.altKey))  {   //添加配件  Alt+I
+        	addPart();
+        } 
+      
+        if((keyCode==83)&&(event.altKey))  {   //保存 Alt+S
+            save(0);
+        } 
+        
+        if((keyCode==84)&&(event.altKey))  {   //提交 Alt+T
+        	submit();
+        } 
+        
+        if((keyCode==89)&&(event.altKey))  {   //出库 Alt+Y
+        	audit();
+        } 
+      
+        if((keyCode==66)&&(event.altKey))  {   //作废/反作废 Alt+B
+	    	del();
+        } 
+        
+        if((keyCode==80)&&(event.altKey))  {   //打印  Alt+P
+            onPrint();
+        } 
+        if((keyCode==27))  {  
+         
+            if(advancedSearchShow==1){
+            	onAdvancedSearchCancel();
+            }if(partShow ==1){
+            	onPartClose();
+            }
+        }
+       
+     
+    }
     
 });
 
@@ -146,6 +189,7 @@ function loadMainAndDetailInfo(row)
        }else {
            $('#status').text(AuditSignHash[row.settleStatus]);
        }
+       
        //bottomInfoForm.setData(row);
        nui.get("guestId").setText(row.guestFullName);
 
@@ -154,10 +198,20 @@ function loadMainAndDetailInfo(row)
             setBtnable(false);
             document.getElementById("basicInfoForm").disabled=true;
             setEditable(false);
+            nui.get("selectSupplierBtn").disable();
        }else {
             setBtnable(true);
             document.getElementById("basicInfoForm").disabled=false;
             setEditable(true);
+            nui.get("selectSupplierBtn").enable();
+       }
+       
+       if(row.code) {
+    	   nui.get('guestId').disable();
+    	   nui.get("selectSupplierBtn").disable();
+       }else {
+    	   nui.get('guestId').enable();
+    	   nui.get("selectSupplierBtn").enable();
        }
 
        if(row.isDisabled == 1) {
@@ -185,6 +239,14 @@ function loadMainAndDetailInfo(row)
         //grid_details.clearRows();
    }
 }
+function onLeftGridBeforeDeselect(e)
+{
+    var row = leftGrid.getSelected(); 
+    if(row.serviceId == '新调拨受理'){
+
+        leftGrid.removeRow(row);
+    }
+}
 function onLeftGridSelectionChanged(){    
    var row = leftGrid.getSelected(); 
    
@@ -200,7 +262,7 @@ function loadRightGridData(mainId)
         token:token
     },function(){
 
-        var data = rightGrid.getData();
+        /*var data = rightGrid.getData();
         
         if(autoNew == 0){
             //add();
@@ -214,7 +276,7 @@ function loadRightGridData(mainId)
             if(changeData.length == 0 && guestId){
                 addNewRow(false);
             }
-        }   
+        }  */ 
 
     });
 }
@@ -391,7 +453,7 @@ function setBtnable(flag)
         nui.get("saveBtn").enable();
         nui.get("addPartBtn").enable();
         nui.get("deletePartBtn").enable();
-        nui.get("selectSupplierBtn").enable();
+        //nui.get("selectSupplierBtn").enable();
         //nui.get("genePartBtn").enable();
         nui.get("adjustPartBtn").disable();
     }
@@ -401,7 +463,7 @@ function setBtnable(flag)
         nui.get("saveBtn").disable();
         nui.get("addPartBtn").disable();
         nui.get("deletePartBtn").disable();
-        nui.get("selectSupplierBtn").disable();
+        //nui.get("selectSupplierBtn").disable();
         //nui.get("genePartBtn").disable();
         nui.get("adjustPartBtn").enable();
     }
@@ -952,6 +1014,7 @@ function add()
                     setEditable(true);
 
                     nui.get("guestId").enable();
+                    nui.get("selectSupplierBtn").enable();
 
                     basicInfoForm.reset();
                     rightGrid.clearRows();
@@ -967,7 +1030,7 @@ function add()
                     nui.get("orderMan").setValue(currUserName);
                     nui.get("storeId").setValue(FStoreId);
                     
-                    addNewRow();
+                    //addNewRow();
                     var guestId = nui.get("guestId");
                     guestId.focus();
 
@@ -981,6 +1044,7 @@ function add()
         setEditable(true);
 
         nui.get("guestId").enable();
+        nui.get("selectSupplierBtn").enable();
 
         basicInfoForm.reset();
         rightGrid.clearRows();
@@ -1059,7 +1123,7 @@ function onCellEditEnter(e){
                 showMsg("请输入编码!","W");
                 var row = rightGrid.getSelected();
                 rightGrid.removeRow(row);
-                addNewRow(false);
+                //addNewRow(false);
                 return;
             }else{
                 var rs = addInsertRow(record.comPartCode,record);
@@ -1084,7 +1148,10 @@ function addNewRow(check){
         return;
     }
 
-    if(data.codeId && data.codeId>0) return;
+    if(data.codeId && data.codeId>0){
+    	showMsg("调拨受理的订单不能添加！","W");
+    	return;
+    }
     
     var rows = [];
     if(check){
@@ -1151,7 +1218,7 @@ function getPartInfo(params){
                 showMsg("没有搜索到配件信息!","W");
                 var row = rightGrid.getSelected();
                 rightGrid.removeRow(row);
-                addNewRow(false);
+                //addNewRow(false);
             }
 
         },
@@ -1225,7 +1292,6 @@ function deletePart(){
         } 
     }
 
-    if(row.codeId && data.codeId>0) return;
 
     var part = rightGrid.getSelected();
     if(!part)
@@ -1277,7 +1343,7 @@ function onGuestValueChanged(e)
 
         nui.get("guestOrgid").setValue(data.orgid);
 
-        addNewRow(true);
+        //addNewRow(true);
     }
 }
 var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
@@ -1412,7 +1478,7 @@ function OnrpMainGridCellBeginEdit(e){
     }
 
     if(data.codeId && data.codeId>0 ){
-    	if(e.field =="comPartCode"  || e.field =="acceptQty"){
+    	if(e.field =="comPartCode" ){
     		 e.cancel = true;
     	}
        
@@ -1580,8 +1646,7 @@ function addDetail(rows)
             partName : row.name,
             fullName : row.fullName,
             systemUnitId : row.unit,
-            outUnitId : row.unit,
-            storeId   : storeId 
+            outUnitId : row.unit 
         };
 
 
@@ -1591,6 +1656,11 @@ function addDetail(rows)
 }
 var supplier = null;
 function selectSupplier(elId) {
+	var data =basicInfoForm.getData();
+	if(data.code) {
+		showMsg("不能修改调入方","W");
+		return;
+	}
     supplier = null;
     nui.open({
         // targetWindow: window,,

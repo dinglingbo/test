@@ -557,15 +557,21 @@
 		       a.is_disabled isDisabled,
 		       a.is_host isHost,
 		       a.orgid orgid,
+		       a.tenant_id tenantId,
 		       a.common_id as commonId,
 		       a.remark as remark,
 		       a.cang_part_id as cangPartId,
-		       a.origin as origin		       
+		       a.origin as origin,
+		       a.custom_class_id as customClassId,
+		       a.custom_class_name as customClassName	       
         FROM com_attribute a
         where 1 = 1
     	<dynamic>
     		<isNotEmpty prepend="and" property="orgid">  
                 (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="tenantId">  
+                (a.tenant_id = #tenantId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="orgids">  
                 (a.orgid = #orgids# or a.orgid = 0)
@@ -630,6 +636,18 @@
         </dynamic>
     </select>
     
+    <!--
+    	20190811  去掉 guestType 查询条件
+    	<isNotEmpty prepend="and" property="supplierType">  
+                (supplier_type = #supplierType#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestTypeList">  
+                (guest_type in ($guestTypeList$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestType">  
+                (guest_type = #guestType#)
+            </isNotEmpty>
+    -->
      <select id="queryGuestList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT a.orgid,
     		 a.tenant_id as tenantId,
@@ -697,15 +715,7 @@
     		<isNotEmpty prepend="and" property="code">  
                 (code like '%$code$%')
             </isNotEmpty>
-    		<isNotEmpty prepend="and" property="supplierType">  
-                (supplier_type = #supplierType#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="guestTypeList">  
-                (guest_type in ($guestTypeList$))
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="guestType">  
-                (guest_type = #guestType#)
-            </isNotEmpty>
+    		
     		<isNotEmpty prepend="and" property="isInternal">  
                 (a.is_internal = #isInternal#)
             </isNotEmpty>
@@ -851,6 +861,133 @@
 		DELETE  FROM pj_sell_price_part WHERE strategy_id = #strategyId#
            
 	</delete>
+	<!-- 删除备货定义 -->
+	<delete id="deleteStockLevel" parameterClass="java.util.HashMap" >
+		DELETE  FROM pj_stock_level WHERE id = #id#
+           
+	</delete>
+	<!-- 删除备货配件 -->
+	<delete id="deleteStockLevelPart" parameterClass="java.util.HashMap" >
+		DELETE  FROM pj_stock_level_part WHERE level_id = #level_id#
+           
+	</delete>
+	<!-- 备货配件 -->
+	<select id="queryStockLevelPart" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+
+   		 SELECT
+			id AS id,
+			level_id as levelId,
+			orgid AS orgid,
+			part_id AS partId,
+			part_code AS partCode,
+			part_name AS partName,
+			full_name AS fullName,
+			remark AS remark,
+			creator_id AS creatorId,
+			creator AS creator,
+			create_date AS createDate,
+			operator_id AS operatorId,
+			operator AS operator,
+			operate_date as operateDate
+		FROM
+			pj_stock_level_part
+		where 1=1
+		<dynamic>
+    		<isNotEmpty prepend="and" property="orgid">  
+                (orgid =#orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="levelId">  
+                (level_id like '%$levelId$%')
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="partName">  
+                (part_name like '%$partName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="sortField">  
+                $sortField$ $sortOrder$
+            </isNotEmpty>  
+        </dynamic>
+	</select>
+	
+	<!-- 查询配比清单明细 -->
+	<select id="queryPartMatchingDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+
+   		 SELECT
+			a.id as id,
+			a.orgid as orgid,
+			a.parent_id as parentId,
+			a.part_id as partId,
+			a.part_code as partCode,
+			a.part_name as partName,
+			a.full_name as fullName,
+			a.qty as  qty,
+			a.ratio as ratio,
+			a.is_disabled as disabled,
+			a.creator_id as creatorId,
+			a.creator as creator,
+			a.create_date as createDate,
+			a.operator_id as operatorId,
+			a.operator as operator,
+			a.operate_date as operateDate,
+			a.remark as remark,
+			b.apply_car_model as applyCarModel,
+			b.unit as unit
+		FROM
+			pj_part_matching_detail a
+			inner join wb_common.com_attribute b
+			on a.part_id =b.id
+		where 1=1
+		<dynamic>
+    		<isNotEmpty prepend="and" property="orgid">  
+                (a.orgid =#orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="parentId">  
+                (a.parent_id = #parentId#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="partName">  
+                (a.part_name like '%$partName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="sortField">  
+                $sortField$ $sortOrder$
+            </isNotEmpty>  
+        </dynamic>
+	</select>
+	
+	<!-- 计划采购取备货配件 -->
+	<select id="queryStockLevelPartForPlan" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+
+   		SELECT
+			a.id AS id,
+			a.orgid AS orgid,
+			a.part_id AS partId,	
+			a.level_id as levelId,
+			b.`code` AS partCode,
+			b.`name` AS partName,
+			b.full_name AS fullName,
+			b.part_brand_id as partBrandId,
+			b.apply_car_model as applyCarModel,
+			b.unit as unit,
+			b.oem_code as oemCode,
+			b.spec as spec	
+		FROM
+			pj_stock_level_part a
+		INNER JOIN wb_common.com_attribute b ON a.part_id = b.id
+		WHERE
+			1 = 1
+		<dynamic>
+    		<isNotEmpty prepend="and" property="orgid">  
+                (a.orgid =#orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="levelId">  
+                (a.level_id like '%$levelId$%')
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="partName">  
+                (a.part_name like '%$partName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="sortField">  
+                $sortField$ $sortOrder$
+            </isNotEmpty>  
+        </dynamic>
+	</select>
 	
 	<select id="queryPjDeductPart" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     <!-- 物流公司 -->
@@ -883,6 +1020,43 @@
             <isNotEmpty prepend="and" property="sortField">  
                 $sortField$ $sortOrder$
             </isNotEmpty>  
+        </dynamic>
+	</select>
+	
+	<select id="queryPartMatchs" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    <!-- 配件成品数据 -->
+   		SELECT
+			a.id AS id,
+			a.tenant_id AS tenantId,
+			a.orgid AS orgid,
+			a.part_id AS partId,
+			a.part_code AS partCode,
+			a.part_name AS partName,
+			a.full_name AS fullName,
+			a.is_disabled AS isDisabled,
+			b.apply_car_model as applyCarModel,
+			b.oem_code as oemCode,
+			b.unit as unit,
+			b.spec as spec
+		FROM
+			pj_part_matching a
+		INNER JOIN wb_common.com_attribute b
+		on a.part_id =b.id
+		where 1=1
+		<dynamic>
+    		<isNotEmpty prepend="and" property="orgid">  
+                (a.orgid =#orgid#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="partName">  
+                (a.part_name like '%$partName$%')
+            </isNotEmpty>
+           
+           <isNotEmpty prepend="and" property="partCode">  
+                (a.part_code like '%$partCode$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="fullName">  
+                (a.full_name like '%$fullName$%')
+            </isNotEmpty>
         </dynamic>
 	</select>
 </sqlMap>

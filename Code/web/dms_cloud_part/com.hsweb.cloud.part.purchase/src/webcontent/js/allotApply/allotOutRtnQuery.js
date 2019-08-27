@@ -14,6 +14,7 @@ var comPartNameAndPY = null;
 var comPartCode = null;
 var comServiceId = null;
 var comSearchGuestId = null;
+var comCodeId = null;
 
 var storehouseHash = {};
 var billTypeIdHash = {};
@@ -38,6 +39,7 @@ $(document).ready(function(v)
  	comPartNameAndPY = nui.get("partNameAndPY");
 	comPartCode = nui.get("partCode");
 	comServiceId = nui.get("serviceId");
+	comCodeId = nui.get("code");
 	comSearchGuestId = nui.get("searchGuestId");
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
@@ -99,6 +101,7 @@ function getSearchParam(){
         params.outableQtyGreaterThanZero = 1;
     }*/
     params.serviceId = comServiceId.getValue().replace(/\s+/g, "");
+    params.code = comCodeId.getValue().replace(/\s+/g, "");
 	params.partCode = comPartCode.getValue().replace(/\s+/g, "");
 	params.partNameAndPY = comPartNameAndPY.getValue().replace(/\s+/g, "");
 	params.guestId = comSearchGuestId.getValue();

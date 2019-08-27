@@ -9,7 +9,7 @@
 -->
 <head>
 <title>选择提成成员</title>
-<script src="<%=webPath + contextPath%>/basic/js/selectMember.js?v=1.0.8"></script>
+<script src="<%=webPath + contextPath%>/basic/js/selectMember.js?v=1.0.10"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -20,7 +20,8 @@
 	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
 	  <table style="width:100%;">
 		  	<td style="white-space:nowrap;">
-		  		<input class="nui-hidden" id ="serviceId" name="serviceId">  		
+		  		<input class="nui-hidden" id ="serviceId" name="serviceId">
+		  		<input class="nui-hidden" id ="serviceType" name="serviceType">  		  		
 		  		名称：<input class="nui-textbox" id ="name" name="name">
 		  		<a class="nui-button" iconCls="" plain="true" onclick="search()" id="searchBtn"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 		  		<a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>

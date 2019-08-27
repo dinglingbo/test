@@ -96,7 +96,7 @@
             <div class="nui-fit" >
                 <div id="partGrid" class="nui-datagrid" style="width:100%;height:100%;"
                      frozenStartColumn="0"
-                     frozenEndColumn="6"
+                     frozenEndColumn="0"
                      borderStyle="border:0;"
                      dataField="partlist"
                      url=""

@@ -28,7 +28,7 @@ a {
     top:0;
     left:0;
     bottom:0;
-    background:#42485b;
+/*     background:#42485b; */
 }
 
 .container {
@@ -37,13 +37,11 @@ a {
     top:0;
     bottom:0;
     right:0;
-    /* background:#fff; */
 }
 
 .navbar
 {
     height:50px;
-     background:#368bf4;  /* 20180708#fff */
     border-bottom:0;
 }
 
@@ -64,7 +62,6 @@ a {
     .navbar-brand
 {
     width:210px;
-    /* background:#368bf4;20180708#fff */
     cursor:default;
     font-size: 20px;
     font-weight: bold;   
@@ -91,10 +88,7 @@ a {
 .navbar,
 .navbar-brand
 {
-    /* 20180708 background:#fff;*/
     color:#FFF; 
-    /* background:#368bf4; */
-    /* background:#f06200; */
     
 }
 

@@ -323,6 +323,7 @@
     <!-- 批次-->
         <select id="queryPjPchsEnterMainDetailListBatch" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
 		SELECT
+		    a.id as id,
 			a.service_id as serviceId,
 			b.store_id as storeId,
 			a.orgid as orgid,
@@ -1284,7 +1285,7 @@
 		INNER JOIN wb_common.com_guest d ON a.guest_id = d.id
 		WHERE
 			a.audit_sign = 1
-			AND a.enter_type_id = '050104'
+			AND a.enter_type_id = '050110'
 				
 			<dynamic>
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
@@ -1383,7 +1384,7 @@
 		inner join wb_common.com_guest d 
 			 on a.guest_id = d.id
 		where a.audit_sign = 1
-			  and a.enter_type_id = '050204'
+			  and a.enter_type_id = '050210'
 				
 			<dynamic>
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
@@ -2011,5 +2012,6 @@
         
         ORDER BY A.operate_date DESC
     </select>
-	
+    
+
 </sqlMap>

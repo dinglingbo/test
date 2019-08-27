@@ -20,13 +20,13 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="102" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="99" y="186"/>
+    <figSize height="20" width="31"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="587" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="584" y="186"/>
+    <figSize height="20" width="31"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
@@ -66,10 +66,18 @@
       <process:from type="literal" pattern="reference">like</process:from>
       <process:to type="query">cond/_expr[3]/_op</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">resId</process:from>
+      <process:to type="query">cond/_expr[4]/resId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">like</process:from>
+      <process:to type="query">cond/_expr[4]/_op</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="215" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="212" y="186"/>
+    <figSize height="20" width="31"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="queryEntitiesByCriteriaEntity" displayName="queryEntitiesByCriteriaEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
@@ -94,8 +102,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="320" y="186"/>
-    <figSize height="17" width="162"/>
+    <location x="298" y="186"/>
+    <figSize height="20" width="207"/>
     <node>invokePojo0</node>
   </nodes>
   <topRuler/>
@@ -108,6 +116,7 @@
     <process:input description="" isArray="false" name="tenantId" primitiveType="String"/>
     <process:input description="APP,PC" isArray="false" name="type" primitiveType="String"/>
     <process:input description="" isArray="false" name="resName" primitiveType="String"/>
+    <process:input description="" isArray="false" name="resId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="true" modelType="com.hsapi.system.data.sys.ComTenantMenu" name="list"/>

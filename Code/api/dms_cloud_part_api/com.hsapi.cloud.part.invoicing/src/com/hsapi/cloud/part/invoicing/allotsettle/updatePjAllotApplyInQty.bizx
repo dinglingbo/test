@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="updatePjAllotApplyInQty" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="更新调拨申请的已入库数量&#xD;&#xA;&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.updatePjAllotInApply&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.updatePjAllotInApplyQty" title="Administrator&#x9;19-7-26 下午4:43">
-    <location x="30" y="15"/>
-    <size height="121" width="556"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="更新调拨申请的已入库数量&#xD;&#xA;&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.updatePjAllotInApply&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.updatePjAllotInApplyQty&#xD;&#xA;&#xD;&#xA;如果对方调拨出库后，本机构完全入库，并且调整掉剩余的未受理数量，则更新调拨申请单为全部入库，全部受理&#xD;&#xA;在做调拨申请调整时，或是做调拨入库时都要做此判断" title="Administrator&#x9;19-7-26 下午4:43">
+    <location x="31" y="-15"/>
+    <size height="181" width="750"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">

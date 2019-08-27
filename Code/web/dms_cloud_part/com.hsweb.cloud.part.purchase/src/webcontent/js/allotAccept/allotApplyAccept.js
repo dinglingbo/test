@@ -51,7 +51,7 @@ $(document).ready(function(v) {
         }
         
     });
-    quickSearch(3);
+    quickSearch(2);
 });
 
 function getCompany(){
@@ -108,6 +108,7 @@ function getSearchParam(){
     params.auditSign=1;
     params.guestOrgId = currOrgId;
     params.tenantId =currTenantId;
+    params.isDiffOrder = 0;
     return params;
 }
 var currType = 2;

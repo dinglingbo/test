@@ -123,8 +123,8 @@
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>assign10</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULLANDEMPTY">
-          <process:leftOperand type="query">agencyId</process:leftOperand>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">isOpenApp</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -161,8 +161,8 @@
       <sourceNode>invokePojo3</sourceNode>
       <targetNode>subprocess2</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULLANDEMPTY">
-          <process:leftOperand type="query">agencyId</process:leftOperand>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">isOpenApp</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -286,6 +286,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">status</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/attributes/isOpenApp</process:from>
+      <process:to type="query">isOpenApp</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
@@ -697,6 +701,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="pyname" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="agencyId" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="status" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="isOpenApp" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.com.ComPartBrand" name="brand"/>

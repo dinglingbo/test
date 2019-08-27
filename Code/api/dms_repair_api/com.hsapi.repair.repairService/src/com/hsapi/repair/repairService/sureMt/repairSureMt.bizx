@@ -585,11 +585,7 @@
     <node>assign6</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess4" name="genCarFileNo" displayName="genCarFileNo" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess4</sourceNode>
-      <targetNode>subprocess8</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link21" name="link21" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link21" name="link21" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>subprocess4</sourceNode>
       <targetNode>assign3</targetNode>
       <process:transitionCondition>
@@ -598,6 +594,10 @@
           <process:rightOperand type="literal">S</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess4</sourceNode>
+      <targetNode>subprocess8</targetNode>
     </sourceConnections>
     <targetConnections>link17</targetConnections>
     <location x="992" y="135"/>
@@ -620,11 +620,7 @@
     <node>subprocess4</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess8" name="addRpsItemDispatch" displayName="addRpsItemDispatch" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess8</sourceNode>
-      <targetNode>subprocess3</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link24" name="link24" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link24" name="link24" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>subprocess8</sourceNode>
       <targetNode>assign3</targetNode>
       <process:transitionCondition>
@@ -633,6 +629,10 @@
           <process:rightOperand type="literal">S</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess8</sourceNode>
+      <targetNode>subprocess3</targetNode>
     </sourceConnections>
     <targetConnections>link20</targetConnections>
     <location x="1110" y="150"/>

@@ -13,7 +13,7 @@
 <head>
 <title>供应商直发受理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotDirectPchsEnter.js?v=1.0.0"></script>
+    <script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotDirectPchsEnter.js?v=1.0.1"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -69,7 +69,7 @@
                                                  nullItemText="请选择受理仓库..."
                                                 />
                             <span class="separator"></span>                    
-                      <a class="nui-button" iconCls="" plain="true" onclick="audit()" visible=""  id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;受理</a>
+                      <a class="nui-button" iconCls="" plain="true" onclick="audit()" visible=""  id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;到货入库</a>
 
                       <input id="billTypeId" width="60px" emptyText="票据类型" textField="name" valueField="customid" class="nui-combobox" visible="false"/>
                       <input id="settleTypeId" width="60px" emptyText="结算方式" textField="name" valueField="customid" class="nui-combobox" visible="false"/>

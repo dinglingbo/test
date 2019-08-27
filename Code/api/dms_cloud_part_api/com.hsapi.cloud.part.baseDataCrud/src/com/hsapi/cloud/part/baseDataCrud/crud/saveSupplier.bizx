@@ -163,8 +163,12 @@
       <process:to type="query">supplier/recorder</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">orgid</process:from>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">supplier/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/attributes/tenantId</process:from>
+      <process:to type="query">supplier/tenantId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
@@ -375,6 +379,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userRealName</process:from>
       <process:to type="query">userName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">orgid</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
@@ -629,7 +637,6 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.com.ComGuest" name="supplier"/>
-    <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
     <process:input description="" isArray="false" name="userName" primitiveType="String"/>
   </process:inputs>
   <process:outputs>

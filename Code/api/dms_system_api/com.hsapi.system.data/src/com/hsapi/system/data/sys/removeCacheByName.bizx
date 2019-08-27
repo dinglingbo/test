@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="removeCacheByName" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="命名SQL &#xD;&#xA;cache_com.hsapi.system.data.dictMgr.queryDictItem&#xD;&#xA;cache_com.hsapi.system.data.dictMgr.queryDictItemTree&#xD;&#xA;cache_com.hsapi.system.data.dictMgr.queryComMember&#xD;&#xA;cache_com.hsapi.system.data.dictMgr.getServiceType&#xD;&#xA;&#xD;&#xA;cache_com.hsapi.system.data.dictMgr.getPartType&#xD;&#xA;cache_com.hsapi.system.data.dictMgr.getPartQuality&#xD;&#xA;cache_com.hsapi.system.data.dictMgr.getCarBrand&#xD;&#xA;cache_com.hsapi.system.data.dictMgr.getPartBrand" title="Administrator&#x9;18-8-23 上午11:47">
-    <location x="42" y="-135"/>
-    <size height="211" width="436"/>
+    <location x="44" y="-195"/>
+    <size height="226" width="436"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -26,13 +26,13 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="17" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="14" y="186"/>
+    <figSize height="20" width="31"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="542" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="539" y="186"/>
+    <figSize height="20" width="31"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
@@ -68,8 +68,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="107" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="104" y="186"/>
+    <figSize height="20" width="31"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
@@ -89,8 +89,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="315" y="285"/>
-    <figSize height="17" width="32"/>
+    <location x="311" y="285"/>
+    <figSize height="20" width="40"/>
     <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="hDelKeys" displayName="" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
@@ -117,8 +117,8 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="389" y="111"/>
-    <figSize height="17" width="54"/>
+    <location x="382" y="111"/>
+    <figSize height="20" width="68"/>
     <node>invokePojo1</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="hGetAll" displayName="" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
@@ -146,8 +146,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="160" y="111"/>
-    <figSize height="17" width="42"/>
+    <location x="154" y="111"/>
+    <figSize height="20" width="55"/>
     <node>invokePojo0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="propertyHashToStringArr" displayName="propertyHashToStringArr" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
@@ -171,8 +171,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="222" y="111"/>
-    <figSize height="17" width="148"/>
+    <location x="202" y="111"/>
+    <figSize height="20" width="188"/>
     <node>invokePojo2</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="del" displayName="del" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
@@ -198,8 +198,8 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="408" y="186"/>
-    <figSize height="17" width="19"/>
+    <location x="405" y="186"/>
+    <figSize height="20" width="24"/>
     <node>invokePojo3</node>
   </nodes>
   <topRuler/>

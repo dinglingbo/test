@@ -12,7 +12,7 @@
 <head>
 	<title>开票单</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<script src="<%= request.getContextPath() %>/cw/js/invoiceManagement/invoice.js?v=1.2" type="text/javascript"></script>
+	<script src="<%= request.getContextPath() %>/cw/js/invoiceManagement/invoice.js?v=1.3" type="text/javascript"></script>
 </head>
 <style type="text/css">
         a.optbtn {
@@ -106,8 +106,25 @@
 			</form>
 
 		</div>
+		<div class="nui-toolbar" style="padding:2px;border-left:2px;">
+          <table style="width:100%;">
+              <tr>
+                  <td style="white-space:nowrap;" style="width:120px;">
+                      <a class="nui-button" plain="true" iconCls="" onclick="addRepair()" id="addPartBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;选择工单</a>
+                      <a class="nui-button" plain="true" iconCls="" onclick="remove()" id="deletePartBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除工单</a>
+                  </td>
+              </tr>
+          </table>
+      </div>
 		<div class="nui-fit">
-			<div id="grid" class="nui-datagrid " datafield="ticketDetail"  showsummaryrow="true" ondrawsummarycell="onDrawSummaryCell"editNextOnEnterKey="true" onCellEditEnter="onCellEditEnter"oncellbeginedit="oncellbeginedit" allowCellEdit="true"allowHeaderWrap="true"allowCellSelect="true" allowcelledit="true" url="" allowcellwrap="true" style="width:100%;height:100%;" allowcellselect="true">
+			<div id="grid" class="nui-datagrid " 
+			  datafield="ticketDetail"  showsummaryrow="true" ondrawsummarycell="onDrawSummaryCell" editNextOnEnterKey="true" 
+			  onCellEditEnter="onCellEditEnter"oncellbeginedit="oncellbeginedit" allowCellEdit="true"allowHeaderWrap="true"
+			  allowCellSelect="true" allowcelledit="true" url="" allowcellwrap="true" style="width:100%;height:100%;" 
+			  allowcellselect="true"
+			  totalField="page.count"
+			  showPager = "false"
+              >
 				<div property="columns">
 					<div field="servcieId" name="servcieId" headeralign="center" align="center"visible="false">
 					</div>
@@ -128,7 +145,7 @@
 			</div>
 		</div>
 	<div id="advancedMorePartWin" class="nui-window"
-      style="width:700px;height:350px;"
+      style="width:750px;height:350px;"
      showModal="true"
      showHeader="false"
      allowResize="false"
@@ -138,6 +155,34 @@
         <table style="width:100%;">
             <tr>
                 <td style="width:100%;">
+                    <label style="font-family:Verdana;">快速查询：</label>
+                	 <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+
+	                <ul id="popupMenuDate" class="nui-menu" style="display:none;">
+	                    <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
+	                    <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
+	                    <li class="separator"></li>
+	                    <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
+	                    <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
+	                    <li class="separator"></li>
+	                    <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
+	                    <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
+	                    <li class="separator"></li>
+	                    <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
+	                    <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
+	                </ul>
+                    <input class="nui-textbox" id="carNo-search" emptyText="车牌号" width="120" onenter="doSearch"/>
+                    <input class="nui-textbox" id="name-search" emptyText="客户名称" width="120" onenter="doSearch"/>
+                  <!--  结算日期:
+                    <input id="sOutDate" name="sOutDate" class="nui-datepicker"/>
+                                               至:
+                    <input id="eOutDate" name="eOutDate" class="nui-datepicker"
+                           format="yyyy-MM-dd"
+                           timeFormat="H:mm:ss"
+                           showTime="false"
+                           showOkButton="false"
+                           showClearButton="false"/> -->
+                    <a class="nui-button" iconCls="" plain="true" onclick="doSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="addSelect()" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="onClose()" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
                 </td>
@@ -154,7 +199,7 @@
               <div property="columns">
                 <div type="indexcolumn">序号</div>
                 <div field="serviceId" name="serviceId" headeralign="center" align="center"visible="false">源单号</div>
-                <div field="serviceCode" name="serviceCode" headeralign="center" align="center">源单号</div>
+                <div field="serviceCode" name="serviceCode" headeralign="center" align="center" width="150px">源单号</div>
 				<div field="guestFullName" name="guestFullName" headeralign="center">客户名称</div>
 				<div field="carNo" name="carNo" headeralign="center" align="center">车牌号</div>
 				<div field="contactMobile" name="contactMobile" headeralign="center" align="center">手机号</div>

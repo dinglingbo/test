@@ -9,7 +9,7 @@
 -->
 <head>
 <title>应收应付结算</title>
-<script src="<%=webPath + contextPath%>/settlement/js/rpAccountSettle.js?v=2.3.19"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/rpAccountSettle.js?v=2.3.34"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -331,7 +331,7 @@
 
 <!-- <div id="editFormPchsEnterDetail" style="display:none;"> -->
 <div id="pchsEnterWin" class="nui-window"
-     title="入库明细" style="width:900px;height:500px;"
+     title="采购入库明细" style="width:900px;height:500px;"
      showModal="true"
      allowResize="true"
      allowDrag="true">
@@ -375,7 +375,7 @@
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
+            <div allowSort="true" field="comPartCode" width="80" headerAlign="center" header="配件编码"></div>
             <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
             <div allowSort="true" field="comOemCode" headerAlign="center" header="OE码"></div>
             <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
@@ -392,7 +392,7 @@
 
 <!-- <div id="editFormPchsRtnDetail" style="display:none;"> -->
 <div id="pchsRtnWin" class="nui-window"
-     title="采购入库明细" style="width:900px;height:500px;"
+     title="采购退货明细" style="width:900px;height:500px;"
      showModal="true"
      allowResize="false"
      allowDrag="true">
@@ -406,7 +406,7 @@
            showSummaryRow="true">
           <div property="columns">
               <div type="indexcolumn">序号</div>
-              <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
+              <div allowSort="true" field="comPartCode" width="80" headerAlign="center" header="配件编码"></div>
               <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
               <div allowSort="true" field="comOemCode" headerAlign="center" header="OE码"></div>
               <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
@@ -421,15 +421,16 @@
       </div>
 </div>
 
+
 <!-- <div id="editFormSellOutDetail" style="display:none;"> -->
 <div id="sellOutWin" class="nui-window"
-     title="采购入库明细" style="width:900px;height:500px;"
+     title="销售出库明细" style="width:900px;height:500px;"
      showModal="true"
      allowResize="false"
      allowDrag="true">
     <div id="innerSellOutGrid" class="nui-datagrid" style="width:100%;height:100%;"
          showPager="false"
-         dataField="pjSellOutDetailList"
+         dataField="pjSellOrderDetailList"
          idField="detailId"
          ondrawcell="onDrawCell"
          sortMode="client"
@@ -437,16 +438,16 @@
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
+            <div allowSort="true" field="comPartCode" width="80" headerAlign="center" header="配件编码"></div>
             <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
             <div allowSort="true" field="comOemCode" headerAlign="center" header="OE码"></div>
             <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
             <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
             <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>
             <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
-            <div allowSort="true" datatype="float" field="sellQty" summaryType="sum" width="60" headerAlign="center" header="销售数量"></div>
-            <div allowSort="true" datatype="float" field="sellPrice" width="60" headerAlign="center" header="销售单价"></div>
-            <div allowSort="true" datatype="float" field="sellAmt" summaryType="sum" width="60" headerAlign="center" header="销售金额"></div>
+            <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="销售数量"></div>
+            <div allowSort="true" datatype="float" field="showPrice" width="60" headerAlign="center" header="销售单价"></div>
+            <div allowSort="true" datatype="float" field="showAmt" summaryType="sum" width="60" headerAlign="center" header="销售金额"></div>
             <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
             
         </div>
@@ -455,7 +456,7 @@
 
 <!-- <div id="editFormSellRtnDetail" style="display:none;"> -->
 <div id="sellRtnWin" class="nui-window"
-     title="采购入库明细" style="width:900px;height:500px;"
+     title="销售退货明细" style="width:900px;height:500px;"
      showModal="true"
      allowResize="false"
      allowDrag="true">
@@ -469,7 +470,7 @@
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
+            <div allowSort="true" field="comPartCode" width="80" headerAlign="center" header="配件编码"></div>
             <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
             <div allowSort="true" field="comOemCode" headerAlign="center" header="OE码"></div>
             <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
@@ -484,6 +485,125 @@
         </div>
     </div>
 </div>
+
+<div id="allotInWin" class="nui-window"
+     title="调拨入库明细" style="width:900px;height:500px;"
+     showModal="true"
+     allowResize="false"
+     allowDrag="true">
+    <div id="innerAllotApplyGrid" class="nui-datagrid" style="width:100%;height:100%;"
+           showPager="false"
+           dataField="pjAllotApplyDetails"
+           idField="detailId"
+           ondrawcell="onDrawCell"
+           sortMode="client"
+           url=""
+           showSummaryRow="true">
+          <div property="columns">
+              <div type="indexcolumn">序号</div>
+              <div allowSort="true" field="partCode" width="80" headerAlign="center" header="配件编码"></div>
+              <div allowSort="true" field="partName" headerAlign="center" header="配件名称"></div>
+              <div allowSort="true" field="oemCode" headerAlign="center" header="OE码"></div>
+              <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
+              <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="品牌车型"></di
+              <div allowSort="true" field="systemUnitId" width="40" headerAlign="center" header="单位"></div>
+              <div allowSort="true" datatype="float" field="applyQty" summaryType="sum" width="60" headerAlign="center" header="数量"></div>
+              <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="单价"></div>
+              <div allowSort="true" datatype="float" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="金额"></div>
+              <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
+        
+          </div>
+      </div>
+</div>
+<div id="allotOutRtnWin" class="nui-window"
+     title="调出退货明细" style="width:900px;height:500px;"
+     showModal="true"
+     allowResize="false"
+     allowDrag="true">
+   <div id="innerAllotApplyRtnGrid" class="nui-datagrid" style="width:100%;height:100%;"
+           showPager="false"
+           dataField="pjAllotApplyDetails"
+           idField="detailId"
+           ondrawcell="onDrawCell"
+           sortMode="client"
+           url=""
+           showSummaryRow="true">
+          <div property="columns">
+              <div type="indexcolumn">序号</div>
+              <div allowSort="true" field="partCode" width="90" headerAlign="center" header="配件编码"></div>
+              <div allowSort="true" field="partName" headerAlign="center" header="配件名称"></div>
+              <div allowSort="true" field="oemCode" headerAlign="center" header="OE码"></div>
+              <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
+              <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="品牌车型"></di
+              <div allowSort="true" field="systemUnitId" width="40" headerAlign="center" header="单位"></div>
+              <div allowSort="true" datatype="float" field="applyQty" summaryType="sum" width="60" headerAlign="center" header="数量"></div>
+              <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="单价"></div>
+              <div allowSort="true" datatype="float" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="金额"></div>
+              <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
+        
+          </div>
+      </div>
+</div>
+<div id="allotOutWin" class="nui-window"
+     title="调拨出库明细" style="width:900px;height:500px;"
+     showModal="true"
+     allowResize="false"
+     allowDrag="true">
+    <div id="innerAllotAcceptGrid" class="nui-datagrid" style="width:100%;height:100%;"
+           showPager="false"
+           dataField="pjAllotAcceptMainList"
+           idField="detailId"
+           ondrawcell="onDrawCell"
+           sortMode="client"
+           url=""
+           showSummaryRow="true">
+          <div property="columns">
+              <div type="indexcolumn">序号</div>
+              <div allowSort="true" field="partCode" width="80" headerAlign="center" header="配件编码"></div>
+              <div allowSort="true" field="partName" headerAlign="center" header="配件名称"></div>
+              <div allowSort="true" field="oemCode" headerAlign="center" header="OE码"></div>
+              <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
+              <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="品牌车型"></di
+              <div allowSort="true" field="systemUnitId" width="40" headerAlign="center" header="单位"></div>
+              <div allowSort="true" datatype="float" field="acceptQty" summaryType="sum" width="60" headerAlign="center" header="数量"></div>
+              <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="单价"></div>
+              <div allowSort="true" datatype="float" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="金额"></div>
+              <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
+        
+          </div>
+      </div>
+      
+</div>
+<div id="allotInRtnWin" class="nui-window"
+     title="调入退货明细" style="width:900px;height:500px;"
+     showModal="true"
+     allowResize="false"
+     allowDrag="true">
+     <div id="innerAllotAcceptRtnGrid" class="nui-datagrid" style="width:100%;height:100%;"
+           showPager="false"
+           dataField="pjAllotAcceptMainList"
+           idField="detailId"
+           ondrawcell="onDrawCell"
+           sortMode="client"
+           url=""
+           showSummaryRow="true">
+          <div property="columns">
+              <div type="indexcolumn">序号</div>
+              <div allowSort="true" field="partCode" width="80" headerAlign="center" header="配件编码"></div>
+              <div allowSort="true" field="partName" headerAlign="center" header="配件名称"></div>
+              <div allowSort="true" field="oemCode" headerAlign="center" header="OE码"></div>
+              <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
+              <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="品牌车型"></di
+              <div allowSort="true" field="systemUnitId" width="40" headerAlign="center" header="单位"></div>
+              <div allowSort="true" datatype="float" field="acceptQty" summaryType="sum" width="60" headerAlign="center" header="数量"></div>
+              <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="单价"></div>
+              <div allowSort="true" datatype="float" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="金额"></div>
+              <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
+        
+          </div>
+      </div>
+</div>
+
 
 <div id="editFormStatementDetail" style="display:none;">
     <div id="innerStatementGrid" class="nui-datagrid" style="width:100%;height:150px"
@@ -514,6 +634,8 @@
       </div>
   </div>
 </div>
+
+
 
 <div id="advancedSearchWin" class="nui-window"
      title="高级查询" style="width:416px;height:230px;"
@@ -753,14 +875,19 @@
                         <td style="text-align:center" width="60px">应收金额:</td>
                         <td id="rRPAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
 
-                        <td style="text-align:center" width="60px">实收金额:</td>
+						<td style="text-align:center" width="60px">已结金额:</td>
+                        <td id="rCharOffAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+                        
+						<td style="text-align:center" width="60px">未结金额:</td>
+                        <td id="rNoCharOffAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+                        
+                        <td style="text-align:center" width="80px">本次实收金额:</td>
                         <td id="rTrueAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
 
                         <td style="text-align:center;display:none;" width="60px">优惠金额:</td>
                         <td id="rVoidAmt" style="text-align:center;color:blue;text-decoration:underline;display:none;" width="60px"></td>
 
-                        <td style="text-align:center" width="60px">未结金额:</td>
-                        <td id="rNoCharOffAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+                        
                     </tr>
                 </table>
 
@@ -774,15 +901,19 @@
                     <tr id="pcTr">
                         <td style="text-align:center" width="60px">应付金额:</td>
                         <td id="pRPAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+                        
+                        <td style="text-align:center" width="60px">已结金额:</td>
+                        <td id="pCharOffAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+                        
+                        <td style="text-align:center" width="60px">未结金额:</td>
+                        <td id="pNoCharOffAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
 
-                        <td style="text-align:center" width="60px">实付金额:</td>
+                        <td style="text-align:center" width="80px">本次实付金额:</td>
                         <td id="pTrueAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
 
                         <td style="text-align:center;display:none;" width="60px">免付金额:</td>
                         <td id="pVoidAmt" style="text-align:center;color:blue;text-decoration:underline;display:none;" width="60px"></td>
 
-                        <td style="text-align:center" width="60px">未结金额:</td>
-                        <td id="pNoCharOffAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
                     </tr>
                 </table>
 

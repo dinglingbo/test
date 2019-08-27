@@ -54,24 +54,8 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">pageSize</process:from>
-      <process:to type="query">page/size</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">pageIndex</process:from>
-      <process:to type="query">page/currentPage</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="value">true</process:from>
+      <process:from type="expression" pattern="value">true</process:from>
       <process:to type="query">page/isCount</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">pageSize*pageIndex</process:from>
-      <process:to type="query">page/begin</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">pageSize</process:from>
-      <process:to type="query">page/length</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -117,14 +101,6 @@
     <location x="565" y="120"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">page/count</process:from>
-      <process:to type="query">totalPage</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">page/count</process:from>
-      <process:to type="query">total</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="559" y="156"/>
@@ -156,8 +132,6 @@
   <process:variables/>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
-    <process:input description="" isArray="false" name="pageIndex" primitiveType="Int"/>
-    <process:input description="" isArray="false" name="pageSize" primitiveType="Int"/>
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
   </process:inputs>
   <process:outputs>

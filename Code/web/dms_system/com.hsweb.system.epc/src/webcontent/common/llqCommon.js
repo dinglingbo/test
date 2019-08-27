@@ -1,6 +1,7 @@
 //http://14.23.35.20:6288/dms/com.hsweb.system.llq.call.doCall.biz.ext
 
-var url = apiPath + sysApi + "/com.hsapi.system.llq.call.doCallV2.biz.ext";
+var url = apiPath + sysApi + "/com.hsapi.system.llq.call.maintenanceCallV.biz.ext";
+//com.hsapi.system.llq.call.doCallV2(原)
 //var llq_pre_url = "https://llqapitm.007vin.com";//http://124.172.221.179:81  https://llqapitm.007vin.com
 var llq_pre_url = "";//"http://124.172.221.179:81";
 function loadData(url, params, callBack){
@@ -53,6 +54,9 @@ function callAjax(url, params, processAjax, callBack){
 */
 function processAjax(rs, callBack){
     if(rs.errCode != 'E' && rs.result.code == '1'){
+        //nui.alert("获取数据成功！");
+        callBack(rs.result.data, rs.result);
+    }else if(rs.errCode != 'E' && rs.result.code == '0'){//零件接口成功返回0
         //nui.alert("获取数据成功！");
         callBack(rs.result.data, rs.result);
     }else if(rs.errCode != 'E' && rs.result.code == '6'){//针对输入零件号判断品牌的接口,如果

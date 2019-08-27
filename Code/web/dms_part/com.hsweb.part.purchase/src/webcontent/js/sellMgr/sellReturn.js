@@ -231,7 +231,7 @@ function getSearchParam(){
 }
 function doSearch(params)
 {
-    params.enterTypeId = '050104';//销售退货
+    params.enterTypeId = '050110';//销售退货
     leftGrid.load({
         params:params
     },function(){
@@ -369,7 +369,7 @@ function save()
         data.payableAmt += parseFloat(tmp.suggestAmt);
     }
     data.totalAmt = data.payableAmt;
-    data.enterTypeId = '050104';//销售退货
+    data.enterTypeId = '050110';//销售退货
     data.billCode = "0";
     data.billTypeId = "010101";
     data.billTaxRate = 0;

@@ -446,6 +446,7 @@
     
     <select id="queryGuestList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.com.ComGuest">
     	SELECT a.orgid,
+    	     a.tenant_id tenantId,
 			 a.short_name shortName,
 			 a.full_name fullName,
 			 a.code      code,
@@ -501,6 +502,10 @@
     		<isNotEmpty prepend="and" property="guestId">  
                 (id = #guestId#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="isInternal">  
+                (is_internal = #isInternal#)
+            </isNotEmpty>
+            
     		<isNotEmpty prepend="and" property="code">  
                 (code like '%$code$%')
             </isNotEmpty>
@@ -765,6 +770,7 @@
     <select id="queryStore" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT
 			a.id as id,
+			a.tenant_id as tenantId,
 			a.orgid as orgid,
 			a.`name` as name
 		FROM
@@ -773,6 +779,11 @@
 			<dynamic>
 	            <isNotEmpty prepend="and" property="orgid">
 	            	(a.orgid = #orgid#)
+	            </isNotEmpty>
+	        </dynamic>
+	        <dynamic>
+	            <isNotEmpty prepend="and" property="tenantId">
+	            	(a.tenant_id = #tenantId#)
 	            </isNotEmpty>
 	        </dynamic>
     </select> 
@@ -868,7 +879,7 @@
             	(a.code in ($partCodeList$))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="name">  
-                (name like '%$name$%' or full_name like '%$name$%')
+                (a.name like '%$name$%' or a.full_name like '%$name$%')
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="spec">  
                 (a.spec like '%$spec$%')

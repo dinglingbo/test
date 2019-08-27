@@ -109,7 +109,7 @@
       <sourceNode>assign1</sourceNode>
       <targetNode>assign4</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
+        <process:simpleCondition operator="NULLOREMPTY">
           <process:leftOperand type="query">fileNo</process:leftOperand>
           <process:rightOperand type="literal">0</process:rightOperand>
         </process:simpleCondition>

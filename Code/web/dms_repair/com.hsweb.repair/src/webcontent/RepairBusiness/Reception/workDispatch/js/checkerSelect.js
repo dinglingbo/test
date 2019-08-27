@@ -95,6 +95,7 @@ var teamStr ="";
 		url : queryMemberLevel,
 		type : 'POST',
 		cache : false,
+		async: false,
 		contentType : 'text/json',
 		success : function(text) {
 			var Member = text.data;
@@ -121,6 +122,7 @@ function queryMember(json){
 		type : 'POST',
 		data:json,
 		cache : false,
+		 async: false,
 		contentType : 'text/json',
 		success : function(text) {
 			

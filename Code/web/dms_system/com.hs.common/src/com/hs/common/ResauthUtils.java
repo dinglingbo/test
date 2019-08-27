@@ -331,4 +331,48 @@ public class ResauthUtils {
 				pm, "员工兼职数据", "false", -1, false, null);
 	}
 	
+	@Bizlet("根据页面流全称获取对应的产品ID")
+	public static DataObject[] getProductIdByResUrl(String resUrl) throws Throwable {
+		HashMap pm = new HashMap();
+		pm.put("resUrl", resUrl);
+		
+		return getRedisCache("common", "com.hsapi.system.data.productMgr.queryProductIdByResUrl", 
+				pm, "页面流对应的产品数据", "false", -1, false, null);
+	}
+	
+	@Bizlet("根据产品ID获取资源列表")
+	public static DataObject[] getProductRes(String productId) throws Throwable {
+		HashMap pm = new HashMap();
+		pm.put("productId", productId);
+		
+		return getRedisCache("common", "com.hsapi.system.data.productMgr.queryProductRes", 
+				pm, "产品对应的资源数据", "false", -1, false, null);
+	}
+	
+	@Bizlet("根据租户ID和产品ID获取租户产品的有效期")
+	public static DataObject[] getTenantProductValidity(String tenantId, String productId) throws Throwable {
+		HashMap pm = new HashMap();
+		pm.put("tenantId", tenantId);
+		pm.put("productId", productId);
+		
+		return getRedisCache("common", "com.hsapi.system.data.productMgr.queryTenantProductByTenantAndProduct", 
+				pm, "租户产品信息", "false", -1, false, null);
+	}
+	
+	@Bizlet("根接口地址获取单次请求需要扣减的链车币数量")
+	public static DataObject getProUrlCoin(String proUrl) throws Throwable {
+		HashMap pm = new HashMap();
+		pm.put("proUrl", proUrl);
+				
+		HashMap cachePm = genenCacheKey("com.hsapi.system.data.productMgr.queryProductByProUrl", pm);
+		String cacheName = (String) cachePm.get("cacheName");
+		String key = cachePm.get("key").toString();
+		if(cacheName == null || cacheName.equals("")) {
+			return null;
+		}
+		
+		String cacheValue = hgetAndExtend(cacheName, key, -1);
+		return (DataObject) Utils.gzipStr2Obj(cacheValue);
+	}
+	
 }

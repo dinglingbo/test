@@ -19,6 +19,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.imageio.ImageIO;
 
@@ -90,7 +91,10 @@ public class QRCodeUtil {
             ByteArrayOutputStream os = new ByteArrayOutputStream();
             ImageIO.write(image, "jpg", os);
             InputStream is = new ByteArrayInputStream(os.toByteArray());
-            Map<String,Object> retMap = QiNiuUtils.upload(is);          
+            String key = "PartEnterQRCode";//批次库存二维码前缀
+        	String str = UUID.randomUUID().toString().replaceAll("\\-", "");
+        	key = key + str;
+            Map<String,Object> retMap = QiNiuUtils.uploadByParams(is,key);          
             String path =  retMap.get("url").toString();
             System.out.println(path);
             //返回生成的二维码七牛路径

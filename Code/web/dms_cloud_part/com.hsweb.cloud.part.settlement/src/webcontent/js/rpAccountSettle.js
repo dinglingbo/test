@@ -9,6 +9,10 @@ var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOu
 var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
 var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList.biz.ext";
 var innerStateGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.getPJStatementDetailById.biz.ext";
+
+var innerAllotAcceptGridUrl= baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryAllotAcceptDetails.biz.ext";
+var innerAllotApplyGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryAllotApplyDetails.biz.ext";
+
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -31,8 +35,13 @@ var innerPchsRtnGrid = null;
 var innerSellOutGrid = null;
 //var editFormSellRtnDetail = null;
 var innerSellRtnGrid = null;
-var editFormStatementDetail = null;
 var innerStatementGrid = null;
+
+var innerAllotAcceptGrid = null;
+var innerAllotAcceptRtnGrid = null;
+var innerAllotApplyGrid = null;
+var innerAllotApplyRtnGrid = null;
+
 var auditWin = null;
 var settleWin = null;
 var gprows = null;
@@ -43,6 +52,11 @@ var pchsEnterWin = null;
 var pchsRtnWin = null;
 var sellOutWin = null;
 var sellRtnWin = null;
+
+var allotInWin =null;
+var allotOutRtnWin =null;
+var allotOutWin =null;
+var allotInRtnWin =null;
 
 var storehouseHash = {};
 var billTypeIdHash = {};
@@ -67,11 +81,12 @@ var balanceList = [
     {id:2,text:"全部"}
 ];
 var settleStatusList = [
+    {id:4,text:"全部"},
     {id:0,text:"未结算"},
     {id:1,text:"部分结算"},
     {id:2,text:"已结算"}
 ];
-var typeIdHash = {1:"采购订单",2:"销售订单",3:"采购退货",4:"销售退货"};
+var typeIdHash = {1:"采购订单",2:"销售订单",3:"采购退货",4:"销售退货",5:"调拨申请",6:"调拨受理",7:"调出退回",8:"调入退回"};
 
 $(document).ready(function(v)
 {
@@ -109,6 +124,20 @@ $(document).ready(function(v)
     innerStatementGrid = nui.get("innerStatementGrid");
     editFormStatementDetail = document.getElementById("editFormStatementDetail");
     innerStatementGrid.setUrl(innerStateGridUrl);
+    
+    innerAllotAcceptGrid = nui.get("innerAllotAcceptGrid");
+    innerAllotAcceptGrid.setUrl(innerAllotAcceptGridUrl);
+    
+    innerAllotAcceptRtnGrid = nui.get("innerAllotAcceptRtnGrid");
+    innerAllotAcceptRtnGrid.setUrl(innerAllotAcceptGridUrl);
+        
+    innerAllotApplyGrid = nui.get("innerAllotApplyGrid");
+    innerAllotApplyGrid.setUrl(innerAllotApplyGridUrl);
+    
+    innerAllotApplyRtnGrid = nui.get("innerAllotApplyRtnGrid");
+    innerAllotApplyRtnGrid.setUrl(innerAllotApplyGridUrl);
+    
+    
 
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
@@ -119,6 +148,11 @@ $(document).ready(function(v)
     pchsRtnWin = nui.get("pchsRtnWin");
     sellOutWin = nui.get("sellOutWin");
     sellRtnWin = nui.get("sellRtnWin");
+    
+    allotInWin = nui.get("allotInWin");
+    allotOutRtnWin = nui.get("allotOutRtnWin");
+    allotOutWin = nui.get("allotOutWin");
+    allotInRtnWin = nui.get("allotInRtnWin");
 
     searchBeginDate.setValue(getNowStartDate());
     searchEndDate.setValue(addDate(getNowEndDate(), 1));
@@ -218,6 +252,10 @@ function getSearchParam(){
     params.sCreateDate = searchBeginDate.getFormValue();
     params.eCreateDate = searchEndDate.getFormValue();
     params.settleStatus = nui.get("settleStatus").getValue();
+    if(params.settleStatus ==4){
+    	params.settleStatus =null;
+    }
+
     return params;
 }
 var currType = 2;
@@ -684,8 +722,8 @@ function onStatementDbClick(e){
     var row = e.record;
     var mainId = row.billMainId;
     var rpDc = row.rpDc;
-    switch (rpDc)
-    {
+    /*switch (rpDc)
+  	{
         case -1:
             pchsEnterWin.show();
 
@@ -708,11 +746,12 @@ function onStatementDbClick(e){
             break;
         default:
             break;
-    }
-    /*var billTypeCode = row.typeCode;
-    switch (billTypeCode)
+    }**/
+    var typeCode = row.typeCode;
+   
+    switch (typeCode)
     {
-        case "050101":
+        case "1":
             pchsEnterWin.show();
 
             var params = {};
@@ -722,7 +761,7 @@ function onStatementDbClick(e){
                 token: token
             });
             break;
-        case "050102"://"050102"
+        case "4"://"050102"
             sellRtnWin.show();
             
             var params = {};
@@ -733,7 +772,7 @@ function onStatementDbClick(e){
             });
 
             break;
-        case "050201"://"050201"
+        case "3"://"050201"
             pchsRtnWin.show();
             
             var params = {};
@@ -743,7 +782,7 @@ function onStatementDbClick(e){
                 token: token
             });
             break;
-        case "050202"://"050202"
+        case "2"://"050202"
             sellOutWin.show();
             
             var params = {};
@@ -752,11 +791,56 @@ function onStatementDbClick(e){
                 params:params,
                 token: token
             });
-
+            
             break;
+        case "5":
+        	allotInWin.show();
+            
+            var params = {};
+            params.mainId = mainId;
+            innerAllotApplyGrid.load({
+                params:params,
+                token: token
+            });      
+            
+            break;
+        case "6":
+        	
+        	allotOutWin.show();
+            var params = {};
+            params.mainId = mainId;
+            innerAllotAcceptGrid.load({
+                params:params,
+                token: token
+            });     
+            
+            break;
+        case "7":        	
+        	allotOutRtnWin.show();
+        	
+            var params = {};
+            params.mainId = mainId;
+            innerAllotApplyRtnGrid.load({
+                params:params,
+                token: token
+            });      
+            
+            break;
+        case "8":
+        	allotInRtnWin.show();
+            
+            var params = {};
+            params.mainId = mainId;
+            innerAllotAcceptRtnGrid.load({
+                params:params,
+                token: token
+            });     
+            
+            break;
+       
         default:
             break;
-    }*/
+    }
 }
 function doBalance(){
     var rightGrid = null;
@@ -1174,10 +1258,12 @@ function doSettle(){
         document.getElementById('rTrueAmt').innerHTML=rtn.rTrueAmt;
         document.getElementById('rVoidAmt').innerHTML=rtn.rVoidAmt;
         document.getElementById('rNoCharOffAmt').innerHTML=rtn.rNoCharOffAmt;
+        document.getElementById('rCharOffAmt').innerHTML=rtn.rCharOffAmt;
         document.getElementById('pRPAmt').innerHTML=rtn.pRPAmt;
         document.getElementById('pTrueAmt').innerHTML=rtn.pTrueAmt;
         document.getElementById('pVoidAmt').innerHTML=rtn.pVoidAmt;
         document.getElementById('pNoCharOffAmt').innerHTML=rtn.pNoCharOffAmt;
+        document.getElementById('pCharOffAmt').innerHTML=rtn.pCharOffAmt;
         document.getElementById('rpAmt').innerHTML=rtn.rpAmt;
 
         settleAccountGrid.setData([]);
@@ -1195,10 +1281,14 @@ function getSettleAmount(rows){
     var rTrueAmt=0;  //实收应收
     var rVoidAmt=0;  //优惠金额
     var rNoCharOffAmt =0;  //未结金额
+    var rCharOffAmt =0;   //应收已结金额
+    
     var pRPAmt=0;       //应付金额
     var pTrueAmt=0;     //实付金额
     var pVoidAmt=0;     //免付金额
     var pNoCharOffAmt=0; //未结金额
+    var pCharOffAmt =0; //应付已结金额 
+    
     var rpAmt=0;          //合计金额
 
     var s = rows.length;
@@ -1239,6 +1329,7 @@ function getSettleAmount(rows){
                     rTrueAmt += amt2;
                     rVoidAmt += amt3;
                     rNoCharOffAmt += noCharOffAmt;
+                    rCharOffAmt +=charOffAmt;
                     s1 += (amt2 + amt3);
                 }else if(billDc == -1){
                     if((amt12 + amt13)>noCharOffAmt) {
@@ -1251,10 +1342,12 @@ function getSettleAmount(rows){
                     pTrueAmt += amt12;
                     pVoidAmt += amt13;
                     pNoCharOffAmt += noCharOffAmt;
+                    pCharOffAmt +=charOffAmt;
                     s2 += (amt12 + amt13)*-1;
                 }
             }else if(name=="pRightTab"){
-                var noCharOffAmt = row.noCharOffAmt||0; //已结金额
+            	var charOffAmt = row.charOffAmt||0; //已结金额
+                var noCharOffAmt = row.noCharOffAmt||0; //未结金额
 
                 if((nowAmt + nowVoidAmt)>noCharOffAmt) {
                     errCode = 'E';
@@ -1271,9 +1364,11 @@ function getSettleAmount(rows){
                 pTrueAmt += nowAmt;
                 pVoidAmt += nowVoidAmt;
                 pNoCharOffAmt += noCharOffAmt;
+                pCharOffAmt +=charOffAmt;
                 s1 += (nowAmt + nowVoidAmt);
             }else if(name=="rRightTab"){
-                var noCharOffAmt = row.noCharOffAmt||0; //已结金额
+            	var charOffAmt = row.charOffAmt||0; //已结金额
+                var noCharOffAmt = row.noCharOffAmt||0; //未结金额
 
                 if((nowAmt + nowVoidAmt)>noCharOffAmt) {
                     errCode = 'E';
@@ -1290,6 +1385,7 @@ function getSettleAmount(rows){
                 rTrueAmt += nowAmt;
                 rVoidAmt += nowVoidAmt;
                 rNoCharOffAmt += noCharOffAmt;
+                rCharOffAmt +=charOffAmt;
                 s1 += (nowAmt + nowVoidAmt);
             }
         }
@@ -1301,10 +1397,12 @@ function getSettleAmount(rows){
     rtnMsg.rTrueAmt=rTrueAmt;  //实收应收
     rtnMsg.rVoidAmt=rVoidAmt;  //优惠金额
     rtnMsg.rNoCharOffAmt =rNoCharOffAmt;  //未结金额
+    rtnMsg.rCharOffAmt =rCharOffAmt;  //已结金额
     rtnMsg.pRPAmt=pRPAmt;       //应付金额
     rtnMsg.pTrueAmt=pTrueAmt;     //实付金额
     rtnMsg.pVoidAmt=pVoidAmt;     //免付金额
     rtnMsg.pNoCharOffAmt=pNoCharOffAmt; //未结金额
+    rtnMsg.pCharOffAmt =pCharOffAmt;  //已结金额
     rtnMsg.rpAmt=s1;          //合计金额
     rtnMsg.errCode = errCode;
     rtnMsg.errMsg = errMsg;
@@ -1317,10 +1415,12 @@ function settleCancel(){
     document.getElementById('rTrueAmt').innerHTML=0;
     document.getElementById('rVoidAmt').innerHTML=0;
     document.getElementById('rNoCharOffAmt').innerHTML=0;
+    document.getElementById('rCharOffAmt').innerHTML=0;
     document.getElementById('pRPAmt').innerHTML=0;
     document.getElementById('pTrueAmt').innerHTML=0;
     document.getElementById('pVoidAmt').innerHTML=0;
     document.getElementById('pNoCharOffAmt').innerHTML=0;
+    document.getElementById('pCharOffAmt').innerHTML=0;
     document.getElementById('rpAmt').innerHTML=0;
     nui.get('rpTextRemark').setValue("");
     settleWin.hide();

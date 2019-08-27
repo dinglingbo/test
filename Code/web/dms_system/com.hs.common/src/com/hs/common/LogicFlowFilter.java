@@ -3,6 +3,7 @@ package com.hs.common;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Map;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -91,6 +92,20 @@ public class LogicFlowFilter implements Filter {
 					(HttpServletRequest) req);
 		}
 		if(url.indexOf(".flow") > 0) {
+			//checkActionAuth 20190823前判断是否有功能权限
+			//20190823修改：先判断产品是否在有效期，然后再判断是否有功能权限，过了有效期根据产品编码跳转对应充值，没有权限跳转/coframe/auth/noAuth.jsp
+			Map map = MenuUtil.checkActionProductAuth(requestWrapper);
+			boolean checkProductUrl = (Boolean) map.get("check");
+			if(!checkProductUrl) {
+				String productId = (String) map.get("productId");
+				if(productId != null && productId != "") {
+					request.getRequestDispatcher("/tenant/chainCarCoin/chainProduct.jsp?productId="+productId).forward(request, response);
+				}else {
+					request.getRequestDispatcher("/coframe/auth/noAuth.jsp").forward(request, response);
+				}
+				return;
+			}
+			
 			boolean check = MenuUtil.checkActionAuth(requestWrapper);
 			if(!check) {
 				//String contextPath = StringUtil.htmlFilter(req.getContextPath());
@@ -99,6 +114,8 @@ public class LogicFlowFilter implements Filter {
 				//dispatcher.forward(requestWrapper, response);
 				request.getRequestDispatcher("/coframe/auth/noAuth.jsp").forward(request, response);
 				return;
+				//request.getRequestDispatcher("/coframe/auth/noAuth.jsp").forward(request, response);
+				//return;
 			}
 		}
 		   

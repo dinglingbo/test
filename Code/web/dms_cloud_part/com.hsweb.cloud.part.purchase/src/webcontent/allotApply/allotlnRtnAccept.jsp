@@ -13,7 +13,7 @@
 <head>
 <title>调入退回受理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotlnRtnAccept.js?v=1.0.29"></script>
+    <script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotlnRtnAccept.js?v=1.0.30"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -115,7 +115,7 @@
         	<div class="nui-fit">
                	                	
                       <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
-				         showPager="true"
+				         showPager="false"
 				         dataField="data"
 				         idField="detailId"
 				         ondrawcell="onDrawCell"
@@ -124,10 +124,10 @@
 				         totalField="page.count"
 						 pageSize="100"
 						 sizeList=[100,200,500,1000]
-				         showSummaryRow="false">
+				         showSummaryRow="true">
 				        <div property="columns">
 				            <div type="indexcolumn">序号</div>
-				            <div field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
+				            <div field="partCode" name="partCode" summaryType="count" width="100" headerAlign="center" header="配件编码"></div>
                             <div field="comPartName" visible="false" headerAlign="center" header="配件名称"></div>
                             <div field="fullName"  width="200" headerAlign="center" header="配件全称"></div>
                             <div field="systemUnitId" name="comUnit" width="40" headerAlign="center" header="单位"></div>

@@ -84,8 +84,8 @@
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>subprocess4</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULLANDEMPTY">
-          <process:leftOperand type="query">agencyId</process:leftOperand>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">isOpenApp</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -123,8 +123,8 @@
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>subprocess3</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULLANDEMPTY">
-          <process:leftOperand type="query">agencyId</process:leftOperand>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">isOpenApp</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -190,12 +190,16 @@
       <process:to type="query">part/recorder</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">orgid</process:from>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">part/orgid</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">part/isHost</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/attributes/tenantId</process:from>
+      <process:to type="query">part/tenantId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
@@ -219,7 +223,6 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
-    <targetConnections>link11</targetConnections>
     <location x="225" y="165"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
@@ -311,29 +314,6 @@
     <figSize height="20" width="108"/>
     <node>invokePojo4</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign5</sourceNode>
-      <targetNode>invokePojo3</targetNode>
-    </sourceConnections>
-    <targetConnections>link4</targetConnections>
-    <location x="150" y="255"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign5label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">orgid</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userRealName</process:from>
-      <process:to type="query">userName</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="144" y="291"/>
-    <figSize height="20" width="40"/>
-    <node>assign5</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link3" name="link3" displayName="link0" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
@@ -341,16 +321,6 @@
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query"/>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="连接线" isDefault="false" type="transition">
-      <sourceNode>assign6</sourceNode>
-      <targetNode>assign5</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NULLOREMPTY">
-          <process:leftOperand type="query">orgid</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -534,6 +504,14 @@
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">status</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/attributes/isOpenApp</process:from>
+      <process:to type="query">isOpenApp</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userRealName</process:from>
+      <process:to type="query">userName</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
@@ -789,10 +767,10 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="agencyId" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="status" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="isDisabled" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="isOpenApp" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.com.ComAttribute" name="part"/>
-    <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
     <process:input description="" isArray="false" name="userName" primitiveType="String"/>
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="cangHash"/>
   </process:inputs>

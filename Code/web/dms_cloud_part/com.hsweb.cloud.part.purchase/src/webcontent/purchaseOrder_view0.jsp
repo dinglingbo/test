@@ -292,7 +292,7 @@
                          idField="id"
                          showSummaryRow="true"
                          frozenStartColumn="0"
-                         frozenEndColumn="7"
+                         frozenEndColumn="0"
                          ondrawcell="onRightGridDraw"
                          allowCellSelect="true"
                          allowCellEdit="true"

@@ -20,7 +20,7 @@ function setData(params){
 		return;
 	}
 	var params = {
-			id:concator.contactorId
+			id:concator.contactorId,
 	};
 	nui.mask({
 		el : document.body,
@@ -132,7 +132,8 @@ function save(){
 	var params = {
 			nature:nature,
 			natureId:natureId,
-			id:concator.contactorId
+			id:concator.contactorId,
+			type:"update"
 	};
 	nui.mask({
 		el : document.body,

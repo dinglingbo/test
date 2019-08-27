@@ -11,6 +11,10 @@ var searchEndDate = null;
 var leftGrid = null;
 var rightGrid =null;
 var mainTabs =null;
+var allotPayGrid = null;
+var allotReceiveGrid = null;
+var allotPayGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryAllotApplyDetails.biz.ext";
+var allotReceiveGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryAllotAcceptDetails.biz.ext";
 
 var storehouseHash = {};
 var billTypeIdHash = {};
@@ -34,6 +38,12 @@ $(document).ready(function(v) {
     rightGrid = nui.get("rightGrid");
     leftGrid.setUrl(leftGridUrl);
     rightGrid.setUrl(rightGridUrl);
+    
+    allotReceiveGrid =nui.get("allotReceiveGrid");
+    allotPayGrid = nui.get("allotPayGrid");
+    allotReceiveGrid.setUrl(allotReceiveGridUrl);
+    allotPayGrid.setUrl(allotPayGridUrl);
+    
     mainTabs =nui.get("mainTabs");
     mainTabs.on("activechanged",function(e){
     	var tab = mainTabs.getActiveTab();
@@ -41,8 +51,15 @@ $(document).ready(function(v) {
         var url = tab.url;
         if(name == 'receiveTab'){
         	loadLeftGridData();
-        }else{
+        }
+        else if(name== 'payTab'){
         	loadRightGridData();
+        }
+        else if(name== 'allotReceiveTab'){
+        	loadAllotReceiveGridData();
+        }
+        else if(name== 'allotPayTab'){
+        	loadAllotPayGridData();
         }
     });
     
@@ -103,7 +120,7 @@ $(document).ready(function(v) {
             }
         });
     });
-    quickSearch(0);
+    quickSearch(2);
 });
 
 function getCompany(){
@@ -157,6 +174,7 @@ function getSearchParam(){
     }
     params.isState = 0;
     params.settleTypeId='020502';
+	params.auditSign=1;
     return params;
 }
 var currType = 2;
@@ -241,8 +259,15 @@ function doSearch(params)
     var url = tab.url;
     if(name == 'receiveTab'){
     	loadLeftGridData();
-    }else{
+    }
+    else if(name== 'payTab'){
     	loadRightGridData();
+    }
+    else if(name== 'allotReceiveTab'){
+    	loadAllotReceiveGridData();
+    }
+    else if(name== 'allotPayTab'){
+    	loadAllotPayGridData();
     }
 }
 
@@ -266,6 +291,26 @@ function loadLeftGridData(){
     });
 }
 
+function loadAllotReceiveGridData(){
+	var params = getSearchParam();
+    params.isDiffOrder = 1;
+	params.sortField = "audit_date";
+	params.sortOrder = "desc";
+	allotReceiveGrid.load({
+        params:params,
+        token:token
+    });
+}
+function loadAllotPayGridData(){
+	var params = getSearchParam();
+    params.isDiffOrder = 1;
+	params.sortField = "audit_date";
+	params.sortOrder = "desc"
+    allotPayGrid.load({
+        params:params,
+        token:token
+    });
+}
 
 function onDrawCell(e){
 	switch (e.field)
@@ -349,10 +394,75 @@ function onMainDrawCell(e){
        		 	e.cellHtml = 0;
 	    	    e.value = 0;
         	}
-        	e.cellHtml = e.record.rAmt + e.record.pAmt;
-   	        e.value = e.record.rAmt + e.record.pAmt;
+        	e.cellHtml = (e.record.rAmt + e.record.pAmt).toFixed(2);
+   	        e.value = (e.record.rAmt + e.record.pAmt).toFixed(2);
             break;
         default:
             break;
     }
+}
+var sumPAmt ="";
+var sumRAmt = "";
+function onDrawSummaryCell(e) {
+	var rows = e.data;// rightGrid.getData();
+	
+	if (e.field == "rAmt") {
+		sumRAmt=e.value;
+	}
+	if (e.field == "pAmt") {
+		sumPAmt =e.value;
+	}
+	if (e.field == "billAmt") {
+		e.value= sumRAmt + sumPAmt;
+		e.cellHtml=e.value;  
+	}
+}
+
+//重写toFixed方法,解决精度问题
+Number.prototype.toFixed = function (n) {
+    if (n != undefined && (isNaN(n) || Number(n) > 17 || Number(n) < 0)) {
+        throw new Error("输入正确的精度范围");
+    }
+    // 拆分小数点整数和小数
+    var num = this;
+    var numList = num.toString().split(".");
+    // 整数
+    var iN = numList[0];
+    // 小数
+    var dN = numList[1];
+    n = parseInt(n);
+    if (isNaN(n) || Number(n) === 0) {
+        // 0或者不填的时候，按0来处理
+        if (dN === undefined) {
+            return num + '';
+        }
+        var idN = Number(dN.toString().substr(0, 1));
+        if (idN >= 5) {
+            iN += 1;
+        }
+        return iN;
+    } else {
+        var dNL = dN === undefined ? 0 : dN.length;
+        if (dNL < n) {
+            // 如果小数位不够的话，那就补全
+             var oldN = num.toString().indexOf('.') > -1 ? num : num + '.';
+            var a = Number(n) - dNL;
+            while (a > 0) {
+                oldN += '0';
+                a--;
+            }
+            return oldN;
+        }
+        // 正常
+        var dN1 = Number(dN.toString().substring(0, n));
+        var dN2 = Number(dN.toString().substring(n, n + 1));
+        if (dN2 >= 5) {
+            dN1 += 1;
+        }
+        while (dN1.toString().length < n) {
+            dN1 = '0' + dN1;
+            dN1.toString().length++;
+        }
+        return iN + '.' + dN1;
+    }
 }

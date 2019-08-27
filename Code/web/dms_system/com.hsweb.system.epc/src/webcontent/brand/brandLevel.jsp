@@ -49,7 +49,7 @@
                     <div property="columns">  
                         <div type="indexcolumn" width="20" headerAlign="center" summaryType="count">序号</div>
                         <div field="name" width="150" headerAlign="center" allowSort=false>品牌名称</div>
-                        <div field="brand" width="80" headerAlign="center" allowSort=false>品牌代号</div>
+                        <div field="brandCode" width="80" headerAlign="center" allowSort=false>品牌代号</div>
                         <div field="img" headerAlign="center" visible="false" allowSort=false>品牌log图片url</div>
                     </div>
                 </div>

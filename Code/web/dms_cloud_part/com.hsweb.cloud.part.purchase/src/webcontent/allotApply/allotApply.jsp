@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调拨申请</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotApply.js?v=1.0.13"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotApply.js?v=1.0.21"></script>
 <style type="text/css">
 .title {
   width: 70px;
@@ -118,7 +118,7 @@ body .mini-grid-row-selected{
                      ondrawcell="onLeftGridDrawCell"
                      onrowdblclick=""
                      onselectionchanged="onLeftGridSelectionChanged"
-                     onbeforedeselect=""
+                     onbeforedeselect="onLeftGridBeforeDeselect"
                      dataField="pjAllotApplyMainList"
                      url="">
                     <div property="columns">
@@ -303,7 +303,11 @@ body .mini-grid-row-selected{
                                       <div field="comApplyCarModel" width="80" headerAlign="center" header="品牌车型"></div>
                                       <div field="comUnit" name="comUnit" width="60" headerAlign="center" header="单位"></div>
                                       <div field="comOemCode" width="50" headerAlign="center" allowSort="true" header="OE码"></div>   
-                                      <div field="comSpec" width="50" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>                                                        
+                                      <div field="comSpec" width="50" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div> 
+                                      <div field="hasCancelQty" name="hasCancelQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="已取消数量">
+                                      </div>
+                                      <div field="hasAcceptQty" name="hasAcceptQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="已受理数量">
+                                      </div>                                                       
                                   </div>
                               </div>
                           </div>

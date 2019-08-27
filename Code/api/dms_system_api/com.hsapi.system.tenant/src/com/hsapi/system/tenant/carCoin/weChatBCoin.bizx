@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="weChatBCoin.bizx" productVersion="7.0.0.0">
+  <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
+    <location x="100" y="150"/>
+    <size height="35" width="35"/>
+    <nodeLabel>start0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
+    <location x="400" y="150"/>
+    <size height="35" width="35"/>
+    <nodeLabel>end0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
+    <location x="100" y="190"/>
+    <node>start0</node>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
+    <location x="400" y="190"/>
+    <node>end0</node>
+  </nodes>
+  <process:info author="Administrator" createTime="2019-08-27 09:30:23" date="2019-08-27Z" description="" name="weChatBuyCoin" version="7.0.0.0"/>
+  <process:extAttribute1>public</process:extAttribute1>
+</process:tBusinessLogic>

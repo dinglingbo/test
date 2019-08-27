@@ -44,6 +44,10 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">orgid</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">tenantId</process:from>
       <process:to type="query">params/tenantId</process:to>
     </process:copy>
@@ -54,6 +58,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>
       <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orgid</process:from>
+      <process:to type="query">params/orgid</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -118,10 +126,11 @@
   <process:info author="dlb" createTime="2019-08-26 18:00:34" date="2019-08-26Z" description="将产品资源赋给租户资源" name="getProductResToTenant" version="7.0.0.0"/>
   <process:variables>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="orgid" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="productId" primitiveType="Int"/>
-    <process:input description="" isArray="false" name="tenantId" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="tenantId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

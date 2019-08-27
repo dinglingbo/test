@@ -51,19 +51,19 @@
     <div property="columns">
     	<div type="indexcolumn" headerAlign="center">排序号</div>
     	<div type="checkcolumn" >选择</div>
-        <div field="name" width="80" headerAlign="center" align="center" id="name">产品名称</div>
-        <div field="type" width="80" headerAlign="center" align="center" id="type">产品类型</div>
-        <div field="proUrl" width="80" headerAlign="center" align="center" id="remark">接口地址</div>
-        <div field="callNeedCoin" width="80" headerAlign="center" align="center" id="type">单次扣减链车币</div>
-        <div field="periodValidity" width="90" headerAlign="center" align="center" id="isCycle">有效期（天）</div>
-<!--         <div field="orderNumber" width="80" headerAlign="center" align="center" id="orderNumber">排序号</div> -->
-        <div field="sellPrice" width="80" headerAlign="center" align="center" id="salesPrice2">销售价</div>
-<!--         <div field="status" width="80" headerAlign="center" align="center" id="status">产品状态</div> -->
-        <div field="remark" width="80" headerAlign="center" align="center" id="type">产品描述</div>
-        <div field="recorder" width="80" headerAlign="center" align="center" id="recorder">建档人</div>
-        <div field="recordDate" width="80" headerAlign="center" align="center" id="recordDate" dateFormat="yyyy-MM-dd HH:mm">建档时间</div>
-        <div field="modifier" width="80" headerAlign="center" align="center" id="modifier">修改人</div>
-        <div field="modifyDate" width="80" headerAlign="center" align="center" id="modifyDate" dateFormat="yyyy-MM-dd HH:mm">修改时间</div>
+        <div field="name" width="80" headerAlign="center" align="center" >产品名称</div>
+        <div field="type" width="80" headerAlign="center" align="center" >产品类型</div>
+        <div field="proUrl" width="80" headerAlign="center" align="center" >接口地址</div>
+        <div field="callNeedCoin" width="80" headerAlign="center" align="center" >单次扣减链车币</div>
+        <div field="periodValidity" width="90" headerAlign="center" align="center" >有效期（天）</div>
+<!--         <div field="orderNumber" width="80" headerAlign="center" align="center" >排序号</div> -->
+        <div field="sellPrice" width="80" headerAlign="center" align="center" >销售价</div>
+         <div field="isDisabled" width="80" headerAlign="center" align="center" >是否禁用</div>
+        <div field="remark" width="80" headerAlign="center" align="center" >产品描述</div>
+        <div field="recorder" width="80" headerAlign="center" align="center" >建档人</div>
+        <div field="recordDate" width="80" headerAlign="center" align="center"  dateFormat="yyyy-MM-dd HH:mm">建档时间</div>
+        <div field="modifier" width="80" headerAlign="center" align="center" >修改人</div>
+        <div field="modifyDate" width="80" headerAlign="center" align="center"  dateFormat="yyyy-MM-dd HH:mm">修改时间</div>
     </div>
 </div>
 </div>

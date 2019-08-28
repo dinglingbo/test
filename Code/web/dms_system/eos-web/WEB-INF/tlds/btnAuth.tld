@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+<!--
+解释：
+在tld 文件中，映射了标记名和处理程序类；
+<tallib>元素，代表开始一个标记库的描述
+<tligversion>元素，代表标记库的版本
+<jspversion>元素，代表标记所支持的JSP 的版本
+<shortname>为标记库起别名，相当于注释，无实际用途
+<tag>元素，代表开始描述一个标记，其下子元素如下：
+    <name>——为标记处理类起的标记名
+    <tagclass>——指定标记处理类的全名(即带包的名字)
+    <bodycontent>——标记体的类型，该示例中不需要标记体，所有设置为EMPTY，该值的其他取值在后续内容中讲解
+ -->
+<taglib>
+    <tlibversion>1.0</tlibversion>
+    <jspversion>1.1</jspversion>
+    <shortname>bthAuth</shortname> <!-- 标签以<myhr:XXX />形式 -->
+    <tag>
+       <name>MyAuth</name> <!-- 该标签为<myhr:MyHr /> -->
+       <tagclass>com.hsweb.system.auth.BtnAuthTag</tagclass>
+       <bodycontent>EMPTY</bodycontent>
+	   <attribute>
+			<name>btnArea</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+	   </attribute>
+    </tag>
+	<tag>
+       <name>MyHr</name>
+       <tagclass>com.hsweb.system.auth.NestTab</tagclass>
+       <bodycontent>EMPTY</bodycontent>
+		<attribute>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+    </tag>
+</taglib>

@@ -139,26 +139,19 @@ a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}
 		                                <div allowSort="true" field="carTypeIdT" width="80" headerAlign="center" allowSort="true">三级分类</div>
 		                            </div>
 		                        </div>
-		                        <div header="价格信息" headerAlign="center">
-		                            <div property="columns">
-		                                <div allowSort="true" datatype="float" field="retailPrice" width="60" headerAlign="center" align="right" allowSort="true">零售价</div>
-		                                <div allowSort="true" datatype="float" field="wholeSalePrice" width="60" headerAlign="center" align="right" allowSort="true">批发价</div>
-		                                <div allowSort="true" datatype="float" field="uniformSellPrice" width="70" headerAlign="center" align="right" allowSort="true">统一价格</div>
-		                            </div>
-		                        </div>
 		                        <div header="辅助信息" headerAlign="center">
 		                            <div property="columns">
 		                                <div allowSort="true" field="name" width="80" headerAlign="center" allowSort="true">名称</div>
-		                                <div allowSort="true" field="queryCode" width="60" headerAlign="center" allowSort="true">助记码</div>
+		                                <div allowSort="true" field="queryCode" width="60" headerAlign="center" allowSort="true" visible="false">助记码</div>
 		
-		                                <div allowSort="true" field="namePy" width="60" headerAlign="center" allowSort="true">拼音</div>
+		                                <div allowSort="true" field="namePy" width="60" headerAlign="center" allowSort="true" visible="false">拼音</div>
 		
-		                                <div allowSort="true" field="isUniform" width="70" headerAlign="center" header="是否统一售价" allowSort="true"></div>
+		                                <div allowSort="true" field="isUniform" width="70" headerAlign="center" header="是否统一售价" allowSort="true" visible="false"></div>
 		
-		                                <div allowSort="true" field="abcType" width="80" headerAlign="center" allowSort="true">ABC类型</div>
+		                                <div allowSort="true" field="abcType" width="80" headerAlign="center" allowSort="true" visible="false">ABC类型</div>
 		                                <div allowSort="true" field="produceFactory" width="80" headerAlign="center" allowSort="true">生产厂家</div>
-		                                <div allowSort="true" field="nameEn" width="120" headerAlign="center" allowSort="true">英文名称</div>
-		                                <div allowSort="true" field="isDisabled" width="50" headerAlign="center">状态</div>
+		                                <div allowSort="true" field="nameEn" width="120" headerAlign="center" allowSort="true" visible="false">英文名称</div>
+		                                <div allowSort="true" field="isDisabled" width="50" headerAlign="center" visible="false">状态</div>
 		                            </div>
 		                        </div>
 		                    </div>

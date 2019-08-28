@@ -70,9 +70,9 @@
 				<tr>
 					<td style="width:100%;text-align:left;">
 					
-						<btnAuth:MyAuth btnArea="dms_notice_set_1"/>
-						
-						<!-- <a class="nui-button" plain="true" onclick="search" id="addStationBtn">
+						<btnAuth:MyAuth name="test1"/>
+					
+						<a class="nui-button" plain="true" onclick="search" id="addStationBtn">
 							<span class="fa fa-refresh fa-lg"></span>&nbsp;刷新
 						</a>
 						<a class="nui-button" plain="true" onclick="addShareUrl" id="addStationBtn">
@@ -83,9 +83,9 @@
 						</a>
 						<a class="nui-button" plain="true" onclick="saveShare" id="saveStationBtn">
 							<span class="fa fa-save fa-lg"></span>&nbsp;保存
-						</a> -->
-						
-					</td>   
+						</a>
+						<btnAuth:MyAuth name="test1"/>
+					</td>
 				</tr>
 			</table>
 		</div>

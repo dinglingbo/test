@@ -245,7 +245,7 @@ public class payDeve {
 				String operationName = "addWechatOperationLog";
 				ILogicComponent logicComponent = LogicComponentFactory
 						.create(componentName);
-				int size = 2;
+				int size = 3;
 				// 逻辑流的输入参数
 				Object[] params = new Object[size];
 				params[0] ="";

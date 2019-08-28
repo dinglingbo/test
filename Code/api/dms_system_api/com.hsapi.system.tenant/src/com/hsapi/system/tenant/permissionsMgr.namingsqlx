@@ -365,7 +365,7 @@
           </isNotEmpty>
     </select> 
      
-    <select id="queryComTenantOrder" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    <select id="queryComTenantOrder" parameterClass="HashMap" resultClass="com.primeton.tenant.tenant.ComTenantOrder">
     	
     	SELECT
 			a.id as id,

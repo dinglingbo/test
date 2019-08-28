@@ -34,7 +34,7 @@ body .mini-grid-row-selected{
 <head>
 <title>配件组装</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchase/js/processPart/partAssembly.js?v=1.0.73"></script>
+    <script src="<%=webPath + contextPath%>/purchase/js/processPart/partAssembly.js?v=1.0.80"></script>
 </head>
 <body>
 	
@@ -287,7 +287,7 @@ body .mini-grid-row-selected{
 		                           frozenStartColumn=""
 		                           frozenEndColumn=""
 		                           showSummaryRow="true"
-		                        
+		                           ondrawcell="onRightGridDraw"
 		   						   sortMode="client"
 		                           editNextOnEnterKey="true"
 		                           allowCellWrap = "true"
@@ -299,6 +299,7 @@ body .mini-grid-row-selected{
                                 <div field="fullName"  width="200" headerAlign="center" header="配件全称"></div>
                                 <div field="applyCarModel" width="80" headerAlign="center" header="品牌车型"></div>
                                 <div field="unit" name="comUnit" width="60" headerAlign="center" header="单位"></div>
+                                <div field="qty" name="qty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="单成品需要数量" visible="false"></div>
 		                		<div field="orderQty" name="orderQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="需要数量"></div>
 		                		<div field="storeStockQty" name="stockQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="库存"></div>
 		                		<div field="stockOutQty" name="stockOutQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="缺货数量"></div>

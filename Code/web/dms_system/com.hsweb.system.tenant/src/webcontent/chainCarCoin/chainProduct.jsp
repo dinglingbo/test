@@ -12,7 +12,7 @@
 <title>产品充值</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
             <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%= request.getContextPath() %>/tenant/js/chainProduct.js?v=1.0.7" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/tenant/js/chainProduct.js?v=1.1.1" type="text/javascript"></script>
     <style type="text/css">
     	.sfbz em {
 		    color: #5fc8d7;
@@ -187,7 +187,7 @@
         </tr>
         <tr>
             <td align="center">
-                <img src="../img/sell.jpg" width="220" height="220" />
+                <img  width="300" height="220" id="sellImg" />
             </td>
         </tr>
         <tr>

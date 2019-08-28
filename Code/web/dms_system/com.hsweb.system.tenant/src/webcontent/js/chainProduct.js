@@ -1,5 +1,5 @@
 var product = {};//充值的产品
-var sellCarCoinId = null;
+var serviceId = null;
 $(document).ready(function(v) {
 	//loadCarCoin(1);
 });
@@ -46,7 +46,7 @@ function loadCarCoin(productId){
 
 
 function sellCoin(){
-	document.getElementById('popbox_1').style.display='block';
+	
 	var saveComTenantOrderUrl = apiPath + sysApi + "/com.hsapi.system.tenant.carCoin.saveComTenantOrder.biz.ext";
 	//赋值线上订单
 	var comTenantOrder = {};
@@ -66,8 +66,41 @@ function sellCoin(){
 			data = data || {};
 			carCoin = data.carCoin;
 			if (data.errCode == "S") {
-				sellCarCoinId = data.comTenantOrder.id;
-				validation();
+				var returnComTenantOrder = data.comTenantOrder;
+				serviceId = returnComTenantOrder.serviceId;
+				var generatePayCodeUrl = apiPath + sysApi + "/com.hsapi.system.tenant.order.generatePayCode.biz.ext";
+				var m = new Date();
+				var n = new Date(m.getTime() + 1000 * 600);
+				nui.ajax({
+					url : generatePayCodeUrl,
+					type : "post",
+					data : JSON.stringify({
+						productId : returnComTenantOrder.productId,
+						sellPrice : returnComTenantOrder.productAmt,
+						serviceId : returnComTenantOrder.serviceId,
+						bodyDes : "功能购买",
+						timeStart:format(now,'yyyyMMddHHmmss'),
+						timeExpire:format(n, 'yyyyMMddHHmmss'),
+						width : 250,
+						height : 180,
+						token: token
+					}),
+					success : function(data) {
+						data = data || {};
+						if (data.errCode == "S") {
+							var imgUrl = data.imgUrl;
+							document.getElementById('popbox_1').style.display='block';
+							document.getElementById('sellImg').src=imgUrl;														
+							validation();
+						} else {
+							parent.showMsg(data.errMsg || "生成失败!","E");
+						}
+					},
+					error : function(jqXHR, textStatus, errorThrown) {
+						// nui.alert(jqXHR.responseText);
+						console.log(jqXHR.responseText);
+					}
+				});
 			} else {
 				parent.showMsg(data.errMsg || "生成失败!","E");
 			}
@@ -89,19 +122,19 @@ function validation(){
 	//alert("hello"); 
 } 
 function validationPost(){
-	var queryComTenantOrderUrl = apiPath + sysApi + "/com.hsapi.system.tenant.carCoin.queryComTenantOrder.biz.ext";
+	var queryComTenantOrderUrl = apiPath + sysApi + "/com.hsapi.system.tenant.order.getPayState.biz.ext";
 	//赋值线上订单
 	nui.ajax({
 		url : queryComTenantOrderUrl,
 		type : "post",
 		data : JSON.stringify({
-			id : sellCarCoinId,
+			serviceId : serviceId,
 			token: token
 		}),
 		success : function(data) {
 			data = data || {};
-			if (data.errCode == "S") {
-				if(data.comTenantOder.isPayment==1){
+				var tradeState = data.data.data.tradeState;
+				if(tradeState=="SUCCESS"){
 					//去掉定时器的方法 
 					window.clearInterval(t1);
 					var weChatBCoinUrl = apiPath + sysApi + "/com.hsapi.system.tenant.product.weChatProduct.biz.ext";
@@ -110,7 +143,7 @@ function validationPost(){
 						url : weChatBCoinUrl,
 						type : "post",
 						data : JSON.stringify({
-							params : {id:data.comTenantOder.id},
+							params : {"serviceId":serviceId},
 							token: token
 						}),
 						success : function(data) {
@@ -122,6 +155,7 @@ function validationPost(){
 									document.getElementById('popbox_2').style.display='block';
 									t1 = window.setInterval(daoTime,1000); 
 							} else {
+								document.getElementById('popbox_1').style.display='none';
 								parent.showMsg(data.errMsg || "订单异常!","E");
 							}
 						},
@@ -130,10 +164,11 @@ function validationPost(){
 							console.log(jqXHR.responseText);
 						}
 					});
+				}else if(tradeState=="CLOSED"||tradeState=="PAYERROR"){
+					//去掉定时器的方法 
+					window.clearInterval(t1);
+					document.getElementById('popbox_1').style.display='none';
 				}
-			} else {
-				parent.showMsg(data.errMsg || "订单异常!","E");
-			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			// nui.alert(jqXHR.responseText);
@@ -160,7 +195,7 @@ function daoTime(){
 		document.getElementById('popbox_2').style.display='none';
 		//关掉计时器
 		window.clearInterval(t2);
-		toRefresh();
+		parent.toRefresh();
 	}
 }
 

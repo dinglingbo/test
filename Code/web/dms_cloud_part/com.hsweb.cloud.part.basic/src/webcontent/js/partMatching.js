@@ -74,7 +74,7 @@ function onAddNode()
 	    });
 }
 
-var saveStraUrl =apiPath +sysApi+"/" + "com.hsapi.cloud.part.baseDataCrud.crud.savePartMatching.biz.ext";
+var saveStraUrl =baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.savePartMatching.biz.ext";
 function onSaveNode(){
     var addList = straGrid.getChanges("added");
     var updateList = straGrid.getChanges("modified");

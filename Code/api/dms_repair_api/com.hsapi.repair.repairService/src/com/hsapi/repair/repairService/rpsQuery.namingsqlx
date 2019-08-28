@@ -276,6 +276,7 @@
 			inner join rpb_contactor d on (a.contactor_id = d.id and c.id = d.guest_id)
 		WHERE 1 = 1
 			and a.orgid = #orgid#
+			and   a.is_disabled = 0
 		<dynamic>
 			<isNotEmpty prepend="and" property="rid">
                 (a.id = #rid#)

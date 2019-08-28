@@ -154,15 +154,7 @@
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
-      <process:to type="query">auditMain/isFinished</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">auditMain/isDiffOrder</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">2</process:from>
-      <process:to type="query">auditMain/billStatusId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>

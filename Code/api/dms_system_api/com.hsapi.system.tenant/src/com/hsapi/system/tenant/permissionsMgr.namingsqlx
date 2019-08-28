@@ -363,6 +363,9 @@
 		  <isNotEmpty prepend="and" property="id">
                 a.id =  #id#
           </isNotEmpty>
+		  <isNotEmpty prepend="and" property="isDisabled">
+                a.is_disabled =  #isDisabled#
+          </isNotEmpty>          
     </select> 
      
     <select id="queryComTenantOrder" parameterClass="HashMap" resultClass="com.primeton.tenant.tenant.ComTenantOrder">
@@ -429,6 +432,60 @@
           </isNotEmpty>  
 		  <isNotEmpty prepend="and" property="productId">
                 a.product_id =  #productId#
+          </isNotEmpty> 
+          <isNotEmpty prepend="and" property="status">
+                a.status =  #status#
           </isNotEmpty>                   
+    </select> 
+    
+            <select id="querySysCoinRecord" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	
+    	SELECT
+			a.id as id,
+			a.tenant_id as tenantId,
+			a.orgid as orgid,
+			a.dc as dc,
+			a.product_id as productId,
+			a.product_name as productName,
+			a.type as type,
+			a.call_url as callUrl,
+			a.call_params as callParams,
+			a.call_status as callStatus,
+			a.call_result as callResult,
+			a.cost_price as costPrice,
+			a.cost_coin as costCoin,
+			a.qc_coin as qcCoin,
+			a.bala_coin as balaCoin,
+			a.recorder_id as recorderId,
+			a.recorder as recorder,
+			a.record_date as recordDate,
+			a.modifier_id as modifierId,
+			a.modifier as modifier,
+			a.modify_date as modifyDate			
+		FROM
+			wb_common.com_sys_coin_record AS a
+		where 1 = 1 
+		  <isNotEmpty prepend="and" property="id">
+                a.id =  #id#
+          </isNotEmpty>
+ 		  <isNotEmpty prepend="and" property="orgid">
+                a.orgid =  #orgid#
+          </isNotEmpty>  
+          <isNotEmpty prepend="and" property="type">
+                a.type =  #type#
+          </isNotEmpty>         
+		  <isNotEmpty prepend="and" property="tenantId">
+                a.tenant_Id =  #tenantId#
+          </isNotEmpty>   
+		  <isNotEmpty prepend="and" property="productName">
+                a.product_name like  '%$productName$%'
+          </isNotEmpty>   
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">  
+            (a.record_date &gt;= #startDate#)
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">  
+            (a.record_date &lt; #endDate#)
+        </isNotEmpty>                          
     </select> 
 </sqlMap>

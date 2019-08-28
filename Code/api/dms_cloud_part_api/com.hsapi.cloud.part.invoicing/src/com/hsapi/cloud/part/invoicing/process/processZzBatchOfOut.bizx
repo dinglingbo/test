@@ -1,0 +1,1609 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="processZzBatchOfOut.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="1、出库主表插入数据&#xD;&#xA;2、取出库明细，进行批次分配&#xD;&#xA;根据 is_mark_batch 判断是直接取批次，还是先进先出&#xD;&#xA;is_mark_batch，batch_source_id&#xD;&#xA;3、如果指定了批次，直接将本批次作为成本，不考虑数量够不够（理论上选择的批次数量肯定是够的）&#xD;&#xA;    指定了批次，批次的ID，仓库必须是一致的，如果存在仓库ID与成本ID不一致的情况，提示联系管理员&#xD;&#xA;4、outdetail/isMarkBatch = 1表示是指定批次的出库，其他为先进先出" title="DLB&#x9;17-7-15 下午4:21">
+    <location x="64" y="-130"/>
+    <size height="151" width="590"/>
+  </nodes>
+  <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
+    <sourceConnections xsi:type="process:tLink" id="link53" name="link53" displayName="link0" isDefault="true" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign22</targetNode>
+    </sourceConnections>
+    <location x="50" y="170"/>
+    <size height="28" width="28"/>
+    <nodeLabel>start0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" nodeType="label">
+    <location x="49" y="206"/>
+    <figSize height="20" width="31"/>
+    <node>start0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link41" name="link41" displayName="link11" isDefault="true" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link47</targetConnections>
+    <location x="129" y="260"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign0label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">明细数据为空，分配批次出错</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
+    <location x="128" y="296"/>
+    <figSize height="20" width="31"/>
+    <node>assign0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link42" name="link42" displayName="link12" isDefault="true" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link46</targetConnections>
+    <location x="215" y="260"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">数据为空，分配批次出错</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
+    <location x="209" y="296"/>
+    <figSize height="20" width="40"/>
+    <node>assign1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link55" name="link55" displayName="link9" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>invokePojo11</targetNode>
+    </sourceConnections>
+    <targetConnections>link52</targetConnections>
+    <location x="380" y="170"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign2label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainId</process:from>
+      <process:to type="query">outmain/id</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainenter/orgid</process:from>
+      <process:to type="query">outmain/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainenter/storeId</process:from>
+      <process:to type="query">outmain/storeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainenter/serviceId</process:from>
+      <process:to type="query">outmain/code</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">outmain/createDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">outmain/operateDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainenter/guestId</process:from>
+      <process:to type="query">outmain/guestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">serviceId</process:from>
+      <process:to type="query">outmain/serviceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainenter/taxSign</process:from>
+      <process:to type="query">outmain/taxSign</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainenter/taxRate</process:from>
+      <process:to type="query">outmain/taxRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">outmain/printTimes</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">outmain/auditSign</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainenter/orderAmt</process:from>
+      <process:to type="query">outmain/outAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainenter/orderItem</process:from>
+      <process:to type="query">outmain/outItem</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainenter/orderQty</process:from>
+      <process:to type="query">outmain/outQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainenter/remark</process:from>
+      <process:to type="query">outmain/remark</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billTypeId</process:from>
+      <process:to type="query">outmain/enterTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">outmain/outDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainenter/settleTypeId</process:from>
+      <process:to type="query">outmain/settleTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainenter/billTypeId</process:from>
+      <process:to type="query">outmain/billTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainenter/creatorId</process:from>
+      <process:to type="query">outmain/creatorId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainenter/creator</process:from>
+      <process:to type="query">outmain/creator</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainenter/operator</process:from>
+      <process:to type="query">outmain/operator</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainenter/operatorId</process:from>
+      <process:to type="query">outmain/operatorId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outmain/id</process:from>
+      <process:to type="query">mainId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">operateDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">S</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <location x="374" y="206"/>
+    <figSize height="20" width="40"/>
+    <node>assign2</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="getCompBillNO" displayName="getCompBillNO" collapsed="false" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link48" name="link48" displayName="link10" isDefault="true" type="transition">
+      <sourceNode>subprocess0</sourceNode>
+      <targetNode>invokePojo13</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link45</targetConnections>
+    <location x="216" y="170"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess0label</nodeLabel>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.cloud.part.common.uniq.getCompBillNO</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="billTypeCode" type="literal" value="String" valueType="Primitive" pattern="reference">ZZC</process:inputVariable>
+        <process:inputVariable id="1" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">mainenter/orgid</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
+    <location x="172" y="205"/>
+    <figSize height="20" width="115"/>
+    <node>subprocess0</node>
+  </nodes>
+  <nodes xsi:type="model:GroupNode" id="group0" name="group" grouped="true" gstart="loopstart0" gend="loopend0">
+    <location x="450" y="24"/>
+    <size height="314" width="931"/>
+    <chidren>assign4</chidren>
+    <chidren>subprocess2</chidren>
+    <chidren>group1</chidren>
+    <chidren>assign6</chidren>
+    <chidren>assign11</chidren>
+    <chidren>loopstart0</chidren>
+    <chidren>loopend0</chidren>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
+    <location x="432" y="193"/>
+    <figSize height="20" width="61"/>
+    <node>loopstart0</node>
+  </nodes>
+  <nodes xsi:type="process:tLoopStart" description="" id="loopstart0" name="出库明细" displayName="循环" grouped="true" type="loopstart" matchedName="loopend0" loopType="iterate">
+    <sourceConnections xsi:type="process:tLink" id="link32" name="link32" displayName="link14" isDefault="true" type="transition">
+      <sourceNode>loopstart0</sourceNode>
+      <targetNode>assign4</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link56</targetConnections>
+    <location x="450" y="161"/>
+    <size height="24" width="24"/>
+    <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
+    <process:iterate iterable="details" iterableElement="orderdetail"/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">
+    <location x="1338" y="193"/>
+    <figSize height="20" width="61"/>
+    <node>loopend0</node>
+  </nodes>
+  <nodes xsi:type="process:tLoopEnd" id="loopend0" name="循环结束" displayName="循环结束" grouped="true" type="loopend" matchedName="loopstart0">
+    <sourceConnections xsi:type="process:tLink" id="link57" name="link57" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>loopend0</sourceNode>
+      <targetNode>assign16</targetNode>
+    </sourceConnections>
+    <targetConnections>link5</targetConnections>
+    <targetConnections>link23</targetConnections>
+    <location x="1356" y="161"/>
+    <size height="24" width="24"/>
+    <nodeLabel>loopend0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="单据数量" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link29" name="link29" displayName="link16" isDefault="true" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>subprocess2</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link32</targetConnections>
+    <location x="528" y="158"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign4label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/orderQty</process:from>
+      <process:to type="query">billQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/orderPrice</process:from>
+      <process:to type="query">billPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/partId</process:from>
+      <process:to type="query">partId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
+    <location x="512" y="194"/>
+    <figSize height="20" width="61"/>
+    <node>assign4</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="可出库信息" displayName="getEnterOutableDetail" grouped="true" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link35" name="link35" displayName="link17" isDefault="true" type="transition">
+      <sourceNode>subprocess2</sourceNode>
+      <targetNode>loopstart1</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link29</targetConnections>
+    <location x="613" y="159"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess2label</nodeLabel>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.cloud.part.invoicing.stockcal.getEnterOutableDetail</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">mainenter/orgid</process:inputVariable>
+        <process:inputVariable id="1" name="storeId" type="query" value="Long" valueType="Primitive" pattern="reference">mainenter/storeId</process:inputVariable>
+        <process:inputVariable id="2" name="partId" type="query" value="Long" valueType="Primitive" pattern="reference">orderdetail/partId</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="outableDetails" type="query" value="commonj.sdo.DataObject[]" valueType="Java">outableDetails</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
+    <location x="588" y="194"/>
+    <figSize height="20" width="76"/>
+    <node>subprocess2</node>
+  </nodes>
+  <nodes xsi:type="model:GroupNode" id="group1" name="group1" grouped="true" gstart="loopstart1" gend="loopend1">
+    <location x="699" y="93"/>
+    <size height="136" width="514"/>
+    <chidren>assign5</chidren>
+    <chidren>assign8</chidren>
+    <chidren>assign9</chidren>
+    <chidren>assign10</chidren>
+    <chidren>assign12</chidren>
+    <chidren>assign13</chidren>
+    <chidren>invokePojo0</chidren>
+    <chidren>invokePojo1</chidren>
+    <chidren>invokePojo2</chidren>
+    <chidren>invokePojo3</chidren>
+    <chidren>invokePojo4</chidren>
+    <chidren>invokePojo5</chidren>
+    <chidren>loopstart1</chidren>
+    <chidren>loopend1</chidren>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="loopstart1label" name="label" nodeType="label">
+    <location x="673" y="173"/>
+    <figSize height="20" width="76"/>
+    <node>loopstart1</node>
+  </nodes>
+  <nodes xsi:type="process:tLoopStart" description="" id="loopstart1" name="可出库明细" displayName="循环" grouped="true" type="loopstart" matchedName="loopend1" loopType="iterate">
+    <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="link19" isDefault="true" type="transition">
+      <sourceNode>loopstart1</sourceNode>
+      <targetNode>assign5</targetNode>
+    </sourceConnections>
+    <targetConnections>link35</targetConnections>
+    <location x="699" y="141"/>
+    <size height="24" width="24"/>
+    <nodeLabel>loopstart1label</nodeLabel>
+    <process:condition/>
+    <process:iterate iterable="outableDetails" iterableElement="outableDetail"/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="loopend1label" name="label" nodeType="label">
+    <location x="1165" y="173"/>
+    <figSize height="20" width="70"/>
+    <node>loopend1</node>
+  </nodes>
+  <nodes xsi:type="process:tLoopEnd" id="loopend1" name="循环结束1" displayName="循环结束" grouped="true" type="loopend" matchedName="loopstart1">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="link18" isDefault="true" type="transition">
+      <sourceNode>loopend1</sourceNode>
+      <targetNode>assign6</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link18</targetConnections>
+    <targetConnections>link21</targetConnections>
+    <targetConnections>link34</targetConnections>
+    <location x="1188" y="141"/>
+    <size height="24" width="24"/>
+    <nodeLabel>loopend1label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign5" name="可出库数量" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" description="" id="link16" name="link16" displayName="link24" isDefault="true" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>invokePojo4</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link17" name="link17" displayName="link27" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>invokePojo5</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="LT">
+          <process:leftOperand type="query">outaleQty</process:leftOperand>
+          <process:rightOperand type="query">billQty</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link18" name="link18" displayName="link30" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>loopend1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="LE">
+          <process:leftOperand type="query">outaleQty</process:leftOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link4</targetConnections>
+    <location x="744" y="136"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign5label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/outableQty</process:from>
+      <process:to type="query">outaleQty</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
+    <location x="720" y="172"/>
+    <figSize height="20" width="76"/>
+    <node>assign5</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign8" name="出库明细赋值" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link22" name="link22" displayName="link7" isDefault="true" type="transition">
+      <sourceNode>assign8</sourceNode>
+      <targetNode>assign12</targetNode>
+    </sourceConnections>
+    <targetConnections>link7</targetConnections>
+    <location x="888" y="93"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign8label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">fId</process:from>
+      <process:to type="query">outdetail/id</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outmain/id</process:from>
+      <process:to type="query">outdetail/mainId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/storeId</process:from>
+      <process:to type="query">outdetail/storeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/partId</process:from>
+      <process:to type="query">outdetail/partId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/partCode</process:from>
+      <process:to type="query">outdetail/partCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/partName</process:from>
+      <process:to type="query">outdetail/partName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/fullName</process:from>
+      <process:to type="query">outdetail/fullName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/systemUnitId</process:from>
+      <process:to type="query">outdetail/outUnitId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/systemUnitId</process:from>
+      <process:to type="query">outdetail/systemUnitId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billQty</process:from>
+      <process:to type="query">outdetail/sellQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billQty</process:from>
+      <process:to type="query">outdetail/rtnableQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/taxSign</process:from>
+      <process:to type="query">outdetail/taxSign</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/taxRate</process:from>
+      <process:to type="query">outdetail/taxRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/taxPrice</process:from>
+      <process:to type="query">taxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/noTaxPrice</process:from>
+      <process:to type="query">noTaxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/enterPrice</process:from>
+      <process:to type="query">enterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxPrice</process:from>
+      <process:to type="query">outdetail/taxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">taxPrice*billQty</process:from>
+      <process:to type="query">outdetail/taxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">noTaxPrice</process:from>
+      <process:to type="query">outdetail/noTaxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">noTaxPrice*billQty</process:from>
+      <process:to type="query">outdetail/noTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">taxPrice*billQty-noTaxPrice*billQty</process:from>
+      <process:to type="query">outdetail/taxDiff</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enterPrice</process:from>
+      <process:to type="query">outdetail/enterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">enterPrice*billQty</process:from>
+      <process:to type="query">outdetail/enterAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enterPrice</process:from>
+      <process:to type="query">outdetail/sellPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">billQty*enterPrice</process:from>
+      <process:to type="query">outdetail/sellAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">outdetail/outToInQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/enterDate</process:from>
+      <process:to type="query">outdetail/enterDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/id</process:from>
+      <process:to type="query">outdetail/orderDetailId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/mainId</process:from>
+      <process:to type="query">outdetail/orderMainId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/guestId</process:from>
+      <process:to type="query">outdetail/guestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/guestName</process:from>
+      <process:to type="query">outdetail/guestName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/remark</process:from>
+      <process:to type="query">outdetail/remark</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/rootId</process:from>
+      <process:to type="query">rootId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/id</process:from>
+      <process:to type="query">sourceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">sourceId</process:from>
+      <process:to type="query">outdetail/sourceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">rootId>0?rootId:sourceId</process:from>
+      <process:to type="query">outdetail/rootId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billQty</process:from>
+      <process:to type="query">outdetail/occupyQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">outdetail/stockOutQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/originId</process:from>
+      <process:to type="query">outdetail/originId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/originGuestId</process:from>
+      <process:to type="query">outdetail/originGuestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/storeShelf</process:from>
+      <process:to type="query">outdetail/storeShelf</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mNoTaxAmt+(noTaxPrice*billQty)</process:from>
+      <process:to type="query">mNoTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mTaxAmt+(taxPrice*billQty)</process:from>
+      <process:to type="query">mTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mEnterAmt+(enterPrice*billQty)</process:from>
+      <process:to type="query">mEnterAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mOutAmt+(enterPrice*billQty)</process:from>
+      <process:to type="query">mOutAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mOutQty+billQty</process:from>
+      <process:to type="query">mOutQty</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
+    <location x="857" y="129"/>
+    <figSize height="20" width="91"/>
+    <node>assign8</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign9" name="出库明细赋值1" displayName="赋值" collapsed="false" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link31" name="link31" displayName="link28" isDefault="true" type="transition">
+      <sourceNode>assign9</sourceNode>
+      <targetNode>assign10</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link11</targetConnections>
+    <location x="856" y="187"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign9label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">fId</process:from>
+      <process:to type="query">outdetail/id</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outmain/id</process:from>
+      <process:to type="query">outdetail/mainId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/storeId</process:from>
+      <process:to type="query">outdetail/storeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/partId</process:from>
+      <process:to type="query">outdetail/partId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/partCode</process:from>
+      <process:to type="query">outdetail/partCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/partName</process:from>
+      <process:to type="query">outdetail/partName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/fullName</process:from>
+      <process:to type="query">outdetail/fullName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/outUnitId</process:from>
+      <process:to type="query">outdetail/outUnitId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/systemUnitId</process:from>
+      <process:to type="query">outdetail/systemUnitId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outaleQty</process:from>
+      <process:to type="query">outdetail/sellQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outaleQty</process:from>
+      <process:to type="query">outdetail/rtnableQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/taxSign</process:from>
+      <process:to type="query">outdetail/taxSign</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/taxRate</process:from>
+      <process:to type="query">outdetail/taxRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/taxPrice</process:from>
+      <process:to type="query">taxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/noTaxPrice</process:from>
+      <process:to type="query">noTaxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/enterPrice</process:from>
+      <process:to type="query">enterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxPrice</process:from>
+      <process:to type="query">outdetail/taxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">taxPrice*outaleQty</process:from>
+      <process:to type="query">outdetail/taxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">noTaxPrice</process:from>
+      <process:to type="query">outdetail/noTaxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">noTaxPrice*outaleQty</process:from>
+      <process:to type="query">outdetail/noTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">taxPrice*outaleQty-noTaxPrice*outaleQty</process:from>
+      <process:to type="query">outdetail/taxDiff</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enterPrice</process:from>
+      <process:to type="query">outdetail/enterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">enterPrice*outaleQty</process:from>
+      <process:to type="query">outdetail/enterAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enterPrice</process:from>
+      <process:to type="query">outdetail/sellPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">outaleQty*enterPrice</process:from>
+      <process:to type="query">outdetail/sellAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">outdetail/outToInQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/enterDate</process:from>
+      <process:to type="query">outdetail/enterDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/id</process:from>
+      <process:to type="query">outdetail/orderDetailId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/mainId</process:from>
+      <process:to type="query">outdetail/orderMainId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/guestId</process:from>
+      <process:to type="query">outdetail/guestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/guestName</process:from>
+      <process:to type="query">outdetail/guestName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/remark</process:from>
+      <process:to type="query">outdetail/remark</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/rootId</process:from>
+      <process:to type="query">rootId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/id</process:from>
+      <process:to type="query">sourceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">sourceId</process:from>
+      <process:to type="query">outdetail/sourceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">rootId>0?rootId:sourceId</process:from>
+      <process:to type="query">outdetail/rootId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outaleQty</process:from>
+      <process:to type="query">outdetail/occupyQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">outdetail/stockOutQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/originId</process:from>
+      <process:to type="query">outdetail/originId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/originGuestId</process:from>
+      <process:to type="query">outdetail/originGuestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/storeShelf</process:from>
+      <process:to type="query">outdetail/storeShelf</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mNoTaxAmt+(noTaxPrice*outaleQty)</process:from>
+      <process:to type="query">mNoTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mTaxAmt+(taxPrice*outaleQty)</process:from>
+      <process:to type="query">mTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mEnterAmt+(enterPrice*outaleQty)</process:from>
+      <process:to type="query">mEnterAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mOutAmt+(enterPrice*outaleQty)</process:from>
+      <process:to type="query">mOutAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mOutQty+outaleQty</process:from>
+      <process:to type="query">mOutQty</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
+    <location x="820" y="223"/>
+    <figSize height="20" width="100"/>
+    <node>assign9</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign10" name="赋值6" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="link23" isDefault="true" type="transition">
+      <sourceNode>assign10</sourceNode>
+      <targetNode>assign13</targetNode>
+    </sourceConnections>
+    <targetConnections>link31</targetConnections>
+    <location x="930" y="187"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign10label</nodeLabel>
+    <process:copy>
+      <process:from type="expression" pattern="reference">billQty-outaleQty</process:from>
+      <process:to type="query">billQty</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
+    <location x="924" y="223"/>
+    <figSize height="20" width="40"/>
+    <node>assign10</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign12" name="记录表赋值" displayName="赋值" collapsed="false" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="link37" isDefault="true" type="transition">
+      <sourceNode>assign12</sourceNode>
+      <targetNode>invokePojo2</targetNode>
+    </sourceConnections>
+    <targetConnections>link22</targetConnections>
+    <location x="972" y="92"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign12label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainenter/orgid</process:from>
+      <process:to type="query">sellRecord/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">sellRecord/createDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">sellRecord/operateDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">sellRecord/deleteFlag</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">sellRecord/workFlag</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outdetail/id</process:from>
+      <process:to type="query">sellRecord/detailId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outmain/id</process:from>
+      <process:to type="query">sellRecord/mainId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/storeId</process:from>
+      <process:to type="query">sellRecord/storeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/partId</process:from>
+      <process:to type="query">sellRecord/partId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billQty</process:from>
+      <process:to type="query">sellRecord/billQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">sellRecord/newQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billQty</process:from>
+      <process:to type="query">sellRecord/lockStockQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">billQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outmain/serviceId</process:from>
+      <process:to type="query">sellRecord/serviceId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign12label" name="label" nodeType="label">
+    <location x="948" y="128"/>
+    <figSize height="20" width="76"/>
+    <node>assign12</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign13" name="记录表赋值1" displayName="赋值" collapsed="false" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="link20" isDefault="true" type="transition">
+      <sourceNode>assign13</sourceNode>
+      <targetNode>invokePojo3</targetNode>
+    </sourceConnections>
+    <targetConnections>link19</targetConnections>
+    <location x="999" y="187"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign13label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainenter/orgid</process:from>
+      <process:to type="query">sellRecord/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">sellRecord/createDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">sellRecord/operateDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">sellRecord/deleteFlag</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">sellRecord/workFlag</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outdetail/id</process:from>
+      <process:to type="query">sellRecord/detailId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outmain/id</process:from>
+      <process:to type="query">sellRecord/mainId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/storeId</process:from>
+      <process:to type="query">sellRecord/storeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/partId</process:from>
+      <process:to type="query">sellRecord/partId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outaleQty</process:from>
+      <process:to type="query">sellRecord/billQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">sellRecord/newQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outaleQty</process:from>
+      <process:to type="query">sellRecord/lockStockQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outmain/serviceId</process:from>
+      <process:to type="query">sellRecord/serviceId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign13label" name="label" nodeType="label">
+    <location x="971" y="223"/>
+    <figSize height="20" width="85"/>
+    <node>assign13</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="appendList" displayName="appendList" grouped="true" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="link53" isDefault="true" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>loopend1</targetNode>
+    </sourceConnections>
+    <targetConnections>link33</targetConnections>
+    <location x="1137" y="187"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo0label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.cloud.part.common.ListUtils.appendList</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="list" type="query" value="java.util.List&lt;commonj.sdo.DataObject>" valueType="Java" pattern="reference">sellRecordList</process:inputVariable>
+      <process:inputVariable id="1" name="o" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="value">sellRecord</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.util.List&lt;commonj.sdo.DataObject>" valueType="Java">sellRecordList</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
+    <location x="1107" y="223"/>
+    <figSize height="20" width="82"/>
+    <node>invokePojo0</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="appendList2" displayName="appendList2" collapsed="false" grouped="true" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link34" name="link34" displayName="link4" lineType="inheritance" isDefault="true" type="break">
+      <sourceNode>invokePojo1</sourceNode>
+      <targetNode>loopend1</targetNode>
+    </sourceConnections>
+    <targetConnections>link15</targetConnections>
+    <location x="1123" y="93"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo1label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.cloud.part.common.ListUtils.appendList</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="list" type="query" value="java.util.List&lt;commonj.sdo.DataObject>" valueType="Java" pattern="value">sellRecordList</process:inputVariable>
+      <process:inputVariable id="1" name="o" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="value">sellRecord</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.util.List&lt;commonj.sdo.DataObject>" valueType="Java">sellRecordList</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
+    <location x="1089" y="129"/>
+    <figSize height="20" width="91"/>
+    <node>invokePojo1</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="insertEntity" displayName="insertEntity" grouped="true" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="link32" isDefault="true" type="transition">
+      <sourceNode>invokePojo2</sourceNode>
+      <targetNode>invokePojo1</targetNode>
+    </sourceConnections>
+    <targetConnections>link20</targetConnections>
+    <location x="1053" y="93"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo2label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.insertEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">outdetail</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
+    <location x="1023" y="129"/>
+    <figSize height="20" width="83"/>
+    <node>invokePojo2</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="insertEntity1" displayName="insertEntity1" collapsed="false" grouped="true" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link33" name="link33" displayName="link36" isDefault="true" type="transition">
+      <sourceNode>invokePojo3</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="1074" y="187"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo3label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.insertEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">outdetail</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
+    <location x="1039" y="223"/>
+    <figSize height="20" width="92"/>
+    <node>invokePojo3</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo4" name="getNextSequence" displayName="getNextSequence" grouped="true" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="link1" isDefault="true" type="transition">
+      <sourceNode>invokePojo4</sourceNode>
+      <targetNode>assign8</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link16</targetConnections>
+    <location x="807" y="93"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo4label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getNextSequence</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="name" type="literal" value="java.lang.String" valueType="Java" pattern="reference">cloudPartPjOutDetail.id</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="long" valueType="Java">fId</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo4label" name="label" nodeType="label">
+    <location x="752" y="129"/>
+    <figSize height="20" width="133"/>
+    <node>invokePojo4</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="getNextSequence1" displayName="getNextSequence1" collapsed="false" grouped="true" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="link5" isDefault="true" type="transition">
+      <sourceNode>invokePojo5</sourceNode>
+      <targetNode>assign9</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link17</targetConnections>
+    <location x="792" y="187"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo5label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getNextSequence</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="name" type="literal" value="java.lang.String" valueType="Java" pattern="reference">cloudPartPjOutDetail.id</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="long" valueType="Java">fId</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">
+    <location x="732" y="223"/>
+    <figSize height="20" width="142"/>
+    <node>invokePojo5</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值4" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" description="" id="link23" name="link23" displayName="link46" lineType="inheritance" isDefault="false" type="break">
+      <sourceNode>assign6</sourceNode>
+      <targetNode>loopend0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="GT">
+          <process:leftOperand type="query">billQty</process:leftOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link24" name="link24" displayName="link38" isDefault="true" type="transition">
+      <sourceNode>assign6</sourceNode>
+      <targetNode>assign11</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link3</targetConnections>
+    <location x="1256" y="136"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign6label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
+    <location x="1250" y="172"/>
+    <figSize height="20" width="40"/>
+    <node>assign6</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign11" name="赋值7" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="link43" isDefault="true" type="transition">
+      <sourceNode>assign11</sourceNode>
+      <targetNode>loopend0</targetNode>
+    </sourceConnections>
+    <targetConnections>link24</targetConnections>
+    <location x="1302" y="80"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign11label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
+    <location x="1296" y="116"/>
+    <figSize height="20" width="40"/>
+    <node>assign11</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link49" name="link49" displayName="link15" isDefault="true" type="transition">
+      <sourceNode>assign3</sourceNode>
+      <targetNode>end1</targetNode>
+    </sourceConnections>
+    <targetConnections>link40</targetConnections>
+    <location x="1673" y="300"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign3label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
+    <location x="1667" y="336"/>
+    <figSize height="20" width="40"/>
+    <node>assign3</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo9" name="删除订单记录" displayName="删除订单记录" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link54" name="link54" displayName="link40" isDefault="true" type="transition">
+      <sourceNode>invokePojo9</sourceNode>
+      <targetNode>invokePojo10</targetNode>
+    </sourceConnections>
+    <targetConnections>link38</targetConnections>
+    <location x="1675" y="126"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo9label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.deleteByCriteriaEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
+      <process:inputVariable id="1" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cd</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo9label" name="label" nodeType="label">
+    <location x="1641" y="162"/>
+    <figSize height="20" width="91"/>
+    <node>invokePojo9</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo10" name="出记录" displayName="出记录" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link39" name="link39" displayName="link13" isDefault="true" type="transition">
+      <sourceNode>invokePojo10</sourceNode>
+      <targetNode>invokePojo14</targetNode>
+    </sourceConnections>
+    <targetConnections>link54</targetConnections>
+    <location x="1610" y="199"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo10label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.insertEntityBatch</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
+      <process:inputVariable id="1" name="dataObjects" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">sellRecordArr</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo10label" name="label" nodeType="label">
+    <location x="1598" y="235"/>
+    <figSize height="20" width="46"/>
+    <node>invokePojo10</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo11" name="出主" displayName="出主" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link56" name="link56" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo11</sourceNode>
+      <targetNode>loopstart0</targetNode>
+    </sourceConnections>
+    <targetConnections>link55</targetConnections>
+    <location x="383" y="260"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo11label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.insertEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">outmain</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo11label" name="label" nodeType="label">
+    <location x="379" y="296"/>
+    <figSize height="20" width="31"/>
+    <node>invokePojo11</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值5" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link43" name="link43" displayName="link44" isDefault="true" type="transition">
+      <sourceNode>assign7</sourceNode>
+      <targetNode>end1</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link51</targetConnections>
+    <location x="1502" y="300"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign7label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">出库单分配入库批失败，数量不足!配件编码是：</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">errMsg+partCode</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
+    <location x="1496" y="336"/>
+    <figSize height="20" width="40"/>
+    <node>assign7</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo12" name="listToArray" displayName="listToArray" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link38" name="link38" displayName="link25" isDefault="true" type="transition">
+      <sourceNode>invokePojo12</sourceNode>
+      <targetNode>invokePojo9</targetNode>
+    </sourceConnections>
+    <targetConnections>link50</targetConnections>
+    <location x="1589" y="126"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo12label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.cloud.part.common.ListUtils.listToArray</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="list" type="query" value="java.util.List&lt;commonj.sdo.DataObject>" valueType="Java" pattern="reference">sellRecordList</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="commonj.sdo.DataObject[]" valueType="Java">sellRecordArr</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo12label" name="label" nodeType="label">
+    <location x="1560" y="162"/>
+    <figSize height="20" width="80"/>
+    <node>invokePojo12</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign14" name="赋值8" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link50" name="link50" displayName="link49" isDefault="true" type="transition">
+      <sourceNode>assign14</sourceNode>
+      <targetNode>invokePojo12</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link51" name="批次分配完后，还剩未出" displayName="批次分配完后，还剩未出" isDefault="false" type="transition">
+      <sourceNode>assign14</sourceNode>
+      <targetNode>assign7</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="GT">
+          <process:leftOperand type="query">billQty</process:leftOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link36</targetConnections>
+    <location x="1502" y="167"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign14label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjSellQtyTempRecord</process:from>
+      <process:to type="query">cd/_entity</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainenter/orgid</process:from>
+      <process:to type="query">cd/_expr[1]/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cd/_expr[1]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainenter/id</process:from>
+      <process:to type="query">cd/_expr[2]/mainId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cd/_expr[2]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainenter/serviceId</process:from>
+      <process:to type="query">cd/_expr[3]/serviceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cd/_expr[3]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mNoTaxAmt</process:from>
+      <process:to type="query">outmain/noTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mTaxAmt</process:from>
+      <process:to type="query">outmain/taxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mTaxAmt-mNoTaxAmt</process:from>
+      <process:to type="query">outmain/taxDiff</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mEnterAmt</process:from>
+      <process:to type="query">outmain/enterAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mOutAmt</process:from>
+      <process:to type="query">outmain/outAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mOutQty</process:from>
+      <process:to type="query">outmain/outQty</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign14label" name="label" nodeType="label">
+    <location x="1496" y="203"/>
+    <figSize height="20" width="40"/>
+    <node>assign14</node>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" collapsed="false" type="end">
+    <targetConnections>link41</targetConnections>
+    <targetConnections>link42</targetConnections>
+    <location x="129" y="343"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end0label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="Int" name="mainId" type="query" valueType="Primitive">mainId</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
+    <location x="128" y="379"/>
+    <figSize height="20" width="31"/>
+    <node>end0</node>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" collapsed="false" type="end">
+    <targetConnections>link43</targetConnections>
+    <targetConnections>link44</targetConnections>
+    <targetConnections>link49</targetConnections>
+    <location x="1502" y="379"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end1label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="Int" name="mainId" type="query" valueType="Primitive">mainId</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
+    <location x="1496" y="415"/>
+    <figSize height="20" width="40"/>
+    <node>end1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign16" name="赋值10" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link36" name="link36" displayName="link35" isDefault="true" type="transition">
+      <sourceNode>assign16</sourceNode>
+      <targetNode>assign14</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link37" name="link37" displayName="link39" type="transition">
+      <sourceNode>assign16</sourceNode>
+      <targetNode>assign17</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link57</targetConnections>
+    <location x="1431" y="168"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign16label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign16label" name="label" nodeType="label">
+    <location x="1421" y="204"/>
+    <figSize height="20" width="49"/>
+    <node>assign16</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign17" name="赋值11" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link44" name="link44" displayName="link45" isDefault="true" type="transition">
+      <sourceNode>assign17</sourceNode>
+      <targetNode>end1</targetNode>
+    </sourceConnections>
+    <targetConnections>link37</targetConnections>
+    <location x="1431" y="300"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign17label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign17label" name="label" nodeType="label">
+    <location x="1421" y="336"/>
+    <figSize height="20" width="49"/>
+    <node>assign17</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign22" name="赋值14" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" description="" id="link45" name="link45" displayName="link2" isDefault="true" type="transition">
+      <sourceNode>assign22</sourceNode>
+      <targetNode>subprocess0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link46" name="主表不存在" displayName="主表不存在" isDefault="false" type="transition">
+      <sourceNode>assign22</sourceNode>
+      <targetNode>assign1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">mainenter</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link47" name="明细不存在" displayName="明细不存在" isDefault="false" type="transition">
+      <sourceNode>assign22</sourceNode>
+      <targetNode>assign0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">details</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link53</targetConnections>
+    <location x="129" y="170"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign22label</nodeLabel>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">operateDate</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign22label" name="label" nodeType="label">
+    <location x="119" y="206"/>
+    <figSize height="20" width="49"/>
+    <node>assign22</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo13" name="getNextSequence3" displayName="getNextSequence3" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link52" name="link52" displayName="link22" isDefault="true" type="transition">
+      <sourceNode>invokePojo13</sourceNode>
+      <targetNode>assign2</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link48</targetConnections>
+    <location x="305" y="170"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo13label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getNextSequence</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="name" type="literal" value="java.lang.String" valueType="Java" pattern="reference">cloudPartPjOutMain.id</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="long" valueType="Java">mainId</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo13label" name="label" nodeType="label">
+    <location x="245" y="206"/>
+    <figSize height="20" width="142"/>
+    <node>invokePojo13</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo14" name="修改主" displayName="修改主" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link40" name="link40" displayName="link26" isDefault="true" type="transition">
+      <sourceNode>invokePojo14</sourceNode>
+      <targetNode>assign3</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link39</targetConnections>
+    <location x="1685" y="200"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo14label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.updateEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">outmain</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo14label" name="label" nodeType="label">
+    <location x="1673" y="236"/>
+    <figSize height="20" width="46"/>
+    <node>invokePojo14</node>
+  </nodes>
+  <topRuler/>
+  <leftRuler/>
+  <process:info author="Administrator" createTime="2019-08-28 17:18:15" date="2019-08-28Z" description="" name="processZzBatchOfOut" version="7.0.0.0"/>
+  <process:variables>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="fId" primitiveType="Long"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="serviceId" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjOutMainChk" name="outmain"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjOutDetailChk" name="outdetail"/>
+    <process:variable anyType="java.util.List" description="" historyStateLocation="client" isArray="false" name="outDetailList"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjOutDetailChk" name="outDetailArr"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjProcessDetail" name="orderdetail"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="billQty" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="billPrice" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="outaleQty" primitiveType="Float"/>
+    <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="true" name="outableDetails"/>
+    <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="outableDetail"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="partId" primitiveType="Long"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="taxPrice" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="noTaxPrice" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="enterPrice" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cd"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjSellQtyTempRecord" name="sellRecord"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="recordId" primitiveType="Long"/>
+    <process:variable anyType="java.util.List" description="" historyStateLocation="client" isArray="false" name="sellRecordList"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjSellQtyTempRecord" name="sellRecordArr"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="rootId" primitiveType="Long"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="sourceId" primitiveType="Long"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="mNoTaxAmt" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="mTaxAmt" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="mTaxDiff" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="mEnterAmt" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="mOutAmt" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="mOutQty" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="partCode" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjEnterDetailChk" name="enterChks"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjEnterDetailChk" name="enterChk"/>
+  </process:variables>
+  <process:inputs varArgs="false">
+    <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjProcessMain" name="mainenter"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjProcessDetail" name="details"/>
+  </process:inputs>
+  <process:outputs>
+    <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
+    <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
+    <process:output description="" isArray="false" name="mainId" primitiveType="Int"/>
+  </process:outputs>
+  <process:extAttribute1>public</process:extAttribute1>
+  <process:transactionType>true</process:transactionType>
+</process:tBusinessLogic>

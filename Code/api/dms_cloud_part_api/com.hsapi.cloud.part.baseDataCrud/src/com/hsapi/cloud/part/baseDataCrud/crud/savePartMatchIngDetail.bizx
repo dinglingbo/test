@@ -235,6 +235,10 @@
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/attributes/tenantId</process:from>
+      <process:to type="query">temp/tenantId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">temp/orgid</process:to>
     </process:copy>
@@ -278,12 +282,12 @@
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjDeductPart</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjPartMatchingDetail</process:from>
       <process:to type="query">cd/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">cd/_expr[1]/orgid</process:to>
+      <process:from type="query" pattern="reference">temp/parentId</process:from>
+      <process:to type="query">cd/_expr[1]/parentId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>

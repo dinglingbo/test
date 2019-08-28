@@ -46,7 +46,11 @@ function loadCarCoin(productId){
 
 
 function sellCoin(){
-	
+    nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : '加载中...'
+	});
 	var saveComTenantOrderUrl = apiPath + sysApi + "/com.hsapi.system.tenant.carCoin.saveComTenantOrder.biz.ext";
 	//赋值线上订单
 	var comTenantOrder = {};
@@ -87,10 +91,12 @@ function sellCoin(){
 					}),
 					success : function(data) {
 						data = data || {};
+						nui.unmask(document.body);
 						if (data.errCode == "S") {
 							var imgUrl = data.imgUrl;
 							document.getElementById('popbox_1').style.display='block';
-							document.getElementById('sellImg').src=imgUrl;														
+							document.getElementById('sellImg').src=imgUrl;	
+							document.getElementById('payqrcodemoney').innerHTML=returnComTenantOrder.productAmt;							
 							validation();
 						} else {
 							parent.showMsg(data.errMsg || "生成失败!","E");
@@ -102,6 +108,7 @@ function sellCoin(){
 					}
 				});
 			} else {
+				nui.unmask(document.body);
 				parent.showMsg(data.errMsg || "生成失败!","E");
 			}
 		},
@@ -186,7 +193,7 @@ function onclosePopbox_2(){
 	//关掉计时器
 	window.clearInterval(t2);
 }
-var dindex = 5;
+var dindex = 4;
 function daoTime(){
 	if(dindex>0){
 		document.getElementById('dtime').innerHTML=dindex;
@@ -252,4 +259,16 @@ function DateMinus(sDate){
    var days = sdate.getTime()-now.getTime();
    var day = parseInt(days / (1000 * 60 * 60 * 24)); 
   return day; 
+}
+
+function toSysCoinRecord(){
+    var item={};
+    item.id = "sysCoinRecord";
+    item.text = "充值消费记录";
+    item.url = webPath + contextPath + "/com.hsweb.system.tenant.sysCoinRecord.flow?token="+token;
+    item.iconCls = "fa fa-file-text";
+    var params = {
+        	id: ''
+        };
+    window.parent.activeTab(item);
 }

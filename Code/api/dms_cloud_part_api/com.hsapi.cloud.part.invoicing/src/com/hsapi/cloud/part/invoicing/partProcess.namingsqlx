@@ -16,6 +16,7 @@
 			a.part_name AS partName,
 			a.full_name AS fullName,
 			a.unit AS systemUnitId,
+			a.qty as qty,
 			(a.qty * c.order_qty) AS orderQty
 		FROM
 			pj_part_matching_detail a
@@ -129,6 +130,7 @@
 			a.part_name as partName,
 			a.full_name as fullName,
 			a.system_unit_id as systemUnitId,
+			a.qty as qty,
 			a.order_qty as orderQty,
 			a.cost_price as costPrices,
 			a.order_price as orderPrice,
@@ -137,6 +139,7 @@
 			a.tax_amt as taxAmt,
 			a.no_tax_price as noTaxPrice,
 			a.no_tax_amt as noTaxAmt,
+			a.cost_price as costPrice,
 			a.store_stock_qty as storeStockQty,
 			a.stock_out_qty as stockOutQty,
 			a.remark as remark,
@@ -242,13 +245,22 @@
         </dynamic>  	
     </select>
     
-    <update id="updateProcessProduct" parameterClass="java.util.HashMap">
+    <update id="updateProcessDetail" parameterClass="java.util.HashMap">
     	UPDATE pj_process_detail a
 		INNER JOIN pj_part_store_stock b ON a.part_id = b.part_id
-		AND b.store_id = #storeId#
+		
 		SET a.cost_price = b.cost_price,
 		 a.store_stock_qty = b.stock_qty
-		WHERE
+		WHERE 1=1 and
 			a.main_id = #mainId#	
+			AND b.store_id = #storeId#
     </update>
+    
+    <delete id="delteProduct" parameterClass="java.util.HashMap">
+    	DELETE FROM pj_process_product WHERE main_id = #mainId#
+    </delete>
+    
+     <delete id="delteDetail" parameterClass="java.util.HashMap">
+    	DELETE FROM pj_process_detail WHERE code_id = #mainId#
+    </delete>
 </sqlMap>

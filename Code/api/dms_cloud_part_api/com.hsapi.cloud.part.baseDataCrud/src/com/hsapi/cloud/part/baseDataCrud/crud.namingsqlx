@@ -946,6 +946,9 @@
     		<isNotEmpty prepend="and" property="partName">  
                 (a.part_name like '%$partName$%')
             </isNotEmpty>
+             <isNotEmpty prepend="and" property="partCode">  
+                (a.part_code like '%$partCode$%')
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="sortField">  
                 $sortField$ $sortOrder$
             </isNotEmpty>  
@@ -982,6 +985,9 @@
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="partName">  
                 (a.part_name like '%$partName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">  
+                (a.part_code like '%$partCode$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="sortField">  
                 $sortField$ $sortOrder$

@@ -12,7 +12,7 @@
 <title>产品充值</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
             <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%= request.getContextPath() %>/tenant/js/chainProduct.js?v=1.1.1" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/tenant/js/chainProduct.js?v=1.1.5" type="text/javascript"></script>
     <style type="text/css">
     	.sfbz em {
 		    color: #5fc8d7;
@@ -124,7 +124,7 @@
                 <tr>
                     <td>
                         <div style="padding: 15px; background: #fbf7f2; border: 1px #e9e2d9 solid; height: auto; overflow: hidden;">
-                            <p class="kaitong"><a href="/Main/Tool/ConsumeRecord" style="width:120px; font-size:14px;">充值消费记录</a></p>
+                            <p class="kaitong"><a href="/Main/Tool/ConsumeRecord" style="width:120px; font-size:14px;" onclick="toSysCoinRecord()">充值消费记录</a></p>
 <!--                             <font class="sfbz" style="line-height: 34px; margin-left: 10px;"><b>注：</b><b style="color:#ff9600; margin:0 5px;">产品总天数=剩余天数+充值天数</b> <em></em></font> -->
                             <p style="margin-left: 50px;font-size: 15px;">到期日期：<b style="color:#00b400; margin:0 5px;" id="endDate"></b>(剩余：<b style="color:#ff9600; margin:0 5px;" id="endDay"></b> 天)</p>
                         </div>
@@ -183,7 +183,7 @@
     <h2><a class="close2" href="#" title="关闭" onclick="onclosePopbox_1()" >&nbsp;</a>微信支付</h2>
     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top: 15px;">
         <tr>
-            <td height="66" align="center" class="color999" style="font-size: 18px;">待支付: <span style="font-weight: bold; font-size: 24px; color: #00b400;" id="payqrcodemoney">20</span>元</td>
+            <td height="66" align="center" class="color999" style="font-size: 18px;">待支付: <span style="font-weight: bold; font-size: 24px; color: #00b400;" id="payqrcodemoney"></span>元</td>
         </tr>
         <tr>
             <td align="center">
@@ -197,7 +197,7 @@
 </div>
 <div class="popbox" id="popbox_2" style="width: 500px; height: 200px; margin: -120px 0 0 -250px; display: none">
     <h2><a class="close2" href="#" title="关闭" onclick="onclosePopbox_2()" >&nbsp;</a>支付成功</h2>
-		<p  style="font-size: 18px;margin-left: 20px;margin-top: 40px;color: #21c064;">支付成功，剩余  <span style="font-weight: bold; font-size: 20px;" id="dtime"></span> 关闭本页面...</p>
+		<p  style="font-size: 18px;margin-left: 20px;margin-top: 40px;color: #21c064;">支付成功，剩余  <span style="font-weight: bold; font-size: 20px;" id="dtime">5</span> 关闭本页面...</p>
 </div>
 <script type="text/javascript">
 	var productId = null;

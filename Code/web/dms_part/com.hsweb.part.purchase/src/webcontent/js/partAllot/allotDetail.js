@@ -2052,6 +2052,7 @@ function checkStatus(type){
 				showMsg("调拨单已入库","W");
 				return false;
 			}
+			
 		}
 		
 		//作废
@@ -2110,6 +2111,10 @@ function checkStatus(type){
 			}
 			if(data.stockStatus==3){
 				showMsg("调拨单已出库","W");
+				return false;
+			}
+			if(data.stockStatus==4){
+				showMsg("调拨单已入库","W");
 				return false;
 			}
 		}

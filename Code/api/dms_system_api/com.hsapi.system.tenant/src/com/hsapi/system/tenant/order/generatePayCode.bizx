@@ -14,8 +14,8 @@
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
-    <targetConnections>link3</targetConnections>
     <targetConnections>link4</targetConnections>
+    <targetConnections>link5</targetConnections>
     <location x="735" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
@@ -26,13 +26,13 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="99" y="186"/>
-    <figSize height="20" width="31"/>
+    <location x="102" y="186"/>
+    <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="734" y="186"/>
-    <figSize height="20" width="31"/>
+    <location x="737" y="186"/>
+    <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="sendPostApi" displayName="sendPostApi" type="subprocess">
@@ -45,7 +45,7 @@
       <sourceNode>subprocess0</sourceNode>
       <targetNode>end0</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULLANDEMPTY">
+        <process:simpleCondition operator="NULLOREMPTY">
           <process:leftOperand type="query">data/data/codeUrl</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
@@ -63,22 +63,23 @@
         <process:inputVariable id="2" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">params</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
         <process:outputVariable id="2" name="result" type="query" value="java.util.HashMap" valueType="Java">data</process:outputVariable>
-        <process:outputVariable id="3" name="turl" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="3" name="turl" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="312" y="185"/>
-    <figSize height="20" width="93"/>
+    <location x="322" y="185"/>
+    <figSize height="17" width="73"/>
     <node>subprocess0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>subprocess0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="225" y="150"/>
@@ -108,16 +109,20 @@
       <process:from type="query" pattern="reference">productId</process:from>
       <process:to type="query">params/productId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">pay</process:from>
+      <process:to type="query">params/attach</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="224" y="186"/>
-    <figSize height="20" width="31"/>
+    <location x="227" y="186"/>
+    <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="createQRCode" displayName="createQRCode" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
-      <targetNode>end0</targetNode>
+      <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
     <location x="540" y="150"/>
@@ -136,9 +141,28 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="499" y="185"/>
-    <figSize height="20" width="108"/>
+    <location x="510" y="185"/>
+    <figSize height="17" width="86"/>
     <node>subprocess1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link3</targetConnections>
+    <location x="634" y="150"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">S</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
+    <location x="632" y="186"/>
+    <figSize height="17" width="32"/>
+    <node>assign1</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

@@ -5,9 +5,15 @@
     <size height="100" width="197"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
-    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>assign1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <location x="102" y="238"/>
     <size height="28" width="28"/>
@@ -21,7 +27,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.primeton.tenant.tenant.ComTenantOrder" name="comTenantOder" type="query" valueType="DataObject">comTenantOder</process:return>
+      <process:return id="0" language="com.hsapi.system.data.sys.ComTenantOrder" name="comTenantOder" type="query" valueType="DataObject">comTenantOder</process:return>
       <process:return id="1" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="2" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
     </process:returns>
@@ -153,7 +159,7 @@
     <process:input description="" isArray="false" name="id" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="false" modelType="com.primeton.tenant.tenant.ComTenantOrder" name="comTenantOder"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.system.data.sys.ComTenantOrder" name="comTenantOder"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
   </process:outputs>

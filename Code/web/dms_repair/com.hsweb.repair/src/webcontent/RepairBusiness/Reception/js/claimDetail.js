@@ -1088,17 +1088,20 @@ function add(){
     // $("#clubCardEl").html("会员卡(0)");
     // $("#creditEl").html("挂账:0");
     // $("#carHealthEl").html("车况:0");
-	var data = {
-			packageSubtotal:0,
-			packagePrefAmt:0,
-			itemSubtotal:0,
-			itemPrefAmt:0,
-			partSubtotal:0,
-			partPrefAmt:0,
-			totalAmt:0,
-			totalPrefAmt:0,
-			totalSubtotal:0,
-			ycAmt:0
+   var data = {
+		packageSubtotal:0,
+		packagePrefAmt:0,
+		packageAmt:0,
+		itemSubtotal:0,
+		itemPrefAmt:0,
+		itemAmt:0,
+		partSubtotal:0,
+		partPrefAmt:0,
+		partAmt:0,
+		totalAmt:0,
+		totalPrefAmt:0,
+		totalSubtotal:0,
+		ycAmt:0
 	};
     searchNameEl.setVisible(false);
     searchNameEl.setEnabled(false);
@@ -4792,6 +4795,7 @@ function onDrawSummaryCellPack(e){
 			  
 			  data.packageSubtotal = sumPkgSubtotal;
 			  data.packagePrefAmt = sumPkgPrefAmt;
+			  data.packageAmt = sumPkgAmt;
 			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
 			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
 			  data.totalSubtotal = mtAmt.toFixed(2);
@@ -4802,6 +4806,7 @@ function onDrawSummaryCellPack(e){
 		  }else{
 			  data.packageSubtotal = 0;
 			  data.packagePrefAmt = 0;
+			  data.packageAmt = sumPkgAmt;
 			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
 			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
 			  data.totalSubtotal = mtAmt.toFixed(2);
@@ -4849,6 +4854,8 @@ function onDrawSummaryCellItem(e){
 			  sumItemPrefAmt = sumItemPrefAmt.toFixed(2);
 			  data.itemSubtotal = sumItemSubtotal;
 			  data.itemPrefAmt = sumItemPrefAmt;
+			  data.itemAmt = sumItemAmt;
+			  data.partAmt = sumPartAmt;
 			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
 			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
 			  data.totalSubtotal = mtAmt.toFixed(2);
@@ -4860,6 +4867,8 @@ function onDrawSummaryCellItem(e){
 			  data.itemSubtotal = 0;
 			  data.itemPrefAmt = 0;
 			  data.mtAmt = 0;
+			  data.itemAmt = sumItemAmt;
+			  data.partAmt = sumPartAmt;
 			  sellForm.setData(data);
 		  }
 		  if(sumPartSubtotal>0 && sumPartAmt>=0)
@@ -4869,6 +4878,8 @@ function onDrawSummaryCellItem(e){
 			  sumPartPrefAmt = sumPartPrefAmt.toFixed(2);
 			  data.partSubtotal = sumPartSubtotal;
 			  data.partPrefAmt = sumPartPrefAmt;
+			  data.itemAmt = sumItemAmt;
+			  data.partAmt = sumPartAmt;
 			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
 			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
 			  data.totalSubtotal = mtAmt.toFixed(2);
@@ -4879,6 +4890,8 @@ function onDrawSummaryCellItem(e){
 		  }else{
 			  data.partSubtotal = 0;
 			  data.partPrefAmt = 0;
+			  data.itemAmt = sumItemAmt;
+			  data.partAmt = sumPartAmt;
 			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
 			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
 			  data.totalSubtotal = mtAmt.toFixed(2);

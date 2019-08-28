@@ -275,7 +275,7 @@ function addDetail(row){
 function addUnifyDetail(row){
 	var strRow = straGrid.getSelected();
 	if(!strRow){
-		showMsg("请选择备货级别","W");
+		showMsg("请选择配件成品","W");
 		return;
 	}
 	var data =rightUnifyGrid.getData();

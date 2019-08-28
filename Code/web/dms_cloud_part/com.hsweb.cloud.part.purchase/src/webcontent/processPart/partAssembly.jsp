@@ -34,7 +34,7 @@ body .mini-grid-row-selected{
 <head>
 <title>配件组装</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchase/js/processPart/partAssembly.js?v=1.0.73"></script>
+    <script src="<%=webPath + contextPath%>/purchase/js/processPart/partAssembly.js?v=1.0.75"></script>
 </head>
 <body>
 	
@@ -287,7 +287,7 @@ body .mini-grid-row-selected{
 		                           frozenStartColumn=""
 		                           frozenEndColumn=""
 		                           showSummaryRow="true"
-		                        
+		                           ondrawcell="onRightGridDraw"
 		   						   sortMode="client"
 		                           editNextOnEnterKey="true"
 		                           allowCellWrap = "true"

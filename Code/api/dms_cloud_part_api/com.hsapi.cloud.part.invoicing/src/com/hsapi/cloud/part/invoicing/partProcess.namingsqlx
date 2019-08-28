@@ -16,6 +16,7 @@
 			a.part_name AS partName,
 			a.full_name AS fullName,
 			a.unit AS systemUnitId,
+			a.qty as qty,
 			(a.qty * c.order_qty) AS orderQty
 		FROM
 			pj_part_matching_detail a
@@ -251,4 +252,12 @@
 		WHERE
 			a.main_id = #mainId#	
     </update>
+    
+    <delete id="delteProduct" parameterClass="java.util.HashMap">
+    	DELETE FROM pj_process_product WHERE main_id = #mainId#
+    </delete>
+    
+     <delete id="delteDetail" parameterClass="java.util.HashMap">
+    	DELETE FROM pj_process_detail WHERE code_id = #mainId#
+    </delete>
 </sqlMap>

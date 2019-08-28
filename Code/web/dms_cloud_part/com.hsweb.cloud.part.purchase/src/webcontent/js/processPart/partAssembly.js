@@ -343,7 +343,7 @@ var requiredField = {
     orderDate : "订单日期",
 
 };
-var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.process.saveProcess.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.process.saveProcessZz.biz.ext";
 function save() {
     var data = basicInfoForm.getData();
     for ( var key in requiredField) {

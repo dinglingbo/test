@@ -399,10 +399,20 @@
     </div>
     <div id="sellForm" class="form"  style="float:right;height: 100%;padding-right: 20px;">
     	<table style='height: 100%'>
-    		<tbody>
+    		 <tbody>
+    		   <tr>
+    				<td  style='height: 100%'>
+			        <label>套餐金额：</label>
+			            <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="packageAmt" name="packageAmt"/>
+			        <label>工时金额：</label>
+ 			          <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="itemAmt" name="itemAmt"/>        
+ 			        <label>配件金额：</label>
+ 			        <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="partAmt" name="partAmt"/>
+    				</td>
+    			</tr> 
     			<tr>
     				<td  style='height: 100%'>
-			        <label>总金额：</label>
+    		      <label>&nbsp;&nbsp;&nbsp;总金额：</label>
 			            <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalAmt" name="totalAmt"/>
 			        <label>优惠金额：</label>
  			          <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalPrefAmt" name="totalPrefAmt"/>        
@@ -422,6 +432,36 @@
     			</tr>
     		</tbody>
     	</table>
+    	<!-- <tbody>
+    			<tr>
+    				<td  style='height: 100%'>
+    				<label>套餐金额：</label>
+			            <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="packageAmt" name="packageAmt" style="width:70px"/>
+			        <label>工时金额：</label>
+ 			          <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="itemAmt" name="itemAmt" style="width:70px"/>        
+ 			        <label>配件金额：</label>
+ 			        <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="partAmt" name="partAmt" style="width:70px"/>
+    			
+    		      <label>&nbsp;&nbsp;&nbsp;总金额：</label>
+			            <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalAmt" name="totalAmt" style="width:100px"/>
+			        <label>优惠金额：</label>
+ 			          <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalPrefAmt" name="totalPrefAmt" style="width:70px"/>        
+ 			        <label>小计金额：</label>
+ 			        <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalSubtotal" name="totalSubtotal" style="width:80px"/>
+ 					<input class="nui-combobox" name="chanceType" id="chanceType" valueField="customid" textField="name"  visible="false" />
+                      <div style='display: none'>
+			          <input class="nui-hidden" enabled="false" id="packageSubtotal" name="packageSubtotal"/>
+			          <input class="nui-hidden" enabled="false" id="packagePrefAmt" name="packagePrefAmt"/>
+			          <input class="nui-hidden" enabled="false" id="itemSubtotal" name="itemSubtotal"/>
+			          <input class="nui-hidden" enabled="false" id="itemPrefAmt" name="itemPrefAmt"/>
+			          <input class="nui-hidden" enabled="false" id="partSubtotal" name="partSubtotal"/>
+			          <input class="nui-hidden" enabled="false" id="partPrefAmt" name="partPrefAmt"/>
+			          <input class="nui-hidden" enabled="false" id="ycAmt" name="ycAmt"/>
+			        </div>
+    				</td>
+    			</tr>
+    		</tbody>
+    	</table> -->
     </div>
 </div>
 <div id="advancedCardTimesWin" class="nui-window"

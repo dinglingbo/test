@@ -78,6 +78,7 @@
                     <span class="separator"></span>
                     <a class="nui-button" iconCls="" plain="true" onclick="addSell()" id="addBtn" ><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="editSell()" id="editBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="delect()" id="delectBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
 <!--                <a class="nui-button" iconCls="" plain="true" onclick="out()" id="outBtn"><span class="fa fa-check fa-lg"></span>&nbsp;转出库</a>  -->
                     <!-- <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="finish"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a> -->
                     <!-- <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="sellBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a> -->

@@ -154,10 +154,11 @@ $(document).ready(function(v)
     partGrid.on("rowdblclick",function(e){
     	if(sellPartF == "sellPart"){
     		sellOnOk();
+    	}else if(chooseType=="partMatch"){
+    		selectPartMatch();
     	}else{
     		onOk();
     	}
-		
 	});
 	tempGrid.on("cellclick",function(e){ 
 		var field=e.field;
@@ -356,6 +357,11 @@ function onOk()
        sellOnOk();
        return;
 	}
+	if(chooseType=="partMatch"){
+		selectPartMatch();
+		return;
+	}
+	
 	if(nui.get("state").value){
 		CloseWindow("ok");
 	}else{
@@ -469,3 +475,42 @@ function getPartList(){
 	return partList;
 }
 
+//配比清单
+function selectPartMatch()
+{
+    var node = partGrid.getSelected();
+    var nodec = nui.clone(node);
+    
+    if(!nodec)
+    {
+        return;
+    }
+    resultData = {
+        part:nodec
+    };
+    if(!callback)
+    {
+        CloseWindow("ok");
+    }
+    else{
+        //需要判断是否已经添加了此配件
+        var checkMsg = checkcallback(resultData);
+        if(checkMsg) 
+        {
+            nui.confirm(checkMsg, "友情提示",
+                function (action) { 
+                    if (action == "ok") {
+                        callback(resultData);
+                    }else {
+                        return;
+                    }
+                }
+            );
+        }else
+        {
+            //弹出数量，单价和金额的编辑界面
+            callback(resultData);
+        }
+
+    }
+}

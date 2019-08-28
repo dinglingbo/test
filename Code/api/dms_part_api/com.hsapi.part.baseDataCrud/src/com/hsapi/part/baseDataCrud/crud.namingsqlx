@@ -897,5 +897,90 @@
         order by use_times desc
     </select>
     
+    <!-- 查询配比清单明细 -->
+	<select id="queryPartMatchingDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+
+   		 SELECT
+			a.id as id,
+			a.orgid as orgid,
+			a.tenant_id as tenantId,
+			a.parent_id as parentId,
+			a.part_id as partId,
+			a.part_code as partCode,
+			a.part_name as partName,
+			a.full_name as fullName,
+			a.qty as  qty,
+			a.ratio as ratio,
+			a.is_disabled as disabled,
+			a.creator_id as creatorId,
+			a.creator as creator,
+			a.create_date as createDate,
+			a.operator_id as operatorId,
+			a.operator as operator,
+			a.operate_date as operateDate,
+			a.remark as remark,
+			b.apply_car_model as applyCarModel,
+			b.unit as unit
+		FROM
+			pj_part_matching_detail a
+			inner join wb_common.com_attribute b
+			on a.part_id =b.id
+		where 1=1
+		<dynamic>
+    		<isNotEmpty prepend="and" property="orgid">  
+                (a.orgid =#orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="tenantId">  
+                (a.tenant_id =#tenantId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="parentId">  
+                (a.parent_id = #parentId#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="partName">  
+                (a.part_name like '%$partName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">  
+                (a.part_code like '%$partCode$%')
+            </isNotEmpty>
+        </dynamic>
+	</select>
+    
+    <select id="queryPartMatchs" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    <!-- 配件成品数据 -->
+   		SELECT
+			a.id AS id,
+			a.tenant_id AS tenantId,
+			a.orgid AS orgid,
+			a.part_id AS partId,
+			a.part_code AS partCode,
+			a.part_name AS partName,
+			a.full_name AS fullName,
+			a.is_disabled AS isDisabled,
+			b.apply_car_model as applyCarModel,
+			b.oem_code as oemCode,
+			b.unit as unit,
+			b.spec as spec
+		FROM
+			pj_part_matching a
+		INNER JOIN wb_common.com_attribute b
+		on a.part_id =b.id
+		where 1=1
+		<dynamic>
+    		<isNotEmpty prepend="and" property="orgid">  
+                (a.orgid =#orgid#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="partName">  
+                (a.part_name like '%$partName$%')
+            </isNotEmpty>
+           
+           <isNotEmpty prepend="and" property="partCode">  
+                (a.part_code like '%$partCode$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="fullName">  
+                (a.full_name like '%$fullName$%')
+            </isNotEmpty>
+        </dynamic>
+	</select>
+    
     
 </sqlMap>

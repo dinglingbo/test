@@ -532,7 +532,17 @@ html, body{
     		<tbody>
     			<tr>
     				<td  style='height: 100%'>
-			        <label>总金额：</label>
+			        <label>套餐金额：</label>
+			            <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="packageAmt" name="packageAmt"/>
+			        <label>工时金额：</label>
+ 			          <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="itemAmt" name="itemAmt"/>        
+ 			        <label>配件金额：</label>
+ 			        <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="partAmt" name="partAmt"/>
+    				</td>
+    			</tr> 
+    			<tr>
+    		      <td  style='height: 100%'>
+    		        <label>&nbsp;&nbsp;&nbsp;总金额：</label>
 			            <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalAmt" name="totalAmt"/>
 			        <label>优惠金额：</label>
  			          <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalPrefAmt" name="totalPrefAmt"/>        

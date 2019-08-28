@@ -14,8 +14,8 @@
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
-    <targetConnections>link3</targetConnections>
-    <location x="750" y="255"/>
+    <targetConnections>link9</targetConnections>
+    <location x="1095" y="255"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -30,7 +30,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="749" y="291"/>
+    <location x="1094" y="291"/>
     <figSize height="20" width="31"/>
     <node>end0</node>
   </nodes>
@@ -87,7 +87,7 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="更新订单状态" displayName="updateEntity" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
-      <targetNode>end0</targetNode>
+      <targetNode>subprocess1</targetNode>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
     <location x="435" y="255"/>
@@ -127,6 +127,87 @@
     <figSize height="20" width="40"/>
     <node>assign1</node>
   </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="insertProcessZz" displayName="insertProcessZz" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess1</sourceNode>
+      <targetNode>subprocess2</targetNode>
+    </sourceConnections>
+    <targetConnections>link3</targetConnections>
+    <location x="555" y="255"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess1label</nodeLabel>
+    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.insertProcessZz</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="processMain" type="query" value="com.hsapi.cloud.part.data.pts.PjProcessMain" valueType="DataObject" pattern="reference">processMain</process:inputVariable>
+        <process:inputVariable id="1" name="processProduct" type="query" value="com.hsapi.cloud.part.data.pts.PjProcessProduct" valueType="DataObject" pattern="reference">processProduct</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+        <process:outputVariable id="2" name="auditMain" type="query" value="com.hsapi.cloud.part.data.pts.PjProcessMain" valueType="DataObject">auditMain</process:outputVariable>
+        <process:outputVariable id="3" name="auditProduct" type="query" value="com.hsapi.cloud.part.data.pts.PjProcessProduct" valueType="DataObject">auditProduct</process:outputVariable>
+        <process:outputVariable id="4" name="auditDetail" type="query" value="com.hsapi.cloud.part.data.pts.PjProcessDetail[]" valueType="DataObject">auditDetail</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
+    <location x="511" y="290"/>
+    <figSize height="20" width="114"/>
+    <node>subprocess1</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="processZzBatchOfOut" displayName="processZzBatchOfOut" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess2</sourceNode>
+      <targetNode>subprocess3</targetNode>
+    </sourceConnections>
+    <targetConnections>link5</targetConnections>
+    <location x="705" y="255"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess2label</nodeLabel>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.processZzBatchOfOut</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="mainenter" type="query" value="com.hsapi.cloud.part.data.pts.PjProcessMain" valueType="DataObject" pattern="reference">auditMain</process:inputVariable>
+        <process:inputVariable id="1" name="details" type="query" value="com.hsapi.cloud.part.data.pts.PjProcessDetail[]" valueType="DataObject" pattern="reference">auditDetail</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+        <process:outputVariable id="2" name="mainId" type="query" value="Int" valueType="Primitive">outMainId</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
+    <location x="639" y="290"/>
+    <figSize height="20" width="158"/>
+    <node>subprocess2</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess3" name="auditSellOut" displayName="auditSellOut" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess3</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link8</targetConnections>
+    <location x="840" y="255"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess3label</nodeLabel>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.cloud.part.invoicing.crud.auditSellOut</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="mainId" type="query" value="Int" valueType="Primitive" pattern="reference">outMainId</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess3label" name="label" nodeType="label">
+    <location x="808" y="290"/>
+    <figSize height="20" width="91"/>
+    <node>subprocess3</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-08-28 14:13:58" date="2019-08-28Z" description="" name="auditProcessOrderZz" version="7.0.0.0"/>
@@ -134,6 +215,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjProcessMain" name="auditMain"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjProcessDetail" name="auditDetail"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjProcessProduct" name="auditProduct"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="outMainId" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjProcessMain" name="processMain"/>

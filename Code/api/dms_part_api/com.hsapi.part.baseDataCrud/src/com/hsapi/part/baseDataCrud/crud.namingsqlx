@@ -945,6 +945,42 @@
         </dynamic>
 	</select>
     
+    <select id="queryPartMatchs" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    <!-- 配件成品数据 -->
+   		SELECT
+			a.id AS id,
+			a.tenant_id AS tenantId,
+			a.orgid AS orgid,
+			a.part_id AS partId,
+			a.part_code AS partCode,
+			a.part_name AS partName,
+			a.full_name AS fullName,
+			a.is_disabled AS isDisabled,
+			b.apply_car_model as applyCarModel,
+			b.oem_code as oemCode,
+			b.unit as unit,
+			b.spec as spec
+		FROM
+			pj_part_matching a
+		INNER JOIN wb_common.com_attribute b
+		on a.part_id =b.id
+		where 1=1
+		<dynamic>
+    		<isNotEmpty prepend="and" property="orgid">  
+                (a.orgid =#orgid#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="partName">  
+                (a.part_name like '%$partName$%')
+            </isNotEmpty>
+           
+           <isNotEmpty prepend="and" property="partCode">  
+                (a.part_code like '%$partCode$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="fullName">  
+                (a.full_name like '%$fullName$%')
+            </isNotEmpty>
+        </dynamic>
+	</select>
     
     
 </sqlMap>

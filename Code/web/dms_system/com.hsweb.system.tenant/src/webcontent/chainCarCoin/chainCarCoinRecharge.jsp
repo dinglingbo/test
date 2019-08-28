@@ -12,7 +12,7 @@
 <title>链车币充值</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
             <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%= request.getContextPath() %>/tenant/js/chainCarCoinRecharge.js?v=1.0.8" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/tenant/js/chainCarCoinRecharge.js?v=1.0.6" type="text/javascript"></script>
     <style type="text/css">
     	.sfbz em {
 		    color: #5fc8d7;
@@ -124,7 +124,7 @@
                 <tr>
                     <td>
                         <div style="padding: 15px; background: #fbf7f2; border: 1px #e9e2d9 solid; height: auto; overflow: hidden;">
-                            <p class="kaitong"><a href="/Main/Tool/ConsumeRecord" style="width:120px; font-size:14px;">充值消费记录</a></p>
+                            <p class="kaitong"><a href="#" style="width:120px; font-size:14px;" onclick="toSysCoinRecord()">充值消费记录</a></p>
                             <font class="sfbz" style="line-height: 34px; margin-left: 10px;"><b>注：</b><b style="color:#ff9600; margin:0 5px;">1元人民币</b>= <em>100个链车币</em></font>
                         </div>
                     </td>
@@ -201,11 +201,11 @@
     <h2><a class="close2" href="#" title="关闭" onclick="onclosePopbox_1()" >&nbsp;</a>微信支付</h2>
     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top: 15px;">
         <tr>
-            <td height="66" align="center" class="color999" style="font-size: 18px;">待支付: <span style="font-weight: bold; font-size: 24px; color: #00b400;" id="payqrcodemoney">20</span>元</td>
+            <td height="66" align="center" class="color999" style="font-size: 18px;">待支付: <span style="font-weight: bold; font-size: 24px; color: #00b400;" id="payqrcodemoney"></span>元</td>
         </tr>
         <tr>
             <td align="center">
-                <img src="../img/sell.jpg" width="220" height="220" />
+                <img  width="300" height="220" id="sellImg"/>
             </td>
         </tr>
         <tr>
@@ -215,7 +215,7 @@
 </div>
 <div class="popbox" id="popbox_2" style="width: 500px; height: 200px; margin: -120px 0 0 -250px; display: none">
     <h2><a class="close2" href="#" title="关闭" onclick="onclosePopbox_2()" >&nbsp;</a>支付成功</h2>
-		<p  style="font-size: 18px;margin-left: 20px;margin-top: 40px;color: #21c064;">支付成功，剩余  <span style="font-weight: bold; font-size: 20px;" id="dtime"></span> 关闭本页面...</p>
+		<p  style="font-size: 18px;margin-left: 20px;margin-top: 40px;color: #21c064;">支付成功，剩余  <span style="font-weight: bold; font-size: 20px;" id="dtime">5</span> 关闭本页面...</p>
 </div>
 <script type="text/javascript">
 <%-- 	var type = null;

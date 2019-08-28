@@ -371,7 +371,6 @@ function save() {
     var processProductData = rightGrid.getData();
     var processProduct=processProductData[0];
  
-//    sellOrderDetailList = removeChanges(sellOrderDetailAdd, sellOrderDetailUpdate, sellOrderDetailDelete, sellOrderDetailList);
 
     nui.mask({
         el: document.body,
@@ -392,6 +391,13 @@ function save() {
             data = data || {};
             if (data.errCode == "S") {
                 parent.showMsg("保存成功!","S");
+                var processMainList =data.processMainList;
+                if(processMainList && processMainList.length>0){
+                	var leftRow = processMainList[0];
+                	var row =leftGrid.getSelected();
+                	 leftGrid.updateRow(row,leftRow);
+                	 loadMainAndDetailInfo(leftRow);
+                }
                 //onLeftGridRowDblClick({});
 //                var pjSellOrderMainList = data.pjSellOrderMainList;
 //                if(pjSellOrderMainList && pjSellOrderMainList.length>0) {
@@ -1206,7 +1212,7 @@ function onCellCommitEdit(e) {
 	var editor = e.editor;
 	var record = e.record;
 	var row = e.row;
-
+	var detailGridRow =detailGrid.getData();
 	editor.validate();
 	if (editor.isValid() == false) {
 		showMsg("请输入数字!","W");
@@ -1223,6 +1229,11 @@ function onCellCommitEdit(e) {
 			} else if (e.value < 0) {
 				e.value = 0;
 				orderQty = 0;
+			}else if(e.value>0){
+				for(var i=0;i<detailGridRow.length;i++){
+					detailGridRow[i].orderQty =parseFloat((detailGridRow[i].qty * e.value));
+				}
+				detailGrid.setData(detailGridRow);
 			}
 
 		}

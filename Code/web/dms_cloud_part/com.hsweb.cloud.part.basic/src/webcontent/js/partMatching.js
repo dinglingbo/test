@@ -319,6 +319,7 @@ function saveUnifyPart(){
 
     var ratio=0
     var data = rightUnifyGrid.getData();
+  
     for(var i=0;i<data.length;i++){
     	ratio=parseFloat(data[i].ratio)+ratio;
     }

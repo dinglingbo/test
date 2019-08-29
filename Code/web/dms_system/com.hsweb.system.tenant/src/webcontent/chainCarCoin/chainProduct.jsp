@@ -197,7 +197,7 @@
 </div>
 <div class="popbox" id="popbox_2" style="width: 500px; height: 200px; margin: -120px 0 0 -250px; display: none">
     <h2><a class="close2" href="#" title="关闭" onclick="onclosePopbox_2()" >&nbsp;</a>支付成功</h2>
-		<p  style="font-size: 18px;margin-left: 20px;margin-top: 40px;color: #21c064;">支付成功，剩余  <span style="font-weight: bold; font-size: 20px;" id="dtime">5</span> 关闭本页面...</p>
+		<p  style="font-size: 18px;margin-left: 20px;margin-top: 40px;color: #21c064;">支付成功，剩余  <span style="font-weight: bold; font-size: 20px;" id="dtime">5</span> 秒关闭本页面...</p>
 </div>
 <script type="text/javascript">
 	var productId = null;

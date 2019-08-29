@@ -1479,7 +1479,8 @@ function  savepartOutRtn(data,childdata){
     function updateBillExpense(){
         var data = billForm.getData();
         var params = {
-            serviceId:data.id||0
+            serviceId:data.id||0,
+            main : data//用于打印
         };
         doBillExpenseDetail(params, function(data){
             data = data||{};

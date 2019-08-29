@@ -47,6 +47,7 @@ a.optbtn {
                         <td style="width:100%;">
                             <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;" id="onOk"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                             <a class="nui-button" onclick="onCancel()" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</a>
+                            <a class="nui-button" iconCls="" onclick="onPrint()" plain="true" style="align:right"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
                         </td>
                     </tr>
                 </table>

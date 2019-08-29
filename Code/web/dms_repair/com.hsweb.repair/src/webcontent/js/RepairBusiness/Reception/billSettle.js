@@ -348,11 +348,11 @@ function setData(params){
 				amount = parseFloat(params.data.mtAmt)+parseFloat(amt);
 				params.data.mtAmt = parseFloat(params.data.mtAmt)+parseFloat(amt);
 /*				params.data.mtAmt =  parseFloat(params.data.mtAmt)+parseFloat(amt);
-				params.data.mtAmt = params.data.mtAmt.toFixed(2);*/
+				params.data.mtAmt = params.data.mtAmt.toFixed(4);*/
 			}else{
 /*				params.data.mtAmt = parseFloat(params.data.mtAmt)-parseFloat(params.data.ycAmt)+parseFloat(amt);
-				params.data.mtAmt = params.data.mtAmt.toFixed(2);*/
-				amount=(parseFloat(params.data.mtAmt)-parseFloat(params.data.ycAmt)+parseFloat(amt)).toFixed(2);
+				params.data.mtAmt = params.data.mtAmt.toFixed(4);*/
+				amount=(parseFloat(params.data.mtAmt)-parseFloat(params.data.ycAmt)+parseFloat(amt)).toFixed(4);
 				params.data.mtAmt = parseFloat(params.data.mtAmt)+parseFloat(amt);
 			}
 			
@@ -524,8 +524,8 @@ function onChanged() {
 	var PrefAmt = nui.get("PrefAmt").getValue()||0;
 	if(PrefAmt>-1){
 		var amount = parseFloat(netInAmt) - parseFloat(PrefAmt) - parseFloat(deductionAmt);
-		zongAmt = amount.toFixed(2);
-		document.getElementById('amount').innerHTML = amount.toFixed(2);
+		zongAmt = amount.toFixed(4);
+		document.getElementById('amount').innerHTML = amount.toFixed(4);
 	}
 	var memAmt = nui.get("rechargeBalaAmt").getValue()||0;
 	if(memAmt!=0){
@@ -538,14 +538,14 @@ function onChanged() {
 		return;
 	}
 	
-	if((parseFloat(deductible) + parseFloat(PrefAmt)+ parseFloat(count) + parseFloat(deductionAmt)).toFixed(2)  >netInAmt){
+	if((parseFloat(deductible) + parseFloat(PrefAmt)+ parseFloat(count) + parseFloat(deductionAmt)).toFixed(4)  >netInAmt){
 		showMsg("储值抵扣加上优惠金额不能大于应收金额","W");
 		return;
 	}
 	
 /*	var amount = parseFloat(netInAmt) - parseFloat(deductible) - parseFloat(PrefAmt)-parseFloat(count);
-	amount = amount.toFixed(2);
-	document.getElementById('amount').innerHTML = amount.toFixed(2);*/
+	amount = amount.toFixed(4);
+	document.getElementById('amount').innerHTML = amount.toFixed(4);*/
 
 }
 /*function setNetInAmt(){
@@ -566,8 +566,8 @@ function onChanged() {
 		nui.get("PrefAmt").setValue(0);
 		amount = netInAmt;
 	}
-	mtAmtEl.setValue(netInAmt.toFixed(2));
-	amountEl.setValue(amount.toFixed(2));
+	mtAmtEl.setValue(netInAmt.toFixed(4));
+	amountEl.setValue(amount.toFixed(4));
 }*/
 
 //转预结算
@@ -648,7 +648,7 @@ function pay(){
 			return;
 		}*/
 		deductible = nui.get("deductible").getValue()||0;
-		count = (count+deductible).toFixed(2);
+		count = (count+deductible).toFixed(4);
 		if(count!=zongAmt){
 			showMsg("结算金额和应结金额不一致，请重新确认！","W");
 			return;

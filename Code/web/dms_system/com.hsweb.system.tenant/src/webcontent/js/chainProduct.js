@@ -272,3 +272,7 @@ function toSysCoinRecord(){
         };
     window.parent.activeTab(item);
 }
+
+function setInitData(params){
+	loadCarCoin(params.id);
+}

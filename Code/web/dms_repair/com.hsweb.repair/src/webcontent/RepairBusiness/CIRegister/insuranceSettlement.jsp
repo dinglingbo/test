@@ -11,7 +11,7 @@
 
 <head>
 	<title>保险结算</title>
-	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CIRegister/insuranceSettlement.js?v=1.1.9"></script>
+	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CIRegister/insuranceSettlement.js?v=1.2.0"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {

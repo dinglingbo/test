@@ -12,7 +12,7 @@
 <title>产品充值</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
             <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%= request.getContextPath() %>/tenant/js/chainProduct.js?v=1.1.5" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/tenant/js/chainProduct.js?v=1.1.8" type="text/javascript"></script>
     <style type="text/css">
     	.sfbz em {
 		    color: #5fc8d7;
@@ -124,7 +124,7 @@
                 <tr>
                     <td>
                         <div style="padding: 15px; background: #fbf7f2; border: 1px #e9e2d9 solid; height: auto; overflow: hidden;">
-                            <p class="kaitong"><a href="/Main/Tool/ConsumeRecord" style="width:120px; font-size:14px;" onclick="toSysCoinRecord()">充值消费记录</a></p>
+                            <p class="kaitong"><a href="#" style="width:120px; font-size:14px;" onclick="toSysCoinRecord()">充值消费记录</a></p>
 <!--                             <font class="sfbz" style="line-height: 34px; margin-left: 10px;"><b>注：</b><b style="color:#ff9600; margin:0 5px;">产品总天数=剩余天数+充值天数</b> <em></em></font> -->
                             <p style="margin-left: 50px;font-size: 15px;">到期日期：<b style="color:#00b400; margin:0 5px;" id="endDate"></b>(剩余：<b style="color:#ff9600; margin:0 5px;" id="endDay"></b> 天)</p>
                         </div>
@@ -197,12 +197,14 @@
 </div>
 <div class="popbox" id="popbox_2" style="width: 500px; height: 200px; margin: -120px 0 0 -250px; display: none">
     <h2><a class="close2" href="#" title="关闭" onclick="onclosePopbox_2()" >&nbsp;</a>支付成功</h2>
-		<p  style="font-size: 18px;margin-left: 20px;margin-top: 40px;color: #21c064;">支付成功，剩余  <span style="font-weight: bold; font-size: 20px;" id="dtime">5</span> 关闭本页面...</p>
+		<p  style="font-size: 18px;margin-left: 20px;margin-top: 40px;color: #21c064;">支付成功，剩余  <span style="font-weight: bold; font-size: 20px;" id="dtime">5</span> 秒关闭本页面...</p>
 </div>
 <script type="text/javascript">
 	var productId = null;
 	productId = "<%= request.getParameter("productId")%>";
-	loadCarCoin(productId);
+	if(productId!=null){		
+		loadCarCoin(productId);
+	}
 </script>
 </body>
 </html>

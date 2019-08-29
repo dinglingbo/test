@@ -1,4 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="/WEB-INF/tlds/btnAuth.tld" prefix="btnAuth" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@include file="/common/sysCommon.jsp"%>
 <html>
@@ -68,7 +69,10 @@
 			<table style="width:100%;">
 				<tr>
 					<td style="width:100%;text-align:left;">
-						<a class="nui-button" plain="true" onclick="search" id="addStationBtn">
+					
+						<btnAuth:MyAuth btnArea="dms_notice_set_1"/>
+						
+						<!-- <a class="nui-button" plain="true" onclick="search" id="addStationBtn">
 							<span class="fa fa-refresh fa-lg"></span>&nbsp;刷新
 						</a>
 						<a class="nui-button" plain="true" onclick="addShareUrl" id="addStationBtn">
@@ -79,8 +83,9 @@
 						</a>
 						<a class="nui-button" plain="true" onclick="saveShare" id="saveStationBtn">
 							<span class="fa fa-save fa-lg"></span>&nbsp;保存
-						</a>
-					</td>
+						</a> -->
+						
+					</td>   
 				</tr>
 			</table>
 		</div>

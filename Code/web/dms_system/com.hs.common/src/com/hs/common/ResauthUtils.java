@@ -349,6 +349,25 @@ public class ResauthUtils {
 				pm, "产品对应的资源数据", "false", -1, false, null);
 	}
 	
+	@Bizlet("根据按钮ID获取按钮详情")
+	public static DataObject[] getBtnInfo(String btnId) throws Throwable {
+		HashMap pm = new HashMap();
+		pm.put("btnId", btnId);
+		
+		return getRedisCache("default", "com.hs.common.orga.queryBtnInfo", 
+				pm, "按钮详情", "false", -1, false, null);
+	}
+	
+	@Bizlet("根据角色ID和按钮区域获取按钮权限")
+	public static DataObject[] getRoleResBtnAuth(String roleId, String btnArea) throws Throwable {
+		HashMap pm = new HashMap();
+		pm.put("roleId", roleId);
+		pm.put("btnArea", btnArea);
+		
+		return getRedisCache("default", "com.hs.common.orga.queryRoleResBtn", 
+				pm, "角色资源按钮数据", "false", -1, false, null);
+	}
+	
 	@Bizlet("根据租户ID和产品ID获取租户产品的有效期")
 	public static DataObject[] getTenantProductValidity(String tenantId, String productId) throws Throwable {
 		HashMap pm = new HashMap();

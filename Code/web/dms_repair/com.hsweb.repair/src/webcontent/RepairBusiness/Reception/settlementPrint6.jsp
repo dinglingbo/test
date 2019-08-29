@@ -144,7 +144,7 @@
     </style>
 <body onafterprint="CloseWindow('ok')" ><!-- oncontextmenu = "return false" -->
 <div class="boxbg" style="display:none"></div>
- <div class="popbox" style="height:420px; width:480px; margin:-210px 0 0 -240px; display:none">
+ <div class="popbox" style="height:450px; width:480px; margin:-210px 0 0 -240px; display:none">
         <h2><a class="close2" href="javascript:box_setup_close()" title="关闭">&nbsp;</a>修改</h2>
         <div style="padding-top:15px; margin:0 15px;">
             <table  width="92%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -419,7 +419,7 @@
                                                        出车报告：
                     </td>
                 </tr>
-                <tr>
+                <tr id="showMethod">
                     <td height="50" valign="top" style="padding: 8px;" id="guestDesc">
                                                        客户描述：
                     </td>
@@ -660,16 +660,24 @@
 	        		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;
 	        		document.getElementById("enterOilMass").innerHTML = document.getElementById("enterOilMass").innerHTML + enterOilMass;
 	        		document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + mtAdvisor;
-	        		document.getElementById("guestDesc").innerHTML = document.getElementById("guestDesc").innerHTML + guestDesc; 
 	        		document.getElementById("carModel").innerHTML = document.getElementById("carModel").innerHTML + carModel; 
-	        		document.getElementById("faultPhen").innerHTML = document.getElementById("faultPhen").innerHTML + faultPhen; 
-	        		document.getElementById("solveMethod").innerHTML = document.getElementById("solveMethod").innerHTML + solveMethod; 
 	        		//document.getElementById("guestAddr").innerHTML = document.getElementById("guestAddr").innerHTML + guestAddr;
 	        		//document.getElementById("name").innerHTML = document.getElementById("name").innerHTML + mtAdvisor; 
+	        	    if(guestDesc!="" || faultPhen!="" || solveMethod!=""){
+	        		   document.getElementById("guestDesc").innerHTML = document.getElementById("guestDesc").innerHTML + guestDesc; 
+	        		   document.getElementById("faultPhen").innerHTML = document.getElementById("faultPhen").innerHTML + faultPhen; 
+	        		   document.getElementById("solveMethod").innerHTML = document.getElementById("solveMethod").innerHTML + solveMethod; 
+	        		}else{
+	        		    $("#showMethod").hide();
+	        		}
 	        	    if(currRepairBillMobileFlag==1){
 	        	        document.getElementById("contactName").innerHTML = document.getElementById("contactName").innerHTML + 
 	        	        "<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ contactMobile;
 	        	    }
+	        	    if(params.type){
+	        	      document.getElementById("outDate").innerHTML = format(date, "yyyy-MM-dd HH:mm");
+	        	      outDate = format(date, "yyyy-MM-dd HH:mm");
+	                }
 	        	}
         	});
         	if(params.type){

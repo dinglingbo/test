@@ -71,6 +71,38 @@
 		where a.FUNCCODE = #resId#
     </select>
     
+    <!--根据按钮ID获取按钮详情-->
+    <select id="queryBtnInfo" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.ID as id,
+			a.RES_ID as resId,
+			a.BTN_AREA as btnArea,
+			a.`CODE` as code,
+			a.`NAME` as name,
+			a.BTN_URL as btnUrl,
+			a.TAG_CONTENT as tagContent,
+			a.TYPE as type,
+			a.BTNDESC as btndesc,
+			a.DISPLAYORDER as displayorder
+		FROM
+		com_app_funcbtn AS a
+		where a.ID = #btnId#
+    </select>
+    
+    <!--根据按钮ID获取按钮详情-->
+    <select id="queryRoleResBtn" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.PARTY_ID as partyId,
+			a.PARTY_TYPE as partyType,
+			a.RES_ID as resId,
+			a.RES_TYPE as resType,
+			a.BTN_ID as btnId,
+			a.BTN_AREA as btnArea
+		FROM
+		com_cap_resbtnauth AS a
+		where a.PARTY_ID = #roleId# and a.BTN_AREA = #btnArea#
+    </select>
+    
     <!--根据资源ID获取资源对应的资源详情-->
     <select id="queryResInfo" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT DISTINCT a.menuid, a.menuname, a.menucode, a.imagepath, a.parentsid, b.funccode, 

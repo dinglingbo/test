@@ -1075,8 +1075,16 @@ function selectPart()
         	if(action=='ok'){
         		var iframe = this.getIFrameEl();
         		var data = iframe.contentWindow.getData();
-        		rightGrid.setData(data.rightData);
-        		detailGrid.setData(data.detailData);
+        		var mainProduct = data.rightData;
+        		mainProduct.parentId = mainProduct.id;
+        		rightGrid.setData(mainProduct);
+        		var detailList = [];
+        		for(var i=0;i<data.detailData.length;i++){
+        			var detail = data.detailData[i];
+        			detail.costRatio = detail.ratio;
+        			detailList.push(detail);
+        		}
+        		detailGrid.setData(detailList);
         	}
         }
     });

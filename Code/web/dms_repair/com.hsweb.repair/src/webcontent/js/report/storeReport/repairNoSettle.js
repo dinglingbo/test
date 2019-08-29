@@ -55,9 +55,9 @@ $(document).ready(function(v)
 	
 	rightGrid.on("drawcell",function(e){
 		switch (e.field) {
-		case "serviceCode":
+/*		case "serviceCode":
 			e.cellHtml ='<a href="##" onclick="editSell()">'+e.value+'</a>';
-			break;
+			break;*/
 		case "outReturnSign":
 				e.cellHtml="已归库";
 			break;

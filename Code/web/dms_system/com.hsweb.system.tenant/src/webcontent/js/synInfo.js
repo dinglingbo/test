@@ -2,6 +2,7 @@ $(document).ready(function(v) {
 	queryTenantCoin();
 	queryUpgrade();
 	querySysProduct();
+	queryCoin();
 });
 
 //查询租户信息
@@ -27,9 +28,9 @@ function queryTenantCoin(){
 				}else{
 					document.getElementById('endDay').innerHTML=0;	
 				}
-				document.getElementById('auditMan').innerHTML=data.comTenant.auditMan||"";
+				document.getElementById('manager').innerHTML=data.comTenant.manager||"";
 				document.getElementById('mobile').innerHTML=data.comTenant.mobile||"";
-				document.getElementById('storesQty').innerHTML=data.comTenant.storesQty||0;				
+				document.getElementById('orgQty').innerHTML=data.comTenant.orgQty||0;				
 			} else {
 				parent.showMsg(data.errMsg || "商户查询异常!","E");
 			}
@@ -83,15 +84,25 @@ function querySysProduct(){
 							var html="";
 							for(var i=0;i<ProductList.length;i++){
 								var isPermissions = true;
-								for(var j=0;j<text.comTenantProduct.length;j++){
-									if(ProductList[i].id==text.comTenantProduct[j].productId){
+								for(var j=0;j<text.comTenantProduct.length;j++){									
+									if(ProductList[i].id==text.comTenantProduct[j].productId && text.comTenantProduct[j].status==0){
 										isPermissions = false;
-										html+='		<a class="have" id="'+ProductList[i].id+'" onclick="toChainProduct('+ProductList[i].id+')" >&nbsp;'+data.list[i].name+'&nbsp;</a> ';
+										var endDateStr = text.comTenantProduct[j].endDate;
+										endDateStr =new Date(endDateStr).getFullYear()+"年 "+(parseFloat(new Date(endDateStr).getMonth())+1)+"月 "+new Date(endDateStr).getDate()+"日";
+										html+='		<a class="have" title="有效期至：'+endDateStr+'" id="'+ProductList[i].id+'" onclick="toChainProduct('+ProductList[i].id+')" >&nbsp;'+data.list[i].name+'&nbsp;</a> ';
 									}
 								}
-								if(isPermissions){	
+								if(isPermissions){
 									isPermissions = true;
-									html+='		<a class="noHave" id="'+ProductList[i].id+'" onclick="toChainProduct('+ProductList[i].id+')">&nbsp;'+data.list[i].name+'&nbsp;</a> ';
+									if(ProductList[i].type==1){
+				/*						html+='		<a class="have" id="'+ProductList[i].id+'" onclick="toChainProduct('+ProductList[i].id+')">&nbsp;'+data.list[i].name+'&nbsp;</a> ';*/
+										//接口不用跳转
+										html+='		<a class="have" title="需要'+data.list[i].callNeedCoin+'链车币" id="'+ProductList[i].id+'" >&nbsp;'+data.list[i].name+'&nbsp;</a> ';
+										
+									}else{
+										html+='		<a class="noHave" title="未购买，点击跳转购买界面！" id="'+ProductList[i].id+'" onclick="toChainProduct('+ProductList[i].id+')">&nbsp;'+data.list[i].name+'&nbsp;</a> ';
+										
+									}
 								}
 							}	
 							document.getElementById('upgrade').innerHTML=html;
@@ -123,7 +134,29 @@ function DateMinus(sDate){
    var day = parseInt(days / (1000 * 60 * 60 * 24)); 
   return day; 
 }
-
+//查询剩余链车币 
+function queryCoin(){
+	var queryTenantCoinUrl = apiPath + sysApi + "/com.hsapi.system.tenant.carCoin.queryTenantCoin.biz.ext";
+	nui.ajax({
+		url : queryTenantCoinUrl,
+		type : "post",
+		data : JSON.stringify({
+			token: token
+		}),
+		success : function(data) {
+			data = data || {};
+			if (data.errCode == "S") {																		
+				document.getElementById('remainCoin').innerHTML=data.comTenant.remainCoin;
+			} else {
+				parent.showMsg(data.errMsg || "剩余链车币查询异常!","E");
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+}
 function toSysCoinRecord(){
     var item={};
     item.id = "sysCoinRecord";
@@ -148,7 +181,7 @@ function toChainProduct(id){
     window.parent.activeTabAndInit(item,params);
 }
 
-function toSysCoinRecord(){
+function toChainCarCoinRecharge(){
     var item={};
     item.id = "chainCarCoinRecharge";
     item.text = "链车币充值";

@@ -9,7 +9,7 @@
 -->
 <head>
     <title>未结算配件查询</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairNoSettle.js?v=1.0.1"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairNoSettle.js?v=1.0.2"></script>
     <style type="text/css">
     .title {
       width: 60px;
@@ -110,7 +110,7 @@
         <div type="indexcolumn">序号</div>
         <div header="工单信息" headerAlign="center">
             <div property="columns">
-            	<div allowSort="true" field="serviceCode" width="130" headerAlign="center" header="业务单号"></div>
+            	<div allowSort="true" field="serviceCode" width="170" headerAlign="center" header="业务单号"></div>
             	<div allowSort="true" field="carNo" width="100" headerAlign="center" header="车牌号"></div>
             	<div allowSort="true" field="storeId" width="100" headerAlign="center" header="仓库"></div>
                 <div allowSort="true" field="partCode" width="100" headerAlign="center" header="配件编码"></div>

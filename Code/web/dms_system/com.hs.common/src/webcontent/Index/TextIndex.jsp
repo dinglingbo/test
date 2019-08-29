@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
         <head>
             <title>首页</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.0.8"></script>
+            <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.0.0"></script>
             <script src="<%=webPath + contextPath%>/common/js/count.js?v=1.0.0"></script>
             <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
             <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
@@ -407,8 +407,8 @@ pageEncoding="UTF-8" session="false" %>
                                 <i class="fa fa-eye fa-lg-custom fa-fw"></i>
                                 <span>
                                     <a onclick="showGuestBoard()" style="cursor: pointer;">客户休息区看板</a>丨
-                                    <a onclick="showWorkShopBoard()" style="cursor: pointer;">维修车间看板</a>丨
-                                    <a onclick="showPartLogisticsBoard()" style="cursor: pointer;">配件物流看板</a>
+                                    <a onclick="showWorkShopBoard()" style="cursor: pointer;">维修车间看板</a>
+                                    <!-- 丨<a onclick="showPartLogisticsBoard()" style="cursor: pointer;">配件物流看板</a> -->
                                 </span>
                                 <span style="float:right;margin-right:10px;font-size: 13px;">
                                     <a onclick="showOrgGuestCar()" style="cursor: pointer;">本店</a>丨

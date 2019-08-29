@@ -12,7 +12,7 @@
 <title>充值消费记录表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
                 <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%= request.getContextPath() %>/tenant/js/sysCoinRecord.js?v=1.0.0" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/tenant/js/sysCoinRecord.js?v=1.0.2" type="text/javascript"></script>
     
 </head>
 <body>
@@ -53,10 +53,10 @@
                 <div type="indexcolumn"  headeralign="center" width="30">序号</div>
 <!--                 <div type="checkcolumn" field="check" width="20" header="选择"></div> -->
                 <div field="productName" name="productName" width="80"  headeralign="center" summaryType="count" allowsort="true" >产品名称</div>
-                <div name="content" field="content"  width="170"  headeralign="center"  allowsort="true" >内容</div>
-<!--                 <div field="dc" name="dc" width="170"  headeralign="center" summaryType="count" allowsort="true" >类型</div>  -->               
-                <div field="costCoin" name="feeService" width="60" summaryType="sum" headeralign="center" allowsort="true" dataType="float">链车币数量</div>
-                <div field="balaCoin" name="charOffAmt" width="60" summaryType="sum" headeralign="center" allowsort="true" dataType="float">链车币余额</div>
+                <div name="callStatus" field="callStatus"  width="60"  headeralign="center"  allowsort="true" >购买/调用结果  </div>                 
+                <div field="costPrice" name="costPrice" width="60"  headeralign="center" summaryType="count" allowsort="true" >支付金额</div>              
+                <div field="costCoin" name="costCoin" width="60" summaryType="sum" headeralign="center" allowsort="true" dataType="float">链车币数量</div>
+                <div field="balaCoin" name="balaCoin" width="60" summaryType="sum" headeralign="center" allowsort="true" dataType="float">链车币剩余数量</div>
 
                 <div field="recordDate" name="auditDate" width="120" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" allowsort="true" >时间</div>
             </div>

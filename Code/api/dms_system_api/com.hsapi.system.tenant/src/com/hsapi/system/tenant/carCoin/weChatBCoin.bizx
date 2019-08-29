@@ -26,13 +26,13 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="77" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="74" y="186"/>
+    <figSize height="20" width="31"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="842" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="839" y="186"/>
+    <figSize height="20" width="31"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="queryByNamedSql" displayName="queryByNamedSql" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
@@ -68,8 +68,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="182" y="186"/>
-    <figSize height="17" width="109"/>
+    <location x="168" y="186"/>
+    <figSize height="20" width="136"/>
     <node>invokePojo0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
@@ -95,8 +95,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="137" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="134" y="186"/>
+    <figSize height="20" width="31"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
@@ -114,8 +114,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="373" y="186"/>
-    <figSize height="17" width="32"/>
+    <location x="369" y="186"/>
+    <figSize height="20" width="40"/>
     <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="updateTenantCoin" displayName="updateTenantCoin" type="subprocess">
@@ -145,12 +145,12 @@
         <process:inputVariable id="2" name="creatorId" type="query" value="String" valueType="Primitive" pattern="reference">m:userObject/userId</process:inputVariable>
         <process:inputVariable id="3" name="creator" type="query" value="String" valueType="Primitive" pattern="reference">m:userObject/userName</process:inputVariable>
         <process:inputVariable id="4" name="callParams" type="expression" value="String" valueType="Primitive" pattern="reference">&quot;&quot;</process:inputVariable>
-        <process:inputVariable id="5" name="callStatus" type="expression" value="String" valueType="Primitive" pattern="reference">&quot;&quot;</process:inputVariable>
-        <process:inputVariable id="6" name="callResult" type="expression" value="String" valueType="Primitive" pattern="reference">&quot;&quot;</process:inputVariable>
+        <process:inputVariable id="5" name="callStatus" type="literal" value="String" valueType="Primitive" pattern="reference">1</process:inputVariable>
+        <process:inputVariable id="6" name="callResult" type="literal" value="String" valueType="Primitive" pattern="reference">1</process:inputVariable>
         <process:inputVariable id="7" name="chargeCoin" type="query" value="Float" valueType="Primitive" pattern="reference">comTenantOrder/rechargeCoin</process:inputVariable>
         <process:inputVariable id="8" name="giveCoin" type="query" value="Float" valueType="Primitive" pattern="reference">comTenantOrder/giveCoin</process:inputVariable>
         <process:inputVariable id="9" name="costPrice" type="query" value="Float" valueType="Primitive" pattern="reference">comTenantOrder/productAmt</process:inputVariable>
-        <process:inputVariable id="10" name="callUrl" type="expression" value="String" valueType="Primitive" pattern="reference">&quot;&quot;</process:inputVariable>
+        <process:inputVariable id="10" name="callUrl" type="literal" value="String" valueType="Primitive" pattern="reference">/com.hsapi.system.tenant.carCoin.weChatBCoin.biz.ext</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -159,8 +159,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="530" y="185"/>
-    <figSize height="17" width="107"/>
+    <location x="515" y="185"/>
+    <figSize height="20" width="136"/>
     <node>subprocess0</node>
   </nodes>
   <nodes xsi:type="process:tTransactionBegin" id="transactionbegin0" name="事务开始" displayName="事务开始" type="transactionbegin">
@@ -174,8 +174,8 @@
     <nodeLabel>transactionbegin0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactionbegin0label" name="label" nodeType="label">
-    <location x="280" y="186"/>
-    <figSize height="17" width="49"/>
+    <location x="274" y="186"/>
+    <figSize height="20" width="61"/>
     <node>transactionbegin0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
@@ -197,8 +197,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="220" y="411"/>
-    <figSize height="17" width="32"/>
+    <location x="216" y="411"/>
+    <figSize height="20" width="40"/>
     <node>assign2</node>
   </nodes>
   <nodes xsi:type="process:tTransactionCommit" id="transactioncommit0" name="事务提交" displayName="事务提交" type="transactioncommit">
@@ -212,8 +212,8 @@
     <nodeLabel>transactioncommit0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactioncommit0label" name="label" nodeType="label">
-    <location x="706" y="186"/>
-    <figSize height="17" width="49"/>
+    <location x="700" y="186"/>
+    <figSize height="20" width="61"/>
     <node>transactioncommit0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" id="assign3" name="赋值3" displayName="赋值" type="assign">
@@ -227,8 +227,8 @@
     <nodeLabel>assign3label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="571" y="103"/>
-    <figSize height="17" width="32"/>
+    <location x="567" y="103"/>
+    <figSize height="20" width="40"/>
     <node>assign3</node>
   </nodes>
   <nodes xsi:type="process:tTransactionRollback" id="transactionrollback0" name="事务回滚" displayName="事务回滚" type="transactionrollback">
@@ -242,8 +242,8 @@
     <nodeLabel>transactionrollback0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactionrollback0label" name="label" nodeType="label">
-    <location x="707" y="103"/>
-    <figSize height="17" width="49"/>
+    <location x="701" y="103"/>
+    <figSize height="20" width="61"/>
     <node>transactionrollback0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="updateEntity" displayName="updateEntity" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
@@ -266,8 +266,8 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="484" y="186"/>
-    <figSize height="17" width="73"/>
+    <location x="473" y="186"/>
+    <figSize height="20" width="94"/>
     <node>invokePojo1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" collapsed="false" type="assign">
@@ -301,8 +301,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="433" y="186"/>
-    <figSize height="17" width="32"/>
+    <location x="429" y="186"/>
+    <figSize height="20" width="40"/>
     <node>assign5</node>
   </nodes>
   <topRuler/>

@@ -9,9 +9,10 @@
     </resultMap>
     <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
     
-    <select id="getProcessDetail" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.pts.PjProcessDetail">
+    <select id="getProcessDetail" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PjProcessDetail">
     	SELECT
 			a.part_id AS partId,
+			a.ratio AS costRatio,
 			a.part_code AS partCode,
 			a.part_name AS partName,
 			a.full_name AS fullName,
@@ -256,6 +257,7 @@
 			AND b.store_id = #storeId#
     </update>
     
+ 
     <delete id="delteProduct" parameterClass="java.util.HashMap">
     	DELETE FROM pj_process_product WHERE main_id = #mainId#
     </delete>

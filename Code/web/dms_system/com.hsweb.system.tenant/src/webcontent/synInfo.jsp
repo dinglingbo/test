@@ -12,7 +12,7 @@
 <title>系统信息</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
             <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%= request.getContextPath() %>/tenant/js/synInfo.js?v=1.0.3" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/tenant/js/synInfo.js?v=1.0.5" type="text/javascript"></script>
     <style type="text/css">
     	.titel{
     		width: 20px;
@@ -24,6 +24,7 @@
     	}
     	span{margin-left:20px;}
     	.have {
+    		cursor:pointer;
 		    width: 90px;
 		    height: 30px;
 		    font-size: 16px;
@@ -37,6 +38,7 @@
 		    border: 1px solid #c0e1fd;
 		}
 		.noHave {
+			cursor:pointer;
 		    width: 90px;
 		    height: 30px;
 		    font-size: 16px;
@@ -67,7 +69,7 @@
 <div class="nui-fit" style="width: 100%;height: 100%;">
 	<div style="width: 100%;">
 	
-	<span style="font-size: 16px;font-weight:bold;">系统信息  <a class = "kaitong" href="#" style="width:120px; font-size:14px;margin-left: 80%;" onclick="toSysCoinRecord()">充值消费记录</a></span>
+	<span style="font-size: 16px;font-weight:bold;">系统信息  <a class = "kaitong" href="#" style="width:120px;background: #4f9ada; font-size:14px;margin-left: 70%;" onclick="toSysCoinRecord()">链车币充值</a><a class = "kaitong" href="#" style="width:120px; font-size:14px;margin-left: 10px;" onclick="toSysCoinRecord()">充值消费记录</a></span>
 
 	<hr  style="color: #fff; width:100%;"/>	
 	</div>

@@ -123,31 +123,16 @@ function doSearch(params) {
 function onDrawCell(e){
 	var row = e.row;
     switch (e.field) {
-        case "content":
-            if (row.dc==1) {
-            	//1功能购买，2充值，3调用接口，4赠送
-                if(row.type == 1){
-                    e.cellHtml = "购买产品："+row.productName+",成功";
-                }else if(row.type == 2){
-                	 e.cellHtml = "充值链车币成功";
-                }else if(row.type == 3){
-                	 e.cellHtml = row.productName+"，扣费成功";
-                }else if(row.type == 4){
-                	 e.cellHtml = row.productName+"赠送成功";
-                }
+        case "callStatus":
+            if (e.value==1) {
+            	e.cellHtml = "成功";
             } else {
-            	//1功能购买，2充值，3调用接口，4赠送
-                if(row.type == 1){
-                    e.cellHtml = "产品："+row.productName+"到期";
-                }else if(row.type == 2){
-                	 e.cellHtml = "扣减链车币成功";
-                }else if(row.type == 3){
-                	 e.cellHtml = row.productName+"，扣费成功";
-                }else if(row.type == 4){
-                	 e.cellHtml = row.productName+"扣减成功";
-                }
+            	e.cellHtml = "失败";
             }
-            break;             
+            break;    
+        case "costCoin":
+            	e.cellHtml = e.value*row.dc;
+            break;            
         default:
             break;
     }

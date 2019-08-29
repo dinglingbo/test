@@ -41,7 +41,7 @@ function queryTenantCoin(){
 	});
 }
 
-var basisList = [{id:"",name:"微信模块"},{id:"",name:"客户模块"},{id:"",name:"EPC"}];//基础模块
+var basisList = [{id:2,name:"微信模块"},{id:2,name:"客户模块"},{id:2,name:"EPC"}];//基础模块
 //查询基础模块
 function queryUpgrade(){
 	var html="";
@@ -86,12 +86,12 @@ function querySysProduct(){
 								for(var j=0;j<text.comTenantProduct.length;j++){
 									if(ProductList[i].id==text.comTenantProduct[j].productId){
 										isPermissions = false;
-										html+='		<a class="have" id="'+data.list[i].id+'">&nbsp;'+data.list[i].name+'&nbsp;</a> ';
+										html+='		<a class="have" id="'+ProductList[i].id+'" onclick="toChainProduct('+ProductList[i].id+')" >&nbsp;'+data.list[i].name+'&nbsp;</a> ';
 									}
 								}
 								if(isPermissions){	
 									isPermissions = true;
-									html+='		<a class="noHave" id="'+data.list[i].id+'">&nbsp;'+data.list[i].name+'&nbsp;</a> ';
+									html+='		<a class="noHave" id="'+ProductList[i].id+'" onclick="toChainProduct('+ProductList[i].id+')">&nbsp;'+data.list[i].name+'&nbsp;</a> ';
 								}
 							}	
 							document.getElementById('upgrade').innerHTML=html;
@@ -129,6 +129,30 @@ function toSysCoinRecord(){
     item.id = "sysCoinRecord";
     item.text = "充值消费记录";
     item.url = webPath + contextPath + "/com.hsweb.system.tenant.sysCoinRecord.flow?token="+token;
+    item.iconCls = "fa fa-file-text";
+    var params = {
+        	id: ''
+        };
+    window.parent.activeTab(item);
+}
+
+function toChainProduct(id){
+    var item={};
+    item.id = "chainProduct";
+    item.text = "产品充值";
+    item.url = webPath + contextPath + "/com.hsweb.system.tenant.chainProduct.flow?token="+token;
+    item.iconCls = "fa fa-file-text";
+    var params = {
+        	id: id
+        };
+    window.parent.activeTabAndInit(item,params);
+}
+
+function toSysCoinRecord(){
+    var item={};
+    item.id = "chainCarCoinRecharge";
+    item.text = "链车币充值";
+    item.url = webPath + contextPath + "/com.hsweb.system.tenant.chainCarCoinRecharge.flow?token="+token;
     item.iconCls = "fa fa-file-text";
     var params = {
         	id: ''

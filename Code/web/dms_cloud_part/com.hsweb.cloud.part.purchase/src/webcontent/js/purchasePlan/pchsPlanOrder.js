@@ -2058,7 +2058,7 @@ function addImportList(partList,msg){
 		
 	}
 	if(msg){
-		nui.get("imprtPastCodeList").setValue("");
+//		nui.get("imprtPastCodeList").setValue("");
 		nui.get("imprtPastCodeList").setValue(msg);
 		advancedTipWin.show();
 	}

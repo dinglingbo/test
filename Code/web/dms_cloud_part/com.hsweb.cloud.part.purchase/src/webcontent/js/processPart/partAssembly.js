@@ -343,7 +343,7 @@ var requiredField = {
     orderDate : "订单日期",
 
 };
-var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.process.saveProcess.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.process.saveProcessZz.biz.ext";
 function save() {
     var data = basicInfoForm.getData();
     for ( var key in requiredField) {
@@ -393,17 +393,17 @@ function save() {
             if (data.errCode == "S") {
                 parent.showMsg("保存成功!","S");
                 //onLeftGridRowDblClick({});
-//                var pjSellOrderMainList = data.pjSellOrderMainList;
-//                if(pjSellOrderMainList && pjSellOrderMainList.length>0) {
-//                    var leftRow = pjSellOrderMainList[0];
-//                    var row = leftGrid.getSelected();
-//                    leftGrid.updateRow(row,leftRow);
-//
-//                    //保存成功后重新加载数据
-//                    loadMainAndDetailInfo(leftRow);
-//
-//                    
-//                }
+                var processMainList = data.processMainList;
+                if(processMainList && processMainList.length>0) {
+                    var leftRow = processMainList[0];
+                    var row = leftGrid.getSelected();
+                    leftGrid.updateRow(row,leftRow);
+
+                    //保存成功后重新加载数据
+                    loadMainAndDetailInfo(leftRow);
+
+                    
+                }
             } else {
                 parent.showMsg(data.errMsg || "保存失败!","E");
             }
@@ -488,6 +488,7 @@ function doSearch(params)
 {
     //目前没有区域销售订单，采退受理  params.enterTypeId = '050101';
     params.orderTypeId = 1;
+    params.isDifferOrder = 0;
   //是业务员且业务员禁止可见
 	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
 		params.creator= currUserName;
@@ -561,7 +562,7 @@ function onRightGridDraw(e)
     }
 }
 
-var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjSellOrder.biz.ext";
+var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.process.auditProcessOrderZz.biz.ext";
 function audit()
 {
     var data = basicInfoForm.getData();
@@ -575,7 +576,7 @@ function audit()
     var row = leftGrid.getSelected();
     if(row){
         if(row.auditSign == 1) {
-            parent.showMsg("此单已出库!","W");
+            parent.showMsg("此单已审核!","W");
             return;
         } 
     }else{
@@ -589,22 +590,18 @@ function audit()
         return;
     }
     //审核时，判断是否存在缺货信息
-    var msg = checkRightData();
-    if(msg){
-        parent.showMsg(msg,"W");
-        return;
-    }
+//    var msg = checkRightData();
+//    if(msg){
+//        parent.showMsg(msg,"W");
+//        return;
+//    }
 
     data = getMainData();
 
-    var sellOrderDetailAdd = rightGrid.getChanges("added");
-    var sellOrderDetailUpdate = rightGrid.getChanges("modified");
-    var sellOrderDetailDelete = rightGrid.getChanges("removed");
-    var sellOrderDetailList = rightGrid.getData();
-    if(sellOrderDetailList.length <= 0) {
-        parent.showMsg("销售明细为空，不能提交!","W");
-        return;
-    }
+    var processProductData = rightGrid.getData();
+    var processProduct=processProductData[0];
+
+   
     
     getStoreLimit();
 	var rightRow =rightGrid.getData();
@@ -619,7 +616,7 @@ function audit()
 
 	
 	
-    sellOrderDetailList = removeChanges(sellOrderDetailAdd, sellOrderDetailUpdate, sellOrderDetailDelete, sellOrderDetailList);
+//    sellOrderDetailList = removeChanges(sellOrderDetailAdd, sellOrderDetailUpdate, sellOrderDetailDelete, sellOrderDetailList);
 
    
     nui.mask({
@@ -632,39 +629,25 @@ function audit()
         url : auditUrl,
         type : "post",
         data : JSON.stringify({
-            sellOrderMain : data,
-            sellOrderDetailAdd : sellOrderDetailAdd,
-            sellOrderDetailUpdate : sellOrderDetailUpdate,
-            sellOrderDetailDelete : sellOrderDetailDelete,
-            sellOrderDetailList : sellOrderDetailList,
-            operateFlag:1,
+        	processMain : data,
+            processProduct : processProduct,
             token : token
         }),
         success : function(data) {
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                parent.showMsg("退货成功!","S");
-                //onLeftGridRowDblClick({});
-                var pjSellOrderMainList = data.pjSellOrderMainList;
-                if(pjSellOrderMainList && pjSellOrderMainList.length>0) {
-                    var leftRow = pjSellOrderMainList[0];
-                    var row = leftGrid.getSelected();
-                    leftGrid.updateRow(row,leftRow);
+                parent.showMsg("审核成功!","S");
+                var newRow ={auditSign:1}
+                var row = leftGrid.getSelected();
+                leftGrid.updateRow(row,newRow);
+                var leftRow = leftGrid.getSelected();
+                loadMainAndDetailInfo(leftRow);
 
-                    //保存成功后重新加载数据
-                    loadMainAndDetailInfo(leftRow);
-                    nui.confirm("是否打印？", "友情提示", function(action) {
-    					if(action== 'ok'){
-    						onPrint();
-    					}else{
-    						rightGrid.setData([]);
-    						add();
-    					}
-    				});
-                }
+      
+                
             } else {
-                parent.showMsg(data.errMsg || "退货失败!","W");
+                parent.showMsg(data.errMsg || "审核失败!","W");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -892,15 +875,15 @@ function checkRightData()
 }
 function checkStockOutQty(){
     var msg = '';
-    var rows = rightGrid.findRows(function(row){
+    var rows = detailGrid.findRows(function(row){
         if(row.stockOutQty > 0){
             return true;
         }
     });
     
     if(rows && rows.length > 0){
-        var comPartCode = rows[0].comPartCode;
-        msg = "配件：" + comPartCode + "缺货，不能提交！";
+        var partCode = rows[0].partCode;
+        msg = "配件：" + partCode + "缺货，不能提交！";
     }
     return msg;
 }

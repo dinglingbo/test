@@ -34,7 +34,7 @@ body .mini-grid-row-selected{
 <head>
 <title>配件组装</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchase/js/processPart/partAssembly.js?v=1.0.80"></script>
+    <script src="<%=webPath + contextPath%>/purchase/js/processPart/partAssembly.js?v=1.0.90"></script>
 </head>
 <body>
 	
@@ -105,6 +105,7 @@ body .mini-grid-row-selected{
                      url="">
                     <div property="columns">
                       	<div type="indexcolumn">序号</div>
+                      	<div field="id" visible="false" headerAlign="center" header="配比清单主表ID"></div>
                         <div field="auditSign" width="65" visible="true" headerAlign="center" header="状态"></div>
                         <div field="orderDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="创建日期"></div>
                         <div field="creator" width="60" headerAlign="center" header="操作员"></div>
@@ -239,7 +240,8 @@ body .mini-grid-row-selected{
 		                              <div type="indexcolumn">序号</div>
 		                              <div header="配件信息" headerAlign="center">
 		                                  <div property="columns">
-		                                   
+		                                  	  
+		                                   	  <div field="parentId" visible="false" headerAlign="center" header="配比清单主表ID"></div>
 		                                      <div field="partCode" name="partCode" width="100" summaryType="count" headerAlign="center" header="配件编码">
 		                                          <input property="editor" class="nui-textbox" />
 		                                      </div>

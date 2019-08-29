@@ -551,6 +551,15 @@ public class ArrayUtils {
 			return list.toArray(new HashMap[list.size()]);
 		}
 	   
+	   @Bizlet("")
+		public static HashMap[] addNArray(HashMap sourceDO, HashMap[] dos) {
+			List<HashMap> list = new ArrayList<HashMap>(Arrays.asList(dos));
+			if(list.get(0).size()==0){
+				 list =  new ArrayList<HashMap>();
+			}
+			list.add(sourceDO);
+			return list.toArray(new HashMap[list.size()]);
+		}
 	   
 	   @Bizlet("")
 	   public static HashMap[] add2Array(HashMap[] source1,HashMap[] source2, HashMap[] source3,HashMap[] source4) {

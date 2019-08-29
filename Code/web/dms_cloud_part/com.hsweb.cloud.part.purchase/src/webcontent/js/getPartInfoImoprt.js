@@ -18,6 +18,7 @@ var advancedTipForm = null;
 var brandHash = {};
 var brandList = [];
 
+var noImportList=[];
 $(document).ready(function(v)
 {
 
@@ -170,8 +171,10 @@ function saveEnterPart(partList){
 //							parts = partList.join("\r\n");
 //							
 //						}
+	                	noImportList = data.noImportList;
 	                	nui.get("fastCodeList").setValue(errMsg);
 						advancedTipWin.show();
+						onExport(noImportList);
 					}else{
 						parent.parent.showMsg("导入成功!","S");
 					}
@@ -199,4 +202,32 @@ function saveEnterPart(partList){
 function CloseWindow(action) {
     if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
     else window.close();
+}
+
+
+function onExport(noImportList){
+	
+	var detail = noImportList;
+	if(detail && detail.length > 0){
+		setInitExportData(detail);
+	}
+}
+function setInitExportData(detail){
+
+    var tds ="<td  colspan='1' align='left'>[partBrandId]</td>" +
+    		 '<td  colspan="1" align="left">[partCode]</td>';
+    	
+    var tableExportContent = $("#tableExportContent");
+    tableExportContent.empty();
+    for (var i = 0; i < detail.length; i++) {
+        var row = detail[i];
+     
+        var tr = $("<tr></tr>");
+        tr.append(tds.replace("[partCode]", detail[i].partCode?detail[i].partCode:"")
+                     .replace("[partBrandId]", detail[i].partBrandId?brandHash[detail[i].partBrandId].name:""));
+        tableExportContent.append(tr);
+    
+    }
+
+    method5('tableExcel',"未导入的配件",'tableExportA');
 }

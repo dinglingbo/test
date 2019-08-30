@@ -747,7 +747,7 @@
     <targetConnections>link21</targetConnections>
     <targetConnections>link33</targetConnections>
     <targetConnections>link34</targetConnections>
-    <location x="200" y="526"/>
+    <location x="200" y="510"/>
     <size height="28" width="28"/>
     <nodeLabel>end2label</nodeLabel>
     <process:returns>
@@ -756,7 +756,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end2label" name="label" nodeType="label">
-    <location x="194" y="562"/>
+    <location x="194" y="546"/>
     <figSize height="20" width="40"/>
     <node>end2</node>
   </nodes>

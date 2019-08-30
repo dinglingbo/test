@@ -290,10 +290,10 @@ body .mini-grid-row-selected{
                                         <input property="editor" vtype="float" class="nui-textbox"/>
                                       </div>
                                       <div field="orderPrice" name="orderPrice" summaryType="sum" numberFormat="0.00" width="65" headerAlign="center" header="单价(出货方填写)">
-                                        <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="changeOrderPrice"/>
+                                        <input property="editor" vtype="float" id="orderPrice" class="nui-textbox" onvaluechanged="changeOrderPrice"/>
                                       </div>
                                       <div field="orderAmt" name="orderAmt" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="金额">
-                                        <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="changeOrderAmt"/>
+                                        <input property="editor" vtype="float" id="orderAmt" class="nui-textbox" onvaluechanged="changeOrderAmt"/>
                                       </div>
                                       <div field="remark" width="120" headerAlign="center" allowSort="true" header="备注">
                                         <input property="editor" class="nui-textbox"/>

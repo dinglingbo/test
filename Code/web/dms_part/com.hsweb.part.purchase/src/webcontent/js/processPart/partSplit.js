@@ -1,10 +1,10 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.process.queryProcessMain.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.process.queryProcessProduct.biz.ext";
-var detailGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.process.queryProcessDetail.biz.ext";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var leftGridUrl = baseUrl+"com.hsapi.part.invoice.process.queryProcessMain.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.part.invoice.process.queryProcessProduct.biz.ext";
+var detailGridUrl = baseUrl+"com.hsapi.part.invoice.process.queryProcessDetail.biz.ext";
 var basicInfoForm = null;
 
 var leftGrid = null;
@@ -343,7 +343,7 @@ var requiredField = {
     orderDate : "订单日期",
 
 };
-var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.process.saveProcessZz.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.part.invoice.process.saveProcessSplit.biz.ext";
 function save() {
     var data = basicInfoForm.getData();
     for ( var key in requiredField) {
@@ -493,7 +493,7 @@ function setEditable(flag)
 function doSearch(params) 
 {
     //目前没有区域销售订单，采退受理  params.enterTypeId = '050101';
-    params.orderTypeId = 1;
+    params.orderTypeId = 2;
   //是业务员且业务员禁止可见
 	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
 		params.creator= currUserName;
@@ -1058,6 +1058,11 @@ function OnrpMainGridCellBeginEdit(e){
 
 function selectPart()
 {
+	var rowList = rightGrid.getData();
+	var row = null;
+	if(rowList.length>0){
+		row = rowList[0];
+	}
     nui.open({
         // targetWindow: window,
         url: webPath + contextPath + "/com.hsweb.part.purchase.productChoose.flow?token="+token,
@@ -1075,9 +1080,47 @@ function selectPart()
         	if(action=='ok'){
         		var iframe = this.getIFrameEl();
         		var data = iframe.contentWindow.getData();
-        		var mainProduct = data.rightData;
-        		mainProduct.parentId = mainProduct.id;
-        		rightGrid.setData(mainProduct);
+        		var mainProductList = data.rightData;
+        		var mainProduct = mainProductList[0];
+        		var rowNews = [];
+        		if(row){
+        			var rowNew = {
+            				fullName:mainProduct.fullName,
+            				isDisabled:mainProduct.isDisabled,
+            				oemCode:mainProduct.oemCode,
+            				orderQty:mainProduct.orderQty,
+            				parentId:mainProduct.parentId,
+            				partCode:mainProduct.partCode,
+            				partId:mainProduct.partId,
+            				partName:mainProduct.partName,
+            				unit:mainProduct.unit,
+            				applyCarModel:mainProduct.applyCarModel,
+            				spec:mainProduct.spec,
+            				mainId:row.mainId,
+            				parentId:row.parentId,
+            				id:row.id
+            		};
+        			rowNews.push(rowNew);
+        		}else{
+        			var rowNew = {
+            				fullName:mainProduct.fullName,
+            				isDisabled:mainProduct.isDisabled,
+            				oemCode:mainProduct.oemCode,
+            				orderQty:mainProduct.orderQty,
+            				parentId:mainProduct.parentId,
+            				partCode:mainProduct.partCode,
+            				partId:mainProduct.partId,
+            				partName:mainProduct.partName,
+            				unit:mainProduct.unit,
+            				applyCarModel:mainProduct.applyCarModel,
+            				spec:mainProduct.spec,
+            				mainId:0,
+            				parentId:0,
+            				id:0
+            		};
+        			rowNews.push(rowNew);
+        		}    		
+        		rightGrid.setData(rowNews);
         		var detailList = [];
         		for(var i=0;i<data.detailData.length;i++){
         			var detail = data.detailData[i];

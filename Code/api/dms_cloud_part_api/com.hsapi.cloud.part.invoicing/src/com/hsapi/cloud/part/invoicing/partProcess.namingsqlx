@@ -20,8 +20,7 @@
 			(a.qty * c.order_qty) AS orderQty
 		FROM
 			pj_part_matching_detail a
-		INNER JOIN pj_part_matching b ON a.parent_id = b.id
-		INNER JOIN pj_process_product c ON c.part_id = b.part_id
+		INNER JOIN pj_process_product c ON c.parent_id = a.parent_id
 		WHERE 1=1
 		<dynamic>
 			<isNotEmpty prepend="and" property="partId">  
@@ -119,7 +118,7 @@
         </dynamic>  	
     </select>
     
-    <select id="queryProcessDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    <select id="queryProcessDetail" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.pts.PjProcessDetail">
     	SELECT
 			a.id as id,
 			a.main_id as mainId,
@@ -206,6 +205,7 @@
 			a.main_id AS mainId,
 			a.store_id AS storeId,
 			a.part_id AS partId,
+			a.parent_id as parentId,
 			a.part_code AS partCode,
 			a.part_name AS partName,
 			a.full_name AS fullName,
@@ -244,6 +244,75 @@
             
         </dynamic>  	
     </select>
+    
+    <!-- 更新组装明细金额 -->
+    <update id="updateDetailAmt" parameterClass="java.util.HashMap">
+    	UPDATE pj_process_detail a
+			INNER JOIN pj_process_main b ON a.code_id = b.id
+			INNER JOIN pj_out_detail_chk c ON a.id = c.order_detail_id
+			AND b.id = c.order_main_id
+			INNER JOIN pj_process_detail d 
+			on  b.code_id = d.code_id
+		SET 
+			 a.order_amt = c.sell_amt,
+			 a.order_price = c.sell_price,
+			 a.tax_price = c.tax_price,
+			 a.tax_amt = c.tax_amt,
+			 a.no_tax_price = c.no_tax_price,
+			 a.no_tax_amt = c.no_tax_amt,
+			 d.order_amt = c.sell_amt,
+			 d.order_price = c.sell_price,
+			 d.tax_price = c.tax_price,
+			 d.tax_amt = c.tax_amt,
+			 d.no_tax_price = c.no_tax_price,
+			 d.no_tax_amt = c.no_tax_amt
+		WHERE
+			1 = 1
+		AND c.main_id = #mainId# 
+    </update>
+    <!-- 更新组装成品金额 -->
+    <update id="updateProductAmt" parameterClass="java.util.HashMap">
+    	UPDATE pj_process_product a
+		INNER JOIN pj_process_main b ON a.main_id = b.id
+		INNER JOIN pj_out_detail_chk c ON a.main_id = c.order_main_id
+		INNER JOIN pj_process_product d ON d.main_id = b.code_id
+		INNER JOIN pj_out_main_chk e on e.id =c.main_id
+		SET 
+		 a.order_amt = e.out_amt,
+		 a.order_price =  (e.out_amt/e.out_qty),
+		 a.tax_price =(e.tax_amt/e.out_qty),
+		 a.tax_amt = e.tax_amt,
+		 a.no_tax_price = (e.no_tax_amt/e.out_qty),
+		 a.no_tax_amt = e.no_tax_amt,
+		 d.order_amt = e.out_amt,
+		 d.order_price = (e.out_amt/e.out_qty),
+		 d.tax_price = (e.tax_amt/e.out_qty),
+		 d.tax_amt =  e.tax_amt,
+		 d.no_tax_price =(e.no_tax_amt/e.out_qty),
+		 d.no_tax_amt =  e.no_tax_amt
+		WHERE
+			1 = 1
+		AND c.main_id = #mainId# 
+    </update>
+    <!-- 更新组装主表金额-->
+    <update id="updateMainAmt" parameterClass="java.util.HashMap">
+    	UPDATE pj_process_main a
+		INNER JOIN pj_out_main_chk b ON b.code_id = a.id
+		INNER JOIN pj_process_main c ON a.code_id = c.id
+		SET a.order_amt = b.out_amt,
+		 a.order_price = b.out_amt,
+		 a.tax_amt =b.tax_amt,
+		 a.no_tax_amt =b.no_tax_amt,
+		 c.order_amt = b.out_amt,
+		 c.order_price = b.out_amt,
+		 c.tax_amt =b.tax_amt,
+		 c.no_tax_amt =b.no_tax_amt
+		WHERE
+			1 = 1
+		AND b.id = #mainId#
+    </update>
+    
+    
     
     <update id="updateProcessDetail" parameterClass="java.util.HashMap">
     	UPDATE pj_process_detail a

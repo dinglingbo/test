@@ -29,6 +29,8 @@ function setData(data,TypeIdHash){
 			zongAmt =parseFloat(zongAmt)+parseFloat(data[i].nowAmt||0);
 			netInAmt = parseFloat(netInAmt)+parseFloat(data[i].nowAmt||0);
 		}
+		zongAmt = zongAmt.toFixed(4);
+		netInAmt = netInAmt.toFixed(4);
 	}else{
 		
 		zongAmt = parseFloat(data[0].nowAmt||0);
@@ -355,7 +357,7 @@ function settleOK() {
 			return;
 		}*/
 		deductible = nui.get("deductible").getValue()||0;
-		count = (count+deductible).toFixed(2);
+		count = (count+deductible).toFixed(4);
 		if(count!=zongAmt){
 			showMsg("结算金额和应结金额不一致，请重新确认！","W");
 			return;

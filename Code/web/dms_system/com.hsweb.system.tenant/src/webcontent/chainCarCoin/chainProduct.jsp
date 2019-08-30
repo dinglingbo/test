@@ -124,7 +124,7 @@
                 <tr>
                     <td>
                         <div style="padding: 15px; background: #fbf7f2; border: 1px #e9e2d9 solid; height: auto; overflow: hidden;">
-                            <p class="kaitong"><a href="/Main/Tool/ConsumeRecord" style="width:120px; font-size:14px;" onclick="toSysCoinRecord()">充值消费记录</a></p>
+                            <p class="kaitong"><a href="#" style="width:120px; font-size:14px;" onclick="toSysCoinRecord()">充值消费记录</a></p>
 <!--                             <font class="sfbz" style="line-height: 34px; margin-left: 10px;"><b>注：</b><b style="color:#ff9600; margin:0 5px;">产品总天数=剩余天数+充值天数</b> <em></em></font> -->
                             <p style="margin-left: 50px;font-size: 15px;">到期日期：<b style="color:#00b400; margin:0 5px;" id="endDate"></b>(剩余：<b style="color:#ff9600; margin:0 5px;" id="endDay"></b> 天)</p>
                         </div>

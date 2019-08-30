@@ -341,7 +341,7 @@ function setGridTodayData(data){
 	}*/
 	var todayNum = [data.newCarQty||0,data.recordBillQty||0,data.settleQty||0,data.serviceBillQty||0,data.bookingBillQty||0];
 	var todayType = ["首修车辆","今日进厂","结算车次","在修车辆","预约车辆"];
-	open(todayType,todayNum);
+	openOfIndex(todayType,todayNum);
 }
 function setHomePage(data){
     for(var i=0;i<data.length;i++){
@@ -863,7 +863,7 @@ function open2(todayType,todayNum){
 			            orgChart1.setOption(option);
 }
 
-function open(todayType,todayNum){
+function openOfIndex(todayType,todayNum){
 
 	option = {
 			tooltip : {

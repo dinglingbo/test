@@ -25,6 +25,8 @@ function setData(data){
 		for(var i = 0;i<guestData.length;i++){
 			zongAmt =parseFloat(zongAmt)+parseFloat(data[i].nowAmt||0);
 			netInAmt = parseFloat(netInAmt)+parseFloat(data[i].nowAmt||0);
+			zongAmt = zongAmt.toFixed(4);
+			netInAmt = netInAmt.toFixed(4);
 		}
 	}else{
 		

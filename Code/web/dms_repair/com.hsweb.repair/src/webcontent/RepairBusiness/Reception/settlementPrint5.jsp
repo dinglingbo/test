@@ -592,6 +592,10 @@
 	        	    if(currRepairBillMobileFlag==1){
 	        	       document.getElementById("mobile").innerHTML = document.getElementById("mobile").innerHTML + mobile;
 	        	    } 
+	        	    if(params.type){
+	        	      document.getElementById("outDate").innerHTML = format(date, "yyyy-MM-dd HH:mm");
+	        	      outDate = format(date, "yyyy-MM-dd HH:mm");
+	                }
 	        	}
         	});
         	

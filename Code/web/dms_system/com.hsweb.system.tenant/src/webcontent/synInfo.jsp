@@ -12,7 +12,7 @@
 <title>系统信息</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
             <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%= request.getContextPath() %>/tenant/js/synInfo.js?v=1.0.5" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/tenant/js/synInfo.js?v=1.0.8" type="text/javascript"></script>
     <style type="text/css">
     	.titel{
     		width: 20px;
@@ -69,7 +69,7 @@
 <div class="nui-fit" style="width: 100%;height: 100%;">
 	<div style="width: 100%;">
 	
-	<span style="font-size: 16px;font-weight:bold;">系统信息  <a class = "kaitong" href="#" style="width:120px;background: #4f9ada; font-size:14px;margin-left: 70%;" onclick="toSysCoinRecord()">链车币充值</a><a class = "kaitong" href="#" style="width:120px; font-size:14px;margin-left: 10px;" onclick="toSysCoinRecord()">充值消费记录</a></span>
+	<span style="font-size: 16px;font-weight:bold;">系统信息  <a class = "kaitong" href="#" style="width:120px;background: #4f9ada; font-size:14px;margin-left: 70%;" onclick="toChainCarCoinRecharge()">链车币充值</a><a class = "kaitong" href="#" style="width:120px; font-size:14px;margin-left: 10px;" onclick="toSysCoinRecord()">充值消费记录</a></span>
 
 	<hr  style="color: #fff; width:100%;"/>	
 	</div>
@@ -88,8 +88,12 @@
 			<td class="content"><span id="endDate"></span >  剩余<span id="endDay" style="color: #00b400;margin-left:5px;font-size: 18px;" ></span>&nbsp;天</td>
 		</tr>
 		<tr>
+			<td class="titel"><span>链车币数量</span></td>
+			<td class="content"><span id=""></span >  剩余<span id="remainCoin" style="color: #00b400;margin-left:5px;font-size: 18px;" ></span>&nbsp;个</td>
+		</tr>		
+		<tr>
 			<td class="titel"><span>负责人</span></td>
-			<td class="content"><span id="auditMan"></span></td>
+			<td class="content"><span id="manager"></span></td>
 		</tr>	
 		<tr>
 			<td class="titel"><span>联系电话</span></td>
@@ -101,11 +105,11 @@
 		</tr> -->
 		<tr>
 			<td class="titel"><span>分店数量</span></td>
-			<td class="content"><span id="storesQty"></span></td>
+			<td class="content"><span id="orgQty"></span></td>
 		</tr>	
 		<tr>
 			<td class="titel"><span>版本</span></td>
-			<td class="content"><span id="">1.0.0</span></td>
+			<td class="content"><span id="">连锁版</span></td>
 		</tr>										
 	</table>
 	<p style="font-size: 18px;margin-left: 20px;">模块信息</p>

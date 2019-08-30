@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="processZzBatchOfOut.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="1、出库主表插入数据&#xD;&#xA;2、取出库明细，进行批次分配&#xD;&#xA;根据 is_mark_batch 判断是直接取批次，还是先进先出&#xD;&#xA;is_mark_batch，batch_source_id&#xD;&#xA;3、如果指定了批次，直接将本批次作为成本，不考虑数量够不够（理论上选择的批次数量肯定是够的）&#xD;&#xA;    指定了批次，批次的ID，仓库必须是一致的，如果存在仓库ID与成本ID不一致的情况，提示联系管理员&#xD;&#xA;4、outdetail/isMarkBatch = 1表示是指定批次的出库，其他为先进先出" title="DLB&#x9;17-7-15 下午4:21">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="1、出库主表插入数据&#xD;&#xA;2、取出库明细，进行批次分配&#xD;&#xA;根据 is_mark_batch 判断是直接取批次，还是先进先出&#xD;&#xA;is_mark_batch，batch_source_id&#xD;&#xA;3、如果指定了批次，直接将本批次作为成本，不考虑数量够不够（理论上选择的批次数量肯定是够的）&#xD;&#xA;    指定了批次，批次的ID，仓库必须是一致的，如果存在仓库ID与成本ID不一致的情况，提示联系管理员&#xD;&#xA;4.配件组装出库 050212&#xD;&#xA;入库 050112" title="DLB&#x9;17-7-15 下午4:21">
     <location x="64" y="-130"/>
     <size height="151" width="590"/>
   </nodes>
@@ -86,6 +86,10 @@
       <process:to type="query">outmain/storeId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">mainenter/id</process:from>
+      <process:to type="query">outmain/codeId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">mainenter/serviceId</process:from>
       <process:to type="query">outmain/code</process:to>
     </process:copy>
@@ -164,6 +168,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">mainenter/operator</process:from>
       <process:to type="query">outmain/operator</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">outmain/guestId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">mainenter/operatorId</process:from>
@@ -534,7 +542,7 @@
       <process:to type="query">outdetail/orderDetailId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/mainId</process:from>
+      <process:from type="query" pattern="reference">orderdetail/codeId</process:from>
       <process:to type="query">outdetail/orderMainId</process:to>
     </process:copy>
     <process:copy>
@@ -734,7 +742,7 @@
       <process:to type="query">outdetail/orderDetailId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/mainId</process:from>
+      <process:from type="query" pattern="reference">orderdetail/codeId</process:from>
       <process:to type="query">outdetail/orderMainId</process:to>
     </process:copy>
     <process:copy>
@@ -1500,6 +1508,10 @@
       <process:from type="expression" pattern="reference">new Date()</process:from>
       <process:to type="query">operateDate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">050212</process:from>
+      <process:to type="query">billTypeId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign22label" name="label" nodeType="label">
     <location x="119" y="206"/>
@@ -1594,6 +1606,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="partCode" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjEnterDetailChk" name="enterChks"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjEnterDetailChk" name="enterChk"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="billTypeId" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjProcessMain" name="mainenter"/>

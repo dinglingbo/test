@@ -596,9 +596,15 @@ var tableToExcel = (function() {
 			table: table.innerHTML
 		};
 		//window.location.href = uri + base64(format(template, ctx));
-
-		document.getElementById(tagName).href = uri + base64(format(template, ctx));
-		document.getElementById(tagName).download = name;
+		document.getElementById(tagName).hreflang = 'zh'; 
+		document.getElementById(tagName).charset = 'utf8'; 
+		
+        let blob = new Blob([format(template, ctx)]);
+        document.getElementById(tagName).href = URL.createObjectURL(blob);//解决由于数据量太大导致chrome导出出现网络错误（由于url长度限制）
+		//document.getElementById(tagName).href = uri + base64(format(template, ctx));
+		document.getElementById(tagName).download = name+'.xls';
+		document.getElementById(tagName).target = '_blank'; 
+		document.getElementById(tagName).tableBorder = 1
 		document.getElementById(tagName).click();
 	}
 })()

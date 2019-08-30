@@ -225,6 +225,13 @@
 		      <isNotEmpty prepend="and" property="balaAmt"> 
                 (a.bala_amt &gt; #balaAmt#)
               </isNotEmpty>
+              
+              <isNotEmpty prepend="and" property="rb"> 
+                (a.total_amt != a.bala_amt)
+              </isNotEmpty>
+              
+              <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
+              
             </dynamic>
 	</select>
 	

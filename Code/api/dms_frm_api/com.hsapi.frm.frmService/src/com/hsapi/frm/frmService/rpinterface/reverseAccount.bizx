@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="reverseAccount.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="应收账款结算：&#xD;&#xA;更新储值卡信息（com_join_member 更新   rps_stored_consume_record 删除&#xD;&#xA;                            rps_stored_invocing 新增   rps_stored_record 更新）&#xD;&#xA;更新应收应付状态&#xD;&#xA;更新收款记录（fis_rp_bill 更新 fis_rp_account 删除 fis_rp_account_d_type 删除 fis_rp_account_detail 删除  fis_settle_account_bala 更新）&#xD;&#xA;&#xD;&#xA;如果是批量收款的单，则需要将&#xD;&#xA;取结算账户金额大于等于本工单的，如果不存在，则取分别取对应的两个账户&#xD;&#xA;查询应收应付，如果未审核，则不做处理&#xD;&#xA;未结算只需要更新应收的审核状态&#xD;&#xA;已结算的单，需要取 fis_rp_bill 的 fis_rp_account_detail 收款记录，  fis_rp_account &#xD;&#xA;如果涉及到储值卡支付的情况，优先扣减储值卡的金额，再扣减其他收款方式的金额，当扣减的金额和fis_rp_account一致，则删除收款单数据&#xD;&#xA;（可以做储值卡的退款，将金额退给客户）" title="dlb&#x9;19-8-29 下午3:51">
+    <location x="-24" y="-330"/>
+    <size height="316" width="1006"/>
+  </nodes>
+  <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
+    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <location x="44" y="279"/>
+    <size height="28" width="28"/>
+    <nodeLabel>start0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
+    <targetConnections>link6</targetConnections>
+    <location x="1005" y="279"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end0label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
+    <location x="43" y="315"/>
+    <figSize height="20" width="31"/>
+    <node>start0</node>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
+    <location x="1004" y="315"/>
+    <figSize height="20" width="31"/>
+    <node>end0</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="取应收应付" displayName="expandEntityByCriteriaEntity" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>assign2</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link3" name="查不到数据" displayName="连接线" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>assign1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">len</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link1</targetConnections>
+    <location x="209" y="279"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo0label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.expandEntityByCriteriaEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">frm</process:inputVariable>
+      <process:inputVariable id="1" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cond</process:inputVariable>
+      <process:inputVariable id="2" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">fisRpBill</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java">len</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
+    <location x="182" y="315"/>
+    <figSize height="20" width="76"/>
+    <node>invokePojo0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link0</targetConnections>
+    <location x="137" y="279"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign0label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">com.hsapi.frm.data.fis.FisRpBill</process:from>
+      <process:to type="query">cond/_entity</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billMainId</process:from>
+      <process:to type="query">cond/_expr[1]/billMainId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[1]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billServiceId</process:from>
+      <process:to type="query">cond/_expr[2]/billServiceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[2]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billTypeId</process:from>
+      <process:to type="query">cond/_expr[3]/billTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[3]/_op</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
+    <location x="136" y="315"/>
+    <figSize height="20" width="31"/>
+    <node>assign0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
+    <targetConnections>link3</targetConnections>
+    <location x="206" y="407"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">单据信息有误</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
+    <location x="200" y="443"/>
+    <figSize height="20" width="40"/>
+    <node>assign1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign2" name="赋值2" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>assign4</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link5" name="未审" displayName="连接线" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>assign3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">fisRpBill/auditSign</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="285" y="279"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign2label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <location x="279" y="315"/>
+    <figSize height="20" width="40"/>
+    <node>assign2</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
+    <targetConnections>link5</targetConnections>
+    <location x="285" y="407"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign3label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">单据未审核或已经反结算，请刷新数据</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
+    <location x="279" y="443"/>
+    <figSize height="20" width="40"/>
+    <node>assign3</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign4" name="赋值4" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link7" name="未结算" displayName="连接线" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>assign5</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">fisRpBill/settleStatus</process:leftOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link4</targetConnections>
+    <location x="360" y="279"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign4label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
+    <location x="354" y="315"/>
+    <figSize height="20" width="40"/>
+    <node>assign4</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>transactionbegin0</targetNode>
+    </sourceConnections>
+    <targetConnections>link7</targetConnections>
+    <location x="360" y="98"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign5label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">fisRpBill/auditSign</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
+    <location x="354" y="134"/>
+    <figSize height="20" width="40"/>
+    <node>assign5</node>
+  </nodes>
+  <nodes xsi:type="process:tTransactionBegin" id="transactionbegin0" name="事务开始" displayName="事务开始" type="transactionbegin">
+    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>transactionbegin0</sourceNode>
+      <targetNode>invokePojo1</targetNode>
+    </sourceConnections>
+    <targetConnections>link8</targetConnections>
+    <location x="464" y="98"/>
+    <size height="28" width="28"/>
+    <nodeLabel>transactionbegin0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="transactionbegin0label" name="label" nodeType="label">
+    <location x="448" y="134"/>
+    <figSize height="20" width="61"/>
+    <node>transactionbegin0</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="updateEntity" displayName="updateEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo1</sourceNode>
+      <targetNode>transactioncommit0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" lineType="note" type="exception">
+      <sourceNode>invokePojo1</sourceNode>
+      <targetNode>assign7</targetNode>
+    </sourceConnections>
+    <targetConnections>link9</targetConnections>
+    <location x="585" y="98"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo1label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.updateEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">frm</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">fisRpBill</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
+    <location x="549" y="134"/>
+    <figSize height="20" width="94"/>
+    <node>invokePojo1</node>
+  </nodes>
+  <nodes xsi:type="process:tTransactionCommit" id="transactioncommit0" name="事务提交" displayName="事务提交" type="transactioncommit">
+    <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>transactioncommit0</sourceNode>
+      <targetNode>assign6</targetNode>
+    </sourceConnections>
+    <targetConnections>link10</targetConnections>
+    <location x="709" y="98"/>
+    <size height="28" width="28"/>
+    <nodeLabel>transactioncommit0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="transactioncommit0label" name="label" nodeType="label">
+    <location x="693" y="134"/>
+    <figSize height="20" width="61"/>
+    <node>transactioncommit0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" type="assign">
+    <targetConnections>link11</targetConnections>
+    <targetConnections>link14</targetConnections>
+    <location x="850" y="98"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign6label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">S</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
+    <location x="844" y="134"/>
+    <figSize height="20" width="40"/>
+    <node>assign6</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值7" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign7</sourceNode>
+      <targetNode>transactionrollback0</targetNode>
+    </sourceConnections>
+    <targetConnections>link12</targetConnections>
+    <location x="582" y="7"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign7label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">应收状态更新失败</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
+    <location x="576" y="43"/>
+    <figSize height="20" width="40"/>
+    <node>assign7</node>
+  </nodes>
+  <nodes xsi:type="process:tTransactionRollback" id="transactionrollback0" name="事务回滚" displayName="事务回滚" type="transactionrollback">
+    <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>transactionrollback0</sourceNode>
+      <targetNode>assign6</targetNode>
+    </sourceConnections>
+    <targetConnections>link13</targetConnections>
+    <location x="709" y="7"/>
+    <size height="28" width="28"/>
+    <nodeLabel>transactionrollback0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="transactionrollback0label" name="label" nodeType="label">
+    <location x="693" y="43"/>
+    <figSize height="20" width="61"/>
+    <node>transactionrollback0</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" id="subprocess0" name="delAccountDType" displayName="delAccountDType" type="subprocess">
+    <location x="765" y="240"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess0label</nodeLabel>
+    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.frm.frmService.rpsettle.delAccountDType</process:partner>
+      <process:inputVariables>
+        <process:inputVariable name="accountTypeList" type="query" value="com.hsapi.frm.data.fis.FisRpAccountDType[]" valueType="DataObject" pattern="reference"/>
+        <process:inputVariable name="mainId" type="query" value="Int" valueType="Primitive" pattern="reference"/>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable name="fee" type="query" value="Float" valueType="Primitive"/>
+        <process:outputVariable name="charOffAmt" type="query" value="Float" valueType="Primitive"/>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
+    <location x="712" y="275"/>
+    <figSize height="20" width="132"/>
+    <node>subprocess0</node>
+  </nodes>
+  <topRuler/>
+  <leftRuler/>
+  <process:info author="dlb" createTime="2019-08-29 15:51:44" date="2019-08-29Z" description="" name="reverseAccount" version="7.0.0.0"/>
+  <process:variables>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="len" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.frm.data.fis.FisRpBill" name="fisRpBill"/>
+  </process:variables>
+  <process:inputs varArgs="false">
+    <process:input description="" isArray="false" name="billMainId" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="billServiceId" primitiveType="String"/>
+    <process:input description="" isArray="false" name="billTypeId" primitiveType="String"/>
+  </process:inputs>
+  <process:outputs>
+    <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
+    <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
+  </process:outputs>
+  <process:extAttribute1>public</process:extAttribute1>
+  <process:transactionType>true</process:transactionType>
+</process:tBusinessLogic>

@@ -22,6 +22,7 @@
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
       <process:return id="2" language="commonj.sdo.DataObject[]" name="rtnList" type="query" valueType="Java">rtnList</process:return>
+      <process:return id="3" language="java.util.HashMap[]" name="noImportList" type="query" valueType="Java">noImportList</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -74,6 +75,7 @@
     <location x="216" y="176"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="list" iterableElement="tmp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -88,7 +90,7 @@
     </sourceConnections>
     <targetConnections>link14</targetConnections>
     <targetConnections>link20</targetConnections>
-    <targetConnections>link31</targetConnections>
+    <targetConnections>link23</targetConnections>
     <location x="786" y="176"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend0label</nodeLabel>
@@ -114,6 +116,8 @@
     <chidren>assign8</chidren>
     <chidren>subprocess0</chidren>
     <chidren>assign9</chidren>
+    <chidren>invokePojo2</chidren>
+    <chidren>invokePojo3</chidren>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
@@ -150,7 +154,7 @@
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tTransactionRollback" id="transactionrollback0" name="事务回滚" displayName="事务回滚" type="transactionrollback">
-    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link24" name="link24" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>transactionrollback0</sourceNode>
       <targetNode>end1</targetNode>
     </sourceConnections>
@@ -182,23 +186,6 @@
     <location x="114" y="286"/>
     <figSize height="20" width="40"/>
     <node>assign1</node>
-  </nodes>
-  <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
-    <targetConnections>link7</targetConnections>
-    <targetConnections>link32</targetConnections>
-    <location x="121" y="422"/>
-    <size height="28" width="28"/>
-    <nodeLabel>end1label</nodeLabel>
-    <process:returns>
-      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
-      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-      <process:return id="2" language="commonj.sdo.DataObject[]" name="pjEnterMainList" type="query" valueType="Java">pjEnterMainList</process:return>
-    </process:returns>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="115" y="458"/>
-    <figSize height="20" width="40"/>
-    <node>end1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
@@ -355,7 +342,8 @@
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
-      <targetNode>assign5</targetNode>
+      <targetNode>invokePojo2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link30" name="link30" displayName="连接线" type="transition">
       <sourceNode>assign4</sourceNode>
@@ -375,6 +363,14 @@
       <process:from type="query" pattern="reference">tmp/partCode</process:from>
       <process:to type="query">partCode</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">partCode</process:from>
+      <process:to type="query">noHash/partCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/partBrandId</process:from>
+      <process:to type="query">noHash/partBrandId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
     <location x="321" y="148"/>
@@ -386,7 +382,7 @@
       <sourceNode>assign5</sourceNode>
       <targetNode>loopend0</targetNode>
     </sourceConnections>
-    <targetConnections>link13</targetConnections>
+    <targetConnections>link22</targetConnections>
     <location x="675" y="112"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
@@ -539,7 +535,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign12" name="赋值12" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link31" name="link31" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign12</sourceNode>
-      <targetNode>loopend0</targetNode>
+      <targetNode>invokePojo3</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link30</targetConnections>
@@ -572,7 +568,7 @@
     <node>transactionrollback1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值7" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link32" name="link32" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link29" name="link29" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign7</sourceNode>
       <targetNode>end1</targetNode>
     </sourceConnections>
@@ -676,6 +672,76 @@
     <figSize height="20" width="40"/>
     <node>assign9</node>
   </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="add2Array1" displayName="addNArray" collapsed="false" grouped="true" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link22" name="link22" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo2</sourceNode>
+      <targetNode>assign5</targetNode>
+    </sourceConnections>
+    <targetConnections>link13</targetConnections>
+    <location x="596" y="112"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo2label</nodeLabel>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.ArrayUtils.addNArray</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="sourceDO" type="query" value="java.util.HashMap" valueType="Java" pattern="value">noHash</process:inputVariable>
+      <process:inputVariable id="1" name="dos" type="query" value="java.util.HashMap[]" valueType="Java" pattern="reference">noImportList</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.util.HashMap[]" valueType="Java">noImportList</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
+    <location x="564" y="148"/>
+    <figSize height="20" width="86"/>
+    <node>invokePojo2</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="add2Array2" displayName="addNArray" collapsed="false" grouped="true" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo3</sourceNode>
+      <targetNode>loopend0</targetNode>
+    </sourceConnections>
+    <targetConnections>link31</targetConnections>
+    <location x="535" y="135"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo3label</nodeLabel>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.ArrayUtils.addNArray</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="sourceDO" type="query" value="java.util.HashMap" valueType="Java" pattern="value">noHash</process:inputVariable>
+      <process:inputVariable id="1" name="dos" type="query" value="java.util.HashMap[]" valueType="Java" pattern="reference">noImportList</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.util.HashMap[]" valueType="Java">noImportList</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
+    <location x="503" y="171"/>
+    <figSize height="20" width="86"/>
+    <node>invokePojo3</node>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
+    <targetConnections>link24</targetConnections>
+    <targetConnections>link29</targetConnections>
+    <location x="118" y="422"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end1label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="commonj.sdo.DataObject[]" name="rtnList" type="query" valueType="Java">rtnList</process:return>
+      <process:return id="3" language="java.util.HashMap[]" name="noImportList" type="query" valueType="Java">noImportList</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
+    <location x="112" y="458"/>
+    <figSize height="20" width="40"/>
+    <node>end1</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-05-06 17:29:35" date="2018-05-06Z" description="" name="getImportPartInfo" version="7.0.0.0"/>
@@ -691,6 +757,7 @@
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="tmp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPartStoreStock" name="storeStockRecord"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="remark" primitiveType="String"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="noHash"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="commonj.sdo.DataObject" description="partCode,orderQty,orderPrice" isArray="true" name="list"/>
@@ -701,6 +768,7 @@
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
     <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="rtnList"/>
+    <process:output anyType="java.util.HashMap" description="" isArray="true" name="noImportList"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

@@ -88,7 +88,7 @@ body .mini-grid-row-selected{
          handlerSize="6"
          style="width:100%;height:100%;">
         <div size="220" showCollapseButton="true">
-          <div title="配件组装列表" class="nui-panel"
+          <div title="配件拆分列表" class="nui-panel"
                  showFooter="true"
                  style="width:100%;height:100%;border: 0;">
                 <div id="leftGrid" class="nui-datagrid" style="width:100%;height:100%;"
@@ -237,13 +237,14 @@ body .mini-grid-row-selected{
 		                              <div type="indexcolumn">序号</div>
 		                              <div header="配件信息" headerAlign="center">
 		                                  <div property="columns">
-		                                   
 		                                      <div field="partCode" name="partCode" width="100" summaryType="count" headerAlign="center" header="配件编码">
 		                                          <input  class="nui-textbox" />
 		                                      </div>
 		                                      <div field="partName" visible="false" headerAlign="center" header="配件名称"></div>
 		                                      <div field="fullName"  width="200" headerAlign="center" header="配件全称"></div>
 		                                      <div field="partBrandId" visible="false"width="60" headerAlign="center" header="品牌"></div>
+		                                      <div field="id" visible="false"width="60" headerAlign="center" header="id"></div>
+		                                      <div field="parentId" visible="false"width="60" headerAlign="center" header="parentId"></div>
 		                                  </div>
 		                              </div>
 		                              

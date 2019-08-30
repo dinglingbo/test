@@ -3050,3 +3050,28 @@ function getStratePriceList(params){
 		}
 	});
 }
+
+
+function onCost(){
+	var data  =basicInfoForm.getData();
+	var serviceId =data.serviceId;
+	var id = data.id;
+	var p={};
+	p.serviceId =serviceId;
+	p.id =id;
+	nui.open({
+		// targetWindow: window,,
+		url : webPath+contextPath+"/com.hsweb.cloud.part.common.partSelectView.flow?token="+token,
+		title : "其他应付单",
+		width : 930,
+		height : 560,
+		allowDrag : true,
+		allowResize : true,
+		onload : function() {
+			var iframe = this.getIFrameEl();	
+			iframe.contentWindow.setData(p);
+		},
+		ondestroy : function(action) {
+		}
+	});
+}

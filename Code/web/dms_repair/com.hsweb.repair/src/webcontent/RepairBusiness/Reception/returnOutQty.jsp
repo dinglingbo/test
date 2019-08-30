@@ -9,7 +9,7 @@
 -->
 <head>
     <title>退货归库查询</title>
-    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnOutQty.js?v=1.0.0"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnOutQty.js?v=1.0.1"></script>
     <style type="text/css">
     .title {
       width: 60px;
@@ -63,9 +63,9 @@
 	                emptyText="仓库"
 	                url=""
 	                dataField="storehouse"
-	                allowInput="true"
-	                showNullItem="false"
-	                nullItemText="仓库"
+			        allowInput="true"
+			        showNullItem="true"
+			        nullItemText="所有仓库"
 	                onvaluechanged="onSearch"
 	                />
                 <input id="partBrandId"

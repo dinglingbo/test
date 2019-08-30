@@ -10,7 +10,7 @@
 -->
 <head>
     <title>维修出库明细</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.0.7"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.0.8"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -54,7 +54,7 @@
 
      <input id="storeId"
         name="storeId"
-        class="nui-combobox"
+        class="nui-combobox width1"
         width="80px"
         textField="name"
         valueField="id"
@@ -62,9 +62,9 @@
         emptyText="仓库"
         url=""
         dataField="storehouse"
-        allowInput="false"
-        showNullItem="false"
-        nullItemText="仓库" onvaluechanged="onSearch"/>
+        allowInput="true"
+        showNullItem="true"
+        nullItemText="所有仓库" onvaluechanged="onSearch"/>
     <input id="partBrandId"
         name="partBrandId"
         class="nui-combobox"
@@ -230,4 +230,5 @@
 <div id="exportDiv" style="display:none">  
 
 </div>  
+
 </html>

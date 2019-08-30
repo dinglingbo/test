@@ -11,7 +11,7 @@
     <!--账户结算明细-->
 	<select id="queryAccountDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	
-            SELECT a.sett_account_code as settAccountCode,b.orgid as orgid, a.sett_account_name as settAccountName ,a.rp_dc as rpDc, a.char_off_amt as charOffAmt,
+            SELECT a.sett_account_code as settAccountCode,b.orgid as orgid, a.sett_account_name as settAccountName ,a.rp_dc as rpDc, d.char_off_amt as charOffAmt,
 				   b.guest_id as guestId, b.auditor as auditor, b.audit_date as auditDate,
 				   c.full_name as fullName, c.short_name as shortName,e.car_no as carNo ,d.bill_type_id as billTypeId
 			from fis_rp_account_d_type a

@@ -87,7 +87,10 @@ $(document).ready(function(v)
 
 	}
     quickSearch(4);
-
+	//仓库控制权限
+    if(currRepairStoreControlFlag==1){  	
+    	nui.get("storehouse").setShowNullItem(false);
+    }
 
 });
 function getSearchParams(){

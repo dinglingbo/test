@@ -32,7 +32,7 @@ body .mini-grid-row-selected{
 }
 </style> 
 <head>
-<title>配件组装</title>
+<title>配件拆分</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%=webPath + contextPath%>/purchasePart/js/processPart/partSplit.js?v=1.0.0"></script>
 </head>
@@ -187,7 +187,7 @@ body .mini-grid-row-selected{
 		                                      </td>
 		                                    
 		                                      <td class="title">
-		                                          <label>组装单号：</label>
+		                                          <label>拆分单号：</label>
 		                                      </td>
 		                                      <td style="width:180px">
 		                                          <input class="nui-textbox" width="100%" id="serviceId" name="serviceId" enabled="false" placeholder=""/>
@@ -245,6 +245,7 @@ body .mini-grid-row-selected{
 		                                      <div field="partBrandId" visible="false"width="60" headerAlign="center" header="品牌"></div>
 		                                      <div field="id" visible="false"width="60" headerAlign="center" header="id"></div>
 		                                      <div field="parentId" visible="false"width="60" headerAlign="center" header="parentId"></div>
+		                                       <div field="mainId" visible="false"width="60" headerAlign="center" header="mainId"></div>
 		                                  </div>
 		                              </div>
 		                              

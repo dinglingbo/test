@@ -75,6 +75,7 @@ pageEncoding="UTF-8" session="false" %>
 <!--                 <div field="settAccountId" name="code" width="60" summaryType="count"  headeralign="center" visible="false" allowsort="true">账户编码</div>
                 <div field="settAccountId" name="name" width="100"  headeralign="center" visible="false" allowsort="true">账户名称</div> -->
                 <div field="billServiceId" name="billServiceId" width="170"  headeralign="center" summaryType="count" allowsort="true">业务单号</div>
+                <div field="rpAccountId" name="rpAccountId" width="170"  headeralign="center" summaryType="count" allowsort="true">财务单号</div>
                 <div field="billTypeId" name="billTypeId" width="100"  headeralign="center" allowsort="true">收支类型</div>
                 <div field="isPrimaryBusiness" name="name" width="100"  headeralign="center" allowsort="true">是否主营业务</div>
                 <div field="shortName" name="shortName" width="100"  headeralign="center" allowsort="true">客户简称</div>

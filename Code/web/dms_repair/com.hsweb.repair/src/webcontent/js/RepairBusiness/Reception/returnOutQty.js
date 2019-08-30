@@ -124,7 +124,10 @@ $(document).ready(function(v)
 
 	}
     quickSearch(4);
-
+	//仓库控制权限
+    if(currRepairStoreControlFlag==1){  	
+    	nui.get("storeId").setShowNullItem(false);
+    }
 	getAllPartType(function(data){
 		partTypeList=data.partTypes;
 		nui.get('partTypeId').setData(partTypeList);

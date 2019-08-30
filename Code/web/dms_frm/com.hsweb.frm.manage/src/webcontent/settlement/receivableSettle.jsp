@@ -9,7 +9,7 @@
 
 <head>
 	<title>应收账款管理</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.0.3"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.0.4"></script>
 	    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 	<style type="text/css">
@@ -161,6 +161,7 @@
 						<ul id="popupMenuMore" class="nui-menu" style="display:none;">
 		                    <li iconCls="" onclick="onExport()" id="">导出</li>
 		                    <li iconCls="" onclick="print()" id="type11">打印欠款单</li>
+		                    <li iconCls="" onclick="reverseSettle()" id="type12">反结算</li>
 		                </ul>
 					</td>
 				</tr>

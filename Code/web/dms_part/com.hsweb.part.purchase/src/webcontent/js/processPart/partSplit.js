@@ -420,39 +420,7 @@ function save() {
         }
     });
 }
-function removeChanges(added, modified, removed, all) {
-    for(var i=0; i<added.length; i++) {
-    
-       var val = added[i];
-       for(var j=0; j<all.length; j++) {
-        
-           if(all[j] == val)
-           all.splice(j, 1);
-        }
-    }
-    
-    for(var i=0; i<modified.length; i++) {
-    
-       var val = modified[i];
-       for(var j=0; j<all.length; j++) {
-        
-           if(all[j] == val)
-           all.splice(j, 1);
-        }
-    }
-    
-    for(var i=0; i<removed.length; i++) {
-    
-       var val = removed[i];
-       for(var j=0; j<all.length; j++) {
-        
-           if(all[j] == val)
-           all.splice(j, 1);
-        }
-    }
 
-    return all;
-}
 function getMainData()
 {
     var data = basicInfoForm.getData();
@@ -598,23 +566,9 @@ function audit()
         parent.showMsg(msg,"W");
         return;
     }
-    //审核时，判断是否存在缺货信息
-    /*var msg = checkRightData();
-    if(msg){
-        parent.showMsg(msg,"W");
-        return;
-    }*/
-
     data = getMainData();
-
-    var sellOrderDetailAdd = rightGrid.getChanges("added");
-    var sellOrderDetailUpdate = rightGrid.getChanges("modified");
-    var sellOrderDetailDelete = rightGrid.getChanges("removed");
-    var sellOrderDetailList = rightGrid.getData();
-    if(sellOrderDetailList.length <= 0) {
-        parent.showMsg("销售明细为空，不能提交!","W");
-        return;
-    }
+    var processProductData = rightGrid.getData();
+    var processProduct=processProductData[0];
     
     getStoreLimit();
 	var rightRow =rightGrid.getData();
@@ -627,12 +581,7 @@ function audit()
 		}
 	}
 
-	
-	
-    sellOrderDetailList = removeChanges(sellOrderDetailAdd, sellOrderDetailUpdate, sellOrderDetailDelete, sellOrderDetailList);
-
-   
-    nui.mask({
+	nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
         html: '处理中...'
@@ -642,39 +591,22 @@ function audit()
         url : auditUrl,
         type : "post",
         data : JSON.stringify({
-            sellOrderMain : data,
-            sellOrderDetailAdd : sellOrderDetailAdd,
-            sellOrderDetailUpdate : sellOrderDetailUpdate,
-            sellOrderDetailDelete : sellOrderDetailDelete,
-            sellOrderDetailList : sellOrderDetailList,
-            operateFlag:1,
+        	processMain : data,
+            processProduct : processProduct,
             token : token
         }),
         success : function(data) {
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                parent.showMsg("退货成功!","S");
-                //onLeftGridRowDblClick({});
-                var pjSellOrderMainList = data.pjSellOrderMainList;
-                if(pjSellOrderMainList && pjSellOrderMainList.length>0) {
-                    var leftRow = pjSellOrderMainList[0];
-                    var row = leftGrid.getSelected();
-                    leftGrid.updateRow(row,leftRow);
-
-                    //保存成功后重新加载数据
-                    loadMainAndDetailInfo(leftRow);
-                    nui.confirm("是否打印？", "友情提示", function(action) {
-    					if(action== 'ok'){
-    						onPrint();
-    					}else{
-    						rightGrid.setData([]);
-    						add();
-    					}
-    				});
-                }
+                parent.showMsg("审核成功!","S");
+                var newRow ={auditSign:1}
+                var row = leftGrid.getSelected();
+                leftGrid.updateRow(row,newRow);
+                var leftRow = leftGrid.getSelected();
+                loadMainAndDetailInfo(leftRow);                
             } else {
-                parent.showMsg(data.errMsg || "退货失败!","W");
+                parent.showMsg(data.errMsg || "审核失败!","W");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -1208,7 +1140,7 @@ function addDetail(rows)
 }
 
 
-var partUrl=baseUrl +"com.hsapi.cloud.part.baseDataCrud.crud.queryPartListByOrgid.biz.ext";
+var partUrl=baseUrl +"com.hsapi.part.baseDataCrud.crud.queryPartListByOrgid.biz.ext";
 function getPart(partIdList){
 //	$.ajaxSettings.async = false;
 //	$.post(partUrl+"?params/orgid="+currOrgid+"&params/noPage="+1+"&token="+token,{},function(text){

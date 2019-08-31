@@ -322,11 +322,11 @@
     <size height="28" width="28"/>
     <nodeLabel>assign21label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">010103</process:from>
+      <process:from type="query" pattern="reference">value</process:from>
       <process:to type="query">billTypeId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">020502</process:from>
+      <process:from type="query" pattern="reference">value</process:from>
       <process:to type="query">settleTypeId</process:to>
     </process:copy>
     <process:copy>
@@ -653,230 +653,31 @@
       <process:to type="query">outdetail/mainId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/storeId</process:from>
+      <process:from type="query" pattern="reference">processMain/storeId</process:from>
       <process:to type="query">outdetail/storeId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/partId</process:from>
+      <process:from type="query" pattern="reference">processProduct/partId</process:from>
       <process:to type="query">outdetail/partId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/partCode</process:from>
+      <process:from type="query" pattern="reference">processProduct/partCode</process:from>
       <process:to type="query">outdetail/partCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/partName</process:from>
+      <process:from type="query" pattern="reference">processProduct/partName</process:from>
       <process:to type="query">outdetail/partName</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/fullName</process:from>
+      <process:from type="query" pattern="reference">processProduct/fullName</process:from>
       <process:to type="query">outdetail/fullName</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/outUnitId</process:from>
+      <process:from type="query" pattern="reference">processProduct/systemUnitId</process:from>
       <process:to type="query">outdetail/outUnitId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/systemUnitId</process:from>
-      <process:to type="query">outdetail/systemUnitId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">outaleQty</process:from>
-      <process:to type="query">outdetail/sellQty</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">outaleQty</process:from>
-      <process:to type="query">outdetail/rtnableQty</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">outableDetail/taxSign</process:from>
-      <process:to type="query">outdetail/taxSign</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">outableDetail/taxRate</process:from>
-      <process:to type="query">outdetail/taxRate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">outableDetail/taxPrice</process:from>
-      <process:to type="query">taxPrice</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">outableDetail/noTaxPrice</process:from>
-      <process:to type="query">noTaxPrice</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">outableDetail/enterPrice</process:from>
-      <process:to type="query">enterPrice</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">taxPrice</process:from>
-      <process:to type="query">outdetail/taxPrice</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">taxPrice*outaleQty</process:from>
-      <process:to type="query">outdetail/taxAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">noTaxPrice</process:from>
-      <process:to type="query">outdetail/noTaxPrice</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">noTaxPrice*outaleQty</process:from>
-      <process:to type="query">outdetail/noTaxAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">taxPrice*outaleQty-noTaxPrice*outaleQty</process:from>
-      <process:to type="query">outdetail/taxDiff</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">enterPrice</process:from>
-      <process:to type="query">outdetail/enterPrice</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">enterPrice*outaleQty</process:from>
-      <process:to type="query">outdetail/enterAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">enterPrice</process:from>
-      <process:to type="query">outdetail/sellPrice</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">outaleQty*enterPrice</process:from>
-      <process:to type="query">outdetail/sellAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">outdetail/outToInQty</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">outableDetail/enterDate</process:from>
-      <process:to type="query">outdetail/enterDate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/id</process:from>
-      <process:to type="query">outdetail/orderDetailId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/mainId</process:from>
-      <process:to type="query">outdetail/orderMainId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">outableDetail/guestId</process:from>
-      <process:to type="query">outdetail/guestId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">outableDetail/guestName</process:from>
-      <process:to type="query">outdetail/guestName</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/remark</process:from>
-      <process:to type="query">outdetail/remark</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">outableDetail/rootId</process:from>
-      <process:to type="query">rootId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">outableDetail/id</process:from>
-      <process:to type="query">sourceId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">sourceId</process:from>
-      <process:to type="query">outdetail/sourceId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">rootId>0?rootId:sourceId</process:from>
-      <process:to type="query">outdetail/rootId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">outaleQty</process:from>
-      <process:to type="query">outdetail/occupyQty</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">outdetail/stockOutQty</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">outableDetail/originId</process:from>
-      <process:to type="query">outdetail/originId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">outableDetail/originGuestId</process:from>
-      <process:to type="query">outdetail/originGuestId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">outableDetail/storeShelf</process:from>
-      <process:to type="query">outdetail/storeShelf</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">mNoTaxAmt+(noTaxPrice*outaleQty)</process:from>
-      <process:to type="query">mNoTaxAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">mTaxAmt+(taxPrice*outaleQty)</process:from>
-      <process:to type="query">mTaxAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">mEnterAmt+(enterPrice*outaleQty)</process:from>
-      <process:to type="query">mEnterAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">mOutAmt+(enterPrice*outaleQty)</process:from>
-      <process:to type="query">mOutAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">mOutQty+outaleQty</process:from>
-      <process:to type="query">mOutQty</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
-    <location x="611" y="254"/>
-    <figSize height="17" width="80"/>
-    <node>assign9</node>
-  </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign8" name="出库明细赋值" displayName="赋值" grouped="true" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link51" name="link51" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign8</sourceNode>
-      <targetNode>invokePojo2</targetNode>
-    </sourceConnections>
-    <targetConnections>link20</targetConnections>
-    <location x="690" y="124"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign8label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">fId</process:from>
-      <process:to type="query">outdetail/id</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">outmain/id</process:from>
-      <process:to type="query">outdetail/mainId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/storeId</process:from>
-      <process:to type="query">outdetail/storeId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/partId</process:from>
-      <process:to type="query">outdetail/partId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/partCode</process:from>
-      <process:to type="query">outdetail/partCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/partName</process:from>
-      <process:to type="query">outdetail/partName</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/fullName</process:from>
-      <process:to type="query">outdetail/fullName</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/outUnitId</process:from>
-      <process:to type="query">outdetail/outUnitId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/systemUnitId</process:from>
+      <process:from type="query" pattern="reference">processProduct/systemUnitId</process:from>
       <process:to type="query">outdetail/systemUnitId</process:to>
     </process:copy>
     <process:copy>
@@ -952,11 +753,210 @@
       <process:to type="query">outdetail/enterDate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/id</process:from>
+      <process:from type="query" pattern="reference">processProduct/id</process:from>
       <process:to type="query">outdetail/orderDetailId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/mainId</process:from>
+      <process:from type="query" pattern="reference">processProduct/mainId</process:from>
+      <process:to type="query">outdetail/orderMainId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/guestId</process:from>
+      <process:to type="query">outdetail/guestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/fullName</process:from>
+      <process:to type="query">outdetail/guestName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">processProduct/remark</process:from>
+      <process:to type="query">outdetail/remark</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/rootId</process:from>
+      <process:to type="query">rootId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/id</process:from>
+      <process:to type="query">sourceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">sourceId</process:from>
+      <process:to type="query">outdetail/sourceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">rootId>0?rootId:sourceId</process:from>
+      <process:to type="query">outdetail/rootId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billQty</process:from>
+      <process:to type="query">outdetail/occupyQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">outdetail/stockOutQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/originId</process:from>
+      <process:to type="query">outdetail/originId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/originGuestId</process:from>
+      <process:to type="query">outdetail/originGuestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/storeShelf</process:from>
+      <process:to type="query">outdetail/storeShelf</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mNoTaxAmt+(noTaxPrice*billQty)</process:from>
+      <process:to type="query">mNoTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mTaxAmt+(taxPrice*billQty)</process:from>
+      <process:to type="query">mTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mEnterAmt+(enterPrice*billQty)</process:from>
+      <process:to type="query">mEnterAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mOutAmt+(enterPrice*billQty)</process:from>
+      <process:to type="query">mOutAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mOutQty+billQty</process:from>
+      <process:to type="query">mOutQty</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
+    <location x="611" y="254"/>
+    <figSize height="17" width="80"/>
+    <node>assign9</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign8" name="出库明细赋值" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link51" name="link51" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign8</sourceNode>
+      <targetNode>invokePojo2</targetNode>
+    </sourceConnections>
+    <targetConnections>link20</targetConnections>
+    <location x="690" y="124"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign8label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">fId</process:from>
+      <process:to type="query">outdetail/id</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outmain/id</process:from>
+      <process:to type="query">outdetail/mainId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">processMain/storeId</process:from>
+      <process:to type="query">outdetail/storeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">processProduct/partId</process:from>
+      <process:to type="query">outdetail/partId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">processProduct/partCode</process:from>
+      <process:to type="query">outdetail/partCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">processProduct/partName</process:from>
+      <process:to type="query">outdetail/partName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">processProduct/fullName</process:from>
+      <process:to type="query">outdetail/fullName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">processProduct/systemUnitId</process:from>
+      <process:to type="query">outdetail/outUnitId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">processProduct/systemUnitId</process:from>
+      <process:to type="query">outdetail/systemUnitId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billQty</process:from>
+      <process:to type="query">outdetail/sellQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billQty</process:from>
+      <process:to type="query">outdetail/rtnableQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/taxSign</process:from>
+      <process:to type="query">outdetail/taxSign</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/taxRate</process:from>
+      <process:to type="query">outdetail/taxRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/taxPrice</process:from>
+      <process:to type="query">taxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/noTaxPrice</process:from>
+      <process:to type="query">noTaxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/enterPrice</process:from>
+      <process:to type="query">enterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxPrice</process:from>
+      <process:to type="query">outdetail/taxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">taxPrice*billQty</process:from>
+      <process:to type="query">outdetail/taxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">noTaxPrice</process:from>
+      <process:to type="query">outdetail/noTaxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">noTaxPrice*billQty</process:from>
+      <process:to type="query">outdetail/noTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">taxPrice*billQty-noTaxPrice*billQty</process:from>
+      <process:to type="query">outdetail/taxDiff</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enterPrice</process:from>
+      <process:to type="query">outdetail/enterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">enterPrice*billQty</process:from>
+      <process:to type="query">outdetail/enterAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enterPrice</process:from>
+      <process:to type="query">outdetail/sellPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">billQty*enterPrice</process:from>
+      <process:to type="query">outdetail/sellAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">outdetail/outToInQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/enterDate</process:from>
+      <process:to type="query">outdetail/enterDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">processProduct/id</process:from>
+      <process:to type="query">outdetail/orderDetailId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">processProduct/mainId</process:from>
       <process:to type="query">outdetail/orderMainId</process:to>
     </process:copy>
     <process:copy>
@@ -968,7 +968,7 @@
       <process:to type="query">outdetail/guestName</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/remark</process:from>
+      <process:from type="query" pattern="reference">processProduct/remark</process:from>
       <process:to type="query">outdetail/remark</process:to>
     </process:copy>
     <process:copy>
@@ -1388,11 +1388,11 @@
       <process:to type="query">sellRecord/mainId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/storeId</process:from>
+      <process:from type="query" pattern="reference">processMain/storeId</process:from>
       <process:to type="query">sellRecord/storeId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/partId</process:from>
+      <process:from type="query" pattern="reference">processProduct/partId</process:from>
       <process:to type="query">sellRecord/partId</process:to>
     </process:copy>
     <process:copy>
@@ -1485,11 +1485,11 @@
       <process:to type="query">sellRecord/mainId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/storeId</process:from>
+      <process:from type="query" pattern="reference">processMain/storeId</process:from>
       <process:to type="query">sellRecord/storeId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">orderdetail/partId</process:from>
+      <process:from type="query" pattern="reference">processProduct/partId</process:from>
       <process:to type="query">sellRecord/partId</process:to>
     </process:copy>
     <process:copy>

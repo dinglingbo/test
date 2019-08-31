@@ -203,6 +203,10 @@
       <process:from type="query" pattern="reference">processMain/storeId</process:from>
       <process:to type="query">processDetail/storeId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">matchDetail/fullName</process:from>
+      <process:to type="query">processDetail/fullName</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
     <location x="313" y="141"/>
@@ -328,7 +332,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">processProduct/partId</process:from>
-      <process:to type="query">cond/_expr[3]/part_id</process:to>
+      <process:to type="query">cond/_expr[3]/partId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
@@ -605,6 +609,10 @@
       <process:from type="literal" pattern="reference">2</process:from>
       <process:to type="query">processMain/orderTypeId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">processMain/orgid</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="-620" y="137"/>
@@ -752,7 +760,7 @@
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">matchMain</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">

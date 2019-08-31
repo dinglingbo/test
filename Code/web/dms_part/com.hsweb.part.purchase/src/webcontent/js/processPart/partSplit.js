@@ -459,7 +459,7 @@ function getMainData()
     //汇总明细数据到主表
     data.auditSign = 0;
     data.printTimes = 0;
-    data.orderTypeId = 1;
+    data.orderTypeId = 2;
     delete data.createDate;	
     if(data.operateDate) {
         data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
@@ -567,7 +567,7 @@ function onRightGridDraw(e)
     }
 }
 
-var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjSellOrder.biz.ext";
+var auditUrl = baseUrl+"com.hsapi.part.invoice.process.auditProcessPart.biz.ext";
 function audit()
 {
     var data = basicInfoForm.getData();
@@ -581,9 +581,13 @@ function audit()
     var row = leftGrid.getSelected();
     if(row){
         if(row.auditSign == 1) {
-            parent.showMsg("此单已出库!","W");
+            parent.showMsg("此单已审核!","W");
             return;
         } 
+        if(row.orderQty<=0){
+        	 parent.showMsg("成品配件数量不能小于0","W");
+             return;
+        }
     }else{
         return;
     }
@@ -595,11 +599,11 @@ function audit()
         return;
     }
     //审核时，判断是否存在缺货信息
-    var msg = checkRightData();
+    /*var msg = checkRightData();
     if(msg){
         parent.showMsg(msg,"W");
         return;
-    }
+    }*/
 
     data = getMainData();
 
@@ -862,7 +866,7 @@ function deletePart(){
     }
     rightGrid.removeRow(part,true);
 }
-function checkRightData()
+/*function checkRightData()
 {
     var msg = '';
     var rows = rightGrid.findRows(function(row){
@@ -895,7 +899,7 @@ function checkRightData()
         msg = "请完善退货配件的数量，单价，金额，仓库等信息！";
     }
     return msg;
-}
+}*/
 function checkStockOutQty(){
     var msg = '';
     var rows = rightGrid.findRows(function(row){
@@ -905,8 +909,8 @@ function checkStockOutQty(){
     });
     
     if(rows && rows.length > 0){
-        var comPartCode = rows[0].comPartCode;
-        msg = "配件：" + comPartCode + "缺货，不能提交！";
+        var partCode = rows[0].partCode;
+        msg = "配件：" + partCode + "缺货，不能提交！";
     }
     return msg;
 }
@@ -1097,7 +1101,6 @@ function selectPart()
             				applyCarModel:mainProduct.applyCarModel,
             				spec:mainProduct.spec,
             				mainId:row.mainId,
-            				parentId:row.parentId,
             				id:row.id
             		};
         			rowNews.push(rowNew);
@@ -1115,7 +1118,6 @@ function selectPart()
             				applyCarModel:mainProduct.applyCarModel,
             				spec:mainProduct.spec,
             				mainId:0,
-            				parentId:0,
             				id:0
             		};
         			rowNews.push(rowNew);

@@ -139,7 +139,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -206,11 +206,11 @@
       <process:to type="query">enterMain/settleTypeId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">main/taxSign</process:from>
+      <process:from type="query" pattern="reference">product/taxSign</process:from>
       <process:to type="query">enterMain/taxSign</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">main/taxRate</process:from>
+      <process:from type="query" pattern="reference">product/taxRate</process:from>
       <process:to type="query">enterMain/taxRate</process:to>
     </process:copy>
     <process:copy>
@@ -222,7 +222,7 @@
       <process:to type="query">enterMain/noTaxAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">main/taxDiff</process:from>
+      <process:from type="query" pattern="reference">product/taxDiff</process:from>
       <process:to type="query">enterMain/taxDiff</process:to>
     </process:copy>
     <process:copy>
@@ -278,7 +278,7 @@
       <process:to type="query">enterMain/guestId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">main/storeId</process:from>
       <process:to type="query">enterMain/storeId</process:to>
     </process:copy>
     <process:copy>
@@ -288,14 +288,6 @@
     <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>
       <process:to type="query">errCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">main/noTaxAmt</process:from>
-      <process:to type="query">enterMain/noTaxAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">main/taxAmt</process:from>
-      <process:to type="query">enterMain/taxAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">

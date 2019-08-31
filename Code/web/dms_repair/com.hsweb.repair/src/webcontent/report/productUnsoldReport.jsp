@@ -43,12 +43,12 @@ body {
         <input class="nui-textbox"  id="partCode" name="partCode" emptytext="配件编码">
         <input class="nui-textbox" id="partName" name="partName"emptytext="配件名称">
         <!-- <input class="nui-textbox" id=""emptytext="配件品牌"> -->
-        <input class="nui-combobox" id="storeId"name="storeId"emptytext="仓库" textField="name"
-        valueField="id" width="130px" showNullItem="true" nullItemText="请选择...">
+        <input class="nui-combobox" id="storeId" name="storeId" emptytext="仓库" textField="name"
+        valueField="id" width="130px" showNullItem="true" nullItemText="所有仓库">
 
         <input class="nui-combobox" id="partTypeId" name="partTypeId"
-        textField="name"valueField="id"dataField="partTypes"
-        emptyText="配件分类"allowInput="true"valueFromSelect="false" 
+        textField="name"valueField="id"dataField="partTypes" allowInput="true" nullItemText="所有仓库"
+        emptyText="配件分类" allowInput="true" valueFromSelect="true" 
         width="130px" showNullItem="true" nullItemText="请选择...">
               <input class="nui-textbox" id="branchStockAge"name="branchStockAge" emptytext="库龄超过天数" width="130px">  
        <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
@@ -110,7 +110,10 @@ body {
     }else{
     	orgidsEl.setValue(currOrgid);
     }
-    
+    	//仓库控制权限
+    if(currRepairStoreControlFlag==1){  	
+    	nui.get("storeId").setShowNullItem(false);
+    }
     
     Search();
 

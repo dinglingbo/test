@@ -687,4 +687,12 @@
 
     </select>
     
+    <!--
+    	更新已结算
+    -->
+    <update id="updateAccountType" parameterClass="java.util.HashMap">
+    	update fis_rp_account_d_type set char_off_amt = char_off_amt - #charOffAmt#, fee_service = fee_service - #feeService#
+		where id = #id#
+	</update>
+    
  </sqlMap>

@@ -240,6 +240,7 @@
     <location x="139" y="98"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="list" iterableElement="tmp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">
@@ -700,7 +701,7 @@
         <process:inputVariable id="4" name="billDetailId" type="query" value="Long" valueType="Primitive" pattern="reference">f/id</process:inputVariable>
         <process:inputVariable id="5" name="billTypeId" type="query" value="String" valueType="Primitive" pattern="reference">enterMain/enterTypeId</process:inputVariable>
         <process:inputVariable id="6" name="guestId" type="query" value="Long" valueType="Primitive" pattern="reference">main/guestId</process:inputVariable>
-        <process:inputVariable id="7" name="guestName" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="7" name="guestName" type="query" value="String" valueType="Primitive" pattern="reference">guestName</process:inputVariable>
         <process:inputVariable id="8" name="partId" type="query" value="Long" valueType="Primitive" pattern="reference">f/partId</process:inputVariable>
         <process:inputVariable id="9" name="partCode" type="query" value="String" valueType="Primitive" pattern="reference">f/partCode</process:inputVariable>
         <process:inputVariable id="10" name="partName" type="query" value="String" valueType="Primitive" pattern="reference">f/partName</process:inputVariable>
@@ -1146,7 +1147,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">出库成功</process:from>
+      <process:from type="literal" pattern="reference">入库成功</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -1359,6 +1360,7 @@
     <sourceConnections xsi:type="process:tLink" id="link48" name="link48" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo9</sourceNode>
       <targetNode>subprocess1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link49" name="link49" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo9</sourceNode>
@@ -1422,7 +1424,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">出库失败</process:from>
+      <process:from type="literal" pattern="reference">入库失败</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>

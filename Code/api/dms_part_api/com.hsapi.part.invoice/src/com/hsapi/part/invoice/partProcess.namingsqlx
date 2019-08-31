@@ -205,6 +205,7 @@
     	SELECT
 			a.id AS id,
 			a.main_id AS mainId,
+			a.parent_id As parentId,
 			a.store_id AS storeId,
 			a.part_id AS partId,
 			a.part_code AS partCode,

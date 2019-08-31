@@ -234,6 +234,10 @@ $(document).ready(function(v)
 		workTeamIdList = data.list||[];
 		workTeamIdEl.setData(workTeamIdList);
 	});
+	//仓库控制权限
+    if(currRepairStoreControlFlag==1){  	
+    	nui.get("storeId").setShowNullItem(false);
+    }
 });
 function getSearchParams(){
     var params = {};

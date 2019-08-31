@@ -2357,7 +2357,7 @@ function changeOrderPrice(e){
     	 return;
     }
 	var row = rightGrid.getSelected();
-	var newRow = row;
+	var newRow = {};
 	var orderAmt = 0;
 	var qty = row.orderQty;
 	if(qty>0){
@@ -2367,6 +2367,7 @@ function changeOrderPrice(e){
 	newRow.orderAmt = orderAmt;
 	newRow.orderPrice = e.value;
 	rightGrid.updateRow(row,newRow);
+	
 } 
 
 function changeOrderAmt(e){
@@ -2380,7 +2381,7 @@ function changeOrderAmt(e){
     	 return;
     }
 	var row = rightGrid.getSelected();
-	var newRow = row;
+	var newRow = {};
 	var orderPrice = 0;
 	var qty = row.orderQty;
 	if(qty>0){
@@ -2390,5 +2391,6 @@ function changeOrderAmt(e){
 	newRow.orderAmt = e.value;
 	newRow.orderPrice = orderPrice;
 	rightGrid.updateRow(row,newRow);
+	
 }
 

@@ -66,6 +66,14 @@
         where rps_card_times.id = a.main_id and a.is_finish = 0 and rps_card_times.car_id = #carId#  )
 	</update>
 	
+	<update id="reverseCardTimesFinish" parameterClass="java.util.HashMap">
+		
+		update rps_card_times set is_finish = 0 , modifier = #modifier#, modify_date = SYSDATE()
+		where car_id = #carId#   and is_finish = 1
+        and exists(select 1 from rps_card_times_detail a 
+        where rps_card_times.id = a.main_id and a.is_finish = 0 and rps_card_times.car_id = #carId#  )
+	</update>
+	
 	<delete id="deleteRepairRecord" parameterClass="java.util.HashMap">
 		Delete from rps_repair_record where service_id = #serviceId#
 	</delete>

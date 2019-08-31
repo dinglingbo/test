@@ -266,4 +266,8 @@
 		SELECT sum(amt) as otherCostAmt from rps_expense where dc = -1 and service_id = #serviceId#
 	</select>
 	
+	<select id="getMaxOutDate" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT max(out_date) as outDate from wb_repair.rps_maintain where is_settle = 1 and car_id = #carId#
+	</select>
+	
 </sqlMap>

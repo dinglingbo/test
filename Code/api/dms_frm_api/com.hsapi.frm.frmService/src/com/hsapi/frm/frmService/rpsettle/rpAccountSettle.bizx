@@ -630,6 +630,17 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link70" name="link70" displayName="连接线" type="transition">
+      <bendPoint heightToEnd="-80" heightToStart="-68" widthToEnd="-139" widthToStart="147"/>
+      <sourceNode>assign10</sourceNode>
+      <targetNode>assign12</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="LE">
+          <process:leftOperand type="query">cardPayAmt</process:leftOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link41</targetConnections>
     <location x="855" y="-4"/>
     <size height="28" width="28"/>
@@ -800,6 +811,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link30</targetConnections>
+    <targetConnections>link70</targetConnections>
     <location x="1141" y="8"/>
     <size height="28" width="28"/>
     <nodeLabel>assign12label</nodeLabel>
@@ -1089,7 +1101,7 @@
     <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign19" name="赋值19" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign19" name="赋值19" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link58" name="link58" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign19</sourceNode>
       <targetNode>assign4</targetNode>
@@ -1145,6 +1157,7 @@
     <sourceConnections xsi:type="process:tLink" id="link61" name="link61" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign20</sourceNode>
       <targetNode>invokePojo7</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link15</targetConnections>
     <location x="587" y="-4"/>

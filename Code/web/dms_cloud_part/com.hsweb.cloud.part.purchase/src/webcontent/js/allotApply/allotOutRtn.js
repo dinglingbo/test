@@ -135,6 +135,28 @@ $(document).ready(function(v)
 
     //add();
     
+    document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;
+      
+        if((keyCode==89)&&(event.altKey))  {   //入库 Alt+Y
+        	submit();
+        } 
+      
+        if((keyCode==80)&&(event.altKey))  {   //打印
+            onPrint();
+        } 
+        if((keyCode==27))  {  
+       
+           if(partShow ==1){
+            	onPartClose();
+            }
+        }
+        
+     
+    }
+    
+    
 });
 
 function loadMainAndDetailInfo(row)
@@ -149,7 +171,7 @@ function loadMainAndDetailInfo(row)
        //bottomInfoForm.setData(row);
        nui.get("guestId").setText(row.guestFullName);
 
-       var row = leftGrid.getSelected();
+       /*var row = leftGrid.getSelected();
        if(row.auditSign == 1 || row.isDisabled == 1) {
             setBtnable(false);
             document.getElementById("basicInfoForm").disabled=true;
@@ -158,7 +180,7 @@ function loadMainAndDetailInfo(row)
             setBtnable(true);
             document.getElementById("basicInfoForm").disabled=false;
             setEditable(true);
-       }
+       }*/
 
        if(row.isDisabled == 1) {
             //nui.get("delBtn").setVisible(false);
@@ -538,8 +560,8 @@ function doSearch(params)
             basicInfoForm.reset();
             rightGrid.clearRows();
             
-            setBtnable(false);
-            setEditable(false);
+            //setBtnable(false);
+            //setEditable(false);
             
             if(autoNew == 0){
                 //add();
@@ -547,7 +569,7 @@ function doSearch(params)
             }
             
         }else {
-            var row = leftGrid.getSelected();
+            /*var row = leftGrid.getSelected();
             if(row.auditSign == 1 || row.isDisabled == 1) {
                 setBtnable(false);
                 setEditable(false);
@@ -556,7 +578,7 @@ function doSearch(params)
                 setBtnable(true);
                 setEditable(true);
                 document.getElementById("basicInfoForm").disabled=false;
-            }
+            }*/
         }
     });
 }
@@ -731,7 +753,7 @@ function del()
                 leftGrid.updateRow(row,data);
                 basicInfoForm.setData(row);
 
-                if(isDisabled == 1) {
+                /*if(isDisabled == 1) {
                     //document.getElementById("delBtn").childNodes[0].innerHTML = '<span class="fa fa-reply fa-lg"></span>&nbsp;反作废';
                     //nui.get("delBtn").setVisible(false);
                     //nui.get("undelBtn").setVisible(true);
@@ -745,7 +767,7 @@ function del()
                     setBtnable(true);
                     setEditable(true);
                     document.getElementById("basicInfoForm").disabled=true;
-                }
+                }*/
 
             } else {
                 showMsg(data.errMsg || "操作失败!","W");

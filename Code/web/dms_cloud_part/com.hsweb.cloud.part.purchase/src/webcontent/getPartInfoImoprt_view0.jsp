@@ -12,7 +12,7 @@
 <title>导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-<script src="<%=webPath + contextPath%>/purchase/js/getPartInfoImoprt.js?v=1.0.4"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/getPartInfoImoprt.js?v=1.0.19"></script>
 <style type="text/css">
 /*.a-upload {
     padding: 4px 10px;
@@ -137,6 +137,31 @@
             </table>
         </div>
     </div>
+    
+    
+<div id="exportDiv" style="display:none">  
+    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
+       
+        <tr> 
+        	<td colspan="1" align="center">品牌</td> 
+            <td colspan="1" align="center">编码</td>
+            <td colspan="1" align="center">名称</td>
+            <td colspan="1" align="center">单位</td>
+            <td colspan="1" align="center">规格</td>
+            <td colspan="1" align="center">厂牌</td>
+            <td colspan="1" align="center">型号</td>
+            <td colspan="1" align="center">实物码</td>
+            <td colspan="1" align="center">OEM码</td>
+            <td colspan="1" align="center">适用车型</td>
+            <td colspan="1" align="center">通用编码</td>
+            <td colspan="1" align="center">生产厂家</td>
+            <td colspan="1" align="center">备注</td>
+        </tr>
+        <tbody id="tableExportContent">
+        </tbody>
+    </table>  
+    <a href="" id="tableExportA"></a>
+</div>
 
 </body>
 </html>

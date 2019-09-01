@@ -55,17 +55,19 @@ function doSearch() {
     params.guestId = advanceGuestIdEl.getValue();
     params.isMain = isMainEl.getValue();
     params.rpDc = 1;
+    params.orgid =currOrgId;
 
 	mainGrid.load({
 		params:params,
 		token : token
 	});
 }
-var queryAccountUrl = baseUrl + "com.hsapi.cloud.part.settle.svr.queryFiSettleAccount.biz.ext";
+var queryAccountUrl = baseUrl + "com.hsapi.cloud.part.settle.svr.queryFiSettleAccountForTenant.biz.ext";
 function getAccountList(callback) {
     nui.ajax({
         url : queryAccountUrl,
         data : {
+        	tenantId :currTenantId,
             token: token
         },
         type : "post",

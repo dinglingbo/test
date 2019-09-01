@@ -141,6 +141,18 @@ $(document).ready(function(v)
 			save();
 	    } 
 	  
+	    if((keyCode==84)&&(event.altKey))  {   //提交 Alt+T
+        	submit();
+        } 
+      
+        if((keyCode==89)&&(event.altKey))  {   //退货  Alt+Y
+        	audit();
+        } 
+        
+        if((keyCode==73)&&(event.altKey))  {   //选择采购入库单  Alt+I
+        	addPart();
+        } 
+        
 	    if((keyCode==80)&&(event.altKey))  {   //打印
 			onPrint();
 	    } 
@@ -182,7 +194,7 @@ $(document).ready(function(v)
             ow(true);
         }
     });
-    add();
+//    add();
 
     
     //启用APP
@@ -304,7 +316,7 @@ function loadRightGridData(mainId)
 
         var data = rightGrid.getData();
         
-        if(autoNew == 0){
+        if(autoNew == 0){			
 			add();
 			autoNew = 1;
         }
@@ -1099,7 +1111,7 @@ function submit()
 
                     //保存成功后重新加载数据
                     loadMainAndDetailInfo(leftRow);
-                    nui.confirm("是否打印？", "友情提示", function(action) {
+                    nui.confirm("提交成功，是否打印？", "友情提示", function(action) {
     					if(action== 'ok'){
     						onPrint();
     					}else{
@@ -1170,7 +1182,7 @@ function auditToOut()
 
                 setBtnable(false);
 				loadMainAndDetailInfo(leftRow);
-                nui.confirm("是否打印？", "友情提示", function(action) {
+                nui.confirm("出库成功，是否打印？", "友情提示", function(action) {
 					if(action== 'ok'){
 						onPrint();
 					}else{
@@ -2417,4 +2429,12 @@ function rightGridSet(){
     rightGrid.set({
         columns: columnsList
     });
+}
+function onLeftGridBeforeDeselect(e)
+{
+    var row = leftGrid.getSelected(); 
+    if(row.serviceId == '新采购退货'){
+
+        leftGrid.removeRow(row);
+    }
 }

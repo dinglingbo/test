@@ -1579,6 +1579,53 @@
         ORDER BY a.id asc
     </select>
     
+      <!-- 根据对账单id查询 -->
+    <select id="queryPjSellOrderDetailCheckBill" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+            SELECT 
+				A.id as id,
+				A.main_id as mainId,
+				A.store_id as storeId,
+				A.system_unit_id as unit,	
+				A.remark as remark,
+				a.show_part_id as partId,
+				a.show_part_code as partCode,
+				a.show_brand_name as partBrandName,
+				a.show_full_name as fullName,
+				a.show_car_model as carModel,
+				a.order_qty as orderQty,
+				a.show_oem_code as oemCode,
+				a.show_price as orderPrice,
+				a.show_amt as orderAmt,
+				d.id as billMainId
+			FROM
+			DMS_CLOUD_PART.PJ_SELL_ORDER_DETAIL_chk A
+			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
+			INNER JOIN DMS_CLOUD_PART.pj_statement_detail c on c.bill_main_id = a.main_id
+			INNER JOIN DMS_CLOUD_PART.pj_statement_main d on c.main_id =d.id 
+			where 1=1
+
+            <dynamic>
+                <isNotEmpty prepend="and" property="mainId">  
+                    (A.MAIN_ID = #mainId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="mainIds">  
+                    (A.MAIN_ID in ($mainIds$))
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="billMainId">  
+                    (d.id = #billMainId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="billMainIds">  
+                    (d.id in ($billMainIds$))
+                </isNotEmpty>
+                
+            </dynamic>  
+            
+        
+        ORDER BY a.id asc
+    </select>
+    
     <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->
     <select id="queryNotSettlePchsRtnOrderMainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 

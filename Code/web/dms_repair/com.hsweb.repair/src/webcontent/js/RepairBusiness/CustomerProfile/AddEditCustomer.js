@@ -1484,7 +1484,6 @@ function getLicense(imgPath){
 	    url:apiPath+sysApi +"/com.hs.common.sysService.getVehicleLicense.biz.ext",
 	    type:"post",
 	    data:{imgPath:imgPath},
-	    async:false,
 	    success:function(data)
 	    {
 	        nui.unmask();

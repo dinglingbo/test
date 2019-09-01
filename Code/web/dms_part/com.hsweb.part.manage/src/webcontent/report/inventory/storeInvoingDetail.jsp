@@ -9,7 +9,7 @@
 -->
 <head>
     <title>仓库进销存明细</title>
-    <script src="<%=webPath + contextPath%>/manage/js/report/storeInvoingDetail.js?v=1.0.1"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/report/storeInvoingDetail.js?v=1.0.4"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -48,7 +48,7 @@
                    <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                </ul>
                <span class="separator"></span>
-               	仓库: <input  showNullItem="false" width="80" id="storehouse" name="storehouse" dataField="storehouse" allowInput="false" class="nui-combobox" valueField="id" textField="name" data="storehouse">
+               	仓库: <input   width="80" id="storehouse" name="storehouse" dataField="storehouse" allowInput="true" showNullItem="true" nullItemText="所有仓库" emptytext="仓库" class="nui-combobox" valueField="id" textField="name" data="storehouse">
              	<input class="nui-textbox" width="100px" id="partCodeOrName" name="partCodeOrNmae" selectOnFocus="true" enabled="true" emptyText="配件编码/名称"/>
                 <input class="nui-textbox" width="100px" id="morePartId" emptyText="内码"  selectOnFocus="true" name="morePartID"/>
                 <input class="nui-textbox" width="100px" id="guestName" emptyText="客户/供应商"  selectOnFocus="true" name="guestName"/>

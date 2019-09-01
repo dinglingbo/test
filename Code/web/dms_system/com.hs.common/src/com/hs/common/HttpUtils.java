@@ -4,6 +4,7 @@
 package com.hs.common;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,6 +21,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -48,6 +50,11 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.dom4j.Attribute;
+import org.dom4j.Document;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
 
 import com.alibaba.fastjson.JSONObject;
 import com.eos.system.annotation.Bizlet;
@@ -765,7 +772,7 @@ public class HttpUtils {
 	}
 
 	@Bizlet("推送短信")
-	public static String send(String phones, String message) {
+	public static String sendOld(String phones, String message) {
 		final String USER_NAME = "harsons";
 		final String PASSWORD = "harsons123";
 		HttpClient client = new DefaultHttpClient();
@@ -789,6 +796,54 @@ public class HttpUtils {
 			HttpResponse httpResponse = client.execute(method);
 			HttpEntity responseEntity = httpResponse.getEntity();
 			String result = EntityUtils.toString(responseEntity, "UTF-8");
+			
+			System.out.println(result);
+		} catch (Exception e) {
+			e.printStackTrace();
+			errCode = "E";
+			return errCode;
+		} finally {
+			method.releaseConnection();
+		}
+		return errCode;
+	}
+	
+	
+	
+	@Bizlet("推送短信")
+	public static String send(String phones, String message) {
+		final String USER_NAME = "gzhs";
+		final String PASSWORD = "gzhs";
+		HttpClient client = new DefaultHttpClient();
+		HttpPost method = null;
+		String errCode = "0";
+		try {
+			method = new HttpPost(
+					"http://api.yzh.drondea.com/submitSms/xml");
+			String submitXml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><messages><account>"
+					+ USER_NAME
+					+ "</account><password>"
+					+ PASSWORD
+					+ "</password><message><phones>"
+					+ phones
+					+ "</phones><content>"
+					+ message
+					+ "</content><subcode></subcode><sendtime></sendtime></message></messages>";
+			StringEntity stringEntity = new StringEntity(submitXml, "UTF-8");
+			stringEntity.setContentType("text/xml");
+			method.setEntity(stringEntity);
+			HttpResponse httpResponse = client.execute(method);
+			HttpEntity responseEntity = httpResponse.getEntity();
+			String result = EntityUtils.toString(responseEntity, "UTF-8");
+			
+            Document doc = null;
+            doc = DocumentHelper.parseText(result);
+            
+            Element root = doc.getRootElement();
+            Element mark=root.element("result");
+            errCode = mark.getTextTrim();
+            Element mark2=root.element("desc");
+            String str2 = mark2.getTextTrim();
 			System.out.println(result);
 		} catch (Exception e) {
 			e.printStackTrace();

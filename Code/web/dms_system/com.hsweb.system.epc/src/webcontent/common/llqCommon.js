@@ -56,6 +56,9 @@ function processAjax(rs, callBack){
     if(rs.errCode != 'E' && rs.result.code == '1'){
         //nui.alert("获取数据成功！");
         callBack(rs.result.data, rs.result);
+    }else if(rs.errCode != 'E' && rs.result.code == '0'){//零件接口成功返回0
+        //nui.alert("获取数据成功！");
+        callBack(rs.result.data, rs.result);
     }else if(rs.errCode != 'E' && rs.result.code == '6'){//针对输入零件号判断品牌的接口,如果
         var data = rs.result.data;
         if(data && data.length > 0){

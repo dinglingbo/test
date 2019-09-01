@@ -829,7 +829,7 @@
       <process:inputVariables>
         <process:inputVariable id="0" name="mainenter" type="query" value="com.hsapi.part.data.pts.PjStockShiftMain" valueType="DataObject" pattern="reference">omain</process:inputVariable>
         <process:inputVariable id="1" name="details" type="query" value="com.hsapi.part.data.pts.PjStockShiftDetail[]" valueType="DataObject" pattern="reference">odetail</process:inputVariable>
-        <process:inputVariable id="2" name="billTypeId" type="literal" value="String" valueType="Primitive" pattern="reference">050204</process:inputVariable>
+        <process:inputVariable id="2" name="billTypeId" type="literal" value="String" valueType="Primitive" pattern="reference">050210</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

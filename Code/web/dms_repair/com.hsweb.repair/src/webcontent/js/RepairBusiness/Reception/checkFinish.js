@@ -11,7 +11,12 @@ var itemGrid = null;
 var partGrid = null;
 var fserviceId = 0;
 var form = null;
-var statusHash = {"0":"草稿","1":"施工中","2":"已完工"};
+var statusHash = {
+		"0" : "等待施工",
+		"1" : "作业中",
+		"2" : "中断",
+		"3" : "已完工"	
+	}
 $(document).ready(function (){
     itemGrid = nui.get("itemGrid");
     partGrid = nui.get("partGrid");
@@ -36,9 +41,24 @@ $(document).ready(function (){
     itemGrid.on("drawcell",function(e){
         var grid = e.sender;
         var record = e.record;
+        var status = record.status;
+		var isBack = record.isBack;
         switch (e.field) {
             case "status":
-                e.cellHtml = statusHash[e.value];
+            	if(status == 2) {
+    				if(isBack==1){
+    					var s = "质检打回";
+    					if(record.stopReason){
+    						s = s+"("+record.stopReason+")";
+    					}
+    					e.cellHtml = s;
+    				}else{
+    					e.cellHtml = record.stopReason;
+    				}
+    				
+            	}else{
+                	e.cellHtml = statusHash[e.value];
+                }
                 break;
             default:
                 break;

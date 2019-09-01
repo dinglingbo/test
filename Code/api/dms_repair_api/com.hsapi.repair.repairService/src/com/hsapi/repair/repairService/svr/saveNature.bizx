@@ -86,9 +86,9 @@
       <sourceNode>assign1</sourceNode>
       <targetNode>assign4</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULLANDEMPTY">
-          <process:leftOperand type="query">params/natureId</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">params/type</process:leftOperand>
+          <process:rightOperand type="literal">update</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>

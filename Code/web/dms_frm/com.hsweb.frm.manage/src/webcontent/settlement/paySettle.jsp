@@ -177,16 +177,16 @@
                         <div allowSort="true" summaryType="count" field="billServiceId" name="billServiceId" width="130" summaryType="count" headerAlign="center" header="业务单号"></div>
                         <div allowSort="true" field="billTypeId" name="billTypeId" width="100" headerAlign="center" header="收支项目"></div>
                         <div allowSort="true" field="remark" name="remark" width="145" headerAlign="center" header="业务备注"></div>
-                        <div allowSort="true" field="rpAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" summaryType="sum" dataType="float"  header="应付金额"></div>
-                        <div allowSort="true" field="nowAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" dataType="float"  header="结算金额">
+                        <div allowSort="true" field="rpAmt" width="70" headerAlign="center" align="right" numberFormat="0.0000" summaryType="sum" dataType="float"  header="应付金额"></div>
+                        <div allowSort="true" field="nowAmt" width="60" headerAlign="center" align="right" numberFormat="0.0000" dataType="float"  header="结算金额">
                             <input property="editor" vtype="float" class="nui-textbox"/>
                         </div>
-                        <div allowSort="true" field="nowVoidAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" dataType="float"  visible="false" header="免付金额">
+                        <div allowSort="true" field="nowVoidAmt" width="60" headerAlign="center" align="right" numberFormat="0.0000" dataType="float"  visible="false" header="免付金额">
                             <input property="editor" vtype="float" class="nui-textbox"/>
                         </div>
                         <div allowSort="true" field="createDate" headerAlign="center" header="转单日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                         <div allowSort="true" field="settleStatus" name="settleStatus" width="60" headerAlign="center" header="结算状态"></div>
-                        <div allowSort="true" field="charOffAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" dataType="float"  summaryType="sum" header="已结金额"></div>
+                        <div allowSort="true" field="charOffAmt" width="70" headerAlign="center" align="right" numberFormat="0.0000" dataType="float"  summaryType="sum" header="已结金额"></div>
                         <!-- <div field="balanceSign" type="checkboxcolumn" trueValue="1" falseValue="0" width="60" headerAlign="center" header="是否对账"></div>
                         <div field="balancer" width="60" headerAlign="center" header="对账人"></div>
                         <div allowSort="true" field="balanceDate" headerAlign="center" header="对账日期" dateFormat="yyyy-MM-dd HH:mm"></div> -->

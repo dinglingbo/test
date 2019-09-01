@@ -86,7 +86,7 @@
 			wb_part.pj_repair_out 
 		WHERE
 			service_id = #serviceId#
-			AND ifnull( return_sign, 0 ) = 0
+			AND ifnull( return_sign, 0 ) = 0 and bill_type_id = '050206'
 	</select>
 	<select id="getMaterialExp" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		SELECT
@@ -95,7 +95,7 @@
 			wb_part.pj_repair_out
 		WHERE
 			service_id = #serviceId#
-			AND pick_type = '050204' 
+			AND pick_type = '050210' 
 			AND ifnull( return_sign, 0 ) = 0	
 	</select>
 	
@@ -264,6 +264,10 @@
 	
 	<select id="getOtherCostAmt" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT sum(amt) as otherCostAmt from rps_expense where dc = -1 and service_id = #serviceId#
+	</select>
+	
+	<select id="getMaxOutDate" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT max(out_date) as outDate from wb_repair.rps_maintain where is_settle = 1 and car_id = #carId#
 	</select>
 	
 </sqlMap>

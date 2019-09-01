@@ -9,7 +9,7 @@
 -->
 <head>
     <title>仓库进销存统计</title>
-    <script src="<%=webPath + contextPath%>/manage/js/report/storeInvoingCount.js?v=1.0.7"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/report/storeInvoingCount.js?v=1.0.9"></script>
     <style type="text/css">
     .title {
       width: 60px;
@@ -47,7 +47,7 @@
                </ul>
                <span class="separator"></span>
 
-               	仓库: <input  property="editor" width="80" enabled="true"  id="storehouse" name="storehouse" dataField="storehouse" allowInput="true" class="nui-combobox" valueField="id" textField="name" data="storehouse">
+               	仓库: <input  property="editor" width="80" enabled="true"  id="storehouse" name="storehouse" dataField="storehouse" allowInput="true" class="nui-combobox" showNullItem="true"  nullItemText="所有仓库" emptyText="仓库"valueField="id" textField="name" data="storehouse">
 			创建日期 从:
                  <input class="nui-datepicker" id="startDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
   				至:
@@ -55,7 +55,8 @@
                 <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid" visible="false"
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                 
-                <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>              
+                <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>  
+                            
 
         </td>
     </tr>

@@ -225,6 +225,13 @@
 		      <isNotEmpty prepend="and" property="balaAmt"> 
                 (a.bala_amt &gt; #balaAmt#)
               </isNotEmpty>
+              
+              <isNotEmpty prepend="and" property="rb"> 
+                (a.total_amt != a.bala_amt)
+              </isNotEmpty>
+              
+              <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
+              
             </dynamic>
 	</select>
 	
@@ -301,6 +308,13 @@
               </isNotEmpty>
               <isNotEmpty prepend="and" property="recordEndDate"> 
                 (a.record_date &lt; #recordEndDate#)
+              </isNotEmpty>
+              
+              <isNotEmpty prepend="and" property="sOutDate"> 
+                (a.out_date &gt;= #sOutDate#)
+              </isNotEmpty>
+              <isNotEmpty prepend="and" property="eOutDate"> 
+                (a.out_date &lt; #eOutDate#)
               </isNotEmpty>
               
               <isNotEmpty prepend="and" property="modifyStartDate"> 
@@ -511,6 +525,7 @@
 	    <isNotEmpty prepend="and" property="rid"> 
 	                (c.id = #rid#)
 	    </isNotEmpty>
+	     order by a.record_date desc
 </select>
 
 	    <select id="queryRepairOut" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">

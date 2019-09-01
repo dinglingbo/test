@@ -13,7 +13,7 @@
 <head>
 <title>总部直调受理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotDirectOutEnter.js?v=1.0.0"></script>
+    <script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotDirectOutEnter.js?v=1.0.3"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -51,7 +51,7 @@
  		                    <input id="guestName" width="120px" emptyText="客户" onEnter="onSearch()" visible="false" class="nui-textbox"/> 
 			            	<input class="nui-combobox" id ="orgids" name="orgids" value="" allowInput="true" showNullItem="false" 
 			            		 valueFromSelect="true" nullitemtext="请选择..." emptyText="选择公司" data="" width="150px"
-			            		 textField="name" valueField="orgid" onEnter="onSearch()" />
+			            		 textField="name" valueField="orgid" onEnter="onSearch()" visible="false" />
 	
 			                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 			                <span class="separator"></span>
@@ -70,7 +70,7 @@
                                                  nullItemText="请选择受理仓库..."
                                                 />
                             <span class="separator"></span>                    
-        			        <a class="nui-button" iconCls="" plain="true" onclick="audit()" visible=""  id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;受理</a>
+        			        <a class="nui-button" iconCls="" plain="true" onclick="audit()" visible=""  id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;到货入库</a>
 			                
 			            </td>
 			        </tr>

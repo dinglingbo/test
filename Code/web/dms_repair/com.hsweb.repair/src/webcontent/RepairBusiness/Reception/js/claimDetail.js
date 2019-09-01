@@ -1088,17 +1088,20 @@ function add(){
     // $("#clubCardEl").html("会员卡(0)");
     // $("#creditEl").html("挂账:0");
     // $("#carHealthEl").html("车况:0");
-	var data = {
-			packageSubtotal:0,
-			packagePrefAmt:0,
-			itemSubtotal:0,
-			itemPrefAmt:0,
-			partSubtotal:0,
-			partPrefAmt:0,
-			totalAmt:0,
-			totalPrefAmt:0,
-			totalSubtotal:0,
-			ycAmt:0
+   var data = {
+		packageSubtotal:0,
+		packagePrefAmt:0,
+		packageAmt:0,
+		itemSubtotal:0,
+		itemPrefAmt:0,
+		itemAmt:0,
+		partSubtotal:0,
+		partPrefAmt:0,
+		partAmt:0,
+		totalAmt:0,
+		totalPrefAmt:0,
+		totalSubtotal:0,
+		ycAmt:0
 	};
     searchNameEl.setVisible(false);
     searchNameEl.setEnabled(false);
@@ -1112,6 +1115,12 @@ function add(){
     rpsItemGrid.clearRows();
     billForm.setData([]);
     sellForm.setData(data);
+    document.getElementById("packageAmt1").innerHTML = data.packageAmt;
+    document.getElementById("itemAmt1").innerHTML = data.itemAmt;
+    document.getElementById("partAmt1").innerHTML = data.partAmt;
+    document.getElementById("totalAmt1").innerHTML = data.totalAmt;
+    document.getElementById("totalPrefAmt1").innerHTML = data.totalPrefAmt;
+    document.getElementById("totalSubtotal1").innerHTML = data.totalSubtotal;
     sendGuestForm.setData([]);
     describeForm.setData([]);
     //sendGuestForm.setData([]);
@@ -4792,6 +4801,7 @@ function onDrawSummaryCellPack(e){
 			  
 			  data.packageSubtotal = sumPkgSubtotal;
 			  data.packagePrefAmt = sumPkgPrefAmt;
+			  data.packageAmt = sumPkgAmt;
 			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
 			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
 			  data.totalSubtotal = mtAmt.toFixed(2);
@@ -4799,9 +4809,16 @@ function onDrawSummaryCellPack(e){
 			  var totalAmt = parseFloat(data.totalSubtotal) + parseFloat(data.totalPrefAmt);
 			  data.totalAmt = totalAmt.toFixed(2);
 			  sellForm.setData(data);
+			  document.getElementById("packageAmt1").innerHTML = data.packageAmt;
+			  document.getElementById("itemAmt1").innerHTML = data.itemAmt;
+			  document.getElementById("partAmt1").innerHTML = data.partAmt;
+			  document.getElementById("totalAmt1").innerHTML = data.totalAmt;
+			  document.getElementById("totalPrefAmt1").innerHTML = data.totalPrefAmt;
+			  document.getElementById("totalSubtotal1").innerHTML = data.totalSubtotal;
 		  }else{
 			  data.packageSubtotal = 0;
 			  data.packagePrefAmt = 0;
+			  data.packageAmt = sumPkgAmt;
 			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
 			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
 			  data.totalSubtotal = mtAmt.toFixed(2);
@@ -4809,6 +4826,12 @@ function onDrawSummaryCellPack(e){
 			  var totalAmt = parseFloat(data.totalSubtotal) + parseFloat(data.totalPrefAmt);
 			  data.totalAmt = totalAmt.toFixed(2);
 			  sellForm.setData(data);
+			  document.getElementById("packageAmt1").innerHTML = data.packageAmt;
+			  document.getElementById("itemAmt1").innerHTML = data.itemAmt;
+			  document.getElementById("partAmt1").innerHTML = data.partAmt;
+			  document.getElementById("totalAmt1").innerHTML = data.totalAmt;
+			  document.getElementById("totalPrefAmt1").innerHTML = data.totalPrefAmt;
+			  document.getElementById("totalSubtotal1").innerHTML = data.totalSubtotal;
 		  }
 	  } 
 }
@@ -4849,6 +4872,8 @@ function onDrawSummaryCellItem(e){
 			  sumItemPrefAmt = sumItemPrefAmt.toFixed(2);
 			  data.itemSubtotal = sumItemSubtotal;
 			  data.itemPrefAmt = sumItemPrefAmt;
+			  data.itemAmt = sumItemAmt;
+			  data.partAmt = sumPartAmt;
 			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
 			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
 			  data.totalSubtotal = mtAmt.toFixed(2);
@@ -4856,11 +4881,25 @@ function onDrawSummaryCellItem(e){
 			  var totalAmt = parseFloat(data.totalSubtotal) + parseFloat(data.totalPrefAmt);
 			  data.totalAmt = totalAmt.toFixed(2);
 			  sellForm.setData(data);
+			  document.getElementById("packageAmt1").innerHTML = data.packageAmt;
+			  document.getElementById("itemAmt1").innerHTML = data.itemAmt;
+			  document.getElementById("partAmt1").innerHTML = data.partAmt;
+			  document.getElementById("totalAmt1").innerHTML = data.totalAmt;
+			  document.getElementById("totalPrefAmt1").innerHTML = data.totalPrefAmt;
+			  document.getElementById("totalSubtotal1").innerHTML = data.totalSubtotal;
 		  }else{
 			  data.itemSubtotal = 0;
 			  data.itemPrefAmt = 0;
 			  data.mtAmt = 0;
+			  data.itemAmt = sumItemAmt;
+			  data.partAmt = sumPartAmt;
 			  sellForm.setData(data);
+			  document.getElementById("packageAmt1").innerHTML = data.packageAmt;
+			  document.getElementById("itemAmt1").innerHTML = data.itemAmt;
+			  document.getElementById("partAmt1").innerHTML = data.partAmt;
+			  document.getElementById("totalAmt1").innerHTML = data.totalAmt;
+			  document.getElementById("totalPrefAmt1").innerHTML = data.totalPrefAmt;
+			  document.getElementById("totalSubtotal1").innerHTML = data.totalSubtotal;
 		  }
 		  if(sumPartSubtotal>0 && sumPartAmt>=0)
 		  {   
@@ -4869,6 +4908,8 @@ function onDrawSummaryCellItem(e){
 			  sumPartPrefAmt = sumPartPrefAmt.toFixed(2);
 			  data.partSubtotal = sumPartSubtotal;
 			  data.partPrefAmt = sumPartPrefAmt;
+			  data.itemAmt = sumItemAmt;
+			  data.partAmt = sumPartAmt;
 			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
 			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
 			  data.totalSubtotal = mtAmt.toFixed(2);
@@ -4876,9 +4917,17 @@ function onDrawSummaryCellItem(e){
 			  var totalAmt = parseFloat(data.totalSubtotal) + parseFloat(data.totalPrefAmt);
 			  data.totalAmt = totalAmt.toFixed(2);
 			  sellForm.setData(data);
+			  document.getElementById("packageAmt1").innerHTML = data.packageAmt;
+			  document.getElementById("itemAmt1").innerHTML = data.itemAmt;
+			  document.getElementById("partAmt1").innerHTML = data.partAmt;
+			  document.getElementById("totalAmt1").innerHTML = data.totalAmt;
+			  document.getElementById("totalPrefAmt1").innerHTML = data.totalPrefAmt;
+			  document.getElementById("totalSubtotal1").innerHTML = data.totalSubtotal;
 		  }else{
 			  data.partSubtotal = 0;
 			  data.partPrefAmt = 0;
+			  data.itemAmt = sumItemAmt;
+			  data.partAmt = sumPartAmt;
 			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
 			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
 			  data.totalSubtotal = mtAmt.toFixed(2);
@@ -4886,6 +4935,12 @@ function onDrawSummaryCellItem(e){
 			  var totalAmt = parseFloat(data.totalSubtotal) + parseFloat(data.totalPrefAmt);
 			  data.totalAmt = totalAmt.toFixed(2);
 			  sellForm.setData(data);
+			  document.getElementById("packageAmt1").innerHTML = data.packageAmt;
+			  document.getElementById("itemAmt1").innerHTML = data.itemAmt;
+			  document.getElementById("partAmt1").innerHTML = data.partAmt;
+			  document.getElementById("totalAmt1").innerHTML = data.totalAmt;
+			  document.getElementById("totalPrefAmt1").innerHTML = data.totalPrefAmt;
+			  document.getElementById("totalSubtotal1").innerHTML = data.totalSubtotal;
 		  }  
 	  }  
 }

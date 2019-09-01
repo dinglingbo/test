@@ -14,14 +14,14 @@
                 <script src="<%=request.getContextPath()%>/common/nui/boot.js" type="text/javascript"></script>
                 <link href="<%=request.getContextPath()%>/coframe/auth/login/css/kefu.css" rel="stylesheet" type="text/css" />
                 <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menu/menu.css" rel="stylesheet" type="text/css" />
-                <script src="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menu/menu.js" type="text/javascript"></script>
+                <script src="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menu/menu.js?v=1.0.2" type="text/javascript"></script>
                 <script src="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menupop.js" type="text/javascript"></script>
-                <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/tabs.css" rel="stylesheet" type="text/css" />
+                <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/tabs.css?v=1.0.2" rel="stylesheet" type="text/css" />
                 <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/frame.css?v=1.0.14" rel="stylesheet" type="text/css"
                 />
-                <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/index.css?v=1.0.11" rel="stylesheet" type="text/css"
+                <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/index.css?v=1.0.0" rel="stylesheet" type="text/css"
                 />
-                <link href="<%=webPath + contextPath%>/common/nui/themes/cupertino/skin.css" rel="stylesheet" type="text/css" />
+                <link href="<%=webPath + contextPath%>/common/nui/themes/cupertino/skin.css?v=1.0.7" rel="stylesheet" type="text/css" />
                 <link href="<%=request.getContextPath()%>/common/nui/res/third-party/scrollbar/jquery.mCustomScrollbar.css" rel="stylesheet"
                     type="text/css" />
                 <link href="<%=request.getContextPath()%>/coframe/auth/login/feedback/feedback.css" rel="stylesheet" type="text/css" />
@@ -32,11 +32,10 @@
                 <script src="<%=request.getContextPath()%>/coframe/imjs/message.js"></script>
                 <script src="<%=request.getContextPath()%>/coframe/imjs/messagebody.js"></script>
                 <script src="<%=request.getContextPath()%>/layim-v3.8.0/dist/layui.js"></script>
-                <script src="<%=request.getContextPath()%>/coframe/imjs/websocketconfig.js?v=1.3.2"></script>
+                <script src="<%=request.getContextPath()%>/coframe/imjs/websocketconfig.js?v=1.3.3"></script>
                 <style type="text/css">
                     a {
-                        cursor: pointer;
-                        color: black;
+                        cursor: pointer;                     
                     }
 
                     .groupSize {
@@ -145,19 +144,19 @@
                 </div>
             </div>
             <div id="toolData" class="sidebar">
-                <div id="tu" style="overflow-y:auto;overflow-x:auto; width:800px; height:50px;">
+<%--                  <div id="tu" style="overflow-y:auto;overflow-x:auto; width:800px; height:50px;background-color: #055594;">
                     <a>
                         <img class="icon" id="icon" src="<%=webPath + contextPath%>/coframe/auth/images/icon.jpg" style="background-color: #fff;"
                         />
                     </a>
-                </div>
-                <div id="mainMenu" style="overflow:auto; width:800px;">
+                </div>  --%>
+                <div id="mainMenu" style="overflow:auto; width:800px;margin-top: 50px;background-color:#0067b8;">
 
                 </div>
             </div>
 
             <div class="container">
-                <div class="navbar" id="skin">
+                <div class="navbar" id="skin" style="margin-left: -80px;    background-color: #0067b8;">
                     <div class="navbar-brand" id="systemName">链车云修SAAS系统</div>
                     <ul class="nav navbar-nav navbar-right">
                         <!-- <li><a href="#"><i class="fa fa-paper-plane"></i> 代办事项</a></li>
@@ -230,18 +229,21 @@
                             <a class="kefu">
                                 <span class="kefu-title">换肤</span>
                             <ul class="kefu-dropdown">
-                                <li onclick="updateSkin('#368bf4')" class="toTop">
-                                        <div style="width:10px;height:15px;background-color: #368bf4;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;经典蓝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <li onclick="updateSkin('#055594')" class="toTop">
+                                        <div style="width:10px;height:15px;background-color: #055594;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;经典蓝
+                      			</li>
+                                <li onclick="updateSkin('#369cf4d9')" >
+                                        <div style="width:10px;height:15px;background-color: #369cf4d9;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;亮蓝
                                 </li>
-                                <li onclick="updateSkin('#285e9f')">
-                                        <div style="width:10px;height:15px;background-color: #285e9f;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;深湛蓝
+  								<li onclick="updateSkin('#f36205a6')">
+                                        <div style="width:10px;height:15px;background-color: #f36205a6;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;秋日橙
                                 </li>
-                                <li onclick="updateSkin('#f36205')">
+<!--                                 <li onclick="updateSkin('#f36205')">
                                         <div style="width:10px;height:15px;background-color: #f36205;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;秋日橙
-                                </li>
-                                <li onclick="updateSkin('#c1c1c1')">
+                                </li> -->
+<!--                                 <li onclick="updateSkin('#c1c1c1')">
                                         <div style="width:10px;height:15px;background-color: #c1c1c1;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;极简灰
-                                </li>
+                                </li> -->
                                 <li onclick="updateSkin('#42485b')">
                                         <div style="width:10px;height:15px;background-color: #42485b;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;炫酷黑
                                 </li>
@@ -348,9 +350,9 @@
                 
             }); */
 
-            if (currSystemImg != "") {
+/*             if (currSystemImg != "") {
                 $("#icon").attr("src", currSystemImg || webPath + contextPath + "/common/images/logo.jpg");
-            }
+            } */
             if (currSystemName != "") {
                 $('#systemName').html(currSystemName);
             }
@@ -534,11 +536,15 @@
                         var list = text.rs || {};
                         if (list.length == 0) {
                             // showMsg("此用户无法修改","W");
+/*                                 document.getElementById("skin").style.backgroundColor = "#0067b8";
+                                document.getElementById("mainMenu").style.backgroundColor = "#0067b8"; */
                         } else {
                             if (list[0].backgroundColor != null) {
                                 document.getElementById("skin").style.backgroundColor = list[0].backgroundColor;
+                                document.getElementById("mainMenu").style.backgroundColor = list[0].backgroundColor;
                             } else {
-                                document.getElementById("skin").style.backgroundColor = "#368bf4";
+                                document.getElementById("skin").style.backgroundColor = "#0067b8";
+                                document.getElementById("mainMenu").style.backgroundColor = "#0067b8";
                             }
 
                             //list[0]

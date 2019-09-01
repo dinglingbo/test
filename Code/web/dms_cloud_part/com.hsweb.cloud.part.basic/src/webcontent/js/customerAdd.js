@@ -617,20 +617,20 @@ function onOk()
     data.isDisabled = nui.get("isDisabled").getValue();
     data.isInternal = nui.get("isInternal").getValue();
   
-
-    if(data.isInternal == 1)
-    {
-    	if(!data.fullName1)
-        {
-            parent.showMsg("请选择公司","W");
-            return;
-        }
-        data.isInternalId = data.fullName1;
-        data.fullName = nui.get("fullName1").getText();
-    }
-    else{
-        data.isInternalId = "";
-    }
+//
+//    if(data.isInternal == 1)
+//    {
+//    	if(!data.fullName1)
+//        {
+//            parent.showMsg("请选择公司","W");
+//            return;
+//        }
+//        data.isInternalId = data.fullName1;
+//        data.fullName = nui.get("fullName1").getText();
+//    }
+//    else{
+//        data.isInternalId = "";
+//    }
     var settleId = nui.get('settTypeId').value;
     var guestProperty=nui.get("guestProperty").getValue();
     //现结
@@ -753,7 +753,17 @@ function saveLogistics(guestId){
     });
 }
 
-var tgradeList = [];
+//信誉等级
+var tgradeList = [ {
+	"customid" : 0,
+	"name" : "高"
+}, {
+	"customid" : 1,
+	"name" : "中"
+}, {
+	"customid" : 2,
+	"name" : "低"
+} ];
 var tgradeHash = {};
 var billTypeIdList = [];
 var billTypeIdHash = {};
@@ -792,7 +802,7 @@ function setData(data)
             cityHash[v.code] = v;
         });
     }
-    tgradeList = data.tgrade||[];
+//    tgradeList = data.tgrade||[];
     tgradeList.forEach(function(v){
         tgradeHash[v.customid] = v;
     });

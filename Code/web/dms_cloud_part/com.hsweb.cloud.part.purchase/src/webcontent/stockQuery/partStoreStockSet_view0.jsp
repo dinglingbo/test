@@ -9,7 +9,7 @@
 -->
 <head>
 <title>安全库存设置</title>
-<script src="<%=webPath + contextPath%>/purchase/js/stockQuery/partStoreStockSet.js?v=1.0.12"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/stockQuery/partStoreStockSet.js?v=1.0.13"></script>
 <style type="text/css">
 .title {
 	width: 90px;

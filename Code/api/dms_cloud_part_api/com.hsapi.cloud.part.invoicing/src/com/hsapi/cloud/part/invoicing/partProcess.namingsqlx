@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
+    
+    <select id="getProcessDetail" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.pts.PjProcessDetail">
+    	SELECT
+			a.part_id AS partId,
+			a.part_code AS partCode,
+			a.part_name AS partName,
+			a.full_name AS fullName,
+			a.unit AS systemUnitId,
+			a.qty as qty,
+			(a.qty * c.order_qty) AS orderQty
+		FROM
+			pj_part_matching_detail a
+		INNER JOIN pj_process_product c ON c.parent_id = a.parent_id
+		WHERE 1=1
+		<dynamic>
+			<isNotEmpty prepend="and" property="partId">  
+                (c.PART_ID = #partId#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="mainId">  
+                (c.id = #mainId#)
+            </isNotEmpty>
+           
+            
+        </dynamic>  	
+    </select>
+    <!--查找配件加工、明细主表 -->
+    <select id="queryProcessMain" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id as id,
+			a.service_id as serviceId,
+			a.store_id as storeId,
+			a.orgid as orgid,
+			a.order_type_id as orderTypeId,
+			a.order_man_id as orderManId,
+			a.order_man as orderMan,
+			a.order_date as orderDate,
+			a.order_qty as orderQty,
+			a.order_amt as orderAmt,
+			a.audit_sign as auditSign,
+			a.audit_date as auditDate,
+			a.is_diff_order as isDiffOrder,
+			a.creator_id as creatorId,
+			a.creator as creator,
+			a.create_date as createDate,
+			a.operator_id as operatorId,
+			a.operator as operator,
+			a.operate_date as operateDate,
+			a.remark
+		FROM
+			pj_process_main a
+		
+		WHERE 1=1
+		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">  
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="id">  
+                (a.id = #id#)
+            </isNotEmpty>
+            
+             <isNotEmpty prepend="and" property="storeId">  
+                (a.store_id = #storeId#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="orderTypeId">  
+                (a.order_type_id = #orderTypeId#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="isDiffOrder">  
+                (a.is_diff_order = #isDiffOrder#)
+            </isNotEmpty>
+            
+             <isNotEmpty prepend="and" property="serviceId">  
+                (a.service_id like '%$serviceId$%')
+            </isNotEmpty>
+            <!--订货日期 -->
+            <isNotEmpty prepend="and" property="sOrderDate">  
+                A.ORDER_DATE &gt;= #sOrderDate#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eOrderDate">  
+                (A.ORDER_DATE &lt; #eOrderDate#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="startDate">  
+                (A.CREATE_DATE &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (A.CREATE_DATE &lt; #endDate#)
+            </isNotEmpty>
+            
+            <!--创建日期 -->
+            <isNotEmpty prepend="and" property="sCreateDate">  
+                (A.CREATE_DATE &gt;= #sCreateDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eCreateDate">  
+                (A.CREATE_DATE &lt; #eCreateDate#)
+            </isNotEmpty>
+            <!--审核日期 -->
+            <isNotEmpty prepend="and" property="sAuditDate">  
+                (A.AUDIT_DATE &gt;= #sAuditDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eAuditDate">  
+                (A.AUDIT_DATE &lt; #eAuditDate#)
+            </isNotEmpty>
+            order by a.ORDER_DATE desc
+        </dynamic>  	
+    </select>
+    
+    <select id="queryProcessDetail" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.pts.PjProcessDetail">
+    	SELECT
+			a.id as id,
+			a.main_id as mainId,
+			a.code_id as codeId,
+			a.store_id as storeId,
+			a.part_id as partId,
+			a.part_code as partCode,
+			a.part_name as partName,
+			a.full_name as fullName,
+			a.system_unit_id as systemUnitId,
+			a.qty as qty,
+			a.order_qty as orderQty,
+			a.cost_price as costPrices,
+			a.order_price as orderPrice,
+			a.order_amt as orderAmt,
+			a.tax_price as taxPrice,
+			a.tax_amt as taxAmt,
+			a.no_tax_price as noTaxPrice,
+			a.no_tax_amt as noTaxAmt,
+			a.cost_price as costPrice,
+			a.store_stock_qty as storeStockQty,
+			a.stock_out_qty as stockOutQty,
+			a.remark as remark,
+			b.apply_car_model AS applyCarModel,
+			b.unit AS unit,
+			b.oem_code AS oemCode,
+			b.spec AS spec
+		FROM
+			pj_process_detail a
+		INNER JOIN wb_common.com_attribute b ON a.part_id = b.id
+		WHERE 1=1
+		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">  
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="id">  
+                (a.id = #id#)
+            </isNotEmpty>
+            
+             <isNotEmpty prepend="and" property="codeId">  
+                (a.code_id = #codeId#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="storeId">  
+                (a.store_id = #storeId#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="isDiffOrder">  
+                (a.is_differ_order = #isDiffOrder#)
+            </isNotEmpty>
+            
+             <isNotEmpty prepend="and" property="serviceId">  
+                (a.service_id like '%$serviceId$%')
+            </isNotEmpty>
+            <!--订货日期 -->
+            <isNotEmpty prepend="and" property="sOrderDate">  
+                A.ORDER_DATE &gt;= #sOrderDate#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eOrderDate">  
+                (A.ORDER_DATE &lt; #eOrderDate#)
+            </isNotEmpty>
+            <!--创建日期 -->
+            <isNotEmpty prepend="and" property="sCreateDate">  
+                (A.CREATE_DATE &gt;= #sCreateDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eCreateDate">  
+                (A.CREATE_DATE &lt; #eCreateDate#)
+            </isNotEmpty>
+            <!--审核日期 -->
+            <isNotEmpty prepend="and" property="sAuditDate">  
+                (A.AUDIT_DATE &gt;= #sAuditDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eAuditDate">  
+                (A.AUDIT_DATE &lt; #eAuditDate#)
+            </isNotEmpty>
+            
+        </dynamic>  	
+    </select>
+    
+     <select id="queryProcessProduct" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id AS id,
+			a.main_id AS mainId,
+			a.store_id AS storeId,
+			a.part_id AS partId,
+			a.parent_id as parentId,
+			a.part_code AS partCode,
+			a.part_name AS partName,
+			a.full_name AS fullName,
+			a.system_unit_id AS systemUnitId,
+			a.order_qty AS orderQty,
+			a.order_price AS orderPrice,
+			a.order_amt AS orderAmt,
+			a.tax_price AS taxPrice,
+			a.tax_amt AS taxAmt,
+			a.no_tax_price AS noTaxPrice,
+			a.no_tax_amt AS noTaxAmt,
+			a.store_stock_qty AS storeStockQty,
+			a.stock_out_qty AS stockOutQty,
+			a.remark AS remark,
+			b.apply_car_model AS applyCarModel,
+			b.unit AS unit,
+			b.oem_code AS oemCode,
+			b.spec AS spec
+		FROM
+			pj_process_product a
+		INNER JOIN wb_common.com_attribute b ON a.part_id = b.id
+		WHERE 1=1
+		<dynamic>
+			
+            <isNotEmpty prepend="and" property="id">  
+                (a.id = #id#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="mainId">  
+                (a.main_id = #mainId#)
+            </isNotEmpty>
+                       
+            <isNotEmpty prepend="and" property="storeId">  
+                (a.store_id = #storeId#)
+            </isNotEmpty>
+            
+        </dynamic>  	
+    </select>
+    
+    <!-- 更新组装明细金额 -->
+<!--    <update id="updateDetailAmt" parameterClass="java.util.HashMap">
+    	UPDATE pj_process_detail a
+			INNER JOIN pj_process_main b ON a.code_id = b.id
+			INNER JOIN pj_out_detail_chk c ON a.id = c.order_detail_id
+			AND b.id = c.order_main_id
+			INNER JOIN pj_process_detail d 
+			on  b.code_id = d.code_id
+		SET 
+			 a.order_amt = c.sell_amt,
+			 a.order_price = c.sell_price,
+			 a.tax_price = c.tax_price,
+			 a.tax_amt = c.tax_amt,
+			 a.no_tax_price = c.no_tax_price,
+			 a.no_tax_amt = c.no_tax_amt,
+			 d.order_amt = c.sell_amt,
+			 d.order_price = c.sell_price,
+			 d.tax_price = c.tax_price,
+			 d.tax_amt = c.tax_amt,
+			 d.no_tax_price = c.no_tax_price,
+			 d.no_tax_amt = c.no_tax_amt
+		WHERE
+			1 = 1
+		AND c.main_id = #mainId# 
+    </update>
+
+    <update id="updateProductAmt" parameterClass="java.util.HashMap">
+    	UPDATE pj_process_product a
+		INNER JOIN pj_process_main b ON a.main_id = b.id
+		INNER JOIN pj_out_detail_chk c ON a.main_id = c.order_main_id
+		INNER JOIN pj_process_product d ON d.main_id = b.code_id
+		INNER JOIN pj_out_main_chk e on e.id =c.main_id
+		SET 
+		 a.order_amt = e.out_amt,
+		 a.order_price =  (e.out_amt/e.out_qty),
+		 a.tax_price =(e.tax_amt/e.out_qty),
+		 a.tax_amt = e.tax_amt,
+		 a.no_tax_price = (e.no_tax_amt/e.out_qty),
+		 a.no_tax_amt = e.no_tax_amt,
+		 d.order_amt = e.out_amt,
+		 d.order_price = (e.out_amt/e.out_qty),
+		 d.tax_price = (e.tax_amt/e.out_qty),
+		 d.tax_amt =  e.tax_amt,
+		 d.no_tax_price =(e.no_tax_amt/e.out_qty),
+		 d.no_tax_amt =  e.no_tax_amt
+		WHERE
+			1 = 1
+		AND c.main_id = #mainId# 
+    </update>
+
+    <update id="updateMainAmt" parameterClass="java.util.HashMap">
+    	UPDATE pj_process_main a
+		INNER JOIN pj_out_main_chk b ON b.code_id = a.id
+		INNER JOIN pj_process_main c ON a.code_id = c.id
+		SET a.order_amt = b.out_amt,
+		 a.order_price = b.out_amt,
+		 a.tax_amt =b.tax_amt,
+		 a.no_tax_amt =b.no_tax_amt,
+		 c.order_amt = b.out_amt,
+		 c.order_price = b.out_amt,
+		 c.tax_amt =b.tax_amt,
+		 c.no_tax_amt =b.no_tax_amt
+		WHERE
+			1 = 1
+		AND b.id = #mainId#
+    </update>   -->
+    
+    
+     
+    <!-- 更新组装明细金额 -->
+    <update id="updateDetailAmt" parameterClass="java.util.HashMap">
+    	UPDATE pj_process_detail a
+			INNER JOIN pj_process_main b ON a.code_id = b.id
+			INNER JOIN pj_out_detail_chk c ON a.id = c.order_detail_id
+			AND b.id = c.order_main_id
+		
+		SET 
+			 a.order_amt = c.sell_amt,
+			 a.order_price = c.sell_price,
+			 a.tax_price = c.tax_price,
+			 a.tax_amt = c.tax_amt,
+			 a.no_tax_price = c.no_tax_price,
+			 a.no_tax_amt = c.no_tax_amt
+		WHERE
+			1 = 1
+		AND c.main_id = #mainId# 
+    </update>
+    <!-- 更新组装成品金额 -->
+    <update id="updateProductAmt" parameterClass="java.util.HashMap">
+    	UPDATE pj_process_product a
+		INNER JOIN pj_process_main b ON a.main_id = b.id
+		INNER JOIN pj_out_detail_chk c ON a.main_id = c.order_main_id
+		INNER JOIN pj_out_main_chk e on e.id =c.main_id
+		SET 
+		 a.order_amt = e.out_amt,
+		 a.order_price =  (e.out_amt/e.out_qty),
+		 a.tax_price =(e.tax_amt/e.out_qty),
+		 a.tax_amt = e.tax_amt,
+		 a.no_tax_price = (e.no_tax_amt/e.out_qty),
+		 a.no_tax_amt = e.no_tax_amt,
+		 a.tax_diff = (e.tax_amt- e.no_tax_amt),
+		 a.tax_sign = c.tax_sign,
+		 a.tax_rate = c.tax_rate
+		WHERE
+			1 = 1
+		AND c.main_id = #mainId# 
+    </update>
+    <!-- 更新组装主表金额-->
+    <update id="updateMainAmt" parameterClass="java.util.HashMap">
+    	UPDATE pj_process_main a
+		INNER JOIN pj_out_main_chk b ON b.code_id = a.id
+		SET a.order_amt = b.out_amt,
+		 a.order_price = b.out_amt,
+		 a.tax_amt =b.tax_amt,
+		 a.no_tax_amt =b.no_tax_amt
+		WHERE
+			1 = 1
+		AND b.id = #mainId#
+    </update>
+    
+    <update id="updateProcessDetail" parameterClass="java.util.HashMap">
+    	UPDATE pj_process_detail a
+		INNER JOIN pj_part_store_stock b ON a.part_id = b.part_id
+		
+		SET a.cost_price = b.cost_price,
+		 a.store_stock_qty = b.stock_qty
+		WHERE 1=1 and
+			a.main_id = #mainId#	
+			AND b.store_id = #storeId#
+    </update>
+    
+    <delete id="delteProduct" parameterClass="java.util.HashMap">
+    	DELETE FROM pj_process_product WHERE main_id = #mainId#
+    </delete>
+    
+     <delete id="delteDetail" parameterClass="java.util.HashMap">
+    	DELETE FROM pj_process_detail WHERE code_id = #mainId#
+    </delete>
+</sqlMap>

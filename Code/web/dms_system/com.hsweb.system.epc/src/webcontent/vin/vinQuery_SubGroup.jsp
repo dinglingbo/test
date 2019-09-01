@@ -18,9 +18,9 @@
             <div field="has_subs" visible="false"></div>
             <!-- <div type="indexcolumn" width="20" summaryType="count">序号</div> -->
             <div field="num" width="30" headerAlign="center" allowSort=false summaryType="count">主组</div>
-            <div field="subgroup" width="30" headerAlign="center" allowSort=false>分组</div>
-            <div field="mid" width="60" headerAlign="center" allowSort=false>图号</div>
-            <div field="subgroupname" width="150" headerAlign="center" allowSort=false>名称</div>
+            <div field="mainGroup" width="30" headerAlign="center" allowSort=false>分组</div>
+            <div field="subGroup" width="60" headerAlign="center" allowSort=false>图号</div>
+            <div field="name" width="150" headerAlign="center" allowSort=false>名称</div>
             <div field="description" width="150" headerAlign="center" allowSort=false>备注</div>
             <div field="model" width="100" headerAlign="center" allowSort=false>型号</div>                      
         </div>

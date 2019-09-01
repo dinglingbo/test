@@ -12,28 +12,77 @@ pageEncoding="UTF-8" session="false" %>
         <head>
             <title>首页</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.3.35"></script>
+            <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.0.0"></script>
+            <script src="<%=webPath + contextPath%>/common/js/count.js?v=1.0.0"></script>
             <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
             <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
-            <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css?v=1.0.5" rel="stylesheet" type="text/css" />
+            <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css?v=1.0.6" rel="stylesheet" type="text/css" />
             <script type="text/javascript" src="<%=request.getContextPath()%>/common/nui/echarts.min.js"></script>
             <!-- <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
-<%--             <script src="<%=webPath + contextPath%>/common/js/jquery-1.11.3.min.js?v=1.0.3"></script>
-			<script src="<%=webPath + contextPath%>/common/js/jquery.dad.min.js?v=1.0.3"></script> --%>
-            <style type="text/css">
-            	#nuifit{
-            		height:125px !important;
-            	}
-            </style>
+            <%--             <script src="<%=webPath + contextPath%>/common/js/jquery-1.11.3.min.js?v=1.0.3"></script>
+                <script src="<%=webPath + contextPath%>/common/js/jquery.dad.min.js?v=1.0.3"></script> --%>
+                <style type="text/css">
+                    #nuifit {
+                        height: 125px !important;
+                    }
+
+                    .box {
+                        width: 28px;
+                        height: 20px;
+                        background-color: red;
+                        text-align: center;
+                        border-top-left-radius: 20px;
+                        border-top-right-radius: 25px;
+                        border-bottom-right-radius: 25px;
+                        border-bottom-left-radius: 0px;
+                        position: absolute;
+                        margin-top: -14px;
+                        margin-left: 130px;
+                    }
+
+                    .daBox {
+                        width: 100%;
+                        height: 100%;
+                        cursor: pointer;
+                        margin-left: 20px;
+                        margin-top: 16px;
+                        position: relative;
+                        float: left;
+                    }
+
+                    em.emarrow {
+                        color: #E6E6E6;
+                        font-size: 40px;
+                    }
+
+                    span.arrow {
+                        color: #E6E6E6;
+                        font-size: 40px;
+                    }
+
+                    .shu {
+                        color: #f2f5f7;
+                        font-size: 12px;
+                        margin-top: 2px;
+                    }
+
+                    .icon {
+                        width: 30px;
+ 						height: 50px;
+                        position: relative;
+                        float: left;
+                        margin-right: 10px;
+                    }
+                </style>
         </head>
 
         <body>
-            <div class="nui-fit" >
-				<div  class="nui-fit" id="nuifit">
-		             <div class="vpanel_heading" id="demoFather">
-	                    <i class="fa fa-th-list fa-lg-custom fa-fw"></i>
-	                    <span>快捷菜单</span>  
-<!-- 	                    	<div class="menu_pannel menu_pannel_bg" style="background-color: #1faeff;width: 90px;height: 50px;float: left;margin-top: 10px;margin-left: 10px;border-radius: 12px;">
+            <div class="nui-fit">
+                <div class="nui-fit" id="nuifit">
+                    <div class="vpanel_heading" id="demoFather">
+                        <i class="fa fa-th-list fa-lg-custom fa-fw"></i>
+                        <span>快捷菜单</span>
+                        <!-- 	                    	<div class="menu_pannel menu_pannel_bg" style="background-color: #1faeff;width: 90px;height: 50px;float: left;margin-top: 10px;margin-left: 10px;border-radius: 12px;">
 		                    	<div class="menu_pannel menu_pannel_bg" style="width: 90px;height: 40px;float: left;margin-top: 10px;border-radius: 12px;">	
 									<a onclick="tojump()" style="width: 50px;height: 60px;">
 										<i class="fa fa-file-code-o fa-2x  fa-inverse" style="margin-top: 10px;margin-left: 10px;"></i>
@@ -41,12 +90,13 @@ pageEncoding="UTF-8" session="false" %>
 								</div>
 								<p align="center" style="margin-top: 50px;">综合开单</p>                          
 							</div> -->
-	                </div>
-	                <div  class="nui-fit" style="white-space: nowrap;height: 125px !important;overflow-y:hidden;overflow-x:auto;padding:0px 0px 0px 0px;" id="demo" >
-	
-	                </div>            
-				</div>
-                <div id="" class="main" style="margin-top: 5px;height: 205px;">
+                    </div>
+                    <div class="nui-fit" style="white-space: nowrap;height: 125px !important;overflow-y:hidden;overflow-x:auto;padding:0px 0px 0px 0px;"
+                        id="demo">
+
+                    </div>
+                </div>
+                <div id="" class="main" style="margin-top: 5px;height: 260px;">
 
                     <div id="" class="main_child_left">
                         <div class="vpanel">
@@ -57,78 +107,146 @@ pageEncoding="UTF-8" session="false" %>
                             </div>
                             <div class="nui-fit">
                                 <div class="nui-fit">
-                                    <div style="padding:0px 0px 0px 0px;">
+                                    <div style="margin:0px 0px 0px 40px;">
                                         <table id="table1">
 
                                             <tr>
                                                 <td class="tabletext">
-                                                    <i class="fa fa-cube fa-lg-custom fa-fw"></i>预约到店提醒：</td>
-                                                <td class="tablenum">
-                                                    <a id="queryAppointment" href="javascript:bookingMgr()" style="color: #61acc9;">
-                                                        <span></span>
-                                                    </a>
+                                                    <div class="daBox" onclick="toMaintain(8)">
+                                                        <div class="box"  id="queryMaintain">
+                                                            <p class="shu"></p>
+                                                        </div>
+                                                        <div class="icon">
+                                                            <i class="fa fa-cubes fa-2x" style="color:#12c050;"></i>
+                                                        </div>
+                                                        <div style="width: 150px;height: 50px;position: relative;float: left;">
+                                                            <span style="font-size: 15px;">保养到期提醒</span>
+                                                            </br>
+                                                            <span style="font-size: 12px;color:#ccc" id="queryMaintainDate"></span>
+                                                        </div>
+
+                                                    </div>
                                                 </td>
-                                                <td style="width:0.05%;"></td>
                                                 <td class="tabletext">
-                                                    <i class="fa fa-cube fa-lg-custom fa-fw"></i>保养到期提醒：</td>
-                                                <td class="tablenum">
-                                                    <a id="queryMaintain" href="javascript:toMaintain(8)" style="color: #61acc9;">
-                                                        <span></span>
-                                                    </a>
+                                                    <div class="daBox" onclick="toMaintain(3)">
+                                                        <div class="box"  id="queryBusiness">
+                                                            <p class="shu"></p>
+                                                        </div>
+                                                        <div class="icon" style="margin-right: 7px;">
+                                                            <i class="fa fa-cubes fa-2x" style="color:#12c050;"></i>
+                                                        </div>
+                                                        <div style="width: 150px;height: 50px;position: relative;float: left;">
+                                                            <span style="font-size: 15px;">商 业 险 提 醒</span>
+                                                            </br>
+                                                            <span style="font-size: 12px;color:#ccc" id="queryBusinessDate"></span>
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+                                                <td class="tabletext">
+                                                    <div class="daBox" onclick="toMaintain(4)">
+                                                        <div class="box"  id="queryCompulsoryInsurance">
+                                                            <p class="shu"></p>
+                                                        </div>
+                                                        <div class="icon" style="margin-right: 7px;">
+                                                            <i class="fa fa-cubes fa-2x" style="color:#12c050;"></i>
+                                                        </div>
+                                                        <div style="width: 150px;height: 50px;position: relative;float: left;">
+                                                            <span style="font-size: 15px;">交 强 险 提 醒</span>
+                                                            </br>
+                                                            <span style="font-size: 12px;color:#ccc" id="queryCompulsoryInsuranceDate"></span>
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <td class="tabletext">
+                                                    <div class="daBox" onclick="bookingMgr()">
+                                                        <div class="box"  id="queryAppointment">
+                                                            <p class="shu"></p>
+                                                        </div>
+                                                        <div class="icon">
+                                                            <i class="fa fa-bell-o fa-2x" style="color:#1faeff;"></i>
+                                                        </div>
+                                                        <div style="width: 150px;height: 50px;position: relative;float: left;">
+                                                            <span style="font-size: 15px;">预约到店提醒</span>
+                                                            </br>
+                                                            <span style="font-size: 12px;color:#ccc" id="queryAppointmentDate"></span>
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+                                                <td class="tabletext">
+                                                    <div class="daBox" onclick="toMaintain(5)">
+                                                        <div class="box"  id="queryDrivingLicense">
+                                                            <p class="shu"></p>
+                                                        </div>
+                                                        <div class="icon">
+                                                            <i class="fa fa-address-card-o fa-2x" style="color:#ff7e00;"></i>
+                                                        </div>
+                                                        <div style="width: 150px;height: 50px;position: relative;float: left;">
+                                                            <span style="font-size: 15px;">驾照年审提醒</span>
+                                                            </br>
+                                                            <span style="font-size: 12px;color:#ccc" id="queryDrivingLicenseDate"></span>
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+                                                <td class="tabletext">
+                                                    <div class="daBox" onclick="toMaintain(6)">
+                                                        <div class="box"  id="queryCar">
+                                                            <p class="shu"></p>
+                                                        </div>
+                                                        <div class="icon">
+                                                            <i class="fa fa-automobile fa-2x" style="color:#0084f;"></i>
+                                                        </div>
+                                                        <div style="width: 150px;height: 50px;position: relative;float: left;">
+                                                            <span style="font-size: 15px;">车辆年检提醒</span>
+                                                            </br>
+                                                            <span style="font-size: 12px;color:#ccc" id="queryCarDate"></span>
+                                                        </div>
+
+                                                    </div>
                                                 </td>
                                             </tr>
 
                                             <tr>
                                                 <td class="tabletext">
-                                                    <i class="fa fa-cube fa-lg-custom fa-fw"></i>商业险到期提醒：</td>
-                                                <td class="tablenum">
-                                                    <a id="queryBusiness" href="javascript:toMaintain(3)" style="color: #61acc9;">
-                                                        <span></span>
-                                                    </a>
-                                                </td>
-                                                <td style="width:0.05%;"></td>
-                                                <td class="tabletext">
-                                                    <i class="fa fa-cube fa-lg-custom fa-fw"></i>交强险到期提醒：</td>
-                                                <td class="tablenum">
-                                                    <a id="queryCompulsoryInsurance" href="javascript:toMaintain(4)" style="color: #61acc9;">
-                                                        <span></span>
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                                    <div class="daBox" onclick="toMaintain(7)">
+                                                        <div class="box"  id="queryGuestBirthday">
+                                                            <p class="shu"></p>
+                                                        </div>
+                                                        <div class="icon">
+                                                            <i class="fa fa-birthday-cake fa-2x" style="color:#ff7875;"></i>
+                                                        </div>
+                                                        <div style="width: 150px;height: 50px;position: relative;float: left;">
+                                                            <span style="font-size: 15px;">客户生日提醒</span>
+                                                            </br>
+                                                            <span style="font-size: 12px;color:#ccc" id="queryGuestBirthdayDate"></span>
+                                                        </div>
 
-                                            <tr>
-                                                <td class="tabletext">
-                                                    <i class="fa fa-cube fa-lg-custom fa-fw"></i>驾照年审提醒：</td>
-                                                <td class="tablenum">
-                                                    <a id="queryDrivingLicense" href="javascript:toMaintain(5)" style="color: #61acc9;">
-                                                        <span></span>
-                                                    </a>
+                                                    </div>
                                                 </td>
-                                                <td></td>
                                                 <td class="tabletext">
-                                                    <i class="fa fa-cube fa-lg-custom fa-fw"></i>车辆年检提醒：</td>
-                                                <td class="tablenum">
-                                                    <a id="queryCar" href="javascript:toMaintain(6)" style="color: #61acc9;">
-                                                        <span></span>
-                                                    </a>
+                                                    <div class="daBox" onclick="toMaintain(2)">
+                                                        <div class="box"  id="queryEmployeeBirthday">
+                                                            <p class="shu"></p>
+                                                        </div>
+                                                        <div class="icon">
+                                                            <i class="fa fa-birthday-cake fa-2x" style="color:#ff7875;"></i>
+                                                        </div>
+                                                        <div style="width: 150px;height: 50px;position: relative;float: left;">
+                                                            <span style="font-size: 15px;">员工生日提醒</span>
+                                                            </br>
+                                                            <span style="font-size: 12px;color:#ccc" id="queryEmployeeBirthdayDate"></span>
+                                                        </div>
+
+                                                    </div>
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tabletext">
-                                                    <i class="fa fa-cube fa-lg-custom fa-fw"></i>客户生日提醒：</td>
-                                                <td class="tablenum">
-                                                    <a id="queryGuestBirthday" href="javascript:toMaintain(7)" style="color: #61acc9;">
-                                                        <span></span>
-                                                    </a>
-                                                </td>
-                                                <td></td>
-                                                <td class="tabletext">
-                                                    <i class="fa fa-cube fa-lg-custom fa-fw"></i>员工生日提醒：</td>
-                                                <td class="tablenum">
-                                                    <a id="queryEmployeeBirthday" href="javascript:toMaintain(2)" style="color: #61acc9;">
-                                                        <span></span>
-                                                    </a>
-                                                </td>
+												<td class="tabletext"></td>
                                             </tr>
 
                                         </table>
@@ -141,81 +259,82 @@ pageEncoding="UTF-8" session="false" %>
 
                     <div id="" style="float:left;width: 1%;height: 100%;"> </div>
 
-                      <div id="" class="main_child">
-                            <div class="vpanel" style="height:302px;">
-                                    <div class="vpanel_heading">
-                                        <i class="fa fa-bullhorn fa-lg-custom fa-fw"></i>
-                                        <span>今日数据</span>
-                                        <!-- <span style="float:right;margin-right:10px;font-size: 13px;">
+                    <div id="" class="main_child">
+                        <div class="vpanel" style="height:302px;">
+                            <div class="vpanel_heading">
+                                <i class="fa fa-bullhorn fa-lg-custom fa-fw"></i>
+                                <span>今日数据</span>
+                                <!-- <span style="float:right;margin-right:10px;font-size: 13px;">
                                 <a onclick="" style="cursor: pointer;">总览</a>丨
                                 <a onclick="" style="cursor: pointer;">分类</a>
                             </span> -->
-                                    </div>
-                                    <div class="nui-fit">
-                                        <div class="nui-fit">
-                                            <div style="padding:10px 10px 10px 10px;">
-                                                <table id="table1" style="margin-left:0px;">
-                                                    <tr>
-                                                        <td class="tabletext">
-                                                            <i class="fa fa-cube fa-lg-custom fa-fw"></i>首修车辆：</td>
-                                                        <td class="tablenum">
-                                                            <a id="newCarQty" href="javascript:toMaintain(12)" style="color: #61acc9;">
-                                                                <span></span>
-                                                            </a>
-                                                        </td>
-                                                        <td style="width:0.05%;"></td>
-                                                        <td class="tabletext">
-                                                            <i class="fa fa-cube fa-lg-custom fa-fw"></i>今日进厂：</td>
-                                                        <td class="tablenum">
-                                                            <a id="recordBillQty" href="javascript:toMaintain(9)" style="color: #61acc9;">
-                                                                <span></span>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-        
-                                                    <tr>
-                                                        <td class="tabletext">
-                                                            <i class="fa fa-cube fa-lg-custom fa-fw"></i>结算车次：</td>
-                                                        <td class="tablenum">
-                                                            <a id="settleQty" href="javascript:toMaintain(10)" style="color: #61acc9;">
-                                                                <span></span>
-                                                            </a>
-                                                        </td>
-                                                        <td></td>
-                                                        <td class="tabletext">
-                                                            <i class="fa fa-cube fa-lg-custom fa-fw"></i>在修车辆：</td>
-                                                        <td class="tablenum">
-                                                            <a id="serviceBillQty" href="javascript:toMaintain(11)" style="color: #61acc9;">
-                                                                <span></span>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-        
-        
-                                                    <tr>
-                                                        <td class="tabletext">
-                                                            <i class="fa fa-cube fa-lg-custom fa-fw"></i>预约车辆：</td>
-                                                        <td class="tablenum">
-                                                            <a id="bookingBillQty" href="javascript:toMaintain(13)" style="color: #61acc9;">
-                                                                <span></span>
-                                                            </a>
-                                                        </td>
-                                                        <td></td>
-                                                        <td class="tabletext">
-                                                            <i class="fa fa-cube fa-lg-custom fa-fw"></i>营业额：</td>
-                                                        <td class="tablenum">
-                                                            <a id="receiveAmt" href="javascript:toMaintain(14)" style="color: #61acc9;">
-                                                                <span></span>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-        
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
+                            </div>
+                            <div class="nui-fit">
+                                <div class="nui-fit">
+                                   <!--  <div style="padding:10px 10px 10px 10px;">
+                                        <table id="table1" style="margin-left:0px;">
+                                            <tr>
+                                                <td class="tabletext">
+                                                    <i class="fa fa-cube fa-lg-custom fa-fw"></i>首修车辆：</td>
+                                                <td class="tablenum">
+                                                    <a id="newCarQty" href="javascript:toMaintain(12)" style="color: #61acc9;">
+                                                        <span></span>
+                                                    </a>
+                                                </td>
+                                                <td style="width:0.05%;"></td>
+                                                <td class="tabletext">
+                                                    <i class="fa fa-cube fa-lg-custom fa-fw"></i>今日进厂：</td>
+                                                <td class="tablenum">
+                                                    <a id="recordBillQty" href="javascript:toMaintain(9)" style="color: #61acc9;">
+                                                        <span></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="tabletext">
+                                                    <i class="fa fa-cube fa-lg-custom fa-fw"></i>结算车次：</td>
+                                                <td class="tablenum">
+                                                    <a id="settleQty" href="javascript:toMaintain(10)" style="color: #61acc9;">
+                                                        <span></span>
+                                                    </a>
+                                                </td>
+                                                <td></td>
+                                                <td class="tabletext">
+                                                    <i class="fa fa-cube fa-lg-custom fa-fw"></i>在修车辆：</td>
+                                                <td class="tablenum">
+                                                    <a id="serviceBillQty" href="javascript:toMaintain(11)" style="color: #61acc9;">
+                                                        <span></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td class="tabletext">
+                                                    <i class="fa fa-cube fa-lg-custom fa-fw"></i>预约车辆：</td>
+                                                <td class="tablenum">
+                                                    <a id="bookingBillQty" href="javascript:toMaintain(13)" style="color: #61acc9;">
+                                                        <span></span>
+                                                    </a>
+                                                </td>
+                                                <td></td>
+                                                <td class="tabletext">
+                                                    <i class="fa fa-cube fa-lg-custom fa-fw"></i>营业额：</td>
+                                                <td class="tablenum">
+                                                    <a id="receiveAmt" href="javascript:toMaintain(14)" style="color: #61acc9;">
+                                                        <span></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+
+                                        </table>
+                                    </div> -->
+                                    <div class="nui-fit" style="height:500px;" id="todayData"></div>
                                 </div>
-                       <!--  <div class="vpanel">
+                            </div>
+                        </div>
+                        <!--  <div class="vpanel">
                             <div class="vpanel_heading">
                                 <i class="fa fa-eye fa-lg-custom fa-fw"></i>
                                 <span>
@@ -283,57 +402,59 @@ pageEncoding="UTF-8" session="false" %>
 
 
                     <div id="" class="main_child_left">
-                            <div class="vpanel">
-                                    <div class="vpanel_heading">
-                                        <i class="fa fa-eye fa-lg-custom fa-fw"></i>
-		                                <span>
-		                                    <a onclick="showGuestBoard()" style="cursor: pointer;">客户休息区看板</a>丨
-		                                    <a onclick="showWorkShopBoard()" style="cursor: pointer;">维修车间看板</a>丨
-		                                    <a onclick="showPartLogisticsBoard()" style="cursor: pointer;">配件物流看板</a>
-		                                </span>
-                                        <span style="float:right;margin-right:10px;font-size: 13px;">
-                                            <a onclick="showOrgGuestCar()" style="cursor: pointer;">本店</a>丨
-                                            <a onclick="showTenantGuestCar()" style="cursor: pointer;">连锁</a>
-                                        </span>
-                                    </div>
-                                    <div class="nui-fit">
-                                        <div id="Ranking" style="height:95%;width:95%;display: none;" title="图"> </div>
-                                        <table id="tableInfo" style="margin-left:20px;margin-top:10px;">
-                                            <tr>
-                                                <td class="tabletext">
-                                                    <i class="fa fa-users fa-5x">
-                                                </td>
-                                                <td class="tablenumb">
-                                                    <p>今日新增客户：&nbsp;&nbsp;&nbsp;
-                                                        <span id="addGuestQty">0</span>人</p>
-                                                    <p>客户总数：&nbsp;&nbsp;&nbsp;
-                                                        <span id="guestQty">0</span>人</p>
-                                                </td>
-                                                <td style="width:0.05%;">
-        
-                                                </td>
-                                                <td class="tabletext">
-                                                    <i class="fa fa-car fa-5x"></i>
-                                                </td>
-                                                <td class="tablenumb">
-                                                    <p>今日新增车辆：&nbsp;&nbsp;&nbsp;
-                                                        <span id="addCarQty">0</span>辆</p>
-                                                    <p>车辆总数：&nbsp;&nbsp;&nbsp;
-                                                        <span id="carQty">0</span>辆</p>
-                                                </td>
-                                            </tr>
-        
-        
-                                        </table>
-                                    </div>
-                                </div>
+                        <div class="vpanel">
+                            <div class="vpanel_heading">
+                                <i class="fa fa-eye fa-lg-custom fa-fw"></i>
+                                <span>
+                                    <a onclick="showGuestBoard()" style="cursor: pointer;">客户休息区看板</a>丨
+                                    <a onclick="showWorkShopBoard()" style="cursor: pointer;">维修车间看板</a>
+                                    <!-- 丨<a onclick="showPartLogisticsBoard()" style="cursor: pointer;">配件物流看板</a> -->
+                                </span>
+                                <span style="float:right;margin-right:10px;font-size: 13px;">
+                                    <a onclick="showOrgGuestCar()" style="cursor: pointer;">本店</a>丨
+                                    <a onclick="showTenantGuestCar()" style="cursor: pointer;">连锁</a>
+                                </span>
+                            </div>
+                            <div class="nui-fit">
+                                <div id="Ranking" style="height:95%;width:95%;display: none;" title="图"> </div>
+                                <table id="tableInfo" style="margin-left:20px;margin-top:10px;">
+                                    <tr>
+                                        <td class="tabletext">
+                                            <i class="fa fa-users fa-5x">
+                                        </td>
+                                        <td class="tablenumb">
+                                        	<div id="wrap">
+	                                            <p>今日新增客户：&nbsp;&nbsp;&nbsp;
+	                                                <span id="addGuestQty">0</span>人</p>
+	                                            <p>客户总数：&nbsp;&nbsp;&nbsp;
+	                                                <span id="guestQty">0</span>人</p>
+                                             </div>
+                                        </td>
+                                        <td style="width:0.05%;">
+
+                                        </td>
+                                        <td class="tabletext">
+                                            <i class="fa fa-car fa-5x"></i>
+                                        </td>
+                                        <td class="tablenumb">
+                                            <p>今日新增车辆：&nbsp;&nbsp;&nbsp;
+                                                <span id="addCarQty">0</span>辆</p>
+                                            <p>车辆总数：&nbsp;&nbsp;&nbsp;
+                                                <span id="carQty">0</span>辆</p>
+                                        </td>
+                                    </tr>
+
+
+                                </table>
+                            </div>
+                        </div>
                     </div>
 
                     <div id="" style="float:left;width: 1%;height: 100%;"> </div>
 
 
                     <div id="" class=" main_child">
-                        
+
 
                         <div class="vpanel">
                             <div class="vpanel_heading">
@@ -373,18 +494,15 @@ pageEncoding="UTF-8" session="false" %>
 
                     </div>
 
-                   
 
-            
+
+
                     <div style="clear: both"></div>
                     <!-- 注释：清除float产生浮动 -->
                 </div>
 
 
             </div>
-            <script type="text/javascript">
-                nui.parse();
-            </script>
         </body>
 
         </html>

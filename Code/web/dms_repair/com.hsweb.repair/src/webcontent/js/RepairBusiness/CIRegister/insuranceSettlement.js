@@ -159,8 +159,8 @@ function onChanged() {
 	var PrefAmt = nui.get("PrefAmt").getValue()||0;
 	if(PrefAmt>-1){
 		var amount = parseFloat(netInAmt) - parseFloat(PrefAmt);
-		zongAmt = amount.toFixed(2);
-		document.getElementById('amount').innerHTML = amount.toFixed(2);
+		zongAmt = amount.toFixed(4);
+		document.getElementById('amount').innerHTML = amount.toFixed(4);
 	}
 	var memAmt = nui.get("rechargeBalaAmt").getValue()||0;
 		if(memAmt!=0){
@@ -171,7 +171,7 @@ function onChanged() {
 
 		return;
 	}
-	if((parseFloat(deductible) + parseFloat(PrefAmt)+ parseFloat(count)).toFixed(2)  > netInAmt){
+	if((parseFloat(deductible) + parseFloat(PrefAmt)+ parseFloat(count)).toFixed(4)  > netInAmt){
 		showMsg("储值抵扣加上优惠金额不能大于应收金额","W");
 
 
@@ -208,7 +208,7 @@ function pay(){
 	}
 		
 		deductible = nui.get("deductible").getValue()||0;
-		count = (count+deductible).toFixed(2);
+		count = (count+deductible).toFixed(4);
 		if(count!=zongAmt){
 			showMsg("结算金额和应结金额不一致，请重新确认！","W");
 			return;

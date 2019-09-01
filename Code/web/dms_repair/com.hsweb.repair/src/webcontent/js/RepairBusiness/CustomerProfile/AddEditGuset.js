@@ -1913,7 +1913,6 @@ function getLicense(imgPath){
 	    url:apiPath+sysApi +"/com.hs.common.sysService.getVehicleLicense.biz.ext",
 	    type:"post",
 	    data:{imgPath:imgPath},
-	    async:false,
 	    success:function(data)
 	    {
 	        nui.unmask();
@@ -1938,7 +1937,7 @@ function getLicense(imgPath){
 	        	}      		
 	        	showMsg("行驶证识别成功","S");
 	        }else{
-	            showMsg("行驶证识别失败","W");
+	            showMsg(data.errMsg||"行驶证识别失败","W");
 	            return;
 	        }
 	        

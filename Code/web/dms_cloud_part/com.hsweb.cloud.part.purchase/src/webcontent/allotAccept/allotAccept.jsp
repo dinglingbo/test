@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调拨受理</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotAccept.js?v=1.0.8"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotAccept.js?v=1.0.12"></script>
 <style type="text/css">
 .title {
   width: 70px;
@@ -256,8 +256,7 @@ body .mini-grid-row-selected{
                            showPager="false"
                            dataField="pjAllotAcceptDetailList"
                            idField="id"
-                           frozenStartColumn="0"
-                           frozenEndColumn="3"
+                   
                            showSummaryRow="true"
                            ondrawcell="onRightGridDraw"
                            allowCellSelect="true"
@@ -300,7 +299,7 @@ body .mini-grid-row-selected{
                               </div>
                               <div header="数量信息" headerAlign="center">
                                   <div property="columns">
-                                      <div field="acceptQty" name="acceptQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="受理数量">
+                                      <div field="acceptQty" name="acceptQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="调拨数量">
                                         <input property="editor" vtype="float" class="nui-textbox"/>
                                       </div>
                                       <div field="remark" width="120" headerAlign="center" allowSort="true" header="备注">
@@ -451,8 +450,7 @@ body .mini-grid-row-selected{
                selectOnLoad="true"
                showPager="false"
                dataField=""
-               frozenStartColumn="0"
-               frozenEndColumn="1"
+             
                onrowdblclick="addSelectPart"
                allowCellSelect="true"
                editNextOnEnterKey="true"

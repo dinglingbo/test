@@ -69,6 +69,7 @@
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="addMorePart()" id="fastEnterBtn"><span class="fa fa-hand-o-right fa-lg"></span>&nbsp;快速录入配件</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onCost()" id="exportBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;费用登记</a>
                 <span id="status"></span>
             </td>
         </tr>
@@ -246,8 +247,8 @@
                          dataField="pjPchsOrderDetailList"
                          idField="id"
                          showSummaryRow="true"
-                         frozenStartColumn="0"
-                         frozenEndColumn="10"
+                         frozenStartColumn=""
+                         frozenEndColumn=""
                          ondrawcell="onRightGridDraw"
                          allowCellSelect="true"
                          allowCellEdit="true"
@@ -258,6 +259,7 @@
                          oncellbeginedit="OnrpMainGridCellBeginEdit"
                          showColumnsMenu="true"
                          onselectionchanged=""
+                         sortMode="client"
                          editNextOnEnterKey="true"
                          allowCellWrap = true
                          url="">
@@ -312,25 +314,25 @@
                       <div field="sellUnitPrice" name="sellUnitPrice" allowSelect="false" width="20" headerAlign="center" visible="true" allowSort="true" header="统一售价">
                       	<input property="editor" class="nui-textbox"/>
                       </div>
-                      <div field="price1" name="price1" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="true" header="">
+                      <div field="price1" name="price1" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="" header="">
                       	<input property="editor" class="nui-textbox"/>
                       </div>
-                      <div field="price2" name="price2" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="true" header="">
+                      <div field="price2" name="price2" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="" header="">
                       	<input property="editor" class="nui-textbox"/>
                       </div>
-                      <div field="price3" name="price3" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="true" header="">
+                      <div field="price3" name="price3" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="" header="">
                       	<input property="editor" class="nui-textbox"/>
                       </div>
-                      <div field="price4" name="price4" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="true" header="">
+                      <div field="price4" name="price4" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="" header="">
                       	<input property="editor" class="nui-textbox"/>
                       </div>
-                      <div field="price5" name="price5" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="true" header="">
+                      <div field="price5" name="price5" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="" header="">
                       	<input property="editor" class="nui-textbox"/>
                       </div>
-                      <div field="price6" name="price6" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="true" header="">
+                      <div field="price6" name="price6" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="" header="">
                       	<input property="editor" class="nui-textbox"/>
                       </div>
-                      <div field="price7" name="price7" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="true" header="">
+                      <div field="price7" name="price7" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="" header="">
                       	<input property="editor" class="nui-textbox"/>
                       </div>   
                                 </div>

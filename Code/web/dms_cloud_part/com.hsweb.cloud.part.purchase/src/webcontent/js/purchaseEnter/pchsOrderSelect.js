@@ -50,7 +50,7 @@ var accountSignHash = {
     "1":"已审核"
 };
 var billStatusIdList = [
-    {id:1,name:"待发货"},
+//{id:1,name:"待发货"},
     {id:2,name:"待收货"},
     {id:3,name:"部分入库"},
     {id:4,name:"已入库"}
@@ -133,7 +133,7 @@ $(document).ready(function(v)
 
 });
 function setInitData(params){
-    billStatusIdEl.setValue(1);
+    billStatusIdEl.setValue(2);
     comSearchGuestId.setValue(params.guestId);
     comSearchGuestId.setText(params.guestName);
     var tabs = mainTabs.getTabs();
@@ -354,7 +354,7 @@ function ontopTabChanged(e){
             "6":"已关闭"
         };
         billStatusIdList = [
-            {id:1,name:"待发货"},
+//            {id:1,name:"待发货"},
             {id:2,name:"待收货"},
             {id:3,name:"部分入库"},
             {id:4,name:"已入库"}

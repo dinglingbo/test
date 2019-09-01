@@ -212,6 +212,8 @@
 				DMS_CLOUD_PART.pj_allot_apply_main A
 				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
 				INNER JOIN WB_COMMON.COM_COMPANY C ON C.orgid = A.orgid
+				LEFT JOIN DMS_CLOUD_PART.pj_allot_apply_detail D ON A.ID = D.MAIN_ID
+				
             where 1=1
             <dynamic>
             	<isNotEmpty prepend="and" property="orgid"> 
@@ -287,10 +289,10 @@
                     (A.CREATE_DATE &lt; #endDate#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partId">  
-                    (C.PART_ID = #partId#)
+                    (d.PART_ID = #partId#)
                 </isNotEmpty>
                  <isNotEmpty prepend="and" property="partCode">  
-                    (D.CODE like '%$partCode$%')
+                    (d.part_code like '%$partCode$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
                     (A.guest_id = #guestId#)
@@ -299,7 +301,7 @@
                     (A.guest_orgid = #guestOrgId#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partName">  
-                    (D.FULL_NAME like '%$partName$%')
+                    (E.FULL_NAME like '%$partName$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="auditSign">  
                 <!--审核状态-->
@@ -309,7 +311,7 @@
                     (A.service_id in ($serviceIdList$))
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCodeList">  
-                    (D.CODE in ($partCodeList$))
+                    (d.part_code in ($partCodeList$))
                 </isNotEmpty> 
                  <isNotEmpty prepend="and" property="creator">  
                     (a.creator = #creator#)
@@ -658,6 +660,12 @@
             <isNotEmpty prepend="and" property="id"> 
                 (a.id = #id#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="mainId"> 
+                (a.main_id = #mainId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mainIds"> 
+                (a.main_id in ($mainIds$) )
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="isDisabled"> 
                 (b.is_disabled = #isDisabled#)
             </isNotEmpty>
@@ -757,6 +765,56 @@
 
     </select>
     
+    <!-- 调拨受理、调入退回明细查询(根据对账单ID) -->
+    <select id="queryAllotAcceptDetailsBill" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+	    SELECT
+			
+			a.id as id,
+			a.main_id as mainId,
+			a.store_id as storeId,
+			a.part_id as partId,
+			a.part_code as partCode,
+			a.part_name as partName,
+			a.full_name as fullName,
+			a.out_unit_id as outUnitId,
+			a.system_unit_id as systemUnitId,
+			a.system_unit_id as unit,
+			a.apply_qty as applyQty,
+			a.accept_qty as acceptQty,
+			a.accept_qty as orderQty,
+			a.order_price as orderPrice,
+			a.order_amt as orderAmt,
+		    B.PART_BRAND_ID AS partBrand,
+		    e.name as partBrandName,
+			d.id as billMainId
+		FROM
+			pj_allot_accept_detail a
+		INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
+		INNER JOIN DMS_CLOUD_PART.pj_statement_detail c on c.bill_main_id = a.main_id
+		INNER JOIN DMS_CLOUD_PART.pj_statement_main d on c.main_id =d.id 
+		INNER JOIN WB_COMMON.com_part_brand e on e.id =B.PART_BRAND_ID
+		WHERE 1=1
+		 <dynamic>
+		 	
+            <isNotEmpty prepend="and" property="mainId"> 
+                (a.main_id = #mainId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mainIds"> 
+                (a.main_id in ($mainIds$) )
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="billMainId">  
+                (d.id = #billMainId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="billMainIds">  
+                (d.id in ($billMainIds$))
+            </isNotEmpty>
+           
+        </dynamic>  
+
+    </select>
+    
      <!-- 调拨申请、调出退回明细查询 -->
     <select id="queryAllotApplyDetails" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	
@@ -772,6 +830,7 @@
 			a.enter_unit_id as enterUnitId,
 			a.system_unit_id as systemUnitId,
 			a.apply_qty as applyQty,
+			a.apply_qty as orderQty,
 			a.order_price as orderPrice,
 			a.order_amt as orderAmt,
 			a.tax_price as taxPrice,
@@ -795,9 +854,16 @@
 			b.auditor as auditor,
 			b.audit_date as auditDate,
 			b.settle_status as settleStatus,
+			b.code as code,
+			b.code_id as codeId,
 			c.`name` as orgName,
 			D.part_brand_id AS partBrandId,
+			D.part_brand_id AS comPartBrandId,
 			D.apply_car_model AS applyCarModel,
+			D.apply_car_model AS comApplyCarModel,
+			d.code as comPartCode,
+			d.name as  comPartName,
+			d.oem_code as comOemCode,
 			d.oem_code as oemCode
 		FROM
 			pj_allot_apply_detail a
@@ -828,6 +894,14 @@
                 (b.status = #status#)
             </isNotEmpty>
  
+ 			<isNotEmpty prepend="and" property="mainId"> 
+                (a.main_id = #mainId#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="mainIds"> 
+                (a.main_id in ($mainIds$) )
+            </isNotEmpty>
+            
             <isNotEmpty prepend="and" property="isAllotFinished"> 
                 (b.is_allot_finished = #isAllotFinished#)
             </isNotEmpty>
@@ -864,6 +938,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">  
                 (b.service_id like '%$serviceId$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="code">  
+                (b.code like '%$code$%')
             </isNotEmpty>
             <!--审核日期 -->
             <isNotEmpty prepend="and" property="sAuditDate">  
@@ -910,6 +987,59 @@
              <isNotEmpty prepend="and" property="creator">  
                 (b.creator = #creator#)
             </isNotEmpty>
+        </dynamic>  
+
+    </select>
+    
+     <!-- 调拨申请、调出退回明细查询(根据对账单Id查询) -->
+    <select id="queryAllotApplyDetailsBill" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+	    SELECT
+			
+			a.id as id,
+			a.main_id as mainId,
+			a.store_id as storeId,
+			a.part_id as partId,
+			a.part_code as partCode,
+			a.part_name as partName,
+			a.full_name as fullName,
+			a.enter_unit_id as enterUnitId,
+			a.enter_unit_id as unit,
+			a.system_unit_id as systemUnitId,
+			a.apply_qty as applyQty,
+			a.apply_qty as orderQty,
+			a.order_price as orderPrice,
+			-(a.order_amt) as orderAmt,
+			a.remark as remark,		
+			b.part_brand_id AS partBrandId,
+			b.apply_car_model AS carModel,
+			b.oem_code as oemCode,
+			e.name as partBrandName
+		FROM
+			pj_allot_apply_detail a
+		INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
+		INNER JOIN DMS_CLOUD_PART.pj_statement_detail c on c.bill_main_id = a.main_id
+		INNER JOIN DMS_CLOUD_PART.pj_statement_main d on c.main_id =d.id 
+		INNER JOIN WB_COMMON.com_part_brand e on e.id =b.PART_BRAND_ID
+		WHERE 1=1
+		 <dynamic>
+		 	
+             
+ 			<isNotEmpty prepend="and" property="mainId"> 
+                (a.main_id = #mainId#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="mainIds"> 
+                (a.main_id in ($mainIds$) )
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="billMainId">  
+                (d.id = #billMainId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="billMainIds">  
+                (d.id in ($billMainIds$))
+            </isNotEmpty>
+           
         </dynamic>  
 
     </select>
@@ -1309,7 +1439,6 @@
 		inner join pj_guest_order_detail e
 		on c.source_detail_id = e.pchs_detail_id and c.source_main_id = e.pchs_main_id
      
-        source_type 0普通单据；1来源于采购订单；2来源于销售出库;3来源于WMS;4来源于直发；5来源于预销售
       -->
     <update id="updatePjGuestOrderDetailAcceptId" parameterClass="java.util.HashMap" >
 		update pj_allot_accept_detail a
@@ -1322,7 +1451,7 @@
 		inner join pj_guest_order_detail e
 		on c.source_detail_id = e.pchs_detail_id and c.source_main_id = e.pchs_main_id
 		set e.accept_main_id = b.id, e.accept_detail_id = a.id
-		where b.id = #acceptMainId# and d.source_type = 4
+		where b.service_id = #acceptServiceId# 
 	</update>
 	
 	<!--
@@ -1677,8 +1806,8 @@
 		set is_allot_finished = case when has_cancel_qty + #adjQty# + has_accept_qty >= apply_qty then 1 else 0 end,
 		    allot_finished_date = case when has_cancel_qty + #adjQty# + has_accept_qty >= apply_qty then sysdate() else null end,
 		    has_cancel_qty = has_cancel_qty + #adjQty#,
-		    b.is_finished = case when has_in_qty + has_cancel_qty = apply_qty then 1 else 0 end,
-		    b.finish_date = case when has_in_qty + has_cancel_qty = apply_qty then SYSDATE() else NULL end
+		    is_finished = case when has_in_qty + has_cancel_qty = apply_qty then 1 else 0 end,
+		    finish_date = case when has_in_qty + has_cancel_qty = apply_qty then SYSDATE() else NULL end
 		where main_id = #mainId# and id = #detailId#
 	</update>
 

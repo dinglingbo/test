@@ -1,6 +1,8 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
+
+var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.guestOrder.queryGuestOrderMainList.biz.ext";
 var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.guestOrder.queryPjGuestOrderDetailList.biz.ext";
@@ -46,6 +48,7 @@ var storeLimitMap={};
 var partHash={};
 $(document).ready(function(v)
 {
+	
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
@@ -98,9 +101,9 @@ $(document).ready(function(v)
 
     var dictDefs ={"billTypeId":"DDT20130703000008", "settleTypeId":"DDT20130703000035"};
     
-//    if(currIsCommission ==1){
-//    	nui.get('chooseMemBtn').setVisible(true);
-//    }
+    if(currIsCommission ==1){
+    	nui.get('chooseMemBtn').setVisible(true);
+    }
     initDicts(dictDefs, function(){
         getStorehouse(function(data)
         {
@@ -129,6 +132,7 @@ $(document).ready(function(v)
         });
     });
     
+    
     document.onkeyup=function(event){
 	    var e=event||window.event;
 	    var keyCode=e.keyCode||e.which;
@@ -140,6 +144,15 @@ $(document).ready(function(v)
 	    if((keyCode==83)&&(event.altKey))  {   //保存
 			save();
 	    } 
+	    
+	    if((keyCode==84)&&(event.altKey))  {   //提交 Alt+T
+        	audit();
+        } 
+      
+        if((keyCode==89)&&(event.altKey))  {   //完成销售 Alt+Y
+        	finish();
+        } 
+        
 	  
 	    if((keyCode==80)&&(event.altKey))  {   //打印
 			onPrint();
@@ -295,7 +308,7 @@ function onLeftGridDrawCell(e)
 }
 var currType = 2;
 function quickSearch(type){
-    var params = {};
+    var params = getSearchParam();
     var querysign = 1;
     var queryname = "本日";
     var querytypename = "草稿";
@@ -1013,7 +1026,7 @@ function finish()
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                showMsg("成功!","S");
+                showMsg("完成销售，请到销售出库明细表中查看销售记录!","S");
 
                 var row = leftGrid.getSelected();
                 var newRow =nui.clone(row);
@@ -1551,7 +1564,17 @@ function deletePart(){
     {
         delete editPartHash[part.detailId];
     }
-    rightGrid.removeRow(part,true);
+    var data = rightGrid.getData();
+    if(data && data.length==1){
+        var row = rightGrid.getSelected();
+        rightGrid.removeRow(row);
+        var newRow = {};
+        rightGrid.addRow(newRow);
+        rightGrid.beginEditCell(newRow, "comPartCode");
+    }else{
+        var row = rightGrid.getSelected();
+        rightGrid.removeRow(row);
+    }
 }
 function checkRightData()
 {
@@ -2253,6 +2276,8 @@ function setInitExportData(main, detail){
 }
 
 function chooseMember(){
+	 //销售单
+	  var serviceType=3;
 	  var row = leftGrid.getSelected();
 	    if(row){
 	    	if(row.auditSign ==1){
@@ -2271,7 +2296,7 @@ function chooseMember(){
 	                onload: function ()
 	                {
 	                    var iframe = this.getIFrameEl();
-	                    iframe.contentWindow.setData(row.id);
+	                    iframe.contentWindow.setData(row.id,serviceType);
 	                },
 	                ondestroy: function (action)
 	                {

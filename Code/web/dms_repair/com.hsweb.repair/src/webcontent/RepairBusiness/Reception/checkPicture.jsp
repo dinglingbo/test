@@ -11,7 +11,7 @@
 <head>
 <title>查车图片上传</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-        <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/checkPicture.js?v=1.0.7"></script>
+        <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/checkPicture.js?v=1.0.8"></script>
     <script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
   	<script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
  	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
@@ -106,7 +106,7 @@
                                     <input class="nui-hidden" name="serviceCode" id="serviceCode" enabled="false" width="100%" />
                                     <a class="nui-button" onclick="addCarListPhoto()" plain="true" style="width: 60px;">
                                         <span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                                    <a class="nui-button" onclick="onClose(2)" plain="true" style="width: 60px;">
+                                    <a class="nui-button" onclick="onCancel()" plain="true" style="width: 60px;">
                                         <span class="fa fa-remove fa-lg"></span>&nbsp;取消</a>
                                 </td>
                             </tr>

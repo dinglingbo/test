@@ -22,7 +22,7 @@
 </head>
 <body>
 <div class="boxbg" style="display:none"></div>
- <div class="popbox" style="height:420px; width:480px; margin:-210px 0 0 -240px; display:none">
+ <div class="popbox" style="height:450px; width:480px; margin:-210px 0 0 -240px; display:none">
         <h2><a class="close2" href="javascript:box_setup_close()" title="关闭">&nbsp;</a>修改</h2>
         <div style="padding-top:15px; margin:0 15px;">
             <table  width="92%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -572,6 +572,10 @@
 	        	    if(currRepairBillMobileFlag==1){
 	        	       document.getElementById("mobile").innerHTML = document.getElementById("mobile").innerHTML + mobile;
 	        	    } 
+	        	    if(params.type){
+	        	      document.getElementById("outDate").innerHTML = format(date, "yyyy-MM-dd HH:mm");
+	        	      outDate = format(date, "yyyy-MM-dd HH:mm");
+	                }
 	        	}
         	});
         	

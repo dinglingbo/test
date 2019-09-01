@@ -151,6 +151,7 @@ function setGuestData(data){
             nui.get("type").show();
             nui.get("showgys").hide();
             document.getElementById("showgysText").style.display="none";
+           
         }
         if(data.isClient){
             isClient = data.isClient;
@@ -163,6 +164,13 @@ function setGuestData(data){
             nui.get("showGuest").hide();
             document.getElementById("showGuestText").style.display="none";
         }
+        if(data.allot==1){
+       	   nui.get("type").hide();
+           nui.get("showgys").hide();
+           document.getElementById("showgysText").style.display="none";
+           nui.get("showGuest").hide();
+           document.getElementById("showGuestText").style.display="none";
+       }
         if(data.guestType){
             guestType = data.guestType;
 

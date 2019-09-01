@@ -552,6 +552,30 @@ public class ArrayUtils {
 		}
 	   
 	   @Bizlet("")
+		public static HashMap[] addNArray(HashMap sourceDO, HashMap[] dos) {
+			List<HashMap> list = new ArrayList<HashMap>(Arrays.asList(dos));
+			if(list.get(0).size()==0){
+				 list =  new ArrayList<HashMap>();
+			}
+			list.add(sourceDO);
+			return list.toArray(new HashMap[list.size()]);
+		}
+	   
+	   @Bizlet("")
+	   public static HashMap[] add2Array(HashMap[] source1,HashMap[] source2, HashMap[] source3,HashMap[] source4) {
+	        List<HashMap> list = new ArrayList<HashMap>();
+	        List<HashMap> source1List = new ArrayList<HashMap>(Arrays.asList(source1));
+	        List<HashMap> source2List =new ArrayList<HashMap>(Arrays.asList(source2));
+	        List<HashMap> source3List =new ArrayList<HashMap>(Arrays.asList(source3));
+	        List<HashMap> source4List =new ArrayList<HashMap>(Arrays.asList(source4));
+	        list.addAll(source1List);
+	        list.addAll(source2List);
+	        list.addAll(source3List);
+	        list.addAll(source4List);
+	        return list.toArray(new HashMap[list.size()]);
+	    }
+	   
+	   @Bizlet("")
 		public static HashMap[] add2Array(HashMap sourceDO, HashMap[] dos,int index) {
 			List<HashMap> list = new LinkedList<HashMap>(Arrays.asList(dos));
 			list.add(index,sourceDO);

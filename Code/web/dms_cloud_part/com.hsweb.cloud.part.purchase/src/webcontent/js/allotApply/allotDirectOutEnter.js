@@ -14,8 +14,8 @@ var billTypeIdHash = {};
 var settTypeIdHash = {};
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
-var statusList=[{"id":0,"name":"全部"},{"id":1,"name":"待受理"},{"id":2,"name":"部分受理"},{"id":3,"name":"全部受理"}];
-var statusHash={"1":"待受理","2":"部分受理","3":"全部受理","4":"已拒绝"};
+var statusList=[{"id":0,"name":"全部"},{"id":1,"name":"待入库"},{"id":2,"name":"部分入库"},{"id":3,"name":"全部入库"}];
+var statusHash={"1":"待入库","2":"部分入库","3":"全部入库","4":"已拒绝"};
 
 $(document).ready(function(v) {
 	orgidsEl = nui.get("orgids");
@@ -286,35 +286,45 @@ function audit(){
 		return;
 	}
 	
-	nui.mask({
-		el : document.body,
-		cls : 'mini-mask-loading',
-		html : "受理中"
-	});
-	nui.ajax({
-		url : auditUrl,
-		type : "post",
-		data : JSON.stringify({
-			mainId :  row.id,
-            storeId : nui.get('storeId').getValue(),
-			token: token
-		}),
-		success : function(data) {
-			nui.unmask(document.body);
-			data = data || {};
-			if (data.errCode == "S") {
-				showMsg("受理成功，生成的调拨入库单号为：" + data.serviceId ||data.errMsg,"S");
-				var newRow = {status: 3};
-				mainGrid.updateRow(row, newRow);
-			} else {
-				showMsg(data.errMsg || ("受理失败!"),"W");
-			}
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			// nui.alert(jqXHR.responseText);
-			console.log(jqXHR.responseText);
-		}
-	});
+   nui.confirm("是否确定到货并入库?", "友情提示",
+          function (action) { 
+              if (action == "ok") {
+            	  nui.mask({
+            			el : document.body,
+            			cls : 'mini-mask-loading',
+            			html : "受理中"
+            		});
+            		nui.ajax({
+            			url : auditUrl,
+            			type : "post",
+            			data : JSON.stringify({
+            				mainId :  row.id,
+            	            storeId : nui.get('storeId').getValue(),
+            				token: token
+            			}),
+            			success : function(data) {
+            				nui.unmask(document.body);
+            				data = data || {};
+            				if (data.errCode == "S") {
+            					showMsg("受理成功，生成的调拨入库单号为：" + data.serviceId ||data.errMsg,"S");
+            					var newRow = {status: 3};
+            					mainGrid.updateRow(row, newRow);
+            				} else {
+            					showMsg(data.errMsg || ("受理失败!"),"W");
+            				}
+            			},
+            			error : function(jqXHR, textStatus, errorThrown) {
+            				// nui.alert(jqXHR.responseText);
+            				console.log(jqXHR.responseText);
+            			}
+            		});
+
+              }else {
+                  return;
+              }
+          }
+      );
+	
 }
 
 var refuseUrl=baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.refuseAllotInRtn.biz.ext";

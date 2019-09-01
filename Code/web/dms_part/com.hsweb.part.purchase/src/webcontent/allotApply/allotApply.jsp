@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调拨申请</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotApply.js?v=1.0.13"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/allotApply/allotApply.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
   width: 70px;
@@ -282,10 +282,10 @@ body .mini-grid-row-selected{
                                       </div>
                                       <div field="downLimit" width="60" headerAlign="center" allowSort="true" header="库存下限">
                                       </div>
-                                      <div field="upLimitWinter" width="80" headerAlign="center" allowSort="true" header="库存上限(冬季)">
+                                     <!--  <div field="upLimitWinter" width="80" headerAlign="center" allowSort="true" header="库存上限(冬季)">
                                       </div>
                                       <div field="downLimitWinter" width="80" headerAlign="center" allowSort="true" header="库存下限(冬季)">
-                                      </div>
+                                      </div> -->
                                   </div>
                               </div>
                               <div header="数量信息" headerAlign="center">

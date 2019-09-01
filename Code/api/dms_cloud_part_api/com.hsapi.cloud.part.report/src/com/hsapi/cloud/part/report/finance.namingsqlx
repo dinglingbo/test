@@ -100,7 +100,7 @@
             SELECT a.bill_main_id as billMainId, a.bill_service_id as billServiceId, a.bill_type_id as billTypeId,
 			       a.bill_type_code as billTypeCode, c.sett_account_id settAccountId, c.char_off_amt as charOffAmt,
 			       d.full_name as fullName, d.short_name as shortName, b.auditor as auditor, b.audit_date as auditDate,
-			       e.is_primary_business as isPrimaryBusiness, b.rp_dc as rpDc
+			       e.is_primary_business as isPrimaryBusiness, b.rp_dc as rpDc,f.name as orgName
 			from fi_rp_account_detail a
 			inner join fi_rp_account b
 			on a.main_id = b.id
@@ -110,6 +110,8 @@
 			on b.guest_id = d.id
 			inner join fib_income_expenses e
 			on a.bill_type_id = e.id
+			inner join wb_common.com_company f
+			on f.orgid= b.orgid
 			where b.audit_sign = 1 
 				<isNotEmpty prepend="and" property="orgid"> 
                     (b.orgid = #orgid#)
@@ -133,9 +135,79 @@
                 <isNotEmpty prepend="and" property="isMain">  
                     (e.is_primary_business = #isMain#)
                 </isNotEmpty>
+                 <isNotEmpty prepend="and" property="batchId">  
+                    (b.batch_id = #batchId#)
+                </isNotEmpty>
+                
                 <isNotEmpty prepend="order by" property="sortField">  
 	                $sortField$ $sortOrder$
 	            </isNotEmpty> 
+    </select>
+    
+     <!--总部收付款明细  rpDc 1收  -1付-->
+	<select id="queryHqRPAccountDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+           SELECT
+				c.sett_account_id AS settAccountId,
+				d.full_name AS fullName,
+				d.short_name AS shortName,
+				b.auditor AS auditor,
+				b.audit_date AS auditDate,
+				e.is_primary_business AS isPrimaryBusiness,
+				f.id AS id,
+				f.orgid as orgid,
+				f.tenant_id AS tenantId,
+				f.guest_id AS guestId,
+				f.guest_name AS guestName,
+				f.rp_dc AS rpDc,
+				f.r_amt AS rAmt,
+				f.p_amt AS pAmt,
+				f.sum_amt AS sumAmt,
+				f.r_bill_qty AS rBillQty,
+				f.p_bill_qty AS pBillQty,
+				f.sum_qty AS sumQty,
+				f.creator AS creator,
+				f.creator_id AS creatorId,
+				f.create_date AS createDate,
+				f.remark AS remark
+			FROM
+				fi_rp_account_detail a
+			INNER JOIN fi_rp_account b ON a.main_id = b.id
+			INNER JOIN fi_rp_account_d_type c ON a.main_id = c.main_id
+			INNER JOIN wb_common.com_guest d ON b.guest_id = d.id
+			INNER JOIN fib_income_expenses e ON a.bill_type_id = e.id
+			INNER JOIN fi_rp_account_batch f ON b.batch_id = f.id
+			WHERE
+				b.audit_sign = 1
+				<isNotEmpty prepend="and" property="tenantId"> 
+                    (f.tenant_id = #tenantId#)
+                </isNotEmpty>
+				<isNotEmpty prepend="and" property="orgid"> 
+                    (b.orgid = #orgid#)
+                </isNotEmpty>
+                <!--本日 昨日 本周 上周 本月 下月 -->
+                <isNotEmpty prepend="and" property="startDate">  
+                    (b.audit_date &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                    (b.audit_date &lt; #endDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="guestId">  
+                    (b.guest_id = #guestId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="settAccountId">  
+                    (c.sett_account_id = #settAccountId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="rpDc">  
+                    (f.rp_dc = #rpDc#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isMain">  
+                    (e.is_primary_business = #isMain#)
+                </isNotEmpty>
+                <isNotEmpty prepend="order by" property="sortField">  
+	                $sortField$ $sortOrder$
+	            </isNotEmpty> 
+	            GROUP BY f.id
     </select>
     
     <!--往来单位余额表 -->

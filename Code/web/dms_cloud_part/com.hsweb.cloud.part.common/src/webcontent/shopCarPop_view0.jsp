@@ -10,7 +10,7 @@
 <head>
 <title>添加采购车/销售车</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%=webPath + contextPath%>/common/js/shopCartPop.js?v=1.0.12"></script>
+<script src="<%=webPath + contextPath%>/common/js/shopCartPop.js?v=1.0.24"></script>
 <style type="text/css">
 .title {
 	width: 80px;
@@ -120,7 +120,7 @@
 </div>
 <div class="nui-fit">
     <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
-         selectOnLoad="true" showPager="false" oncellcommitedit="onCellCommitEdit"
+         selectOnLoad="true" showPager="false" oncellcommitedit="onCellCommitEdit"  oncellbeginedit="OnrpMainGridCellBeginEdit"
          dataField="" idField="id" allowCellSelect="true" allowCellEdit="true" ondrawcell="onMainGridDrawCell"
          showModified="false" showColumnsMenu="true" editNextOnEnterKey="true" url="">
         <div property="columns">

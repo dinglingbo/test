@@ -8,8 +8,17 @@
 -->
 <head>
 <title>库存查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockQuery/partStoreStockQuery.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockQuery/partStoreStockQuery.js?v=1.1.5"></script>
 <style type="text/css">
+    body {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        font-family: "微软雅黑";
+    }
 .title {
 	width: 90px;
 	text-align: right;
@@ -94,6 +103,7 @@
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="printCode()" id=""><span class="fa fa-print fa-lg"></span>&nbsp;二维码</a>
 <!--                 <a class="nui-button" iconCls="" plain="true" onclick="onEnterRecord()" id="enterBtn"><span class=""></span>&nbsp;入库记录</a> -->
 <!--                 <a class="nui-button" iconCls="" plain="true" onclick="onOutRecord()" id="outBtn"><span class=""></span>&nbsp;出库记录</a> -->
             </td>
@@ -101,13 +111,13 @@
     </table>
 </div>
 
- 	<ul id="gridMenu" class="mini-contextmenu" >              
+  	<ul id="gridMenu" class="mini-contextmenu" >              
         <li name="enterBtn" iconCls="icon-add" onclick="onEnter">入库记录</li>
 	    <li name="outBtn" iconCls="icon-edit" onclick="onOut">出库记录</li>        
     </ul>
     <div class="nui-fit">
-        <div id="mainTabs" class="nui-tabs" name="mainTabs" activeIndex="0" style="width:100%; height:100%;" plain="false" onactivechanged="activechangedmain()">
-	        <div title="库存查询" id="inventory" name="inventory">
+        <div id="mainTabs" class="nui-tabs" name="mainTabs" activeIndex="0" style="width:100%; height:99%;" plain="false" onactivechanged="activechangedmain()">
+	        <div title="汇总库存" id="inventory" name="inventory">
 				<div class="nui-fit">
 				    <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
 				         showPager="true"
@@ -116,7 +126,7 @@
 				         ondrawcell="onDrawCell"
 				         sortMode="client"
 				         url=""
-				         allowCellWrap = true
+				         allowCellWrap = true  multiSelect="true"
 				         pageSize="1000"
 				         sizeList="[1000,2000,5000]"
 				         contextMenu="#gridMenu"
@@ -125,6 +135,7 @@
 				            <div type="indexcolumn"  width="40">序号</div>
 				            <div header="配件信息" headerAlign="center">
 				                <div property="columns">
+				                	<!-- <div type="checkcolumn" field="check" width="20">选择</div>  -->
 				                    <div allowSort="true" field="comPartCode" width="120" headerAlign="center" header="配件编码"></div>
 				                    <div allowSort="true" field="comPartFullName" width="150" headerAlign="center" header="配件全称"></div>
 				                    <div allowSort="true" field="comOemCode" width="150"headerAlign="center" header="OE码"></div>
@@ -139,7 +150,7 @@
 				                <div property="columns">
 				                    <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="70" headerAlign="center" header="数量"></div>
 				                    <div allowSort="true" datatype="float" field="costPrice" width="70" headerAlign="center" header="单价"></div>
-				                    <div allowSort="true" datatype="float" field="stockAmt" summaryType="sum" width="70" headerAlign="center" header="金额"></div>
+				                    <div allowSort="true" datatype="float" field="stockAmt"  summaryType="sum" width="70" headerAlign="center" header="金额"></div>
 				                    <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
 				                </div>
 				            </div>
@@ -161,7 +172,7 @@
 				    </div>
 				</div>	        	
 	        </div>
-	        <div title="批次查询" id="batch" name="batch">
+	        <div title="批次库存" id="batch" name="batch">
 				<div class="nui-fit">
 				    <div id="rightGrid2" class="nui-datagrid" style="width:100%;height:100%;"
 				         showPager="true"
@@ -169,7 +180,7 @@
 				         idField="detailId"
 				         ondrawcell="onDrawCell2"
 				         sortMode="client"
-				         totalField="page.count"
+				         totalField="page.count" multiSelect="true"
 				         url=""
 				         allowCellWrap = true
 				         pageSize="1000"
@@ -179,6 +190,7 @@
 				            <div width="40" type="indexcolumn">序号</div>
 				            <div header="配件信息" headerAlign="center">
 				                <div property="columns">
+				                	<div type="checkcolumn" field="check" width="20">选择</div> 
 				                    <div allowSort="true" field="comPartCode" headerAlign="center" header="配件编码"></div>
 				                    <div allowSort="true"width="100" field="comPartName" headerAlign="center" header="配件名称"></div>
 				                    <div allowSort="true" field="comOemCode" headerAlign="center" header="OE码"></div>
@@ -192,13 +204,12 @@
 				                    <!-- <div allowSort="true" datatype="float" summaryType="sum" field="enterQty" width="60" headerAlign="center" header="数量"></div> -->
 				                    <div allowSort="true" datatype="float" summaryType="sum" field="outableQty" width="60" headerAlign="center" header="数量"></div>
 				                    <div allowSort="true" datatype="float" field="enterPrice" width="60" headerAlign="center" header="单价"></div>
-				                    <div allowSort="true" datatype="float" summaryType="sum" field="enterAmt" width="60" headerAlign="center" header="金额"></div>
+				                    <div allowSort="true" datatype="float" summaryType="sum" field="totalAmt" width="60" headerAlign="center" header="金额"></div>
 				                    <div allowSort="true" field="detailRemark" width="120" headerAlign="center" header="备注"></div>
 				                </div>
 				            </div>
 				            <div header="其他信息" headerAlign="center">
 				                <div property="columns">
-				                   <!--  <div allowSort="true" field="manualCode" width="180" summaryType="count" headerAlign="center" header="入库单号"></div> -->
 				                    <div allowSort="true" field="storeId" width="90" headerAlign="center" header="仓库"></div>
 				                    <div allowSort="true" field="storeShelf" width="60" headerAlign="center" header="仓位"></div>
 				                    <div allowSort="true" field="chainStockAge" width="60" headerAlign="center" header="库龄"></div>
@@ -208,6 +219,7 @@
 <!-- 				                    <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
 				                    <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div> -->
 				                    <div allowSort="true" field="enterDate"width="140" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+				                    <div allowSort="true" field="manualCode" width="180" summaryType="count" headerAlign="center" header="入库单号"></div>			                    
 				                </div>
 				            </div>
 <!-- 				            <div header="其他" headerAlign="center">
@@ -224,7 +236,6 @@
 	        </div>                        
         </div>
 </div>
-
 <div id="advancedSearchWin" class="nui-window"
      title="高级查询" style="width:416px;height:330px;"
      showModal="true"

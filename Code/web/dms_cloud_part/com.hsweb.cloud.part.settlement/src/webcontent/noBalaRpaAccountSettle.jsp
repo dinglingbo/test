@@ -13,7 +13,7 @@
 <head>
 <title>未对账业务单</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/settlement/js/noBalaRpaAccountSettle.js?v=1.0.95"></script>
+    <script src="<%=webPath + contextPath%>/settlement/js/noBalaRpaAccountSettle.js?v=1.0.3"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -25,11 +25,9 @@
 			        <tr>
 			            <td style="white-space:nowrap;">
 			             	<label style="font-family:Verdana;">快速查询：</label>
-			            	<input class="nui-combobox" id ="orgids" name="orgids" value="" allowInput="true" showNullItem="false" 
-			            		 valueFromSelect="true" nullitemtext="请选择..." emptyText="选择公司" data="" width="200px"
-			            		 textField="name" valueField="orgid" onEnter="onSearch()" />
+			            	
 			               
-			                <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">全部</a>
+			                <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本周</a>
 			
 			                <ul id="popupMenuDate" class="nui-menu" style="display:none;">
 			                    <li iconCls="" onclick="quickSearch(0)" id="type0">全部</li>
@@ -50,8 +48,11 @@
 			                <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
 			               
 			                <span class="separator"></span> 
- 		                    <input id="guestName" width="120px" emptyText="客户" onEnter="onSearch()" class="nui-textbox"/> 
-	
+ 		                    <input id="guestName" width="120px" emptyText="客户" onEnter="onSearch()" class="nui-textbox" visible="false"/> 
+							<input class="nui-combobox" id ="orgids" name="orgids" value="" allowInput="true" showNullItem="false" 
+			            		 valueFromSelect="true" nullitemtext="请选择..." emptyText="选择公司" data="" width="200px"
+			            		 textField="name" valueField="orgid" onEnter="onSearch()" />
+			            		 
 			                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 			                
 			            </td>
@@ -59,7 +60,7 @@
 			    </table>
 			</div>
 			
-			 <div id="mainGrid" class="nui-datagrid" style="width:100%;height:92%;"
+			 <div id="mainGrid" class="nui-datagrid" style="width:100%;height:90%;"
 		         showPager="true"
 		         dataField="detailList"
 		         sortMode="client"
@@ -67,17 +68,17 @@
 		         showReloadButton="false"
 		         pageSize="50" 
 		         multiSelect="false"				
-				 totalField="page.count"
+				 totalField="total"
 		         pageSize="50"
 		         showSummaryRow="true"
 		         ondrawsummarycell="onDrawSummaryCell(e)"
 		         sizeList="[50,100,200]">
 		        <div property="columns">
-		            <div type="indexcolumn">序号</div>
+		            <div type="indexcolumn"  width="10">序号</div>
 		            <div field="fullName" width="120" headerAlign="center" header="往来单位"></div>
-		            <div field="rAmt" width="55px" headerAlign="center" allowSort="true" header="应收金额"summaryType="sum"datatype="float"></div>
-		            <div field="pAmt" width="55px" headerAlign="center" allowSort="true" header="应付金额" summaryType="sum" datatype="float"></div>
-		            <div field="billAmt" width="55px" headerAlign="center" allowSort="true" header="未对账金额" summaryType="sum" datatype="float"></div>
+		            <div field="rAmt" width="55px" headerAlign="center" allowSort="true" header="应收金额"summaryType="sum"datatype="float" numberFormat="0.00"></div>
+		            <div field="pAmt" width="55px" headerAlign="center" allowSort="true" header="应付金额" summaryType="sum" datatype="" numberFormat="0.00"></div>
+		            <div field="billAmt" width="55px" headerAlign="center" allowSort="true" header="未对账金额" summaryType="sum" datatype="float" numberFormat="0.00"></div>
 		        </div>
 		     </div>
 			
@@ -115,9 +116,9 @@
 				            <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
 				            <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
 				            <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>
-				            <div allowSort="true" datatype="float" field="sellQty" summaryType="sum" width="60" headerAlign="center" header="销售数量"></div>
-				            <div allowSort="true" datatype="float" field="sellPrice" width="60" headerAlign="center" header="销售单价"></div>
-				            <div allowSort="true" datatype="float" field="sellAmt" summaryType="sum" width="60" headerAlign="center" header="销售金额"></div>
+				            <div allowSort="true" datatype="float" field="sellQty" summaryType="sum" width="60" headerAlign="center" header="数量"></div>
+				            <div allowSort="true" datatype="float" field="sellPrice" width="60" headerAlign="center" header="单价"></div>
+				            <div allowSort="true" datatype="float" field="sellAmt" summaryType="sum" width="60" headerAlign="center" header="金额"></div>
 				            <div field="orderMan" width="60" headerAlign="center" header="销售员"></div>
 				            <div allowSort="true" field="detailRemark" width="60" headerAlign="center" header="备注"></div>
 				            <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
@@ -152,9 +153,9 @@
 				            <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
 				            <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
 				            <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
-				            <div allowSort="true" datatype="float" field="enterQty" summaryType="sum" width="60" headerAlign="center" header="采购数量"></div>
-				            <div allowSort="true" datatype="float" field="enterPrice" width="60" headerAlign="center" header="采购单价"></div>
-				            <div allowSort="true" datatype="float" field="enterAmt" summaryType="sum" width="60" headerAlign="center" header="采购金额"></div>
+				            <div allowSort="true" datatype="float" field="enterQty" summaryType="sum" width="60" headerAlign="center" header="数量"></div>
+				            <div allowSort="true" datatype="float" field="enterPrice" width="60" headerAlign="center" header="单价"></div>
+				            <div allowSort="true" datatype="float" field="enterAmt" summaryType="sum" width="60" headerAlign="center" header="金额"></div>
 				            <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可出库数量"></div>
 				            <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
 				            <div allowSort="true" field="detailRemark" width="60" headerAlign="center" header="备注"></div>
@@ -191,7 +192,7 @@
 				            <div field="orgName" width="150" headerAlign="center" header="调入方"></div>
 				            <div allowSort="true" field="finishDate" headerAlign="center" header="出库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
 				            <div allowSort="true" field="systemUnitId" width="40" headerAlign="center" header="单位"></div>
-				            <div allowSort="true" datatype="float" summaryType="sum" field="hasOutQty" width="60" headerAlign="center" header="已出库数量" visible="true"></div>
+				            <div allowSort="true" datatype="float" summaryType="sum" field="hasOutQty" width="60" headerAlign="center" header="数量" visible="true"></div>
                 			<div allowSort="true" datatype="float" summaryType="sum" field="orderPrice" width="60" headerAlign="center" header="单价" visible="true"></div>
                 			<div allowSort="true" datatype="float" summaryType="sum" field="orderAmt" width="60" headerAlign="center" header="金额" visible="true"></div>
 				            <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
@@ -224,7 +225,7 @@
 				            <div field="orgName" width="150" headerAlign="center" header="调出方"></div>
 				            <div allowSort="true" field="finishDate" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
 				            <div allowSort="true" field="systemUnitId" width="40" headerAlign="center" header="单位"></div>		
-		                	<div allowSort="true" datatype="float" summaryType="sum" field="hasInQty" width="60" headerAlign="center" header="已入库数量"  visible="true"></div>
+		                	<div allowSort="true" datatype="float" summaryType="sum" field="hasInQty" width="60" headerAlign="center" header="数量"  visible="true"></div>
 		                	<div allowSort="true" datatype="float" summaryType="sum" field="orderPrice" width="60" headerAlign="center" header="单价" visible="true"></div>
 		                	<div allowSort="true" datatype="float" summaryType="sum" field="orderAmt" width="60" headerAlign="center" header="金额" visible="true"></div>
 				            <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>

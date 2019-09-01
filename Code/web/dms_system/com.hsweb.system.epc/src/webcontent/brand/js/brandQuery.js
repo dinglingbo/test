@@ -58,153 +58,143 @@ $(document).ready(function(v){
 });
 function rowClickDg1(){
     var row = dg1.getSelected();
-    if (row.brand) {
-        brand = row.brand;
+    if (row.brandCode) {
+        brand = row.brandCode;
         setTopNav(2, row.name);
         var params = {
-            "url": llq_pre_url + "/cars/show",
-            "params":{
-                "brand": brand
-            },
-            "token": token
+    			url:"llq/carTypes",
+    			params:"&brandCode="+brand,
+    			token:token
         }
         callAjax(url, params, processAjax, setDg2);
     }
 }
 function rowClickDg2(){
     var row = dg2.getSelected();
-    if (row.auth && row.has_next == "1") {
+    if (row.hasChild == "1") {
         setTopNav(3, row.name);
+        var str = "&brandCode="+row.brandCode+"&name="+row.name+"&level="+row.level+"&fullConditionPath="+row.fullConditionPath;
+        str = encodeURI(str)
         var params = {
-            "url": llq_pre_url + "/cars/code",
-            "params":{
-                "code": brand,
-                "auth": unescape(row.auth)                                                                           
-            },
-            "token": token
+    			url:"llq/carTypes",
+    			params:str,
+    			token:token
         }
         callAjax(url, params, processAjax, setDg3);
     }else{
-        queryGroupByAuth(row.keys);
+        queryGroupByAuth(row);
     }
 }
 function rowClickDg3(){
     var row = dg3.getSelected();
-    if (row.auth && row.has_next == "1") {
+    if (row.hasChild == "1") {
         setTopNav(4, row.name);
+        var str = "&brandCode="+row.brandCode+"&name="+row.name+"&level="+row.level+"&fullConditionPath="+row.fullConditionPath;
+        str = encodeURI(str) 
         var params = {
-            "url": llq_pre_url + "/cars/model",
-            "params":{
-                "code": brand,
-                "auth": unescape(row.auth)                                                                           
-            },
-            "token": token
+    			url:"llq/carTypes",
+    			params:str,
+    			token:token
         }
         callAjax(url, params, processAjax, setDg4);
     }else{
-        queryGroupByAuth(row.keys);
+        queryGroupByAuth(row);
     }
 }
 function rowClickDg4(){
     var row = dg4.getSelected();
-    if (row.auth && row.has_next == "1") {
+    if (row.hasChild == "1") {
         setTopNav(5, row.name);
+        var str = "&brandCode="+row.brandCode+"&name="+row.name+"&level="+row.level+"&fullConditionPath="+row.fullConditionPath;
+        str = encodeURI(str) 
         var params = {
-            "url": llq_pre_url + "/cars/litm",
-            "params":{
-                "code": brand,
-                "auth": unescape(row.auth)                                                                           
-            },
-            "token": token
+    			url:"llq/carTypes",
+    			params:str,
+    			token:token
         }
         callAjax(url, params, processAjax, setDg5);
     }else{
-        queryGroupByAuth(row.keys);
+        queryGroupByAuth(row);
     }
 }
 function rowClickDg5(){
     var row = dg5.getSelected();
-    if (row.auth && row.has_next == "1") {
+    if (row.hasChild == "1") {
         setTopNav(6, row.name);
+        var str = "&brandCode="+row.brandCode+"&name="+row.name+"&level="+row.level+"&fullConditionPath="+row.fullConditionPath;
+        str = encodeURI(str) 
         var params = {
-            "url": llq_pre_url + "/cars/litn",
-            "params":{
-                "code": brand,
-                "auth": unescape(row.auth)                                                                           
-            },
-            "token": token
+    			url:"llq/carTypes",
+    			params:str,
+    			token:token
         }
         callAjax(url, params, processAjax, setDg6);
     }else{
-        queryGroupByAuth(row.keys);
+        queryGroupByAuth(row);
     }
 }
 function rowClickDg6(){
     var row = dg6.getSelected();
-    if (row.auth && row.has_next == "1") {
+    if (row.hasChild == "1") {
         setTopNav(7, row.name);
+        var str = "&brandCode="+row.brandCode+"&name="+row.name+"&level="+row.level+"&fullConditionPath="+row.fullConditionPath;
+        str = encodeURI(str) 
         var params = {
-            "url": llq_pre_url + "/cars/litf",
-            "params":{
-                "code": brand,
-                "auth": unescape(row.auth)                                                                           
-            },
-            "token": token
+    			url:"llq/carTypes",
+    			params:str,
+    			token:token
         }
         callAjax(url, params, processAjax, setDg7);
     }else{
-        queryGroupByAuth(row.keys);
+        queryGroupByAuth(row);
     }
 }
 function rowClickDg7(){
     var row = dg7.getSelected();
-    if (row.auth && row.has_next == "1") {
+    if (row.hasChild == "1") {
         setTopNav(8, row.name);
+        var str = "&brandCode="+row.brandCode+"&name="+row.name+"&level="+row.level+"&fullConditionPath="+row.fullConditionPath;
+        str = encodeURI(str) 
         var params = {
-            "url": llq_pre_url + "/cars/litfi",
-            "params":{
-                "code": brand,
-                "auth": unescape(row.auth)                                                                           
-            },
-            "token": token
+    			url:"llq/carTypes",
+    			params:str,
+    			token:token
         }
         callAjax(url, params, processAjax, setDg8);
     }else{
-        queryGroupByAuth(row.keys);
+        queryGroupByAuth(row);
     }
 }
 function rowClickDg8(){
     var row = dg8.getSelected();
-    if (row.auth && row.has_next == "1") {
+    if (row.hasChild == "1") {
         setTopNav(9, row.name);
+        var str = "&brandCode="+row.brandCode+"&name="+row.name+"&level="+row.level+"&fullConditionPath="+row.fullConditionPath;
+        str = encodeURI(str); 
         var params = {
-            "url": llq_pre_url + "/cars/litsx",
-            "params":{
-                "code": brand,
-                "auth": unescape(row.auth)                                                                           
-            },
-            "token": token
+    			url:"llq/carTypes",
+    			params:str,
+    			token:token
         }
         callAjax(url, params, processAjax, setDg9);
     }else{
-        queryGroupByAuth(row.keys);
+        queryGroupByAuth(row);
     }
 }
 function rowClickDg9(){
     var row = dg9.getSelected();
-    if (row.auth && row.has_next == "1") {
+    if (row.hasChild == "1") {
         setTopNav(10, row.name);
+        var str = "&brandCode="+row.brandCode+"&name="+row.name+"&level="+row.level+"&fullConditionPath="+row.fullConditionPath;
+        str = encodeURI(str); 
         var params = {
-            "url": llq_pre_url + "/cars/litsx",
-            "params":{
-                "code": brand,
-                "auth": unescape(row.auth)                                                                           
-            },
-            "token": token
+    			url:"llq/carTypes",
+    			params:str,
+    			token:token
         }
         callAjax(url, params, processAjax, setDg10);
     }else{
-        queryGroupByAuth(row.keys);
+        queryGroupByAuth(row);
     }
 }
 /*
@@ -212,10 +202,9 @@ function rowClickDg9(){
 */
 function queryDg1(){	
     var params = {
-        "url": llq_pre_url + "/brandbase",
-        "params":{
-        },
-        "token": token
+			url:"llq/article/brands/list",
+			params:"",
+			token:token
     }
     
     //$(".groupButton").hide();

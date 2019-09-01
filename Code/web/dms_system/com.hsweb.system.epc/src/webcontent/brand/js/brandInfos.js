@@ -68,8 +68,10 @@ $(document).ready(function(v){
         var field = e.field;
         var value = e.value;
         if(field == "detail"){
-            var html = '<a class="icon-hedit" href="javascript:openDetail(\'' + record.pid + '\')">' + value + '</a>';
-            e.cellHtml = html;
+        	if(record.pid!=""){      		
+        		var html = '<a class="icon-hedit" href="javascript:openDetail()">详情</a>';
+        		e.cellHtml = html;
+        	}
         }else if(field == "opt"){
             var html = '<a class="" href="javascript:addPart()"><i class="fa fa-shopping-cart"></i></a>';
             e.cellHtml = html;
@@ -113,16 +115,13 @@ $(document).ready(function(v){
 *主组事件
 */
 function clickGdMainGroup(row){
-    if (row.auth) {
+    if (row.mcid) {
     	//主组序号
-    	groupnum =row.groupnum;
+    	groupnum =row.num;
         var params = {
-            "url": llq_pre_url + "/ppycars/subgroup",
-            "params":{
-                "code":brand,
-                "auth":unescape(row.auth)
-            },
-            "token": token
+    			url:"llq/vins/cars/subgroup",
+    			params:"&mcid="+row.mcid+"&brandCode="+row.brandCode+"&num="+row.num,
+    			token:token
         }
         callAjax(url, params, processAjax, setSubGroupData);
     }
@@ -133,26 +132,24 @@ function clickGdMainGroup(row){
 */
 function clickGdSubGroup(row){
     //var row = gridSubGroup.getSelected();
-    if(row.has_subs){
+    if(row.hasChild!=0){
         clickGdMainGroup(row);
         return;
     }
     
-    if (row.auth) {
+    if (row.mid) {
     	//分组零件号
-    	subMid=row.mid;
-    	
+    	subMid=row.mid; 	
+        var str = "&brandCode="+row.brandCode+"&num="+row.num+"&mid="+row.mid+"&subGroup="+row.subgroup+"&mcid="+row.mcid;
+        str = encodeURI(str) 
         var params = {
-            "url": llq_pre_url + "/ppycars/parts",
-            "params":{
-                "code":brand,
-                "auth": row.auth //unescape(row.auth)
-            },
-            "token": token
+    			url:"llq/vins/cars/parts",
+    			params:str,
+    			token:token
         }
         callAjax(url, params, processAjax, setGridPartsData);
         
-        params = {
+/*        params = {
             "url": llq_pre_url + "/ppycars/subimgs",
             "params":{
                 "code":brand,
@@ -160,7 +157,7 @@ function clickGdSubGroup(row){
             },
             "token": token
         }
-        callAjax(url, params, processAjax, setPartImg);
+        callAjax(url, params, processAjax, setPartImg);*/
         
     }
 }
@@ -181,12 +178,9 @@ function showSubGroups(gridObj){
 //unescape(auth)
 function queryGroupByAuth(auth){	
     var params = {
-        "url": llq_pre_url + "/ppycars/group?" + auth,
-        /*"params":{
-            "code":brand,
-            "auth":unescape(auth)
-        },*/
-        "token": token
+			url:"llq/vins/cars/group",
+			params:"&mcid="+auth.mcid+"&brandCode="+auth.brand,
+			token:token
     }
     callAjax(url, params, processAjax, setgridMainGroup);
 }
@@ -202,7 +196,7 @@ function setgridMainGroup(data){
         columns: [
             { type: "indexcolumn", width:20, headerAlign: "center", header: "序号", summaryType: "count"},
             { field: "auth", visible: false},
-            { field: "name", width:80, headerAlign: "center", allowSort: false, header: "主组名称"}
+            { field: "label", width:80, headerAlign: "center", allowSort: false, header: "主组名称"}
         ]
     });
     gridMainGroup.setData(data);
@@ -215,9 +209,12 @@ function setgridMainGroup(data){
 /*
 *分组信息
 */
-function setSubGroupData(data){
+function setSubGroupData(data,json){
 	//分组数据
 	subGroupData =data;
+	for(var i=0;i<data.length;i++){
+		data[i].subGroup = data[i].mid;
+	}
     gridSubGroup.setData(data);
 
     //img
@@ -225,13 +222,21 @@ function setSubGroupData(data){
     var imgSubGroup = $("#imgSubGroup");
     imgSubGroup.children().remove();
     var img = "";
+    var imgList = json.imgs;
+    for(var i = 0;i<data.length;i++){
+    	for(var j in imgList){
+    		if(data[i].imageLarge == j){
+    			data[i].url = imgList[j];
+    		}
+    	}
+    }
     for(var i=0;i<len;i++){
         img = '<a class="sub-group" data=' + i + '>'
             + '<div class="LazyLoad is-visible" style="height:140px; width:140px;">'
             + '    <img src="' + data[i].url + '" alt="sub-group-img" class="sub-group-img"/>'
             + '</div>'
             + '<div class="label">' + data[i].mid + '</div>'
-            + '<div class="float-panel">' + data[i].subgroupname + '</div>'
+            + '<div class="float-panel">' + data[i].name + '</div>'
         + '</a>';
         imgSubGroup.append(img);
         
@@ -249,30 +254,35 @@ function setSubGroupData(data){
 /*
 *零件数据处理
 */
-function setGridPartsData(data){
+function setGridPartsData(data,json){
     var tData = [];
-    for(var i=0; i<data.length; i++){
-        tData = tData.concat(data[i]);
+    for(var i=0; i<data.partDetail.length; i++){
+        tData = tData.concat(data.partDetail[i]);
     }
     gridParts.setData(tData);
     showInfoRightGrid(gridParts);
     showInfoLeftGrid(vinPartImg);
+    data.img = json.img;
+    data.img.imgurl= json.img.imagePath;
+    setPartImg(data.img,json);
 }
 
 /*
 *零件详情
 */
-function openDetail(pid){	
+function openDetail(){	
+	var row = gridParts.getSelected();
     try{
         nui.open({
-            url : contextPath + "/com.hsweb.system.epc.partDetail.flow?brand=" + brand + "&pid=" + pid,
+            url : contextPath + "/com.hsweb.system.epc.partDetail.flow?token="+token,
             title : "零件详情",
             width : "900px",
             height : "600px",
             showHeader:true,
             onload : function() {
-                //var iframe = this.getIFrameEl();
-                //iframe.contentWindow.setInitData(row, e);
+                var iframe = this.getIFrameEl();
+                row.brandCode = brand;
+                iframe.contentWindow.setData(row);
             },
             ondestroy : function(action) {
                 //gridParts.reload();

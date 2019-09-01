@@ -25,29 +25,67 @@
 <div id="panel1" class="nui-panel" style="width:100%;height:100%;" showHeader="false"
     showToolbar="true" showCollapseButton="false" showFooter="false">
     <!--toolbar-->
-    <div property="toolbar" style="padding:10px;">
-    	<table style="width:100%;">
-                <tr>
-                <td style="width:100%;">
-                	<a class="nui-button" iconCls="" onclick="saveTree" plain="true"><span class="fa fa-save fa-lg"></span>&nbsp;保存 </a>
-                	<span class="separator"></span>
-			        <a class="nui-button" iconCls="" onclick="expandAll()" tooltip="全部展开" plain="true"><span class="fa fa-expand fa-lg"></span></a>
-					<a class="nui-button" iconCls="" onclick="collapseAll()" tooltip="全部折叠" plain="true"><span class="fa fa-compress fa-lg"></span></a>
-                </td>
-                <td style="white-space:nowrap;">
-                	<input id="key" class="nui-textbox" style="width:100px;" onenter="onKeyEnter" emptyText="请输入查询条件" />
-					<a class="nui-button" style="width:60px;" iconCls="icon-search" onclick="search()">查询</a>
-                </td>
-            </tr>
-        </table> 
-    </div>
+    
     <!--body-->
  	<div class="nui-fit" style="padding:0px 10px 10px 10px;">
-		<ul id="funcTree" class="nui-tree" style="width:100%;height:100%;"
-			url="<%=apiPath + sysApi%>/com.hsapi.system.tenant.permissions.getRoleResauthValue.biz.ext"
-			idField="id" textField="text" parentField="parentId" resultAsTree="false" checkedField="isCheck"
-			showTreeIcon="true" ajaxData="setRoleId" showTreeLines="true" expandOnDblClick="true" expandOnLoad="false" showCheckBox="true" checkRecursive="true">
-		</ul>
+		
+		
+		
+		
+		<div class="nui-splitter" style="width: 100%; height: 100%;">
+	        <div size="70%" showcollapsebutton="true">
+		        <div property="toolbar" style="padding:10px;">
+			    	<table style="width:100%;">
+			                <tr>
+			                <td style="width:100%;">
+			                	<a class="nui-button" iconCls="" onclick="saveTree" plain="true"><span class="fa fa-save fa-lg"></span>&nbsp;保存 </a>
+			                	<span class="separator"></span>
+						        <a class="nui-button" iconCls="" onclick="expandAll()" tooltip="全部展开" plain="true"><span class="fa fa-expand fa-lg"></span></a>
+								<a class="nui-button" iconCls="" onclick="collapseAll()" tooltip="全部折叠" plain="true"><span class="fa fa-compress fa-lg"></span></a>
+			                </td>
+			                <td style="white-space:nowrap;">
+			                	<input id="key" class="nui-textbox" style="width:100px;" onenter="onKeyEnter" emptyText="请输入查询条件" />
+								<a class="nui-button" style="width:60px;" iconCls="icon-search" onclick="search()">查询</a>
+			                </td>
+			            </tr>
+			        </table> 
+			    </div>
+    
+	           <div class="nui-fit">
+	           		<ul id="funcTree" class="nui-tree" style="width:100%;height:100%;"
+						url="<%=apiPath + sysApi%>/com.hsapi.system.tenant.permissions.getRoleResauthValue.biz.ext"
+						idField="id" textField="text" parentField="parentId" resultAsTree="false" checkedField="isCheck"
+						showTreeIcon="true" ajaxData="setRoleId" showTreeLines="true" expandOnDblClick="true" expandOnLoad="false" 
+						showCheckBox="true" checkRecursive="true" >
+					</ul>
+	           </div>
+	        </div>
+	        <div showcollapsebutton="true">
+	        	<div property="toolbar" style="padding:10px;">
+			    	<table style="width:100%;">
+			            <tr>
+			                <td style="white-space:nowrap;">
+								<a class="nui-button" iconCls="" onclick="saveBtn" plain="true"><span class="fa fa-save fa-lg"></span>&nbsp;保存 </a>
+			                </td>
+			            </tr>
+			        </table> 
+			    </div>
+	        	<div class="nui-fit" style="padding:0px 5px 5px 5px;">
+				    <div id="btngrid" dataField="btnList" class="nui-datagrid" style="width:100%;height:100%;" showPager="false" showModified="false"
+				    url="" allowResize="false"  multiSelect="false"  allowCellEdit="true" allowCellSelect="true">
+					    <div property="columns">
+					    	<div type="indexcolumn">序号</div>
+					        <div field="name" width="100" headerAlign="center" allowSort="false">按钮名称</div> 
+					        <div field="check" width="100" headerAlign="center" allowSort="false">是否授权
+					        	<input property="editor" class="nui-combobox" textField="name" data="statusList"
+							valueField="id" />
+					        </div>   
+					    </div>
+					</div>
+				</div>
+	        </div>
+		</div>
+			
 	</div>
 
 </div>
@@ -56,9 +94,15 @@
 </html>
 <script type="text/javascript">
 	nui.parse();
+	var statusList = [{id:0,name:"否"},{id:1,name:"是"}];
+	var statusHash = {0:"否",1:"是"};
 	var defDomin = "<%=request.getContextPath()%>";
+	var btngrid = nui.get("btngrid");
 	var funcTree = nui.get("funcTree");
 	funcTree.expandLevel(0);
+	
+	var btnUrl = apiPath + sysApi + '/com.hsapi.system.tenant.permissions.getRoleResbtnauthValue.biz.ext';
+    btngrid.setUrl(btnUrl);
 
 	var baseUrl = apiPath + sysApi + "/";
     var show = null;
@@ -192,4 +236,92 @@
 	function collapseAll(){
 		funcTree.collapseAll();
 	}
+	
+	funcTree.on("nodeselect",function(e){
+		var row = e.selected;
+		if(row) {
+			var data = {
+				roleId:"<%= request.getParameter("roleId")%>",
+				resId: row.id,
+				token:token
+			}
+			btngrid.load(data);
+		}else {
+			btngrid.setData([]);
+		}
+	});
+	
+	btngrid.on("drawcell",function(e){
+        switch (e.field) {
+            case "check":
+                if (statusHash[e.value]) {
+                    e.cellHtml = statusHash[e.value] || "";
+                } else {
+                    e.cellHtml = "";
+                }
+				break;
+            default:
+                break;
+        }
+	});
+	
+	function saveBtn(){
+		var data = btngrid.getData();
+		var resId = "";
+		if(data && data.length > 0) {
+			resId = data[0].resId;
+		}
+		
+		nui.mask({
+			el : document.body,
+			cls : 'mini-mask-loading',
+			html : '保存中...'
+		});
+
+		var saveRoleResbtnauthUrl = baseUrl + "com.hsapi.system.tenant.permissions.saveFunctionBtnAuths.biz.ext";
+
+		nui.ajax({
+			url: saveRoleResbtnauthUrl,
+			type: 'POST',
+			data:nui.encode({
+				roleId:"<%=request.getParameter("roleId") %>",
+				resId: resId,
+				btnList: data,
+				token:token
+			}),
+			cache: false,
+			contentType:'text/json',
+			success: function (text) {
+				nui.unmask();
+				if(text.errCode == 'S'){
+				    if(show){
+				       parent.parent.showMsg("权限设置成功","S");
+				    }else{
+				       parent.showMsg("权限设置成功","S");
+				    }
+					
+					//nui.alert("权限设置成功");
+				}else{
+				    if(show){
+				       parent.parent.showMsg("权限设置失败","E");
+				    }else{
+				       parent.showMsg("权限设置失败","E");
+				    }
+					
+					//nui.alert("权限设置失败");
+				}
+			},
+			error: function () {
+				nui.unmask();
+				if(show){
+				    parent.parent.showMsg("权限设置失败","E");
+				 }else{
+				    parent.showMsg("权限设置失败","E");
+				 }
+				//nui.alert("权限设置失败");
+			}
+		});
+		
+	}
+	
 </script>

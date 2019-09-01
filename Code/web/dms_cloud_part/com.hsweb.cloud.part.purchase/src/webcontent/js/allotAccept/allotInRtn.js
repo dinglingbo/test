@@ -142,6 +142,41 @@ $(document).ready(function(v)
 
     //add();
     
+    document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;
+      
+        if((keyCode==78)&&(event.altKey))  {  //新建
+            add();  
+        } 
+      
+        if((keyCode==83)&&(event.altKey))  {   //保存
+            save('0');
+        } 
+        
+        if((keyCode==84)&&(event.altKey))  {   //提交 Alt+T
+        	submit();
+        } 
+
+		if((keyCode==66)&&(event.altKey))  {   //作废 Alt+B
+	    	del();
+        } 
+		if((keyCode==89)&&(event.altKey))  {   //出库 Alt+Y
+			auditOut();
+        } 
+      
+        if((keyCode==80)&&(event.altKey))  {   //打印
+            onPrint();
+        } 
+        if((keyCode==27))  {  
+            if(partShow ==1){
+            	onPartClose();
+            }
+        }
+        
+     
+    }
+    
 });
 
 function loadMainAndDetailInfo(row)
@@ -447,6 +482,7 @@ function setBtnable(flag)
         nui.get("auditBtn").enable();
         nui.get("saveBtn").enable();
         nui.get("addPartBtn").enable();
+        nui.get("addAllotPartBtn").enable();
         nui.get("deletePartBtn").enable();
         nui.get("selectSupplierBtn").enable();
         //nui.get("genePartBtn").enable();
@@ -457,6 +493,7 @@ function setBtnable(flag)
         nui.get("auditBtn").disable();
         nui.get("saveBtn").disable();
         nui.get("addPartBtn").disable();
+        nui.get("addAllotPartBtn").disable();
         nui.get("deletePartBtn").disable();
         nui.get("selectSupplierBtn").disable();
         //nui.get("genePartBtn").disable();
@@ -1644,6 +1681,33 @@ function checkPartIDExists(partid){
     return null;
     
 }
+
+function addAllotDetail(rows){
+	for(var i=0; i<rows.length; i++){
+        var row = rows[i];
+        var newRow = {
+            partId : row.partId,
+            comPartCode : row.comPartCode,
+            comPartName : row.comPartName,
+            comPartBrandId : row.fullName,
+            comApplyCarModel : row.applyCarModel,
+            comUnit : row.systemUnitId,
+            acceptQty : row.applyQty,
+            orderPrice : 0,
+            orderAmt : 0,
+            comOemCode : row.oemCode,
+            comSpec : row.spec,
+            partCode : row.code,
+            partName : row.name,
+            fullName : row.fullName,
+            systemUnitId : row.systemUnitId,
+            outUnitId : row.unit
+        };
+
+
+        rightGrid.addRow(newRow);
+    }
+}
 function addDetail(rows)
 {
     //var iframe = this.getIFrameEl();
@@ -1844,4 +1908,59 @@ function removeChanges(added, modified, removed, all) {
     }
 
     return all;
+}
+
+function addAllotPart(){
+	  var row = leftGrid.getSelected();
+	    if(row){
+	        if(row.auditSign == 1) {
+	            return;
+	        } 
+	    }
+
+	    var guestId = nui.get("guestId").getValue();
+	    if(!guestId) {
+	        showMsg("请选择供应商!","W");
+	        return;
+	    }
+
+	    rightGrid.findRow(function(row){
+	        var partId = row.partId;
+	        var partCode = row.comPartCode;
+	        if(partId == null || partId == "" || partId == undefined || partCode == null || partCode == "" || partCode == undefined){
+	            rightGrid.removeRow(row);
+	        }
+	    });
+
+	    selectPart(function(data) {
+	    	addAllotDetail(data);
+	    },function(data) {
+	        var part = data.part;
+	        var partid = part.id;
+	        //var rtn = checkPartIDExists(partid);
+	        return rtn;
+	    });
+}
+
+function selectPart(callback,checkcallback)
+{
+    nui.open({
+        // targetWindow: window,
+        url: webPath + contextPath + "/com.hsweb.cloud.part.common.orderBillChoose.flow?token="+token,
+        title: "调拨入库单选择", width: 930, height: 560,
+        allowDrag:true,
+        allowResize:true,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            var data = {
+                orderTypeId: 3,
+                guestId: nui.get("guestId").getValue()
+            };
+            iframe.contentWindow.setInitData(data,callback,checkcallback);
+        },
+        ondestroy: function (action)
+        {
+        }
+    });
 }

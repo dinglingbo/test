@@ -26,7 +26,7 @@
 		        <div type="checkboxcolumn" field="check" trueValue="1" falseValue="0" 
 		             width="25" headerAlign="center" header=""><span class="fa fa-check"></span>
 		        </div>
-		        <div field="num" width="20" headerAlign="center" allowSort=false summaryType="count">位置</div>
+		        <div field="pnum" width="20" headerAlign="center" allowSort=false summaryType="count">位置</div>
 		        <div field="pid" width="60" headerAlign="center" allowSort=false>零件OE号</div>
 		        <div field="label" width="80" headerAlign="center" allowSort=false>名称</div>
 		        <div field="quantity" width="20" headerAlign="center" allowSort=false>件数</div>

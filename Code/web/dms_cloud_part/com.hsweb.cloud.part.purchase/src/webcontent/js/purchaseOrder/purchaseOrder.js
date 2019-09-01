@@ -312,6 +312,18 @@ $(document).ready(function(v) {
 	    if((keyCode==83)&&(event.altKey))  {   //保存
 			save();
 	    } 
+	    
+	    if((keyCode==84)&&(event.altKey))  {   //提交 Alt+T
+        	audit();
+        } 
+      
+	    if((keyCode==66)&&(event.altKey))  {   //返单 Alt+B
+	    	unAudit();
+        } 
+	    
+        if((keyCode==89)&&(event.altKey))  {   //入库 Alt+Y
+        	auditToEnter();
+        } 
 	  
 	    if((keyCode==80)&&(event.altKey))  {   //打印
 			onPrint();
@@ -616,6 +628,9 @@ function loadMainAndDetailInfo(row) {
 		//预售单
 		if(row.sourceType==5){
 			$('#sourceServiceId').text("往来单单号:"+row.code);
+		}
+		else{
+			$('#sourceServiceId').text("");
 		}
 		//bottomInfoForm.setData(row);
 		nui.get("guestId").setText(row.guestFullName);
@@ -1127,6 +1142,7 @@ function add() {
 				nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
 				nui.get("orderDate").setValue(new Date());
 				nui.get("orderMan").setValue(currUserName);
+				nui.get("orderType").setValue(1);
 
 				addNewRow();
 
@@ -1157,6 +1173,7 @@ function add() {
 		nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
 		nui.get("orderDate").setValue(new Date());
 		nui.get("orderMan").setValue(currUserName);
+		nui.get("orderType").setValue(1);
 
 		addNewRow();
 
@@ -3725,3 +3742,5 @@ function generateApplyToEnter(planId, mainId) {
         }
     });
 }
+
+

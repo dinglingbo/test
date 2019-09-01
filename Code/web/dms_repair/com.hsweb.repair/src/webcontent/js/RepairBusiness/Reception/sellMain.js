@@ -96,7 +96,6 @@ $(document).ready(function ()
         columns: [
             { name: 'status' },
             { name: 'contactName' },
-            { name: 'carModel' },
             { name: 'isSettle' },
             { name: 'mtAdvisor' },
             {name:'mtAdvisorId'}
@@ -512,3 +511,37 @@ function showCarInfo(row_uid){
 	}
 }
 
+var delectUrl = baseUrl + "com.hsapi.repair.repairService.crud.delectSellPartMain.biz.ext";
+function delect(){
+	var row = mainGrid.getSelected();
+	if(row){
+		if(row.status>1){
+			showMsg("配件已出库，不能删除","W")
+			return;
+		}else{
+			var json = nui.encode({
+				"serviceId" : row.id,
+				token : token
+			});
+			nui.ajax({
+				url : delectUrl,
+				type : 'POST',
+				data : json,
+				cache : false,
+				contentType : 'text/json',
+				success : function(text) {
+					var returnJson = nui.decode(text);
+					if (returnJson.errCode == "S") {
+						onSearch();
+						 showMsg("删除成功","S");
+					} else {
+						showMsg("删除失败","E");
+					}
+						
+				}
+			});
+		}
+	}else{
+	  showMsg("请选择一条数据","W");	
+	}
+}

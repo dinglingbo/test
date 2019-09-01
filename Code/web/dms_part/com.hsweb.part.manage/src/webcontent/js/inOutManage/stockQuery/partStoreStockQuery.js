@@ -169,6 +169,12 @@ function doSearch(params)
 	    rightGrid2.load({
 	        params:params,
 	        token:token
+	    },function(){
+	    	var detail = rightGrid2.getData();
+	    	for(var i = 0;i<detail.length;i++){
+	    		detail[i].totalAmt = (detail[i].outableQty||0) * (detail[i].enterPrice||0);
+	    	}
+	    	rightGrid2.setData(detail);
 	    });
 	}  
 }
@@ -295,9 +301,6 @@ function onDrawCell2(e)
 {
     switch (e.field)
     {
-	    case "manualCode":
-			e.cellHtml ='<a href="##" onclick="edit()">'+e.value+'</a>';
-			break;
 	    case "partBrandId":
 	    	if(partBrandIdHash[e.value])
             {
@@ -356,9 +359,9 @@ function onDrawCell2(e)
         			e.cellHtml = currOrgList[i].shortName || "";
         		}
         	}
-        case "enterAmt":
+/*        case "totalAmt":
                 e.cellHtml = (e.row.outableQty||0) * (e.row.enterPrice||0);         
-            break;       	
+            break; */      	
         default:
             break;
     }
@@ -440,6 +443,12 @@ function activechangedmain(){
 	    rightGrid2.load({
 	        params:params,
 	        token:token
+	    },function(){
+	    	var detail = rightGrid2.getData();
+	    	for(var i = 0;i<detail.length;i++){
+	    		detail[i].totalAmt = (detail[i].outableQty||0) * (detail[i].enterPrice||0);
+	    	}
+	    	rightGrid2.setData(detail);
 	    });
 	}
 }
@@ -453,10 +462,25 @@ function onExport(){
 		exportMultistage(rightGrid.columns);
 		for(var i=0;i<detail.length;i++){
 			detail[i].id=1;
+			for(var j in storehouseHash) {
+			    if(detail[i].storeId ==storehouseHash[j].id ){
+			    	detail[i].storeId=storehouseHash[j].name;
+			    }
+			}
+/*			if(detail[i].taxSign==0){
+				detail[i].taxSign="否";
+			}else{
+				detail[i].taxSign="是";
+			}*/
+			for(var j in partBrandIdHash) {
+				if(detail[i].partBrandId ==partBrandIdHash[j].id ){
+					detail[i].partBrandId=partBrandIdHash[j].name;
+				}
+			}
 		}
 		if(detail && detail.length > 0){
 			//多级表头类型
-			setInitExportData( detail,rightGrid.columns,"库存查询导出");
+			setInitExportData( detail,rightGrid.columns,"汇总库存导出");
 		}		
 	}else if(tabs.name=="batch"){
 	    //批次
@@ -465,11 +489,89 @@ function onExport(){
 		exportMultistage(rightGrid2.columns);
 		for(var i=0;i<detail.length;i++){
 			detail[i].id=1;
+			detail[i].totalAmt=(detail[i].outableQty||0) * (detail[i].enterPrice||0);
+			for(var j in storehouseHash) {
+			    if(detail[i].storeId ==storehouseHash[j].id ){
+			    	detail[i].storeId=storehouseHash[j].name;
+			    }
+			}
+			if(detail[i].taxSign==0){
+				detail[i].taxSign="否";
+			}else{
+				detail[i].taxSign="是";
+			}
+			for(var j in partBrandIdHash) {
+				if(detail[i].partBrandId ==partBrandIdHash[j].id ){
+					detail[i].partBrandId=partBrandIdHash[j].name;
+				}
+			}
 		}
 		if(detail && detail.length > 0){
 			//多级表头类型
-			setInitExportData( detail,rightGrid2.columns,"批次查询导出");
+			setInitExportData( detail,rightGrid2.columns,"批次库存导出");
 		}
 	}
 	
 }
+
+
+function printCode(){
+	var tabs = nui.get("mainTabs").getActiveTab();
+	var row = [];
+	if(tabs.name=="inventory"){
+		row = rightGrid.getSelecteds();	
+	}else if(tabs.name=="batch"){
+	    row = rightGrid2.getSelecteds();
+	}
+	var codeList = [];
+	//所有配件转化json字符串
+	for(var i = 0;i<row.length;i++){
+		var code ={
+				name : row[i].comPartName||"",
+				code : row[i].partCode||"",
+				id : row[i].codeId||""
+		}; 
+		var strCode = JSON.stringify(code);
+		var towCode = {
+				str : strCode,
+				name : row[i].comPartName||"",
+				code : row[i].partCode||"",
+				id : row[i].codeId||""
+		};
+		codeList.push(towCode);
+	}
+	var createQRCodeByListUrl = webPath + sysDomain + "/com.hs.common.uitls.createQRCodeByList.biz.ext";
+    nui.ajax({
+        url: createQRCodeByListUrl,
+        type:"post",
+        async: false,
+        data:{
+        	codeList:codeList,
+        	"width": 150,
+        	"height" : 150,
+        	token:token
+        },
+        cache: false,
+        success: function (data) {
+        	var codeList = data.codeList;
+            if(data.errCode == "S"){
+                nui.open({
+                    url:  webPath + contextPath + "/com.hsweb.print.codePrint.flow",
+                    title:"打印配件二维码",
+                    height:"100%",
+                    width:"100%",
+                    onload:function(){
+                        var iframe = this.getIFrameEl();
+                        iframe.contentWindow.setData(codeList);
+                    },
+                    ondestroy:function(action){
+                    }
+
+                });
+            }else{
+                showMsg("生成二维码失败!","E");
+            }
+        }
+    });
+}
+

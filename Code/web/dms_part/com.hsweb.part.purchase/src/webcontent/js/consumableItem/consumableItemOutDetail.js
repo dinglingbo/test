@@ -32,7 +32,7 @@ function onOk()
     out.serviceCode = "耗材出库";
     out.orgid = currOrgid;
     out.recorder = currUserName;
-    out.pickType = "050204";
+    out.pickType = "050210";
     var qty = out.outQty;
     out.taxAmt = out.taxUnitPrice*qty;
     out.noTaxAmt = out.noTaxUnitPrice*qty;

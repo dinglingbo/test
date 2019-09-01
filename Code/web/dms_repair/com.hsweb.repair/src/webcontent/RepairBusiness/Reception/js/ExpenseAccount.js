@@ -808,6 +808,10 @@ function onPrint(e){
 	}else{
 		url = webPath + contextPath + "/com.hsweb.print.settlement.flow?token="+token;
 	}
+	if(e==3){
+		params.printName = "报价单";
+		url = webPath + contextPath + "/repair/RepairBusiness/Reception/settlementPrint6.jsp?token="+token;
+	}
 	/*if(e==1 || e==2){
 		url = webBaseUrl +"com.hsweb.print.settlement.flow";
 	}

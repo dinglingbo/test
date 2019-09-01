@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购退货</title>
-<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.0.7"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.0.17"></script>
 <style type="text/css">
 .title {
 	width: 70px;
@@ -113,7 +113,7 @@ body .mini-grid-row-selected{
                      ondrawcell="onLeftGridDrawCell"
                      onrowdblclick=""
                      onselectionchanged="onLeftGridSelectionChanged"
-                     onbeforedeselect=""
+                     onbeforedeselect="onLeftGridBeforeDeselect"
                      dataField="pjSellOrderMainList"
                      url="">
                     <div property="columns">
@@ -245,7 +245,7 @@ body .mini-grid-row-selected{
                                       <td class="title">
                                           <label>备注：</label>
                                       </td>
-                                      <td colspan="3">
+                                      <td colspan="6">
                                           <input class="nui-textbox" selectOnFocus="true" width="100%" id="remark" name="remark" enabled="true"/>
                                       </td>
                                       <td class="title required" style="display:none;">
@@ -276,7 +276,7 @@ body .mini-grid-row-selected{
                       <table style="width:100%;">
                           <tr>
                               <td style="white-space:nowrap;">
-                                  <a class="nui-button" plain="true" iconCls="" onclick="addPart()" id="addPartBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;选择采购订单</a>
+                                  <a class="nui-button" plain="true" iconCls="" onclick="addPart()" id="addPartBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;选择采购入库单</a>
                                   <a class="nui-button" plain="true" iconCls="" onclick="deletePart()" id="deletePartBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                               </td>
                           </tr>
@@ -288,8 +288,8 @@ body .mini-grid-row-selected{
                            dataField="pjSellOrderDetailList"
                            idField="id"
                            showSummaryRow="true"
-                           frozenStartColumn="0"
-                           frozenEndColumn="10"
+                           frozenStartColumn=""
+                           frozenEndColumn=""
                            ondrawcell="onRightGridDraw"
                            allowCellSelect="true"
                            allowCellEdit="true"
@@ -305,9 +305,9 @@ body .mini-grid-row-selected{
                               <div type="indexcolumn">序号</div>
                               <div header="配件信息" headerAlign="center">
                                   <div property="columns">
-                                    <div field="operateBtn" name="operateBtn" width="50" headerAlign="center" header="删除"></div>
+                                    <div field="operateBtn" name="operateBtn" width="30" headerAlign="center" header="删除"></div>
                                       <div field="comPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码">
-                                          <input property="editor" class="nui-textbox" />
+<!--                                           <input property="editor" class="nui-textbox" /> -->
                                       </div>
                                       <div field="comPartName" visible="false" headerAlign="center" header="配件名称"></div>
                                       <div field="fullName"  width="200" headerAlign="center" header="配件全称"></div>

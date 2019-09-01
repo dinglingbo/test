@@ -1023,11 +1023,11 @@ function doDelete() {
 					success : function(data) {
 						 nui.unmask(document.body);
 						if(data.errCode=="S"){
-							showMsg(data.errMsg,"W");
-							rRightGrid.load;
+							showMsg(data.errMsg,"S");
+							rRightGrid.reload();
 						}else{
 							showMsg(data.errMsg,"W");
-							rRightGrid.load;
+							rRightGrid.reload();
 						}
 					},
 					error : function(jqXHR, textStatus, errorThrown) {
@@ -1042,6 +1042,48 @@ function doDelete() {
 	
 }
 
+function reverseSettle() {
+	var rows = rRightGrid.getSelecteds();
+	if (!rows) {
+		showMsg("请选择一条记录!","W");
+		return;
+	}
+	json = {
+			billMainId:rows[0].billMainId,
+			billServiceId:rows[0].billServiceId,
+			billTypeId:rows[0].billTypeId
+	}
+    nui.confirm("确定反结算此条记录吗？", "友情提示",function(action){
+	       if(action == "ok"){
+			    nui.mask({
+			        el : document.body,
+				    cls : 'mini-mask-loading',
+				    html : '处理中...'
+			    });
+				nui.ajax({
+					url : baseUrl
+					+ "com.hsapi.frm.frmService.rpinterface.reverseAccount.biz.ext" ,
+					type : "post",
+					data : json,
+					success : function(data) {
+						 nui.unmask(document.body);
+						if(data.errCode=="S"){
+							showMsg("反结算成功","S");
+							rRightGrid.reload();
+						}else{
+							showMsg(data.errMsg,"W");
+							rRightGrid.reload();
+						}
+					},
+					error : function(jqXHR, textStatus, errorThrown) {
+						console.log(jqXHR.responseText);
+					}
+				});
+	     }else {
+				return;
+		 }
+		 });
+}
 
 function doSettle() {
 	var msg = checkSettleRow();

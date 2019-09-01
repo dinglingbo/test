@@ -11,6 +11,7 @@ var mtAmtEl = null;
 var amountEl = null;
 var onetInAmt = 0;
 var netInAmt = 0;
+var printMain = {};//用于打印
 var webBaseUrl = webPath + contextPath + "/";
 var partBaseUrl = apiPath + partApi + "/";
 var baseUrl = apiPath + repairApi + "/";
@@ -142,6 +143,7 @@ function onbillPTypeChange(e){
 }
 function setData(params){
 	var serviceId = params.serviceId||0;
+	printMain = params.main||{};//用于打印
 	fserviceId = serviceId;
 	
 	receiveGrid.load({
@@ -463,4 +465,74 @@ function selectSupplier(params,row)
             }
         }
     });
+}
+
+function onPrint(){plist
+	var source = printMain.source||0;
+	var serviceId = printMain.serviceId||0;
+	//收入类
+    var receiveData  =  receiveGrid.getData();
+    //若没有，则会获取到空白的第一行，所以要取消
+    if(receiveData[0].typeId==null){
+    	receiveData = [];
+    }
+	//支出类
+    var payData = payGrid.getData();
+    //若没有，则会获取到空白的第一行，所以要取消
+    if(payData[0].typeId==null){
+    	payData = [];
+    }
+    for(var i =0;i<receiveData.length;i++){
+        for(var j =0;j<rlist.length;j++){
+        	if(receiveData[i].typeId ==rlist[j].id){
+        		receiveData[i].typeName = rlist[j].name;
+        	}
+        }
+    }
+    for(var i =0;i<payData.length;i++){
+        for(var j =0;j<plist.length;j++){
+        	if(payData[i].typeId ==plist[j].id){
+        		payData[i].typeName = plist[j].name;
+        	}
+        }
+    }
+
+	var printName = currRepairSettorderPrintShow||currOrgName;
+	var p = {
+		serviceId : serviceId,
+		serviceCode : printMain.serviceCode,
+		comp : printName,
+		partApiUrl:apiPath + partApi + "/",
+		baseUrl: apiPath + repairApi + "/",
+		sysUrl: apiPath + sysApi + "/",
+		webUrl:webPath + contextPath + "/",
+        bankName: currBankName,
+        bankAccountNumber: currBankAccountNumber,
+        currCompAddress: currCompAddress,
+        currUserName :currUserName,
+        currCompTel: currCompTel,
+        currSlogan1: currSlogan1,
+        currSlogan2: currSlogan2,
+        currCompLogoPath: currCompLogoPath,
+        currRepairBillMobileFlag:currRepairBillMobileFlag,
+        currIsCanfreeCarnovin:currIsCanfreeCarnovin,
+        name : "费用登记打印",
+	    receiveData : receiveData,
+	    payData : payData,
+		token : token 
+	};
+	var sourceUrl = webPath + contextPath + "/repair/DataBase/Card/printExpenseDetail.jsp?token="+token;
+	nui.open({
+        url: sourceUrl,
+        title: p.name + "打印",
+		width: "100%",
+		height: "100%",
+        onload: function () {
+            var iframe = this.getIFrameEl();
+           iframe.contentWindow.SetData(p);
+        },
+        ondestroy: function (action){
+        }
+    });
+	
 }

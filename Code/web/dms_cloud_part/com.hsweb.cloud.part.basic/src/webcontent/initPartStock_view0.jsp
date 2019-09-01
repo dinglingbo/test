@@ -123,7 +123,7 @@
                      idField="id"
                      showSummaryRow="true"
                      frozenStartColumn="0"
-                     frozenEndColumn="6"
+                     frozenEndColumn="0"
                      ondrawcell="onRightGridDraw"
                      allowCellSelect="true"
                      allowCellEdit="true"

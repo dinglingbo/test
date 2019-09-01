@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:dlb -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    
+	<!-- 根据产品id获取产品对应的功能信息 -->
+	<select id="queryProductRes" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+       SELECT
+			a.id as id,
+			a.product_id as productId,
+			a.res_id as resId,
+			a.res_type as resType,
+			a.res_name as resName,
+			a.res_url as resUrl,
+			a.res_parent_id as resParentId,
+			a.is_disabled as isDisabled,
+			a.scope as scope,
+			a.type as type
+	   FROM wb_common.com_sys_product_res AS a
+	   WHERE a.product_id = #productId# and a.is_disabled = 0
+	</select>
+	
+	<!-- 根据页面地址获取产品ID -->
+	<select id="queryProductIdByResUrl" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+       SELECT a.product_id as productId
+	   FROM wb_common.com_sys_product_res AS a
+	   WHERE a.res_url = #resUrl#
+	</select>
+	
+	<!-- 根据租户ID和产品ID获取租户产品信息（有效期）信息 -->
+	<select id="queryTenantProductByTenantAndProduct" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        SELECT
+			a.id as id,
+			a.tenant_id as tenantId,
+			a.product_id as productId,
+			a.product_name as productName,
+			a.`status` as status,
+			a.start_date as startDate,
+			a.end_date as endDate,
+			a.last_charge_amt as lastChargeAmt,
+			a.last_charge_date as lastChargeDate,
+			a.total_charge_amt as totalChargeAmt,
+			a.order_index as orderIndex,
+			a.remark as remark,
+			a.recorder as recorder,
+			a.record_date as recordDate,
+			a.modifier as modifier,
+			a.modify_date as modifyDate
+		FROM
+			wb_common.com_tenant_product AS a
+	    WHERE a.tenant_id = #tenantId# and a.product_id = #productId#
+	</select>
+	
+	<!-- 根据接口地址查询产品查询-->
+	<select id="queryProductByProUrl" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        SELECT 
+			a.id as id,
+			a.`code` as code,
+			a.`name` as name,
+			a.type as type,
+			a.pro_url as proUrl,
+			a.period_validity as periodValidity,
+			a.sell_price as sellPrice,
+			a.call_need_coin as callNeedCoin,
+			a.order_index as orderIndex,
+			a.remark as remark,
+			a.is_disabled as isDisabled,
+			a.recorder as recorder,
+			a.record_date as recordDate,
+			a.modifier as modifier,
+			a.modify_date as modifyDate
+		FROM
+			com_sys_product AS a
+	    WHERE a.pro_url = #proUrl# and a.is_disabled = 0
+	    limit 1
+	</select>
+    
+    
+    
+</sqlMap>

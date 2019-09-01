@@ -4,6 +4,7 @@ var vin_len; //vin长度要求
 var vin_input;//vin输入
 var curr_check;//当前选择品牌
 var brand; //品牌
+var mcid;//查询分组需要
 var vinPartImg;//零件图片
 var gridCfg; //车辆配置
 var gridMainGroup; //主组
@@ -114,7 +115,7 @@ $(document).ready(function(v){
         var field = e.field;
         var value = e.value;
         if(field == "detail"){
-            var html = '<a class="" href="javascript:openDetail(\'' + record.pid + '\')">' + value + '</a>';
+            var html = '<a class="" href="javascript:openDetail()">详情 </a>';
             e.cellHtml = html;
         }else if(field == "opt"){
             var html = '<a class="" href="javascript:addPart()"><i class="fa fa-shopping-cart"></i></a>';
@@ -233,7 +234,7 @@ function queryVin(){
     if (checkVin()){
         var params = {
     			url:"llq/vins/cars/vin",
-    			params:"&vin=LBVNA39014SA49922",
+    			params:"&vin="+vin+"",
     			token:token
         }
         
@@ -247,7 +248,7 @@ function queryVin(){
 */
 function setGridCfg(data, json){
 	//添加历史记录
-	vin=json.vin;
+	vin=data.vin;
 	//缓存
 	var key=new Date().getTime();
 	localStorage.setItem(key, vin);
@@ -264,16 +265,25 @@ function setGridCfg(data, json){
 //	    availableTags.push(vin);
 //    }
 //    
-    data = json.mains;
-    brand = json.brand;
+	var str = "车型 :" + data.modelName;
+	var informationList = [];
+	informationList.push(str);
+	for(var i in data.mainData){
+		informationList.push(i+":"+data.mainData[i])
+	}
+	for(var i in data.subData){
+		informationList.push(i+":"+data.subData[i])
+	}
+	mcid = data.mcid;
+    brand = data.brandCode;
     gridCfg.setData([]);
     showRightGrid(gridCfg);
-    if(data){
+    if(informationList){
         var dataList=[];
         var tmpList;
         var tmp={};
-        for(var i=0; i<data.length-1; i++){//最后一个无效
-            tmpList = data[i].split(":");
+        for(var i=0; i<informationList.length-1; i++){//最后一个无效
+            tmpList = informationList[i].split(":");
             tmp.field1 = tmpList[0] || "";
             tmp.field2 = tmpList[1] || "";
             dataList[i] = nui.clone(tmp);
@@ -306,12 +316,9 @@ function setGridCfg(data, json){
 function queryGroupByVin(){	
     if (checkVin()){
         var params = {
-            "url": llq_pre_url + "/ppyvin/vingroup",
-            "params":{
-                "vin":vin,
-                "code":brand
-            },
-            "token": token
+    			url:"llq/vins/cars/group",
+    			params:"&mcid="+mcid+"&brandCode="+brand+"&vin="+vin,
+    			token:token
         }
         callAjax(url, params, processAjax, setgridMainGroup);
     }	
@@ -328,7 +335,7 @@ function setgridMainGroup(data){
         columns: [
             /*{ type: "indexcolumn", width:20, headerAlign: "center", header: "序号", summaryType: "count"},*/
             { field: "auth", visible: false},
-            { field: "name", width:80, headerAlign: "center", allowSort: false, header: "主组名称", summaryType: "count"}
+            { field: "label", width:80, headerAlign: "center", allowSort: false, header: "主组名称", summaryType: "count"}
         ]
     });
     gridMainGroup.setData(data);
@@ -337,15 +344,10 @@ function setgridMainGroup(data){
 /*
 *分组信息
 */
-function setSubGroupData(data){
+function setSubGroupData(data,json){
 	
 	//分组数据
 	subGroupData =data;
-	for(var i=0;i<data.length;i++){
-		if(data[i].is_filter!=0){
-			data.splice(i--, 1);
-		}
-	}
     gridSubGroup.setData(data);
     
     //img
@@ -353,13 +355,21 @@ function setSubGroupData(data){
     var imgSubGroup = $("#imgSubGroup");
     imgSubGroup.children().remove();
     var img = "";
+    var imgList = json.imgs;
+    for(var i = 0;i<data.length;i++){
+    	for(var j in imgList){
+    		if(data[i].imageLarge == j){
+    			data[i].url = imgList[j];
+    		}
+    	}
+    }
     for(var i=0;i<len;i++){
         img = '<a class="sub-group" data=' + i + '>'
             + '<div class="LazyLoad is-visible" style="height:140px; width:140px;">'
             + '    <img src="' + data[i].url + '" alt="sub-group-img" class="sub-group-img"/>'
             + '</div>'
-            + '<div class="label">' + data[i].mid + '</div>'
-            + '<div class="float-panel">' + data[i].subgroupname + '</div>'
+            + '<div class="label">' + data[i].subGroup + '</div>'
+            + '<div class="float-panel">' + data[i].name + '</div>'
         + '</a>';
         imgSubGroup.append(img);
         
@@ -377,21 +387,13 @@ function setSubGroupData(data){
 *主组事件
 */
 function clickGdMainGroup(row){
-    if (row.auth) {   	
+    if (row.label) {   	
     	//主组标识
-    	groupnum =row.groupnum;
-    	if(row.has_subs){
-    		groupnum = row.mid;
-    	}
+    	groupnum =row.num;
         var params = {
-            "url": llq_pre_url + "/ppyvin/subgroup",
-            "params":{
-                "vin":vin,
-                "code":brand,
-                //"is_filter":1,
-                "auth":row.auth//unescape
-            },
-            "token": token
+    			url:"llq/vins/cars/subgroup",
+    			params:"&mcid="+mcid+"&brandCode="+brand+"&num="+groupnum,
+    			token:token
         }
         callAjax(url, params, processAjax, setSubGroupData);
     }
@@ -407,22 +409,17 @@ function clickGdSubGroup(row){
         return;
     }
     
-    if (row.auth) {
+    if (row.mid) {
     	//分组零件号
     	subMid=row.mid;
-        var params = {
-            "url": llq_pre_url + "/ppyvin/parts",
-            "params":{
-                "vin":vin,
-                "code":brand,
-                "filter":1,
-                "auth":row.auth
-            },
-            "token": token
-        }
+    var params = {
+			url:"llq/vins/cars/parts",
+			params:"&mcid="+mcid+"&brandCode="+brand+"&num="+row.num+"&mid="+subMid+"&subgroup="+row.subGroup,
+			token:token
+    }
         callAjax(url, params, processAjax, setGridPartsData);
         
-        params = {
+/*        params = {
             "url": llq_pre_url + "/ppycars/subimgs",
             "params":{
                 "code":brand,
@@ -430,7 +427,9 @@ function clickGdSubGroup(row){
             },
             "token": token
         }
-        callAjax(url, params, processAjax, setPartImg);
+        callAjax(url, params, processAjax, setPartImg);*/
+    row.imgurl = row.url;
+    setPartImg(row);
     }
 }
 
@@ -439,8 +438,9 @@ function clickGdSubGroup(row){
 */
 function setGridPartsData(data, rs){
     var tData = [];
-    for(var i=0; i<data.length; i++){
-        tData = tData.concat(data[i]);
+    for(var i=0; i<data.partDetail.length; i++){
+    	//data.partDetail[i].detail = "详情";
+        tData = tData.concat(data.partDetail[i]);
     }
     gridParts.setData(tData);
     showRightGrid(gridParts);
@@ -451,16 +451,18 @@ function setGridPartsData(data, rs){
 *零件详情
 */
 function openDetail(pid){	
+	var row = gridParts.getSelected();
     try{
         nui.open({
-            url : contextPath + "/com.hsweb.system.epc.partDetail.flow?brand=" + brand + "&pid=" + pid,
+            url : contextPath + "/com.hsweb.system.epc.partDetail.flow?token="+token,
             title : "零件详情",
             width : "900px",
             height : "600px",
             showHeader:true,
             onload : function() {
-                //var iframe = this.getIFrameEl();
-                //iframe.contentWindow.setInitData(row, e);
+                var iframe = this.getIFrameEl();
+                row.brandCode = brand;
+                iframe.contentWindow.setData(row);
             },
             ondestroy : function(action) {
                 //gridParts.reload();

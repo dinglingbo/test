@@ -67,10 +67,10 @@
 
 	<script type="text/javascript">
     	nui.parse();
-    	var baseUrl = apiPath + cloudPartApi + "/";
+    	var baseUrl = apiPath + partApi + "/";
     	var mainGrid = nui.get("mainGrid"); 
     	var fmainId = 0;
-    	var gridUrl = baseUrl + "/com.hsapi.cloud.part.invoicing.allotsettle.queryPjAllotApplyDetailList.biz.ext";
+    	var gridUrl = baseUrl + "/com.hsapi.part.invoice.allotsettle.queryPjAllotApplyDetailList.biz.ext";
     	
     	$(document).ready(function(v){ 
     		mainGrid.setUrl(gridUrl);
@@ -151,7 +151,7 @@
 			});
 
    			nui.ajax({
-				url : baseUrl + "com.hsapi.cloud.part.invoicing.allotsettle.adjustAllotApply.biz.ext",
+				url : baseUrl + "com.hsapi.part.invoice.allotsettle.adjustAllotApply.biz.ext",
 				type : "post",
 				data : JSON.stringify({
 					data : adjList,

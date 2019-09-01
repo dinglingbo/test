@@ -298,7 +298,7 @@ function quickSearch(type){
             var menunametype = nui.get("menunametype");
             menunametype.setText(querytypename);
     }
-    gsparams.isDiffOrder = 0;
+//    gsparams.isDiffOrder = 0;
     doSearch(gsparams);
 }
 function onSearch(){
@@ -312,7 +312,7 @@ function search()
 function getSearchParam(){
     var params = {};
     params = gsparams;
-    params.isDiffOrder = 1;
+//    params.isDiffOrder = 1;
   //是业务员且业务员禁止可见
 	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
 		params.creator= currUserName;
@@ -488,7 +488,7 @@ function doSearch(params)
 {
     //目前没有区域销售订单，采退受理  params.enterTypeId = '050101';
     params.orderTypeId = 1;
-    params.isDifferOrder = 0;
+//    params.isDifferOrder = 0;
   //是业务员且业务员禁止可见
 	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
 		params.creator= currUserName;

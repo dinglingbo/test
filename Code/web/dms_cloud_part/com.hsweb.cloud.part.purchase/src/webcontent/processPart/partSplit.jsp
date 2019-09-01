@@ -34,8 +34,7 @@ body .mini-grid-row-selected{
 <head>
 <title>配件拆分</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchase/js/processPart/partSplit.js?v=1.0.16"></script>
-   
+    <script src="<%=webPath + contextPath%>/purchase/js/processPart/partSplit.js?v=1.0.1"></script>
 </head>
 <body>
 	
@@ -65,7 +64,7 @@ body .mini-grid-row-selected{
                   <span class="separator"></span>
                     <li iconCls="" onclick="quickSearch(6)" id="type6">草稿</li>
                     <li iconCls="" onclick="quickSearch(7)" id="type7">已审核</li>
-                   
+                  
                 </ul>
                 
             </td>
@@ -73,8 +72,8 @@ body .mini-grid-row-selected{
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save('0')" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="submit()" visible="true"  id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
-
+                <a class="nui-button" iconCls="" plain="true" onclick="audit()" visible="true"  id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
+               
                 <span id="status"></span>
             </td>
         </tr>
@@ -102,7 +101,7 @@ body .mini-grid-row-selected{
                      onrowdblclick=""
                      onselectionchanged="onLeftGridSelectionChanged"
                      onbeforedeselect="onLeftGridBeforeDeselect"
-                     dataField="pjAllotApplyMainList"
+                     dataField="processMain"
                      url="">
                     <div property="columns">
                       	<div type="indexcolumn">序号</div>
@@ -111,15 +110,13 @@ body .mini-grid-row-selected{
                         <div field="creator" width="60" headerAlign="center" header="操作员"></div>
                         <div field="serviceId" headerAlign="center" width="150" header="配件拆分单号"></div>
                         <div field="auditor" width="60" headerAlign="center" header="审核员"></div>
-                        <div field="auditDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="审核日期"></div>
+                        <div field="auditDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="提交日期"></div>
                     </div>
                 </div>
             </div>
         </div>
         
         <div showCollapseButton="false">
-            
-		
 			    <div class="nui-splitter"
 			         id="splitter" vertical="true"
 			         allowResize="true"
@@ -137,7 +134,7 @@ body .mini-grid-row-selected{
 		                              <input class="nui-hidden" name="versionNo"/>
 		                              <input class="nui-hidden" name="status" id="status"/>
 		                              <input class="nui-hidden" name="isDisabled" id="isDisabled"/>
-		                              <input class="nui-hidden" name="guestOrgid" id="guestOrgid"/>
+		                              <input class="nui-hidden" name="orgid" id="orgid"/>
 		                              <input class="nui-hidden" name="auditSign"/>
 		                              <input name="partBrandId"id="partBrandId"  visible="false"class="nui-combobox" />
 		                              <table style="width: 100%;">
@@ -218,7 +215,7 @@ body .mini-grid-row-selected{
 		                   		
 	                   		   <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
 		                           showPager="false"
-		                           dataField="pjAllotApplyDetailList"
+		                           dataField="data"
 		                           idField="id"
 		                           frozenStartColumn=""
 		                           frozenEndColumn=""
@@ -226,11 +223,13 @@ body .mini-grid-row-selected{
 		                           ondrawcell="onRightGridDraw"
 		                           allowCellSelect="true"
 		                           allowCellEdit="true"
+		                       
 		                           oncellcommitedit="onCellCommitEdit"
-		                           oncelleditenter="onCellEditEnter"
-		                           onselectionchanged=""
-		                           oncellbeginedit="OnrpMainGridCellBeginEdit"
-		                           showModified="false"
+			                       oncelleditenter="onCellEditEnter"
+			                       ondrawsummarycell=""
+			                       showModified="false"
+			                       oncellbeginedit="OnrpMainGridCellBeginEdit"
+		   						   sortMode="client"
 		                           editNextOnEnterKey="true"
 		                           allowCellWrap = "true"
 		                           url="">
@@ -238,19 +237,21 @@ body .mini-grid-row-selected{
 		                              <div type="indexcolumn">序号</div>
 		                              <div header="配件信息" headerAlign="center">
 		                                  <div property="columns">
-		                                   
-		                                      <div field="comPartCode" name="comPartCode" width="100" summaryType="count" headerAlign="center" header="配件编码">
-		                                          <input property="editor" class="nui-textbox" />
+		                                      <div field="partCode" name="partCode" width="100" summaryType="count" headerAlign="center" header="配件编码">
+		                                          <input  class="nui-textbox" />
 		                                      </div>
-		                                      <div field="comPartName" visible="false" headerAlign="center" header="配件名称"></div>
+		                                      <div field="partName" visible="false" headerAlign="center" header="配件名称"></div>
 		                                      <div field="fullName"  width="200" headerAlign="center" header="配件全称"></div>
-		                                      <div field="comPartBrandId" visible="false"width="60" headerAlign="center" header="品牌"></div>
+		                                      <div field="partBrandId" visible="false"width="60" headerAlign="center" header="品牌"></div>
+		                                      <div field="id" visible="false"width="60" headerAlign="center" header="id"></div>
+		                                      <div field="parentId" visible="false"width="60" headerAlign="center" header="parentId"></div>
+		                                       <div field="mainId" visible="false"width="60" headerAlign="center" header="mainId"></div>
 		                                  </div>
 		                              </div>
 		                              
 		                              <div header="数量信息" headerAlign="center">
 		                                  <div property="columns">
-		                                      <div field="orderQty" name="applyQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="数量">
+		                                      <div field="orderQty" name="orderQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="数量">
 		                                        <input property="editor" vtype="float" class="nui-textbox"/>
 		                                      </div>
 		                                       
@@ -261,165 +262,58 @@ body .mini-grid-row-selected{
 		                              </div>
 		                              <div header="辅助信息" headerAlign="center">
 		                                  <div property="columns">
-		                                      <div field="comApplyCarModel" width="80" headerAlign="center" header="品牌车型"></div>
-		                                      <div field="comUnit" name="comUnit" width="60" headerAlign="center" header="单位"></div>
-		                                      <div field="comOemCode" width="50" headerAlign="center" allowSort="true" header="OE码"></div>   
-		                                      <div field="comSpec" width="50" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div> 
-		                                                                             
+	                                      <div field="applyCarModel" width="80" headerAlign="center" header="品牌车型"></div>
+	                                      <div field="unit" name="unit" width="60" headerAlign="center" header="单位"></div>
+	                                      <div field="oemCode" width="50" headerAlign="center" allowSort="true" header="OE码"></div>   
+	                                      <div field="spec" width="50" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div> 
+		                                  <div field="storeStockQty" name="stockQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="库存"></div>
+		                		          <div field="stockOutQty" name="stockOutQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="缺货数量"></div>
+		                		           <div field="costPrice" name="costPrice" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="库存单价"></div>                                              
 		                                  </div>
 		                              </div>
 		                          </div>
 		                        </div> 
 		                   		
 		                   </div>
-		                  
 		                  </div>
-		                  
 			        </div>
 			        
 			         <div size="" showCollapseButton="true">
-			         	<div>测试</div>
+			         	
+						<div id="detailGrid" class="nui-datagrid" style="width:100%;height:100%;"
+		                           showPager="false"
+		                           dataField=""
+		                           idField="id"
+		                           frozenStartColumn=""
+		                           frozenEndColumn=""
+		                           showSummaryRow="true"
+		                           ondrawcell="onRightGridDraw"
+		   						   sortMode="client"
+		                           editNextOnEnterKey="true"
+		                           allowCellWrap = "true"
+		                           url="">
+		                	<div property="columns">
+		                		<div type="indexcolumn">序号</div>
+		                		<div field="partCode" visible="" headerAlign="center" header="配件编码"></div>
+		                		<div field="partName" visible="false" headerAlign="center" header="配件名称"></div>
+                                <div field="fullName"  width="200" headerAlign="center" header="配件全称"></div>
+                                <div field="applyCarModel" width="80" headerAlign="center" header="品牌车型"></div>
+                                <div field="unit" name="comUnit" width="60" headerAlign="center" header="单位"></div>
+                                <div field="qty" name="qty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="单成品拆分数量" visible="false"></div>
+		                		<div field="orderQty" name="orderQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="拆分数量"></div>
+		                		<!-- <div field="storeStockQty" name="stockQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="库存"></div>
+		                		<div field="stockOutQty" name="stockOutQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="缺货数量"></div>
+		                		<div field="costPrice" name="costPrice" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="库存单价"></div> -->
+		                	    <div field="costRatio" name="costRatio" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="成本比例"></div>
+		                	</div>
+		                 </div>
 			        </div>
-			        
 			    </div>
 			
 		</div>
 
-
-
-
-                
-
         </div>
     </div>
-</div>
-
-<div id="advancedSearchWin" class="nui-window"
-     title="高级查询" style="width:416px;height:330px;"
-     showModal="true"
-     allowResize="false"
-     allowDrag="true">
-    <div id="advancedSearchForm" class="form">
-        <table style="width:100%;">
-          <tr>
-                <td class="title">创建日期:</td>
-                <td>
-                    <input id="sOrderDate"
-                           name="sCreateDate"
-                           width="100%"
-                           class="nui-datepicker"/>
-                </td>
-                <td class="">至:</td>
-                <td>
-                    <input id="eOrderDate"
-                           name="eCreateDate"
-                           class="nui-datepicker"
-                           format="yyyy-MM-dd"
-                           timeFormat="H:mm:ss"
-                           showTime="false"
-                           showOkButton="false"
-                           width="100%"
-                           showClearButton="false"/>
-                </td>
-            </tr>
-            <tr>
-                <td class="title">提交日期:</td>
-                <td>
-                    <input name="sAuditDate"
-                           width="100%"
-                           class="nui-datepicker"/>
-                </td>
-                <td class="">至:</td>
-                <td>
-                    <input name="eAuditDate"
-                           class="nui-datepicker"
-                           format="yyyy-MM-dd"
-                           timeFormat="H:mm:ss"
-                           showTime="false"
-                           showOkButton="false"
-                           width="100%"
-                           showClearButton="false"/>
-                </td>
-            </tr>
-            <tr>
-                <td class="title">
-                    <span style="letter-spacing: 6px;">调出</span>方:
-                </td>
-                <td colspan="3">
-                    <input id="advanceGuestId"
-                           name="guestId"
-                           class="nui-buttonedit"
-                           emptyText="请选择调出方..."
-                           onbuttonclick="selectSupplier('advanceGuestId')"
-                           width="100%"
-                           selectOnFocus="true" />
-                </td>
-            </tr>
-            <tr>
-                <td class="title">申请单号:</td>
-                <td colspan="3">
-                    <textarea class="nui-textarea" emptyText="" width="100%" style="height: 60px;" id="serviceIdList" name="serviceIdList"></textarea>
-                </td>
-            </tr>
-            <tr>
-                <td class="title">配件编码:</td>
-                <td colspan="3">
-                    <textarea class="nui-textarea" emptyText="" width="100%" style="height: 60px;" id="partCodeList" name="partCodeList"></textarea>
-                </td>
-            </tr>
-            <tr>
-                <td class="title">配件名称:</td>
-                <td colspan="3">
-                    <input id="partName"
-                           name="partName"
-                           class="nui-textbox" 
-                           width="100%"/>
-                </td>
-            </tr>
-        </table>
-        <div style="text-align:center;padding:10px;">
-            <a class="nui-button" onclick="onAdvancedSearchOk" style="width:60px;margin-right:20px;">确定</a>
-            <a class="nui-button" onclick="onAdvancedSearchCancel" style="width:60px;">取消</a>
-        </div>
-    </div>
-</div>
-
-<div id="advancedMorePartWin" class="nui-window"
-     title="配件选择" style="width:430px;height:350px;"
-     showModal="true"
-     allowResize="false"
-     allowDrag="true">
-     <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-        <table style="width:100%;">
-            <tr>
-                <td style="width:100%;">
-                    <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="closeBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div class="nui-fit">
-          <div id="morePartGrid" class="nui-datagrid" style="width:100%;height:95%;"
-               selectOnLoad="true"
-               showPager="false"
-               dataField=""
-               frozenStartColumn="0"
-               frozenEndColumn="1"
-               onrowdblclick="addSelectPart"
-               allowCellSelect="true"
-               editNextOnEnterKey="true"
-               url="">
-              <div property="columns">
-                  <div type="indexcolumn">序号</div>
-                  <div field="code" name="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
-                  <div field="oemCode" name="comPartCode" width="100" headerAlign="center" header="OE码"></div>
-                  <div field="fullName" name="comPartCode" width="200" headerAlign="center" header="配件全称"></div>
-              </div>
-          </div>
-    </div>
-</div>
-
 
 	<script type="text/javascript">
     	nui.parse();

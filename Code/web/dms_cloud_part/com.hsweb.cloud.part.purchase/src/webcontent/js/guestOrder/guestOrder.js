@@ -176,10 +176,18 @@ $(document).ready(function(v)
 		if((keyCode==13))  {  //新建
             if(partShow == 1) {
             	if(partIn!=false){
-            		var row = morePartGrid.getSelected();
-    				if(row){
-    					addSelectPart();
-    				}
+            		if(advancedMorePartWin.visible){
+            			var row = morePartGrid.getSelected();
+        				if(row){
+        					addSelectPart();
+        				}
+            		}
+            		else if(advancedMorePartWin2.visible){
+            			var row = morePartGrid2.getSelected();
+        				if(row){
+        					addSelectPart2();
+        				}
+            		}
     				
             	}
             	partIn=true;
@@ -188,7 +196,13 @@ $(document).ready(function(v)
 
         if((keyCode==27))  {  //ESC
             if(partShow == 1){
-                onPartClose();
+            	if(advancedMorePartWin.visible){
+            		 onPartClose();
+            	}
+            	else if(advancedMorePartWin2.visible){
+            		onPartClose2();
+            	}
+               
             }
             if(moreSearchShow==1){
             	onAdvancedSearchCancel();
@@ -495,7 +509,7 @@ var requiredField = {
     storeId : "仓库"
 };
 
-var updateCreditUrl= baseUrl +"com.hsapi.cloud.part.invoicing.settle.updateGuestCredit.biz.ext";
+var updateCreditUrl= baseUrl +"com.hsapi.cloud.part.invoicing.settle.updateCredit.biz.ext";
 function beforeSave(){
 	var flag = false;
 	var row =rightGrid.getData();
@@ -2082,7 +2096,13 @@ function addSelectPart(){
             partName : row.name,
             fullName : row.fullName,
             systemUnitId : row.unit,
-            outUnitId : row.unit
+            outUnitId : row.unit,
+            showPartId : row.id,
+			showPartCode : row.code,
+			showBrandName :"",
+			showCarModel : row.applyCarModel,
+			showOemCode : row.oemCode,
+			showFullName : row.fullName
         };
         
         advancedMorePartWin.hide();
@@ -2156,7 +2176,7 @@ function onPartClose2(){
     partShow = 0;
 	var newRow = {showPartCode: oldValue2};
 	rightGrid.updateRow(oldRow2, newRow);
-	rightGrid.beginEditCell(oldRow2, "comPartCode");
+	rightGrid.beginEditCell(oldRow2, "showPartCode");
 }
 
 function OnrpMainGridCellBeginEdit(e){
@@ -2186,7 +2206,7 @@ function OnrpMainGridCellBeginEdit(e){
            
         }else{
             if(column.field != "remark" && column.field != "orderQty" && column.field != "orderPrice" && column.field != "orderAmt" && column.field != "storeId" && column.field != "storeShelf"
-            	&& column.field != "showPrice" && column.field != "showAmt" && column.field != "showPartCode"){
+            	&& column.field != "showPrice" && column.field != "showAmt" && column.field != "showPartCode" && column.field != "comPartCode"){
                 e.cancel = true;
             }
         }  
@@ -2202,6 +2222,15 @@ function OnrpMainGridCellBeginEdit(e){
         partIn=false;
 	}
     
+    if(advancedMorePartWin2.visible) {
+		e.cancel = true;
+		morePartGrid2.focus();
+		var row = morePartGrid2.getRow(0);   //默认不能选中，回车事件会有影响
+        if(row){
+            morePartGrid.select(row,true);
+        }
+        partIn=false;
+	}
 
 }
 function addMorePart(){

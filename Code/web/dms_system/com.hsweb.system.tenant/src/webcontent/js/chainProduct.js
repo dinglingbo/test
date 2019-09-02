@@ -187,6 +187,28 @@ function onclosePopbox_1(){
 	document.getElementById('popbox_1').style.display='none';
 	//关掉计时器
 	window.clearInterval(t1);
+	var cancelOrderUrl = apiPath + sysApi + "/com.hsapi.system.tenant.carCoin.cancelOrder.biz.ext";
+	//取消订单
+	nui.ajax({
+		url : cancelOrderUrl,
+		type : "post",
+		data : JSON.stringify({
+			params : {"serviceId":serviceId},
+			token: token
+		}),
+		success : function(data) {
+			data = data || {};
+			if (data.errCode == "S") {	
+ 
+			} else {
+
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
 }
 function onclosePopbox_2(){
 	document.getElementById('popbox_2').style.display='none';

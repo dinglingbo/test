@@ -1499,7 +1499,16 @@
 			d.id as guestOrderDetailid,
 			d.order_qty as orderQty,
 			d.order_price as orderPrice,
-			d.remark as remark
+			d.remark as remark,
+			d.show_part_id as showPartId，
+			d.show_part_code as showPartCode,
+			d.show_full_name as showFullName,
+			d.show_brand_name as showBrandName,
+			d.show_car_model as showCarModel,
+			d.show_oem_code as showOemCode,
+			d.show_spec as showSpec,
+			d.show_price as showPrice,
+			d.show_amt as showAmt
 		from pj_enter_detail_chk a
 			INNER JOIN pj_enter_main_chk b
 			on a.main_id = b.id

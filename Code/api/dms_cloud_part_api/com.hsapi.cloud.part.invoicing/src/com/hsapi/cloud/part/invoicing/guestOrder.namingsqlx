@@ -46,6 +46,8 @@
 			A.pchs_main_code as pchsMainCode,
 			B.FULL_NAME AS guestFullName,
 			B.SHORT_NAME AS guestShortName,
+			A.is_billing as isBilling,
+			A.show_amt as showAmt,
 			E.name as orgName
 		FROM
 			DMS_CLOUD_PART.pj_guest_order_main A
@@ -156,6 +158,15 @@
 				A.accept_main_id as acceptMainId,
 				A.accept_detail_id as acceptDetailId,
 				A.remark as remark,
+				A.show_part_id as showPartId,
+				A.show_part_code as showPartCode,
+				A.show_full_name as showFullName,
+				A.show_brand_name as showBrandName,
+				A.show_car_model as showCarModel,
+				A.show_oem_code as showOemCode,
+				A.show_spec as showSpec,
+				A.show_price as showPrice,
+				A.show_amt as showAmt,
 				B.`code` AS code,
 				B.`code` AS comPartCode,
 				B.`name` AS comPartName,

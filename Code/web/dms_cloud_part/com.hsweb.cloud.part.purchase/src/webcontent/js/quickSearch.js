@@ -427,6 +427,14 @@ function searchPrice(params){
                     priceHash[partId] = price[i];
                 }
                 
+                var partRow =partGrid.getData();
+                for(var i=0;i<partRow.length;i++){
+                	if(priceHash[partRow[i].partId] ){
+                		partRow[i].orderPrice =priceHash[partRow[i].partId].sellPrice;
+                	}else{
+                		partRow[i].orderPrice =0;
+                	}
+                }
 
                 for(var j=0; j<partIdList.length; j++){
                     var mPartId = partIdList[j];
@@ -651,14 +659,14 @@ function addToCartGrid(type, row){
             showMsg("此配件已经添加到购物车!","W");
             return;
         }else{
-            var newRow = {partId: row.partId, partCode: row.partCode, partName: row.partName, fullName:row.fullName, unit:row.unit, orderQty: 1, orderPrice: 0};
+            var newRow = {partId: row.partId, partCode: row.partCode, partName: row.partName, fullName:row.fullName, unit:row.unit, orderQty: 1, orderPrice: row.orderPrice};
             cartGrid.addRow(newRow);       
         }
     }else{
         if(!row.partId || row.partId <= 0) {
             row.partId = -1;
         }
-        var newRow = {partId: row.partId, partCode: row.partCode, partName: row.partName, fullName:row.fullName, unit:row.unit, orderQty: 1, orderPrice: 0};
+        var newRow = {partId: row.partId, partCode: row.partCode, partName: row.partName, fullName:row.fullName, unit:row.unit, orderQty: 1, orderPrice: row.orderPrice};
         cartGrid.addRow(newRow);       
     }
 

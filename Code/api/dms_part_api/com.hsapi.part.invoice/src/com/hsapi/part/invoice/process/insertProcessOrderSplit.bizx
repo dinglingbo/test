@@ -436,7 +436,7 @@
       <process:to type="query">cond/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">processProduct/storeId</process:from>
+      <process:from type="query" pattern="reference">processMain/storeId</process:from>
       <process:to type="query">cond/_expr[2]/storeId</process:to>
     </process:copy>
     <process:copy>
@@ -445,7 +445,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">processProduct/partId</process:from>
-      <process:to type="query">cond/_expr[3]/part_id</process:to>
+      <process:to type="query">cond/_expr[3]/partId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>

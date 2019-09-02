@@ -405,12 +405,12 @@ hr {
 		    
     	});
     	
-    	function getDueAmt(params){
+    	function getDueAmt(pr,pp){
 			var dueAmt =0;
 			nui.ajax({
 		        url : baseUrl+ "com.hsapi.cloud.part.settle.svr.queryBillsDue.biz.ext",
 		        type : "post",
-		        data : {params: params, token: token},
+		        data : {pr: pr,pp:pp, token: token},
 		        async: false,
 		        success : function(data) {
 		            nui.unmask(document.body);
@@ -435,13 +435,19 @@ hr {
             else window.close();
         }
     	function SetData(params,detailParms){   	
-    		var p ={
+    		var pr ={
+				guestId : params.guestId,
+				orgid : currOrgId,
+				billDc : 1,
+				isDisabled :0
+		   }
+    		var pp ={
 				guestId : params.guestId,
 				orgid : currOrgId,
 				billDc : -1,
 				isDisabled :0
 		   }
-    		var dueAmt = getDueAmt(p);
+    		var dueAmt = getDueAmt(pr,pp);
     		$('#currOrgName').text(params.currRepairSettorderPrintShow|| params.currOrgName);
     		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
     		$('#currUserName').text("制单:"+ params.currUserName);

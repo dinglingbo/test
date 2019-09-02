@@ -9,7 +9,7 @@
 -->
 <head>
 <title>预售单</title>
-<script src="<%=webPath + contextPath%>/purchase/js/guestOrder/guestOrder.js?v=1.0.14"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/guestOrder/guestOrder.js?v=1.0.33"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -87,6 +87,11 @@ body .mini-grid-row-selected{
                 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
                  <a class="nui-button" plain="true" onclick="chooseMember()" visible="false" id="chooseMemBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选择提成成员</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="finish()" visible="" id="finishSellBtn"><span class="fa fa-check fa-lg"></span>&nbsp;完成销售</a>
+                <input class="nui-checkbox"  id="isBilling" trueValue="1" falseValue="0" text="是否开单" value="" oncheckedchanged="billingChange()"/>
+                <input class="nui-checkbox"  id="isEditPart" trueValue="1" falseValue="0" text="是否修改配件" value="" oncheckedchanged="partChange()"/>
+                <span id="status"></span>
+                <span class="separator"></span>
+           		<a onclick="showDueDetail()"  style="cursor:pointer"><span id="dueAmt">客户欠款：</span></a>
       
                 <span id="status"></span>
                 <!-- <span class="separator"></span>
@@ -365,19 +370,48 @@ body .mini-grid-row-selected{
                                       <div field="orderAmt" summaryType="sum" numberFormat="0.0000" width="95" headerAlign="center" header="金额">
                                         <input property="editor" vtype="float" class="nui-textbox"/>
                                       </div>
-                                      <div field="remark" width="30" headerAlign="center" allowSort="true" header="备注">
+                                      <div field="remark" width="50" headerAlign="center" allowSort="true" header="备注">
                                         <input property="editor" class="nui-textbox"/>
                                       </div>
                                   </div>
                               </div>
-                              <div header="辅助信息" headerAlign="center">
+                              
+                              <div header="开单信息" headerAlign="center" visible="false">
                                   <div property="columns">
-                                      <div field="storeId" visible="false"width="60" headerAlign="center" header="仓库"></div>
-                                                   
-                                      <div field="comOemCode" width="30" headerAlign="center" allowSort="true" header="OE码"></div>   
-                                      <div field="comSpec" width="30" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>                                                        
+                                   
+                                       <div field="showPrice" name="showPrice" numberFormat="0.0000" width="90" headerAlign="center" header="开单单价">
+                                          <input property="editor" vtype="float" class="nui-textbox"/>
+                                      </div>
+                                      <div field="showAmt"name="showAmt" summaryType="sum" numberFormat="0.0000" width="95" headerAlign="center" header="开单金额">
+                                          <input property="editor" vtype="float" class="nui-textbox"/>
+                                      </div>
+                                     
                                   </div>
                               </div>
+                              
+                              <div header="辅助信息" headerAlign="center">
+                                  <div property="columns">
+                                      <div field="storeId" visible="false"width="80" headerAlign="center" header="仓库"></div>
+                                                   
+                                      <div field="comOemCode" width="70" headerAlign="center" allowSort="true" header="OE码"></div>   
+                                      <div field="comSpec" width="70" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>                                                        
+                                  </div>
+                              </div>
+                              
+                              <div header="修改的配件信息" headerAlign="center" visible="false">
+                                  <div property="columns">
+                                  	  <div field="showPartId" name="showPartId" width="100" visible="false" headerAlign="center" header="配件编码"></div>
+                                      <div field="showPartCode" name="showPartCode" width="100" headerAlign="center" header="配件编码">
+                                          <input property="editor" class="nui-textbox" />
+                                      </div>
+                                       <div field="showFullName"width="220"  headerAlign="center" header="配件全称"></div>
+                                      <div field="showBrandName" visible="false" width="60" headerAlign="center" header="品牌"></div>
+                                      <div field="showCarModel" width="80" headerAlign="center" header="品牌车型"></div>
+                            		  <div field="showOemCode" width="60" headerAlign="center" header="oem码" visible="false"></div>
+                            		  <div field="showSpec" width="60" headerAlign="center" header="规格" visible="false"></div>
+                                  </div>
+                              </div>
+                              
                           </div>
                       </div>
                 </div>
@@ -514,6 +548,53 @@ body .mini-grid-row-selected{
           </div>
     </div>
 </div>
+
+<div id="advancedMorePartWin2" class="nui-window"
+     title="配件选择" style="width:700px;height:350px;"
+     showModal="true"
+     showHeader="false"
+     allowResize="false"
+     style="padding:2px;border-bottom:0;"
+     allowDrag="true">
+     <div class="nui-toolbar" >
+        <table style="width:100%;">
+            <tr>
+                <td style="width:100%;">
+                    <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart2" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onPartClose2" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="nui-fit">
+          <div id="morePartGrid2" class="nui-datagrid" style="width:100%;height:95%;"
+               selectOnLoad="true"
+               showPager="false"
+               dataField=""
+               onrowdblclick="addSelectPart2"
+               onshowrowdetail=""
+               allowCellSelect="true"
+               editNextOnEnterKey="true"
+               url="">
+              <div property="columns">
+                <div type="indexcolumn">序号</div>
+<!--                 <div type="expandcolumn" width="50" >替换件</div> -->
+                <div field="code" name="code" width="100" headerAlign="center" header="配件编码"></div>
+                <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OE码"></div>
+                <div field="name" name="name" width="100" headerAlign="center" header="配件名称"></div>
+                <div field="partBrandId" name="partBrandId" width="100" headerAlign="center" header="品牌"></div>
+                <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="品牌车型"></div>
+                <div allowSort="true" datatype="float" name="outableQty" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
+                <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div>
+                <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
+                <div allowSort="true" datatype="float" field="onRoadQty" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div>
+                <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div>
+              </div>
+          </div>
+    </div>
+</div>
+
+
 
 <div id="advancedTipWin" class="nui-window"
         title="未成功导入配件" style="width:400px;height:200px;"

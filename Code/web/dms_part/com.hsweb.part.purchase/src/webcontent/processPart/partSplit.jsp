@@ -265,10 +265,11 @@ body .mini-grid-row-selected{
 	                                      <div field="applyCarModel" width="80" headerAlign="center" header="品牌车型"></div>
 	                                      <div field="unit" name="unit" width="60" headerAlign="center" header="单位"></div>
 	                                      <div field="oemCode" width="50" headerAlign="center" allowSort="true" header="OE码"></div>   
-	                                      <div field="spec" width="50" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div> 
 		                                  <div field="storeStockQty" name="stockQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="库存"></div>
+		                		           <div field="occupyQty" name="occupyQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="占用数量"></div>
 		                		          <div field="stockOutQty" name="stockOutQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="缺货数量"></div>
-		                		           <div field="costPrice" name="costPrice" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="库存单价"></div>                                              
+		                		          <div field="orderPrice" name="orderPrice" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="库存单价"></div>                                              
+		                                  <div field="spec" width="50" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>
 		                                  </div>
 		                              </div>
 		                          </div>

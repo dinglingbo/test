@@ -236,7 +236,7 @@
     <figSize height="17" width="32"/>
     <node>assign9</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess4" name="updateSellQtyTempRecord1" displayName="updateSellQtyTempRecordA" collapsed="false" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess4" name="updateSellQtyTempRecord1" displayName="updateSellQtyTempRecordU" collapsed="false" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess4</sourceNode>
       <targetNode>assign10</targetNode>
@@ -257,7 +257,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess4label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.invoicing.stockcal.updateSellQtyTempRecordA</process:partner>
+      <process:partner type="literal">com.hsapi.cloud.part.invoicing.stockcal.updateSellQtyTempRecordU</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="detailId" type="query" value="Long" valueType="Primitive" pattern="reference">processProduct/id</process:inputVariable>
         <process:inputVariable id="1" name="mainId" type="query" value="Long" valueType="Primitive" pattern="reference">mainId</process:inputVariable>

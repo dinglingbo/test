@@ -3061,7 +3061,7 @@ function onCost(){
 	p.id =id;
 	nui.open({
 		// targetWindow: window,,
-		url : webPath+contextPath+"/com.hsweb.cloud.part.common.partSelectView.flow?token="+token,
+		url : webPath+contextPath+"/com.hsweb.cloud.part.purchase.otherPBill.flow?token="+token,
 		title : "其他应付单",
 		width : 930,
 		height : 560,

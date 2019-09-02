@@ -23,6 +23,10 @@ var auditSignList = [
     {id:0,text:"未审"},
     {id:1,text:"已审"}
 ];
+var guestId =0;
+var code ="";
+var codeId =0;
+var guestName ="";
 $(document).ready(function(v)
 {
 
@@ -34,7 +38,7 @@ $(document).ready(function(v)
         //billTypeListEl.setUrl(list);
     });
 
-    doSearch();
+   
 
 });
 function OnrpMainGridCellBeginEdit(e){
@@ -74,6 +78,7 @@ function doSearch() {
     params.billDc = -1;
     params.auditSign = 0;
     params.rpTypeId = 2;
+    params.codeId =codeId;
 //    params.guestId = comSearchGuestId.getValue();
     
 
@@ -207,6 +212,7 @@ function save(){
     if(rpAdd){
         for(var i=0; i<rpAdd.length; i++){
             var temp = rpAdd[i];
+            temp.billDc=-1;
             if(temp.createDate) {
                 temp.createDate = format(temp.createDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
             }
@@ -302,9 +308,25 @@ function selectSupplier(elId)
 }
 
 function addNewRow(){
-	mainGrid.addRow({});
+	var newRow={
+		guestId :guestId,
+		code : code,
+		codeId :codeId,
+		guestName :guestName,
+		billDc: -1,
+		rpTypeId: 2
+	};
+	mainGrid.addRow(newRow);
 }
 
 function deleteRow(){
 	mainGrid.removeRow(mainGrid.getSelected());
+}
+
+function setData(params){
+	guestId =params.guestId;
+	code =params.code;
+	codeId =params.codeId;
+	guestName = params.guestName;
+	doSearch();
 }

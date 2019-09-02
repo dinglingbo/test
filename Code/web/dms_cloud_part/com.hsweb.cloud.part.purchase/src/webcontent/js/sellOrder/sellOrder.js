@@ -317,11 +317,12 @@ $(document).ready(function(v)
         }
         if((keyCode==13))  { 
         	if(partShow==1){
-//        		if(partIn==true){
-//                	addSelectPart2();
-                	
-//                }
-//        		partIn=true;
+    			if(advancedMorePartWin2.visible){
+	    			var row = morePartGrid2.getSelected();
+					if(row){
+						addSelectPart2();
+					}
+    			}
         	}
             
             
@@ -2786,7 +2787,7 @@ function onPartClose2(){
     partShow = 0;
 	var newRow = {showPartCode: oldValue2};
 	rightGrid.updateRow(oldRow2, newRow);
-	rightGrid.beginEditCell(oldRow2, "comPartCode");
+	rightGrid.beginEditCell(oldRow2, "showPartCode");
 }
 function OnrpMainGridCellBeginEdit(e){
     var field=e.field; 
@@ -2835,6 +2836,17 @@ function OnrpMainGridCellBeginEdit(e){
 	
 		});
   }
+    
+    if(advancedMorePartWin2.visible) {
+		e.cancel = true;
+		morePartGrid2.focus();
+		var row = morePartGrid2.getRow(0);   //默认不能选中，回车事件会有影响
+        if(row){
+            morePartGrid.select(row,true);
+        }
+        partIn=false;
+	}
+
 
 }
 function addMorePart(){

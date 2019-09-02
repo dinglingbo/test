@@ -440,12 +440,10 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.queryProcessDetail</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="page" type="query" value="com.eos.foundation.PageCond" valueType="DataObject" pattern="reference">page</process:inputVariable>
-        <process:inputVariable id="1" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">params</process:inputVariable>
+        <process:inputVariable id="0" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">params</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="page" type="query" value="com.eos.foundation.PageCond" valueType="DataObject">page</process:outputVariable>
-        <process:outputVariable id="1" name="data" type="query" value="com.hsapi.part.data.pts.PjProcessDetail[]" valueType="DataObject">auditDetail</process:outputVariable>
+        <process:outputVariable id="0" name="data" type="query" value="com.hsapi.part.data.pts.PjProcessDetail[]" valueType="DataObject">auditDetail</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>

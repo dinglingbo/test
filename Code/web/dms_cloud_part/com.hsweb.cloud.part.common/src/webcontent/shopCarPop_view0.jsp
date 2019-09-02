@@ -10,7 +10,7 @@
 <head>
 <title>添加采购车/销售车</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%=webPath + contextPath%>/common/js/shopCartPop.js?v=1.0.24"></script>
+<script src="<%=webPath + contextPath%>/common/js/shopCartPop.js?v=1.0.28"></script>
 <style type="text/css">
 .title {
 	width: 80px;

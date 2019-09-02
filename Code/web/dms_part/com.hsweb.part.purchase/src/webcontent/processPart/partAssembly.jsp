@@ -33,7 +33,7 @@ body .mini-grid-row-selected{
 <head>
 <title>配件组装</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchase/js/processPart/partAssembly.js?v=1.0.0"></script>
+    <script src="<%=webPath + contextPath%>/purchasePart/js/processPart/partAssembly.js?v=1.0.0"></script>
 </head>
 <body>
 	
@@ -136,7 +136,7 @@ body .mini-grid-row-selected{
 		                              <input class="nui-hidden" name="versionNo"/>
 		                              <input class="nui-hidden" name="status" id="status"/>
 		                              <input class="nui-hidden" name="isDisabled" id="isDisabled"/>
-		                              <input class="nui-hidden" name="guestOrgid" id="guestOrgid"/>
+		                              <input class="nui-hidden" name="orgid" id="orgid"/>
 		                              <input class="nui-hidden" name="auditSign"/>
 		                              <input name="partBrandId"id="partBrandId"  visible="false"class="nui-combobox" />
 		                              <table style="width: 100%;">
@@ -242,7 +242,7 @@ body .mini-grid-row-selected{
 		                                  	  
 		                                   	  <div field="parentId" visible="false" headerAlign="center" header="配比清单主表ID"></div>
 		                                      <div field="partCode" name="partCode" width="100" summaryType="count" headerAlign="center" header="配件编码">
-		                                          <input property="editor" class="nui-textbox" />
+		                                          <input  class="nui-textbox" />
 		                                      </div>
 		                                      <div field="partName" visible="false" headerAlign="center" header="配件名称"></div>
 		                                      <div field="fullName"  width="200" headerAlign="center" header="配件全称"></div>

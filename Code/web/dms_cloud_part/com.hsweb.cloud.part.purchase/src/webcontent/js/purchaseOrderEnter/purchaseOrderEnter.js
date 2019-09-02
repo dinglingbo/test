@@ -3053,15 +3053,21 @@ function getStratePriceList(params){
 
 
 function onCost(){
+	if (checkNew() > 0) {
+		showMsg("请先保存数据!","W");
+		return;
+	}
 	var data  =basicInfoForm.getData();
 	var serviceId =data.serviceId;
 	var id = data.id;
 	var p={};
-	p.serviceId =serviceId;
-	p.id =id;
+	p.code =serviceId;
+	p.codeId =id;
+	p.guestId = guestIdEl.getValue();
+	p.guestName = guestIdEl.getText();
 	nui.open({
 		// targetWindow: window,,
-		url : webPath+contextPath+"/com.hsweb.cloud.part.common.partSelectView.flow?token="+token,
+		url : webPath+contextPath+"/com.hsweb.cloud.part.purchase.otherPBill.flow?token="+token,
 		title : "其他应付单",
 		width : 930,
 		height : 560,

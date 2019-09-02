@@ -221,6 +221,7 @@
 			a.store_stock_qty AS storeStockQty,
 			a.stock_out_qty AS stockOutQty,
 			a.remark AS remark,
+			a.occupy_qty AS occupyQty,
 			b.apply_car_model AS applyCarModel,
 			b.unit AS unit,
 			b.oem_code AS oemCode,

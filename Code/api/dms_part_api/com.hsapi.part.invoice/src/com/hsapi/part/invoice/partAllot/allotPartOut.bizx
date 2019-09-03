@@ -1205,6 +1205,10 @@
       <process:to type="query">outmain/storeId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">main/id</process:from>
+      <process:to type="query">outmain/codeId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">main/serviceId</process:from>
       <process:to type="query">outmain/code</process:to>
     </process:copy>

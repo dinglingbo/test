@@ -86,6 +86,10 @@
       <process:to type="query">enterMain/code</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">processMain/id</process:from>
+      <process:to type="query">enterMain/codeId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">enterMain/orgid</process:to>
     </process:copy>
@@ -200,10 +204,6 @@
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">enterMain/printTimes</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">processMain/id</process:from>
-      <process:to type="query">enterMain/codeId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -979,6 +979,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">sumQty</process:from>
       <process:to type="query">enterMain/enterQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">sumQty</process:from>
+      <process:to type="query">processMain/orderQty</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">

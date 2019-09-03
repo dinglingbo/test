@@ -109,6 +109,10 @@
       <process:to type="query">enterMain/code</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">outMain/codeId</process:from>
+      <process:to type="query">enterMain/codeId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">enterMain/orgid</process:to>
     </process:copy>
@@ -836,6 +840,7 @@
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo5</sourceNode>
       <targetNode>assign0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link21</targetConnections>
     <location x="0" y="98"/>

@@ -359,7 +359,7 @@
     	UPDATE pj_process_main a
 		INNER JOIN pj_out_main_chk b ON b.code_id = a.id
 		SET a.order_amt = b.out_amt,
-		 a.order_price = b.out_amt,
+		 a.order_price = (b.out_amt/b.out_qty),
 		 a.tax_amt =b.tax_amt,
 		 a.no_tax_amt =b.no_tax_amt
 		WHERE

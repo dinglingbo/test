@@ -7,7 +7,7 @@
     <resultMap class="commonj.sdo.DataObject" id="resultMap">
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
-    <select id="queryPartList" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.com.ComAttribute">
+    <select id="queryPartList" parameterClass="java.util.HashMap" resultClass="com.hsapi.system.data.sys.ComAttribute">
     	SELECT a.id id,
     		   a.orgid orgid,
 		       a.code code,
@@ -116,7 +116,7 @@
     </select>
     
     
-    <select id="querySupplierList" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.com.ComGuest">
+    <select id="querySupplierList" parameterClass="java.util.HashMap" resultClass="com.hsapi.system.data.sys.ComGuest">
     	SELECT a.short_name shortName,
 		       a.full_name fullName,
 		       a.code      CODE,
@@ -242,7 +242,7 @@
         </dynamic>  
     </select>
     
-    <select id="queryCustomerList" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.com.ComGuest">
+    <select id="queryCustomerList" parameterClass="java.util.HashMap" resultClass="com.hsapi.system.data.sys.ComGuest">
     	SELECT a.short_name shortName,
 		       a.full_name fullName,
 		       a.code      CODE,
@@ -519,7 +519,7 @@
     </select>
     
     <!--查询云配件资料 查询本地配件资料-->
-    <select id="queryPartListByOrgid" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.com.ComAttribute">
+    <select id="queryPartListByOrgid" parameterClass="java.util.HashMap" resultClass="com.hsapi.system.data.sys.ComAttribute">
     	SELECT a.id ID,
 		       a.code CODE,
 		       a.name NAME,

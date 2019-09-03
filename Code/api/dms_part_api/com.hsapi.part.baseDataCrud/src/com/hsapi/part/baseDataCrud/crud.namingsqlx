@@ -780,8 +780,6 @@
 	            <isNotEmpty prepend="and" property="orgid">
 	            	(a.orgid = #orgid#)
 	            </isNotEmpty>
-	        </dynamic>
-	        <dynamic>
 	            <isNotEmpty prepend="and" property="tenantId">
 	            	(a.tenant_id = #tenantId#)
 	            </isNotEmpty>

@@ -99,12 +99,12 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="153" y="150"/>
+    <location x="182" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="151" y="186"/>
+    <location x="180" y="186"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>

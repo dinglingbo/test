@@ -4,8 +4,8 @@
 var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var rightGridUrl = baseUrl+"com.hsapi.part.invoice.partAllot.queryPjAllotDetailList.biz.ext";
 var queryUrl = baseUrl + "com.hsapi.part.invoice.partAllot.queryPjAllotMainList.biz.ext";
-var queryStoreHouseUrl = apiPath + sysApi + "/" + "com.hsapi.system.tenant.employee.queryMemStoreBytenantId.biz.ext";
-var queryCompanyUrl = apiPath + sysApi + "/" + "com.hsapi.part.baseDataCrud.crud.queryGuestListNopage.biz.ext";
+var queryStoreHouseUrl = baseUrl + "com.hsapi.system.tenant.employee.queryMemStoreBytenantId.biz.ext";
+var queryCompanyUrl = baseUrl +  "com.hsapi.part.baseDataCrud.crud.queryGuestListNopage.biz.ext";
 var storehouseAll = [];
 var storeHashAll = {};
 var guestIdEl=null;
@@ -1587,6 +1587,10 @@ function save(type) {
     	stip = "作废成功";
         etip = "作废失败";
     }
+    if(type == 3){
+    	stip = "拒绝成功";
+        etip = "拒绝失败";
+    }
     nui.ajax({
         url : saveUrl,
         type : "post",
@@ -2098,8 +2102,8 @@ function checkStatus(type){
 				showMsg("调拨单已拒绝","W");
 				return false;
 			}
-			if(data.auditSign==1){
-				showMsg("调拨单已受理,不能拒绝","W");
+			if(data.stockStatus>2){
+				showMsg("调拨单已出库,不能拒绝","W");
 				return false;
 			}
 		}
@@ -2107,6 +2111,10 @@ function checkStatus(type){
 		if(type==5){
 			if(data.auditSign!=1){
 				showMsg("调拨单未受理，不能出库","W");
+				return false;
+			}
+			if(status==3){
+				showMsg("调拨单已拒绝,不能出库","W");
 				return false;
 			}
 			if(data.stockStatus==3){

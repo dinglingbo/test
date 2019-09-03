@@ -81,6 +81,10 @@
       <process:to type="query">enterMain/serviceId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">allotMain/id</process:from>
+      <process:to type="query">enterMain/codeId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">outServiceId</process:from>
       <process:to type="query">enterMain/code</process:to>
     </process:copy>
@@ -199,10 +203,6 @@
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">enterMain/printTimes</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">allotMain/id</process:from>
-      <process:to type="query">enterMain/codeId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">

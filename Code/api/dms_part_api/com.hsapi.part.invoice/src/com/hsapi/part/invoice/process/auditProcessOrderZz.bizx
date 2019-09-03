@@ -49,7 +49,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
-    <location x="225" y="255"/>
+    <location x="255" y="255"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -66,7 +66,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="158" y="290"/>
+    <location x="188" y="290"/>
     <figSize height="17" width="161"/>
     <node>subprocess0</node>
   </nodes>
@@ -127,8 +127,8 @@
       <sourceNode>assign1</sourceNode>
       <targetNode>subprocess0</targetNode>
     </sourceConnections>
-    <targetConnections>link17</targetConnections>
-    <location x="94" y="255"/>
+    <targetConnections>link3</targetConnections>
+    <location x="150" y="255"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
@@ -137,7 +137,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="92" y="291"/>
+    <location x="148" y="291"/>
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
@@ -165,6 +165,7 @@
       <process:inputVariables>
         <process:inputVariable id="0" name="mainenter" type="query" value="com.hsapi.part.data.pts.PjProcessMain" valueType="DataObject" pattern="reference">processMain</process:inputVariable>
         <process:inputVariable id="1" name="details" type="query" value="com.hsapi.part.data.pts.PjProcessDetail[]" valueType="DataObject" pattern="reference">auditDetail</process:inputVariable>
+        <process:inputVariable id="2" name="guest" type="query" value="com.hsapi.part.data.com.ComGuest" valueType="DataObject" pattern="reference">guest</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -235,7 +236,8 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.generateProcessEnter</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="maindId" type="query" value="Int" valueType="Primitive" pattern="reference">mainId</process:inputVariable>
+        <process:inputVariable id="0" name="orderMainId" type="query" value="Int" valueType="Primitive" pattern="reference">mainId</process:inputVariable>
+        <process:inputVariable id="1" name="guest" type="query" value="com.hsapi.part.data.com.ComGuest" valueType="DataObject" pattern="reference">guest</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -305,7 +307,7 @@
   <nodes xsi:type="process:tTransactionBegin" id="transactionbegin0" name="事务开始" displayName="事务开始" type="transactionbegin">
     <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>transactionbegin0</sourceNode>
-      <targetNode>assign1</targetNode>
+      <targetNode>subprocess6</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="17" y="255"/>
@@ -475,6 +477,31 @@
     <figSize height="17" width="32"/>
     <node>assign6</node>
   </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess6" name="getGuestByInternalId" displayName="getGuestByInternalId" collapsed="false" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess6</sourceNode>
+      <targetNode>assign1</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link17</targetConnections>
+    <location x="90" y="255"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess6label</nodeLabel>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.part.common.svr.getGuestByInternalId</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">p1</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="guest" type="query" value="com.hsapi.part.data.com.ComGuest" valueType="DataObject">guest</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess6label" name="label" nodeType="label">
+    <location x="42" y="290"/>
+    <figSize height="17" width="123"/>
+    <node>subprocess6</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-08-28 14:13:58" date="2019-08-28Z" description="" name="auditProcessOrderZz" version="7.0.0.0"/>
@@ -486,6 +513,8 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="p"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="p1"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.com.ComGuest" name="guest"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PjProcessMain" name="processMain"/>

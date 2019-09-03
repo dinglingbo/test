@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryPjInvoingDetail" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="门店进销存明细&#xD;&#xA;com.hsapi.part.invoice.querySql2.queryPjInvoingDetail" title="Administrator&#x9;18-11-7 上午11:13">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="门店进销存明细&#xD;&#xA;com.hsapi.cloud.part.invoicing.querySql2.queryPjInvoingDetail" title="Administrator&#x9;18-11-7 上午11:13">
     <location x="140" y="380"/>
     <size height="85" width="397"/>
   </nodes>

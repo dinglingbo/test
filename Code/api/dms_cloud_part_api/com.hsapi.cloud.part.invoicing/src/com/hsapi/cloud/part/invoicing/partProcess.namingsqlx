@@ -342,10 +342,10 @@
 		INNER JOIN pj_out_main_chk e on e.id =c.main_id
 		SET 
 		 a.order_amt = e.out_amt,
-		 a.order_price =  (e.out_amt/e.out_qty),
-		 a.tax_price =(e.tax_amt/e.out_qty),
+		 a.order_price =  (e.out_amt/a.order_qty),
+		 a.tax_price =(e.tax_amt/a.order_qty),
 		 a.tax_amt = e.tax_amt,
-		 a.no_tax_price = (e.no_tax_amt/e.out_qty),
+		 a.no_tax_price = (e.no_tax_amt/a.order_qty),
 		 a.no_tax_amt = e.no_tax_amt,
 		 a.tax_diff = (e.tax_amt- e.no_tax_amt),
 		 a.tax_sign = c.tax_sign,
@@ -359,7 +359,7 @@
     	UPDATE pj_process_main a
 		INNER JOIN pj_out_main_chk b ON b.code_id = a.id
 		SET a.order_amt = b.out_amt,
-		 a.order_price = (b.out_amt/b.out_qty),
+		 a.order_price = (b.out_amt/a.order_qty),
 		 a.tax_amt =b.tax_amt,
 		 a.no_tax_amt =b.no_tax_amt
 		WHERE

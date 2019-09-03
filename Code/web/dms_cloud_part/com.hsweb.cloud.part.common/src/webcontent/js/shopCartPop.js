@@ -43,7 +43,10 @@ $(document).ready(function(v) {
 function setInitData(data) {
 	FStoreId = data.storeId;
 	batchInfoForm.setData(data.main);
-	sourceType =data.main.sourceType || 0;
+	if(data.main){
+		sourceType =data.main.sourceType || 0;
+	}
+	
 	//预销售单
 	if(sourceType==5){
 		$('#guest').text("选择往来单位");

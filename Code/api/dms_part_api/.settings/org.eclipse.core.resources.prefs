@@ -6,6 +6,7 @@ encoding//com.hsapi.part.invoice/eosdebug/com/hsapi/part/invoice/crud/auditPjPch
 encoding//com.hsapi.part.invoice/eosdebug/com/hsapi/part/invoice/crud/auditSellOrderToOut.bizx.eosdebug=UTF-8
 encoding//com.hsapi.part.invoice/eosdebug/com/hsapi/part/invoice/crud/savePjSellOutNT.bizx.eosdebug=UTF-8
 encoding//com.hsapi.part.invoice/eosdebug/com/hsapi/part/invoice/partInterfaceDs/queryJoinStock.bizx.eosdebug=UTF-8
+encoding//com.hsapi.part.invoice/eosdebug/com/hsapi/part/invoice/process/auditProcessPart.bizx.eosdebug=UTF-8
 encoding//com.hsapi.part.invoice/eosdebug/com/hsapi/part/invoice/query/queryPjStockShiftMainDetailList.bizx.eosdebug=UTF-8
 encoding//com.hsapi.part.invoice/eosdebug/com/hsapi/part/invoice/svr/queryPjPchsOrderMainList.bizx.eosdebug=UTF-8
 encoding//com.hsapi.part.purchase/eosdebug/com/hsapi/part/purchase/enterAudit/auditPtsEnterMain.bizx.eosdebug=UTF-8

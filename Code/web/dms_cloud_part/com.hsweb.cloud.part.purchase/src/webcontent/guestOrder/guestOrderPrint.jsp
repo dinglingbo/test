@@ -327,6 +327,7 @@ hr {
 				<table>
 				  <tr><td  colspan="5"></td></tr>
 				  <tr id="border2">
+				    <td id="dueAmt">客户欠款金额:</td>
 				    <td id="currUserName" >打印人：系统管理员</td>
 				     <td id="checkMan" >检货：</td>
 				    <td id="giveMan" >送货：</td>
@@ -408,8 +409,45 @@ hr {
             else window.close();
         }
         
-       
+       function getDueAmt(pr,pp){
+			var dueAmt =0;
+			nui.ajax({
+		        url : baseUrl+ "com.hsapi.cloud.part.settle.svr.queryBillsDue.biz.ext",
+		        type : "post",
+		        data : {pr: pr,pp:pp ,token: token},
+		        async: false,
+		        success : function(data) {
+		            nui.unmask(document.body);
+		            data = data || {};
+		            if (data.errCode == "S") {
+		                dueAmt =data.dueAmt;
+		                
+		            } else {
+		                showMsg(data.errMsg ,"W");
+		            }
+		        },
+		        error : function(jqXHR, textStatus, errorThrown) {
+		            // nui.alert(jqXHR.responseText);
+		            console.log(jqXHR.responseText);
+		        }
+		    });
+			return dueAmt;
+		}
+		
     	function SetData(params,detailParms){
+    		var pr ={
+				guestId : params.guestId,
+				orgid : currOrgId,
+				billDc : 1,
+				isDisabled :0
+		   }
+    		var pp ={
+				guestId : params.guestId,
+				orgid : currOrgId,
+				billDc : -1,
+				isDisabled :0
+		   }
+    		var dueAmt = getDueAmt(pr,pp);
     		$.ajaxSettings.async = false;
     		initDicts(dictDefs, function(){
 	        	billTypeIdList=nui.get('billTypeIdE').getData();     		
@@ -424,7 +462,8 @@ hr {
 	        });    	
 		   	brandHash=params.brandHash;
 			storeHash=params.storeHash;
-   
+			
+   			$('#dueAmt').text("客户欠款金额:"+dueAmt+"元");
     		$('#currOrgName').text(params.currRepairSettorderPrintShow||params.currOrgName);
     		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
     		$('#currUserName').text("制单:"+params.currUserName);
@@ -496,20 +535,20 @@ hr {
 							var tr=$("<tr></tr>");
 							tr.append(
 								tds.replace("[index]",i+1 ||"")
-									.replace("[comPartCode]",data[i].comPartCode ||"")
-									.replace("[comOemCode]",data[i].comOemCode ||"")
-									.replace("[comPartName]",data[i].comPartName ||"")
-									.replace("[comPartBrindId]",data[i].comPartBrandId?brandHash[data[i].comPartBrandId].name :"")
-									.replace("[comApplyCarModel]",data[i].comApplyCarModel ||"")
-									.replace("[comSpec]",data[i].comSpec ||"")
+									.replace("[comPartCode]",data[i].showPartCode ||"")
+									.replace("[comOemCode]",data[i].showOemCode ||"")
+									.replace("[comPartName]",data[i].showFullName ||"")
+									.replace("[comPartBrindId]",data[i].showBrandName?brandHash[data[i].comPartBrandId].name :"")
+									.replace("[comApplyCarModel]",data[i].showCarModel ||"")
+									.replace("[comSpec]",data[i].showSpec ||"")
 									.replace("[comUnit]",data[i].comUnit ||"")
 									.replace("[orderQty]",data[i].orderQty ||"")
-									.replace("[orderPrice]",data[i].orderPrice ||"")
-									.replace("[orderAmt]",data[i].orderAmt ||"")
+									.replace("[orderPrice]",data[i].showPrice ||"")
+									.replace("[orderAmt]",data[i].showAmt ||"")
 									.replace("[remark]",data[i].remark ||""));
 							tBody.append(tr);
 							sumOrderQty +=parseFloat(data[i].orderQty);
-							sumOrderAmt +=parseFloat(data[i].orderAmt);
+							sumOrderAmt +=parseFloat(data[i].showAmt);
 						}
 						var sum=transform(parseFloat(sumOrderAmt).toFixed(1)+"");
 						$('#sumOrderQty').text("合计:"+parseFloat(sumOrderQty).toFixed(1));

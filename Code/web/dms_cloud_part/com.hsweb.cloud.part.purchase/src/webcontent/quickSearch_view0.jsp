@@ -9,7 +9,7 @@
 -->
 <head>
 <title>快速报价</title>
-<script src="<%=webPath + contextPath%>/purchase/js/quickSearch.js?v=1.0.29"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/quickSearch.js?v=1.0.32"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

@@ -299,11 +299,11 @@
       <process:to type="query">sellMain/isArrive</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
+      <process:from type="query" pattern="reference">guestOrder/isBilling</process:from>
       <process:to type="query">sellMain/isBilling</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">guestOrder/orderAmt</process:from>
+      <process:from type="query" pattern="reference">guestOrder/showAmt</process:from>
       <process:to type="query">sellMain/showAmt</process:to>
     </process:copy>
     <process:copy>
@@ -494,6 +494,7 @@
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess2</sourceNode>
       <targetNode>assign1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="连接线" lineType="note" type="exception">
       <sourceNode>subprocess2</sourceNode>
@@ -735,39 +736,39 @@
       <process:to type="query">sellTemp/storeShelf</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">enterTemp/partId</process:from>
+      <process:from type="query" pattern="reference">enterTemp/showPartId</process:from>
       <process:to type="query">sellTemp/showPartId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">enterTemp/partCode</process:from>
+      <process:from type="query" pattern="reference">enterTemp/showPartCode</process:from>
       <process:to type="query">sellTemp/showPartCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">enterTemp/fullName</process:from>
+      <process:from type="query" pattern="reference">enterTemp/showFullName</process:from>
       <process:to type="query">sellTemp/showFullName</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">enterTemp/showBrandName</process:from>
       <process:to type="query">sellTemp/showBrandName</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">enterTemp/showCarModel</process:from>
       <process:to type="query">sellTemp/showCarModel</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">enterTemp/showOemCode</process:from>
       <process:to type="query">sellTemp/showOemCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">enterTemp/showSpec</process:from>
       <process:to type="query">sellTemp/showSpec</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">price</process:from>
+      <process:from type="query" pattern="reference">enterTemp/showPrice</process:from>
       <process:to type="query">sellTemp/showPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">qty*price</process:from>
+      <process:from type="query" pattern="reference">enterTemp/showAmt</process:from>
       <process:to type="query">sellTemp/showAmt</process:to>
     </process:copy>
     <process:copy>

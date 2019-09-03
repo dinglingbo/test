@@ -70,7 +70,7 @@
       <process:to type="query">cond/_expr[2]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">serviceType</process:from>
+      <process:from type="query" pattern="reference">serviceType</process:from>
       <process:to type="query">cond/_expr[3]/serviceType</process:to>
     </process:copy>
     <process:copy>

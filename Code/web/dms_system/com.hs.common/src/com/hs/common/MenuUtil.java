@@ -474,6 +474,62 @@ public class MenuUtil {
 		}
 	}
 	
+	@Bizlet
+	public static boolean checkBtnAuth(String loginName, String btnArea, String btnName) {
+		boolean check = false;
+		//查询用户对应的角色
+		try {
+			DataObject[] roleArr = ResauthUtils.getUserRoles(loginName);
+
+			//查询资源对应的功能  不用考虑资源对应的按钮为空
+			//btnArea   dms_multiple_bill_1    
+			if(roleArr.length <= 0) {
+
+	    		return check;
+	    	}
+
+			List<DataObject> btnList = new ArrayList<DataObject>();
+	    	//查询角色对应的资源
+			for(int i=0; i<roleArr.length; i++) {
+				DataObject roleObj = roleArr[i];
+				String roleId = roleObj.getString("roleId");
+				DataObject[] btnArr = ResauthUtils.getRoleResBtnAuth(roleId, btnArea);
+				CollectionUtils.addAll(btnList, btnArr);
+			}
+
+			List<DataObject> btnInfoList = new ArrayList<DataObject>();
+			for(int j=0; j<btnList.size(); j++) {
+				DataObject resObj = btnList.get(j);
+				String btnId = resObj.getString("btnId");
+				DataObject[] btnInfo = ResauthUtils.getBtnInfo(btnId);
+				CollectionUtils.addAll(btnInfoList, btnInfo);
+			}
+			
+			Set<DataObject> setAll = new HashSet<DataObject>();    //去重 
+			setAll.addAll(btnInfoList);  
+	        List<DataObject> c = new ArrayList<DataObject>(setAll); 
+
+			List<Menu> list=new ArrayList<Menu>();
+	        for(int i = 0; i<c.size(); i++) {
+	        	DataObject d = c.get(i);
+	        	
+	        	String code = d.getString("code");
+	        	if(btnName.equals(code)) {
+	        		
+	        		check=true;
+	        		break;
+	        	}
+	        	
+	        }
+	        return check;
+			
+		} catch (Throwable e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		}finally {
+			return check;
+		}
+	}
 	
 	@Bizlet
 	public static List getSameLevelRes(String userId, String resId)throws Throwable  {

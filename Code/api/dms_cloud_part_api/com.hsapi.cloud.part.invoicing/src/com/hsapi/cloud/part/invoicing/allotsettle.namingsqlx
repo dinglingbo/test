@@ -1500,7 +1500,7 @@
 			d.order_qty as orderQty,
 			d.order_price as orderPrice,
 			d.remark as remark,
-			d.show_part_id as showPartId，
+			d.show_part_id as showPartId,
 			d.show_part_code as showPartCode,
 			d.show_full_name as showFullName,
 			d.show_brand_name as showBrandName,

@@ -751,7 +751,9 @@
     <node>assign15</node>
   </nodes>
   <topRuler/>
-  <leftRuler/>
+  <leftRuler>
+    <guides position="29" horizontal="true"/>
+  </leftRuler>
   <process:info author="Administrator" createTime="2019-08-30 11:10:35" date="2019-08-30Z" description="" name="auditProcessPart" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.com.ComGuest" name="guest"/>

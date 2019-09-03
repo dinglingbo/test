@@ -167,6 +167,30 @@
       <process:from type="literal" pattern="reference">S</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">outmain/auditDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">outmain/auditSign</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">outmain/auditor</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userId</process:from>
+      <process:to type="query">outmain/auditorId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">outmain/orderMan</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userId</process:from>
+      <process:to type="query">outmain/orderManId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
     <location x="253" y="199"/>
@@ -206,7 +230,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link59</targetConnections>
-    <location x="360" y="168"/>
+    <location x="371" y="165"/>
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
     <process:copy>
@@ -223,7 +247,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
-    <location x="350" y="204"/>
+    <location x="361" y="201"/>
     <figSize height="17" width="49"/>
     <node>assign6</node>
   </nodes>
@@ -1993,7 +2017,11 @@
     <size height="28" width="28"/>
     <nodeLabel>assign12label</nodeLabel>
     <process:copy>
-      <process:from type="expression" pattern="reference">outaleQty-billQty</process:from>
+      <process:from type="query" pattern="reference">enterDetail/outableQty</process:from>
+      <process:to type="query">enQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">enQty-billQty</process:from>
       <process:to type="query">enterDetail/outableQty</process:to>
     </process:copy>
   </nodes>
@@ -2008,7 +2036,7 @@
       <targetNode>invokePojo14</targetNode>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
-    <location x="732" y="142"/>
+    <location x="732" y="133"/>
     <size height="28" width="28"/>
     <nodeLabel>assign16label</nodeLabel>
     <process:copy>
@@ -2017,7 +2045,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign16label" name="label" nodeType="label">
-    <location x="730" y="178"/>
+    <location x="730" y="169"/>
     <figSize height="17" width="32"/>
     <node>assign16</node>
   </nodes>
@@ -2123,7 +2151,11 @@
     <size height="28" width="28"/>
     <nodeLabel>assign18label</nodeLabel>
     <process:copy>
-      <process:from type="expression" pattern="reference">outaleQty-billQty</process:from>
+      <process:from type="query" pattern="reference">enterDetail/outableQty</process:from>
+      <process:to type="query">enQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">enQty-billQty</process:from>
       <process:to type="query">enterDetail/outableQty</process:to>
     </process:copy>
   </nodes>
@@ -2181,6 +2213,7 @@
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjSellQtyTempRecord" name="sellRecordArr"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjEnterDetailChk" name="enterDetail"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="len" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="enQty" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PjProcessMain" name="processMain"/>

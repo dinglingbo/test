@@ -572,7 +572,10 @@ function audit()
             return;
         }
     }
-
+    if(!data.id){
+    	parent.showMsg("请先保存数据","W");
+        return;
+    }
     var row = leftGrid.getSelected();
     if(row){
         if(row.auditSign == 1) {
@@ -702,7 +705,7 @@ function add()
                     addNewRow();
                     var storeId = nui.get("storeId");
                     storeId.focus();
-                   
+                    $('#status').text(AuditSignHash[0]);
 
                 }else {
                     return;
@@ -732,7 +735,7 @@ function add()
         
         var storeId = nui.get("storeId");
         storeId.focus();
-      
+        $('#status').text(AuditSignHash[0]);
     }
 
     

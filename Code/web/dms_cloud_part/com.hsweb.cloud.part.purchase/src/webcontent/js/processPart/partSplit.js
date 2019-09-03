@@ -546,7 +546,10 @@ function audit()
             return;
         }
     }
-
+    if(!data.id){
+    	parent.showMsg("请先保存数据","W");
+        return;
+    }
     var row = leftGrid.getSelected();
     if(row){
         if(row.auditSign == 1) {
@@ -601,13 +604,13 @@ function audit()
             data = data || {};
             if (data.errCode == "S") {
                 parent.showMsg("审核成功!","S");
-                var newRow ={auditSign:1}
+                var newRow ={auditSign:1};
                 var row = leftGrid.getSelected();
                 leftGrid.updateRow(row,newRow);
                 var leftRow = leftGrid.getSelected();
                 loadMainAndDetailInfo(leftRow);                
             } else {
-                parent.showMsg(data.errMsg || "审核失败!","W");
+                parent.showMsg(data.errMsg || "审核失败!","E");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -662,7 +665,7 @@ function add()
                     addNewRow();
                     var storeId = nui.get("storeId");
                     storeId.focus();
-                   
+                    $('#status').text(AuditSignHash[0]);
 
                 }else {
                     return;
@@ -692,7 +695,7 @@ function add()
         
         var storeId = nui.get("storeId");
         storeId.focus();
-      
+        $('#status').text(AuditSignHash[0]);
     }
 
     

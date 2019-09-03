@@ -650,8 +650,8 @@
       <sourceNode>assign17</sourceNode>
       <targetNode>assign18</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">oldAllotMain/status</process:leftOperand>
+        <process:simpleCondition operator="GT">
+          <process:leftOperand type="query">oldAllotMain/stockStatus</process:leftOperand>
           <process:rightOperand type="literal">2</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -706,7 +706,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">调拨单已受理，不能拒绝</process:from>
+      <process:from type="literal" pattern="reference">调拨单已出库，不能拒绝</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>

@@ -486,6 +486,7 @@
         </isNotEmpty>
         <isNotEmpty prepend="and" property="endDate">  
             (a.record_date &lt; #endDate#)
-        </isNotEmpty>                          
+        </isNotEmpty> 
+        order by a.record_date desc                     
     </select> 
 </sqlMap>

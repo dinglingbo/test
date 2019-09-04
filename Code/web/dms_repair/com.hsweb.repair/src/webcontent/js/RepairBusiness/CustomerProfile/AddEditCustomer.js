@@ -1029,7 +1029,12 @@ function onParseUnderpanNo()
         getCarVinModel(vin,function(data)
         {
             data = data||{};
-            var carVinModel = data.data.SuitCar||[];//list[0];
+            var carVinModel = [];
+            if(data && data.data && data.data.SuitCar){
+            	carVinModel = data.data.SuitCar||[];//list[0];
+            }else{
+            	carVinModel=[];
+            }
             if(carVinModel.length > 0)
             {
             	var carModelId = data.data.carModelId;

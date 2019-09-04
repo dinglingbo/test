@@ -173,15 +173,15 @@ function onbillTypeChange(e){
 //        }
 //    });
 //}
-//function deleteGuest(){
-//    var record = mainGrid.getSelected();
-//    if(record.auditSign == 1) return;
-//    if(!record)
-//    {
-//        return;
-//    }
-//    mainGrid.removeRow(record,true);
-//}
+function deleteRow(){
+    var record = mainGrid.getSelected();
+    if(record.auditSign == 1) return;
+    if(!record)
+    {
+        return;
+    }
+    mainGrid.removeRow(record,true);
+}
 var saveUrl = baseUrl
         + "com.hsapi.cloud.part.settle.svr.saveInitRpBill.biz.ext";
 function save(){

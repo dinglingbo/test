@@ -175,10 +175,19 @@ function doSearch(params)
 
 function onExport(){
 	var detail = nui.clone(rightGrid.getData());
-//多级
-	exportMultistage(rightGrid.columns)
-//单级
-       //exportNoMultistage(rightGrid.columns)
+
+	var columnsList =  nui.clone(rightGrid.columns);
+/*	for(var i=0;i<columnsList.length;i++){
+		if(columnsList[i].columns && i>1){
+			for(var j=0;j<columnsList[i].columns.length;j++){
+				columnsList[i].columns[j].header =columnsList[i].header + columnsList[i].columns[j].header;
+			}			
+		}
+	}*/
+	//多级
+	exportMultistage(columnsList);
+	//单级
+    //exportNoMultistage(rightGrid.columns)
 	for(var i=0;i<detail.length;i++){
 		detail[i].id=1;	
 		for(var j in brandHash) {
@@ -188,10 +197,12 @@ function onExport(){
 		}		
 	}
 	if(detail && detail.length > 0){
-//多级表头类型
+		//多级表头类型
 		setInitExportData( detail,rightGrid.columns,"进销存汇总表导出");
-//单级表头类型  与上二选一
-//setInitExportDataNoMultistage( detail,rightGrid.columns,"已结算工单明细表导出");
+		//单级表头类型  与上二选一
+		//setInitExportDataNoMultistage( detail,rightGrid.columns,"已结算工单明细表导出");
 	}
 	
 }
+
+

@@ -101,6 +101,7 @@ function getSearchParam(){
 	params.startDate = beginDateEl.getFormValue();
     params.endDate = addDate(endDateEl.getValue(),1);
     params.productName = nui.get("productName").getValue();
+    params.orgid = currOrgId;
     if(nui.get("search-type").getValue()!=0){
     	params.type = nui.get("search-type").getValue();
     	
@@ -138,3 +139,57 @@ function onDrawCell(e){
     }
 }
 
+function ExportExcel() {
+    var columns = mainGrid.columns;
+
+    function getColumns(columns) {
+        var cols = [];
+        for (var i = 0; i < columns.length; i++) {
+            var column = columns[i];
+
+            var col = { header: column.header, field: column.field, type: column.type };
+            if (column.columns) {
+                col.columns = getColumns(column.columns);
+            }
+            cols.push(col);
+
+        }
+        return cols;
+    }
+    var columns = getColumns(columns);
+
+    DownLoad(webPath + contextPath + "/common/nui/themes/scripts/export.aspx", { type: "excel", columns: columns }, function () {
+       // alert("导出成功");
+    });
+    
+/*    DownLoad("export.aspx", { type: "excel", columns: columns }, function () {
+        // alert("导出成功");
+     });*/
+
+}
+
+function DownLoad(url, fields, callback) {
+
+    //创建Form
+    var submitfrm = document.createElement("form");
+    submitfrm.action = url;
+    submitfrm.method = "post";
+    submitfrm.target = "_blank";
+    document.body.appendChild(submitfrm);
+
+    if (fields) {
+
+        for (var p in fields) {
+            var input = mini.append(submitfrm, "<input type='hidden' name='" + p + "'>");
+            var v = fields[p];
+            if (typeof v != "string") v = mini.encode(v);
+            input.value = v;
+        }
+    }
+
+    submitfrm.submit();
+    setTimeout(function () {
+        submitfrm.parentNode.removeChild(submitfrm);
+        if (callback) callback();
+    }, 1000);
+}

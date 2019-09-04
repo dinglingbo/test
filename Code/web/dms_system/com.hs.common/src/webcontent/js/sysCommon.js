@@ -511,6 +511,14 @@ function exportMultistage(columns){
 	html+='	<table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0"> ';
 	html+='		<tr> ';
 	for(var i = 0;i<columns.length;i++){
+		if(columns[i].header!="序号" && columns[i].type!="expandcolumn"){			
+			var str = columns[i].header;
+			html+='<th colspan="'+columns[i].columns.length+'" align="center">'+str+'</th>';	
+		}
+	}
+	html+='		</tr> ';
+	html+='		<tr> ';
+	for(var i = 0;i<columns.length;i++){
 		var columnsList = columns[i].columns||[];
 		if(columnsList.length>0){			
 			for(var j = 0;j<columnsList.length;j++){

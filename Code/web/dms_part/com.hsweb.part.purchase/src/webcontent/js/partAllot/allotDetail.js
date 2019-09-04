@@ -831,6 +831,7 @@ function add()
 	setInputModel();
 	showButton();
 	document.getElementById("repairStatus").style.display='none';
+	$('#bServiceId').text("调拨单号：新调拨单");
 }
 //提交单元格编辑数据前激发
 function onCellCommitEdit(e) {
@@ -890,7 +891,7 @@ function onCellEditEnter(e){
             addNewKeyRow();
         }else if(column.field == "remark"){
             addNewKeyRow();
-        }else if(column.field == "comPartCode"){
+        }/*else if(column.field == "comPartCode"){
             if(!record.comPartCode){
                 showMsg("请输入编码!","W");
                 var row = rightGrid.getSelected();
@@ -908,7 +909,7 @@ function onCellEditEnter(e){
                     rightGrid.beginEditCell(record, "comUnit");
                 }
             }
-        }
+        }*/
     }
 }
 
@@ -1341,7 +1342,7 @@ function addPart() {
         addDetail(data);
     },function(data) {
         var part = data.part;
-        var partid = part.id;
+        var partid = part.partId;
         var rtn = checkPartIDExists(partid);
         return rtn;
     });
@@ -1612,6 +1613,9 @@ function save(type) {
                 if(pjAllotMainList && pjAllotMainList.length>0) {
                     var leftRow = pjAllotMainList[0];
                     basicInfoForm.setData(leftRow);
+                    if(type==0){
+                    	$('#bServiceId').text("调拨单号："+leftRow.serviceId);
+                    }
                     if(leftRow.status>0){
                     	setReadOnlyMsg();
                     }
@@ -1732,8 +1736,8 @@ function getMainData()
         data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
     }
 
-    if (data.orderDate) {
-      data.orderDate = format(data.orderDate, 'yyyy-MM-dd HH:mm:ss');
+    if (data.planComeDate) {
+      data.planComeDate = format(data.planComeDate, 'yyyy-MM-dd HH:mm:ss');
     }
     
     rightGrid.findRow(function(row){
@@ -1815,6 +1819,7 @@ function queryMain(mainId,callback){
  		       nui.get("enterStoreId").setValue(allotMian.enterStoreId);*/
  		       showButton(allotMian);
  		       doSetStyle(allotMian);
+ 		      $('#bServiceId').text("调拨单号："+allotMian.serviceId);
  		       callback && callback(allotMian);
  			}else{
  				nui.unmask(document.body);
@@ -2402,3 +2407,71 @@ function changeOrderAmt(e){
 	
 }
 
+function coverPart(){
+	coverPartCK(function(data) {
+	    var part = data.part;
+	    var partid = part.partId;
+	    var rtn = checkPartIDExists(partid);
+	    return rtn;
+	});
+}
+function coverPartCK(callback){
+	var row = rightGrid.getSelected();
+	if(row){
+		var data = basicInfoForm.getData();
+	    for ( var key in requiredField) {
+	        if (!data[key] || $.trim(data[key]).length == 0) {
+	            showMsg(requiredField[key] + "不能为空!","W");
+	            return;
+	        }
+	    }
+	    
+		data.partCode = nui.get("inputCode").getValue();
+		data.type = 1;
+	    if(!data.outStoreId){
+	    	showMsg("请选择调出仓库","W");
+	    	return;
+	    }
+	    nui.open({
+	        // targetWindow: window,
+	        url: webPath + contextPath + "/purchasePart/partAllot/selectPart.jsp?token="+token,
+	        title: "配件选择", width: 930, height: 560,
+	        allowDrag:true,
+	        allowResize:true,
+	        onload: function ()
+	        {
+	            var iframe = this.getIFrameEl();
+	            iframe.contentWindow.setPartCode(data,callback);
+	        },
+	        ondestroy: function (action)
+	        {
+	        	 var iframe = this.getIFrameEl();
+		         if(action=="ok"){
+		        	var partList = iframe.contentWindow.getData();
+		        	var part = partList.part;
+		        	if(part) {
+		                var newRow = {
+		                		enterId:part.detailId,
+		                		partId : part.partId,
+		                        comPartCode :  part.partCode,
+		                        comPartName : part.partName,
+		                        comPartBrandId : part.partBrandId,
+		                        comApplyCarModel : part.applyCarModel,
+		                        comUnit : part.enterUnitId,
+		                        orderQty : 1,
+		                        storeId : FStoreId,
+		                        comOemCode : part.oemCode,
+		                        comSpec : part.spec,
+		                        partCode : part.partCode,
+		                        partName : part.partName,
+		                        fullName : part.fullName,
+		                        systemUnitId : part.systemUnitId,
+		                        enterUnitId : part.enterUnitId
+		                };
+		                rightGrid.updateRow(row,newRow);
+		            }	        	
+		         }
+	        }
+	    });
+	}
+}

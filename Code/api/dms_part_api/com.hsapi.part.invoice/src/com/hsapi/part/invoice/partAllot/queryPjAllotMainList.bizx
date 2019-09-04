@@ -5,16 +5,16 @@
     <size height="100" width="466"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
-    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="link1" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
-      <targetNode>assign0</targetNode>
+      <targetNode>assign3</targetNode>
     </sourceConnections>
-    <location x="80" y="80"/>
+    <location x="30" y="80"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" nodeType="label">
-    <location x="82" y="116"/>
+    <location x="32" y="116"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -85,6 +85,7 @@
       <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
+    <targetConnections>link3</targetConnections>
     <location x="390" y="80"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
@@ -130,11 +131,86 @@
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>invokePojo1</targetNode>
+    </sourceConnections>
+    <targetConnections>link1</targetConnections>
+    <location x="225" y="195"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign2label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">pageSize</process:from>
+      <process:to type="query">page/size</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pageIndex</process:from>
+      <process:to type="query">page/currentPage</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="value">true</process:from>
+      <process:to type="query">page/isCount</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">pageSize*pageIndex</process:from>
+      <process:to type="query">page/begin</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pageSize</process:from>
+      <process:to type="query">page/length</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">params/onlyOrgid</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <location x="223" y="231"/>
+    <figSize height="17" width="32"/>
+    <node>assign2</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" description="" id="link2" name="link2" displayName="link1" isDefault="true" type="transition">
+      <sourceNode>assign3</sourceNode>
+      <targetNode>assign0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link1" name="link1" displayName="连接线" isDefault="false" type="transition">
+      <sourceNode>assign3</sourceNode>
+      <targetNode>assign2</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">isReport</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="120" y="80"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign3label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/isReport</process:from>
+      <process:to type="query">isReport</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
+    <location x="118" y="116"/>
+    <figSize height="17" width="32"/>
+    <node>assign3</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-02-24 09:24:29" date="2018-02-24Z" description="" name="queryPjPchsOrderMainList" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="auditSign" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="isReport" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>

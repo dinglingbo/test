@@ -106,11 +106,11 @@
                   <div type="indexcolumn">序号</div>
                   <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
                   <div field="status" name="status" width="70px" headerAlign="center" header="进程"></div>
-                  <div field="serviceCode" name="serviceCode" width="150px" headerAlign="center" header="工单号"></div>
+                  <div field="serviceCode" name="serviceCode" width="180px" headerAlign="center" header="工单号"></div>
                   <div field="guestFullName" name="guestFullName" width="100px" headerAlign="center"  header="客户名称"></div>
                   <div field="boxNo" name="boxNo" width="80px" headerAlign="center" header="变速箱号"></div>
-                  <div field="enterDate" name="enterDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="进厂时间"></div>
-                  <div field="boxServiceTypeId" name="boxServiceTypeId" width="140px" headerAlign="center" header="业务类型"></div>
+                  <div field="enterDate" name="enterDate" width="120px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="进厂时间"></div>
+                  <div field="boxServiceTypeId" name="boxServiceTypeId" width="100px" headerAlign="center" header="业务类型"></div>
                   <div field="boxModel" name="engineModel" width="100px" headerAlign="center"  header="变速箱型号"></div>
                   <div field="boxBrandId" name="boxBrandId" width="100px" headerAlign="center"  header="波箱厂牌"></div>
                    <div field="driveType" name="driveType" width="100px" headerAlign="center"  header="驱动形式"></div>

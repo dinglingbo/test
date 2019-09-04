@@ -85,7 +85,7 @@
 <div class="nui-fit">
     <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
          showPager="true"
-         dataField="pjAllotApplyDetails"
+         dataField="pjAllotMainList"
          idField="detailId"
          ondrawcell="onDrawCell"
          sortMode="client"
@@ -99,9 +99,9 @@
             <div header="订单信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="serviceId" width="190" summaryType="count" headerAlign="center" header="订单单号"></div>
-                    <div field="orgName" width="200" headerAlign="center" header="调出方"></div>
+                    <div field="guestShortName" width="200" headerAlign="center" header="调出方"></div>
                     <div field="orderMan" width="80" headerAlign="center" header="申请人"></div>
-                    <div allowSort="true" field="settleStatus" width="80" headerAlign="center" header="状态"></div>
+                    <div allowSort="true" field="status" width="80" headerAlign="center" header="状态"></div>
                     <div allowSort="true" field="orderDate"width="120" headerAlign="center" header="订单日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div allowSort="true" field="storeId" width="120" headerAlign="center" header="仓库"></div>
                 </div>

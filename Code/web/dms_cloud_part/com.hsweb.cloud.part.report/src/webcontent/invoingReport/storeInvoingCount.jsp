@@ -9,7 +9,7 @@
 -->
 <head>
     <title>仓库进销存统计</title>
-    <script src="<%=webPath + contextPath%>/report/js/invoing/storeInvoingCount.js?v=1.0.13"></script>
+    <script src="<%=webPath + contextPath%>/report/js/invoing/storeInvoingCount.js?v=1.0.15"></script>
     <style type="text/css">
     .title {
       width: 60px;
@@ -157,6 +157,32 @@
                 <div summaryType="sum" allowSort="true" datatype="float" field="allotInRtnAmt" headerAlign="center" header="金额"  align="right"></div>
             </div>
         </div>
+        
+        <div header="组装入库" headerAlign="center">
+            <div property="columns">
+                <div summaryType="sum" allowSort="true" datatype="float" field="partAssemblyInQty" width="60" headerAlign="center" header="数量"  align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="partAssemblyInAmt" headerAlign="center" header="金额"  align="right"></div>
+            </div>
+        </div>
+         <div header="组装出库" headerAlign="center">
+            <div property="columns">
+                <div summaryType="sum" allowSort="true" datatype="float" field="partAssemblyOutQty" width="60" headerAlign="center" header="数量"  align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="partAssemblyOutAmt" headerAlign="center" header="金额"  align="right"></div>
+            </div>
+        </div>
+         <div header="拆分入库" headerAlign="center">
+            <div property="columns">
+                <div summaryType="sum" allowSort="true" datatype="float" field="partSplitInQty" width="60" headerAlign="center" header="数量"  align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="partSplitInAmt" headerAlign="center" header="金额"  align="right"></div>
+            </div>
+        </div>
+         <div header="拆分出库" headerAlign="center">
+            <div property="columns">
+                <div summaryType="sum" allowSort="true" datatype="float" field="partSplitOutQty" width="60" headerAlign="center" header="数量"  align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="partSplitOutAmt" headerAlign="center" header="金额"  align="right"></div>
+            </div>
+        </div>
+        
         <div header="盘盈" headerAlign="center">
             <div property="columns">
                 <div summaryType="sum" field="inventoryProfitQty" headerAlign="center" header="数量" dataType="float" align="right"></div>

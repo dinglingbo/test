@@ -543,6 +543,18 @@
       <process:from type="query" pattern="reference">processProduct/noTaxAmt</process:from>
       <process:to type="query">processMain/noTaxAmt</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">processMain/orderAmt</process:from>
+      <process:to type="query">orderAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">processMain/orderQty</process:from>
+      <process:to type="query">orderQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">orderAmt/orderQty</process:from>
+      <process:to type="query">processMain/orderPrice</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
     <location x="1108" y="216"/>
@@ -739,7 +751,9 @@
     <node>assign15</node>
   </nodes>
   <topRuler/>
-  <leftRuler/>
+  <leftRuler>
+    <guides position="29" horizontal="true"/>
+  </leftRuler>
   <process:info author="Administrator" createTime="2019-08-30 11:10:35" date="2019-08-30Z" description="" name="auditProcessPart" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.com.ComGuest" name="guest"/>
@@ -748,6 +762,8 @@
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjProcessProduct" name="processProductList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="orderAmt" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="orderQty" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PjProcessMain" name="processMain"/>

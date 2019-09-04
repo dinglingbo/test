@@ -535,6 +535,8 @@ function getSearchParam() {
         params.name = typeValue;
     }else if(type==3){
         params.mobile = typeValue;
+    }else if(type==4){
+        params.serviceCode = typeValue;
     }
     return params;
 }

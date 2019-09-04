@@ -9,7 +9,7 @@
 -->
 <head>
     <title>门店进销存明细</title>
-    <script src="<%=webPath + contextPath%>/report/js/invoing/shopInvoingDetail.js?v=1.0.5"></script>
+    <script src="<%=webPath + contextPath%>/report/js/invoing/shopInvoingDetail.js?v=1.0.10"></script>
     <link href="<%=webPath + contextPath%>/common/js/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/common/js/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">

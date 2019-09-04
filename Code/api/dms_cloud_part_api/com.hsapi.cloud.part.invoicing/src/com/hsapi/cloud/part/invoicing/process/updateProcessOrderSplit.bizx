@@ -636,6 +636,10 @@
       <process:from type="query" pattern="reference">processMain/id</process:from>
       <process:to type="query">mainId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">processMain/serviceId</process:from>
+      <process:to type="query">serviceId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
     <location x="-672" y="134"/>
@@ -829,6 +833,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPartMatchingDetail" name="matchDetail"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPartMatchingDetail" name="matchDetailList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="qty" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="serviceId" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjProcessMain" name="processMain"/>

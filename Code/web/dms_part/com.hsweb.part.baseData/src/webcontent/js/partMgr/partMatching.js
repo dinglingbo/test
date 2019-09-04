@@ -6,7 +6,7 @@ var rightUnifyGrid = null;
 var straGrid = null;
 
 var rightUnifyGridUrl = baseUrl+"com.hsapi.part.baseDataCrud.query.queryPartMatchDetail.biz.ext";
-var straGridUrl =  apiPath +sysApi+"/"+"com.hsapi.part.baseDataCrud.query.queryPartMatching.biz.ext";
+var straGridUrl =  baseUrl +"com.hsapi.part.baseDataCrud.query.queryPartMatching.biz.ext";
 
 var salesDeductTypeEl= null;
 var statuList = [{id:"0",name:"编码"},{id:"1",name:"名称"}];

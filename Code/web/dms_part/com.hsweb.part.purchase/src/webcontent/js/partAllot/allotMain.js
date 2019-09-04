@@ -3,8 +3,8 @@
 */
 var baseUrl = apiPath + partApi + "/";
 var mainGridUrl = baseUrl+"com.hsapi.part.invoice.partAllot.queryPjAllotMainList.biz.ext";
-var queryStoreHouseUrl = apiPath + sysApi + "/" + "com.hsapi.system.tenant.employee.queryMemStoreBytenantId.biz.ext";
-var queryCompanyUrl = apiPath + sysApi + "/" + "com.hsapi.part.baseDataCrud.crud.queryGuestListNopage.biz.ext";
+var queryStoreHouseUrl = baseUrl + "com.hsapi.system.tenant.employee.queryMemStoreBytenantId.biz.ext";
+var queryCompanyUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.queryGuestListNopage.biz.ext";
 var webBaseUrl = webPath + contextPath + "/";
 var storehouse = [];
 var storeHash={};
@@ -22,7 +22,7 @@ var stockStatusHash = {
 		"4":"已入库"
 }
 //受理状态：0草稿、1待受理(提交)、2已受理、3已拒绝，4作废
-var statusHash = ["草稿","已提交","待受理","已拒绝","作废"];
+var statusHash = ["草稿","已提交","已受理","已拒绝","作废"];
 var typeF = 0;
 
 

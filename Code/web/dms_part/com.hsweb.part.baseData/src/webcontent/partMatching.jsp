@@ -44,7 +44,7 @@
                   </div>
                   <div class="nui-fit">
                       <div id="straGrid" class="nui-datagrid" style="width:100%;height:100%;"
-                           showPager="false"
+                           showPager="true"
                            dataField="data"
                            idField="id"
                            selectOnLoad="true"
@@ -55,6 +55,7 @@
                            onrowclick="onStraGridClick"
                            oncellbeginedit =""
                            sortMode="client"
+                           totalField="page.count"
                            url="">
                           <div property="columns">
                               <div type="indexcolumn" width="30">序号</div>

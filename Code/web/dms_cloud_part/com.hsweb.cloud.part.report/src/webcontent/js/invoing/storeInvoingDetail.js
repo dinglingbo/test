@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/2/1.
  */
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.report.report.queryPjStoreInvoing.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.cloud.part.report.report.queryPjStoreInvoingDetail.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -26,7 +26,11 @@ var billTypeIdHash = {
 		"050107" : "移仓入库",
 		"050207" :"移仓出库",
 		"050111" :"调出退货",
-		"050211" :"调入退货"
+		"050211" :"调入退货",
+		"050112" :"组装入库",
+		"050212" :"组装出库",
+		"050113" :"拆分入库",
+		"050213" :"拆分出库"
 
 	};
 var billTypeIdHashType = [
@@ -42,7 +46,11 @@ var billTypeIdHashType = [
 		{name:"移仓入库",id:"050104"},
 		{name:"移仓出库",id:"050204"},
 		{naem:"调出退货",id:"050111"},
-		{naem:"调入退货",id:"050211"}
+		{naem:"调入退货",id:"050211"},
+		{name:"组装入库",id:"050112"},
+		{name:"组装出库",id:"050212"},
+		{naem:"拆分入库",id:"050113"},
+		{naem:"拆分出库",id:"050213"}
 	];
 var settTypeIdHash = {};
 var outTypeIdHash = {};

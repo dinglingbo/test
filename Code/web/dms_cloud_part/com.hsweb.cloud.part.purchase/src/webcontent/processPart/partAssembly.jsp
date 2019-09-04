@@ -139,6 +139,7 @@ body .mini-grid-row-selected{
 		                              <input class="nui-hidden" name="isDisabled" id="isDisabled"/>
 		                              <input class="nui-hidden" name="guestOrgid" id="guestOrgid"/>
 		                              <input class="nui-hidden" name="auditSign"/>
+		                              <input class="nui-hidden" name="orgid"/>
 		                              <input name="partBrandId"id="partBrandId"  visible="false"class="nui-combobox" />
 		                              <table style="width: 100%;">
 		                                  <tr>

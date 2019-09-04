@@ -86,6 +86,10 @@
       <process:to type="query">enterMain/code</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">processMain/id</process:from>
+      <process:to type="query">enterMain/codeId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">enterMain/orgid</process:to>
     </process:copy>
@@ -200,10 +204,6 @@
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">enterMain/printTimes</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">processMain/id</process:from>
-      <process:to type="query">enterMain/codeId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -980,6 +980,10 @@
       <process:from type="query" pattern="reference">sumQty</process:from>
       <process:to type="query">enterMain/enterQty</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">sumQty</process:from>
+      <process:to type="query">processMain/orderQty</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
     <location x="536" y="131"/>
@@ -1081,16 +1085,12 @@
     <size height="28" width="28"/>
     <nodeLabel>assign10label</nodeLabel>
     <process:copy>
+      <process:from type="query" pattern="reference">tmp/orderQty</process:from>
+      <process:to type="query">orderQty</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">tmp/costRatio</process:from>
       <process:to type="query">costRatio</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">processProduct/taxPrice</process:from>
-      <process:to type="query">taxPrice</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">taxPrice*costRatio</process:from>
-      <process:to type="query">tmp/taxPrice</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">processProduct/taxAmt</process:from>
@@ -1101,12 +1101,12 @@
       <process:to type="query">tmp/taxAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">processProduct/noTaxPrice</process:from>
-      <process:to type="query">noTaxPrice</process:to>
+      <process:from type="query" pattern="reference">tmp/taxAmt</process:from>
+      <process:to type="query">taxAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">noTaxPrice*costRatio</process:from>
-      <process:to type="query">tmp/noTaxPrice</process:to>
+      <process:from type="expression" pattern="reference">taxAmt/orderQty</process:from>
+      <process:to type="query">tmp/taxPrice</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">processProduct/noTaxAmt</process:from>
@@ -1117,12 +1117,12 @@
       <process:to type="query">tmp/noTaxAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">processProduct/orderPrice</process:from>
-      <process:to type="query">orderPrice</process:to>
+      <process:from type="query" pattern="reference">tmp/noTaxAmt</process:from>
+      <process:to type="query">noTaxAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">orderPrice*costRatio</process:from>
-      <process:to type="query">tmp/orderPrice</process:to>
+      <process:from type="expression" pattern="reference">noTaxAmt/orderQty</process:from>
+      <process:to type="query">tmp/noTaxPrice</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">processProduct/orderAmt</process:from>
@@ -1131,6 +1131,14 @@
     <process:copy>
       <process:from type="expression" pattern="reference">orderAmt*costRatio</process:from>
       <process:to type="query">tmp/orderAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/orderAmt</process:from>
+      <process:to type="query">orderAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">orderAmt/orderQty</process:from>
+      <process:to type="query">tmp/orderPrice</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
@@ -1234,6 +1242,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="noTaxPrice" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="orderAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="orderPrice" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="orderQty" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PjProcessMain" name="processMain"/>

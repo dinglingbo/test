@@ -175,7 +175,7 @@ function doSearch(params)
 
 function onExport(){
 	var detail = nui.clone(rightGrid.getData());
-//多级
+
 	var columnsList =  nui.clone(rightGrid.columns);
 	for(var i=0;i<columnsList.length;i++){
 		if(columnsList[i].columns && i>1){

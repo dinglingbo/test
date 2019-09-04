@@ -71,10 +71,22 @@ $(document).ready(function(v)
    
 });
 
+var callback = null;
+var delcallback = null;
+var ckcallback = null;
+var guestId = null;
 function setData(p,ck,cck){
 	callback = ck;
     checkcallback = cck;
 	data = p;
+	search();
+}
+
+
+function setPartCode(p,ck){
+	data = p;
+	checkcallback = ck;
+	nui.get("search-code").setValue(data.partCode);
 	search();
 }
 
@@ -106,6 +118,29 @@ function onCommon()
    resultData = {
         part:nodec
     };
+    if(data.type && data.type==1){
+    	//需要判断是否已经添加了此配件??
+        var checkMsg = checkcallback(resultData);
+        if(checkMsg) 
+        {
+            nui.confirm(checkMsg, "友情提示",
+                function (action) { 
+                    if (action == "ok") {
+                    	CloseWindow("ok");
+                    	return;
+                    }else {
+                    	resultData = null;
+                    	CloseWindow("ok");
+                        return;
+                    }
+                }
+            );
+        }else{
+        	CloseWindow("ok");
+        	return;
+        }
+        return;
+    }
     if(!callback)
     {
         CloseWindow("ok");
@@ -166,7 +201,9 @@ function getStorehouseAll(){
 }
 
 
-
+function getData(){
+    return resultData;
+}
 
 /*var partList = [];
 function onOk(){

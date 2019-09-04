@@ -104,6 +104,14 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="printCode()" id=""><span class="fa fa-print fa-lg"></span>&nbsp;二维码</a>
+              
+                <a class="nui-menubutton" plain="true" menu="#popupMenuMore" id="menuMore">
+                <span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
+                <ul id="popupMenuMore" class="nui-menu" style="display:none;">
+                     <li name="enterBtn" iconCls="icon-add" onclick="onEnter">入库记录</li>
+	                 <li name="outBtn" iconCls="icon-edit" onclick="onOut">出库记录</li>
+	                 <li name="outBtn" iconCls="icon-edit" onclick="sellRecord">库存占用记录</li>
+                </ul>
 <!--                 <a class="nui-button" iconCls="" plain="true" onclick="onEnterRecord()" id="enterBtn"><span class=""></span>&nbsp;入库记录</a> -->
 <!--                 <a class="nui-button" iconCls="" plain="true" onclick="onOutRecord()" id="outBtn"><span class=""></span>&nbsp;出库记录</a> -->
             </td>
@@ -111,10 +119,10 @@
     </table>
 </div>
 
-  	<ul id="gridMenu" class="mini-contextmenu" >              
+   <!-- 	<ul id="gridMenu" class="mini-contextmenu" >              
         <li name="enterBtn" iconCls="icon-add" onclick="onEnter">入库记录</li>
 	    <li name="outBtn" iconCls="icon-edit" onclick="onOut">出库记录</li>        
-    </ul>
+    </ul> -->
     <div class="nui-fit">
         <div id="mainTabs" class="nui-tabs" name="mainTabs" activeIndex="0" style="width:100%; height:99%;" plain="false" onactivechanged="activechangedmain()">
 	        <div title="汇总库存" id="inventory" name="inventory">

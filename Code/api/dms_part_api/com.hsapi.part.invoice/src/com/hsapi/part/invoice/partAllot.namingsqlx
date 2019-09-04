@@ -54,7 +54,7 @@
 				a.state_sign_out as stateSignOut,
 				a.state_date_out as stateDateOut,
 				B.FULL_NAME AS guestFullName,
-				B.SHORT_NAME AS guestShortName
+				B.SHORT_NAME AS guestShortName,
 			FROM
 				wb_part.pj_allot_main A
 				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
@@ -63,7 +63,10 @@
             where 1=1
             <dynamic>
             	<isNotEmpty prepend="and" property="orgid"> 
-                    (a.orgid = #orgid# or a.guest_orgid = #orgid#)
+                    (a.orgid = #orgid# or (a.guest_orgid = #orgid# and a.status > 0))
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="onlyOrgid"> 
+                    (a.orgid = #orgid#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="id"> 
                     (a.id = #id#)
@@ -88,9 +91,7 @@
                 <isNotEmpty prepend="and" property="settleStatus"> 
                     (a.settle_status= #settleStatus#)
                 </isNotEmpty>
-                <isNotEmpty prepend="and" property="isDiffOrder"> 
-                    (a.is_diff_order = #isDiffOrder#)
-                </isNotEmpty>
+               
                 <isNotEmpty prepend="and" property="isState"> 
                     (a.is_state = #isState#)
                 </isNotEmpty>

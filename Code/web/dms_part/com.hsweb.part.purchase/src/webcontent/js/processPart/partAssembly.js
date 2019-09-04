@@ -370,7 +370,10 @@ function save() {
 
     var processProductData = rightGrid.getData();
     var processProduct=processProductData[0];
- 
+    if(!processProduct){
+   	     parent.showMsg("请选择成品!","W");
+        return;
+     }
 //    sellOrderDetailList = removeChanges(sellOrderDetailAdd, sellOrderDetailUpdate, sellOrderDetailDelete, sellOrderDetailList);
 
     nui.mask({
@@ -502,7 +505,7 @@ function doSearch(params)
         if(data <= 0){
             basicInfoForm.reset();
             rightGrid.clearRows();
-            
+            detailGrid.clearRows();
             setBtnable(false);
             setEditable(false);
             

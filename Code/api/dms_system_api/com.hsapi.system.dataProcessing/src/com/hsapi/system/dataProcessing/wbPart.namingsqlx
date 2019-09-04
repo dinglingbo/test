@@ -64,10 +64,10 @@
  			where wb_part.pj_store_invocing.orgid = #orgid#
     </delete>
     
-       <!--流水   删除pj_store-->
-    <delete id="deletepjStore" parameterClass="HashMap">
-     DELETE wb_part.pj_store   FROM wb_part.pj_store 			
- 			where wb_part.pj_store.orgid = #orgid#
+       <!--流水   删除pj_invocing-->
+    <delete id="deletePjInvocing" parameterClass="HashMap">
+     DELETE wb_part.pj_invocing   FROM wb_part.pj_invocing 			
+ 			where wb_part.pj_invocing.orgid = #orgid#
     </delete>
     
       <!--库存   删除pj_part_stock-->
@@ -75,7 +75,8 @@
      DELETE wb_part.pj_part_stock   FROM wb_part.pj_part_stock 			
  			where wb_part.pj_part_stock.orgid = #orgid#
     </delete>
-                           <!--库存   删除pj_part_store_stock-->
+    
+    <!--库存   删除pj_part_store_stock-->
     <delete id="deletepjPartStoreStock" parameterClass="HashMap">
      DELETE wb_part.pj_part_store_stock   FROM wb_part.pj_part_store_stock 			
  			where wb_part.pj_part_store_stock.orgid = #orgid#

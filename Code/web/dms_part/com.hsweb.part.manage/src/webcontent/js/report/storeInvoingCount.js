@@ -87,10 +87,10 @@ $(document).ready(function(v)
 
 	}
     quickSearch(4);
-	//仓库控制权限
+/*	//仓库控制权限
     if(currRepairStoreControlFlag==1){  	
     	nui.get("storehouse").setShowNullItem(false);
-    }
+    }*/
 
 });
 function getSearchParams(){
@@ -190,13 +190,13 @@ function onExport(){
 	var detail = nui.clone(rightGrid.getData());
 
 	var columnsList =  nui.clone(rightGrid.columns);
-	for(var i=0;i<columnsList.length;i++){
+/*	for(var i=0;i<columnsList.length;i++){
 		if(columnsList[i].columns && i>1){
 			for(var j=0;j<columnsList[i].columns.length;j++){
 				columnsList[i].columns[j].header =columnsList[i].header + columnsList[i].columns[j].header;
 			}			
 		}
-	}
+	}*/
 	//多级
 	exportMultistage(columnsList);
 	//单级

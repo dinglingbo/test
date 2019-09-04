@@ -12,8 +12,8 @@
 <title>充值消费记录表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
                 <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%= request.getContextPath() %>/tenant/js/sysCoinRecord.js?v=1.0.9" type="text/javascript"></script>
-    
+    <script src="<%= request.getContextPath() %>/tenant/js/sysCoinRecord.js?v=1.0.4" type="text/javascript"></script>
+<!--    <script src="<%= request.getContextPath() %>/common/nui/boot.js?v=1.0.0" type="text/javascript"></script>-->
 </head>
 <body>
 
@@ -42,7 +42,7 @@
         <input class="nui-textbox" id="productName" emptyText="产品名称" width="120"  onenter="onSearch()"/>
 
         <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-<!--         <input type="button" value="导出Excel" onclick="ExportExcel()" style="margin-left:50px;"/> -->
+<!--          <input type="button" value="导出Excel" onclick="ExportExcel()" style="margin-left:50px;"/> -->
 <!--         <a class="nui-button" iconCls="" plain="true" onclick="print()"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
         <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a> -->
     </div>
@@ -64,7 +64,7 @@
     </div>
 <div id="exportDiv" style="display:none">  
 </div>
-<!-- <iframe id="exportIFrame" style="display:none;"></iframe> -->
+<iframe id="exportIFrame" style="display:none;"></iframe> 
 
 </body>
 </html>

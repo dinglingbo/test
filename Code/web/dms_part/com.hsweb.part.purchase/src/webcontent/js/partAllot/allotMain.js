@@ -74,8 +74,7 @@ $(document).ready(function ()
     	  e.cellHtml = storeHashAll[e.value].name;
       }else if(e.field == "outStoreId"){
     	  e.cellHtml = storeHashAll[e.value].name;
-      }
-      else if(e.field == "stockStatus"){
+      }else if(e.field == "stockStatus"){
     	  e.cellHtml = stockStatusHash[e.value];
       }else if(e.field == "serviceId"){
       	e.cellHtml ='<a href="##" onclick="edit('+e.record._uid+')">'+e.record.serviceId+'</a>';

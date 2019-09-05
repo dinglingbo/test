@@ -54,7 +54,7 @@
                     <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                 </ul>
 
-				<label style="font-family:Verdana;">审核日期 从：</label>
+				<label style="font-family:Verdana;">受理日期 从：</label>
                 <input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <label style="font-family:Verdana;">至</label>
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
@@ -85,7 +85,7 @@
 <div class="nui-fit">
     <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
          showPager="true"
-         dataField="pjAllotAcceptMainList"
+         dataField="pjAllotDetails"
          idField="detailId"
          ondrawcell="onDrawCell"
          sortMode="client"
@@ -97,17 +97,18 @@
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <div header="订单信息" headerAlign="center">
-                <div property="columns">
+                 <div property="columns">
                     <div allowSort="true" field="serviceId" width="190" summaryType="count" headerAlign="center" header="订单单号"></div>
                     <div field="orgName" width="200" headerAlign="center" header="调入方"></div>
-                    <div field="orderMan" width="80" headerAlign="center" header="受理人"></div>
-                    <div allowSort="true" field="settleStatus" width="80" headerAlign="center" header="状态"></div>
-                    <div allowSort="true" field="orderDate"width="120" headerAlign="center" header="订单日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-                    <div allowSort="true" field="storeId" width="120" headerAlign="center" header="仓库"></div>
+                    <div field="orderMan" width="80" headerAlign="center" header="申请人"></div>
+                    <div allowSort="true" field="status" width="80" headerAlign="center" header="状态"></div>
+                    <div field="stockStatus" width="150"  headerAlign="center" header="出入库状态"></div>
+                    <div allowSort="true" field="createDate"width="120" headerAlign="center" header="订单日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div allowSort="true" field="outStoreId" width="120" headerAlign="center" header="仓库"></div>
                 </div>
             </div>
             <div header="配件信息" headerAlign="center">
-                <div property="columns">
+                 <div property="columns">
                     <div allowSort="true" field="partCode" width="150" headerAlign="center" header="配件编码"></div>
                     <div allowSort="true" field="fullName"width="220" headerAlign="center" header="配件全称"></div>
                     <div allowSort="true" field="oemCode"width="220" headerAlign="center" header="OE码"></div>
@@ -118,19 +119,16 @@
             </div>
             <div header="数量单价" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" datatype="float" summaryType="sum" field="applyQty" width="60" headerAlign="center" header="申请数量"></div>
-                    <div allowSort="true" datatype="float" summaryType="sum" field="acceptQty" width="90" headerAlign="center" header="调拨受理数量"></div>
-                    <div allowSort="true" datatype="float" summaryType="sum" field="hasAcceptQty" width="60" headerAlign="center" header="已受理数量"></div>
-                	<div allowSort="true" datatype="float" summaryType="sum" field="hasCamcelQty" width="60" headerAlign="center" header="已拒绝数量"></div>
-                	<div allowSort="true" datatype="float" summaryType="sum" field="hasOutQty" width="60" headerAlign="center" header="已出库数量" visible="true"></div>
-<!--                 	<div allowSort="true" datatype="float" summaryType="sum" field="hasInQty" width="60" headerAlign="center" header="已入库数量"  visible="false"></div> -->
-                    <div allowSort="true" field="detailRemark" width="60" headerAlign="center" header="备注"></div>
+                    <div allowSort="true" datatype="float" summaryType="sum" field="orderQty" width="60" headerAlign="center" header="申请数量"></div>
+                	<div allowSort="true" datatype="float" summaryType="sum" field="orderPrice" width="60" headerAlign="center" header="单价"></div>
+                	<div allowSort="true" datatype="float" summaryType="sum" field="orderAmt" width="60" headerAlign="center" header="总金额"></div>
+                    <div allowSort="true" field="remark" width="80" headerAlign="center" header="备注"></div>
                 </div>
             </div>
             <div header="其他" headerAlign="center">
                 <div property="columns">
-                    <div field="auditor" width="70" headerAlign="center" header="审核人"></div>
-                    <div allowSort="true"  width="120"field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div field="auditor" width="70" headerAlign="center" header="受理人"></div>
+                    <div allowSort="true"  width="120"field="auditDate" headerAlign="center" header="受理日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                 </div>
             </div>
         </div>

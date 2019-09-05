@@ -39,7 +39,7 @@ pageEncoding="UTF-8" session="false" %>
         <a class="nui-button" iconCls="" plain="true" onclick="doSearch()"><span class="fa fa-select fa-lg"></span>&nbsp;查询</a>
     </div>
     <div class="nui-fit">
-        <div id="mainGrid" class="nui-datagrid" style="width:1000px;height:100%;" 
+        <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" 
              showPager="true"  dataField="list"   url="" sortMode="client" ondrawcell=""
               pageSize="100" sizeList="[50,100,200,500]" showSummaryRow="true">
             <div property="columns">

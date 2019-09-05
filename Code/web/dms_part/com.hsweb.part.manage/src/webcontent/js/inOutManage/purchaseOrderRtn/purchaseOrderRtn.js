@@ -1497,15 +1497,11 @@ function checkRightData()
             }else{
                 return true;
             }
-            if(row.orderPrice){
-                if(row.orderPrice <= 0) return true;
-            }else{
+            if(row.orderPrice< 0){
                 return true;
             }
-            if(row.orderAmt){
-                if(row.orderAmt <= 0) return true;
-            }else{
-                return true;
+            if(row.orderAmt < 0){
+               return true;
             }
             
             if(row.storeId){
@@ -1517,7 +1513,7 @@ function checkRightData()
     });
     
     if(rows && rows.length > 0){
-        msg = "请完善退货配件的数量，单价，金额，仓库等信息！";
+        msg = "请完善退货配件的数量，仓库等信息！";
     }
     return msg;
 }

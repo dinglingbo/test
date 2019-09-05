@@ -18,6 +18,7 @@ var carModelIdHash = {};
 var guestTypeList = [];
 var guestTypeHash = {};
 var carModelHash = {};
+var mtAdvisorIdEl = null;
 var jumpUrl = "";//跳转连接
 var xs = 0;
 var isDisabledHash=[{name:"启用"},{name:"禁用"}];
@@ -26,6 +27,7 @@ $(document).ready(function(v){
 	nui.get("splitBtn").hide();
     grid = nui.get("datagrid1");
     grid.setUrl(gridUrl);
+    mtAdvisorIdEl = nui.get("mtAdvisorId");
     grid.on("drawcell",function(e){
     	 var field = e.field;
          var record = e.record;
@@ -66,6 +68,20 @@ $(document).ready(function(v){
         		guestTypeHash[v.id] = v;
             });
      });
+      getMtadvisor(function(text){
+      	mtAdvisorIdEl.setData(text.data);
+      	mtAdvisorIdEl.setValue(currEmpId);
+          mtAdvisorIdEl.setText(currUserName);         
+      });
+	    initDicts({
+	        //carSpec:CAR_SPEC,//车辆规格
+	        //kiloType:KILO_TYPE,//里程类别
+	        //source:GUEST_SOURCE,//客户来源
+	        //identity:IDENTITY, //客户身份
+	        guestProperty:GUEST_PROPERTY //客户类别
+	    },function(data){
+
+	    });
 });
 
 function init(){

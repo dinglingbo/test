@@ -74,6 +74,12 @@
             <isNotEmpty prepend="and" property="mtAdvisorId">  
                 (C.mt_advisor_id = #mtAdvisorId#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAdvisorName">  
+                (C.mt_advisor_name like '%$mtAdvisorName$%')
+            </isNotEmpty> 
+            <isNotEmpty prepend="and" property="guestProperty">
+                (b.guest_property = #guestProperty#)
+            </isNotEmpty>           
             <isNotEmpty prepend="and" property="carBrandId">  
                 (a.car_brand_id = #carBrandId#)
             </isNotEmpty>

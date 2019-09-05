@@ -175,7 +175,7 @@
     
          <!--车辆   删除wb_repair.rpb_car -->
     <delete id="deleteRpbCar" parameterClass="HashMap">
-     DELETE wb_repair.rpb_car , wb_repair.rpb_car_extend ,rpb_car_photo 
+     DELETE wb_repair.rpb_car , wb_repair.rpb_car_extend ,wb_repair.rpb_car_photo 
      FROM wb_repair.rpb_car 
 			LEFT JOIN wb_repair.rpb_car_extend on wb_repair.rpb_car.id = wb_repair.rpb_car_extend.car_id
 			LEFT JOIN rpb_car_photo on wb_repair.rpb_car.id = rpb_car_photo.car_id

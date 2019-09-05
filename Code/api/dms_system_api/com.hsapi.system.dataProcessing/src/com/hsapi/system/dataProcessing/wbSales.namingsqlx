@@ -45,7 +45,7 @@
  			where wb_sales.css_check_pdi_main .orgid = #orgid#
     </delete> 
     
-    <!--厂家订货  删除wb_sales.css_factory_order_main -->
+    <!--厂家订货  删除wb_sales.css_factory_order_main+detail -->
     <delete id="deleteCssFactoryOrderMain" parameterClass="HashMap">
      DELETE wb_sales.css_factory_order_main , wb_sales.css_factory_order_detail
      FROM wb_sales.css_factory_order_main  
@@ -96,7 +96,7 @@
          <!--费用信息表   删除wb_sales.css_sale_cost_list  -->
     <delete id="deleteCssSaleCostList" parameterClass="HashMap">
      DELETE wb_sales.css_sale_cost_list  FROM wb_sales.css_sale_cost_list 
- 			where wb_sales.css_sale_cost_list .orgid = #orgid#
+ 			where wb_sales.css_sale_cost_list.orgid = #orgid#
     </delete>
     
          <!--销售主表    删除wb_sales.css_sale_main + css_sale_extend + css_sale_calc + css_sale_gift_apply-->

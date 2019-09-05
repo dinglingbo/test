@@ -144,7 +144,6 @@
 	                   <div field="collectMoneyDate" name="collectMoneyDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="收款日期" allowsort="true"></div>	
 	                 </div>
                   </div>
-                  <div type="checkcolumn" name="checkcolumn" visible="false"></div>
                   <div header="客户车辆信息" headerAlign="center">
 	                  <div property="columns" > 
 		                  <div field="carModel" name="carModel" width="120" headerAlign="center" allowsort="true" header="品牌/车型"></div>

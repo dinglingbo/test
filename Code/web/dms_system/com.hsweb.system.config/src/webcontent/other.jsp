@@ -56,7 +56,7 @@
            <table  >
 
 
-            <tr >
+            <tr style="display:none">
                 <td align="right">系统LOGO图片：</br>(LOGO最佳大小：80px*50px)<span class="spanwidth"></span>   </td>
                 <td  colspan="5" class="tabwidth" >
                 <div class="page-header" id="btn-uploader">
@@ -72,7 +72,7 @@
                 
 				
             </tr> 
-            <tr >
+            <tr style="display:none">
                 <td align="right">系统名称：<span class="spanwidth"></span>   </td>
                 <td  colspan="5" class="tabwidth" >
                 		 <input  class="nui-textbox"  id="systemName" name="systemName">              	

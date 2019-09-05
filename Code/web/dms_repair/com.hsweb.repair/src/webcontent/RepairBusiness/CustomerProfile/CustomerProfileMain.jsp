@@ -11,7 +11,7 @@
 -->
 <head>
 	<title>客户档案</title>
-	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.5.31"></script>
+	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.5.33"></script>
 	<style type="text/css">
 		table {
 			font-size: 12px;
@@ -133,7 +133,7 @@
 	</div>
 
 
-	<div id="advancedSearchWin" class="nui-window" title="高级查询" style="width: 430px; height: 460px;" showModal="true" allowResize="false"
+	<div id="advancedSearchWin" class="nui-window" title="高级查询" style="width: 500px; height: 520px;" showModal="true" allowResize="false"
 	 allowDrag="false">
 		<div id="advancedSearchForm" class="form">
 			<table style="width: 100%;">
@@ -145,7 +145,7 @@
 					<td>
 						<input name="lastEnterStart" width="100%" class="nui-datepicker" />
 					</td>
-					<td class="">
+					<td align="center">
 						<label>至:</label>
 					</td>
 					<td>
@@ -160,7 +160,7 @@
 					<td>
 						<input name="firstEnterStart" width="100%" class="nui-datepicker" />
 					</td>
-					<td class="">
+					<td align="center">
 						<label>至:</label>
 					</td>
 					<td>
@@ -175,7 +175,7 @@
 					<td>
 						<input name="lastOutStart" width="100%" class="nui-datepicker" />
 					</td>
-					<td class="">
+					<td align="center">
 						<label>至:</label>
 					</td>
 					<td>
@@ -190,7 +190,7 @@
 					<td>
 						<input name="recordStart" width="100%" class="nui-datepicker" />
 					</td>
-					<td class="">
+					<td align="center">
 						<label>至:</label>
 					</td>
 					<td>
@@ -205,7 +205,7 @@
 					<td colspan="">
 						<input name="insureDueDateStar" width="100%" class="nui-datepicker" />
 					</td>
-					<td class="">
+					<td align="center">
 						<label>至:</label>
 					</td>
 					<td>
@@ -220,7 +220,7 @@
 					<td colspan="">
 						<input name="annualVerificationDueDateStar" width="100%" class="nui-datepicker" />
 					</td>
-					<td class="">
+					<td align="center">
 						<label>至:</label>
 					</td>
 					<td>
@@ -235,7 +235,7 @@
 					<td colspan="">
 						<input name="annualVerificationDueDateStar" width="100%" class="nui-datepicker" />
 					</td>
-					<td class="">
+					<td align="center">
 						<label>至:</label>
 					</td>
 					<td>
@@ -250,7 +250,7 @@
 					<td>
 						<input class="nui-textbox" name="chainConsumeAmtStar" id="startAmt" style="width: 100%;" vtype="int" value=""/>
 					</td>
-					<td class="">
+					<td align="center">
 						<label>到:</label>
 					</td>
 					<td>
@@ -265,13 +265,41 @@
 					<td>
 						<input class="nui-textbox" name="chainComeTimesStar" id="startAmt" style="width: 100%;" vtype="int" value=""/>
 					</td>
-					<td class="">
+					<td align="center">
 						<label>到:</label>
 					</td>
 					<td>
 						 <input class="nui-textbox" name="chainComeTimesEnd" id="endAmt" style="width: 100%;" vtype="int" value=""/>
 					</td>
 				</tr>
+				<tr>
+					<td class="title">
+						<label>积分范围在:</label>
+					</td>
+					<td>
+						<input class="nui-textbox" name="" id="" style="width: 100%;" vtype="int" value=""/>
+					</td>
+					<td align="center">
+						<label>到:</label>
+					</td>
+					<td>
+						 <input class="nui-textbox" name="" id="" style="width: 100%;" vtype="int" value=""/>
+					</td>
+				</tr>
+				<tr>
+					<td class="title">
+						<label>余额范围在:</label>
+					</td>
+					<td>
+						<input class="nui-textbox" name="" id="" style="width: 100%;" vtype="int" value=""/>
+					</td>
+					<td align="center">
+						<label>到:</label>
+					</td>
+					<td>
+						 <input class="nui-textbox" name="" id="" style="width: 100%;" vtype="int" value=""/>
+					</td>
+				</tr>								
 				 <tr>
 					<!-- <td class="title">
 						<label>客户类型:</label>
@@ -284,65 +312,65 @@
 					<td class="title">
 						<label>客户等级:</label>
 					</td>
-					<td colspan="3">
+					<td colspan="">
 						 <input class="nui-combobox" name="guestTypeId" id="guestTypeId" style="width: 100%;"  required="false" multiSelect="true"
                         textField="name" valueField="id" allowInput="false" />
 					</td>
-				</tr> 
-				
-				<tr>
-					<td class="title">
+					<td width="60px" align="center">
 						<label>客户名称:</label>
 					</td>
-					<td colspan="3">
+					<td colspan="">
 					    <input class="nui-textbox" name="guestFullName" id="guestFullName" style="width: 100%;"  value=""/>
 						<!-- <input name="guestId" id="guestId1" class="nui-buttonedit" emptyText="请选择客户..." onbuttonclick="selectCustomer('guestId1')"
 						 width="100%" allowInput="false" selectOnFocus="true" /> -->
 					</td>
-				</tr>
-				<!-- <tr>
-					<td class="title">
-						<label>品牌:</label>
-					</td>
-					<td colspan="1">
-						<input class="nui-combobox" name="carBrandId" width="100%" id="carBrandId" valueField="id" onvaluechanged="onCarBrandChange"
-						 textField="nameCn" />
-					</td>
-					<td class="" width="50">
-						<label>品牌车型:</label>
-					</td>
-					<td colspan="1">
-						<input class="nui-combobox" name="carModelId" width="100%" id="carModelId" valueField="carModelId" textField="carModel"
-						/>
-					</td>
-				</tr> -->
+				</tr> 
 				<tr>
 					<td class="title">
 						<label>品牌:</label>
 					</td>
-					<td colspan="3">
+					<td colspan="">
 						<input class="nui-combobox" name="carBrandId" width="100%" id="carBrandId" valueField="id" onvaluechanged="onCarBrandChange" 
 						 textField="nameCn"  allowInput="true" />
 					</td>
-				</tr>
-				<tr>
-					<td class="title">
+					<td align="center">
 						<label>品牌车型:</label>
 					</td>
-					<td colspan="3">
-						<input class="nui-combobox" name="carModelId" width="100%" id="carModelId" valueField="carModelId" textField="carModel" allowInput="true"
-						/>
+					<td colspan="">
+						<input class="nui-combobox" name="carModelId" width="100%" id="carModelId" valueField="carModelId" textField="carModel" allowInput="true"/>
 					</td>
-				</tr>
+				</tr>				
 				<tr>
 					<td class="title">
+						<label>服务顾问:</label>
+					</td>
+					<td colspan="">
+					   <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
+                        emptyText="服务顾问" url=""  allowInput="true" showNullItem="true" nullItemText="所有"  width="100%" valueFromSelect="true"  onenter="onenterMtAdvisor(this.value)"/>
+					</td>
+<!-- 					<td width="60px" align="center">
+						<label>客户标签:</label>
+					</td>
+					<td colspan="">
+					    <input class="nui-textbox" name="" id="" style="width: 100%;"  value=""/>
+					</td> -->
+					<td width="60px" align="center">
 						<label>连锁客户:</label>
 					</td>
-					<td colspan="3">
+					<td colspan="">
 						<input class="nui-checkbox" id="isChain"   value="0" checked="checked" name="isChain"  trueValue="1" falseValue="0" />
 					</td>
 				</tr>
-				
+				<tr>
+					<td class="title">
+						<label>客户属性：</label>
+					</td>
+					<td colspan="3">
+				        <input class="nui-radiobuttonlist" name="guestProperty" id="guestProperty" emptyText="客户属性" valueField="customid"  textField="name" width="100%" allowInput="true" showNullItem="false" valueFromSelect="true" />
+					</td>
+				</tr>
+				<tr>
+				</tr>
 			</table>
 			<div style="text-align: center; padding: 10px;">
 				<a class="nui-button" onclick="onAdvancedSearchOk" style="width: 60px; margin-right: 20px;">确定</a>

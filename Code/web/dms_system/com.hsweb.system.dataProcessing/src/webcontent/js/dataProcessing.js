@@ -114,7 +114,7 @@ function save(){
 				showMsg("清除成功!","S")
 				CloseWindow("ok");
 			}else{
-				showMsg(text.errMsg||"清除失败!","W")
+				showMsg(text.errMsg||"清除失败!","W");
 			}
 		}
 	 });

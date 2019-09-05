@@ -1315,6 +1315,14 @@
       <process:from type="query" pattern="reference">operateDate</process:from>
       <process:to type="query">outmain/auditDate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">020502</process:from>
+      <process:to type="query">outmain/settleTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">010103</process:from>
+      <process:to type="query">outmain/billTypeId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign22label" name="label" nodeType="label">
     <location x="-102" y="359"/>

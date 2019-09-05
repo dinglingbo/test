@@ -519,14 +519,28 @@
 		}
 		//汽修 
 		else{   
-		   showMsg("登录超时，正在跳转！", "E");
-		   if(currSource=="easy"){
+		    showMsg("登录超时，正在跳转！", "E");
+		    var currDomain = document.domain;
+		    if (currDomain == 'qxy.7xdr.com') {
+			  window.top.location.href= sysDomain + '/coframe/auth/login/login.jsp';
+			} else if (currDomain == 'bx.7xdr.com') {
+			  window.top.location.href= sysDomain + '/coframe/auth/waveBox/login.jsp';
+			} else if (currDomain == 'cd.7xdr.com') {
+			  window.top.location.href= sysDomain + '/coframe/auth/hs/login.jsp';
+			} else if (currDomain == 'sif.7xdr.com') {
+			  window.top.location.href= sysDomain + '/coframe/auth/sif/login.jsp';
+			} else if (currDomain == 'cw.7xdr.com') {
+			  window.top.location.href= sysDomain + '/coframe/auth/cw/login.jsp';
+			} else if (currDomain == 'qxy60.hszb.harsons.cn') {
+			  window.top.location.href= sysDomain + '/coframe/auth/login/login.jsp';
+			}
+		    /* if(currSource=="easy"){
 		 		window.top.location.href = sysDomain + "/coframe/auth/easy/login.jsp";
 			}else if(currSource=="waveBox"){
 		 		window.top.location.href = sysDomain + "/coframe/auth/waveBox/login.jsp";
 			}else{
 			   window.top.location.href = sysDomain + "/coframe/auth/login/login.jsp";
-			}
+			} */
 		
  		}
 	// 汽配

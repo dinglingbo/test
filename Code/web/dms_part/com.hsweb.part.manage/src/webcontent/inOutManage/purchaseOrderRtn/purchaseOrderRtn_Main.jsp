@@ -128,7 +128,7 @@
                     <div allowSort="true" field="serviceId" width="160" summaryType="count" headerAlign="center" header="退货单号"></div>
                     <div field="guestFullName" name="guestFullName" width="190" headerAlign="center" header="供应商"></div>
                     <div field="orderMan" width="90" name="orderMan" headerAlign="center" header="采购员"></div>
-                    <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
+                    <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型" visible="false"></div>
                     <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
                     <div allowSort="true" field="createDate"  width="130" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div>

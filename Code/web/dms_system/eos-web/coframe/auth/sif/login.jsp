@@ -27,9 +27,9 @@
    String contextPath=request.getContextPath();
    String url = null;
     String sweepCodeUrl = null;
-   String loginUrl = "org.gocom.components.coframe.auth.login.hs.flow";
-   String sweepCodeFlow = "com.hsapi.system.auth.login.qrhs.flow";
-   loginUrl = "com.hsapi.system.auth.login.hs.flow";
+   String loginUrl = "org.gocom.components.coframe.auth.login.sif.flow";
+   String sweepCodeFlow = "com.hsapi.system.auth.login.qrsif.flow";
+   loginUrl = "com.hsapi.system.auth.login.sif.flow";
    String regUrl = "com.hsapi.system.auth.login.registerOfm.flow";
    
    HttpSecurityConfig securityConfig = new HttpSecurityConfig();
@@ -41,9 +41,9 @@
    if(isOpenSecurity){
    		boolean isAllInHttps = securityConfig.isAllInHttps();
    		if(!isAllInHttps){
-   			url = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/login/" + loginUrl;
-   			sweepCodeUrl = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/login/" + sweepCodeFlow;
-   			regUrl = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/login/" + regUrl;
+   			url = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/sif/" + loginUrl;
+   			sweepCodeUrl = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/sif/" + sweepCodeFlow;
+   			regUrl = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/sif/" + regUrl;
 
    		}else{
    			url = loginUrl;
@@ -59,8 +59,8 @@
 	String apiPath = "";
 	String sysApi = Env.getContributionConfig("system", "url", "apiDomain", "SYS");
 	String sendUrl = apiPath + sysApi + "/com.hsapi.system.tenant.register.sendRegisterMsg.biz.ext";
-	String privacyUrl = request.getContextPath() + "/coframe/auth/login/privacyUrl.jsp";
-	String protocolUrl = request.getContextPath() + "/coframe/auth/login/protocolUrl.jsp";
+	String privacyUrl = request.getContextPath() + "/coframe/auth/sif/privacyUrl.jsp";
+	String protocolUrl = request.getContextPath() + "/coframe/auth/sif/protocolUrl.jsp";
  %> 
 <style type="text/css">
 html{
@@ -326,7 +326,7 @@ a {
 	<div class="login" id="sweepCodeBox">
 		<div class="title"><font color="#0050fb9e" >扫码登录</font>  | <span class="blue1" id="login1">账号登录</span></div>
 		<div id="qrcode" ></div>
-		<div class="you" >打开链车云修手机APP扫描二维码</div>
+		<div class="you" >打开西神SaaS平台手机APP扫描二维码</div>
 	</div>
 </form>	
 
@@ -349,7 +349,7 @@ a {
 				</div>
 			</div> -->		
 			<div class="log">
-				欢迎登录链车云修
+				欢迎登录西神SaaS平台
 				<span>为了保障您顺畅的使用，建议使用谷歌/火孤/360浏览器</span>
 			</div>
 		</div>

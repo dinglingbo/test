@@ -8,7 +8,7 @@
 <html>
 <head>
 
-<title>车道商户版</title>
+<title>车速云修</title>
 <script  src="<%= request.getContextPath() %>/common/nui/nui.js?v=2.1.50" type="text/javascript" ></script>
 <script src="<%= request.getContextPath() %>/common/js/qrcode.js" type="text/javascript"></script>
 <meta charset="utf-8">
@@ -113,7 +113,7 @@ body {
 .login_box .login .loginTitle .log {
 	float: left;
 	font-size: 25px;
-	text-align: -webkit-center;
+	text-align: left;
 	padding-top: 10px;
 }
 .login_box .login .loginTitle .log span {
@@ -326,7 +326,7 @@ a {
 	<div class="login" id="sweepCodeBox">
 		<div class="title"><font color="#0050fb9e" >扫码登录</font>  | <span class="blue1" id="login1">账号登录</span></div>
 		<div id="qrcode" ></div>
-		<div class="you" >打开车道手机APP扫描二维码</div>
+		<div class="you" >打开车速云修APP扫描二维码</div>
 	</div>
 </form>	
 
@@ -348,8 +348,8 @@ a {
 					<img src="images/xiongying.jpg"  />
 				</div>
 			</div> -->		
-			<div class="log" style="">
-				欢迎登录
+			<div class="log">
+				欢迎登录车速云修
 				<span>为了保障您顺畅的使用，建议使用谷歌/火孤/360浏览器</span>
 			</div>
 		</div>

@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/2/1.
  */
 var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.part.invoice.partAllot.queryPjAllotMainList.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.part.invoice.partAllot.queryPjAllotTableList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -20,11 +20,12 @@ var billTypeIdHash = {};
 var settTypeIdHash = {};
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
-
-var statusHash = {
-    "0":"未入库",
-    "1":"部分入库",
-    "2":"全部入库"
+var statusHash = ["草稿","已提交","已受理","已拒绝","作废"];
+var stockStatusHash = {
+		"1":"待入库",
+		"2":"待出库",
+		"3":"已出库",
+		"4":"已入库"
 };
 $(document).ready(function(v)
 {
@@ -183,7 +184,6 @@ function doSearch(params)
    // params.isDiffOrder = 0;
 	params.sortField = "audit_date";
 	params.sortOrder = "desc";
-	params.isReport = 1;
     rightGrid.load({
         params:params,
         token:token
@@ -342,6 +342,7 @@ function selectSupplier(elId) {
 
 function onDrawCell(e)
 {
+	var record = e.record;
     switch (e.field)
     {
 	    case "partBrandId":
@@ -383,7 +384,7 @@ function onDrawCell(e)
                 e.cellHtml = billTypeIdHash[e.value].name;
             }
             break;
-        case "storeId":
+        case "enterStoreId":
             if(storehouseHash && storehouseHash[e.value])
             {
                 e.cellHtml = storehouseHash[e.value].name;
@@ -396,6 +397,25 @@ function onDrawCell(e)
             var dayCount = parseInt((nowTime - enterTime) / 1000 / 60 / 60 / 24);
             e.cellHtml = dayCount+1;
             break;
+        case "status":
+        	if(e.value==1){
+      		   if(record.orgid==currOrgid){
+      			   e.cellHtml = statusHash[e.value]; 
+      		   }else{
+      			   if(record.auditSign==1){
+      				   e.cellHtml = "已受理";
+      			   }else{
+      				   e.cellHtml = "未受理";
+      			   }
+      			  
+      		   }
+      	   }else{
+      		   e.cellHtml = statusHash[e.value]; 
+      	   }
+        break;
+        case "stockStatus":
+      	  e.cellHtml = stockStatusHash[e.value];
+      	break;
         default:
             break;
     }

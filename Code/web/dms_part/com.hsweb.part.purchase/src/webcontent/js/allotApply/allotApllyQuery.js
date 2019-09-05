@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/2/1.
  */
 var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.part.invoice.allotsettle.queryAllotApplyDetails.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.part.invoice.partAllot.queryPjAllotMainList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -180,9 +180,10 @@ function doSearch(params)
 {
 	params.orgid =currOrgid;
     params.orderTypeId = 1;
-    params.isDiffOrder = 0;
+   // params.isDiffOrder = 0;
 	params.sortField = "audit_date";
 	params.sortOrder = "desc";
+	params.isReport = 1;
     rightGrid.load({
         params:params,
         token:token

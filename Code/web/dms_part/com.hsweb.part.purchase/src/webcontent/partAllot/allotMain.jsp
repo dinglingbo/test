@@ -10,7 +10,7 @@
 -->
 <head>
 <title>调拨单</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/partAllot/allotMain.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/partAllot/allotMain.js?v=1.0.1"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -56,15 +56,17 @@
              <label>快速查询：</label>
              <a class="nui-menubutton " menu="#popupMenuType" id="menunamestatus">所有</a>
                 <ul id="popupMenuType" class="nui-menu" style="display:none;">
-              <li iconCls="" onclick="quickSearch(0)" id="type0">所有</li>
-              <span class="separator"></span>
-              <li iconCls="" onclick="quickSearch(0)" id="type0">所有</li>
+                <li iconCls="" onclick="quickSearch(0)" id="type0">所有</li>
+                <span class="separator"></span>
                 <li iconCls="" onclick="quickSearch(1)" id="type1">草稿</li>
-                 <li iconCls="" onclick="quickSearch(2)" id="type2">已提交</li>
+                <li iconCls="" onclick="quickSearch(2)" id="type2">已提交</li>
+                <span class="separator"></span>
                 <li iconCls="" onclick="quickSearch(3)" id="type3">待受理</li>
                 <li iconCls="" onclick="quickSearch(4)" id="type4">已受理</li>
+                 <span class="separator"></span>
                 <li iconCls="" onclick="quickSearch(5)" id="type5">待出库</li>
                 <li iconCls="" onclick="quickSearch(6)" id="type6">已出库</li>
+                 <span class="separator"></span>
                 <li iconCls="" onclick="quickSearch(7)" id="type7">待入库</li>
                 <li iconCls="" onclick="quickSearch(8)" id="type8">已入库</li>
             </ul>
@@ -134,7 +136,7 @@
                url="">
 			<div property="columns">
                   <div type="indexcolumn">序号</div>
-                    <div field="serviceId" headerAlign="center" width="150" header="单号"></div>
+                    <div field="serviceId" headerAlign="center" width="180" header="单号"></div>
                     <div field="outStoreId" headerAlign="center" width="150" header="调出仓库"></div>
                     <div field="guestOrgid" headerAlign="center" width="150" header="调出门店"></div>
                     <div field="enterStoreId" headerAlign="center" width="150" header="调入仓库"></div>

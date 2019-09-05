@@ -158,9 +158,13 @@ function ExportExcel() {
     }
     var columns = getColumns(columns);
 
-    DownLoad("#", { type: "excel", columns: columns }, function () {
+    DownLoad(webPath + contextPath + "/common/nui/themes/scripts/export.aspx", { type: "excel", columns: columns }, function () {
        // alert("导出成功");
     });
+    
+/*    DownLoad("export.aspx", { type: "excel", columns: columns }, function () {
+        // alert("导出成功");
+     });*/
 
 }
 

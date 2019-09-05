@@ -346,11 +346,11 @@
     <size height="28" width="28"/>
     <nodeLabel>assign21label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="literal" pattern="reference">010103</process:from>
       <process:to type="query">billTypeId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="literal" pattern="reference">020502</process:from>
       <process:to type="query">settleTypeId</process:to>
     </process:copy>
     <process:copy>
@@ -1206,7 +1206,7 @@
       <targetNode>assign18</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -1265,7 +1265,7 @@
       <targetNode>assign12</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

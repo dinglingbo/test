@@ -54,7 +54,7 @@
 				a.state_sign_out as stateSignOut,
 				a.state_date_out as stateDateOut,
 				B.FULL_NAME AS guestFullName,
-				B.SHORT_NAME AS guestShortName,
+				B.SHORT_NAME AS guestShortName
 			FROM
 				wb_part.pj_allot_main A
 				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID

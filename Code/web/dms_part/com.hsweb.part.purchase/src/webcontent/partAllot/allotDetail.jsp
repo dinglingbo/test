@@ -64,7 +64,7 @@ body .mini-grid-row-selected{
 </div>
 
 
-<div class="nui-fit">
+  <div class="nui-fit">
              <div class="nui-fit">
                   <fieldset id="fd1" style="width:99.5%;height:100px;">
                       <legend><span>调拨单信息</span></legend>
@@ -80,7 +80,7 @@ body .mini-grid-row-selected{
                               <input class="nui-hidden" name="guestOrgid" id="guestOrgid"/>
                                <input class="nui-hidden" name="orgid" id="orgid"/>
                               <input class="nui-hidden" name="auditSign"/>
-                              <input name="partBrandId"id="partBrandId"  visible="false"class="nui-combobox" />
+                              <input name="partBrandId"id="partBrandId"  visible="false" class="nui-combobox" />
                               <table style="width: 100%;">
                                   <tr>
                                       <td class="title required">
@@ -250,9 +250,8 @@ body .mini-grid-row-selected{
                            allowCellSelect="true"
                            allowCellEdit="true"
                            oncellcommitedit="onCellCommitEdit"
-                           oncelleditenter="onCellEditEnter"
+                           oncelleditenter=""
                            onselectionchanged=""
-                           
                            showModified="false"
                            editNextOnEnterKey="true"
                            allowCellWrap = "true"

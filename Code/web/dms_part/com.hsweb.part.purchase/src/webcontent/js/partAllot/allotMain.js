@@ -305,6 +305,7 @@ function quickSearch(type) {
 
 function doSearch(params) {
 	params.orgid = currOrgId;
+	params.isDisabled = 0;
    var startDate = beginDateEl.getValue();
    var endDate = addDate(endDateEl.getValue(),1);
    params.startDate = startDate;

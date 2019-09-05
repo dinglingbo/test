@@ -130,7 +130,7 @@
                editNextOnEnterKey="true"
                allowCellWrap = "true"
                showSummaryRow = "true"
-               showPager = "false"
+               showPager = "true"
                sortMode="client"
                onshowrowdetail="onShowRowDetail"
                url="">

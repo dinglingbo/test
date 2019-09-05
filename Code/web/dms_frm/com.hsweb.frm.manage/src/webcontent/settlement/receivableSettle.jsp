@@ -1,4 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="/WEB-INF/tlds/btnAuth.tld" prefix="btnAuth" %>
 <%@include file="/common/commonPart.jsp"%>
 <html>
 <!-- 
@@ -161,7 +162,10 @@
 						<ul id="popupMenuMore" class="nui-menu" style="display:none;">
 		                    <li iconCls="" onclick="onExport()" id="">导出</li>
 		                    <li iconCls="" onclick="print()" id="type11">打印欠款单</li>
-		                    <li iconCls="" onclick="reverseSettle()" id="type12">反结算</li>
+		                    
+		                    <btnAuth:MyAuth btnArea="frm_payment_account_1"/>
+		                    <!-- 
+		                    <li iconCls="" onclick="reverseSettle()" id="type12">反结算</li> -->
 		                </ul>
 					</td>
 				</tr>

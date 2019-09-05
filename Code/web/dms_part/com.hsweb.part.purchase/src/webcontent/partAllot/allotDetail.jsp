@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调拨申请</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/partAllot/allotDetail.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/partAllot/allotDetail.js?v=1.0.2"></script>
 <style type="text/css">
 .title {
   width: 70px;
@@ -43,18 +43,19 @@ body .mini-grid-row-selected{
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
     <table style="width:100%;">
         <tr>
-            <td style="width:100%;" align="right">
-                <label style="font-family:Verdana;"><span id="repairStatus" name="statusvi" class="nvstatusview" >草稿</span></label>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <td style="width:100%;">
+                <span  id="bServiceId" style="">调拨单号：新调拨单</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save('0')" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="submit()" visible="true"  id="submitBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="accept()" visible="true"  id="acceptBtn"><span class="fa fa-check fa-lg"></span>&nbsp;受理</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="refuse()" visible="true"  id="refuseBtn"><span class="fa fa-check fa-lg"></span>&nbsp;拒绝</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="refuse()" visible="true"  id="refuseBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;拒绝</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="inStock()" visible="true"  id="inStockBtn"><span class="fa fa-check fa-lg"></span>&nbsp;入库</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="outStock()" visible="true"  id="outStockBtn"><span class="fa fa-check fa-lg"></span>&nbsp;出库</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="del()" visible="true" id="delBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="delReturn()" visible="false" id="delReturnBtn"><span class="fa fa-reply fa-lg"></span>&nbsp;反作废</a>
+                &nbsp;
+                <label style="font-family:Verdana;"><span id="repairStatus" name="statusvi" class="nvstatusview" >草稿</span></label>
                 <!-- <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a> -->
                 <!-- <span id="status"></span> -->
             </td>
@@ -63,7 +64,7 @@ body .mini-grid-row-selected{
 </div>
 
 
-<div class="nui-fit">
+  <div class="nui-fit">
              <div class="nui-fit">
                   <fieldset id="fd1" style="width:99.5%;height:100px;">
                       <legend><span>调拨单信息</span></legend>
@@ -79,7 +80,7 @@ body .mini-grid-row-selected{
                               <input class="nui-hidden" name="guestOrgid" id="guestOrgid"/>
                                <input class="nui-hidden" name="orgid" id="orgid"/>
                               <input class="nui-hidden" name="auditSign"/>
-                              <input name="partBrandId"id="partBrandId"  visible="false"class="nui-combobox" />
+                              <input name="partBrandId"id="partBrandId"  visible="false" class="nui-combobox" />
                               <table style="width: 100%;">
                                   <tr>
                                       <td class="title required">
@@ -249,9 +250,8 @@ body .mini-grid-row-selected{
                            allowCellSelect="true"
                            allowCellEdit="true"
                            oncellcommitedit="onCellCommitEdit"
-                           oncelleditenter="onCellEditEnter"
+                           oncelleditenter=""
                            onselectionchanged=""
-                           oncellbeginedit="OnrpMainGridCellBeginEdit"
                            showModified="false"
                            editNextOnEnterKey="true"
                            allowCellWrap = "true"
@@ -262,7 +262,7 @@ body .mini-grid-row-selected{
                                   <div property="columns">
                                     <div field="operateBtn" name="operateBtn" width="50" headerAlign="center" header="删除"></div>
                                       <div field="comPartCode" name="comPartCode" width="100" summaryType="count" headerAlign="center" header="配件编码">
-                                          <input property="editor" class="nui-textbox" />
+                                          <input property="editor" class="nui-textbox" onenter="coverPart(e.value)" id="inputCode"/>
                                       </div>
                                       <div field="comPartName" visible="false" headerAlign="center" header="配件名称"></div>
                                       <div field="fullName"  width="200" headerAlign="center" header="配件全称"></div>

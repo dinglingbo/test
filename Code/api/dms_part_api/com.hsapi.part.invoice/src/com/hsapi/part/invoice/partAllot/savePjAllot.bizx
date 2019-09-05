@@ -104,15 +104,12 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.queryPjAllotMainList</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="page" type="query" value="com.eos.foundation.PageCond" valueType="DataObject" pattern="reference">value</process:inputVariable>
-        <process:inputVariable id="1" name="pageIndex" type="query" value="Int" valueType="Primitive" pattern="reference">value</process:inputVariable>
-        <process:inputVariable id="2" name="pageSize" type="query" value="Int" valueType="Primitive" pattern="reference">value</process:inputVariable>
-        <process:inputVariable id="3" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">params</process:inputVariable>
+        <process:inputVariable id="0" name="page" type="query" value="com.eos.foundation.PageCond" valueType="DataObject" pattern="reference">page</process:inputVariable>
+        <process:inputVariable id="1" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">params</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="pjAllotMainList" type="query" value="commonj.sdo.DataObject[]" valueType="Java">pjAllotMainList</process:outputVariable>
-        <process:outputVariable id="1" name="total" type="query" value="Int" valueType="Primitive">value</process:outputVariable>
-        <process:outputVariable id="2" name="totalPage" type="query" value="Int" valueType="Primitive">value</process:outputVariable>
+        <process:outputVariable id="1" name="page" type="query" value="com.eos.foundation.PageCond" valueType="DataObject">page</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -620,7 +617,7 @@
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query">auditSign</process:leftOperand>
-          <process:rightOperand type="literal">4</process:rightOperand>
+          <process:rightOperand type="literal">6</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -1111,6 +1108,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.com.ComGuest" name="enterGuest"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="p"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="oldId" primitiveType="Long"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="主表信息" isArray="false" modelType="com.hsapi.part.data.pts.PjAllotMain" name="main"/>

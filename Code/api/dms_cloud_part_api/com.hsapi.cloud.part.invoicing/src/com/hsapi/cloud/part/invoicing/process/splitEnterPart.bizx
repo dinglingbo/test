@@ -205,6 +205,14 @@
       <process:from type="query" pattern="reference">processMain/id</process:from>
       <process:to type="query">enterMain/codeId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">020502</process:from>
+      <process:to type="query">enterMain/settleTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">010103</process:from>
+      <process:to type="query">enterMain/billTypeId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="127" y="130"/>

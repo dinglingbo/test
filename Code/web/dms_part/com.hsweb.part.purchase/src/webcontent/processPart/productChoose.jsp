@@ -55,6 +55,7 @@
 		           sizeList="[1000,5000,10000]"
 		           onshowrowdetail="onShowRowDetail"
 		           totalField="page.count"
+		           selectOnLoad="true"
 		           showSummaryRow="true">
 		          <div property="columns">
 		              <div type="indexcolumn">序号</div>

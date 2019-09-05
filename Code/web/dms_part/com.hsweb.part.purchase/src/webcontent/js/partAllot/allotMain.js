@@ -20,7 +20,7 @@ var stockStatusHash = {
 		"2":"待出库",
 		"3":"已出库",
 		"4":"已入库"
-}
+};
 //受理状态：0草稿、1待受理(提交)、2已受理、3已拒绝，4作废
 var statusHash = ["草稿","已提交","已受理","已拒绝","作废"];
 var typeF = 0;
@@ -305,6 +305,7 @@ function quickSearch(type) {
 
 function doSearch(params) {
 	params.orgid = currOrgId;
+	params.isDisabled = 0;
    var startDate = beginDateEl.getValue();
    var endDate = addDate(endDateEl.getValue(),1);
    params.startDate = startDate;

@@ -392,6 +392,36 @@ function onOut(){
 	onOutRecord(partId);
 }
 
+//查看出库记录
+function sellRecord(){
+	var row ={};
+	row = rightGrid.getSelected();
+	if(!row){
+		showMsg("请选择一条记录","W");
+		return;
+	}
+	var partId = row.partId;
+	nui.open({
+		url : webPath+contextPath+"/com.hsweb.part.common.partSellRecord.flow?token="+token,
+		title : "占用记录",
+		width : 780,
+		height : 500,
+		allowDrag : true,
+		allowResize : true,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+			var params = {
+				partId: partId,
+                token :token
+            };
+            iframe.contentWindow.SetData(params);
+		},
+		ondestroy : function(action) {
+			
+		}
+	});
+}
+
 var supplier = null;
 function selectSupplier(elId)
 {
@@ -436,7 +466,10 @@ function activechangedmain(){
 	        params:params,
 	        token:token
 	    });
+	    nui.get("menuMore").setVisible(true);
 	}else if(tabs.name=="batch"){
+		//不显示更多
+		 nui.get("menuMore").setVisible(false);
 	    //批次
 		var params = getSearchParam();
 		params.outableQty = 0;
@@ -450,6 +483,7 @@ function activechangedmain(){
 	    	}
 	    	rightGrid2.setData(detail);
 	    });
+	    
 	}
 }
 

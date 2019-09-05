@@ -1320,7 +1320,7 @@
     <location x="418" y="171"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess4label</nodeLabel>
-    <process:flow index="0" synchronization="false" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.repair.repairService.svr.serviceVinModel</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="car" type="query" value="com.hsapi.repair.data.rpbse.RpbCar" valueType="DataObject" pattern="reference">tmp</process:inputVariable>

@@ -27,9 +27,9 @@
    String contextPath=request.getContextPath();
    String url = null;
     String sweepCodeUrl = null;
-   String loginUrl = "org.gocom.components.coframe.auth.login.login.flow";
-   String sweepCodeFlow = "com.hsapi.system.auth.login.qrLogin.flow";
-   loginUrl = "com.hsapi.system.auth.login.login.flow";
+   String loginUrl = "org.gocom.components.coframe.auth.login.hs.flow";
+   String sweepCodeFlow = "com.hsapi.system.auth.login.qrhs.flow";
+   loginUrl = "com.hsapi.system.auth.login.hs.flow";
    String regUrl = "com.hsapi.system.auth.login.registerOfm.flow";
    
    HttpSecurityConfig securityConfig = new HttpSecurityConfig();

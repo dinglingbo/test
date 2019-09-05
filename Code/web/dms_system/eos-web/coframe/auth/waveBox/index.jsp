@@ -17,7 +17,7 @@
     <script src="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menu/menu.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menupop.js" type="text/javascript"></script>
     <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/tabs.css" rel="stylesheet" type="text/css" />
-    <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/frame.css?v=1.0.14" rel="stylesheet" type="text/css" />
+    <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/frame.css?v=1.0.15" rel="stylesheet" type="text/css" />
     <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/index.css?v=1.0.12" rel="stylesheet" type="text/css" />
     <link href="<%=webPath + contextPath%>/common/nui/themes/cupertino/skin.css" rel="stylesheet"	type="text/css" />
     <link href="<%=request.getContextPath()%>/common/nui/res/third-party/scrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
@@ -144,7 +144,7 @@
 
 <div class="container">
     <div class="navbar" id="skin" style="margin-left: -80px;    background-color: #0067b8;">
-        <div class="navbar-brand" id="systemName">车道商户版管理系统</div>
+        <div class="navbar-brand" id="systemName">车速云修</div>
         <ul class="nav navbar-nav navbar-right">
             <!-- <li><a href="#"><i class="fa fa-paper-plane"></i> 代办事项</a></li>
             <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li> -->

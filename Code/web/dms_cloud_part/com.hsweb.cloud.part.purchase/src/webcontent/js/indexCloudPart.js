@@ -405,12 +405,12 @@ function showMain() {
                         interval:0,//横轴信息全部显示
                         rotate:rot,//-30度角倾斜显示 (省份)
                     },
-                    data: staffArr,
-                    axisTick: {
-                        alignWithLabel: true
-                    }
+                data: staffArr,
+                axisTick: {
+                    alignWithLabel: true
                 }
-                ],
+            }
+            ],
                 yAxis: [
                 {
                     type: 'value',

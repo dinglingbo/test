@@ -12,7 +12,7 @@
 <title>数据处理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     	<%@include file="/common/sysCommon.jsp"%>
-   <script src="<%= request.getContextPath() %>/dataProcessing/js/dataProcessing.js?v=1.0.7"></script>
+   <script src="<%= request.getContextPath() %>/dataProcessing/js/dataProcessing.js?v=1.0.9"></script>
     <style type="text/css">
     	.da{
     		font-weight:bold;

@@ -1,6 +1,9 @@
 var treeList = [
                 {id: "base", text: "数据清除"},
             	{id: "wbRps", text: "售后业务数据", pid: "base"},
+            	{id: "rpsCard", text: "次卡储值卡数据", pid: "wbRps"},
+            	{id: "rpsMaintain", text: "工单数据", pid: "wbRps"},
+            	{id: "wbRepair", text: "售后功能项目数据", pid: "wbRps"},
             	
             	{id: "wbPart", text: "售后库存数据", pid: "base"},
             	{id: "wbGuest", text: "售后客户数据", pid: "base"},

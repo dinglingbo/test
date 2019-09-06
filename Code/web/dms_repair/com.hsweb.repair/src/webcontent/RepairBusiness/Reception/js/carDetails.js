@@ -24,6 +24,7 @@ var onSearchParams = {};//现在用于查询本车或者客户全部
 var rpsPackageGrid = null;
 var rpsItemGrid = null;
 var guestTypeList = [];
+var guestTypeHash = {};
 var prdtTypeHash = {
 	    "1":"套餐",
 	    "2":"项目",
@@ -370,14 +371,15 @@ $(document).ready(function () {
    	guestTypeList.forEach(function(v) {
    		guestTypeHash[v.id] = v;
        });
-   });    
+   }); 
 initDicts({
    // visitMode: "DDT20130703000021",//跟踪方式
     chanceType:SELL_TYPE,//商机
       //carSpec:CAR_SPEC,//车辆规格
       //kiloType:KILO_TYPE,//里程类别
       //source:GUEST_SOURCE,//客户来源
-      identity:IDENTITY //客户身份
+      identity:IDENTITY, //客户身份
+      guestProperty:GUEST_PROPERTY //客户类别
   },function(){
 	   identityList = nui.get("identity").getData();
 	  sfData = nui.get("chanceType").getData();
@@ -487,6 +489,13 @@ function SetData(params) {
         	var guest = data.guest||[{}];
             var form1 = new nui.Form("#editForm4");
             form1.setData(guest);
+    	    if(guest.tgrade){
+    	    	var tgrade = guest.tgrade
+    	    	var num = parseInt(tgrade);
+    	    	var tgradeName = guestTypeHash[num].name;
+    	    	nui.get("guestTypeId").setText(tgradeName);
+    	    	nui.get("guestTypeId").setValue(tgrade);
+    	    }
         	var contactList = data.contactList||[{}];
             //var form5 = new nui.Form("#editForm5");
             //form5.setData(contactList[0]);

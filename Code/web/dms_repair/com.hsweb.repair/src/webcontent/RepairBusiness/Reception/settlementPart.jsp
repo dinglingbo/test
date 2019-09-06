@@ -1006,13 +1006,17 @@
     			var value = enterDate.substring(0, enterDate-3);
     			document.getElementById("updateEnterDate").value = value.replace(" ","T");
     		}else{
-    			document.getElementById("updateEnterDate").value = enterDate.replace(" ","T");
+    			 var date = new Date();
+	             var moDate = format(date, "yyyy-MM-dd HH:mm");
+    			 document.getElementById("updateEnterDate").value = moDate.replace(" ","T");
     		}
     		if(outDate > 16){
     			var value = outDate.substring(0, outDate-3);
     			document.getElementById("updateOutDate").value = value.replace(" ","T");
     		}else{
-    			document.getElementById("updateOutDate").value = outDate.replace(" ","T");
+    			var date = new Date();
+	            var moDate = format(date, "yyyy-MM-dd HH:mm");
+    		    document.getElementById("updateOutDate").value = moDate.replace(" ","T");
     		}
     	}
     	

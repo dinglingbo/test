@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/2/1.
  */
 var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.part.invoice.allotsettle.queryAllotApplyDetails.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.part.invoice.partAllot.queryPjAllotTableList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -25,6 +25,12 @@ var statusHash = {
     "0":"未入库",
     "1":"部分入库",
     "2":"全部入库"
+};
+var stockStatusHash = {
+		"1":"待入库",
+		"2":"待出库",
+		"3":"已出库",
+		"4":"已入库"
 };
 $(document).ready(function(v)
 {
@@ -102,9 +108,10 @@ function getSearchParam(){
 	params.partCode = comPartCode.getValue().replace(/\s+/g, "");
 	params.partNameAndPY = comPartNameAndPY.getValue().replace(/\s+/g, "");
 	params.guestId = comSearchGuestId.getValue();
-	params.endDate = searchEndDate.getFormValue();
-	params.startDate = searchBeginDate.getFormValue();
+	params.eComeDate = searchEndDate.getFormValue();
+	params.sComeDate = searchBeginDate.getFormValue();
 	params.auditSign=1;
+	params.stockStatus = 4;
     return params;
 }
 var currType = 2;
@@ -115,57 +122,57 @@ function quickSearch(type){
     {
         case 0:
             params.today = 1;
-            params.startDate = getNowStartDate();
-            params.endDate = addDate(getNowEndDate(), 1);
+            params.sComeDate = getNowStartDate();
+            params.eComeDate = addDate(getNowEndDate(), 1);
             queryname = "本日";
             break;
         case 1:
             params.yesterday = 1;
-            params.startDate = getPrevStartDate();
-            params.endDate = addDate(getPrevEndDate(), 1);
+            params.sComeDate = getPrevStartDate();
+            params.eComeDate = addDate(getPrevEndDate(), 1);
             queryname = "昨日";
             break;
         case 2:
             params.thisWeek = 1;
-            params.startDate = getWeekStartDate();
-            params.endDate = addDate(getWeekEndDate(), 1);
+            params.sComeDate = getWeekStartDate();
+            params.eComeDate = addDate(getWeekEndDate(), 1);
             queryname = "本周";
             break;
         case 3:
             params.lastWeek = 1;
-            params.startDate = getLastWeekStartDate();
-            params.endDate = addDate(getLastWeekEndDate(), 1);
+            params.sComeDate = getLastWeekStartDate();
+            params.eComeDate = addDate(getLastWeekEndDate(), 1);
             queryname = "上周";
             break;
         case 4:
             params.thisMonth = 1;
-            params.startDate = getMonthStartDate();
-            params.endDate = addDate(getMonthEndDate(), 1);
+            params.sComeDate = getMonthStartDate();
+            params.eComeDate = addDate(getMonthEndDate(), 1);
             queryname = "本月";
             break;
         case 5:
             params.lastMonth = 1;
-            params.startDate = getLastMonthStartDate();
-            params.endDate = addDate(getLastMonthEndDate(), 1);
+            params.sComeDate = getLastMonthStartDate();
+            params.eComeDate = addDate(getLastMonthEndDate(), 1);
             queryname = "上月";
             break;
         case 10:
             params.thisYear = 1;
-            params.startDate = getYearStartDate();
-            params.endDate = getYearEndDate();
+            params.sComeDate = getYearStartDate();
+            params.eComeDate = getYearEndDate();
             queryname = "本年";
             break;
         case 11:
             params.lastYear = 1;
-            params.startDate = getPrevYearStartDate();
-            params.endDate = getPrevYearEndDate();
+            params.sComeDate = getPrevYearStartDate();
+            params.eComeDate = getPrevYearEndDate();
             queryname = "上年";
             break;
         default:
             break;
     }
-    searchBeginDate.setValue(params.startDate);
-    searchEndDate.setValue(params.endDate);
+    searchBeginDate.setValue(params.sComeDate);
+    searchEndDate.setValue(params.eComeDate);
     currType = type;
     var menunamedate = nui.get("menunamedate");
     menunamedate.setText(queryname);
@@ -218,15 +225,15 @@ function onAdvancedSearchOk()
         searchData.eOrderDate = addDate(date, 1);
         searchData.eOrderDate = searchData.eOrderDate.substr(0,10);
     }
-    //审核日期
-    if(searchData.sAuditDate)
+    //到货日期
+    if(searchData.sComeDate)
     {
-        searchData.sAuditDate = formatDate(searchData.sAuditDate);
+        searchData.sComeDate = formatDate(searchData.sComeDate);
     }
-    if(searchData.eAuditDate)
+    if(searchData.eComeDate)
     {
-        var date = searchData.eAuditDate;
-        searchData.eAuditDate = addDate(date, 1);
+        var date = searchData.eComeDate;
+        searchData.eComeDate = addDate(date, 1);
         
     }
     //供应商
@@ -382,7 +389,7 @@ function onDrawCell(e)
                 e.cellHtml = billTypeIdHash[e.value].name;
             }
             break;
-        case "storeId":
+        case "enterStoreId":
             if(storehouseHash && storehouseHash[e.value])
             {
                 e.cellHtml = storehouseHash[e.value].name;
@@ -395,6 +402,9 @@ function onDrawCell(e)
             var dayCount = parseInt((nowTime - enterTime) / 1000 / 60 / 60 / 24);
             e.cellHtml = dayCount+1;
             break;
+        case "stockStatus":
+        	  e.cellHtml = stockStatusHash[e.value];
+        	break;
         default:
             break;
     }
@@ -403,7 +413,7 @@ function onDrawCell(e)
 function onExport(){
 	var detail = nui.clone(rightGrid.getData());
 	//多级
-	exportMultistage(rightGrid.columns)
+	exportMultistage(rightGrid.columns);
 	//单级
 	//exportNoMultistage(rightGrid.columns)
 	for(var i=0;i<detail.length;i++){

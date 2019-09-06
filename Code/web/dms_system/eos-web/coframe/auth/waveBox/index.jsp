@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="tgetMenuDatagetext/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <%@include file="/common/sysCommon.jsp" %>
-    <title >车道商户版</title>
+    <title >车速云修</title>
       
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/common/nui/boot.js" type="text/javascript"></script>
@@ -743,7 +743,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
     //切换角色
     function changeOrgs(orgid) {
         if (orgid != currOrgId) {
-            $("#toggleRole")[0].action = "com.hsapi.system.auth.login.login.flow";
+            $("#toggleRole")[0].action = "com.hsapi.system.auth.login.waveBox.flow";
             $("#operatorId").val(currUserId);
             $("#orgid").val(orgid);
             $("#toggleRole")[0].submit();

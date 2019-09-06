@@ -27,9 +27,9 @@
    String contextPath=request.getContextPath();
    String url = null;
     String sweepCodeUrl = null;
-   String loginUrl = "org.gocom.components.coframe.auth.login.login.flow";
-   String sweepCodeFlow = "com.hsapi.system.auth.login.qrLogin.flow";
-   loginUrl = "com.hsapi.system.auth.login.login.flow";
+   String loginUrl = "org.gocom.components.coframe.auth.login.cd.flow";
+   String sweepCodeFlow = "com.hsapi.system.auth.login.qrcd.flow";
+   loginUrl = "com.hsapi.system.auth.login.cd.flow";
    String regUrl = "com.hsapi.system.auth.login.registerOfm.flow";
    
    HttpSecurityConfig securityConfig = new HttpSecurityConfig();
@@ -326,7 +326,7 @@ a {
 	<div class="login" id="sweepCodeBox">
 		<div class="title"><font color="#0050fb9e" >扫码登录</font>  | <span class="blue1" id="login1">账号登录</span></div>
 		<div id="qrcode" ></div>
-		<div class="you" >打开链车云修手机APP扫描二维码</div>
+		<div class="you" >打开车道SaaS平台手机APP扫描二维码</div>
 	</div>
 </form>	
 
@@ -349,7 +349,7 @@ a {
 				</div>
 			</div> -->		
 			<div class="log">
-				欢迎登录链车云修
+				欢迎登录车道SaaS平台
 				<span>为了保障您顺畅的使用，建议使用谷歌/火孤/360浏览器</span>
 			</div>
 		</div>

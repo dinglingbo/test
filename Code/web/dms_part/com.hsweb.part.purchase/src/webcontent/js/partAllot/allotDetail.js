@@ -1059,6 +1059,12 @@ function checkStatus(type){
 			return false;
 		}
 	}
+	if(type==0){
+		if(status==3){
+			showMsg("调拨单已拒绝","W");
+			return false;
+		}
+	}
 	
 	if(data.orgid == currOrgId){
 		if(type==0){

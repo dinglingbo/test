@@ -145,7 +145,7 @@
                     <div field="orderAmt" headerAlign="center" width="150" header="总金额"></div>
                     <div field="status" width="150" headerAlign="center" header="状态"></div>
                     <div field="stockStatus" width="150"  headerAlign="center" header="出入库状态"></div>
-                     <div field="auditSign" width="150"  headerAlign="center" header="审核标志" visible="false"></div>
+                    <div field="auditSign" width="150"  headerAlign="center" header="审核标志" visible="false"></div>
                     <div field="createDate" width="150" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="创建日期"></div>
                     <div field="remark" headerAlign="center" width="150" header="备注"></div>
                 </div>

@@ -446,7 +446,7 @@
                 (b.CREATE_DATE &lt; #endDate#)
             </isNotEmpty>
             
-            <!--对账日期 -->
+            <!--出库日期-->
             <isNotEmpty prepend="and" property="sOutStoreDate">  
                 b.out_store_date &gt;= #sOutStoreDate#
             </isNotEmpty>
@@ -488,10 +488,10 @@
                 (A.part_code like '%$partCode$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="guestId">  
-                (b.guest_id = #guestId#)
+                (b.enter_guest_id = #guestId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="guestOrgId">  
-                (b.guest_orgid = #guestOrgId#)
+                (b.orgid = #guestOrgId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="partName">  
                 (A.FULL_NAME like '%$partName$%')

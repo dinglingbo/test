@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/2/1.
  */
 var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.part.invoice.allotsettle.queryAllotAcceptDetails.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.part.invoice.partAllot.queryPjAcceptTableList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -21,10 +21,12 @@ var settTypeIdHash = {};
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
 
-var statusHash = {
-    "0":"未出库",
-    "1":"部分出库",
-    "2":"全部出库"
+var statusHash = ["草稿","已提交","已受理","已拒绝","作废"];
+var stockStatusHash = {
+		"1":"待入库",
+		"2":"待出库",
+		"3":"已出库",
+		"4":"已入库"
 };
 $(document).ready(function(v)
 {
@@ -102,8 +104,8 @@ function getSearchParam(){
 	params.partCode = comPartCode.getValue().replace(/\s+/g, "");
 	params.partNameAndPY = comPartNameAndPY.getValue().replace(/\s+/g, "");
 	params.guestId = comSearchGuestId.getValue();
-	params.endDate = searchEndDate.getFormValue();
-	params.startDate = searchBeginDate.getFormValue();
+	params.eOutStoreDate = searchEndDate.getFormValue();
+	params.sOutStoreDate = searchBeginDate.getFormValue();
 	params.auditSign=1;
     return params;
 }
@@ -115,57 +117,57 @@ function quickSearch(type){
     {
         case 0:
             params.today = 1;
-            params.startDate = getNowStartDate();
-            params.endDate = addDate(getNowEndDate(), 1);
+            params.sOutStoreDate = getNowStartDate();
+            params.eOutStoreDate = addDate(getNowEndDate(), 1);
             queryname = "本日";
             break;
         case 1:
             params.yesterday = 1;
-            params.startDate = getPrevStartDate();
-            params.endDate = addDate(getPrevEndDate(), 1);
+            params.sOutStoreDate = getPrevStartDate();
+            params.eOutStoreDate = addDate(getPrevEndDate(), 1);
             queryname = "昨日";
             break;
         case 2:
             params.thisWeek = 1;
-            params.startDate = getWeekStartDate();
-            params.endDate = addDate(getWeekEndDate(), 1);
+            params.sOutStoreDate = getWeekStartDate();
+            params.eOutStoreDate = addDate(getWeekEndDate(), 1);
             queryname = "本周";
             break;
         case 3:
             params.lastWeek = 1;
-            params.startDate = getLastWeekStartDate();
-            params.endDate = addDate(getLastWeekEndDate(), 1);
+            params.sOutStoreDate = getLastWeekStartDate();
+            params.eOutStoreDate = addDate(getLastWeekEndDate(), 1);
             queryname = "上周";
             break;
         case 4:
             params.thisMonth = 1;
-            params.startDate = getMonthStartDate();
-            params.endDate = addDate(getMonthEndDate(), 1);
+            params.sOutStoreDate = getMonthStartDate();
+            params.eOutStoreDate = addDate(getMonthEndDate(), 1);
             queryname = "本月";
             break;
         case 5:
             params.lastMonth = 1;
-            params.startDate = getLastMonthStartDate();
-            params.endDate = addDate(getLastMonthEndDate(), 1);
+            params.sOutStoreDate = getLastMonthStartDate();
+            params.eOutStoreDate = addDate(getLastMonthEndDate(), 1);
             queryname = "上月";
             break;
         case 10:
             params.thisYear = 1;
-            params.startDate = getYearStartDate();
-            params.endDate = getYearEndDate();
+            params.sOutStoreDate = getYearStartDate();
+            params.eOutStoreDate = getYearEndDate();
             queryname = "本年";
             break;
         case 11:
             params.lastYear = 1;
-            params.startDate = getPrevYearStartDate();
-            params.endDate = getPrevYearEndDate();
+            params.sOutStoreDate = getPrevYearStartDate();
+            params.eOutStoreDate = getPrevYearEndDate();
             queryname = "上年";
             break;
         default:
             break;
     }
-    searchBeginDate.setValue(params.startDate);
-    searchEndDate.setValue(params.endDate);
+    searchBeginDate.setValue(params.sOutStoreDate);
+    searchEndDate.setValue(params.eOutStoreDate);
     currType = type;
     var menunamedate = nui.get("menunamedate");
     menunamedate.setText(queryname);
@@ -382,7 +384,7 @@ function onDrawCell(e)
                 e.cellHtml = billTypeIdHash[e.value].name;
             }
             break;
-        case "storeId":
+        case "outStoreId":
             if(storehouseHash && storehouseHash[e.value])
             {
                 e.cellHtml = storehouseHash[e.value].name;
@@ -395,6 +397,25 @@ function onDrawCell(e)
             var dayCount = parseInt((nowTime - enterTime) / 1000 / 60 / 60 / 24);
             e.cellHtml = dayCount+1;
             break;
+        case "status":
+			if(e.value==1){
+			   if(record.orgid==currOrgid){
+				   e.cellHtml = statusHash[e.value]; 
+			   }else{
+				   if(record.auditSign==1){
+					   e.cellHtml = "已受理";
+				   }else{
+					   e.cellHtml = "未受理";
+				   }
+				  
+			   }
+		   }else{
+			   e.cellHtml = statusHash[e.value]; 
+		   }
+        break;
+        case "stockStatus":
+      	  e.cellHtml = stockStatusHash[e.value];
+      	break;
         default:
             break;
     }
@@ -403,19 +424,33 @@ function onDrawCell(e)
 function onExport(){
 	var detail = nui.clone(rightGrid.getData());
 	//多级
-	exportMultistage(rightGrid.columns)
+	exportMultistage(rightGrid.columns);
 	//单级
 	//exportNoMultistage(rightGrid.columns)
 	for(var i=0;i<detail.length;i++){
-		detail[i].settleStatus=statusHash[detail[i].settleStatus];
+		//detail[i].settleStatus=statusHash[detail[i].settleStatus];
 		
-		detail[i].storeId=storehouseHash[detail[i].storeId].name;
+		detail[i].outStoreId=storehouseHash[detail[i].outStoreId].name;
 		detail[i].partBrandId = partBrandIdHash[detail[i].partBrandId].name;
+		detail[i].stockStatus = stockStatusHash[detail[i].stockStatus];
+		/*if(detail[i].status==1){
+   		   if(detail[i].orgid==currOrgid){
+   			detail[i].status = statusHash[detail[i].status]; 
+   		   }else{
+   			   if(detail[i].auditSign==1){
+   				detail[i].status = "已受理";
+   			   }else{
+   				detail[i].status = "未受理";
+   			   }
+   		   }
+   	   }else{
+   		detail[i].status = statusHash[detail[i].status]; 
+   	   }*/
 		
 	}
 	if(detail && detail.length > 0){
 		//多级表头类型
-		setInitExportData( detail,rightGrid.columns,"调拨出库明细表导出");
+		setInitExportData( detail,rightGrid.columns,"调拨受理明细表导出");
 		//单级表头类型 与上二选一
 		//setInitExportDataNoMultistage( detail,rightGrid.columns,"调拨受理明细表导出");
 	}

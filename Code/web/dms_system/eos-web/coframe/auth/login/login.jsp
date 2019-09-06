@@ -23,6 +23,7 @@
 <meta name="format-detection" content="telephone=no, address=no, email=no" />
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
+
  <%
    String contextPath=request.getContextPath();
    String url = null;

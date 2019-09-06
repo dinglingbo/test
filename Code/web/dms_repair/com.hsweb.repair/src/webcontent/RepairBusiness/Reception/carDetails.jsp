@@ -12,7 +12,7 @@
         <head>
             <title>车辆详情</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.37" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.40" type="text/javascript"></script>
         </head>
         <style type="text/css">
             body {
@@ -59,7 +59,7 @@
                 <div id="editForm1" style="width:100%;height:100%;">
                     <div id="mainTabs" class="nui-tabs" name="mainTabs" activeIndex="0" style="width:100%; height:100%;" plain="false" onactivechanged="activechangedmain()">
                         <div title="客户信息" id="main" name="main">
-					<fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:25%;">
+					<fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:35%;">
                          <legend>客户信息</legend>
                              <div id="editForm4" style="padding:5px;">
                                 <table class="nui-form-table" style="width:99%">
@@ -108,6 +108,46 @@
                                             <input name="birthday" allowInput="false" class="nui-datepicker" width="100%" />
                                         </td>
                                     </tr> -->
+
+				                    <tr>
+				                    	 <td class="form_label " align="right">
+					                        <label>客户属性：</label>
+					                    </td>
+					                    <td>
+					                        <input class="nui-combobox" name="guestProperty" id="guestProperty" valueField="customid" textField="name" width="100%" value="013902" />
+					                    </td> 
+					                    <td class="form_label " align="right">
+					                        <label>客户属性特点：</label>
+					                    </td>
+					                    <td>
+					                        <input class="nui-textbox" name="propertyFeatures" id="propertyFeatures"  width="100%"  />
+					                    </td> 
+				                    </tr>
+                                    <tr>
+                                        <td class="form_label" align="right">
+			                                <label>客户级别：</label>
+			                            </td>
+			                            <td colspan="">
+			                                <input name="guestTypeId"
+			                                   id="guestTypeId"
+			                                   class="nui-combobox "
+			                                   textField="name"
+			                                   valueField="id"
+			                                   emptyText="请选择..."
+			                                   url=""
+			                                   allowInput="true"
+			                                   showNullItem="false"
+			                                   width="100%" 
+			                                   valueFromSelect="true"
+			                                   nullItemText="请选择..."/>
+			                        	</td>
+                                        <td class="form_label" align="right">
+                                            <label>地址：</label>
+                                        </td>
+                                        <td colspan="">
+                                            <input class="nui-textbox" name="addr" width="100%" />
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td class="form_label" align="right">
                                             <label>备注：</label>

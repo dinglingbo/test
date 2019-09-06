@@ -101,7 +101,7 @@
                     <div allowSort="true" field="serviceId" width="190" summaryType="count" headerAlign="center" header="订单单号"></div>
                     <div field="orgName" width="200" headerAlign="center" header="调出方"></div>
                     <div field="orderMan" width="80" headerAlign="center" header="申请人"></div>
-                    <div allowSort="true" field="status" width="80" headerAlign="center" header="状态" visible="false"></div>
+                   <!--  <div allowSort="true" field="status" width="80" headerAlign="center" header="状态" visible="false"></div> -->
                     <div field="stockStatus" width="150"  headerAlign="center" header="出入库状态"></div>
                     <div allowSort="true" field="createDate"width="120" headerAlign="center" header="订单日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div allowSort="true" field="enterStoreId" width="120" headerAlign="center" header="仓库"></div>
@@ -234,6 +234,7 @@
 </div>
 
 <div id="exportDiv" style="display:none"> 
+</div> 
 
 </body>
 </html>

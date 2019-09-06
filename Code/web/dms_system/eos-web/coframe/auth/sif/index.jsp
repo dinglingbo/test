@@ -8,7 +8,7 @@
             <meta http-equiv="Content-Type" content="tgetMenuDatagetext/html; charset=utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <%@include file="/common/sysCommon.jsp" %>
-                <title>西神SaaS平台</title>
+                <title>西福SaaS平台</title>
 
                 <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
                 <script src="<%=request.getContextPath()%>/common/nui/boot.js" type="text/javascript"></script>
@@ -157,7 +157,7 @@
 
             <div class="container">
                 <div class="navbar" id="skin" style="margin-left: -80px;    background-color: #0067b8;">
-                    <div class="navbar-brand" id="systemName">西神SaaS平台</div>
+                    <div class="navbar-brand" id="systemName">西福SaaS平台</div>
                     <ul class="nav navbar-nav navbar-right">
                         <!-- <li><a href="#"><i class="fa fa-paper-plane"></i> 代办事项</a></li>
             <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li> -->

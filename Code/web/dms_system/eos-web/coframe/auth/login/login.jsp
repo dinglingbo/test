@@ -8,20 +8,21 @@
 <html>
 <head>
 
-<title>链车云修SAAS系统</title>
+<title>链车云修</title>
 <script  src="<%= request.getContextPath() %>/common/nui/nui.js?v=2.1.50" type="text/javascript" ></script>
 <script src="<%= request.getContextPath() %>/common/js/qrcode.js" type="text/javascript"></script>
 <meta charset="utf-8">
 <meta name="keywords" content="链车云修"/>
-<meta name="description" content="链车云修SAAS系统"/>
+<meta name="description" content="链车云修"/>
 <meta name="author" content="shenzhi"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<meta name="apple-mobile-web-app-title" content="链车云修SAAS系统"/>
+<meta name="apple-mobile-web-app-title" content="链车云修"/>
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="format-detection" content="telephone=no, address=no, email=no" />
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
 
  <%
    String contextPath=request.getContextPath();

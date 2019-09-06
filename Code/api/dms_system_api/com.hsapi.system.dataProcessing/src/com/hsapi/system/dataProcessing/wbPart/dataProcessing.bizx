@@ -115,7 +115,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
-    <location x="542" y="135"/>
+    <location x="532" y="135"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
@@ -130,7 +130,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="507" y="170"/>
+    <location x="497" y="170"/>
     <figSize height="17" width="96"/>
     <node>subprocess2</node>
   </nodes>
@@ -257,7 +257,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
-    <location x="254" y="135"/>
+    <location x="239" y="135"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess6label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
@@ -272,7 +272,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess6label" name="label" nodeType="label">
-    <location x="239" y="170"/>
+    <location x="224" y="170"/>
     <figSize height="17" width="56"/>
     <node>subprocess6</node>
   </nodes>
@@ -660,12 +660,12 @@
       <targetNode>assign6</targetNode>
     </sourceConnections>
     <targetConnections>link10</targetConnections>
-    <location x="254" y="42"/>
+    <location x="239" y="45"/>
     <size height="28" width="28"/>
     <nodeLabel>assign7label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
-    <location x="252" y="78"/>
+    <location x="237" y="81"/>
     <figSize height="17" width="32"/>
     <node>assign7</node>
   </nodes>
@@ -675,12 +675,12 @@
       <targetNode>transactioncommit0</targetNode>
     </sourceConnections>
     <targetConnections>link24</targetConnections>
-    <location x="1305" y="45"/>
+    <location x="1319" y="45"/>
     <size height="28" width="28"/>
     <nodeLabel>assign11label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
-    <location x="1300" y="81"/>
+    <location x="1314" y="81"/>
     <figSize height="17" width="39"/>
     <node>assign11</node>
   </nodes>
@@ -690,12 +690,12 @@
       <targetNode>assign8</targetNode>
     </sourceConnections>
     <targetConnections>link23</targetConnections>
-    <location x="1152" y="40"/>
+    <location x="1172" y="45"/>
     <size height="28" width="28"/>
     <nodeLabel>assign13label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign13label" name="label" nodeType="label">
-    <location x="1147" y="76"/>
+    <location x="1167" y="81"/>
     <figSize height="17" width="39"/>
     <node>assign13</node>
   </nodes>
@@ -705,12 +705,12 @@
       <targetNode>assign9</targetNode>
     </sourceConnections>
     <targetConnections>link22</targetConnections>
-    <location x="1027" y="40"/>
+    <location x="1028" y="45"/>
     <size height="28" width="28"/>
     <nodeLabel>assign14label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign14label" name="label" nodeType="label">
-    <location x="1022" y="76"/>
+    <location x="1023" y="81"/>
     <figSize height="17" width="39"/>
     <node>assign14</node>
   </nodes>
@@ -735,12 +735,12 @@
       <targetNode>assign3</targetNode>
     </sourceConnections>
     <targetConnections>link20</targetConnections>
-    <location x="691" y="42"/>
+    <location x="692" y="45"/>
     <size height="28" width="28"/>
     <nodeLabel>assign16label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign16label" name="label" nodeType="label">
-    <location x="686" y="78"/>
+    <location x="687" y="81"/>
     <figSize height="17" width="39"/>
     <node>assign16</node>
   </nodes>
@@ -750,12 +750,12 @@
       <targetNode>assign4</targetNode>
     </sourceConnections>
     <targetConnections>link19</targetConnections>
-    <location x="541" y="45"/>
+    <location x="525" y="45"/>
     <size height="28" width="28"/>
     <nodeLabel>assign17label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign17label" name="label" nodeType="label">
-    <location x="536" y="81"/>
+    <location x="520" y="81"/>
     <figSize height="17" width="39"/>
     <node>assign17</node>
   </nodes>
@@ -765,12 +765,12 @@
       <targetNode>assign5</targetNode>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
-    <location x="395" y="45"/>
+    <location x="388" y="45"/>
     <size height="28" width="28"/>
     <nodeLabel>assign18label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign18label" name="label" nodeType="label">
-    <location x="390" y="81"/>
+    <location x="383" y="81"/>
     <figSize height="17" width="39"/>
     <node>assign18</node>
   </nodes>

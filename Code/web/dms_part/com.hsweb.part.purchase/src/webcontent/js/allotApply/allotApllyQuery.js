@@ -106,6 +106,7 @@ function getSearchParam(){
 	params.endDate = searchEndDate.getFormValue();
 	params.startDate = searchBeginDate.getFormValue();
 	params.auditSign=1;
+	params.isDisabled=0;
     return params;
 }
 var currType = 2;
@@ -424,14 +425,29 @@ function onDrawCell(e)
 function onExport(){
 	var detail = nui.clone(rightGrid.getData());
 	//多级
-	exportMultistage(rightGrid.columns)
+	exportMultistage(rightGrid.columns);
 	//单级
 	//exportNoMultistage(rightGrid.columns)
 	for(var i=0;i<detail.length;i++){
-		detail[i].settleStatus=statusHash[detail[i].settleStatus];
+		//detail[i].settleStatus=statusHash[detail[i].settleStatus];
 		
-		detail[i].storeId=storehouseHash[detail[i].storeId].name;
+		detail[i].enterStoreId=storehouseHash[detail[i].enterStoreId].name;
 		detail[i].partBrandId = partBrandIdHash[detail[i].partBrandId].name;
+		detail[i].stockStatus = stockStatusHash[detail[i].stockStatus];
+		if(detail[i].status==1){
+   		   if(detail[i].orgid==currOrgid){
+   			detail[i].status = statusHash[detail[i].status]; 
+   		   }else{
+   			   if(detail[i].auditSign==1){
+   				detail[i].status = "已受理";
+   			   }else{
+   				detail[i].status = "未受理";
+   			   }
+   			  
+   		   }
+   	   }else{
+   		detail[i].status = statusHash[detail[i].status]; 
+   	   }
 		
 	}
 	if(detail && detail.length > 0){

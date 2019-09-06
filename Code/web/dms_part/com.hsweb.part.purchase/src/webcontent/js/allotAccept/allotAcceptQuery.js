@@ -183,6 +183,7 @@ function doSearch(params)
 	params.orgid =currOrgid;
 	params.sortField = "audit_date";
 	params.sortOrder = "desc";
+	params.isDisabled=0;
     rightGrid.load({
         params:params,
         token:token
@@ -424,20 +425,34 @@ function onDrawCell(e)
 function onExport(){
 	var detail = nui.clone(rightGrid.getData());
 	//多级
-	exportMultistage(rightGrid.columns)
+	exportMultistage(rightGrid.columns);
 	//单级
 	//exportNoMultistage(rightGrid.columns)
 	for(var i=0;i<detail.length;i++){
-		detail[i].settleStatus=statusHash[detail[i].settleStatus];
-	
-		detail[i].storeId=storehouseHash[detail[i].storeId].name;
+		//detail[i].settleStatus=statusHash[detail[i].settleStatus];
+		
+		detail[i].outStoreId=storehouseHash[detail[i].outStoreId].name;
 		detail[i].partBrandId = partBrandIdHash[detail[i].partBrandId].name;
-	
+		detail[i].stockStatus = stockStatusHash[detail[i].stockStatus];
+		if(detail[i].status==1){
+   		   if(detail[i].orgid==currOrgid){
+   			detail[i].status = statusHash[detail[i].status]; 
+   		   }else{
+   			   if(detail[i].auditSign==1){
+   				detail[i].status = "已受理";
+   			   }else{
+   				detail[i].status = "未受理";
+   			   }
+   		   }
+   	   }else{
+   		detail[i].status = statusHash[detail[i].status]; 
+   	   }
+		
 	}
 	if(detail && detail.length > 0){
 		//多级表头类型
-		setInitExportData( detail,rightGrid.columns,"调拨申请明细表导出");
+		setInitExportData( detail,rightGrid.columns,"调拨受理明细表导出");
 		//单级表头类型 与上二选一
-		setInitExportDataNoMultistage( detail,rightGrid.columns,"调拨申请明细表导出");
+		//setInitExportDataNoMultistage( detail,rightGrid.columns,"调拨受理明细表导出");
 	}
 }

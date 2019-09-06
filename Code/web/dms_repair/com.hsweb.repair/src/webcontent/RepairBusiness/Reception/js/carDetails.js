@@ -23,6 +23,7 @@ var contactdatagrid = null;
 var onSearchParams = {};//现在用于查询本车或者客户全部
 var rpsPackageGrid = null;
 var rpsItemGrid = null;
+var guestTypeList = [];
 var prdtTypeHash = {
 	    "1":"套餐",
 	    "2":"项目",
@@ -364,7 +365,12 @@ $(document).ready(function () {
              break;
      }
  });     
-      
+ initGuestType("guestTypeId",function(data) {
+   	guestTypeList = nui.get("guestTypeId").getData();
+   	guestTypeList.forEach(function(v) {
+   		guestTypeHash[v.id] = v;
+       });
+   });    
 initDicts({
    // visitMode: "DDT20130703000021",//跟踪方式
     chanceType:SELL_TYPE,//商机

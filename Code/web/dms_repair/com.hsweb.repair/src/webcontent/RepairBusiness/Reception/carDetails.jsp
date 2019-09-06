@@ -12,7 +12,7 @@
         <head>
             <title>车辆详情</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.37" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.38" type="text/javascript"></script>
         </head>
         <style type="text/css">
             body {
@@ -108,6 +108,49 @@
                                             <input name="birthday" allowInput="false" class="nui-datepicker" width="100%" />
                                         </td>
                                     </tr> -->
+                                                            <tr>
+                        
+                           <td class="form_label">
+                                <label>客户级别：</label>
+                            </td>
+                            <td colspan="3">
+                                <input name="guestTypeId"
+                                   id="guestTypeId"
+                                   class="nui-combobox "
+                                   textField="name"
+                                   valueField="id"
+                                   emptyText="请选择..."
+                                   url=""
+                                   allowInput="true"
+                                   showNullItem="false"
+                                   width="200px" 
+                                   valueFromSelect="true"
+                                   nullItemText="请选择..."/>
+                        	</td>
+        
+                        </tr>
+                        <tr>
+                        	 <td class="form_label ">
+		                        <label>客户属性：</label>
+		                    </td>
+		                    <td>
+		                        <input class="nui-combobox" name="guestProperty" id="guestProperty" valueField="customid" textField="name" width="200px" value="013902" />
+		                    </td> 
+		                    <td class="form_label ">
+		                        <label>客户属性特点：</label>
+		                    </td>
+		                    <td>
+		                        <input class="nui-textbox" name="propertyFeatures" id="propertyFeatures"  width="100%"  />
+		                    </td> 
+                        </tr>
+                                    <tr>
+                                        <td class="form_label" align="right">
+                                            <label>地址：</label>
+                                        </td>
+                                        <td colspan="3">
+                                            <input class="nui-textbox" name="addr" width="100%" />
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td class="form_label" align="right">
                                             <label>备注：</label>

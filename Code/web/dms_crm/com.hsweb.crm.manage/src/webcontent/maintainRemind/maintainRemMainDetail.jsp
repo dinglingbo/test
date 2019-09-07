@@ -90,6 +90,11 @@ pageEncoding="UTF-8" session="false" %>
                 showMsg("请填写内容", "W");
                 return;
             }
+           	nui.mask({
+		        el: document.body,
+		        cls: 'mini-mask-loading',
+		        html: '保存中...'
+		    });
             var params = {
                 serviceType:mainData.serviceType,
                 mainId:mainData.mainId,
@@ -109,7 +114,8 @@ pageEncoding="UTF-8" session="false" %>
                 data: {
                     params: params
                 },
-                success: function (text) { 
+                success: function (text) {
+                nui.unmask(document.body); 
                     if (text.errCode == "S") {
                         var detailData = text.list;
                         showMsg("保存成功！", "S");

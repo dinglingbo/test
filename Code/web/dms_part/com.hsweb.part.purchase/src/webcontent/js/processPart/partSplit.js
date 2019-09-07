@@ -28,6 +28,10 @@ var AuditSignHash = {
   "1":"已审核"
 };
 
+var advancedSearchWin = null;
+var advancedSearchForm = null;
+var advancedSearchFormData = {};
+
 var storeLimitMap={};
 var storeShelfList=[];
 var storeShelfHash={}
@@ -56,7 +60,8 @@ $(document).ready(function(v)
     sOrderDate = nui.get("sOrderDate");
     eOrderDate = nui.get("eOrderDate");
 
-
+    advancedSearchWin = nui.get("advancedSearchWin");
+    advancedSearchForm = new nui.Form("#advancedSearchWin");
     
     document.onkeyup=function(event){
 	    var e=event||window.event;
@@ -299,6 +304,8 @@ function quickSearch(type){
             menunametype.setText(querytypename);
     }
     gsparams.isDiffOrder = 0;
+    advancedSearchFormData.sCreateDate = gsparams.startDate;
+    advancedSearchFormData.eCreateDate = addDate(gsparams.endDate, -1);
     doSearch(gsparams);
 }
 function onSearch(){
@@ -340,7 +347,7 @@ function setBtnable(flag)
 var requiredField = {
 	storeId  : "仓库",
     orderMan : "业务员",
-    orderDate : "订单日期",
+    createDate : "创建日期",
 
 };
 var saveUrl = baseUrl + "com.hsapi.part.invoice.process.saveProcessSplit.biz.ext";
@@ -440,6 +447,10 @@ function getMainData()
   	  data.orderDate = format(data.orderDate, 'yyyy-MM-dd HH:mm:ss');
   	}
   
+    if (data.createDate) {
+  	  data.createDate = format(data.createDate, 'yyyy-MM-dd HH:mm:ss');
+    }
+    
     rightGrid.findRow(function(row){
         var partId = row.partId;
         var partCode = row.partCode;
@@ -1230,4 +1241,62 @@ function onCellCommitEdit(e) {
 
 		}
 	}
+}
+
+
+function advancedSearch()
+{
+	
+    advancedSearchWin.show();
+    advancedSearchForm.clear();
+    if(advancedSearchFormData)
+    {
+        advancedSearchForm.setData(advancedSearchFormData);
+    }
+}
+
+function onAdvancedSearchOk()
+{
+    var searchData = advancedSearchForm.getData(true);
+    advancedSearchFormData = {};
+    for(var key in searchData)
+    {
+        advancedSearchFormData[key] = searchData[key];
+    }
+   
+    //审核日期
+    if(searchData.sAuditDate)
+    {
+        searchData.sAuditDate = searchData.sAuditDate.substr(0,10);
+    }
+    if(searchData.eAuditDate)
+    {
+        searchData.eAuditDate = searchData.eAuditDate.substr(0,10);
+        searchData.eAuditDate = addDate(searchData.eAuditDate, 1);
+    }
+    //创建日期
+    if(searchData.sCreateDate)
+    {
+        searchData.sCreateDate = searchData.sCreateDate.substr(0,10);
+    }
+    if(searchData.eCreateDate)
+    {
+        searchData.eCreateDate = searchData.eCreateDate.substr(0,10);
+        searchData.eCreateDate = addDate(searchData.eCreateDate, 1);
+    }
+    
+
+   
+    advancedSearchWin.hide();
+    doSearch(searchData);
+  
+}
+
+function onAdvancedSearchCancel(){
+    advancedSearchForm.clear();
+    advancedSearchWin.hide();
+}
+
+function cancelData(){
+	advancedSearchForm.setData([]);
 }

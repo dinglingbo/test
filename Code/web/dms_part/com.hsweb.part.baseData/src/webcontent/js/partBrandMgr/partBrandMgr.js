@@ -308,7 +308,7 @@ function onLeftGridRowClick(e)
         nui.get("disabledLeft").show();
         nui.get("enabledLeft").hide();
     }
-    if(row.orgid == currOrgid || currTenantId=='default'){
+    if(row.orgid == currOrgid || currTenantId=='0'){
         nui.get("disabledLeft").enable();
         nui.get("enabledLeft").enable();
         nui.get("editLeft").enable();

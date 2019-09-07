@@ -3,7 +3,7 @@
   <nodes xsi:type="model:PEntityNode" id="node0" name="CrmGuestScout" nodeType="table" displayName="CrmGuestScout" author="chenziming" open="true" instanceClass="" table="crm_guest_scout" genStrategy="assigned">
     <location x="60" y="60"/>
     <size height="642" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="235"/>
     <columnProperty id="property0" name="serviceId" displayName="serviceId" columnName="service_id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>维修工单号</comment>
       <viewField dict="false" dictTypeId="" displayName="serviceId" entityField="serviceId" id="serviceId" label="serviceId" name="serviceId" userDefined="true">
@@ -2306,7 +2306,7 @@
   <nodes xsi:type="model:PEntityNode" id="node1" name="Crm3dcScoutDetail" nodeType="table" displayName="Crm3dcScoutDetail" author="chenziming" open="true" instanceClass="" table="crm_3dc_scout_detail" genStrategy="assigned">
     <location x="60" y="762"/>
     <size height="300" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property33" name="detailId" displayName="detailId" columnName="detail_id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="detailId" entityField="detailId" id="detailId" label="detailId" name="detailId" userDefined="true">
@@ -3316,7 +3316,7 @@
   <nodes xsi:type="model:PEntityNode" id="node2" name="CrmVisitData" nodeType="table" displayName="CrmVisitData" author="Administrator" allUseViewModel="true" instanceClass="" table="crm_visit_data" genStrategy="native">
     <location x="240" y="60"/>
     <size height="444" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property49" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
@@ -4850,7 +4850,7 @@
       </viewField>
     </columnProperty>
   </nodes>
-  <nodes xsi:type="model:PEntityNode" id="node3" name="CrmVisitRecord" nodeType="table" displayName="CrmVisitRecord" author="Administrator" allUseViewModel="true" instanceClass="" table="crm_visit_record" genStrategy="assigned">
+  <nodes xsi:type="model:PEntityNode" id="node3" name="CrmVisitRecord" nodeType="table" displayName="CrmVisitRecord" author="Administrator" allUseViewModel="true" instanceClass="" table="crm_visit_record" genStrategy="native">
     <location x="405" y="60"/>
     <size height="498" width="150"/>
     <figSize height="20" width="150"/>

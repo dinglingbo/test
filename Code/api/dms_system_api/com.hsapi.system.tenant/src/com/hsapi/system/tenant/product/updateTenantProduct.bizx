@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="updateTenantProduct.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="购买成功后，更新租户的产品信息，分配租户资源，更新购买流水&#xD;&#xA;1功能购买，2充值，3调用接口，4赠送&#xD;&#xA;" title="dlb&#x9;19-8-26 下午4:12">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="购买成功后，更新租户的产品信息，分配租户资源，更新购买流水&#xD;&#xA;1功能购买，2充值，3调用接口，4赠送&#xD;&#xA;&#xD;&#xA;0 充值链车币&#xD;&#xA;-1 赠送链车币" title="dlb&#x9;19-8-26 下午4:12">
     <location x="45" y="0"/>
     <size height="121" width="781"/>
   </nodes>
@@ -75,7 +75,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="2" name="nrecord" type="query" value="com.hsapi.system.data.sys.ComSysCoinRecord" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="2" name="nrecord" type="query" value="com.hsapi.system.data.sys.ComSysCoinRecord" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

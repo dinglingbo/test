@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件品牌</title>
-<script src="<%=webPath + contextPath%>/baseDataPart/js/partBrandMgr/partBrandMgr.js?v=1.1.0"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/partBrandMgr/partBrandMgr.js?v=1.1.1"></script>
 <script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
 <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">

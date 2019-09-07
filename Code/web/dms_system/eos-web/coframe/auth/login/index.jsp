@@ -13,7 +13,7 @@
                 <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
                 <script src="<%=request.getContextPath()%>/common/nui/boot.js" type="text/javascript"></script>
                 <link href="<%=request.getContextPath()%>/coframe/auth/login/css/kefu.css" rel="stylesheet" type="text/css" />
-                <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menu/menu.css" rel="stylesheet" type="text/css" />
+                <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menu/menu.css?v=1.0.1" rel="stylesheet" type="text/css" />
                 <script src="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menu/menu.js?v=1.0.2" type="text/javascript"></script>
                 <script src="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menupop.js" type="text/javascript"></script>
                 <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/tabs.css?v=1.0.2" rel="stylesheet" type="text/css" />

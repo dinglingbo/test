@@ -238,7 +238,7 @@
             </tr>
             <tr>   
                 <td class="title">保险公司:</td> 
-                <td class=""><input  class="nui-textbox" name="insuranceName" id="insuranceName"  enabled="false" width="100%"/></td>
+                <td class=""><input  class="nui-textbox" name="insureCompName" id="insureCompName"  enabled="false" width="100%"/></td>
                 <td class="title ">交强险单号:</td> 
                 <td class=""><input  class="nui-textbox" name="insureNo" id="insureNo" enabled="false" width="100%"/></td>
                 <td class="title">交强险到期:</td> 

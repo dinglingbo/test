@@ -17,7 +17,7 @@ function queryTenantCoin(){
 		success : function(data) {
 			data = data || {};
 			if (data.errCode == "S") {																		
-				document.getElementById('code').innerHTML=data.comTenant.code||"";
+				document.getElementById('code').innerHTML=data.comTenant.tenantId||"";
 				document.getElementById('tenantName').innerHTML=data.comTenant.tenantName||"";
 				var endDate = data.comTenant.endDate;
 				document.getElementById('endDate').innerHTML=new Date(endDate).getFullYear()+"年 "+(parseFloat(new Date(endDate).getMonth())+1)+"月 "+new Date(endDate).getDate()+"日";
@@ -42,7 +42,7 @@ function queryTenantCoin(){
 	});
 }
 
-var basisList = [{id:2,name:"微信模块"},{id:2,name:"客户模块"},{id:2,name:"EPC"}];//基础模块
+var basisList = [{id:2,name:"预约"},{id:2,name:"工单"},{id:2,name:"采购"},{id:2,name:"库存"},{id:2,name:"客户"},{id:2,name:"财务"},{id:2,name:"报表"}];//基础模块
 //查询基础模块
 function queryUpgrade(){
 	var html="";

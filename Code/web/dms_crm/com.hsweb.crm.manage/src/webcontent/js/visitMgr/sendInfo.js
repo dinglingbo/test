@@ -58,7 +58,7 @@ function save() {
 			data : json,
 //			cache : false,
 //			contentType : 'text/json',
-            async:false,
+//            async:false,
 			success : function(text) {
 				var returnJson = nui.decode(text);
 				if (returnJson.errCode == "S") {

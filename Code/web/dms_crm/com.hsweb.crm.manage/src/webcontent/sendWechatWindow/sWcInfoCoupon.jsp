@@ -212,7 +212,7 @@
             nui.ajax({
                 url:pushUrl,
                 type:"post",
-                async: false,
+                //async: false,
                 data:{
                     userDataArray:mainList,
                     couponDataArray:rows

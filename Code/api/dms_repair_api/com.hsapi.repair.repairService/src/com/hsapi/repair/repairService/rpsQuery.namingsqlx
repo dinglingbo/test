@@ -2740,6 +2740,9 @@
     	       b.work_time as workTime,
     	       b.back_times as backTimes,
     	       b.worker_ids as workerIds,
+    	       b.checker_ids as checkerIds,
+    	       b.checkers as checkers,
+    	       b.begin_date as beginDate,
        		   b.item_name as itemName, b.workers as workers, 
        		   b.status as status, b.finish_auditor as finisher, b.finish_date as finishDate
 		from rps_maintain a
@@ -2769,7 +2772,7 @@
 		
 	          </dynamic>
 		      
-		      and exists(select 1 from rps_item_workers c 
+		       and exists(select 1 from rps_item_workers c 
 		      			where b.id = c.main_id 
 		      			    <dynamic>
 								<isNotEmpty prepend="and" property="workerId">

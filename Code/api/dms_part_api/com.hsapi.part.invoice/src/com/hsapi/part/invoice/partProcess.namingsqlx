@@ -627,8 +627,8 @@
     
     <select id="queryProcessDetailAndEnterPart" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PjProcessDetail">
     	SELECT
+			distinct a.main_id as mainId,
 			a.id as id,
-			a.main_id as mainId,
 			a.code_id as codeId,
 			a.store_id as storeId,
 			a.part_id as partId,

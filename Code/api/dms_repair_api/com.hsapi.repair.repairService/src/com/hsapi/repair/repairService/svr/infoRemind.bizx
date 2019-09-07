@@ -30,7 +30,7 @@
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="testPush" displayName="testPush" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="testPush" displayName="pushMsg" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>subprocess1</targetNode>
@@ -44,7 +44,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.system.basic.smsPush.testPush</process:partner>
+      <process:partner type="literal">com.hsapi.system.basic.smsPush.pushMsg</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="phones" type="query" value="String" valueType="Primitive" pattern="reference">phones</process:inputVariable>
         <process:inputVariable id="1" name="message" type="query" value="String" valueType="Primitive" pattern="reference">message</process:inputVariable>
@@ -147,7 +147,9 @@
     <figSize height="17" width="121"/>
     <node>subprocess1</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="802" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-01-09 17:36:17" date="2019-01-09Z" description="" name="infoRemind" version="7.0.0.0"/>
   <process:variables/>

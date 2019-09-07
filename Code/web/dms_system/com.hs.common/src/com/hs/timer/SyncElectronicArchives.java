@@ -266,6 +266,7 @@ public class SyncElectronicArchives {
 	}
 	
 	@Bizlet("推送维修数据")
+	 /*凌晨2点上传，取前一天的数据*/
 	public static String pushElectricData() {
 		List<DataObject> compList = getCompanyInfo();
 		if(compList != null && compList.size() > 0) {
@@ -280,7 +281,7 @@ public class SyncElectronicArchives {
 				String accessToken = null;
 				if(eRecordUser != null && !"".equals(eRecordUser)){
 					//if(StringUtils.isNotBlank(eRecordUser) && !StringUtils.equals("", eRecordUser))
-					if(eRecordPwd != null  && !"".equals(eRecordPwd)){
+					if(eRecordPwd == null  && !"".equals(eRecordPwd)){
 						if(eTokenUrl != null  && !"".equals(eTokenUrl)){
 							Map<String, String> tokenMap = getAccessToken(eRecordUser, eRecordPwd,eTokenUrl);
 							accessToken = tokenMap.get("access_token");
@@ -289,7 +290,7 @@ public class SyncElectronicArchives {
 				}
 				if(accessToken != null && !"".equals(accessToken)) { 
 					Calendar cal = Calendar.getInstance();
-					cal.add(Calendar.DATE, 1);
+					cal.add(Calendar.DATE, 0);
 				    String endDate = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());
 				    cal.add(Calendar.DATE, -1);
 				    String startDate = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());

@@ -556,7 +556,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link45</targetConnections>
-    <location x="613" y="231"/>
+    <location x="627" y="199"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo5label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -571,7 +571,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">
-    <location x="569" y="267"/>
+    <location x="583" y="235"/>
     <figSize height="17" width="110"/>
     <node>invokePojo5</node>
   </nodes>
@@ -581,7 +581,7 @@
       <targetNode>assign8</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <targetConnections>link71</targetConnections>
+    <targetConnections>link12</targetConnections>
     <location x="626" y="124"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo4label</nodeLabel>
@@ -641,7 +641,7 @@
       <targetNode>assign3</targetNode>
     </sourceConnections>
     <targetConnections>link51</targetConnections>
-    <location x="739" y="128"/>
+    <location x="751" y="124"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -655,7 +655,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="718" y="164"/>
+    <location x="730" y="160"/>
     <figSize height="17" width="64"/>
     <node>invokePojo2</node>
   </nodes>
@@ -666,7 +666,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link24</targetConnections>
-    <location x="673" y="231"/>
+    <location x="673" y="215"/>
     <size height="28" width="28"/>
     <nodeLabel>assign9label</nodeLabel>
     <process:copy>
@@ -855,7 +855,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
-    <location x="647" y="267"/>
+    <location x="647" y="251"/>
     <figSize height="17" width="80"/>
     <node>assign9</node>
   </nodes>
@@ -1132,6 +1132,7 @@
     <chidren>assign28</chidren>
     <chidren>invokePojo15</chidren>
     <chidren>subprocess8</chidren>
+    <chidren>subprocess9</chidren>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="可出库信息" displayName="getEnterOutableDetail" grouped="false" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="link17" isDefault="true" type="transition">
@@ -1192,8 +1193,8 @@
     <targetConnections>link57</targetConnections>
     <targetConnections>link68</targetConnections>
     <targetConnections>link70</targetConnections>
-    <targetConnections>link73</targetConnections>
-    <location x="908" y="66"/>
+    <targetConnections>link13</targetConnections>
+    <location x="861" y="66"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
@@ -1202,7 +1203,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="906" y="102"/>
+    <location x="859" y="102"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
@@ -2077,7 +2078,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link22</targetConnections>
-    <location x="552" y="231"/>
+    <location x="544" y="240"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess8label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -2097,16 +2098,16 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess8label" name="label" nodeType="label">
-    <location x="528" y="266"/>
+    <location x="520" y="275"/>
     <figSize height="17" width="75"/>
     <node>subprocess8</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess9" name="checkOutQty1" displayName="checkOutQty" collapsed="false" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link71" name="link71" displayName="连接线" isDefault="true" type="transition">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess9" name="checkOutQty1" displayName="checkOutQty" collapsed="false" grouped="true" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess9</sourceNode>
       <targetNode>invokePojo4</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link73" name="link73" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link13" name="link13" displayName="连接线" type="transition">
       <sourceNode>subprocess9</sourceNode>
       <targetNode>assign3</targetNode>
       <process:transitionCondition>
@@ -2117,13 +2118,13 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link21</targetConnections>
-    <location x="545" y="101"/>
+    <location x="544" y="112"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess9label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.cloud.part.invoicing.stockcal.checkOutQty</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="billQty" type="query" value="Float" valueType="Primitive" pattern="reference">billQty</process:inputVariable>
+        <process:inputVariable id="0" name="billQty" type="query" value="Float" valueType="Primitive" pattern="reference">outaleQty</process:inputVariable>
         <process:inputVariable id="1" name="sourceId" type="query" value="Long" valueType="Primitive" pattern="reference">outableDetail/id</process:inputVariable>
         <process:inputVariable id="2" name="partId" type="query" value="Long" valueType="Primitive" pattern="reference">outableDetail/partId</process:inputVariable>
         <process:inputVariable id="3" name="storeId" type="query" value="Long" valueType="Primitive" pattern="reference">outableDetail/storeId</process:inputVariable>
@@ -2137,7 +2138,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess9label" name="label" nodeType="label">
-    <location x="517" y="136"/>
+    <location x="516" y="147"/>
     <figSize height="17" width="82"/>
     <node>subprocess9</node>
   </nodes>

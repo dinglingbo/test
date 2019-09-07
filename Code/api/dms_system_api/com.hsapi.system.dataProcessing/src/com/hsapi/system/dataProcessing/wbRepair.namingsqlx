@@ -16,7 +16,7 @@
     </delete>
     
      <!--计次流水表   删除wb_repair.rps_card_times_invocing-->
-    <delete id="deleteRpsCardTimesInvocingd" parameterClass="HashMap">
+    <delete id="deleteRpsCardTimesInvocing" parameterClass="HashMap">
      DELETE wb_repair.rps_card_times_invocing   FROM wb_repair.rps_card_times_invocing		
  			where wb_repair.rps_card_times_invocing.orgid = #orgid#
     </delete>

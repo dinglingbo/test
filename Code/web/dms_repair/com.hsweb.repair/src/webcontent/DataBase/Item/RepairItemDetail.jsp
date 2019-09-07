@@ -26,7 +26,7 @@
 }
 
 .form_label {
-	width: 60px;
+	width: 70px;
 	text-align: right;
 }
 

@@ -456,6 +456,9 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="maintenanceUrl" primitiveType="String"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="headers"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="maintenanceMap"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="callNeedCoin" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="productId" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="productName" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="params" primitiveType="String"/>

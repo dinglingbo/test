@@ -35,7 +35,7 @@
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="运算逻辑" displayName="推送短信" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="运算逻辑" displayName="" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" description="" id="link2" name="成功" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign15</targetNode>
@@ -141,6 +141,16 @@
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>assign2</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link35" name="link35" displayName="连接线" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>assign19</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">phones</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link19</targetConnections>
     <location x="150" y="151"/>
@@ -332,7 +342,7 @@
     </sourceConnections>
     <targetConnections>link8</targetConnections>
     <targetConnections>link11</targetConnections>
-    <location x="315" y="210"/>
+    <location x="315" y="268"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
     <process:copy>
@@ -345,14 +355,15 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="313" y="246"/>
+    <location x="313" y="304"/>
     <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
     <targetConnections>link9</targetConnections>
     <targetConnections>link33</targetConnections>
-    <location x="315" y="270"/>
+    <targetConnections>link38</targetConnections>
+    <location x="199" y="374"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
@@ -361,7 +372,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="313" y="306"/>
+    <location x="197" y="410"/>
     <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>
@@ -372,12 +383,12 @@
     </sourceConnections>
     <targetConnections>link10</targetConnections>
     <targetConnections>link17</targetConnections>
-    <location x="373" y="210"/>
+    <location x="375" y="270"/>
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
-    <location x="371" y="246"/>
+    <location x="373" y="306"/>
     <figSize height="17" width="32"/>
     <node>assign6</node>
   </nodes>
@@ -439,12 +450,12 @@
       <targetNode>assign6</targetNode>
     </sourceConnections>
     <targetConnections>link16</targetConnections>
-    <location x="435" y="210"/>
+    <location x="435" y="267"/>
     <size height="28" width="28"/>
     <nodeLabel>assign9label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
-    <location x="433" y="246"/>
+    <location x="433" y="303"/>
     <figSize height="17" width="32"/>
     <node>assign9</node>
   </nodes>
@@ -787,6 +798,29 @@
     <figSize height="17" width="39"/>
     <node>assign21</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign19" name="赋值19" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link38" name="link38" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign19</sourceNode>
+      <targetNode>end1</targetNode>
+    </sourceConnections>
+    <targetConnections>link35</targetConnections>
+    <location x="151" y="270"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign19label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">手机号码不能为空！</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign19label" name="label" nodeType="label">
+    <location x="146" y="306"/>
+    <figSize height="17" width="39"/>
+    <node>assign19</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-12-14 10:25:30" date="2018-12-14Z" description="" name="testPush" version="7.0.0.0"/>
@@ -797,6 +831,9 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="str" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="str2" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="callNeedCoin" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="productId" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="productName" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="phones" primitiveType="String"/>

@@ -3,7 +3,7 @@ var form1 = null;
 var mainData = {};
 var visitContent = null;
 var baseUrl = apiPath + sysApi + "/";
-var sendUrl = baseUrl+"com.hsapi.system.basic.smsPush.testPush.biz.ext";
+var sendUrl = baseUrl+"com.hsapi.system.basic.smsPush.pushMsg.biz.ext";
 var saveUrl = apiPath + repairApi +"/com.hsapi.repair.repairService.crud.saveRemindRecord.biz.ext";
 $(document).ready(function (){
 	
@@ -58,7 +58,7 @@ function save() {
 			data : json,
 //			cache : false,
 //			contentType : 'text/json',
-            async:false,
+//            async:false,
 			success : function(text) {
 				var returnJson = nui.decode(text);
 				if (returnJson.errCode == "S") {

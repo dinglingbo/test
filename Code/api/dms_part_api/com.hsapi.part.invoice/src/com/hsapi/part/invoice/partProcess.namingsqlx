@@ -37,7 +37,7 @@
     <!--查找配件加工、明细主表 -->
     <select id="queryProcessMain" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT
-			a.id as id,
+			distinct a.id as id,
 			a.service_id as serviceId,
 			a.store_id as storeId,
 			a.orgid as orgid,
@@ -59,7 +59,8 @@
 			a.remark
 		FROM
 			pj_process_main a
-		
+		INNER JOIN pj_process_product b ON b.main_id = a.id
+		INNER JOIN pj_process_detail c ON c.code_id = a.id
 		WHERE 1=1
 		<dynamic>
 			<isNotEmpty prepend="and" property="orgid">  
@@ -72,6 +73,13 @@
             
              <isNotEmpty prepend="and" property="storeId">  
                 (a.store_id = #storeId#)
+            </isNotEmpty>
+            
+              <isNotEmpty prepend="and" property="cPartCode">  
+                (b.part_code = #cPartCode#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="bPartCode">  
+                (c.part_code = #bPartCode#)
             </isNotEmpty>
             
             <isNotEmpty prepend="and" property="orderTypeId">  

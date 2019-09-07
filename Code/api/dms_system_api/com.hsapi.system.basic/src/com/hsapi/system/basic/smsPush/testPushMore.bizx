@@ -114,7 +114,7 @@
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="testPush" displayName="testPush" grouped="true" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="pushMsg" displayName="pushMsg" grouped="true" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>loopend0</targetNode>
@@ -123,8 +123,8 @@
     <location x="383" y="163"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.testPush</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.pushMsg</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="phones" type="query" value="String" valueType="Primitive" pattern="reference">f/mobile</process:inputVariable>
         <process:inputVariable id="1" name="message" type="query" value="String" valueType="Primitive" pattern="reference">msg</process:inputVariable>
@@ -136,8 +136,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="372" y="198"/>
-    <figSize height="17" width="49"/>
+    <location x="369" y="198"/>
+    <figSize height="17" width="55"/>
     <node>subprocess0</node>
   </nodes>
   <topRuler/>

@@ -36,7 +36,8 @@
 		                       emptyText="票据类型" data="" width="60px" visible="false" />
 		                  <input class="nui-combobox" name="settleTypeId" id="settleTypeId" 
 		                       emptyText="结算方式" data="" width="60px" visible="false" />
-		              </td>
+		         <a class="nui-button" iconCls="" plain="true" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+		          </td>
 		          </tr>
 		      </table>
 		  </div>

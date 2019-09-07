@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
 -->
 <head>
     <title>发送短信</title>
-    <script src="<%=request.getContextPath()%>/manage/js/visitMgr/sendInfo.js?v=1.0.4"></script>
+    <script src="<%=request.getContextPath()%>/manage/js/visitMgr/sendInfo.js?v=1.0.6"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
 </head>

@@ -2739,6 +2739,7 @@
     	       b.stop_time as stopTime,
     	       b.work_time as workTime,
     	       b.back_times as backTimes,
+    	       b.worker_ids as workerIds,
        		   b.item_name as itemName, b.workers as workers, 
        		   b.status as status, b.finish_auditor as finisher, b.finish_date as finishDate
 		from rps_maintain a

@@ -644,6 +644,7 @@ function onShowRowDetail(e) {
 
 		break;
 	default:
+		openOrderDetail();
 		break;
 	}
 }

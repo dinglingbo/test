@@ -672,7 +672,7 @@ function add()
                     
                     nui.get("serviceId").setValue("新配件拆分");
 //                    nui.get("createDate").setValue(new Date());
-                    nui.get("orderDate").setValue(new Date());
+                    nui.get("createDate").setValue(new Date());
                     nui.get("orderMan").setValue(currUserName);
                     
                     addNewRow();
@@ -701,7 +701,7 @@ function add()
         nui.get("serviceId").setValue("新配件拆分");
 
 //        nui.get("createDate").setValue(new Date());
-        nui.get("orderDate").setValue(new Date());
+        nui.get("createDate").setValue(new Date());
         nui.get("orderMan").setValue(currUserName);
 
         addNewRow();

@@ -658,10 +658,9 @@
 			d.outable_qty as outableQty
 		FROM
 			pj_process_detail a
-	    INNER JOIN pj_process_main e ON a.code_id = e.id
 		INNER JOIN wb_common.com_attribute b ON a.part_id = b.id
-		INNER JOIN pj_enter_main_chk c On (c.code_id = e.id and c.code = e.service_id)
-		INNER JOIN pj_enter_detail_chk d ON c.id = d.main_id
+		INNER JOIN pj_enter_main_chk c On (c.code_id = a.code_id and c.enter_type_id = "050113" )
+		INNER JOIN pj_enter_detail_chk d ON (d.main_id = c.id  and a.part_id = d.part_id)
 		WHERE 1=1
 		<dynamic>
 			<isNotEmpty prepend="and" property="orgid">  

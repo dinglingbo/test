@@ -33,6 +33,8 @@ var dataF = {};
 var deductionAmt = 0;
 //结算接口的优惠券对象
 var couponList = [];
+//是否是销售单结算
+var isSellPay = 0;
 $(document).ready(function(v) {
 	
 	$("body").on("blur","input[name='amount']",function(){
@@ -255,6 +257,11 @@ function getData(data){
 function setData(params){
 	dataF = params;
 	typeUrl = params.typeUrl||0;
+	if(params.isSellPay){
+		isSellPay = params.isSellPay;
+	}else{
+		isSellPay = 0;
+	}
 	var carId = params.carId;
 	var contactor = params.contactor;
 	if(typeUrl==1){
@@ -571,6 +578,14 @@ function onChanged() {
 }*/
 
 //转预结算
+/*function noPay(){
+	if(isSellPay==1){
+		paySell(2);
+	}else{
+		noPayFuntion();
+	}
+}*/
+
 function noPay(){
 	if(typeUrl==2){
 		var PrefAmt = nui.get("PrefAmt").getValue()||0;
@@ -587,26 +602,51 @@ function noPay(){
 					    cls : 'mini-mask-loading',
 					    html : '处理中...'
 				    });
-		    		nui.ajax({
-		    			url : apiPath + repairApi + '/com.hsapi.repair.repairService.settlement.preReturnSettle.biz.ext',
-		    			type : "post",
-		    			data : json,
-				        cache : false,
-				        contentType : 'text/json',
-		    			success : function(data) {
-		    				nui.unmask(document.body);
-		    				if(data.errCode=="S"){  					
-		    					CloseWindow("ok");
-		    				}else{
-		    					showMsg(data.errMsg,"W");
-		    				}
+				    if(isSellPay==1){
+						var b = paySell(function(json){
+							nui.ajax({
+				    			url : apiPath + repairApi + '/com.hsapi.repair.repairService.settlement.preReturnSettle.biz.ext',
+				    			type : "post",
+				    			data : json,
+						        cache : false,
+						        contentType : 'text/json',
+				    			success : function(data) {
+				    				nui.unmask(document.body);
+				    				if(data.errCode=="S"){  					
+				    					CloseWindow("ok");
+				    				}else{
+				    					showMsg(data.errMsg,"W");
+				    				}
 
-		    			},
-		    			error : function(jqXHR, textStatus, errorThrown) {
-		    				// nui.alert(jqXHR.responseText);
-		    				console.log(jqXHR.responseText);
-		    			}
-		    		});	
+				    			},
+				    			error : function(jqXHR, textStatus, errorThrown) {
+				    				// nui.alert(jqXHR.responseText);
+				    				console.log(jqXHR.responseText);
+				    			}
+				    		});
+						},json); 
+				    }else{
+				    	nui.ajax({
+			    			url : apiPath + repairApi + '/com.hsapi.repair.repairService.settlement.preReturnSettle.biz.ext',
+			    			type : "post",
+			    			data : json,
+					        cache : false,
+					        contentType : 'text/json',
+			    			success : function(data) {
+			    				nui.unmask(document.body);
+			    				if(data.errCode=="S"){  					
+			    					CloseWindow("ok");
+			    				}else{
+			    					showMsg(data.errMsg,"W");
+			    				}
+
+			    			},
+			    			error : function(jqXHR, textStatus, errorThrown) {
+			    				// nui.alert(jqXHR.responseText);
+			    				console.log(jqXHR.responseText);
+			    			}
+			    		});
+				    }            		
 		     }else {
 					return;
 			 }
@@ -619,7 +659,48 @@ function noPay(){
 }
 
 //结算
+/*function pay(){
+	if(isSellPay==1){
+		paySell();
+	}else{
+		payFuntion();
+	}
+	
+}*/
+var finishUrl = baseUrl+ "com.hsapi.repair.repairService.crud.updateSellMainFinish.biz.ext";
+function paySell(callback,json2){
+	var json = {
+			mainId:dataF.serviceId
+		};
+	//先完工
+	nui.ajax({
+		url : finishUrl,
+		type : "post",
+		data : json,
+        cache : false,
+        async: false,
+        contentType : 'text/json',
+		success : function(data) {
+			if(data.errCode=="S"){ 
+				callback && callback(json2);
+				return;
+			}else{
+				nui.unmask(document.body);
+				showMsg(data.errMsg,"E");
+				return;
+			}
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});	
+}
+
+
 function pay(){
+	
 	var accountTypeList =[];
 	var accountDetail = {};
 	var count = scount();
@@ -668,35 +749,65 @@ function pay(){
 		couponList:couponList
 	};
     nui.confirm("是否确定结算？", "友情提示",function(action){
+    	   
 	       if(action == "ok"){
 			    nui.mask({
 			        el : document.body,
 				    cls : 'mini-mask-loading',
 				    html : '处理中...'
 			    });
-	    		nui.ajax({
-	    			url : settlementUrl,
-	    			type : "post",
-	    			data : json,
-			        cache : false,
-			        contentType : 'text/json',
-	    			success : function(data) {
-	    				nui.unmask(document.body);
-	    				if(data.errCode=="S"){  					
-	    					CloseWindow("ok");
-	    					if( $("#settlesendwx").is(':checked')== true){
-	    						sendWCInfo(fserviceId);//发送微信通知
-	    					}
-	    				}else{
-	    					showMsg(data.errMsg,"W");
-	    				}
+			    if(isSellPay==1){
+					paySell(function(json){
+						nui.ajax({
+			    			url : settlementUrl,
+			    			type : "post",
+			    			data : json,
+					        cache : false,
+					        contentType : 'text/json',
+			    			success : function(data) {
+			    				nui.unmask(document.body);
+			    				if(data.errCode=="S"){  					
+			    					CloseWindow("ok");
+			    					if( $("#settlesendwx").is(':checked')== true){
+			    						sendWCInfo(fserviceId);//发送微信通知
+			    					}
+			    				}else{
+			    					showMsg(data.errMsg,"W");
+			    				}
 
-	    			},
-	    			error : function(jqXHR, textStatus, errorThrown) {
-	    				// nui.alert(jqXHR.responseText);
-	    				console.log(jqXHR.responseText);
-	    			}
-	    		});	
+			    			},
+			    			error : function(jqXHR, textStatus, errorThrown) {
+			    				// nui.alert(jqXHR.responseText);
+			    				console.log(jqXHR.responseText);
+			    			}
+			    		});
+					},json);
+				}else{
+					nui.ajax({
+		    			url : settlementUrl,
+		    			type : "post",
+		    			data : json,
+				        cache : false,
+				        contentType : 'text/json',
+		    			success : function(data) {
+		    				nui.unmask(document.body);
+		    				if(data.errCode=="S"){  					
+		    					CloseWindow("ok");
+		    					if( $("#settlesendwx").is(':checked')== true){
+		    						sendWCInfo(fserviceId);//发送微信通知
+		    					}
+		    				}else{
+		    					showMsg(data.errMsg,"W");
+		    				}
+
+		    			},
+		    			error : function(jqXHR, textStatus, errorThrown) {
+		    				// nui.alert(jqXHR.responseText);
+		    				console.log(jqXHR.responseText);
+		    			}
+		    		});	
+				}
+	    		
 	     }else {
 				return;
 		 }
@@ -764,24 +875,48 @@ function doNoPay(serviceId,allowanceAmt){
 				    cls : 'mini-mask-loading',
 				    html : '处理中...'
 			    });
-				nui.ajax({
-					url : apiPath + repairApi + "/com.hsapi.repair.repairService.settlement.preReceiveSettle.biz.ext" ,
-					type : "post",
-					data : json,
-					success : function(data) {
-						nui.unmask(document.body);
-						if(data.errCode=="S"){
-							CloseWindow("onok");
-						}else{
-							showMsg(data.errMsg,"W");
-						}
+			    if(isSellPay==1){
+					var b = paySell(function(json){
+						nui.ajax({
+							url : apiPath + repairApi + "/com.hsapi.repair.repairService.settlement.preReceiveSettle.biz.ext" ,
+							type : "post",
+							data : json,
+							success : function(data) {
+								nui.unmask(document.body);
+								if(data.errCode=="S"){
+									CloseWindow("onok");
+								}else{
+									showMsg(data.errMsg,"W");
+								}
 
-					},
-					error : function(jqXHR, textStatus, errorThrown) {
-						// nui.alert(jqXHR.responseText);
-						console.log(jqXHR.responseText);
-					}
-				});		
+							},
+							error : function(jqXHR, textStatus, errorThrown) {
+								// nui.alert(jqXHR.responseText);
+								console.log(jqXHR.responseText);
+							}
+						});
+					},json);
+				}else{
+					nui.ajax({
+						url : apiPath + repairApi + "/com.hsapi.repair.repairService.settlement.preReceiveSettle.biz.ext" ,
+						type : "post",
+						data : json,
+						success : function(data) {
+							nui.unmask(document.body);
+							if(data.errCode=="S"){
+								CloseWindow("onok");
+							}else{
+								showMsg(data.errMsg,"W");
+							}
+
+						},
+						error : function(jqXHR, textStatus, errorThrown) {
+							// nui.alert(jqXHR.responseText);
+							console.log(jqXHR.responseText);
+						}
+					});
+				}
+						
 	     }else {
 				return;
 		 }

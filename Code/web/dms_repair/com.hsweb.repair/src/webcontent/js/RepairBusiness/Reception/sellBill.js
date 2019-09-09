@@ -1634,7 +1634,8 @@ function pay(){
 		    	"data":data,
 		    	"typeUrl" :1,
 		    	contactor:contactorF,
-		    	billTypeId:0
+		    	billTypeId:0,
+		    	isSellPay:1
 		    	
 		    };
 		    iframe.contentWindow.setData(params);			

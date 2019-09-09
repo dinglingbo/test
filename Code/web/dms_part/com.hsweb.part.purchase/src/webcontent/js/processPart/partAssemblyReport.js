@@ -10,10 +10,11 @@ var comPartNameAndPY = null;
 var comPartCode = null;
 var comServiceId = null;
 var storehouseHash = {};
-
+var isSellFinish = null;
 var partBrandIdHash = {};
 $(document).ready(function(v)
 {
+	isSellFinish = nui.get("isSellFinish");
 	rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
     
@@ -143,15 +144,21 @@ function doSearch(params)
     params.sortOrder = "desc";
     params.orderTypeId = 1;
     params.auditSign = 1;
+    if(isSellFinish.checked){
+    	params.isSellFinish = 0;
+    }
     rightGrid.load({
         params:params,
         token:token
     },function(){
         rightGrid.mergeColumns(["serviceId"]);
         var data = rightGrid.getSelected();
-        var codeId =data.mainId;
-        var params = {codeId: codeId,token:token};	
-		detailGrid.load({params:params,token:token});
+        if(data){
+        	var codeId =data.mainId;
+            var params = {codeId: codeId,token:token};	
+    		detailGrid.load({params:params,token:token});
+        }
+        
     });
 }
 

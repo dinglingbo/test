@@ -68,7 +68,9 @@
 		                totalField="page.count" 
 		                showPager="true" 
 		                onselectionchanged="selectionChanged"
-		                showPagerButtonIcon="true" >
+		                showPagerButtonIcon="true" 
+		                selectOnLoad="true"
+		                >
 		                <div property="columns">
 		                    <div type="indexcolumn" name="index" width="30px" headeralign="center" >  <strong>序号</strong></div>
 		                    <div field="carNo" width="70" headeralign="left" visible="true"><strong>车牌号</strong></div>

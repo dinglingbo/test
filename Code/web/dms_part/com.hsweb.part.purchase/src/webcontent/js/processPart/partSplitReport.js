@@ -149,9 +149,11 @@ function doSearch(params)
     },function(){
         rightGrid.mergeColumns(["serviceId"]);
         var data = rightGrid.getSelected();
-        var codeId =data.mainId;
-        var params = {codeId: codeId,token:token};	
-		detailGrid.load({params:params,token:token});
+        if(data){
+        	var codeId =data.mainId;
+            var params = {codeId: codeId,token:token};	
+    		detailGrid.load({params:params,token:token});
+        }
     });
 }
 

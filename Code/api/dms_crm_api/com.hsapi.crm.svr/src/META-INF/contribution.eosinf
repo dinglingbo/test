@@ -30,6 +30,7 @@
 			<configValue key="default">default</configValue>
 			<configValue key="crm">DB10_MYSQL_WB_CRM</configValue>
 			<configValue key="repair">DB04_ORA_WB_REPAIR</configValue>
+			<configValue key="DB02_ORA_WB_COMMON">DB02_ORA_WB_COMMON</configValue>
 		</group>
 	</module>
 </contribution>

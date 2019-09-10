@@ -57,7 +57,8 @@
 			                <input id="serviceId" width="100px" emptyText="订单单号" class="nui-textbox"/>
 			               
 			                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-			
+			                <input type="checkbox" id="isSellFinish" class="mini-checkbox" trueValue="1" falseValue="0" >
+	                        <span >仅显示已销售完配件</span>
 			            </td>
 			        </tr>
 			    </table>

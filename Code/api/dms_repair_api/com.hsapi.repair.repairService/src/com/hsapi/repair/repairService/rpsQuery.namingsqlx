@@ -232,6 +232,7 @@
 			a.is_judge AS isJudge,
 			a.remark AS remark,
 			a.bill_type_id AS billTypeId,
+			a.part_audit_sign AS partAuditSign,
 			d.`name` AS contactName,
 			d.mobile AS contactMobile,
 			a.modifier AS modifier,

@@ -1,5 +1,7 @@
 var setNature = apiPath+repairApi+"/com.hsapi.repair.repairService.svr.saveNature.biz.ext";
 var concator = {};
+var natureId = "";
+var nature = "";
 $(document).ready(function()
 {	
 	//nui.get("auditBtn").focus();
@@ -15,44 +17,50 @@ $(document).ready(function()
 });
 function setData(params){
 	concator = params;
-	if(!concator.contactorId){
-		showMsg("联系人数据出错，请重新操作!","E");
-		return;
-	}
-	var params = {
-			id:concator.contactorId,
-	};
-	nui.mask({
-		el : document.body,
-		cls : 'mini-mask-loading',
-		html : '加载中...'
-	});
-	nui.ajax({
-		url : setNature,
-		type : "post",
-		aynsc:false,
-		data : {
-			params:params,
-			token:token
-		},
-		success : function(data) {		
-			nui.unmask(document.body);
-			if (data.errCode == "S") {
-				var guestTab = data.contcator;
-				var str = guestTab.natureId;
-				//str = "1545469092700,1545469092701,1545469092702";
-				if(str){
-					showTab(str);
-				}
-				
-			}else{
-				showMsg("保存失败","E");
-			}
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			console.log(jqXHR.responseText);
+	//客户车辆跳转过来的
+	if(concator =="guest"){
+		
+	}else{
+		if(!concator.contactorId){
+			showMsg("联系人数据出错，请重新操作!","E");
+			return;
 		}
-	});
+		var params = {
+				id:concator.contactorId,
+		};
+		nui.mask({
+			el : document.body,
+			cls : 'mini-mask-loading',
+			html : '加载中...'
+		});
+		nui.ajax({
+			url : setNature,
+			type : "post",
+			aynsc:false,
+			data : {
+				params:params,
+				token:token
+			},
+			success : function(data) {		
+				nui.unmask(document.body);
+				if (data.errCode == "S") {
+					var guestTab = data.contcator;
+					var str = guestTab.natureId;
+					//str = "1545469092700,1545469092701,1545469092702";
+					if(str){
+						showTab(str);
+					}
+					
+				}else{
+					showMsg("保存失败","E");
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				console.log(jqXHR.responseText);
+			}
+		});
+	}
+
 }
 
 function CloseWindow(action)
@@ -109,13 +117,9 @@ function selectclick() {
     });
 }
 function save(){
-	if(!concator.contactorId){
-		showMsg("联系人数据出错，请重新操作!","E");
-		return;
-	}
 	var tabList = document.querySelectorAll('.xz');
-	var nature = "";
-	var natureId = "";
+	 nature = "";
+	 natureId = "";
 	for(var i=0;i<tabList.length;i++){
 		if(i==0){
 			nature=tabList[i].innerHTML;
@@ -128,40 +132,49 @@ function save(){
 			natureId=natureId+","+tabList[i].id;
 		}
 	}
-	
-	var params = {
-			nature:nature,
-			natureId:natureId,
-			id:concator.contactorId,
-			type:"update"
-	};
-	nui.mask({
-		el : document.body,
-		cls : 'mini-mask-loading',
-		html : '保存中...'
-	});
-	//nature，
-	nui.ajax({
-		url : setNature,
-		type : "post",
-		aynsc:false,
-		data : {
-			params:params,
-			token:token
-		},
-		success : function(data) {	
-			nui.unmask(document.body);
-			if (data.errCode == "S") {
-				showMsg("保存成功","S");
-				CloseWindow("cancel");
-			}else{
-				showMsg("保存失败","E");
+	//客户车辆跳转过来的
+	if(concator =="guest"){		
+		CloseWindow("ok");
+	}else{
+		if(!concator.contactorId){
+			showMsg("联系人数据出错，请重新操作!","E");
+			return;
+		}		
+		var params = {
+				nature:nature,
+				natureId:natureId,
+				id:concator.contactorId,
+				type:"update"
+		};
+		nui.mask({
+			el : document.body,
+			cls : 'mini-mask-loading',
+			html : '保存中...'
+		});
+		//nature，
+		nui.ajax({
+			url : setNature,
+			type : "post",
+			aynsc:false,
+			data : {
+				params:params,
+				token:token
+			},
+			success : function(data) {	
+				nui.unmask(document.body);
+				if (data.errCode == "S") {
+					showMsg("保存成功","S");
+					CloseWindow("cancel");
+				}else{
+					showMsg("保存失败","E");
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				console.log(jqXHR.responseText);
 			}
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			console.log(jqXHR.responseText);
-		}
-	});
+		});
+	}
+
 	
 }
 function NoSave(){
@@ -176,4 +189,12 @@ function showTab(str){
 			$(s).toggleClass("xz");
 		}
 	}
+}
+
+function getData(){
+	var natureList = {
+			natureId:natureId,
+			natureName : nature
+	}
+	return  natureList;
 }

@@ -40,7 +40,11 @@ $(document).ready(function ()
     mainGrid.on("drawcell", function (e) {
     	var record = e.record;
         if (e.field == "status") {
-            e.cellHtml = statusHash[e.value];
+        	if(record.partAuditSign==1){
+        		e.cellHtml = statusHash[2];
+        	}else{
+        		e.cellHtml = statusHash[e.value];
+        	}
         }else if(e.field == "isSettle"){
             if(e.value == 1){
                 e.cellHtml = "已结算";

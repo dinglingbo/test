@@ -97,7 +97,7 @@ function querySysProduct(){
 									if(ProductList[i].type==1){
 				/*						html+='		<a class="have" id="'+ProductList[i].id+'" onclick="toChainProduct('+ProductList[i].id+')">&nbsp;'+data.list[i].name+'&nbsp;</a> ';*/
 										//接口不用跳转
-										html+='		<a class="have" title="需要'+data.list[i].callNeedCoin+'链车币" id="'+ProductList[i].id+'" >&nbsp;'+data.list[i].name+'&nbsp;</a> ';
+										html+='		<a class="have" title="需要'+data.list[i].callNeedCoin+'链车币'+data.list[i].remark+'" id="'+ProductList[i].id+'" >&nbsp;'+data.list[i].name+'&nbsp;</a> ';
 										
 									}else{
 										html+='		<a class="noHave" title="未购买，点击跳转购买界面！" id="'+ProductList[i].id+'" onclick="toChainProduct('+ProductList[i].id+')">&nbsp;'+data.list[i].name+'&nbsp;</a> ';

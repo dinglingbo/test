@@ -1,5 +1,5 @@
 var baseUrl = apiPath + cloudPartApi + "/";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.process.queryProcessProductMainList.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.process.queryProcessEnterPartList.biz.ext";
 var detailGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.process.queryProcessDetail.biz.ext";
 var rightGrid = null;
 var detailGrid =null;
@@ -10,10 +10,11 @@ var comPartNameAndPY = null;
 var comPartCode = null;
 var comServiceId = null;
 var storehouseHash = {};
-
+var isSellFinish = null;
 var partBrandIdHash = {};
 $(document).ready(function(v)
 {
+	isSellFinish = nui.get("isSellFinish");
 	rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
     
@@ -50,6 +51,7 @@ $(document).ready(function(v)
         });
 
     });
+    quickSearch(0);
 });
 
 function getSearchParam(){
@@ -141,15 +143,23 @@ function doSearch(params)
 	params.sortField = "audit_date";
     params.sortOrder = "desc";
     params.orderTypeId = 1;
+    params.auditSign = 1;
+    if(isSellFinish.checked){
+    	params.isSellFinish = 0;
+    }
     rightGrid.load({
         params:params,
         token:token
     },function(){
         rightGrid.mergeColumns(["serviceId"]);
         var data = rightGrid.getSelected();
-        var codeId =data.mainId;
-        var params = {codeId: codeId,token:token};	
-		detailGrid.load({params:params,token:token});
+        if(data){
+        	var codeId =data.mainId;
+            var params = {codeId: codeId,token:token};	
+    		detailGrid.load({params:params,token:token});
+        }else{
+        	detailGrid.setData([]);
+        }
     });
 }
 

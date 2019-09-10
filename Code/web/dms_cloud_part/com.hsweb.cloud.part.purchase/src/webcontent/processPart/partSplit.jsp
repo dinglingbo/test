@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-	
+		
 <%@include file="/common/sysCommon.jsp"%>
 <%@include file="/common/commonCloudPart.jsp"%>
 
@@ -34,7 +34,7 @@ body .mini-grid-row-selected{
 <head>
 <title>配件拆分</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchase/js/processPart/partSplit.js?v=1.0.1"></script>
+    <script src="<%=webPath + contextPath%>/purchase/js/processPart/partSplit.js?v=1.0.3"></script>
 </head>
 <body>
 	
@@ -66,7 +66,8 @@ body .mini-grid-row-selected{
                     <li iconCls="" onclick="quickSearch(7)" id="type7">已审核</li>
                   
                 </ul>
-                
+                 <a class="nui-button" plain="true" onclick="advancedSearch()">
+								<span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
             </td>
             <td style="width:100%;">
                 <span class="separator"></span>
@@ -102,11 +103,12 @@ body .mini-grid-row-selected{
                      onselectionchanged="onLeftGridSelectionChanged"
                      onbeforedeselect="onLeftGridBeforeDeselect"
                      dataField="processMain"
+                     totalField="page.count"
                      url="">
                     <div property="columns">
                       	<div type="indexcolumn">序号</div>
                         <div field="auditSign" width="65" visible="true" headerAlign="center" header="状态"></div>
-                        <div field="orderDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="创建日期"></div>
+                        <div field="createDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="创建日期"></div>
                         <div field="creator" width="60" headerAlign="center" header="操作员"></div>
                         <div field="serviceId" headerAlign="center" width="150" header="配件拆分单号"></div>
                         <div field="auditor" width="60" headerAlign="center" header="审核员"></div>
@@ -160,14 +162,14 @@ body .mini-grid-row-selected{
 		                                                />
 		                                      </td>
 		                                      <td class="title required" style="">
-		                                          <label>订单日期：</label>
+		                                          <label>创建日期：</label>
 		                                      </td>
 		                                      <td width="150" style="width:120px">
-		                                        <input name="orderDate"
-		                                               id="orderDate"
+		                                        <input name="createDate"
+		                                               id="createDate"
 		                                               width="100%"
 		                                               showTime="true"
-		                                               class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
+		                                               class="nui-datepicker" enabled="false" format="yyyy-MM-dd HH:mm"/>
 		                                      </td> 
 		                                      
 		                                       <td class="title">
@@ -265,10 +267,11 @@ body .mini-grid-row-selected{
 	                                      <div field="applyCarModel" width="80" headerAlign="center" header="品牌车型"></div>
 	                                      <div field="unit" name="unit" width="60" headerAlign="center" header="单位"></div>
 	                                      <div field="oemCode" width="50" headerAlign="center" allowSort="true" header="OE码"></div>   
-	                                      <div field="spec" width="50" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div> 
 		                                  <div field="storeStockQty" name="stockQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="库存"></div>
+		                		           <div field="occupyQty" name="occupyQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="占用数量"></div>
 		                		          <div field="stockOutQty" name="stockOutQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="缺货数量"></div>
-		                		           <div field="costPrice" name="costPrice" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="库存单价"></div>                                              
+		                		          <div field="orderPrice" name="orderPrice" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="单价"></div>                                              
+		                                  <div field="spec" width="50" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>
 		                                  </div>
 		                              </div>
 		                          </div>
@@ -315,6 +318,80 @@ body .mini-grid-row-selected{
         </div>
     </div>
 
+
+ <div id="advancedSearchWin" class="nui-window" title="高级查询" style="width: 400px; height:250px;" showModal="true" allowResize="false"
+	 allowDrag="false">
+		<div id="advancedSearchForm" class="form">
+			<table style="width: 100%;">
+				<tr>
+				
+					<td class="title" style="width:70px;">
+						<label >创建日期从:</label>
+					</td>
+					<td>
+						<input name="sCreateDate" width="100%" class="nui-datepicker" />
+					</td>
+					<td align="center">
+						<label>至:</label>
+					</td>
+					<td>
+						<input name="eCreateDate" class="nui-datepicker" format="yyyy-MM-dd" timeFormat="H:mm:ss" showTime="false" showOkButton="false"
+						 width="100%" showClearButton="false" />
+					</td>
+				</tr>
+				<tr>
+				
+					<td class="title">
+						<label>审核日期从:</label>
+					</td>
+					<td>
+						<input name="sAuditDate" width="100%" class="nui-datepicker" />
+					</td>
+					<td align="center">
+						<label>至:</label>
+					</td>
+					<td>
+						<input name="eAuditDate" class="nui-datepicker" format="yyyy-MM-dd" timeFormat="H:mm:ss" showTime="false" showOkButton="false"
+						 width="100%" showClearButton="false" />
+					</td>
+				</tr>
+				<tr>
+					<td class="title">
+						<label>成品编码:</label>
+					</td>
+					<td colspan="3">
+						<input name="cPartCode" width="100%" class="nui-textbox" />
+					</td>
+				</tr>
+				<tr>
+					<td class="title" >
+						<label>半成品编码:</label>
+					</td>
+					<td colspan="3">
+						<input name="bPartCode" width="100%" class="nui-textbox" />
+					</td>
+				</tr>
+				<tr>
+				
+					<td class="title">
+						<label>单号:</label>
+					</td>
+					<td colspan="3">
+						<input name="serviceId" width="100%" class="nui-textbox" />
+					</td>
+				</tr>
+				
+				
+		  </table>
+			<div style="text-align: center; padding: 10px;">
+				<a class="nui-button" onclick="onAdvancedSearchOk" style="width: 60px; margin-right: 20px;">确定</a>
+				
+				<a class="nui-button" onclick="cancelData" style="width: 60px;margin-right: 20px;">清除</a>
+				
+				<a class="nui-button" onclick="onAdvancedSearchCancel" style="width: 60px;">取消</a>
+			</div>
+		</div>
+	</div>
 	<script type="text/javascript">
     	nui.parse();
     </script>

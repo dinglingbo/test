@@ -48,8 +48,23 @@
 		left JOIN rpb_car a ON (a.guest_id = b.id)
 		LEFT  JOIN rpb_car_extend c ON a.id=c.car_id
 		WHERE
-			b.guest_type = '01020103'
+			b.guest_type = '01020103' 
 		<dynamic>
+			    <isNotEmpty prepend="and" property="rechargeBalaAmtStar">
+	  				  exists(select 1 from wb_common.com_join_member d where d.guest_id = b.id   and  d.recharge_bala_amt &gt;= #rechargeBalaAmtStar#)
+	            </isNotEmpty>
+	            <isNotEmpty prepend="and" property="rechargeBalaAmtEnd">
+	  				  exists(select 1 from wb_common.com_join_member d where d.guest_id = b.id   and  d.recharge_bala_amt &lt;= #rechargeBalaAmtEnd#)
+	            </isNotEmpty>
+	            <isNotEmpty prepend="and" property="integralStar">
+	  				  exists(select 1 from wb_common.com_join_member d where d.guest_id = b.id   and  d.integral &gt;= #integralStar#)
+	            </isNotEmpty>
+	            <isNotEmpty prepend="and" property="integralEnd">
+	  				  exists(select 1 from wb_common.com_join_member d where d.guest_id = b.id   and  d.integral &lt;= #integralEnd#)
+	            </isNotEmpty>
+	            <isNotEmpty prepend="and" property="nature">
+	  				  exists(select 1 from wb_repair.rpb_contactor e where e.guest_id = b.id   and  e.nature  like '%$nature$%')
+	            </isNotEmpty>	            
             <isNotEmpty prepend="and" property="tenantId">  
                 (b.tenant_id = #tenantId#)
             </isNotEmpty>  

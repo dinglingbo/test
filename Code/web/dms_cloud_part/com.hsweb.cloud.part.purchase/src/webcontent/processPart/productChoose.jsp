@@ -11,7 +11,7 @@
 <head>
 <title>配件成品选择</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchase/js/processPart/productChoose.js?v=1.0.57"></script>
+    <script src="<%=webPath + contextPath%>/purchase/js/processPart/productChoose.js?v=1.0.60"></script>
     
 </head>
 <body>

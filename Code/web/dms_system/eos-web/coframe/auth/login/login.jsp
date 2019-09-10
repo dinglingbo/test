@@ -8,16 +8,16 @@
 <html>
 <head>
 
-<title>链车云修</title>
+<title>车道SaaS平台</title>
 <script  src="<%= request.getContextPath() %>/common/nui/nui.js?v=2.1.50" type="text/javascript" ></script>
 <script src="<%= request.getContextPath() %>/common/js/qrcode.js" type="text/javascript"></script>
 <meta charset="utf-8">
-<meta name="keywords" content="链车云修"/>
-<meta name="description" content="链车云修"/>
+<meta name="keywords" content="车道SaaS平台"/>
+<meta name="description" content="车道SaaS平台"/>
 <meta name="author" content="shenzhi"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<meta name="apple-mobile-web-app-title" content="链车云修"/>
+<meta name="apple-mobile-web-app-title" content="车道SaaS平台"/>
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="format-detection" content="telephone=no, address=no, email=no" />
@@ -327,7 +327,7 @@ a {
 	<div class="login" id="sweepCodeBox">
 		<div class="title"><font color="#0050fb9e" >扫码登录</font>  | <span class="blue1" id="login1">账号登录</span></div>
 		<div id="qrcode" ></div>
-		<div class="you" >打开链车云修手机APP扫描二维码</div>
+		<div class="you" >打开车道SaaS平台手机APP扫描二维码</div>
 	</div>
 </form>	
 
@@ -350,7 +350,7 @@ a {
 				</div>
 			</div> -->		
 			<div class="log">
-				欢迎登录链车云修
+				欢迎登录车道SaaS平台
 				<span>为了保障您顺畅的使用，建议使用谷歌/火孤/360浏览器</span>
 			</div>
 		</div>

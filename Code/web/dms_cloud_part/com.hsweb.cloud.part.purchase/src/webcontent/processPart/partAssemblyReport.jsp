@@ -14,7 +14,7 @@
 <head>
 <title>配件组装明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-      <script src="<%=webPath + contextPath%>/purchase/js/processPart/partAssemblyReport.js?v=1.0.6"></script>
+      <script src="<%=webPath + contextPath%>/purchase/js/processPart/partAssemblyReport.js?v=1.0.11"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -57,7 +57,8 @@
 			                <input id="serviceId" width="100px" emptyText="订单单号" class="nui-textbox"/>
 			               
 			                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-			
+			                <input type="checkbox" id="isSellFinish" class="mini-checkbox" trueValue="1" falseValue="0" >
+	                        <span >仅显示已销售完配件</span>
 			            </td>
 			        </tr>
 			    </table>
@@ -98,7 +99,7 @@
 			            </div>
 			            <div header="数量单价" headerAlign="center">
 			                <div property="columns">
-			                    <div allowSort="true" datatype="float" summaryType="sum" field="orderQty" width="60" headerAlign="center" header="数量"></div>
+			                    <div allowSort="true" datatype="float" summaryType="sum" field="orderQty" width="40" headerAlign="center" header="数量"></div>
 			                    <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="单价"></div>
 			                    <div allowSort="true" datatype="float" summaryType="sum" field="orderAmt" width="60" headerAlign="center" header="金额"></div>
 			                    <div allowSort="true" field="detailRemark" width="150" headerAlign="center" header="备注"></div>
@@ -125,6 +126,8 @@
 			                    <div allowSort="true" datatype="float" summaryType="sum" field="adjustQty" width="60" headerAlign="center" header="调整数量"></div> -->
 			                    <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
 			                    <div allowSort="true" field="auditDate"width="120" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+			                    <div allowSort="true" datatype="float" field="enterQty" width="60" headerAlign="center" header="入库数量"></div>
+	                            <div allowSort="true" datatype="float" summaryType="sum" field="outableQty" width="80" headerAlign="center" header="可出库数量"></div>
 			                </div>
 			            </div>
 			        </div>
@@ -158,7 +161,7 @@
                 		<div field="orderQty" name="orderQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="数量"></div>
 		                <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="单价"></div>
 	                    <div allowSort="true" datatype="float" summaryType="sum" field="orderAmt" width="60" headerAlign="center" header="金额"></div>
-				       
+	                    
                 	</div>
                  </div>	
 	 		</div>	

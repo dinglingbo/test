@@ -11,7 +11,7 @@
 -->
 <head>
 	<title>客户档案</title>
-	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.5.33"></script>
+	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.5.37"></script>
 	<style type="text/css">
 		table {
 			font-size: 12px;
@@ -133,7 +133,7 @@
 	</div>
 
 
-	<div id="advancedSearchWin" class="nui-window" title="高级查询" style="width: 500px; height: 520px;" showModal="true" allowResize="false"
+	<div id="advancedSearchWin" class="nui-window" title="高级查询" style="width: 500px; height: 540px;" showModal="true" allowResize="false"
 	 allowDrag="false">
 		<div id="advancedSearchForm" class="form">
 			<table style="width: 100%;">
@@ -277,13 +277,13 @@
 						<label>积分范围在:</label>
 					</td>
 					<td>
-						<input class="nui-textbox" name="" id="" style="width: 100%;" vtype="int" value=""/>
+						<input class="nui-textbox" name="integralStar" id="integralStar" style="width: 100%;" vtype="int" value="0"/>
 					</td>
 					<td align="center">
 						<label>到:</label>
 					</td>
 					<td>
-						 <input class="nui-textbox" name="" id="" style="width: 100%;" vtype="int" value=""/>
+						 <input class="nui-textbox" name="integralEnd" id="integralEnd" style="width: 100%;" vtype="int" value="100000"/>
 					</td>
 				</tr>
 				<tr>
@@ -291,13 +291,13 @@
 						<label>余额范围在:</label>
 					</td>
 					<td>
-						<input class="nui-textbox" name="" id="" style="width: 100%;" vtype="int" value=""/>
+						<input class="nui-textbox" name="rechargeBalaAmtStar" id="rechargeBalaAmtStar" style="width: 100%;" vtype="int" value="0"/>
 					</td>
 					<td align="center">
 						<label>到:</label>
 					</td>
 					<td>
-						 <input class="nui-textbox" name="" id="" style="width: 100%;" vtype="int" value=""/>
+						 <input class="nui-textbox" name="rechargeBalaAmtEnd" id="rechargeBalaAmtEnd" style="width: 100%;" vtype="int" value="100000"/>
 					</td>
 				</tr>								
 				 <tr>
@@ -359,6 +359,14 @@
 					</td>
 					<td colspan="">
 						<input class="nui-checkbox" id="isChain"   value="0" checked="checked" name="isChain"  trueValue="1" falseValue="0" />
+					</td>
+				</tr>
+				<tr>
+					<td class="title">
+						<label>客户标签:</label>
+					</td>
+					<td colspan="3">
+					    <input class="mini-buttonedit" onbuttonclick="GuestTabShow" name="nature" id="nature" style="width: 100%;" />
 					</td>
 				</tr>
 				<tr>

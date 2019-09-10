@@ -212,6 +212,30 @@
 		from com_part_brand 
 		where parent_id > 0 and is_disabled = 0 
     </select>
+     <!--查询品牌，可传参数 -->
+    <select id="getPartBrandParams" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT 
+    		a.id as id, 
+    		a.parent_id as parentId,   		
+    		a.code as code, 
+    		a.name as name, 
+    		a.first_code_ch as firstCodeCh,
+    		a.manufacture as manufacture,
+    		a.image_url as imageUrl,
+    		a.remark as remark,
+    		a.is_disabled as isDisabled,
+    		a.old_id as oldId,
+    		a.cang_brand_id as cangBrandId
+
+		from com_part_brand a
+		where parent_id > 0 and is_disabled = 0 
+		<isNotNull property="firstCodeCh">
+			AND a.first_code_ch = #firstCodeCh#
+		</isNotNull>
+		<isNotNull property="name">
+			AND a.name like '%$name$%'
+		</isNotNull>
+    </select>
     <!--本机构配件分类   is_disabled = 0 -->
     <select id="getOwnPartType" parameterClass="HashMap" resultClass="HashMap">
     	SELECT id as id, orgid as orgid, code as code, name as name, parent_id as parentId,

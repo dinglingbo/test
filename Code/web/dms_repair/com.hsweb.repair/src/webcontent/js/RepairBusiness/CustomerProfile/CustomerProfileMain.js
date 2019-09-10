@@ -643,3 +643,27 @@ function setInitData(params) {
         doSearch(p);
     }
 }
+
+function GuestTabShow(){
+	 nui.open({
+        url: webPath + contextPath + "/repair/RepairBusiness/Reception/guestTabShow.jsp?token="+token,
+        title: '客户标签',
+        width: 300, height: 400,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+           // var params = sendGuestForm.getData();
+            var type = "guest";//客户车辆界面跳转过来
+            iframe.contentWindow.setData(type);
+        },
+        ondestroy: function (action)
+        {
+            if("ok" == action)
+            {
+                var iframe = this.getIFrameEl();
+            	var nature = iframe.contentWindow.getData();
+            	nui.get("nature").setValue(nature.natureName);
+            	nui.get("nature").setText(nature.natureName);
+            }
+        }
+    });
+}

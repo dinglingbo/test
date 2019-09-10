@@ -1297,6 +1297,14 @@
       <process:from type="query" pattern="reference">operateDate</process:from>
       <process:to type="query">allotMain/comeDate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userId</process:from>
+      <process:to type="query">allotMain/enterStockId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">allotMain/enterStock</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
     <location x="478" y="132"/>

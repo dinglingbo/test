@@ -382,7 +382,7 @@
     <figSize height="20" width="154"/>
     <node>subprocess0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign4" name="赋值3" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值3" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>invokePojo1</targetNode>
@@ -392,6 +392,10 @@
     <location x="510" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">guest/id</process:from>
+      <process:to type="query">main/directGuestId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
     <location x="504" y="186"/>

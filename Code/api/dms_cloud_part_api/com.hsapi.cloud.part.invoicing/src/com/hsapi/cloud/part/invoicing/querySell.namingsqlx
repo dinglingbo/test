@@ -100,7 +100,9 @@
             M.guestShortName,
             M.rtnReasonId,
             M.isBilling,
-            M.showAmt
+            M.showAmt,
+			M.directGuestId,
+			M.directOrgid,
         FROM (
             SELECT DISTINCT
 				A.id as id,
@@ -144,6 +146,8 @@
 				A.rtn_reason_id as rtnReasonId,
 				A.is_billing as isBilling,
 				A.show_amt as showAmt,
+				A.direct_guest_id AS directGuestId,
+				A.direct_orgid AS directOrgid,
 				B.FULL_NAME AS guestFullName,
 				B.SHORT_NAME AS guestShortName
 				FROM
@@ -262,6 +266,8 @@
 				A.rtn_reason_id as rtnReasonId,
 				A.is_billing as isBilling,
 				A.show_amt as showAmt,
+				A.direct_guest_id AS directGuestId,
+				A.direct_orgid AS directOrgid,
 				B.FULL_NAME AS guestFullName,
 				B.SHORT_NAME AS guestShortName
 				FROM
@@ -1192,6 +1198,8 @@
 				a.is_need_pack as isNeedPack,
                 a.rtn_reason_id as rtnReasonId,
                 a.is_rtn_sign as isRtnSign,
+                a.direct_guest_id as directGuestId,
+                a.direct_orgid as directOrgid,
 				B.FULL_NAME AS guestFullName,
 				B.SHORT_NAME AS guestShortName,
                 a.is_diff_order as isDiffOrder,
@@ -1331,6 +1339,8 @@
                 a.rtn_reason_id as rtnReasonId,
 				a.is_need_pack as isNeedPack,
                 a.is_rtn_sign as isRtnSign,
+                a.direct_guest_id as directGuestId,
+                a.direct_orgid as directOrgid,
 				B.FULL_NAME AS guestFullName,
 				B.SHORT_NAME AS guestShortName,
                 a.is_diff_order as isDiffOrder,

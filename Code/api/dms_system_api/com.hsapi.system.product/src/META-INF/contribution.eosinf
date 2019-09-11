@@ -28,7 +28,6 @@
 				and the field value 'default' of 'configValue' node stands for an application datasource. 
 			-->
 			<configValue key="default">default</configValue>
-			<configValue key="DB02_MSSQL_WB_STANDARD">DB02_MSSQL_WB_STANDARD</configValue>
 			
 		</group>
 	</module>

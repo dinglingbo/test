@@ -426,6 +426,34 @@ var sortTypeList = [
     {id:"3",text:"库存数量↑"},{id:"4",text:"库存数量↓"},
     {id:"5",text:"成本↑"},{id:"6",text:"成本↓"}
 ];
+
+var companyUrl = apiPath + sysApi + "/"+"com.hsapi.system.basic.organization.getCompanyAll.biz.ext";
+function getCompany(){
+	var params = {};
+	nui.ajax({
+        url: companyUrl,
+        type: 'post',
+        async:false,
+        data: nui.encode({
+        	params: params,
+            token: token
+        }),
+        cache: false,
+        success: function (data) {
+            if (data.errCode == "S"){
+            	var orgList =data.companyList;
+            	directOrgidEl.setData(data.companyList);
+               
+            }else {
+            	
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
+	});
+}
+
 function addNewRow(check){
 	rightGridSet();
     var data = basicInfoForm.getData();

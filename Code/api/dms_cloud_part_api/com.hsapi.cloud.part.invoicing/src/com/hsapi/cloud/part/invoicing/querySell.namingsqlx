@@ -53,6 +53,8 @@
         <result column="rtnReasonId" javaType="string" property="rtnReasonId"/>
         <result column="isBilling" javaType="int" property="isBilling"/>
         <result column="showAmt" javaType="double" property="showAmt"/>
+        <result column="directGuestId" javaType="int" property="directGuestId"/>
+        <result column="directOrgid" javaType="int" property="directOrgid"/>
     </resultMap>
     <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->
     <select id="queryPjSellOrderMainList" parameterClass="java.util.HashMap" resultMap="pjSellOrderMainList">
@@ -100,7 +102,9 @@
             M.guestShortName,
             M.rtnReasonId,
             M.isBilling,
-            M.showAmt
+            M.showAmt,
+            M.directGuestId,
+            M.directOrgid
         FROM (
             SELECT DISTINCT
 				A.id as id,
@@ -144,6 +148,8 @@
 				A.rtn_reason_id as rtnReasonId,
 				A.is_billing as isBilling,
 				A.show_amt as showAmt,
+			    A.direct_guest_id as directGuestId ,
+            	A.direct_orgid as directOrgid,
 				B.FULL_NAME AS guestFullName,
 				B.SHORT_NAME AS guestShortName
 				FROM
@@ -216,6 +222,13 @@
                  <isNotEmpty prepend="and" property="creator">  
                     (a.creator = #creator#)
                 </isNotEmpty>
+                 <isNotEmpty prepend="and" property="directOrgid">  
+                    (A.direct_orgid &gt;0)
+                </isNotEmpty>
+                
+                 <isNotEmpty prepend="and" property="noDirectOrgid">  
+                    (A.direct_orgid = 0)
+                </isNotEmpty>
             </dynamic>  
             
             union all
@@ -262,6 +275,8 @@
 				A.rtn_reason_id as rtnReasonId,
 				A.is_billing as isBilling,
 				A.show_amt as showAmt,
+				A.direct_guest_id as directGuestId ,
+            	A.direct_orgid as directOrgid,
 				B.FULL_NAME AS guestFullName,
 				B.SHORT_NAME AS guestShortName
 				FROM
@@ -334,6 +349,13 @@
                 </isNotEmpty>
                  <isNotEmpty prepend="and" property="creator">  
                     (a.creator = #creator#)
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="directOrgid">  
+                    (A.direct_orgid &gt;0)
+                </isNotEmpty>
+                
+                 <isNotEmpty prepend="and" property="noDirectOrgid">  
+                    (A.direct_orgid = 0)
                 </isNotEmpty>
             </dynamic>  
         )M
@@ -1196,6 +1218,8 @@
 				B.SHORT_NAME AS guestShortName,
                 a.is_diff_order as isDiffOrder,
                 a.rtn_sign_date as rtnSignDate,
+                A.direct_guest_id as directGuestId,
+                A.direct_orgid as directOrgId,
                 a.is_billing as isBilling,
                 a.show_amt as showAmt
 				FROM
@@ -1278,6 +1302,13 @@
                 </isNotEmpty> 
                  <isNotEmpty prepend="and" property="creator">  
                     (a.creator = #creator#)
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="directOrgid">  
+                    (A.direct_orgid &gt;0)
+                </isNotEmpty>
+                
+                 <isNotEmpty prepend="and" property="noDirectOrgid">  
+                    (A.direct_orgid = 0)
                 </isNotEmpty>
             </dynamic>  
             
@@ -1424,6 +1455,13 @@
                 </isNotEmpty> 
                  <isNotEmpty prepend="and" property="creator">  
                     (a.creator = #creator#)
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="directOrgid">  
+                    (A.direct_orgid &gt;0)
+                </isNotEmpty>
+                
+                 <isNotEmpty prepend="and" property="noDirectOrgid">  
+                    (A.direct_orgid = 0)
                 </isNotEmpty>
             </dynamic>  
             

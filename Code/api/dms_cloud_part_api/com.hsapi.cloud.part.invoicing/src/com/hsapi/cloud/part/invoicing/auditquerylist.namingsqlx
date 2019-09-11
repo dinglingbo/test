@@ -51,6 +51,8 @@
 				A.operate_date as operateDate,
 				A.settle_type_id as settleTypeId,
 				A.is_out as isOut,
+				A.direct_orgid as directOrgid,
+				A.direct_guest_id as directGuestId,
 				B.FULL_NAME AS guestFullName,
 				B.SHORT_NAME AS guestShortName
 				FROM
@@ -109,6 +111,14 @@
                 <isNotEmpty prepend="and" property="auditSign">  
                 <!--审核状态-->
                     (A.AUDIT_SIGN = #auditSign#)
+                </isNotEmpty>
+                
+                 <isNotEmpty prepend="and" property="directOrgid">  
+                    (A.direct_orgid >0)
+                </isNotEmpty>
+                
+                 <isNotEmpty prepend="and" property="noDirectOrgid">  
+                    (A.direct_orgid = 0)
                 </isNotEmpty>
                 
                 <isNotEmpty prepend="and" property="serviceIdList">  

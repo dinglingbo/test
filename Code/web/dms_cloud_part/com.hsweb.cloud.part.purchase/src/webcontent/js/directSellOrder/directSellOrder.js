@@ -25,7 +25,7 @@ var storeHash ={};
 var gsparams = {};
 var sOrderDate = null;
 var eOrderDate = null;
-var mainTabs = null;
+
 var billmainTab = null;
 var partInfoTab = null;
 var dataList = null;
@@ -72,6 +72,7 @@ var isBilling=0;
 //是否修改配件
 var isEditPart =0;
 var partIn =false;
+var directOrgidEl =null;
 $(document).ready(function(v)
 {
     nui.mask({
@@ -134,13 +135,9 @@ $(document).ready(function(v)
     sOrderDate = nui.get("sOrderDate");
     eOrderDate = nui.get("eOrderDate");
 
-    mainTabs = nui.get("mainTabs");
-    billmainTab = mainTabs.getTab("billmain");
-    partInfoTab = mainTabs.getTab("partInfoTab");
-    document.getElementById("formIframe").src=webPath + contextPath + "/common/embedJsp/containBottom.jsp?token="+token;
-    document.getElementById("formIframePart").src=webPath + contextPath + "/common/embedJsp/containPartInfo.jsp?token="+token;
-    //document.getElementById("formIframeStock").src=webPath + contextPath + "/common/embedJsp/containStock.jsp";
-    //document.getElementById("formIframePchs").src=webPath + contextPath + "/common/embedJsp/containPchsAdvance.jsp";
+
+    directOrgidEl = nui.get("directOrgid");
+	getCompany();
 
     morePartTabs = nui.get("morePartTabs");
     enterTab = morePartTabs.getTab("enterTab");
@@ -454,6 +451,7 @@ function getCompany(){
 	});
 }
 
+
 function addNewRow(check){
 	rightGridSet();
     var data = basicInfoForm.getData();
@@ -568,38 +566,7 @@ function loadMainAndDetailInfo(row)
         //grid_details.clearRows();
    }
 }
-function ontopTabChanged(e){
-    var tab = e.tab;
-    var name = tab.name;
-    var url = tab.url;
-    if(!url){
-        if(name == "guestOrdrTab"){
-            mainTabs.loadTab(webPath + contextPath + "/purchase/sellOrder/pchsOrderSettle_view0.jsp?token="+token, tab);
-        }else if(name == "partStockInfoTab"){
-            mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containStock.jsp?token="+token, tab);
-        }else if(name == "purchaseAdvanceTab"){
-            mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containOrderCart.jsp?token="+token, tab);
-        }else if(name == "billmain"){
-            var data = rightGrid.getChanges();
-            if(data && data.length > 0){
-                addNewRow(true);
-            }else{
-                add();
-            }
-        }
-    }else{
-        if(name == "billmain"){
-            var data = rightGrid.getChanges();
-            if(data && data.length > 0) {
-                addNewRow(true);
-            }else{
-                add();
-            }
-            
-        }
-    }
-    
-}
+
 var partPriceUrl = baseUrl
         + "com.hsapi.cloud.part.invoicing.pricemanage.getSellDefaultPrice.biz.ext";
 function getPartPrice(params){
@@ -911,7 +878,7 @@ function showPartInfo(row, value, mainId){
 	partShow=1;
     nui.open({
         // targetWindow: window,
-        url: webBaseUrl+"com.hsweb.cloud.part.common.fastPartChoose.flow?token="+token,
+        url: webBaseUrl+"purchase/directSellOrder/fastPartChoose_view0.jsp?token="+token,
         title: "配件信息", width: 980, height: 560,
         showHeader:false,
         allowDrag:true,
@@ -1034,15 +1001,7 @@ function loadRightGridData(mainId)
 		}	
 
 		
-        var tab = mainTabs.getActiveTab();
-        if(tab.name == "billmain"){
-            var data = rightGrid.getData();
-            var leftRow = leftGrid.getSelected();
-            if(leftRow.auditSign && leftRow.auditSign == 1) return;
-            if(data && data.length <= 0){
-				addNewRow(false);
-			}	  
-        }
+     
         
     });
 }
@@ -1233,6 +1192,7 @@ function doSearch(params)
     //目前没有区域销售订单，采退受理  params.enterTypeId = '050101';
     params.orderTypeId = 2;
 	params.isDiffOrder = 0;
+	params.directOrgid =1;
 	//是业务员且业务员禁止可见
 	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
 		params.creator= currUserName;
@@ -1370,7 +1330,7 @@ function add()
         showMsg("请先到仓库定义功能设置仓库!","W");
         return;
     }
-    mainTabs.activeTab(billmainTab);
+
 
     if(checkNew() > 0) 
     {
@@ -1557,7 +1517,8 @@ var requiredField = {
     orderMan : "销售员",
     orderDate : "订单日期",
 	billTypeId : "票据类型",
-    settleTypeId : "结算方式"
+    settleTypeId : "结算方式",
+	directOrgid : "直发门店"
 };
 var updateCreditUrl= baseUrl +"com.hsapi.cloud.part.invoicing.settle.updateGuestCredit.biz.ext";
 function beforeSave(){
@@ -1978,7 +1939,7 @@ function onCellCommitEdit(e) {
 
             if(orderPrice){
                 rightGrid.commitEditRow(row);
-                mainTabs.activeTab(billmainTab);
+      
             }
             
         }else if (e.field == "orderAmt") {

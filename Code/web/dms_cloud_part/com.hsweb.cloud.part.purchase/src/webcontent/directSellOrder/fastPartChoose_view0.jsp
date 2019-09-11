@@ -9,7 +9,7 @@
 -->
 <head>
 <title>快速录入</title>
-<script src="<%=webPath + contextPath%>/purchase/js/directSellOrder/fastPartChoose.js?v=1.0.33"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/directSellOrder/fastPartChoose.js?v=1.0.39"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

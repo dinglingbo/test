@@ -33,6 +33,7 @@ var innerPartGrid = null;
 var editFormDetail2 = null;
 var innerPartGrid2 = null;
 var storeShelfList=[]; 
+var directOrgid=0;
 $(document).ready(function(v)
 {
     morePartGrid = nui.get("morePartGrid");
@@ -518,6 +519,7 @@ function setInitData(params, ck, cck){
     var value = params.value;
     mainId = params.mainId;
     guestId = params.guestId;
+    directOrgid =params.directOrgid;
     callback = ck;
     checkcallback = cck;
 
@@ -525,6 +527,7 @@ function setInitData(params, ck, cck){
     var params = {};
     //params.showStock = 1;
     //showStockEl.setValue(1);
+    params.orgid=directOrgid;
     if(type == 1){
         morePartCodeEl.setValue(value);
         params.partCode = value.replace(/\s+/g, "");
@@ -583,6 +586,7 @@ function morePartSearch(){
     }
     params.serviceId = moreServiceIdEl.getValue().replace(/\s+/g, "");
     params.partBrandId = nui.get('partBrandId').getValue().replace(/\s+/g, "");
+    params.orgid = directOrgid;
     var sortTypeValue = sortTypeEl.getValue();
 
     if(!params.partCode && !params.partName && !params.serviceId && !params.partBrandId){
@@ -662,6 +666,7 @@ function morePartSearchAll(){
     }
     params.serviceId = moreServiceIdEl.getValue().replace(/\s+/g, "");
     params.partBrandId = nui.get('partBrandId').getValue().replace(/\s+/g, "");
+    params.orgid=directOrgid;
     var sortTypeValue = sortTypeEl.getValue();
 
     if(!params.partCodeAll && !params.partName && !params.serviceId && !params.partBrandId){
@@ -891,6 +896,7 @@ function onMoreTabChanged(e){
     params.showStock = showStockEl.getValue().replace(/\s+/g, "");
     params.serviceId = moreServiceIdEl.getValue().replace(/\s+/g, "");
     params.partBrandId = nui.get('partBrandId').getValue().replace(/\s+/g, "");
+    params.orgid=directOrgid;
 
     if(name == "enterTab"){
         //nui.get("showStock").hide();
@@ -1142,7 +1148,7 @@ function getSellPrice(params){
         type : "post",
         async: false,
         data : {
-            orgid: currOrgId,
+            orgid: directOrgid,
             partId : params.partId,
             token: token
         },

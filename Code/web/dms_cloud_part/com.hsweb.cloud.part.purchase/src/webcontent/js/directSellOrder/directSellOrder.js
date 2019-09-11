@@ -48,6 +48,7 @@ var partInfoTab = null;
 var guestIdEl=null;
 var quickAddShow=0;
 var advancedSearchShow=0;
+var directStoreHouse =[];
 
 var AuditSignHash = {
   "0":"未审",
@@ -531,9 +532,11 @@ function loadMainAndDetailInfo(row)
 
 	   nui.get("isBilling").setValue(row.isBilling);
 	   billingChange();
+	   
+	   if(row.directOrgid>0){
+		   queryStore();
+	   }
        
-
-
        if(row.codeId && row.codeId>0){
             //可以编辑票据类型和结算方式，是否需要打包，备注，业务员；明细不能修改；如果需要，则退回
             nui.get("guestId").disable();
@@ -894,10 +897,12 @@ function showPartInfo(row, value, mainId){
                 type: "sellOrder",
                 value:value,
                 mainId:mainId,
-                guestId: nui.get("guestId").getValue()
+                guestId: nui.get("guestId").getValue(),
+                directOrgid : directOrgidEl.getValue()
             };
             iframe.contentWindow.setInitData(params,
                 function(data,ck) {
+            		queryStore();
                     addDetail(row,data,ck);
                 },function(data) {
                     var partid = 0;
@@ -2642,7 +2647,7 @@ function onPrint(){
 	var detailParams={
 			mainId :from.id,
 	};
-	var openUrl = webPath + contextPath+"/purchase/sellOrder/sellOrderPrint.jsp";
+	var openUrl = webPath + contextPath+"/purchase/directSellOrder/directSellOrderPrint.jsp";
 
     nui.open({
        url: openUrl,
@@ -2805,7 +2810,7 @@ function OnrpMainGridCellBeginEdit(e){
            
         }else{
             if(column.field != "remark" && column.field != "orderQty" && column.field != "orderPrice" && column.field != "orderAmt" && column.field != "storeId" && column.field != "storeShelf"
-            	&& column.field != "showPrice" && column.field != "showAmt" && column.field != "showPartCode"){
+            	&& column.field != "showPrice" && column.field != "showAmt" && column.field != "showPartCode" && column.field != "directStoreId"){
                 e.cancel = true;
             }
         }  
@@ -3545,3 +3550,30 @@ function partChange(){
 	}
 	
 }
+
+var queryStoreUrl ='com.hsapi.cloud.part.baseDataCrud.crud.queryStoreHouse.biz.ext'
+function queryStore(){
+	nui.ajax({
+        url: queryStoreUrl,
+        type: 'post',
+        async:false,
+        data: nui.encode({
+        	orgid: directOrgidEl.getValue(),
+            token: token
+        }),
+        cache: false,
+        success: function (data) {
+            if (data.errCode == "S"){
+            	directStoreHouse =data.storehouse;
+            	nui.get('directStoreId').setData(directStoreHouse);
+               
+            }else {
+            	
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
+	});
+}
+

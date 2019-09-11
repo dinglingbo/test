@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售订单</title>
-<script src="<%=webPath + contextPath%>/purchase/js/directSellOrder/directSellOrder.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/directSellOrder/directSellOrder.js?v=1.0.11"></script>
 <style type="text/css">
 .title {
 	width: 70px;
@@ -505,6 +505,7 @@ body .mini-grid-row-selected{
                               <input class="nui-hidden" name="createDate"/>
                               <input class="nui-hidden" name="auditSign"/>
                               <input class="nui-hidden" name="orderAmt"/>
+                              <input class="nui-hidden" name="directGuestId"/>
                               <input class="nui-textbox" visible="false" id="codeId" name="codeId" width="100%">
                               <table style="width: 100%;">
                                   <tr>
@@ -525,7 +526,7 @@ body .mini-grid-row-selected{
                                              onvaluechanged="onGuestValueChanged"
                                              popupEmptyText="未找到客户"
                                              url=""  searchField="key"
-                                             width="67%"
+                                             width="60%"
                                              placeholder="请选择客户"
                                              selectOnFocus="true" />
                                         <a class="nui-button" iconCls="" plain="false" onclick="selectSupplier('guestId')" id="addBtn"><span class="fa fa-check fa-lg"></span></a>
@@ -706,6 +707,14 @@ body .mini-grid-row-selected{
                                               onvaluechanged="onStoreValueChange" emptyText=""  vtype="required"
                                               /> 
                                       </div>  
+                                      
+                                      <div type="comboboxcolumn" field="directStoreId" width="80" headerAlign="center" allowSort="true">
+                                      	直发门店仓库<input  property="editor" enabled="true" name="directStoreId" dataField="directStoreHouse" class="nui-combobox" valueField="id" textField="name" 
+                                              url="" data="directStoreHouse"
+                                              onvaluechanged="" emptyText=""  vtype="required"
+                                              /> 
+                                      </div>  
+                                      
                                        <div field="storeShelf" width="90" headerAlign="center" allowSort="true" header="仓位">
 		                             	 仓位<input  property="editor" id="storeShelf" name='storeShelf'  class="nui-textbox"/>
 		                          		</div>  

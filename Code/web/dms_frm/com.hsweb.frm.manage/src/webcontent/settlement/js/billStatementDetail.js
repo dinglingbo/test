@@ -822,6 +822,7 @@ function addDetail(rows)
     //var data = iframe.contentWindow.getData();
     for(var i=0; i<rows.length; i++){
         var row = rows[i];
+        row.auditDate = format(row.auditDate, 'yyyy-MM-dd HH:mm:ss');
         var newRow = {
             billMainId:row.mainId,
             billServiceId:row.serviceId,

@@ -4,6 +4,8 @@ var partBaseUrl = apiPath + partApi + "/";
 var notStatementUrl = partBaseUrl + "com.hsapi.part.invoice.settle.queryOrderBill.biz.ext";
 var innerPchsGridUrl = partBaseUrl+"com.hsapi.part.invoice.svr.queryPjPchsOrderDetailList.biz.ext";
 var innerSellGridUrl = partBaseUrl+"com.hsapi.part.invoice.svr.queryPjSellOrderDetailList.biz.ext";
+var innerAllotEnterGridUrl = partBaseUrl +"com.hsapi.part.invoice.partAllot.queryPjAllotDetailList.biz.ext";
+
 var notStatementGrid = null;
 var leftGrid = null;
 var rightGrid = null;
@@ -30,6 +32,8 @@ var billSearchGuestIdEl = null;
 var billServiceIdEl = null;
 var billServiceManEl = null;
 
+var editFormAllotEnterDetail = null;
+
 $(document).ready(function(v)
 {
     notStatementGrid = nui.get("notStatementGrid");
@@ -43,6 +47,11 @@ $(document).ready(function(v)
     editFormPchsRtnDetail = document.getElementById("editFormPchsRtnDetail");
     innerPchsRtnGrid.setUrl(innerSellGridUrl);
 
+    innerAllotEnterGrid = nui.get("innerAllotEnterGrid");
+    editFormAllotEnterDetail = document.getElementById("editFormAllotEnterDetail");
+    innerAllotEnterGrid.setUrl(innerAllotEnterGridUrl);
+
+    
     billTypeIdEl = nui.get("billTypeId");
     settleTypeIdEl = nui.get("settleTypeId");
     sBillAuditDateEl = nui.get("sBillAuditDate");
@@ -203,10 +212,11 @@ function onShowRowDetail(e) {
     //将editForm元素，加入行详细单元格内
     var td = notStatementGrid.getRowDetailCellEl(row);
     var dc = row.dc;    
-
-    switch (dc)
+    var orderTypeId =row.orderTypeId;
+    switch (orderTypeId)
     {
-        case -1:
+       case 1:
+       case 4:
             td.appendChild(editFormPchsEnterDetail);
             editFormPchsEnterDetail.style.display = "";
 
@@ -218,8 +228,9 @@ function onShowRowDetail(e) {
                 token: token
             });
             break;
-        case 1:
-            td.appendChild(editFormPchsRtnDetail);
+       case 2:
+       case 3:
+           /* td.appendChild(editFormPchsRtnDetail);
             editFormPchsRtnDetail.style.display = "";
 
             var params = {};
@@ -228,7 +239,43 @@ function onShowRowDetail(e) {
             innerPchsRtnGrid.load({
                 params:params,
                 token: token
-            });
+            });*/
+            
+          //销售
+        	if(orderTypeId ==2){
+        		td.appendChild(editFormSellOutDetail);
+        		editFormSellOutDetail.style.display = "";
+
+                var params = {};
+                params.mainId = mainId;
+                params.auditSign = 1;
+                innerSellOutGrid.load({
+                    params:params,
+                    token: token
+                });
+        	}else{
+        		td.appendChild(editFormPchsRtnDetail);
+                editFormPchsRtnDetail.style.display = "";
+
+                var params = {};
+                params.mainId = mainId;
+                params.auditSign = 1;
+                innerPchsRtnGrid.load({
+                    params:params,
+                    token: token
+                });
+        	}           
+            break;
+        case 5:
+        case 6:
+        	 td.appendChild(editFormAllotEnterDetail);
+        	 editFormAllotEnterDetail.style.display = "";
+        	 var params = {};
+        	 params.mainId = mainId;
+             innerAllotEnterGrid.load({
+                 params:params,
+                 token: token
+             });
             break;
         default:
             break;

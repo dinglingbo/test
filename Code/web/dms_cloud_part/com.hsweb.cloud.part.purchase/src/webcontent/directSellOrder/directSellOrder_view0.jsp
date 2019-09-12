@@ -8,7 +8,7 @@
   - Description:
 -->
 <head>
-<title>销售订单</title>
+<title>直发销售订单</title>
 <script src="<%=webPath + contextPath%>/purchase/js/directSellOrder/directSellOrder.js?v=1.0.11"></script>
 <style type="text/css">
 .title {

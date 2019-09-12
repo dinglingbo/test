@@ -547,6 +547,28 @@
     	
     </select>
     
+     <!--
+               直发销售订单
+    	根据订单明细ID进行出库，需要更新订单来源ID，来源单据类型，外部来源ID
+    -->
+    <select id="getAcceptDetailInfoByOrderMainId" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		
+		SELECT a.id, a.main_id as mainId, a.store_id as storeId, a.part_id as partId, 
+			   a.part_code as partCode, a.part_name as partName, a.full_name as fullName, 
+			   a.out_unit_id as outUnitId, a.system_unit_id as systemUnitId, a.order_qty as orderQty, 
+			   a.order_price as orderPrice, a.true_out_qty as trueOutQty, a.true_out_amt as trueOutAmt,
+			   a.not_out_qty as notOutQty, a.not_out_amt as notOutAmt,
+			   a.adjust_qty as adjustQty, a.is_finished as isFinished, a.prev_detail_id as prevDetailId, 
+		       a.is_mark_batch as isMarkBatch, a.batch_source_id as batchSourceId, a.direct_store_id as directStoreId,
+			   a.remark as remark, a.store_shelf as storeShelf, a.id as sourceDetailId, a.order_qty as qty,
+			   a.show_part_id as showPartId, a.show_part_code as showPartCode, a.show_full_name as showFullName,
+			   a.show_brand_name as showBrandName, a.show_car_model as showCarModel, a.show_oem_code as showOemCode,
+			   a.show_spec as showSpec, a.show_price as showPrice, a.show_Amt as show_amt
+		from dms_cloud_part.pj_sell_order_detail_chk a
+		where a.main_id = #erpId#
+    	
+    </select>
+    
     <!--
     	根据订单明细ID进行出库，需要更新订单来源ID，来源单据类型，外部来源ID
     -->
@@ -558,8 +580,11 @@
 			   a.order_price as orderPrice, a.true_out_qty as trueOutQty, a.true_out_amt as trueOutAmt,
 			   a.not_out_qty as notOutQty, a.not_out_amt as notOutAmt,
 			   a.adjust_qty as adjustQty, a.is_finished as isFinished, a.prev_detail_id as prevDetailId, 
-		       a.is_mark_batch as isMarkBatch, a.batch_source_id as batchSourceId,
-			   a.remark as remark, a.store_shelf as storeShelf, b.source_detail_id as sourceDetailId, b.qty as qty
+		       a.is_mark_batch as isMarkBatch, a.batch_source_id as batchSourceId, a.direct_store_id as directStoreId,
+			   a.remark as remark, a.store_shelf as storeShelf, b.source_detail_id as sourceDetailId, b.qty as qty,
+			   a.show_part_id as showPartId, a.show_part_code as showPartCode, a.show_full_name as showFullName,
+			   a.show_brand_name as showBrandName, a.show_car_model as showCarModel, a.show_oem_code as showOemCode,
+			   a.show_spec as showSpec, a.show_price as showPrice, a.show_Amt as show_amt
 		from dms_cloud_part.pj_sell_order_detail_chk a
 		inner join dms_cloud_part.pj_wms_params_detail b
 		on a.id = b.erp_detail_id and a.main_id = b.erp_main_id

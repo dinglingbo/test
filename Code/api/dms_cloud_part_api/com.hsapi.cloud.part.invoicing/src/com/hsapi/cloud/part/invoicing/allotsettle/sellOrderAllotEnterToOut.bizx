@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="sellOrderAllotEnterToOut" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据调拨入库数据生成销售出库数据（供应商直发给客户，生成总部账，门店账）&#xD;&#xA;删除库存占用记录（直接出库删除所有，部分出库更新占用数量）&#xD;&#xA;&#xD;&#xA;cloudPartPjOutMain.id   cloudPartPjOutDetail.id&#xD;&#xA;accept_main_id  accept_detail_id" title="Administrator&#x9;19-7-29 下午12:20">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据调拨入库数据生成销售出库数据（供应商直发给客户，生成总部账，门店账）&#xD;&#xA;删除库存占用记录（直接出库删除所有，部分出库更新占用数量）&#xD;&#xA;&#xD;&#xA;cloudPartPjOutMain.id   cloudPartPjOutDetail.id&#xD;&#xA;accept_main_id  accept_detail_id&#xD;&#xA;20190912  暂不更新 orderDetailId orderMainId" title="Administrator&#x9;19-7-29 下午12:20">
     <location x="-120" y="-150"/>
     <size height="166" width="736"/>
   </nodes>
@@ -328,7 +328,7 @@
       <process:to type="query">qty</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">enterTemp/enterPrice</process:from>
+      <process:from type="query" pattern="reference">enterTemp/sellPrice</process:from>
       <process:to type="query">price</process:to>
     </process:copy>
     <process:copy>
@@ -372,7 +372,7 @@
       <process:to type="query">outTemp/sellQty</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">关联更新</process:from>
+      <process:from type="query" pattern="reference">price</process:from>
       <process:to type="query">outTemp/sellPrice</process:to>
     </process:copy>
     <process:copy>
@@ -428,14 +428,6 @@
       <process:to type="query">outTemp/enterDate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">关联更新</process:from>
-      <process:to type="query">outTemp/orderDetailId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">关联更新</process:from>
-      <process:to type="query">outTemp/orderMainId</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">enterTemp/guestId</process:from>
       <process:to type="query">outTemp/guestId</process:to>
     </process:copy>
@@ -444,7 +436,7 @@
       <process:to type="query">outTemp/guestName</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">关联更新</process:from>
+      <process:from type="query" pattern="reference">enterTemp/remark</process:from>
       <process:to type="query">outTemp/remark</process:to>
     </process:copy>
     <process:copy>

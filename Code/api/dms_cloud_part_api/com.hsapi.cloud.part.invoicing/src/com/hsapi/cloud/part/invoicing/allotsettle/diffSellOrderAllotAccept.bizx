@@ -653,6 +653,10 @@
       <process:to type="query">detailTemp/orderAmt</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">orderPrice</process:from>
+      <process:to type="query">detailTemp/suggSellPrice</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">qty</process:from>
       <process:to type="query">detailTemp/hasOutQty</process:to>
     </process:copy>

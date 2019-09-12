@@ -2,6 +2,7 @@
  * Created by Administrator on 2018/3/17.
  */
 var priceGridUrl = cloudPartApiUrl+"com.hsapi.cloud.part.invoicing.pricemanage.getPartPriceInfo.biz.ext";
+var priceGridByOrgidUrl =  cloudPartApiUrl+"com.hsapi.cloud.part.invoicing.pricemanage.getPartPriceInfoByOrgid.biz.ext";
 var basicInfoForm = null;
 var priceGrid = null;
 
@@ -31,6 +32,9 @@ function onSearch(){
 }
 function doSearch(params)
 {
+	if(params.orgid){
+		priceGrid.setUrl(priceGridByOrgidUrl);
+	}
     if(!params.partId || params.partId<=0){
         priceGrid.setData([]);
         return;

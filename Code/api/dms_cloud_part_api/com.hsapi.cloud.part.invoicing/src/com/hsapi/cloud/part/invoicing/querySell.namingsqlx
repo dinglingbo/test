@@ -53,6 +53,8 @@
         <result column="rtnReasonId" javaType="string" property="rtnReasonId"/>
         <result column="isBilling" javaType="int" property="isBilling"/>
         <result column="showAmt" javaType="double" property="showAmt"/>
+        <result column="directOrgid" javaType="int" property="directOrgid"/>
+        <result column="directGuestId" javaType="int" property="directGuestId"/>
     </resultMap>
     <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->
     <select id="queryPjSellOrderMainList" parameterClass="java.util.HashMap" resultMap="pjSellOrderMainList">
@@ -102,7 +104,7 @@
             M.isBilling,
             M.showAmt,
 			M.directGuestId,
-			M.directOrgid,
+			M.directOrgid
         FROM (
             SELECT DISTINCT
 				A.id as id,
@@ -219,6 +221,14 @@
                 </isNotEmpty>
                  <isNotEmpty prepend="and" property="creator">  
                     (a.creator = #creator#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="directOrgid">  
+                    (A.direct_orgid &gt;0)
+                </isNotEmpty>
+                
+                 <isNotEmpty prepend="and" property="noDirectOrgid">  
+                    (A.direct_orgid = 0)
                 </isNotEmpty>
             </dynamic>  
             
@@ -340,6 +350,14 @@
                 </isNotEmpty>
                  <isNotEmpty prepend="and" property="creator">  
                     (a.creator = #creator#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="directOrgid">  
+                    (A.direct_orgid &gt;0)
+                </isNotEmpty>
+                
+                 <isNotEmpty prepend="and" property="noDirectOrgid">  
+                    (A.direct_orgid = 0)
                 </isNotEmpty>
             </dynamic>  
         )M
@@ -1495,7 +1513,8 @@
 			a.show_oem_code as showOemCode,
 			a.show_spec as showSpec,
 			a.show_price as showPrice,
-			a.show_amt as showAmt
+			a.show_amt as showAmt,
+			A.direct_store_id as directStoreId
 			FROM
 			DMS_CLOUD_PART.PJ_SELL_ORDER_DETAIL A
 			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
@@ -1569,7 +1588,8 @@
 			a.show_oem_code as showOemCode,
 			a.show_spec as showSpec,
 			a.show_price as showPrice,
-			a.show_amt as showAmt
+			a.show_amt as showAmt,
+			A.direct_store_id as directStoreId
 			FROM
 			DMS_CLOUD_PART.PJ_SELL_ORDER_DETAIL_chk A
 			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID

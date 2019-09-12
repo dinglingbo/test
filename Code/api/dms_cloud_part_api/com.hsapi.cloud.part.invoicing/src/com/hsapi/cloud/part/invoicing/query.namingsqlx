@@ -462,6 +462,7 @@
 			b.is_finished as isFinished,
 			b.finish_date as finishDate,
 			b.remark as detailRemark,
+			b.direct_store_id as directStoreId,
 			c.`code` as comPartCode,
 			c.`name` as comPartName,
 			c.full_name as comPartFullName,

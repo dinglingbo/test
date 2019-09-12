@@ -3475,7 +3475,7 @@ function onDrawSummaryCellPack(e){
 		  {   sumPkgPrefAmt = sumPkgAmt - sumPkgSubtotal;
 			  sumPkgSubtotal = sumPkgSubtotal.toFixed(2);
 			  sumPkgPrefAmt = sumPkgPrefAmt.toFixed(2);
-			  data.packageAmt = sumPkgAmt;
+			  data.packageAmt = sumPkgAmt.toFixed(2);
 			  data.packageSubtotal = sumPkgSubtotal;
 			  data.packagePrefAmt = sumPkgPrefAmt;
 			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
@@ -3494,7 +3494,7 @@ function onDrawSummaryCellPack(e){
 		  }else{
 			  data.packageSubtotal = 0;
 			  data.packagePrefAmt = 0;
-			  data.packageAmt = sumPkgAmt;
+			  data.packageAmt = sumPkgAmt.toFixed(2);
 			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
 			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
 			  data.totalSubtotal = mtAmt.toFixed(2);
@@ -3549,8 +3549,8 @@ function onDrawSummaryCellItem(e){
 			  sumItemPrefAmt = sumItemPrefAmt.toFixed(2);
 			  data.itemSubtotal = sumItemSubtotal;
 			  data.itemPrefAmt = sumItemPrefAmt;
-			  data.itemAmt = sumItemAmt;
-			  data.partAmt = sumPartAmt;
+			  data.itemAmt = sumItemAmt.toFixed(2);
+			  data.partAmt = sumPartAmt.toFixed(2);
 			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
 			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
 			  data.totalSubtotal = mtAmt.toFixed(2);
@@ -3567,8 +3567,8 @@ function onDrawSummaryCellItem(e){
 		  }else{
 			  data.itemSubtotal = 0;
 			  data.itemPrefAmt = 0;
-			  data.itemAmt = sumItemAmt;
-			  data.partAmt = sumPartAmt;
+			  data.itemAmt = sumItemAmt.toFixed(2);
+			  data.partAmt = sumPartAmt.toFixed(2);
 			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
 			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
 			  data.totalSubtotal = mtAmt.toFixed(2);
@@ -3590,8 +3590,8 @@ function onDrawSummaryCellItem(e){
 			  sumPartPrefAmt = sumPartPrefAmt.toFixed(2);
 			  data.partSubtotal = sumPartSubtotal;
 			  data.partPrefAmt = sumPartPrefAmt;
-			  data.itemAmt = sumItemAmt;
-			  data.partAmt = sumPartAmt;
+			  data.itemAmt = sumItemAmt.toFixed(2);
+			  data.partAmt = sumPartAmt.toFixed(2);
 			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
 			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
 			  data.totalSubtotal = mtAmt.toFixed(2);
@@ -3608,8 +3608,8 @@ function onDrawSummaryCellItem(e){
 		  }else{
 			  data.partSubtotal = 0;
 			  data.partPrefAmt = 0;
-			  data.itemAmt = sumItemAmt;
-			  data.partAmt = sumPartAmt;
+			  data.itemAmt = sumItemAmt.toFixed(2);
+			  data.partAmt = sumPartAmt.toFixed(2);
 			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
 			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
 			  data.totalSubtotal = mtAmt.toFixed(2);

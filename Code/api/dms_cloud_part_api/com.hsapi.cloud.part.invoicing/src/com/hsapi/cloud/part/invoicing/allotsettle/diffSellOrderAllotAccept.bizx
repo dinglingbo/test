@@ -665,7 +665,7 @@
       <process:to type="query">detailTemp/hasCancelQty</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
+      <process:from type="query" pattern="reference">qty</process:from>
       <process:to type="query">detailTemp/hasInQty</process:to>
     </process:copy>
     <process:copy>
@@ -1278,7 +1278,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign11label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjAllotAcceptMain</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjSellOrderMainChk</process:from>
       <process:to type="query">criteria/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -1874,6 +1874,7 @@
     <sourceConnections xsi:type="process:tLink" id="link62" name="link62" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo19</sourceNode>
       <targetNode>assign14</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link64" name="link64" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo19</sourceNode>

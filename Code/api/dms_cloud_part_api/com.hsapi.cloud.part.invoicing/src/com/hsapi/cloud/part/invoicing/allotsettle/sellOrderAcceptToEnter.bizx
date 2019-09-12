@@ -524,7 +524,7 @@
       <process:to type="query">enterTemp/rootId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">outTemp/directStoreId</process:from>
       <process:to type="query">enterTemp/storeId</process:to>
     </process:copy>
     <process:copy>
@@ -876,7 +876,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值3" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link22" name="link22" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
-      <targetNode>invokePojo2</targetNode>
+      <targetNode>subprocess3</targetNode>
     </sourceConnections>
     <targetConnections>link21</targetConnections>
     <location x="1830" y="202"/>
@@ -901,7 +901,6 @@
     <targetConnections>link24</targetConnections>
     <targetConnections>link25</targetConnections>
     <targetConnections>link26</targetConnections>
-    <targetConnections>link45</targetConnections>
     <location x="1792" y="292"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
@@ -1310,46 +1309,17 @@
     <figSize height="20" width="86"/>
     <node>invokePojo11</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="executeNamedSql" displayName="executeNamedSql" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link45" name="link45" displayName="连接线" lineType="note" type="exception">
-      <sourceNode>invokePojo2</sourceNode>
-      <targetNode>assign5</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" id="link46" name="link46" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo2</sourceNode>
-      <targetNode>subprocess3</targetNode>
-    </sourceConnections>
-    <targetConnections>link22</targetConnections>
-    <location x="1935" y="201"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo2label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.executeNamedSql</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
-      <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.cloud.part.invoicing.stockcal.updateEnterStoreId</process:inputVariable>
-      <process:inputVariable id="2" name="parameterObject" type="query" value="java.lang.Object" valueType="Java" pattern="reference">params</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables/>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="1879" y="237"/>
-    <figSize height="20" width="135"/>
-    <node>invokePojo2</node>
-  </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess3" name="getPjEnterDetailChkById" displayName="getPjEnterDetailChkById" collapsed="false" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link47" name="link47" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess3</sourceNode>
       <targetNode>loopstart1</targetNode>
     </sourceConnections>
-    <targetConnections>link46</targetConnections>
-    <location x="2040" y="201"/>
+    <targetConnections>link22</targetConnections>
+    <location x="1990" y="202"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess3label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.getPjEnterDetailChkById</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.cloud.part.invoicing.svr.getPjEnterDetailChkById</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="mainId" type="query" value="Long" valueType="Primitive" pattern="reference">enterMain/id</process:inputVariable>
       </process:inputVariables>
@@ -1359,7 +1329,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess3label" name="label" nodeType="label">
-    <location x="1965" y="236"/>
+    <location x="1915" y="237"/>
     <figSize height="20" width="177"/>
     <node>subprocess3</node>
   </nodes>

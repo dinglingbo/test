@@ -472,6 +472,10 @@
       <process:to type="query">outdetail/storeId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/directStoreId</process:from>
+      <process:to type="query">outdetail/directStoreId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">orderdetail/partId</process:from>
       <process:to type="query">outdetail/partId</process:to>
     </process:copy>
@@ -674,6 +678,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">orderdetail/storeId</process:from>
       <process:to type="query">outdetail/storeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/directStoreId</process:from>
+      <process:to type="query">outdetail/directStoreId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">orderdetail/partId</process:from>

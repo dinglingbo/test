@@ -3061,7 +3061,7 @@ function setInitExportData(main, detail){
     }
 
     var serviceId = main.serviceId?main.serviceId:"";
-    method5('tableExcel',"销售订单"+serviceId,'tableExportA');
+    method5('tableExcel',"直发销售订单"+serviceId,'tableExportA');
 }
 function onMoreTabChanged(e){
     var tab = e.tab;
@@ -3078,7 +3078,7 @@ function onMoreTabChanged(e){
 }
 
 //直接出库，生成isDifferOrder =1数据
-var auditToOutUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjPchsOrderRtn.biz.ext";
+var auditToOutUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.generateSellOrderDirectOut.biz.ext";
 function auditToOut()
 {
 
@@ -3114,8 +3114,6 @@ function auditToOut()
         type : "post",
         data : JSON.stringify({
             mainId : mainId,
-            main : main,
-            detail :sellOrderDetailList,
             token : token
         }),
         success : function(data) {
@@ -3564,8 +3562,7 @@ function queryStore(){
         cache: false,
         success: function (data) {
             if (data.errCode == "S"){
-            	directStoreHouse =data.storehouse;
-            	nui.get('directStoreId').setData(directStoreHouse);
+            	directStoreHouse =data.storehouse;s
                
             }else {
             	

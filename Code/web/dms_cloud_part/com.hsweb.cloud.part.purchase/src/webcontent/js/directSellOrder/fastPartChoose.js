@@ -1243,6 +1243,7 @@ function showBottomTabInfo(partId){
         case "priceTab": 
             var params = {};
             params.partId=partId;
+            params.orgid =directOrgid;
             if(!url){
                 mainTabs.loadTab(cloudPartWebUrl + "/common/embedJsp/containPartPrice.jsp?partId="+partId, tab);
             }else {

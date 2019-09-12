@@ -613,6 +613,10 @@
       <process:to type="query">detailTemp/storeId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">listTemp/storeId</process:from>
+      <process:to type="query">detailTemp/directStoreId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">listTemp/partId</process:from>
       <process:to type="query">detailTemp/partId</process:to>
     </process:copy>

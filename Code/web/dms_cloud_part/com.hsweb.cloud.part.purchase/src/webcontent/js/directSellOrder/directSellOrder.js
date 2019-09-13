@@ -2830,6 +2830,13 @@ function OnrpMainGridCellBeginEdit(e){
 	
 		});
   }
+    if (field == "directStoreId") {
+	    var value = e.record.directStoreId;
+	    var editor = e.editor;
+	    editor.setData(directStoreHouse);
+
+	    
+  }
     
     if(advancedMorePartWin2.visible) {
 		e.cancel = true;
@@ -3549,12 +3556,12 @@ function partChange(){
 	
 }
 
-var queryStoreUrl ='com.hsapi.cloud.part.baseDataCrud.crud.queryStoreHouse.biz.ext'
+var queryStoreUrl =baseUrl+'com.hsapi.cloud.part.baseDataCrud.crud.queryStoreHouse.biz.ext'
 function queryStore(){
 	nui.ajax({
         url: queryStoreUrl,
         type: 'post',
-        async:false,
+        async:true,
         data: nui.encode({
         	orgid: directOrgidEl.getValue(),
             token: token
@@ -3562,7 +3569,7 @@ function queryStore(){
         cache: false,
         success: function (data) {
             if (data.errCode == "S"){
-            	directStoreHouse =data.storehouse;s
+            	directStoreHouse =data.storehouse;
                
             }else {
             	

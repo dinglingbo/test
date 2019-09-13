@@ -537,10 +537,10 @@ function setInitData(params, ck, cck){
     }else if(type == 3){
         params.namePy = value.replace(/\s+/g, "");
     }
-
-    if(currSwithBatchFlag ==1){	
-    	morePartTabs.activeTab("enterTab"); 
-    }
+    	//选择批次
+//    if(currSwithBatchFlag ==1){	
+//    	morePartTabs.activeTab("enterTab"); 
+//    }
 
     var tab = morePartTabs.getActiveTab();
     if(tab.name == "enterTab"){

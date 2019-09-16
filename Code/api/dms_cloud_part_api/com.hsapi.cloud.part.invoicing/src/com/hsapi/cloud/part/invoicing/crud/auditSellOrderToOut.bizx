@@ -253,6 +253,8 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+        <process:outputVariable id="2" name="main" type="query" value="com.hsapi.cloud.part.data.pts.PjOutMainChk" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="3" name="details" type="query" value="com.hsapi.cloud.part.data.pts.PjOutDetailChk[]" valueType="DataObject"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -630,7 +632,7 @@
       <targetNode>subprocess5</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

@@ -2830,6 +2830,13 @@ function OnrpMainGridCellBeginEdit(e){
 	
 		});
   }
+    if (field == "directStoreId") {
+	    var value = e.record.directStoreId;
+	    var editor = e.editor;
+	    editor.setData(directStoreHouse);
+
+	    
+  }
     
     if(advancedMorePartWin2.visible) {
 		e.cancel = true;
@@ -3061,7 +3068,7 @@ function setInitExportData(main, detail){
     }
 
     var serviceId = main.serviceId?main.serviceId:"";
-    method5('tableExcel',"销售订单"+serviceId,'tableExportA');
+    method5('tableExcel',"直发销售订单"+serviceId,'tableExportA');
 }
 function onMoreTabChanged(e){
     var tab = e.tab;
@@ -3078,7 +3085,7 @@ function onMoreTabChanged(e){
 }
 
 //直接出库，生成isDifferOrder =1数据
-var auditToOutUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjPchsOrderRtn.biz.ext";
+var auditToOutUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.generateSellOrderDirectOut.biz.ext";
 function auditToOut()
 {
 
@@ -3114,8 +3121,6 @@ function auditToOut()
         type : "post",
         data : JSON.stringify({
             mainId : mainId,
-            main : main,
-            detail :sellOrderDetailList,
             token : token
         }),
         success : function(data) {
@@ -3551,12 +3556,12 @@ function partChange(){
 	
 }
 
-var queryStoreUrl ='com.hsapi.cloud.part.baseDataCrud.crud.queryStoreHouse.biz.ext'
+var queryStoreUrl =baseUrl+'com.hsapi.cloud.part.baseDataCrud.crud.queryStoreHouse.biz.ext'
 function queryStore(){
 	nui.ajax({
         url: queryStoreUrl,
         type: 'post',
-        async:false,
+        async:true,
         data: nui.encode({
         	orgid: directOrgidEl.getValue(),
             token: token
@@ -3565,7 +3570,6 @@ function queryStore(){
         success: function (data) {
             if (data.errCode == "S"){
             	directStoreHouse =data.storehouse;
-            	nui.get('directStoreId').setData(directStoreHouse);
                
             }else {
             	

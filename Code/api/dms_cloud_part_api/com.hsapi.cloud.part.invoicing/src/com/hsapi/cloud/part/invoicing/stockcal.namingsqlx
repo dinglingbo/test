@@ -475,6 +475,41 @@
 		)
 	</update>
 	
+	<update id="updateOrderMainTableQTAXSD" parameterClass="java.util.HashMap" >
+		update pj_sell_order_main_chk a
+		inner join (
+			select main_id as mainId, sum(order_qty) as orderQty, sum(order_amt) as  orderAmt
+		  from pj_sell_order_detail_chk 
+		  where main_id = #mainId#
+		  group by main_id 
+		) b
+		on a.id = b.mainId
+		set a.order_qty = b.orderQty, a.order_amt = b.orderAmt
+		where a.id = #mainId#
+	</update>
+	
+	<update id="updateEnterStoreId" parameterClass="java.util.HashMap" >
+		update pj_out_detail_chk a
+		inner join pj_out_main_chk b
+		on a.main_id = b.id
+		inner join pj_enter_detail_chk c
+		on a.id = c.prev_detail_id
+		inner join pj_enter_main_chk d
+		on c.main_id = d.id and b.id = d.code_id and b.service_id = d.code
+		inner join pj_allot_accept_detail e
+		on a.order_detail_id = e.id and a.order_main_id = e.main_id
+		set c.store_id = e.direct_store_id
+		where b.id = #outMainId#
+	</update>
+	
+	<update id="updateOrderDetailId" parameterClass="java.util.HashMap" >
+		update pj_sell_order_detail_chk a
+		inner join pj_out_detail_chk b
+		on a.part_id = b.part_id
+		set b.order_detail_id = a.id
+		where a.main_id = #orderMainId# and b.main_id = #outMainId#
+	</update>
+	
 	
 	<select id="queryGuestEnterRtnableRecord" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.pts.RtnRecord"> 
 		SELECT a.id AS sourceId, CASE WHEN IFNULL(a.root_id,0) = 0 THEN a.id ELSE a.root_id END AS rootId,

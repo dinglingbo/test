@@ -537,10 +537,10 @@ function setInitData(params, ck, cck){
     }else if(type == 3){
         params.namePy = value.replace(/\s+/g, "");
     }
-
-    if(currSwithBatchFlag ==1){	
-    	morePartTabs.activeTab("enterTab"); 
-    }
+    	//选择批次
+//    if(currSwithBatchFlag ==1){	
+//    	morePartTabs.activeTab("enterTab"); 
+//    }
 
     var tab = morePartTabs.getActiveTab();
     if(tab.name == "enterTab"){
@@ -1243,6 +1243,7 @@ function showBottomTabInfo(partId){
         case "priceTab": 
             var params = {};
             params.partId=partId;
+            params.orgid =directOrgid;
             if(!url){
                 mainTabs.loadTab(cloudPartWebUrl + "/common/embedJsp/containPartPrice.jsp?partId="+partId, tab);
             }else {

@@ -592,7 +592,13 @@ function save(type) {
     var detailAdd = rightGrid.getChanges("added");
     var detailUpdate = rightGrid.getChanges("modified");
     var detailDelete = rightGrid.getChanges("removed");
-
+    if(type==1){
+    	var lengthData = rightGrid.getData();
+    	if(lengthData.length==0){
+    		showMsg("调拨单明细不能为空","W");
+    		return;
+    	}
+    }
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',

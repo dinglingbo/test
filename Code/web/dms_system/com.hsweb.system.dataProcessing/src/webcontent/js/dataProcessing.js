@@ -55,73 +55,52 @@ var treeList = [
             ];*/
 var tree = null;
 $(document).ready(function () {
-	tree = nui.get("tree2");
+	//tree = nui.get("tree2");
 	//tree.setData(treeList);
-	 tree.loadList(treeList, "id", "pid");
+	// tree.loadList(treeList, "id", "pid");
 });
 
-var saveUrl = apiPath + sysApi + "/com.hsapi.system.dataProcessing.wbPart.dataProcessing.biz.ext";
-function save(){
-	var rows = tree.getCheckedNodes();
+function save(url){
+	var saveUrl = apiPath + sysApi + "/com.hsapi.system.dataProcessing.wbPart."+url+".biz.ext";
 	var orgid = nui.get("orgid").getValue()
 	if(!orgid>0){
 		showMsg("请输入门店orgid！","W");
 		return;
 	}
-	if(rows.length==0){
-		showMsg("请选择清除数据！","W");
-		return;
-	}else{
-	    nui.mask({
-	        el: document.body,
-	        cls: 'mini-mask-loading',
-	        html: '清除中...'
-	    });
-	    
-	}
-
 	var params = {};
-	params.orgid = orgid;
-	for(var i = 0;i<rows.length;i++){
-		if(rows[i].id=="wbRps"){
-			params.wbRps = 1;
-		}else if(rows[i].id=="wbPart"){
-			params.wbPart = 1;
-		}else if(rows[i].id=="wbGuest"){
-			params.wbGuest = 1;
-		}else if(rows[i].id=="wbCommon"){
-			params.wbCommon = 1;
-		}else if(rows[i].id=="wbRpb"){
-			params.wbRpb = 1;
-		}else if(rows[i].id=="dmsSystem"){
-			params.dmsSystem = 1;
-		}else if(rows[i].id=="wbSales"){
-			params.wbSales = 1;
-		}else if(rows[i].id=="wbFrm"){
-			params.wbFrm = 1;
-		}
-	}
+	params.orgid = orgid;	
 	var json = {
 			params : 	params,
 			token : token
 	};
-	nui.ajax({
-		url : saveUrl,
-		type : 'POST',
-		data : json,
-		cache : false,
-		contentType : 'text/json',
-		success : function(text) {
-			nui.unmask(document.body);
-			if(text.errCode=="S"){
-				showMsg("清除成功!","S")
-				CloseWindow("ok");
-			}else{
-				showMsg(text.errMsg||"清除失败!","W");
-			}
-		}
-	 });
-	
+	  nui.confirm("是否确定清除?", "友情提示",function(action){
+	       if(action == "ok"){
+				nui.mask({
+					el : document.body,
+					cls : 'mini-mask-loading',
+					html : '数据处理中...'
+				});
+				nui.ajax({
+					url : saveUrl,
+					type : 'POST',
+					data : json,
+					cache : false,
+					contentType : 'text/json',
+					success : function(text) {
+						nui.unmask(document.body);
+						if(text.errCode=="S"){
+							showMsg("清除成功!","S")
+							CloseWindow("ok");
+						}else{
+							showMsg(text.errMsg||"清除失败!","W");
+						}
+					}
+				 });
+
+	     }else {
+				return;
+		 }
+		 }); 
 }
 
 function CloseWindow(action) {
@@ -132,3 +111,4 @@ function CloseWindow(action) {
 	else
 		return window.close();
 }
+

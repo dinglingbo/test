@@ -19,10 +19,8 @@ var storeHash = {};
 var billTypeIdHash = {};
 var settTypeIdHash = {};
 var outTypeIdHash = {};
-var sOutDateEl=null;
-var eOutDateEl =null;
-var sPickDateEl =null;
-var ePickDateEl=null;
+var sDateEl=null;
+var eDateEl =null;
 var servieTypeList = [];
 var servieTypeHash = {};
 var orgidsEl = null;
@@ -34,11 +32,8 @@ $(document).ready(function(v)
 {
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
-    sOutDateEl =nui.get('sOutDate');
-    eOutDateEl = nui.get('eOutDate');
-    
-    sPickDateEl =nui.get('sPickDate');
-    ePickDateEl = nui.get('ePickDate');
+    sDateEl =nui.get('sDate');
+    eDateEl = nui.get('eDate');
     setReturnSign = mini.get("ReturnSign");
     orgidsEl = nui.get("orgids");
     orgidsEl.setData(currOrgList);
@@ -241,23 +236,22 @@ $(document).ready(function(v)
 });
 function getSearchParams(){
     var params = {};
+    if((nui.get("sdDate").getValue())==0){
+    	params.sPickDate=nui.get("sDate").getFormValue();	
+        params.ePickDate=addDate(eDateEl.getValue(),1);
+    }else{
+    	params.sOutDate=nui.get("sDate").getFormValue();
+    	params.eOutDate=addDate(eDateEl.getValue(),1);	
+    }
     params.partCode=nui.get("partCode").getValue();
     params.partName=nui.get("partName").getValue();
     params.pjBillTypeId="050206";
     params.partBrandId=nui.get("partBrandId").getValue();
     params.partTypeId=nui.get("partTypeId").value;
     params.storeId=nui.get("storeId").getValue();
-    params.sPickDate=nui.get("sPickDate").getFormValue();
     params.carNo = nui.get("carNo").getValue();
     params.serviceTypeId=nui.get("serviceTypeId").value;
     params.billTypeId =nui.get("billTypeId").value;
-    if(ePickDateEl.getValue()){ 	
-    	params.ePickDate=addDate(ePickDateEl.getValue(),1);
-    }
-    params.sOutDate=nui.get("sOutDate").getFormValue();
-    if(eOutDateEl.getValue()){
-    	params.eOutDate=addDate(eOutDateEl.getValue(),1);	
-    }
     var orgidsElValue = orgidsEl.getValue();
     if(orgidsElValue==null||orgidsElValue==""){
     	 params.orgids =  currOrgs;
@@ -359,8 +353,8 @@ function quickSearch(type){
             break;
     }
     currType = type;
-    sPickDateEl.setValue(params.sPickDate);
-    ePickDateEl.setValue(addDate(params.ePickDate,-1));
+    sDateEl.setValue(params.sPickDate);
+    eDateEl.setValue(addDate(params.ePickDate,-1));
     var menunamedate = nui.get("menunamedate");
     menunamedate.setText(queryname);
     doSearch(params);

@@ -391,7 +391,11 @@ public class ResauthUtils {
 		}
 		
 		String cacheValue = hgetAndExtend(cacheName, key, -1);
-		return (DataObject) Utils.gzipStr2Obj(cacheValue);
+		if(cacheValue != null) {
+			return (DataObject) Utils.gzipStr2Obj(cacheValue);
+		} else {
+			return null;
+		}
 	}
 	
 }

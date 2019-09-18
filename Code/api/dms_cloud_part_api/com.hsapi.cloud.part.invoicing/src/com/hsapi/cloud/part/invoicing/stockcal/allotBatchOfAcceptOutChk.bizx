@@ -215,6 +215,7 @@
     <location x="447" y="139"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="details" iterableElement="orderdetail"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -471,6 +472,10 @@
       <process:to type="query">outdetail/storeId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/directStoreId</process:from>
+      <process:to type="query">outdetail/directStoreId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">orderdetail/partId</process:from>
       <process:to type="query">outdetail/partId</process:to>
     </process:copy>
@@ -623,6 +628,10 @@
       <process:to type="query">outdetail/storeShelf</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/suggSellPrice</process:from>
+      <process:to type="query">outdetail/suggSellPrice</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="expression" pattern="reference">mNoTaxAmt+(noTaxPrice*billQty)</process:from>
       <process:to type="query">mNoTaxAmt</process:to>
     </process:copy>
@@ -669,6 +678,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">orderdetail/storeId</process:from>
       <process:to type="query">outdetail/storeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/directStoreId</process:from>
+      <process:to type="query">outdetail/directStoreId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">orderdetail/partId</process:from>
@@ -821,6 +834,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">outableDetail/storeShelf</process:from>
       <process:to type="query">outdetail/storeShelf</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/suggSellPrice</process:from>
+      <process:to type="query">outdetail/suggSellPrice</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">mNoTaxAmt+(noTaxPrice*outaleQty)</process:from>

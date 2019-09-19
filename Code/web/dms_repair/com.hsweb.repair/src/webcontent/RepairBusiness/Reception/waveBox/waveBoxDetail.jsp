@@ -12,7 +12,7 @@
         <head>
             <title>Title</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxDetail.js?v=1.338"></script>
+            <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxDetail.js?v=1.339"></script>
         </head>
         <style type="text/css">
             body {
@@ -337,7 +337,7 @@
                                 <span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                             <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn">
                                 <span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-
+                            <a class="nui-button" iconCls="" plain="true" onclick="refresh()" id="refreshBtn"><span class="fa fa-refresh fa-lg"></span>&nbsp;刷新</a>
                             <span class="separator"></span>
                             <a class="nui-button" iconCls="" plain="true" onclick="sureMT()" id="addBtn"><span class="fa fa-car fa-lg"></span>&nbsp;施工</a>
                             <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;完工</a>

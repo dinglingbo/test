@@ -6214,3 +6214,13 @@ function saleReminding(){
 		}
 	});*/	
 }
+
+function refresh(){
+	var data = billForm.getData();
+    if(!data.id){
+    	add();
+        return;
+    }else{
+    	setInitData(data);
+    }
+}

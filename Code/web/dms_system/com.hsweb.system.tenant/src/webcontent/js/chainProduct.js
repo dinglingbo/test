@@ -296,5 +296,7 @@ function toSysCoinRecord(){
 }
 
 function setInitData(params){
-	loadCarCoin(params.id);
+	if(params && params.id){		
+		loadCarCoin(params.id);
+	}
 }

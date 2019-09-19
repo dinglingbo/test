@@ -363,7 +363,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign15" name="赋值15" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link47" name="link47" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign15</sourceNode>
-      <targetNode>subprocess5</targetNode>
+      <targetNode>subprocess1</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link39" name="link39" displayName="连接线" type="transition">
@@ -715,6 +715,7 @@
     <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign20</sourceNode>
       <targetNode>assign22</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link46" name="link46" displayName="连接线" type="transition">
       <sourceNode>assign20</sourceNode>
@@ -731,7 +732,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign20label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">itemHash/item</process:from>
+      <process:from type="query" pattern="reference">itemHash/list</process:from>
       <process:to type="query">itemDataList</process:to>
     </process:copy>
   </nodes>
@@ -941,48 +942,6 @@
     <figSize height="17" width="39"/>
     <node>assign25</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess5" name="queryStdItem" displayName="queryStdItem" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" description="" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess5</sourceNode>
-      <targetNode>assign20</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"/>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link13" name="link13" displayName="连接线" isDefault="false" type="transition">
-      <sourceNode>subprocess5</sourceNode>
-      <targetNode>assign14</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NE">
-          <process:leftOperand type="query">errCode</process:leftOperand>
-          <process:rightOperand type="literal">S</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <targetConnections>link47</targetConnections>
-    <location x="-310" y="143"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess5label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.repair.repairService.repairInterface.queryStdItem</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="id" type="query" value="String" valueType="Primitive" pattern="reference">insItem/itemId</process:inputVariable>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="data" type="query" value="java.util.HashMap" valueType="Java">itemHash</process:outputVariable>
-        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess5label" name="label" nodeType="label">
-    <location x="-336" y="178"/>
-    <figSize height="17" width="79"/>
-    <node>subprocess5</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign10" name="赋值10" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link52" name="link52" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign10</sourceNode>
@@ -1071,6 +1030,48 @@
     <figSize height="17" width="32"/>
     <node>assign7</node>
   </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="queryStandardItem" displayName="queryStandardItem" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" description="" id="link20" name="link20" displayName="连接线" isDefault="false" type="transition">
+      <sourceNode>subprocess1</sourceNode>
+      <targetNode>assign20</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess1</sourceNode>
+      <targetNode>assign14</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link47</targetConnections>
+    <location x="-311" y="145"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess1label</nodeLabel>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.repair.repairService.repairInterface.queryStandardItem</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="id" type="query" value="String" valueType="Primitive" pattern="reference">insItem/itemId</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="data" type="query" value="com.alibaba.fastjson.JSONObject" valueType="Java">itemHash</process:outputVariable>
+        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
+    <location x="-354" y="180"/>
+    <figSize height="17" width="113"/>
+    <node>subprocess1</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="chenziming" createTime="2018-03-21 16:54:40" date="2018-03-21Z" description="" name="saveRpsItem" version="7.0.0.0"/>
@@ -1096,7 +1097,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbItem" name="rpbItem"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsCardTimesDetail" name="rpsCard"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="itemId" primitiveType="Int"/>
-    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="itemHash"/>
+    <process:variable anyType="com.alibaba.fastjson.JSONObject" description="" historyStateLocation="client" isArray="false" name="itemHash"/>
     <process:variable anyType="com.alibaba.fastjson.JSONObject" description="" historyStateLocation="client" isArray="true" name="itemDataList"/>
     <process:variable anyType="com.alibaba.fastjson.JSONObject" description="" historyStateLocation="client" isArray="false" name="itemTemp"/>
   </process:variables>

@@ -91,12 +91,13 @@
                                    class="nui-combobox"
                                    textField="name"
                                    valueField="brandCode"
-                                   emptyText="全部品牌"
+                                   emptyText="请选择..."
                                    url=""
                                    valueFromSelect="true"
                                    width="100%"
                                    allowInput="true"
                                    showNullItem="false"
+                                   visible="false"
                                    nullItemText="请选择..."/>
                                  </td>
                                 <td>

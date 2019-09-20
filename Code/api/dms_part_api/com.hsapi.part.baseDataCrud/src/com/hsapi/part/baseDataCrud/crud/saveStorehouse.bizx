@@ -14,8 +14,8 @@
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
-    <targetConnections>link4</targetConnections>
     <targetConnections>link25</targetConnections>
+    <targetConnections>link4</targetConnections>
     <location x="885" y="96"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
@@ -98,6 +98,14 @@
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[1]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/attributes/tenantId</process:from>
+      <process:to type="query">tenantId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tenantId</process:from>
+      <process:to type="query">pt/tenantId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -309,24 +317,14 @@
     <node>assign2</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="clearAndResetCache" displayName="clearAndResetCache" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
-      <targetNode>end0</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link19" name="link19" displayName="连接线" type="transition">
-      <sourceNode>subprocess0</sourceNode>
-      <targetNode>assign4</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULLANDEMPTY">
-          <process:leftOperand type="query">storeMemList</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
+      <targetNode>subprocess2</targetNode>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
     <targetConnections>link8</targetConnections>
     <targetConnections>link18</targetConnections>
-    <location x="600" y="97"/>
+    <location x="600" y="96"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="8" synchronization="true" transactionType="join" varArgs="false">
@@ -348,7 +346,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="554" y="132"/>
+    <location x="554" y="131"/>
     <figSize height="17" width="119"/>
     <node>subprocess0</node>
   </nodes>
@@ -498,6 +496,54 @@
     <figSize height="17" width="32"/>
     <node>assign6</node>
   </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="clearAndResetCache2" displayName="clearAndResetCache" collapsed="false" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess2</sourceNode>
+      <targetNode>end0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link19" name="link19" displayName="连接线" isDefault="false" type="transition">
+      <sourceNode>subprocess2</sourceNode>
+      <targetNode>assign4</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">storeMemList</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="739" y="96"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess2label</nodeLabel>
+    <process:flow index="8" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hs.common.login.clearAndResetCache</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="dsName" type="literal" value="String" valueType="Primitive" pattern="reference">common</process:inputVariable>
+        <process:inputVariable id="1" name="nameSqlId" type="literal" value="String" valueType="Primitive" pattern="reference">com.hsapi.part.baseDataCrud.crud.queryStore</process:inputVariable>
+        <process:inputVariable id="2" name="title" type="literal" value="String" valueType="Primitive" pattern="reference">仓库数据</process:inputVariable>
+        <process:inputVariable id="3" name="fromDb" type="literal" value="String" valueType="Primitive" pattern="reference">true</process:inputVariable>
+        <process:inputVariable id="4" name="expireTimes" type="literal" value="Int" valueType="Primitive" pattern="reference">-1</process:inputVariable>
+        <process:inputVariable id="5" name="setDe" type="query" value="Boolean" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="6" name="deData" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="7" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">pt</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
+    <location x="689" y="131"/>
+    <figSize height="17" width="126"/>
+    <node>subprocess2</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="chenziming" createTime="2018-01-26 11:49:13" date="2018-01-26Z" description="" name="savePartBrand" version="7.0.0.0"/>
@@ -512,6 +558,8 @@
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.com.ComStoreMember" name="storeMemList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.com.ComStoreMember" name="temp"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="p"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="tenantId" primitiveType="String"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="pt"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.part.data.com.ComStore" name="storehouse"/>

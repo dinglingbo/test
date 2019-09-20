@@ -385,3 +385,27 @@ function getData(){
 	var data=basicInfoForm.getData();
 	return data;
 }
+
+function getPartBrandId(){
+	 nui.open({
+	        url: webPath + contextPath + "/com.hsweb.part.baseData.partBrand.flow?token="+token,
+	        title: '品牌选择',
+	        width: 900, height: 600,
+	        onload: function () {
+	            var iframe = this.getIFrameEl();
+	           // var params = sendGuestForm.getData();
+	            var type = "guest";//客户车辆界面跳转过来
+	            iframe.contentWindow.setData(type);
+	        },
+	        ondestroy: function (action)
+	        {
+	            if("ok" == action)
+	            {
+	                var iframe = this.getIFrameEl();
+	            	var nature = iframe.contentWindow.getData();
+	            	nui.get("nature").setValue(nature.natureName);
+	            	nui.get("nature").setText(nature.natureName);
+	            }
+	        }
+	    });
+}

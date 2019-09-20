@@ -1614,7 +1614,7 @@
       <sourceNode>invokePojo7</sourceNode>
       <targetNode>assign11</targetNode>
     </sourceConnections>
-    <targetConnections>link26</targetConnections>
+    <targetConnections>link29</targetConnections>
     <location x="1485" y="283"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo7label</nodeLabel>
@@ -1658,42 +1658,14 @@
     <figSize height="17" width="39"/>
     <node>assign24</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo9" name="出记录" displayName="出记录" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link26" name="link26" displayName="link39" isDefault="true" type="transition">
-      <sourceNode>invokePojo9</sourceNode>
-      <targetNode>invokePojo7</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" id="link40" name="link40" displayName="连接线" lineType="note" type="exception">
-      <sourceNode>invokePojo9</sourceNode>
-      <targetNode>assign11</targetNode>
-    </sourceConnections>
-    <targetConnections>link25</targetConnections>
-    <location x="1485" y="231"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo9label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.insertEntityBatch</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
-      <process:inputVariable id="1" name="dataObjects" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">sellRecordArr</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables/>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo9label" name="label" nodeType="label">
-    <location x="1478" y="267"/>
-    <figSize height="17" width="37"/>
-    <node>invokePojo9</node>
-  </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo12" name="删除订单记录" displayName="删除订单记录" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link25" name="link25" displayName="link54" isDefault="true" type="transition">
-      <sourceNode>invokePojo12</sourceNode>
-      <targetNode>invokePojo9</targetNode>
-    </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link39" name="link39" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo12</sourceNode>
       <targetNode>assign11</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link29" name="link29" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo12</sourceNode>
+      <targetNode>invokePojo7</targetNode>
     </sourceConnections>
     <targetConnections>link38</targetConnections>
     <location x="1485" y="165"/>
@@ -1919,7 +1891,6 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link50</targetConnections>
-    <targetConnections>link40</targetConnections>
     <targetConnections>link39</targetConnections>
     <location x="1374" y="262"/>
     <size height="28" width="28"/>

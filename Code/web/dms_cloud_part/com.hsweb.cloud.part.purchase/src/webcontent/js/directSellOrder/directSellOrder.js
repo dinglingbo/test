@@ -879,6 +879,11 @@ function addSelectPart2(){
 
 function showPartInfo(row, value, mainId){
 	partShow=1;
+	var directOrgid =directOrgidEl.getValue();
+	if(!directOrgid){
+		showMsg("请先选择直发门店","W");
+		return;
+	}
     nui.open({
         // targetWindow: window,
         url: webBaseUrl+"purchase/directSellOrder/fastPartChoose_view0.jsp?token="+token,

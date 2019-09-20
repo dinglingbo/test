@@ -45,27 +45,32 @@ public class SyncElectronicArchives {
 	@SuppressWarnings("unchecked")
 	@Bizlet("获取access_token")
 	public static Map<String, String> getAccessToken(String companycode, String companypassword, String eTokenUrl) {
+		JSONObject jsonObj = new JSONObject();
+		
+		//佛山需要请求的参数
+		//报文头
 		/*SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMdd");
 		SimpleDateFormat format2 = new SimpleDateFormat("HHmmss");
 		Date date = new Date();
 		String headerDate = format1.format(date);
-		String headerTime = format2.format(date);*/
-		String param = null;
-		JSONObject jsonObj = new JSONObject();
-		jsonObj.put("companycode", companycode);
-		jsonObj.put("companypassword", companypassword);
-		
-		/*Map <String, String> header = new HashMap <String, String>();
+		String headerTime = format2.format(date);
+		Map <String, String> header = new HashMap <String, String>();
 		header.put("date", headerDate);
 		header.put("time", headerTime);*/
-		/*header.put("date", "20180826");
-		header.put("time", "172522");*/
-		//jsonObj.put("header", header);
 		
+		/*jsonObj.put("header", header);*/
+		
+		//报文体
 		/*Map <String, String> body = new HashMap <String, String>();
 		body.put("companycode", companycode);
 		body.put("companypassword", companypassword);
 		jsonObj.put("body", body);*/
+		
+		//上海需要的参数
+		jsonObj.put("companycode", companycode);
+		jsonObj.put("companypassword", companypassword);
+		
+		String param = null;
 		param = jsonObj.toString();
 		String result = HttpUtils.sendPostByJson(eTokenUrl, param);
 		
@@ -133,6 +138,7 @@ public class SyncElectronicArchives {
 	        	String outDate = d.getString("outDate");
 	        	String faultPhen = d.getString("faultPhen");
 	        	String enterKilometers = d.getString("enterKilometers");
+	        	
 	        	if(enterDate != null && enterDate != "") {
 	        		enterDate = enterDate.substring(0, 10).replaceAll("-", "");
 	        	}
@@ -150,6 +156,7 @@ public class SyncElectronicArchives {
 	    		jsonObj.put("header", header);*/
 	    		
 	    		Map <String, String> basicInfo = new HashMap <String, String>();
+	    		
 	    		
 	    		basicInfo.put("vehicleplatecolor", "黑");
 	    		//维修企业名称
@@ -170,8 +177,10 @@ public class SyncElectronicArchives {
 	    		//故障描述
 	    		basicInfo.put("faultdescription", faultPhen == "" ? "-": faultPhen);
 	    		
-	    		getFormatData(basicInfo);
+	    		basicInfo = getFormatData(basicInfo);
 	    		jsonObj.put("basicInfo", basicInfo);
+	    		
+	    		//jsonObj.put("body", basicInfo);
 	    		
 	    		List<Map<String,String>> tList=new ArrayList<Map<String,String>>();
 	    		for (DataObject obj : itemList) {
@@ -179,7 +188,7 @@ public class SyncElectronicArchives {
 		    			Map <String, String> item = new HashMap <String, String>();
 		    			item.put("repairproject", obj.getString("itemName"));
 		    			item.put("workinghours", obj.getString("itemItem"));
-		    			getFormatData(item);
+		    			item = getFormatData(item);
 		    			tList.add(item);
 	    			}
 	    			
@@ -194,6 +203,7 @@ public class SyncElectronicArchives {
 		    			item.put("partscode", obj.getString("partCode"));
 		    			item.put("partsname", obj.getString("partName"));
 		    			item.put("partsquantity", obj.getString("qty"));
+		    			item = getFormatData(item);
 		    			pList.add(item);
 	    			}
 				}
@@ -215,7 +225,7 @@ public class SyncElectronicArchives {
 		return;
 	}
 	
-	private static  Map getFormatData(Map<String, String> map){	
+	private static  Map<String, String> getFormatData(Map<String, String> map){	
 		 for(String key:map.keySet()){
 			   String value = map.get(key);
 			   if(value==null || "".equals(value)){
@@ -281,7 +291,7 @@ public class SyncElectronicArchives {
 				String accessToken = null;
 				if(eRecordUser != null && !"".equals(eRecordUser)){
 					//if(StringUtils.isNotBlank(eRecordUser) && !StringUtils.equals("", eRecordUser))
-					if(eRecordPwd == null  && !"".equals(eRecordPwd)){
+					if(eRecordPwd != null  && !"".equals(eRecordPwd)){
 						if(eTokenUrl != null  && !"".equals(eTokenUrl)){
 							Map<String, String> tokenMap = getAccessToken(eRecordUser, eRecordPwd,eTokenUrl);
 							accessToken = tokenMap.get("access_token");

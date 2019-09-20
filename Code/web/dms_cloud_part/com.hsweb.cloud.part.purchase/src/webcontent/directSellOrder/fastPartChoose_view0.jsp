@@ -9,7 +9,7 @@
 -->
 <head>
 <title>快速录入</title>
-<script src="<%=webPath + contextPath%>/purchase/js/directSellOrder/fastPartChoose.js?v=1.0.48"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/directSellOrder/fastPartChoose.js?v=1.0.67"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -188,7 +188,7 @@ body .mini-grid-row-selected{
 
 
 <div id="advancedAddWin" class="nui-window"
-     title="数量单价录入" style="width:400px;height:230px;"
+     title="数量单价录入" style="width:400px;height:250px;"
      showModal="true" showHeader="false"
      allowResize="false"
      allowDrag="true">
@@ -225,30 +225,57 @@ body .mini-grid-row-selected{
                             </td>
                         </tr>
                         <tr>
+                        	<td class="title required">
+                                <label>直发门店仓库：</label>
+                            </td>
+                  			<td>
+                              <input  id="directStoreId" 
+                          			 name="directStoreId" 
+                          			 dataField="directStoreHouse" 
+                          			 class="nui-combobox" 
+                          			 valueField="id" 
+                          			 textField="name" 
+                          			 url="" 
+                          			 data="directStoreHouse"  
+                          			 showNullItem="false"
+                              		 onvaluechanged="" 
+                              		 allowInput="false"
+                              		 emptyText=""  
+                              		 vtype="required"
+                              />
+                            </td> 
+                                                        
                             <td class="title required">
                                 <label>数量：</label>
                             </td>
                             <td>
                                 <input id="qty" name="qty" class="nui-textbox" onvaluechanged="calc('qty')" vtype="float" selectOnFocus="true" width="100%" value="1"/>
                             </td>
-                            <td class="title required">
+                            
+                        </tr>
+                        <tr>
+                        	<td class="title required">
                                 <label>单价：</label>
                             </td>
                             <td>
                                 <input id="price" name="price" class="nui-textbox width1" onvaluechanged="calc('price')" vtype="float" selectOnFocus="true" enabled="true" width="100%"/>
                             </td>
-                        </tr>
-                        <tr>
+                            
                             <td class="title required">
                                 <label>金额：</label>
                             </td>
                             <td>
                                 <input id="amt" name="amt" class="nui-textbox" onvaluechanged="calc('amt')" vtype="float" selectOnFocus="true" enabled="true" width="100%"/>
                             </td>
+                            
+                        </tr>
+                        
+                        <tr>
+                         
                             <td class="title">
                                 <label>备注：</label>
                             </td>
-                            <td>
+                            <td colspan="3">
                                 <input id="remark" name="remark" class="nui-textbox" selectOnFocus="true" enabled="true" width="100%"/>
                             </td>
                         </tr>

@@ -1386,3 +1386,41 @@ function setInitExportData(main,detail,partHash){
      method5('tableExcel',"月结对账"+"-"+main.guestName+"-"+serviceId,'tableExportA');
 
 }
+
+var backAuditUrl =baseUrl+"com.hsapi.cloud.part.settle.svr.backAuditStatement.biz.ext";
+function backAudit(){
+
+	var data = getMainData();
+
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '审核中...'
+    });
+
+    nui.ajax({
+        url : backAuditUrl,
+        type : "post",
+        data : JSON.stringify({
+            id : data.id,
+            token : token
+        }),
+        success : function(data) {
+            nui.unmask(document.body);
+            data = data || {};
+            if (data.errCode == "S") {
+                showMsg("反审核成功!","S");
+                var leftRow = data.list[0];
+                var row = leftGrid.getSelected();
+                leftGrid.updateRow(row,leftRow);
+                loadMainAndDetailInfo(leftRow);    
+            } else {
+                showMsg(data.errMsg || "反审核失败!","E");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}

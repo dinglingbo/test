@@ -9,7 +9,7 @@
 -->
 <head>
 <title>月结对账</title>
-<script src="<%=webPath + contextPath%>/settlement/js/billStatement.js?v=1.2.30"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/billStatement.js?v=1.2.32"></script>
 <style type="text/css">
 .title {
   width: 85px;
@@ -119,6 +119,9 @@
                         <div field="createDate" width="130" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="对账日期"></div>
                         <div field="stateMan" width="60" headerAlign="center" header="对账员"></div>
                         <div field="serviceId" headerAlign="center" width="150" header="对账单号"></div>
+                        <div field="fMonth" headerAlign="center" width="70" header="账单月份"></div>
+                        <div field="rpAmt" headerAlign="center" width="70" header="对账金额"></div>
+                        <div field="invoiceRegister" headerAlign="center" width="70" header="开票登记"></div>
                         <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
                         <div field="auditDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="审核日期"></div>
                     </div>
@@ -161,7 +164,7 @@
                                       <td class="title required">
                                           <label>往来单位：</label>
                                       </td>
-                                      <td colspan="3">
+                                      <td colspan="1">
                                           <input id="guestId"
                                              name="guestId"
                                             
@@ -175,7 +178,7 @@
                                              onvaluechanged="onGuestValueChanged"
                                              popupEmptyText="未找到往来单位"
                                              url=""  searchField="key"
-                                             width="87%"
+                                             width="72%"
                                              placeholder="请选择往来单位"
                                              selectOnFocus="true" />
                                           <a class="nui-button" iconCls="" plain="false" onclick="selectSupplier('guestId')" id="addBtn"><span class="fa fa-check fa-lg"></span></a>
@@ -203,6 +206,12 @@
                                       </td>
                                       <td colspan="1">
                                           <input class="nui-textbox" id="serviceId" name="serviceId" width="100%" enabled="false">
+                                      </td>
+                                       <td class="title">
+                                          <label>账单月份：</label>
+                                      </td>
+                                      <td colspan="1">
+                                          <input class="nui-textbox" id="fMonth" name="fMonth" width="100%" enabled="false">
                                       </td>
                                   </tr>
                                   <tr>
@@ -238,10 +247,16 @@
                                       </td>
                                   </tr>
                                   <tr>
+                                  	 <td class="title">
+                                          <label>开票登记：</label>
+                                      </td>
+                                      <td colspan="1">
+                                          <input class="nui-textbox" id="invoiceRegister" name="invoiceRegister" width="100%">
+                                      </td>
                                       <td class="title">
                                           <label>备注：</label>
                                       </td>
-                                      <td colspan="5">
+                                      <td colspan="3">
                                           <input class="nui-textbox" id="remark" name="remark" width="100%">
                                       </td>
                                       <td class="title">

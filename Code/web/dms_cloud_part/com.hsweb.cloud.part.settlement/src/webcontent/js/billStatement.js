@@ -426,7 +426,7 @@ function doSearch(params)
                 setBtnable(true);
             }
             document.getElementById("basicInfoForm").disabled=false;
-            setEditable(false);
+            setEditable(true);
         }
     });
     //默认新增

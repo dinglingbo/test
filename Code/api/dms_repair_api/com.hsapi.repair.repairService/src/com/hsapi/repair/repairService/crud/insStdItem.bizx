@@ -1031,17 +1031,17 @@
     <node>assign7</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="queryStandardItem" displayName="queryStandardItem" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" description="" id="link20" name="link20" displayName="连接线" isDefault="false" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>assign20</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"/>
+          <process:leftOperand type="query"></process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link13" name="link13" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>assign14</targetNode>
       <process:transitionCondition>

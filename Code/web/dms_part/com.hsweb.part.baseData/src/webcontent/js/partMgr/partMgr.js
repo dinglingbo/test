@@ -365,6 +365,11 @@ function addOrEditPart(row)
             };
             if(row)
             {
+            	for(var i=0;i<brandList.length;i++){
+            		if(row.partBrandId==brandList[i].id){
+            			row.partBrandName = brandList[i].name;
+            		}
+            	}
                 params.partData = row;
             }
             iframe.contentWindow.setData(params);

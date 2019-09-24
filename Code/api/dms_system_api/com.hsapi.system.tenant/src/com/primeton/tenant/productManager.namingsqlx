@@ -8,31 +8,46 @@
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
        <select id="productQuery" parameterClass="HashMap" resultClass="HashMap">
-     	SELECT a.tenant_id tenantId,a.tenant_name tenantName,a.mobile,b.id,b.record_date recordDate,b.product_id productId,c.`name`,c.type,b.start_date startDate,b.end_date endDate,b.is_payment isPayment, b.payment_date paymentDate,b.payment_type paymentType,b.`status`
-		FROM com_tenant a,com_tenant_order b,com_tenant_product c
-		WHERE a.tenant_id=b.tenant_id and b.product_id = c.id 
-		<isNotNull property="id">
-			AND b.id=#id#
+     	SELECT 
+     	a.tenant_id tenantId,
+     	a.tenant_name tenantName,
+     	a.mobile,
+     	b.id,
+     	b.service_id as serviceId,
+     	b.record_date recordDate,
+     	b.product_id productId,
+     	b.product_name as name,
+     	b.order_date orderDate,
+     	b.is_payment isPayment, 
+     	b.payment_date paymentDate,
+     	b.payment_type paymentType,
+     	b.`status`,
+     	b.product_amt as producAamt
+     	
+		FROM com_tenant a,com_tenant_order b
+		WHERE a.tenant_id=b.tenant_id 
+		<isNotNull property="serviceId">
+			AND b.service_id like '%$serviceId$%'
 		</isNotNull>
 		<isNotNull property="tenantId">
 			AND b.tenant_id=#tenantId#
 		</isNotNull>
 		<isNotNull property="tenantName">
-			AND a.tenant_name=#tenantName#
+			AND a.tenant_name like '%$tenantName$%'
 		</isNotNull>	
 		<isNotNull property="mobile">
-			AND a.mobile=#mobile#
+			AND a.mobile like '%$mobile$%'
 		</isNotNull>
 		<isNotNull property="status">
 			AND  b.status=#status#
 		</isNotNull>	
-		<isNotEmpty prepend="and" property="beginDate">  
-              b.record_date &gt;= #beginDate#
+		<isNotEmpty prepend="and" property="startDate">  
+              b.record_date &gt;= #startDate#
         </isNotEmpty>
         <isNotEmpty prepend="and" property="endDate">  
               b.record_date &lt; #endDate#
         </isNotEmpty>
-	
+			order by b.order_date desc
 	 </select>
 	 
 	 <!--取租户的最后一条记录充值/消费记录-->

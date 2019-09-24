@@ -338,9 +338,11 @@ function setData(data)
             }
             oldData = part;
             basicInfoForm.setData(part);
-            onQualityTypeIdChanged();
+           // onQualityTypeIdChanged();
             basicInfoForm.setData(part);
             nui.get("partNameId").setText(part.name);
+        	nui.get("partBrandId").setValue(partData.partBrandId);
+        	nui.get("partBrandId").setText(partData.partBrandName);
             nui.get("code").disable();
         });
     }
@@ -403,8 +405,8 @@ function getPartBrandId(){
 	            {
 	                var iframe = this.getIFrameEl();
 	            	var nature = iframe.contentWindow.getData();
-	            	nui.get("nature").setValue(nature.natureName);
-	            	nui.get("nature").setText(nature.natureName);
+	            	nui.get("partBrandId").setValue(nature.id);
+	            	nui.get("partBrandId").setText(nature.name);
 	            }
 	        }
 	    });

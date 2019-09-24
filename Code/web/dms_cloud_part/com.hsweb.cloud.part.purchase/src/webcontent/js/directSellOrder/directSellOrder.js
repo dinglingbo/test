@@ -879,6 +879,11 @@ function addSelectPart2(){
 
 function showPartInfo(row, value, mainId){
 	partShow=1;
+	var directOrgid =directOrgidEl.getValue();
+	if(!directOrgid){
+		showMsg("请先选择直发门店","W");
+		return;
+	}
     nui.open({
         // targetWindow: window,
         url: webBaseUrl+"purchase/directSellOrder/fastPartChoose_view0.jsp?token="+token,
@@ -2102,6 +2107,7 @@ function addDetail(row,data,ck)
     enterDetail.remark = data.remark;
     enterDetail.storeId = data.storeId;
     enterDetail.storeShelf = data.storeShelf;
+    enterDetail.directStoreId =data.directStoreId;
     enterDetail.comOemCode = data.oemCode;
     enterDetail.comSpec = data.spec;
     enterDetail.partCode = data.code;
@@ -2151,6 +2157,7 @@ function saveDetail(detail, callback){
 		data : JSON.stringify({
 			sellOrderDetail : detail,
 			serviceId : detail.serviceId,
+			directOrgid :directOrgidEl.getValue(),
             token : token
 		}),
 		success : function(data) {
@@ -3570,7 +3577,7 @@ function queryStore(){
         success: function (data) {
             if (data.errCode == "S"){
             	directStoreHouse =data.storehouse;
-               
+            	
             }else {
             	
             }

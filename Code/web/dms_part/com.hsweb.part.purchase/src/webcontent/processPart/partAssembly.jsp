@@ -33,7 +33,7 @@ body .mini-grid-row-selected{
 <head>
 <title>配件组装</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchasePart/js/processPart/partAssembly.js?v=1.0.0"></script>
+    <script src="<%=webPath + contextPath%>/purchasePart/js/processPart/partAssembly.js?v=1.0.1"></script>
 </head>
 <body>
 	

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-	
+	  <%@include file="/common/sysCommon.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -11,27 +11,23 @@
 <head>
 <title>配件品牌选择</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/baseDataPart/js/partMgr/partBrand.js?v=1.0.6" type="text/javascript"></script>
     <style type="text/css">
-    	.car_type_band a {
+    	.yuan {
 		    display: inline-block;
 		    background: #e6e6e6;
 		    padding: 3px 10px;
 		    border-radius: 4px;
 		    text-decoration: none;
+		    color:#201f35;
 		}
-		.carbandxz a {
-		    transition: all .0s ease;
-		}
-		a:link, a:visited {
-		    font-family: 微软雅黑, Arial, Helvetica, sans-serif;
-		    font-size: 14px;
-		    color: #555555;
+		.dian{
+			display: inline-block;
+		    background: #00BFFF;
+		    padding: 3px 10px;
+		    border-radius: 4px;
 		    text-decoration: none;
-		}
-		.car_type_band a.xz {
-		    background: #32aaeb;
-		    color: #fff;
+		    color:#201f35;
 		}
 		.car_type_band em {
 		    color: #5fc8d7;
@@ -73,87 +69,104 @@
 						outline: none;
 						border: none;
 						height: 30px;
-					}	
-					.car_type_bandlist ul li a {
-					    display: block;
-					    width: 80px;
-					    height: 100px;
-					    border: 1px #e6e6e6 solid;
-					    border-radius: 4px;
-					    padding: 0 3px;
+					}		
+					.car_type_list ul li {
+					    width: 182px;
+					    height: 42px;
+					    float: left;
+					    border: 1px #d6d6d6 solid;
+					    margin: 15px 0 0 15px;
+					    list-style: none;
+					    cursor: pointer;
+					} 
+				.car_type_list ul li a font {
+				    display: block;
+				    float: left;
+				    border-left: 1px #ccc solid;
+				    line-height: 30px;
+				    height: 30px;
+				    overflow: hidden;
+				    margin-top: 4px;
+				    padding-left: 8px;
+				    font-size: 13px;
+    				color: #555555;
+
+				}
+				.car_type_list ul li a img {
+				    width: 30px;
+				    height: 30px;
+				    margin: 5px;
+				    float: left;
+				}
+						.kaitong {
+					    width: 90px;
+					    height: 34px;
+					    background: #21c064;
+					    border-radius: 5px;
+					    display: inline-table;
+					    color: #fff;
+					    font-size: 16px;
 					    text-align: center;
 					    text-decoration: none;
-					    color: #666;
-					    font-size: 13px;	
-					 }
-					 .car_type_bandlist ul li a img {
-					    width: 40px;
-					    height: 40px;
-					    display: block;
-					    margin: 15px auto 5px auto;
-					}
-					img {
-					    border: 0;
-					    vertical-align: middle;
-					}
-					ul, li, dl, dt, dd, ol {
-					    list-style: none;
-					}				
+					    line-height: 34px;
+					}			
     </style>
 </head>
 <body >
-<div class="popbox" id="popbox_1" >
+<div class="popbox" id="popbox_1" style="height: 100%;position: relative;">
     <div style="overflow: auto;" class="carbandxz" >
         <div class="car_type_band" ><!-- <em>根据首字母筛选：</em> -->
         						<div class="header">
 							<input id="brandName" name="brandName" class="intCity" type="text" placeholder="请输入品牌名称" />
-							<input class="seachBtn" type="button" value="查询" onclick="javascript:getViolation()" />
+							<input class="seachBtn" type="button" value="查询" onclick="getPartBrandName()" />
 						</div>
-        	<a href="javascript:void(0)">A</a>
-        	<a href="javascript:void(0)">B</a>
-        	<a href="javascript:void(0)">C</a>
-        	<a href="javascript:void(0)">D</a>
-         	<a href="javascript:void(0)">E</a>       	
-        	<a href="javascript:void(0)">F</a>
-        	<a href="javascript:void(0)">G</a>
-        	<a href="javascript:void(0)">H</a>
-         	<a href="javascript:void(0)">I</a>       	
-        	<a href="javascript:void(0)">J</a>
-        	<a href="javascript:void(0)">K</a>
-        	<a href="javascript:void(0)">L</a>
-        	<a href="javascript:void(0)">M</a>
-        	<a href="javascript:void(0)">N</a>
-        	<a href="javascript:void(0)">O</a>
-        	<a href="javascript:void(0)">P</a>
-        	<a href="javascript:void(0)">Q</a>
-        	<a href="javascript:void(0)">R</a>
-        	<a href="javascript:void(0)">S</a>
-        	<a href="javascript:void(0)">T</a>
-        	<a href="javascript:void(0)">u</a>
-         	<a href="javascript:void(0)">V</a>       	        	
-        	<a href="javascript:void(0)">W</a>
-        	<a href="javascript:void(0)">X</a>
-        	<a href="javascript:void(0)">Y</a>
-        	<a href="javascript:void(0)">Z</a> 
+        	<a class="yuan" href="#" onclick="getPartBrandLetter('A')" id="A">A</a>
+        	<a class="yuan" href="#" onclick="getPartBrandLetter('B')" id="B">B</a>
+        	<a class="yuan" href="#" onclick="getPartBrandLetter('C')" id="C">C</a>
+        	<a class="yuan" href="#" onclick="getPartBrandLetter('D')" id="D">D</a>
+         	<a class="yuan" href="#" onclick="getPartBrandLetter('E')" id="E">E</a>       	
+        	<a class="yuan" href="#" onclick="getPartBrandLetter('F')" id="F">F</a>
+        	<a class="yuan" href="#" onclick="getPartBrandLetter('G')" id="G">G</a>
+        	<a class="yuan" href="#" onclick="getPartBrandLetter('H')" id="H">H</a>
+         	<a class="yuan" href="#" onclick="getPartBrandLetter('I')" id="I">I</a>       	
+        	<a class="yuan" href="#" onclick="getPartBrandLetter('J')" id="J">J</a>
+        	<a class="yuan" href="#" onclick="getPartBrandLetter('K')" id="K">K</a>
+        	<a class="yuan" href="#" onclick="getPartBrandLetter('L')" id="L">L</a>
+        	<a class="yuan" href="#" onclick="getPartBrandLetter('M')" id="M">M</a>
+        	<a class="yuan" href="#" onclick="getPartBrandLetter('N')" id="N">N</a>
+        	<a class="yuan" href="#" onclick="getPartBrandLetter('O')" id="O">O</a>
+        	<a class="yuan" href="#" onclick="getPartBrandLetter('P')" id="P">P</a>
+        	<a class="yuan" href="#" onclick="getPartBrandLetter('Q')" id="Q">Q</a>
+        	<a class="yuan" href="#" onclick="getPartBrandLetter('R')" id="R">R</a>
+        	<a class="yuan" href="#" onclick="getPartBrandLetter('S')" id="S">S</a>
+        	<a class="yuan" href="#" onclick="getPartBrandLetter('T')" id="T">T</a>
+        	<a class="yuan" href="#" onclick="getPartBrandLetter('U')" id="U">u</a>
+         	<a class="yuan" href="#" onclick="getPartBrandLetter('V')" id="V">V</a>       	        	
+        	<a class="yuan" href="#" onclick="getPartBrandLetter('W')" id="W">W</a>
+        	<a class="yuan" href="#" onclick="getPartBrandLetter('X')" id="X">X</a>
+        	<a class="yuan" href="#" onclick="getPartBrandLetter('Y')" id="Y">Y</a>
+        	<a class="yuan" href="#" onclick="getPartBrandLetter('Z')" id="Z">Z</a> 
         </div>
-        <div class="car_type_bandlist" >
-        <ul >
-        	<li >
-        		<a style="background-color: #fff;" href="javascript:void(0)" value="158" code="402880882ce35a1f012d0814e2f019e8"><img src="http://res.ewewo.com/brandlogo/guangqicyc.jpg" width="100" height="100"><font>广汽乘用车</font></a>
-        	</li>
-        </ul>
-            
+        <div class="car_type_list" bindlist="1" style="display: block;"  >
+        	<ul id="part">
+<!--          	<li>
+        			<a style="background-color: #fff;" class="partA" href="#"  onclick="choosePart(aa,bb)">
+							<img src="baseDataPart/img/brandDefault.jpg" width="30x" height="30px">
+							<font>name</font>
+					</a>  
+			</li>   -->
+			</ul>        
         </div>
 
 
 
         <div style="height: 15px;"></div>
     </div>
-    <div class="boxbtn">
+    <div class="boxbtn" style="position: absolute;bottom:4px;">
         <ul style="text-align: left;">
-            <font style="float: left; padding-left: 16px; width: 580px;" class="color999">您已选择：&nbsp;<span style="color:#ff7800;" id="selectmodels">  </span></font>
-            <a href="javascript:void(0);" class="qc">取消</a>
-            <a href="javascript:void(0);" name="carbtnok">确定</a>
+            <font style="float: left; padding-left: 16px; width: 580px;" class="color999">您已选择：&nbsp;<span style="color:#ff7800;font-size:15px;" id="selectmodels">  </span></font>
+           <a class = "kaitong" href="#" style="background: #4f9ada; font-size:14px;margin-left:100px;" onclick="onCancel()">确定</a>
+            <!-- <a class = "kaitong" href="#" style="background: #4f9ada; font-size:14px;margin-left: 100px;" onclick="toChainCarCoinRecharge()">链车币充值</a> -->
         </ul>
     </div>
 </div>

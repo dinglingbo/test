@@ -25,47 +25,42 @@ var SignHash = {
 
 
 $(document).ready(function(v) {
-
-	grid = nui.get("datagrid1");
-	grid.setUrl(gridUrl);
-    var request = {
-    		"params":{
-    			
-    		}
-    };   
-    grid.load(request,function(){
-        //成功;
-       // nui.alert("数据成功！");
-    },function(){
-        //失败;
-        nui.alert("数据失败！");
-    });
 	
+    nui.get("startDate").setValue(getMonthStartDate());
+    nui.get("endDate").setValue(getMonthEndDate());
+	grid = nui.get("datagrid1");
+	grid.setUrl(gridUrl);  
+    grid.on("drawcell", function (e) {
+    	switch (e.field)
+    	{
+    		case "provinceId":
+    	    if(provinceHash && provinceHash[e.value])
+    	    {
+    	        e.cellHtml = provinceHash[e.value].name;
+    	    }  
+    	    break;
+    		case "cityId":
+    	    if(cityHash && cityHash[e.value])
+    	    {
+    	        e.cellHtml = cityHash[e.value].name;
+    	    }  
+    	    break;
+    		case "status":
+    			if(e.value == 0){
+    		        e.cellHtml = "待支付"; 	
+    			}else if(e.value == 1){
+    		        e.cellHtml = "已支付"; 
+    			}else{
+    		        e.cellHtml = "已取消"; 
+    			}
+
+    		default:
+    	    break;
+    	}
+    })
+    search();
 
 });
-
-
-
-function onDrawCell(e)
-{
-switch (e.field)
-{
-	case "provinceId":
-    if(provinceHash && provinceHash[e.value])
-    {
-        e.cellHtml = provinceHash[e.value].name;
-    }  
-    break;
-	case "cityId":
-    if(cityHash && cityHash[e.value])
-    {
-        e.cellHtml = cityHash[e.value].name;
-    }  
-    break;
-	default:
-    break;
-}
-}
 
 function search() {
     var param = getSearchParam();
@@ -75,6 +70,13 @@ function search() {
 function getSearchParam() {
 	queryForm = new nui.Form("#queryForm");
     var params = queryForm.getData();
+    var status = nui.get("status").getValue();
+    if(status!=999){   	
+    	params.status = status;
+    }else{
+    	params.status = null;
+    }
+    
     return params;
 }
 function wfk(){

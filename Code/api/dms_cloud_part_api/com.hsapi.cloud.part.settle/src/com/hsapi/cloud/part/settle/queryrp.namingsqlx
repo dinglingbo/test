@@ -336,7 +336,8 @@
 			a.f_year as fYear,
 			a.f_month as fMonth,
 			a.receive_amt as receiveAmt,
-			b.full_name as guestName
+			b.full_name as guestName,
+			a.invoice_register as invoiceRegister
 		FROM
 			pj_statement_main AS a
 			inner join wb_common.com_guest b

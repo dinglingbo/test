@@ -654,7 +654,7 @@ function audit()
             data = data || {};
             if (data.errCode == "S") {
                 parent.showMsg("审核成功!","S");
-                var newRow ={auditSign:1}
+                var newRow ={auditSign:1};
                 var row = leftGrid.getSelected();
                 leftGrid.updateRow(row,newRow);
                 var leftRow = leftGrid.getSelected();
@@ -663,7 +663,7 @@ function audit()
       
                 
             } else {
-                parent.showMsg(data.errMsg || "审核失败!","W");
+                parent.showMsg(data.errMsg || "审核失败!","E");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {

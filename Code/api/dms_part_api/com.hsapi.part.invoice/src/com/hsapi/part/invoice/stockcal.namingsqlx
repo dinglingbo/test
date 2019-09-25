@@ -21,7 +21,8 @@
 				B.PREV_DETAIL_ID as preDetailId, B.ORDER_DETAIL_ID as orderDetailId,
 				B.ORDER_MAIN_ID as orderMainId, B.BRANCH_STOCK_AGE as branchStockAge,
 				B.CHAIN_STOCK_AGE as chainStockAge, B.GUEST_ID as guestId,B.GUEST_NAME as guestName,
-				B.REMARK as remark, b.origin_id as originId, b.origin_guest_id as originGuestId
+				B.REMARK as remark, b.origin_id as originId, b.origin_guest_id as originGuestId,
+				b.source_id as sourceId,b.root_id as rootId
 		FROM
 			PJ_ENTER_MAIN_CHK A
 		INNER JOIN PJ_ENTER_DETAIL_CHK B ON A.ID = B.MAIN_ID

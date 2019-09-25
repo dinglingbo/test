@@ -3,6 +3,7 @@ var companyUrl = apiPath + sysApi + "/"+"com.hsapi.system.basic.organization.get
 var mainGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.queryNoSettleBill.biz.ext";
 var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryPjPchsEnterMainDetailList.biz.ext";
 var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryReceiveMainDetails.biz.ext";
+var exportUrl= baseUrl + "com.hsapi.cloud.part.invoicing.query.exportReceiveMainDetails.biz.ext";
 var orgidsEl =null;
 var orgids="";
 var mainGrid =null;
@@ -21,6 +22,7 @@ var billTypeIdHash = {};
 var settTypeIdHash = {};
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
+var settleTypeIdEl =null;
 $(document).ready(function(v) {
 	orgidsEl = nui.get("orgids");
 	if(currIsMaster!=1){
@@ -29,7 +31,7 @@ $(document).ready(function(v) {
 	else{
 		getCompany();
 	}
-	
+	settleTypeIdEl =nui.get('settleTypeId');
 	mainGrid =nui.get("mainGrid");
 	mainGrid.setUrl(mainGridUrl);
     searchBeginDate = nui.get("beginDate");
@@ -49,17 +51,22 @@ $(document).ready(function(v) {
     	var tab = mainTabs.getActiveTab();
     	var name = tab.name;
         var url = tab.url;
+
+        var params = getSearchParam();
+        if(mainGrid.getSelected()){
+        	 params.guestId=mainGrid.getSelected().guestId;
+        }
         if(name == 'receiveTab'){
-        	loadLeftGridData();
+        	loadLeftGridData(params);
         }
         else if(name== 'payTab'){
-        	loadRightGridData();
+        	loadRightGridData(params);
         }
         else if(name== 'allotReceiveTab'){
-        	loadAllotReceiveGridData();
+        	loadAllotReceiveGridData(params);
         }
         else if(name== 'allotPayTab'){
-        	loadAllotPayGridData();
+        	loadAllotPayGridData(params);
         }
     });
     
@@ -104,15 +111,18 @@ $(document).ready(function(v) {
                 {
                     if(v.dictid == "DDT20130703000035")
                     {
+                    	
                         settTypeIdHash[v.customid] = v;
                         return true;
                     }
                 });
+                settleTypeIdEl.setData(settTypeIdList);
           //      nui.get("settType").setData(settTypeIdList);
                 var enterTypeIdList = dataItems.filter(function(v)
                 {
                     if(v.dictid == "DDT20130703000064")
                     {
+                    	
                         enterTypeIdHash[v.customid] = v;
                         return true;
                     }
@@ -173,7 +183,7 @@ function getSearchParam(){
     	params.tenantId =null;
     }
     params.isState = 0;
-    params.settleTypeId='020502';
+    params.settleTypeId=settleTypeIdEl.getValue()||"";
 	params.auditSign=1;
     return params;
 }
@@ -252,27 +262,32 @@ function doSearch(params)
 	mainGrid.load({
         params:params,
         token: token
+    },function(){
+    	var tab = mainTabs.getActiveTab();
+    	var name = tab.name;
+        var url = tab.url;
+
+        if(mainGrid.getSelected()){
+       	 	params.guestId=mainGrid.getSelected().guestId;
+        }
+        if(name == 'receiveTab'){
+        	loadLeftGridData(params);
+        }
+        else if(name== 'payTab'){
+        	loadRightGridData(params);
+        }
+        else if(name== 'allotReceiveTab'){
+        	loadAllotReceiveGridData(params);
+        }
+        else if(name== 'allotPayTab'){
+        	loadAllotPayGridData(params);
+        }
     });
 	
-	var tab = mainTabs.getActiveTab();
-	var name = tab.name;
-    var url = tab.url;
-    if(name == 'receiveTab'){
-    	loadLeftGridData();
-    }
-    else if(name== 'payTab'){
-    	loadRightGridData();
-    }
-    else if(name== 'allotReceiveTab'){
-    	loadAllotReceiveGridData();
-    }
-    else if(name== 'allotPayTab'){
-    	loadAllotPayGridData();
-    }
+	
 }
 
-function loadRightGridData(){
-	var params = getSearchParam();
+function loadRightGridData(params){
 	params.sortField ="a.audit_date";
 	params.sortOrder ="desc";
     rightGrid.load({
@@ -281,8 +296,7 @@ function loadRightGridData(){
     });
 }
 
-function loadLeftGridData(){
-	var params = getSearchParam();
+function loadLeftGridData(params){
 	params.sortField ="a.audit_date";
 	params.sortOrder ="desc";
     leftGrid.load({
@@ -291,8 +305,7 @@ function loadLeftGridData(){
     });
 }
 
-function loadAllotReceiveGridData(){
-	var params = getSearchParam();
+function loadAllotReceiveGridData(params){
     params.isDiffOrder = 1;
 	params.sortField = "audit_date";
 	params.sortOrder = "desc";
@@ -301,8 +314,7 @@ function loadAllotReceiveGridData(){
         token:token
     });
 }
-function loadAllotPayGridData(){
-	var params = getSearchParam();
+function loadAllotPayGridData(params){
     params.isDiffOrder = 1;
 	params.sortField = "audit_date";
 	params.sortOrder = "desc"
@@ -416,6 +428,102 @@ function onDrawSummaryCell(e) {
 		e.value= sumRAmt + sumPAmt;
 		e.cellHtml=e.value;  
 	}
+}
+
+function onMainGridClick(e){
+	var row = e.row;
+	var guestId = row.guestId ||0;
+	if(guestId>0){
+		var tab = mainTabs.getActiveTab();
+		var name = tab.name;
+	    var url = tab.url;
+	    var params = getSearchParam();
+	    params.guestId = guestId;
+	    if(name == 'receiveTab'){
+	    	loadLeftGridData(params);
+	    }
+	    else if(name== 'payTab'){
+	    	loadRightGridData(params);
+	    }
+	    else if(name== 'allotReceiveTab'){
+	    	loadAllotReceiveGridData(params);
+	    }
+	    else if(name== 'allotPayTab'){
+	    	loadAllotPayGridData(params);
+	    }
+	}else{
+		rightUnifyGrid.setData([]);
+	}
+}
+
+
+function onExport(){
+	$.ajaxSettings.async = false;
+	var leftRows=leftGrid.getData();
+	if(!mainGrid.getSelected()){
+		return;
+	}
+	if(leftRows.length<0){
+		return;	
+	}
+	var params = getSearchParam();
+    params.guestId = mainGrid.getSelected().guestId;
+    nui.ajax({
+        url: exportUrl,
+        type: 'post',
+        async:false,
+        data: nui.encode({
+        	params: params,
+        	page :{length:1000,size:1000},
+            token: token
+        }),
+        cache: false,
+        success: function (data) {
+        	detail =data.detailList;    	
+        	if(detail && detail.length > 0){
+        		setInitExportData(detail);
+        	}
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
+	});
+  
+}
+
+function setInitExportData(detail){
+
+    var tds = '<td  colspan="1" align="left">[guestFullName]</td>' +
+        "<td  colspan='1' align='left'>[orgName]</td>" +
+        "<td  colspan='1' align='left'>[carBrandName]</td>" +
+        "<td  colspan='1' align='left'>[serviceId]</td>" +
+        "<td  colspan='1' align='left'>[outDate]</td>" +
+        "<td  colspan='1' align='left'>[showPartCode]</td>" +
+        "<td  colspan='1' align='left'>[showFullName]</td>" +
+        "<td  colspan='1' align='left'>[orderQty]</td>"+
+        "<td  colspan='1' align='left'>[showPrice]</td>"+
+        "<td  colspan='1' align='left'>[showAmt]</td>" ;
+    var tableExportContent = $("#tableExportContent");
+    tableExportContent.empty();
+    for (var i = 0; i < detail.length; i++) {
+        var row = detail[i];
+        if(row.showPartId){
+            var tr = $("<tr></tr>");
+            tr.append(tds.replace("[guestFullName]", detail[i].guestFullName?detail[i].guestFullName:"")
+                         .replace("[orgName]", detail[i].orgName?detail[i].orgName:"")
+                         .replace("[carBrandName]", detail[i].carBrandName?detail[i].carBrandName:"")
+                         .replace("[serviceId]", detail[i].serviceId?detail[i].serviceId:"")
+                         .replace("[outDate]", detail[i].outDate?format(detail[i].outDate,"yyyy-MM-dd HH:mm"):"")
+                         .replace("[showPartCode]", detail[i].showPartCode?detail[i].showPartCode:"")
+                         .replace("[showFullName]", detail[i].showFullName?detail[i].showFullName:"")
+                         .replace("[orderQty]", detail[i].orderQty?detail[i].orderQty:"")
+                         .replace("[showPrice]", detail[i].showPrice?detail[i].showPrice:"")
+                         .replace("[showAmt]", detail[i].showAmt?detail[i].showAmt:""));
+            tableExportContent.append(tr);
+        }
+    }
+
+    method5('tableExcel',"未对账应收单",'tableExportA');
 }
 
 //重写toFixed方法,解决精度问题

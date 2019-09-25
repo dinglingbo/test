@@ -13,7 +13,7 @@
 <head>
 <title>未对账业务单</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/settlement/js/noBalaRpaAccountSettle.js?v=1.0.3"></script>
+    <script src="<%=webPath + contextPath%>/settlement/js/noBalaRpaAccountSettle.js?v=1.0.49"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -52,8 +52,21 @@
 							<input class="nui-combobox" id ="orgids" name="orgids" value="" allowInput="true" showNullItem="false" 
 			            		 valueFromSelect="true" nullitemtext="请选择..." emptyText="选择公司" data="" width="200px"
 			            		 textField="name" valueField="orgid" onEnter="onSearch()" />
-			            		 
+			            	 <input name="settleTypeId"
+                                             id="settleTypeId"
+                                             class="nui-combobox width1"
+                                             textField="name"
+                                             valueField="customid"
+                                             valueFromSelect="true"
+                                             emptyText="请选择结算方式..."
+                                             url=""
+                                             allowInput="true"
+                                             showNullItem="false"
+                                             width="100px"
+                                             nullItemText="请选择结算方式..."
+                                             onvalidation=""/>	 
 			                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+			                 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出应收单</a>
 			                
 			            </td>
 			        </tr>
@@ -70,6 +83,8 @@
 		         multiSelect="false"				
 				 totalField="total"
 		         pageSize="50"
+		         selectOnLoad="true"
+		         onrowclick="onMainGridClick"
 		         showSummaryRow="true"
 		         ondrawsummarycell="onDrawSummaryCell(e)"
 		         sizeList="[50,100,200]">
@@ -87,6 +102,7 @@
         <div size="40%" showCollapseButton="false">
         
         	<div class="nui-fit">
+        	
         	 <div id="mainTabs" class="nui-tabs" name="mainTabs"
                     activeIndex="0" 
                     style="width:100%; height:100%;" 
@@ -103,10 +119,12 @@
 				         url=""
 				         totalField="page.count"
 						 pageSize="100"
+						 multiSelect="true"
 						 sizeList=[100,200,500,1000]
 				         showSummaryRow="true">
 				        <div property="columns">
 				            <div type="indexcolumn">序号</div>
+				          <!--  <div type="checkcolumn" width="20"></div>-->
 				            <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="销售单号"></div>
 				            <div field="guestFullName" width="150" headerAlign="center" header="客户"></div>
 				            <div allowSort="true" field="outDate" headerAlign="center" header="出库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
@@ -184,10 +202,12 @@
 				         url=""
 				         totalField="page.count"
 						 pageSize="100"
+						 multiSelect="true"
 						 sizeList=[100,200,500,1000]
 				         showSummaryRow="true">
 				        <div property="columns">
 				            <div type="indexcolumn">序号</div>
+				           <!-- <div type="checkcolumn" width="20"></div>-->
 				            <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="订单单号"></div>
 				            <div field="orgName" width="150" headerAlign="center" header="调入方"></div>
 				            <div allowSort="true" field="finishDate" headerAlign="center" header="出库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
@@ -247,6 +267,27 @@
       </div>
 </div>
 
+
+<div id="exportDiv" style="display:none">  
+    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
+      
+        <tr>  
+            <td colspan="1" align="center">客户名称</td>
+            <td colspan="1" align="center">公司编号</td>
+            <td colspan="1" align="center">厂牌</td>
+            <td colspan="1" align="center">出库单号</td>
+            <td colspan="1" align="center">出库日期</td>
+            <td colspan="1" align="center">零件编码</td>
+            <td colspan="1" align="center">零件名</td>
+            <td colspan="1" align="center">数量</td>
+            <td colspan="1" align="center">单价</td>
+            <td colspan="1" align="center">金额</td>
+        </tr>
+        <tbody id="tableExportContent">
+        </tbody>
+    </table>  
+    <a href="" id="tableExportA"></a>
+</div>  
 
 
 	<script type="text/javascript">

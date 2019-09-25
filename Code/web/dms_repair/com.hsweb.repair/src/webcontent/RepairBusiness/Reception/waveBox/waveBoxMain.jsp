@@ -109,13 +109,13 @@
                   <div field="serviceCode" name="serviceCode" width="180px" headerAlign="center" header="工单号"></div>
                   <div field="guestFullName" name="guestFullName" width="100px" headerAlign="center"  header="客户名称"></div>
                   <div field="boxNo" name="boxNo" width="80px" headerAlign="center" header="变速箱号"></div>
-                  <div field="enterDate" name="enterDate" width="120px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="进厂时间"></div>
-                  <div field="boxServiceTypeId" name="boxServiceTypeId" width="100px" headerAlign="center" header="业务类型"></div>
+                  <div field="enterDate" name="enterDate" width="130px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="进厂时间"></div>
+                  <div field="boxServiceTypeId" name="boxServiceTypeId" width="80px" headerAlign="center" header="业务类型"></div>
                   <div field="boxModel" name="engineModel" width="100px" headerAlign="center"  header="变速箱型号"></div>
                   <div field="boxBrandId" name="boxBrandId" width="100px" headerAlign="center"  header="波箱厂牌"></div>
-                   <div field="driveType" name="driveType" width="100px" headerAlign="center"  header="驱动形式"></div>
+                   <div field="driveType" name="driveType" width="80px" headerAlign="center"  header="驱动形式"></div>
                   <div field="carVin" name="carVin" width="130px" headerAlign="center" header="车架号(VIN)"></div>
-                  <div field="mtAdvisor" name="mtAdvisor" width="90px" headerAlign="center" header="服务顾问"></div>
+                  <div field="mtAdvisor" name="mtAdvisor" width="80px" headerAlign="center" header="服务顾问"></div>
                   <div field="balaAuditSign" name="balaAuditSign" width="90px" headerAlign="center" header="结算状态"></div>
                   <div field="contactName" name="contactName" width="80px" headerAlign="center" header="联系人姓名"></div>
                   <div field="contactMobile" name="contactMobile" width="100px" headerAlign="center" header="联系人手机"></div>

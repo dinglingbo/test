@@ -13,7 +13,7 @@
 <head>
 <title>未对账业务单</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/settlement/js/noBalaRpaAccountSettle.js?v=1.0.41"></script>
+    <script src="<%=webPath + contextPath%>/settlement/js/noBalaRpaAccountSettle.js?v=1.0.49"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -52,7 +52,19 @@
 							<input class="nui-combobox" id ="orgids" name="orgids" value="" allowInput="true" showNullItem="false" 
 			            		 valueFromSelect="true" nullitemtext="请选择..." emptyText="选择公司" data="" width="200px"
 			            		 textField="name" valueField="orgid" onEnter="onSearch()" />
-			            		 
+			            	 <input name="settleTypeId"
+                                             id="settleTypeId"
+                                             class="nui-combobox width1"
+                                             textField="name"
+                                             valueField="customid"
+                                             valueFromSelect="true"
+                                             emptyText="请选择结算方式..."
+                                             url=""
+                                             allowInput="true"
+                                             showNullItem="false"
+                                             width="100px"
+                                             nullItemText="请选择结算方式..."
+                                             onvalidation=""/>	 
 			                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 			                 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出应收单</a>
 			                
@@ -112,7 +124,7 @@
 				         showSummaryRow="true">
 				        <div property="columns">
 				            <div type="indexcolumn">序号</div>
-				            <div type="checkcolumn" width="20"></div>
+				          <!--  <div type="checkcolumn" width="20"></div>-->
 				            <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="销售单号"></div>
 				            <div field="guestFullName" width="150" headerAlign="center" header="客户"></div>
 				            <div allowSort="true" field="outDate" headerAlign="center" header="出库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
@@ -195,7 +207,7 @@
 				         showSummaryRow="true">
 				        <div property="columns">
 				            <div type="indexcolumn">序号</div>
-				            <div type="checkcolumn" width="20"></div>
+				           <!-- <div type="checkcolumn" width="20"></div>-->
 				            <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="订单单号"></div>
 				            <div field="orgName" width="150" headerAlign="center" header="调入方"></div>
 				            <div allowSort="true" field="finishDate" headerAlign="center" header="出库日期" dateFormat="yyyy-MM-dd HH:mm"></div>

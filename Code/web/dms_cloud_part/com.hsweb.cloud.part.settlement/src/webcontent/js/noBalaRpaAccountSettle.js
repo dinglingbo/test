@@ -22,6 +22,7 @@ var billTypeIdHash = {};
 var settTypeIdHash = {};
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
+var settleTypeIdEl =null;
 $(document).ready(function(v) {
 	orgidsEl = nui.get("orgids");
 	if(currIsMaster!=1){
@@ -30,7 +31,7 @@ $(document).ready(function(v) {
 	else{
 		getCompany();
 	}
-	
+	settleTypeIdEl =nui.get('settleTypeId');
 	mainGrid =nui.get("mainGrid");
 	mainGrid.setUrl(mainGridUrl);
     searchBeginDate = nui.get("beginDate");
@@ -110,15 +111,18 @@ $(document).ready(function(v) {
                 {
                     if(v.dictid == "DDT20130703000035")
                     {
+                    	
                         settTypeIdHash[v.customid] = v;
                         return true;
                     }
                 });
+                settleTypeIdEl.setData(settTypeIdList);
           //      nui.get("settType").setData(settTypeIdList);
                 var enterTypeIdList = dataItems.filter(function(v)
                 {
                     if(v.dictid == "DDT20130703000064")
                     {
+                    	
                         enterTypeIdHash[v.customid] = v;
                         return true;
                     }
@@ -179,7 +183,7 @@ function getSearchParam(){
     	params.tenantId =null;
     }
     params.isState = 0;
-//    params.settleTypeId='020502';
+    params.settleTypeId=settleTypeIdEl.getValue()||"";
 	params.auditSign=1;
     return params;
 }

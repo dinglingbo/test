@@ -177,7 +177,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">params/carNo</process:from>
-      <process:to type="query">ct/_and[1]/_expr[5]/creator</process:to>
+      <process:to type="query">ct/_and[1]/_expr[5]/carNo</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">like</process:from>

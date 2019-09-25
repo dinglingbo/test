@@ -11,7 +11,7 @@
     <title>订单管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%= request.getContextPath() %>/tenant/js/orderManager.js?v=1.7" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/tenant/js/orderManager.js?v=1.8" type="text/javascript"></script>
 	    <script src="<%= request.getContextPath() %>/common/js/date.js?v=1.9" type="text/javascript"></script>
     <style type="text/css">
     body {

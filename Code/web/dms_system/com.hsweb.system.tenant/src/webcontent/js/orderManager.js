@@ -84,7 +84,8 @@ function wfk(){
 	}
 function doSearch(params) {
     grid.load({
-        params:params
+        params:params,
+        token:token
     });
 }
 
@@ -117,7 +118,8 @@ function closeOrder(){
        type: 'post',
        data: nui.encode({
        	params: s,
-       	type:types
+       	type:types,
+       	token:token
        }),
        cache: false,
        success: function (data) {

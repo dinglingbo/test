@@ -8,7 +8,9 @@
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
        <select id="productQuery" parameterClass="HashMap" resultClass="HashMap">
-     	SELECT a.tenant_id tenantId,a.tenant_name tenantName,a.mobile,b.id,b.record_date recordDate,b.product_id productId,c.`name`,c.type,b.start_date startDate,b.end_date endDate,b.is_payment isPayment, b.payment_date paymentDate,b.payment_type paymentType,b.`status`
+     	SELECT a.tenant_id tenantId,a.tenant_name tenantName,a.mobile,b.id,b.record_date recordDate,b.product_id productId,
+     	       c.product_name as `name`,
+     	       c.type,b.start_date startDate,b.end_date endDate,b.is_payment isPayment, b.payment_date paymentDate,b.payment_type paymentType,b.`status`
 		FROM com_tenant a,com_tenant_order b,com_tenant_product c
 		WHERE a.tenant_id=b.tenant_id and b.product_id = c.id 
 		<isNotNull property="id">

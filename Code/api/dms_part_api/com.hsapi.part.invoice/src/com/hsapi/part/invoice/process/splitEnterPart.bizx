@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="splitEnterPart" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="生成入库信息&#xD;&#xA;生成流水记录&#xD;&#xA;更新库存信息&#xD;&#xA;更新产品明细" title="Administrator&#x9;18-2-25 下午5:09">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="生成入库信息&#xD;&#xA;生成流水记录&#xD;&#xA;更新库存信息&#xD;&#xA;更新产品明细&#xD;&#xA;&#xD;&#xA;含税 税率0.16&#xD;&#xA;月结" title="Administrator&#x9;18-2-25 下午5:09">
     <location x="-300" y="-85"/>
     <size height="106" width="591"/>
   </nodes>

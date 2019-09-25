@@ -9,7 +9,8 @@ var rightUnifyGridUrl = baseUrl+"com.hsapi.part.baseDataCrud.query.queryPartMatc
 var straGridUrl =  baseUrl +"com.hsapi.part.baseDataCrud.query.queryPartMatching.biz.ext";
 
 var salesDeductTypeEl= null;
-var statuList = [{id:"0",name:"编码"},{id:"1",name:"名称"}];
+var statuList = [{id:"0",name:"成品编码"},{id:"1",name:"成品名称"}];
+var statuList2 = [{id:"0",name:"启用"},{id:"1",name:"禁用"},{id:"2",name:"所有"}];
 var statusList = [{id:0,name:"启用"},{id:1,name:"禁用"}];
 var statusHash = { 0: "启用", 1: "禁用" };
 $(document).ready(function(v)

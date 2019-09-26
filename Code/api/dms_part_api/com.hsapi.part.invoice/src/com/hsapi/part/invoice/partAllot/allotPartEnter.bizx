@@ -165,11 +165,11 @@
       <process:to type="query">enterMain/orderManId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">enterMain/taxSign</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="literal" pattern="reference">0.13</process:from>
       <process:to type="query">enterMain/taxRate</process:to>
     </process:copy>
     <process:copy>
@@ -342,7 +342,7 @@
       <process:to type="query">enterDetailTemp/taxSign</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">tmp/taxRate</process:from>
       <process:to type="query">enterDetailTemp/taxRate</process:to>
     </process:copy>
     <process:copy>
@@ -362,7 +362,7 @@
       <process:to type="query">enterDetailTemp/noTaxAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">tmp/taxDiff</process:from>
       <process:to type="query">enterDetailTemp/taxDiff</process:to>
     </process:copy>
     <process:copy>
@@ -412,6 +412,14 @@
     <process:copy>
       <process:from type="expression" pattern="reference">sumQty+qty</process:from>
       <process:to type="query">sumQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/taxDiff</process:from>
+      <process:to type="query">taxDiff</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">taxDiffSum+taxDiff</process:from>
+      <process:to type="query">taxDiffSum</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
@@ -1278,6 +1286,10 @@
       <process:to type="query">enterMain/enterQty</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">taxDiffSum</process:from>
+      <process:to type="query">enterMain/taxDiff</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">4</process:from>
       <process:to type="query">allotMain/stockStatus</process:to>
     </process:copy>
@@ -1517,6 +1529,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="versionNo" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="sumQty" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="qty" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="taxDiff" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="taxDiffSum" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="id" primitiveType="Int"/>

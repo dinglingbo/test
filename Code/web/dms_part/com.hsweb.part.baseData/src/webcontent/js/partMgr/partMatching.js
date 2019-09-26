@@ -6,7 +6,7 @@ var rightUnifyGrid = null;
 var straGrid = null;
 
 var rightUnifyGridUrl = baseUrl+"com.hsapi.part.baseDataCrud.query.queryPartMatchDetail.biz.ext";
-var straGridUrl =  baseUrl +"com.hsapi.part.baseDataCrud.query.queryPartMatching.biz.ext";
+var straGridUrl =  baseUrl +"com.hsapi.part.baseDataCrud.query.queryPartMatchList.biz.ext";
 
 var salesDeductTypeEl= null;
 var statuList = [{id:"0",name:"成品编码"},{id:"1",name:"成品名称"}];
@@ -25,7 +25,7 @@ $(document).ready(function(v)
     $("#partNameSearch").bind("keydown", function (e) {
 
         if (e.keyCode == 13) {
-            onUnifySearch();
+        	mainSearch();
         }
         
     });
@@ -114,6 +114,7 @@ function onSaveNode(){
 
 function doSearch(){
 	var params ={};
+	params.isDisabled = 0;
 	straGrid.load({
     	params: params,
 		token:token
@@ -166,6 +167,17 @@ function onUnifySearch() {
     var data = straGrid.getSelected();
     if(data){
     	var id=data.id;
+        params.parentId =id;
+        rightUnifyGrid.load({params:params,token:token});
+    }
+	
+}
+
+function mainSearch() {
+    /*var params = {};
+    var data = straGrid.getSelected();
+    if(data){
+    	var id=data.id;
         var type = nui.get("search-type").getValue();
         var typeValue = nui.get("carNo-search").getValue();
         if(type==0){
@@ -175,8 +187,26 @@ function onUnifySearch() {
         }
         params.parentId =id;
         rightUnifyGrid.load({params:params,token:token});
+    }*/
+	var params = {};
+    var type = nui.get("search-type").getValue();
+    var typeValue = nui.get("carNo-search").getValue();
+    if(type==0){
+    	params.partCode = typeValue;
+    }else if(type==1){
+    	params.partName = typeValue;
     }
-	
+    var statusType = nui.get("status-type").getValue();
+    if(statusType==0){
+    	params.isDisabled = 0;
+    }else if(statusType==1){
+    	params.isDisabled = 1;
+    }
+    var detailPartCode= nui.get("detail-search").getValue();
+    params.detailPartCode = detailPartCode;
+    straGrid.load({params:params,token:token},function(){
+		onUnifySearch();
+	});
 }
 
 
@@ -413,7 +443,7 @@ function importUnifyPart(){
 }
 
 function onSearch(){
-	onUnifySearch();
+	mainSearch();
 }
 
 function onStraGridClick(e){

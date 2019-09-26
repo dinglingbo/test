@@ -33,7 +33,7 @@
                 <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statuList" allowInput="false" />
                 <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="onSearch()" />
                  <input class="nui-textbox" id="detail-search" emptyText="半成品编码" width="120" onenter="onSearch()" />
-				<a class="nui-button" plain="true" iconCls="" onclick="onUnifySearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+				<a class="nui-button" plain="true" iconCls="" onclick="mainSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 				
 				<span class="separator"></span>
                   <a class="nui-button" plain="true" iconCls="" onclick="onAddNode()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
@@ -69,7 +69,7 @@
                   <div class="nui-fit">
                       <div id="straGrid" class="nui-datagrid" style="width:100%;height:100%;"
                            showPager="true"
-                           dataField="data"
+                           dataField="list"
                            idField="id"
                            selectOnLoad="true"
                            allowCellEdit="true"
@@ -112,7 +112,7 @@
 				
 				<div class="nui-fit">
 					<div id="rightUnifyGrid" class="nui-datagrid" style="width:100%;height:100%;"
-					showPager="true"
+					showPager="false"
 					dataField="list"
 					idField="id"
 					pageSize="50"

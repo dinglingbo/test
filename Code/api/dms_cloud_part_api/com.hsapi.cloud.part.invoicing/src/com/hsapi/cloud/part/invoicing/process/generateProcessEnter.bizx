@@ -198,19 +198,19 @@
       <process:to type="query">enterMain/orderMan</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">main/billTypeId</process:from>
+      <process:from type="literal" pattern="reference">010103</process:from>
       <process:to type="query">enterMain/billTypeId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">main/settleTypeId</process:from>
+      <process:from type="literal" pattern="reference">020502</process:from>
       <process:to type="query">enterMain/settleTypeId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">product/taxSign</process:from>
+      <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">enterMain/taxSign</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">product/taxRate</process:from>
+      <process:from type="literal" pattern="reference">0.13</process:from>
       <process:to type="query">enterMain/taxRate</process:to>
     </process:copy>
     <process:copy>

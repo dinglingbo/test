@@ -120,7 +120,8 @@ function closeOrder(){
        type: 'post',
        data: nui.encode({
        	params: s,
-       	type:types
+       	type:types,
+       	token:token
        }),
        cache: false,
        success: function (data) {

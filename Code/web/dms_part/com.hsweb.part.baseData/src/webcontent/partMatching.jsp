@@ -22,30 +22,54 @@
 </style>
 </head>
 <body>
+
+ <div class="nui-fit" >
+   <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+	   <table style="width:100%;">
+          <tr>
+              <td style="white-space:nowrap;">
+                  <label style="font-family:Verdana;">配比清单:</label>
+                <input class="nui-combobox" id="status-type" width="60" textField="name" valueField="id" value="0" data="statuList2" allowInput="false" />
+                <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statuList" allowInput="false" />
+                <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="onSearch()" />
+                 <input class="nui-textbox" id="detail-search" emptyText="半成品编码" width="120" onenter="onSearch()" />
+				<a class="nui-button" plain="true" iconCls="" onclick="mainSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+				
+				<span class="separator"></span>
+                  <a class="nui-button" plain="true" iconCls="" onclick="onAddNode()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                  <a class="nui-button" plain="true" iconCls="" onclick="onSaveNode()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                  <!-- <a class="nui-button" plain="true" id="deleteNode" iconCls="" onclick="onDeleteNode()"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a> -->
+              </td>
+          </tr>
+      </table>
+		</div>
 	<div class="nui-splitter"
            id="splitter"
            allowResize="false"
            handlerSize="6"
-           style="width:100%;height:100%;">
-           
-          <div size="320" showCollapseButton="false">
-          	
-          	 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+           style="width:100%;height:95%;">
+          <div size="350" showCollapseButton="false">
+          	 <!-- <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
                       <table style="width:100%;">
                           <tr>
                               <td style="white-space:nowrap;">
                                   <label style="font-family:Verdana;">配比清单:</label>
+                                  <input class="nui-combobox" id="search-type" width="80" textField="name" valueField="id" value="0" data="statuList" allowInput="false" />
+				                <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="onSearch()" />
+								<a class="nui-button" plain="true" iconCls="" onclick="onUnifySearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+								<br>
+								<span class="separator"></span>
                                   <a class="nui-button" plain="true" iconCls="" onclick="onAddNode()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                                   <a class="nui-button" plain="true" iconCls="" onclick="onSaveNode()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-<!--                                   <a class="nui-button" plain="true" id="deleteNode" iconCls="" onclick="onDeleteNode()"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a> -->
+                                  <a class="nui-button" plain="true" id="deleteNode" iconCls="" onclick="onDeleteNode()"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                               </td>
                           </tr>
                       </table>
-                  </div>
+                  </div> -->
                   <div class="nui-fit">
                       <div id="straGrid" class="nui-datagrid" style="width:100%;height:100%;"
                            showPager="true"
-                           dataField="data"
+                           dataField="list"
                            idField="id"
                            selectOnLoad="true"
                            allowCellEdit="true"
@@ -77,10 +101,6 @@
 					<table style="width:100%;">
 						<tr>
 							<td style="white-space:nowrap;">
-							    <input class="nui-combobox" id="search-type" width="80" textField="name" valueField="id" value="0" data="statuList" allowInput="false" />
-				                <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="onSearch()" />
-								<a class="nui-button" plain="true" iconCls="" onclick="onUnifySearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-								<span class="separator"></span>
 								<a class="nui-button" plain="true" iconCls="" onclick="addUnifyPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a>
 								<a class="nui-button" plain="true" iconCls="" onclick="delUnifyPart()"><span class="fa fa-close fa-lg"></span>&nbsp;删除配件</a>
 								<a class="nui-button" plain="true" iconCls="" onclick="saveUnifyPart()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
@@ -92,7 +112,7 @@
 				
 				<div class="nui-fit">
 					<div id="rightUnifyGrid" class="nui-datagrid" style="width:100%;height:100%;"
-					showPager="true"
+					showPager="false"
 					dataField="list"
 					idField="id"
 					pageSize="50"
@@ -135,7 +155,7 @@
 			
           </div>
 	</div>
-
+</div>
 	<script type="text/javascript">
     	nui.parse();
     </script>

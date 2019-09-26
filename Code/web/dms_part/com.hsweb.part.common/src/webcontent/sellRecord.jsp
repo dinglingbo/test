@@ -34,6 +34,7 @@
               <div property="columns">
                 <div type="indexcolumn">序号</div>
                 <div field="serviceId" name="serviceId" width="130" headerAlign="center" header="工单号"></div>
+                 <div field="serviceId" name="serviceId" width="130" headerAlign="center" header="工单号"></div>
                 <div field="storeId" name="storeId" width="100" headerAlign="center" header="仓库"></div>
                 <div field="partCode" name="partCode" width="130" headerAlign="center" header="配件编码"></div>
                 <div  field="billQty" name="billQty" width="50" headerAlign="center" header="数量"></div>

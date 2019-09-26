@@ -980,5 +980,58 @@
         </dynamic>
 	</select>
     
+    <select id="queryPartMatchList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    <!-- 配件成品数据 -->
+   		SELECT
+			distinct a.id AS id,
+			a.tenant_id AS tenantId,
+			a.orgid AS orgid,
+			a.part_id AS partId,
+			a.part_code AS partCode,
+			a.part_name AS partName,
+			a.full_name AS fullName,
+			a.is_disabled AS isDisabled,
+			a.creator_id AS creatorId,
+			a.creator AS creator,
+			a.create_date AS createDate,
+			a.operator_id AS operatorId,
+			a.operator AS operator,
+			a.operate_date AS operateDate,
+			a.remark AS remark
+		FROM
+			pj_part_matching a
+		INNER JOIN pj_part_matching_detail b
+		on a.id =b.parent_id
+		where 1=1
+		<dynamic>
+    		<isNotEmpty prepend="and" property="tenantId">  
+                (a.tenant_id =#tenantId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgid">  
+                (a.orgid =#orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isDisabled">  
+                (a.is_disabled =#isDisabled#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="partName">  
+                (a.part_name like '%$partName$%')
+            </isNotEmpty>
+           
+           <isNotEmpty prepend="and" property="partCode">  
+                (a.part_code like '%$partCode$%')
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="detailPartCode">  
+                (b.part_code like '%$detailPartCode$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">  
+                (a.part_code like '%$partCode$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="fullName">  
+                (a.full_name like '%$fullName$%')
+            </isNotEmpty>
+        </dynamic>
+	</select>
+    
     
 </sqlMap>

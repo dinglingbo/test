@@ -637,7 +637,7 @@
     <update id="updateDetailAmt" parameterClass="java.util.HashMap">
     	UPDATE pj_process_detail a
 			INNER JOIN pj_process_main b ON a.code_id = b.id
-			INNER JOIN pj_out_detail_chk c ON a.id = c.order_detail_id
+			INNER JOIN pj_out_detail_chk c ON a.id = c.order_detail_id and b.id =c.order_main_id
 			AND b.id = c.order_main_id
 		
 		SET 

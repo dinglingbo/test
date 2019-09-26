@@ -14,7 +14,7 @@
     <targetConnections>link8</targetConnections>
     <targetConnections>link10</targetConnections>
     <targetConnections>link22</targetConnections>
-    <location x="990" y="162"/>
+    <location x="1095" y="162"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -28,7 +28,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="992" y="198"/>
+    <location x="1097" y="198"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -121,12 +121,12 @@
       <targetNode>assign3</targetNode>
     </sourceConnections>
     <targetConnections>link14</targetConnections>
-    <location x="777" y="162"/>
+    <location x="855" y="162"/>
     <size height="28" width="28"/>
     <nodeLabel>transactioncommit0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactioncommit0label" name="label" nodeType="label">
-    <location x="767" y="198"/>
+    <location x="845" y="198"/>
     <figSize height="17" width="49"/>
     <node>transactioncommit0</node>
   </nodes>
@@ -189,7 +189,7 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
-    <location x="840" y="162"/>
+    <location x="930" y="162"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
@@ -202,7 +202,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="838" y="198"/>
+    <location x="928" y="198"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
@@ -270,12 +270,12 @@
     <node>invokePojo1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign18" name="赋值17" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link29" name="link29" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign18</sourceNode>
       <targetNode>invokePojo2</targetNode>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
-    <location x="645" y="162"/>
+    <location x="646" y="162"/>
     <size height="28" width="28"/>
     <nodeLabel>assign18label</nodeLabel>
     <process:copy>
@@ -444,7 +444,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign18label" name="label" nodeType="label">
-    <location x="640" y="198"/>
+    <location x="641" y="198"/>
     <figSize height="17" width="39"/>
     <node>assign18</node>
   </nodes>
@@ -457,8 +457,8 @@
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>assign4</targetNode>
     </sourceConnections>
-    <targetConnections>link13</targetConnections>
-    <location x="717" y="162"/>
+    <targetConnections>link29</targetConnections>
+    <location x="765" y="162"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -472,7 +472,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="696" y="198"/>
+    <location x="744" y="198"/>
     <figSize height="17" width="64"/>
     <node>invokePojo2</node>
   </nodes>
@@ -637,7 +637,9 @@
     <figSize height="17" width="32"/>
     <node>assign8</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="709" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-09-13 10:41:44" date="2018-09-13Z" description="" name="updateMainStatus" version="7.0.0.0"/>
   <process:variables>
@@ -645,6 +647,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsSettlement" name="settleMent"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="temp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="len" primitiveType="Int"/>
+    <process:variable description="配件管理费" historyStateLocation="client" isArray="false" name="partManageExp" primitiveType="Double"/>
+    <process:variable description="出单配件管理费" historyStateLocation="client" isArray="false" name="outPartManageExp" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="main"/>

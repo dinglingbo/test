@@ -126,6 +126,9 @@
     <chidren>assign30</chidren>
     <chidren>assign34</chidren>
     <chidren>assign28</chidren>
+    <chidren>assign33</chidren>
+    <chidren>assign35</chidren>
+    <chidren>assign36</chidren>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
     <location x="0" y="383"/>
@@ -187,7 +190,9 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link16</targetConnections>
-    <location x="488" y="332"/>
+    <targetConnections>link77</targetConnections>
+    <targetConnections>link78</targetConnections>
+    <location x="600" y="351"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess4label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -220,7 +225,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess4label" name="label" nodeType="label">
-    <location x="477" y="367"/>
+    <location x="589" y="386"/>
     <figSize height="17" width="49"/>
     <node>subprocess4</node>
   </nodes>
@@ -247,7 +252,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link23</targetConnections>
-    <location x="705" y="343"/>
+    <location x="795" y="354"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess5label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -282,7 +287,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess5label" name="label" nodeType="label">
-    <location x="688" y="378"/>
+    <location x="778" y="389"/>
     <figSize height="17" width="61"/>
     <node>subprocess5</node>
   </nodes>
@@ -339,7 +344,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link11</targetConnections>
-    <location x="562" y="348"/>
+    <location x="675" y="353"/>
     <size height="28" width="28"/>
     <nodeLabel>assign12label</nodeLabel>
     <process:copy>
@@ -352,7 +357,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign12label" name="label" nodeType="label">
-    <location x="557" y="384"/>
+    <location x="670" y="389"/>
     <figSize height="17" width="39"/>
     <node>assign12</node>
   </nodes>
@@ -362,7 +367,7 @@
       <targetNode>subprocess5</targetNode>
     </sourceConnections>
     <targetConnections>link18</targetConnections>
-    <location x="631" y="335"/>
+    <location x="735" y="351"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -376,7 +381,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="606" y="371"/>
+    <location x="710" y="387"/>
     <figSize height="17" width="73"/>
     <node>invokePojo0</node>
   </nodes>
@@ -387,7 +392,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link19</targetConnections>
-    <location x="420" y="335"/>
+    <location x="405" y="282"/>
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
     <process:copy>
@@ -468,7 +473,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
-    <location x="418" y="371"/>
+    <location x="403" y="318"/>
     <figSize height="17" width="32"/>
     <node>assign6</node>
   </nodes>
@@ -1388,8 +1393,18 @@
       <sourceNode>invokePojo8</sourceNode>
       <targetNode>assign6</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link73" name="link73" displayName="连接线" type="transition">
+      <sourceNode>invokePojo8</sourceNode>
+      <targetNode>assign33</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">isPrice</process:leftOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link17</targetConnections>
-    <location x="360" y="335"/>
+    <location x="345" y="335"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo8label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -1405,7 +1420,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo8label" name="label" nodeType="label">
-    <location x="340" y="371"/>
+    <location x="325" y="371"/>
     <figSize height="17" width="62"/>
     <node>invokePojo8</node>
   </nodes>
@@ -1784,7 +1799,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link67</targetConnections>
-    <location x="885" y="357"/>
+    <location x="940" y="357"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
@@ -1799,11 +1814,11 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="856" y="392"/>
+    <location x="911" y="392"/>
     <figSize height="17" width="85"/>
     <node>subprocess0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign29" name="赋值28" displayName="赋值" grouped="true" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign29" name="赋值28" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link66" name="link66" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign29</sourceNode>
       <targetNode>assign24</targetNode>
@@ -1819,7 +1834,7 @@
       <targetNode>assign30</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">temp/orderPrice</process:leftOperand>
+          <process:leftOperand type="query">isPrice</process:leftOperand>
           <process:rightOperand type="literal">0</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -1828,6 +1843,10 @@
     <location x="155" y="332"/>
     <size height="28" width="28"/>
     <nodeLabel>assign29label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/orderPrice</process:from>
+      <process:to type="query">isPrice</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign29label" name="label" nodeType="label">
     <location x="150" y="368"/>
@@ -1935,7 +1954,7 @@
       <targetNode>subprocess0</targetNode>
     </sourceConnections>
     <targetConnections>link49</targetConnections>
-    <location x="795" y="351"/>
+    <location x="870" y="354"/>
     <size height="28" width="28"/>
     <nodeLabel>assign28label</nodeLabel>
     <process:copy>
@@ -1956,9 +1975,216 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign28label" name="label" nodeType="label">
-    <location x="790" y="387"/>
+    <location x="865" y="390"/>
     <figSize height="17" width="39"/>
     <node>assign28</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign33" name="赋值32" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link74" name="link74" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign33</sourceNode>
+      <targetNode>assign35</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link75" name="含税" displayName="连接线" type="transition">
+      <sourceNode>assign33</sourceNode>
+      <targetNode>assign36</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">enterDetail/taxSign</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link73</targetConnections>
+    <location x="397" y="335"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign33label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign33label" name="label" nodeType="label">
+    <location x="392" y="371"/>
+    <figSize height="17" width="39"/>
+    <node>assign33</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign35" name="赋值34" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link78" name="link78" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign35</sourceNode>
+      <targetNode>subprocess4</targetNode>
+    </sourceConnections>
+    <targetConnections>link74</targetConnections>
+    <location x="475" y="335"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign35label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/orderPrice</process:from>
+      <process:to type="query">price</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/orderAmt</process:from>
+      <process:to type="query">amt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">price</process:from>
+      <process:to type="query">temp/noTaxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">amt</process:from>
+      <process:to type="query">temp/noTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enterDetail/taxSign</process:from>
+      <process:to type="query">temp/taxSign</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enterDetail/taxRate</process:from>
+      <process:to type="query">temp/taxRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enterDetail/taxRate</process:from>
+      <process:to type="query">rate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">price+price*rate</process:from>
+      <process:to type="query">taxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxPrice</process:from>
+      <process:to type="query">temp/taxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">qty*taxPrice</process:from>
+      <process:to type="query">temp/taxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">taxPrice*qty-price*qty</process:from>
+      <process:to type="query">temp/taxDiff</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enterDetail/enterPrice</process:from>
+      <process:to type="query">enterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/orderPrice</process:from>
+      <process:to type="query">orderPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/orderAmt</process:from>
+      <process:to type="query">orderAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">sumAmt+orderAmt</process:from>
+      <process:to type="query">sumAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">sumPrice+orderPrice</process:from>
+      <process:to type="query">sumPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">sumTaxAmt+qty*taxPrice</process:from>
+      <process:to type="query">sumTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">sumNoTaxAmt+price*qty</process:from>
+      <process:to type="query">sumNoTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">sumQty+qty</process:from>
+      <process:to type="query">sumQty</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign35label" name="label" nodeType="label">
+    <location x="470" y="371"/>
+    <figSize height="17" width="39"/>
+    <node>assign35</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign36" name="赋值35" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link77" name="link77" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign36</sourceNode>
+      <targetNode>subprocess4</targetNode>
+    </sourceConnections>
+    <targetConnections>link75</targetConnections>
+    <location x="475" y="387"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign36label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/orderPrice</process:from>
+      <process:to type="query">price</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/orderAmt</process:from>
+      <process:to type="query">amt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">price</process:from>
+      <process:to type="query">temp/taxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">amt</process:from>
+      <process:to type="query">temp/taxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enterDetail/taxSign</process:from>
+      <process:to type="query">temp/taxSign</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enterDetail/taxRate</process:from>
+      <process:to type="query">temp/taxRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enterDetail/taxRate</process:from>
+      <process:to type="query">rate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">price-price*rate</process:from>
+      <process:to type="query">noTaxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">noTaxPrice</process:from>
+      <process:to type="query">temp/noTaxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">qty*noTaxPrice</process:from>
+      <process:to type="query">temp/noTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">amt-qty*noTaxPrice</process:from>
+      <process:to type="query">temp/taxDiff</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enterDetail/enterPrice</process:from>
+      <process:to type="query">enterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/orderPrice</process:from>
+      <process:to type="query">orderPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/orderAmt</process:from>
+      <process:to type="query">orderAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">sumAmt+orderAmt</process:from>
+      <process:to type="query">sumAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">sumPrice+orderPrice</process:from>
+      <process:to type="query">sumPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">sumTaxAmt+qty*taxPrice</process:from>
+      <process:to type="query">sumTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">sumNoTaxAmt+price*qty</process:from>
+      <process:to type="query">sumNoTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">sumQty+qty</process:from>
+      <process:to type="query">sumQty</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign36label" name="label" nodeType="label">
+    <location x="470" y="423"/>
+    <figSize height="17" width="39"/>
+    <node>assign36</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -2010,6 +2236,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="mEnterAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="mOutAmt" primitiveType="Double"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="p"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="isPrice" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="rate" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="mainId" primitiveType="Int"/>

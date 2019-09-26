@@ -295,6 +295,7 @@
     <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="link10" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>invokePojo4</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link2" name="外部更新为待收货" displayName="连接线" type="transition">
       <sourceNode>assign1</sourceNode>
@@ -598,8 +599,8 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="pjPchsOrderMainList" type="query" value="commonj.sdo.DataObject[]" valueType="Java">pjPchsOrderMainList</process:outputVariable>
-        <process:outputVariable id="1" name="total" type="query" value="Int" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="2" name="totalPage" type="query" value="Int" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="total" type="query" value="Int" valueType="Primitive"/>
+        <process:outputVariable id="2" name="totalPage" type="query" value="Int" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -745,8 +746,8 @@
         <process:inputVariable id="1" name="orderMain" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" valueType="DataObject" pattern="reference">auditMain</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -771,8 +772,8 @@
         <process:inputVariable id="1" name="enterId" type="query" value="Int" valueType="Primitive" pattern="reference">enterId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

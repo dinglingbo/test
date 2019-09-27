@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="splitEnterPart" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="生成入库信息&#xD;&#xA;生成流水记录&#xD;&#xA;更新库存信息&#xD;&#xA;更新产品明细" title="Administrator&#x9;18-2-25 下午5:09">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="生成入库信息&#xD;&#xA;生成流水记录&#xD;&#xA;更新库存信息&#xD;&#xA;更新产品明细&#xD;&#xA;&#xD;&#xA;含税 税率0.16&#xD;&#xA;月结" title="Administrator&#x9;18-2-25 下午5:09">
     <location x="-300" y="-85"/>
     <size height="106" width="591"/>
   </nodes>
@@ -166,11 +166,11 @@
       <process:to type="query">enterMain/orderManId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">enterMain/taxSign</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="literal" pattern="reference">0.13</process:from>
       <process:to type="query">enterMain/taxRate</process:to>
     </process:copy>
     <process:copy>
@@ -340,11 +340,11 @@
       <process:to type="query">enterDetailTemp/outableQty</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">enterDetailTemp/taxSign</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="literal" pattern="reference">0.13</process:from>
       <process:to type="query">enterDetailTemp/taxRate</process:to>
     </process:copy>
     <process:copy>
@@ -364,7 +364,7 @@
       <process:to type="query">enterDetailTemp/noTaxAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">taxDiff</process:from>
       <process:to type="query">enterDetailTemp/taxDiff</process:to>
     </process:copy>
     <process:copy>
@@ -1148,6 +1148,18 @@
       <process:from type="expression" pattern="reference">orderAmt/orderQty</process:from>
       <process:to type="query">tmp/orderPrice</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">tmp/taxSign</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0.13</process:from>
+      <process:to type="query">tmp/taxRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">taxAmt-noTaxAmt</process:from>
+      <process:to type="query">taxDiff</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
     <location x="238" y="130"/>
@@ -1251,6 +1263,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="orderAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="orderPrice" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="orderQty" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="taxDiff" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="noTaxDiff" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PjProcessMain" name="processMain"/>

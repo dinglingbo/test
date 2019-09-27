@@ -118,12 +118,12 @@
       <targetNode>end1</targetNode>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
-    <location x="-107" y="284"/>
+    <location x="-107" y="300"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="-109" y="320"/>
+    <location x="-109" y="336"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>

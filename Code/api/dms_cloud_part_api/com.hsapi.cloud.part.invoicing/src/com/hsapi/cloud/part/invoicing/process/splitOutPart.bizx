@@ -109,10 +109,6 @@
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">outmain/auditSign</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">outmain/outAmt</process:to>
     </process:copy>
     <process:copy>
@@ -134,14 +130,6 @@
     <process:copy>
       <process:from type="query" pattern="reference">operateDate</process:from>
       <process:to type="query">outmain/outDate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
-      <process:to type="query">outmain/settleTypeId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
-      <process:to type="query">outmain/billTypeId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">processMain/creatorId</process:from>
@@ -190,6 +178,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userId</process:from>
       <process:to type="query">outmain/orderManId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">020502</process:from>
+      <process:to type="query">outmain/settleTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">010103</process:from>
+      <process:to type="query">outmain/billTypeId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
@@ -556,7 +552,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link45</targetConnections>
-    <location x="627" y="199"/>
+    <location x="615" y="199"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo5label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -571,7 +567,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">
-    <location x="583" y="235"/>
+    <location x="571" y="235"/>
     <figSize height="17" width="110"/>
     <node>invokePojo5</node>
   </nodes>
@@ -1743,16 +1739,32 @@
       <process:to type="query">processProduct/orderPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">mTaxAmt</process:from>
+      <process:from type="literal" pattern="reference">出库成功</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">S</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">processProduct/taxSign</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0.13</process:from>
+      <process:to type="query">processProduct/taxRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mEnterAmt</process:from>
       <process:to type="query">processProduct/taxAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">mTaxAmt/billQty</process:from>
-      <process:to type="query">mTaxPrice</process:to>
+      <process:from type="query" pattern="reference">enterPrice</process:from>
+      <process:to type="query">processProduct/taxPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">mTaxPrice</process:from>
-      <process:to type="query">processProduct/taxPrice</process:to>
+      <process:from type="expression" pattern="reference">mEnterAmt/1.13</process:from>
+      <process:to type="query">mNoTaxAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">mNoTaxAmt</process:from>
@@ -1767,12 +1779,8 @@
       <process:to type="query">processProduct/noTaxPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">S</process:from>
-      <process:to type="query">errCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">出库成功</process:from>
-      <process:to type="query">errMsg</process:to>
+      <process:from type="expression" pattern="reference">mEnterAmt-mNoTaxAmt</process:from>
+      <process:to type="query">processProduct/taxDiff</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign25label" name="label" nodeType="label">

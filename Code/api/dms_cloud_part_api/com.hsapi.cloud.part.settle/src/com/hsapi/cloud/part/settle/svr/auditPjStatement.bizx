@@ -391,8 +391,9 @@
       <process:inputVariables>
         <process:inputVariable id="0" name="stateMain" type="query" value="com.hsapi.cloud.part.data.pts.PjStatementMain" valueType="DataObject" pattern="reference">stateMain</process:inputVariable>
         <process:inputVariable id="1" name="stateDetailAdd" type="query" value="com.hsapi.cloud.part.data.pts.PjStatementDetail[]" valueType="DataObject" pattern="reference">stateDetailAdd</process:inputVariable>
-        <process:inputVariable id="2" name="stateDetailDelete" type="query" value="com.hsapi.cloud.part.data.pts.PjStatementDetail[]" valueType="DataObject" pattern="reference">stateDetailDelete</process:inputVariable>
-        <process:inputVariable id="3" name="stateDetailList" type="query" value="com.hsapi.cloud.part.data.pts.PjStatementDetail[]" valueType="DataObject" pattern="reference">stateDetailList</process:inputVariable>
+        <process:inputVariable id="2" name="stateDetailUpdate" type="query" value="com.hsapi.cloud.part.data.pts.PjStatementDetail[]" valueType="DataObject" pattern="reference">stateDetailUpdate</process:inputVariable>
+        <process:inputVariable id="3" name="stateDetailDelete" type="query" value="com.hsapi.cloud.part.data.pts.PjStatementDetail[]" valueType="DataObject" pattern="reference">stateDetailDelete</process:inputVariable>
+        <process:inputVariable id="4" name="stateDetailList" type="query" value="com.hsapi.cloud.part.data.pts.PjStatementDetail[]" valueType="DataObject" pattern="reference">stateDetailList</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -1252,6 +1253,7 @@
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjStatementMain" name="stateMain"/>
     <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjStatementDetail" name="stateDetailAdd"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjStatementDetail" name="stateDetailUpdate"/>
     <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjStatementDetail" name="stateDetailDelete"/>
     <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjStatementDetail" name="stateDetailList"/>
   </process:inputs>

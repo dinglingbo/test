@@ -75,7 +75,7 @@
       <process:to type="query">m:userObject/attributes/currUserName</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">loginName</process:from>
+      <process:from type="expression" pattern="reference">loginName.toUpperCase()</process:from>
       <process:to type="query">m:userObject/attributes/loginName</process:to>
     </process:copy>
     <process:copy>

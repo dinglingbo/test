@@ -8,7 +8,7 @@
 -->
 <head>
 <title>配件资料</title>
-<script src="<%=webPath + contextPath%>/baseDataPart/js/partMgr/partDetail.js?v=1.0.40"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/partMgr/partDetail.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -124,7 +124,7 @@
                        showNullItem="false"
                        popupHeight="100%"
                        nullItemText="请选择..."/> -->
-                       <input class="mini-buttonedit" onbuttonclick="getPartBrandId" name="partBrandId" id="partBrandId" style="width: 150px;" />
+                       <input class="mini-buttonedit" allowInput="false" onbuttonclick="getPartBrandId" name="partBrandId" id="partBrandId" style="width: 150px;" />
                     </td>
                     </tr>
                     <tr>

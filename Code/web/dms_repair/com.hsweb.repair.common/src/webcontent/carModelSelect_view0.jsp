@@ -11,9 +11,103 @@
 <title>选择车型</title>
 <script src="<%= request.getContextPath() %>/commonRepair/js/carModelSelect.js?v=1.0.4"></script>
 <style type="text/css">
-table {
-	font-size: 12px;
-}
+.yuan {
+		    display: inline-block;
+		    background: #e6e6e6;
+		    padding: 3px 10px;
+		    border-radius: 4px;
+		    text-decoration: none;
+		    color:#201f35;
+		}
+		.dian{
+			display: inline-block;
+		    background: #00BFFF;
+		    padding: 3px 10px;
+		    border-radius: 4px;
+		    text-decoration: none;
+		    color:#201f35;
+		}
+		.car_type_band em {
+		    color: #5fc8d7;
+		    font-weight: 700;
+		}
+					.header {
+						width: 100%;
+						height: 60px;
+						position: relative;
+						line-height: 40px;
+/* 						border: 1px solid #fff; */
+						border-radius: 4px;
+						text-align: center;
+					}
+
+					.header .intCity {
+						width: 400px;
+						height: 40px;
+						line-height: 40px;
+						font-size: 16px;
+						text-indent: 10px;
+						margin-top: 10px;
+					}
+
+					.header .seachBtn {
+						width: 100px;
+						height: 40px;
+						line-height: 40px;
+						font-size: 16px;
+						color: #fff;
+						text-align: center;
+						background: #00BFFF;
+						font-weight: 600;
+						cursor: pointer;
+						margin-top: 10px;
+					}
+
+					input {
+						outline: none;
+						border: none;
+						height: 30px;
+					}		
+					.car_type_list ul li {
+					    width: 182px;
+					    height: 42px;
+					    float: left;
+					    border: 1px #d6d6d6 solid;
+					    margin: 15px 0 0 15px;
+					    list-style: none;
+					    cursor: pointer;
+					} 
+				.car_type_list ul li a font {
+				    display: block;
+				    float: left;
+				    border-left: 1px #ccc solid;
+				    line-height: 30px;
+				    height: 30px;
+				    overflow: hidden;
+				    margin-top: 4px;
+				    padding-left: 8px;
+				    font-size: 13px;
+    				color: #555555;
+
+				}
+				.car_type_list ul li a img {
+				    width: 30px;
+				    height: 30px;
+				    margin: 5px;
+				    float: left;
+				}
+						.kaitong {
+					    width: 90px;
+					    height: 34px;
+					    background: #21c064;
+					    border-radius: 5px;
+					    display: inline-table;
+					    color: #fff;
+					    font-size: 16px;
+					    text-align: center;
+					    text-decoration: none;
+					    line-height: 34px;
+					}		
 </style>
 </head>
 <body>

@@ -11,7 +11,7 @@
 -->
 <head>
 <title>品牌车型</title>
-<script src="<%=request.getContextPath()%>/repair/js/DataBase/Brand/BrandMain.js?v=1.0.8"></script>
+<script src="<%=request.getContextPath()%>/repair/js/DataBase/Brand/BrandMain.js?v=1.0.9"></script>
 <style type="text/css">
 table {
 	table-layout: fixed;
@@ -75,6 +75,7 @@ table {
                                 <div header="车辆品牌信息" headerAlign="center">
                                     <div property="columns">
                                         <div field="carBrandZh" headerAlign="center" allowSort="true" visible="true" header="名称" width="50%"></div>
+                                        <div  field="imageUrl" width="70px" headerAlign="center">图标</div>
                                         <div field="isDisabled" headerAlign="center" allowSort="true" visible="true" header="是否禁用"></div>
                                     </div>
                                 </div>

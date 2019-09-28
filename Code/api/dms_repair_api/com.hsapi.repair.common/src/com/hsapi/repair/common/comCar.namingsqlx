@@ -11,11 +11,17 @@
 		SELECT
 			a.id nodeId,
 			a.car_brand_zh nodeName,
+			a.first_code firstCode,
+			a.image_url imageUrl,
 			'carBrand' nodeType,
 			false expanded,
 			false isLeaf
 		FROM
 			com_car_brand a
+		where 1 = 1
+		<isNotNull property="firstCode">
+			AND a.first_code = #firstCode#
+		</isNotNull>
 	</select>
 	<select id="queryCarSeriesByBrandId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		SELECT

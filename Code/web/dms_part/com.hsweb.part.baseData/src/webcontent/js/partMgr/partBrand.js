@@ -101,7 +101,7 @@ function addDiv(number,name,img,id){
 	if(number%6==0&&number!=0){
 		html=html+"<br/>"
 	}
-	html+='<li onclick="choosePart('+"'"+name+"'"+','+"'"+id+"'"+')">';
+	html+='<li id="'+id+'" onclick="choosePart('+"'"+name+"'"+','+"'"+id+"'"+')">';
 	html+='	<a style="background-color: #fff;" clsaa="partA" href="javascript:void(0)" >';
 //	html+=`<a style="background-color: #fff;" clsaa="partA" href="javascript:void(0)" onclick="choosePart($(name),$(id))">`;
 	html+='		<img src="'+img+'" width="100" height="100">';
@@ -114,7 +114,12 @@ function addDiv(number,name,img,id){
 function choosePart(name,id){
 	document.getElementById("selectmodels").innerHTML = name;
 	partName = name;
+	if(partId!=""){		
+		document.getElementById(partId).classList.remove("xz");
+	}
 	partId = id;
+	document.getElementById(partId).classList.add("xz");
+
 }
 function getData (){
 	var part={

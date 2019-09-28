@@ -579,6 +579,10 @@ function audit()
     for(var i=0;i<stateDetailAdd.length;i++){
     	stateDetailAdd[i].billDate=format(stateDetailAdd[i].billDate, 'yyyy-MM-dd HH:mm:ss');
     }
+    var stateDetailUpdate = rightGrid.getChanges("modified");
+    for(var i=0;i<stateDetailUpdate.length;i++){
+    	stateDetailUpdate[i].billDate=format(stateDetailUpdate[i].billDate, 'yyyy-MM-dd HH:mm:ss');
+    }
     var stateDetailDelete = rightGrid.getChanges("removed");
     for(var i=0;i<stateDetailDelete.length;i++){
     	stateDetailDelete[i].billDate=format(stateDetailDelete[i].billDate, 'yyyy-MM-dd HH:mm:ss');
@@ -592,7 +596,7 @@ function audit()
         return;
     }
 
-    stateDetailList = removeChanges(stateDetailAdd, [], stateDetailDelete, stateDetailList);
+    stateDetailList = removeChanges(stateDetailAdd, stateDetailUpdate, stateDetailDelete, stateDetailList);
 
     nui.mask({
         el: document.body,
@@ -606,6 +610,7 @@ function audit()
         data : JSON.stringify({
             stateMain : data,
             stateDetailAdd : stateDetailAdd,
+            stateDetailUpdate:stateDetailUpdate,
             stateDetailDelete : stateDetailDelete,
             stateDetailList : stateDetailList,
             token : token
@@ -903,6 +908,11 @@ function save() {
     for(var i=0;i<stateDetailAdd.length;i++){
     	stateDetailAdd[i].billDate=format(stateDetailAdd[i].billDate, 'yyyy-MM-dd HH:mm:ss');
     }
+    
+    var stateDetailUpdate = rightGrid.getChanges("modified");
+    for(var i=0;i<stateDetailUpdate.length;i++){
+    	stateDetailUpdate[i].billDate=format(stateDetailUpdate[i].billDate, 'yyyy-MM-dd HH:mm:ss');
+    }
     var stateDetailDelete = rightGrid.getChanges("removed");
     for(var i=0;i<stateDetailDelete.length;i++){
     	stateDetailDelete[i].billDate=format(stateDetailDelete[i].billDate, 'yyyy-MM-dd HH:mm:ss');
@@ -911,7 +921,7 @@ function save() {
     for(var i=0;i<stateDetailList.length;i++){
     	stateDetailList[i].billDate=format(stateDetailList[i].billDate, 'yyyy-MM-dd HH:mm:ss');
     }
-    stateDetailList = removeChanges(stateDetailAdd, [], stateDetailDelete, stateDetailList);
+    stateDetailList = removeChanges(stateDetailAdd, stateDetailUpdate, stateDetailDelete, stateDetailList);
 
     nui.mask({
         el: document.body,
@@ -925,6 +935,7 @@ function save() {
         data : JSON.stringify({
             stateMain : data,
             stateDetailAdd : stateDetailAdd,
+            stateDetailUpdate : stateDetailUpdate,
             stateDetailDelete : stateDetailDelete,
             stateDetailList : stateDetailList,
             token : token
@@ -975,7 +986,47 @@ function onGuestValueChanged(e)
     var data = rightGrid.getData();
     rightGrid.removeRows(data);
 }
+//优惠金额
+function onVoidValueChanged(e){
+	var value =e.value;
+	var row = rightGrid.getSelected();
+	if(value<0){
+		showMsg("不能小于0","W");
+		e.cancel = true;
+		return;
+	}
+	var data =rightGrid.getData();
+	var voidAmt =0;
+	for(var i=0;i<data.length;i++){
+		if(data[i]==row){
+			voidAmt +=parseFloat(value);
+		}else{
+			voidAmt+=parseFloat(data[i].voidAmt);
+		}
+	}
+	
+	nui.get("voidAmt").setValue(voidAmt);
+}
 
+function onRpValueChanged(e){
+	var value =e.value;
+	var row = rightGrid.getSelected();
+	if(value<0){
+		showMsg("不能小于0","W");
+		return;
+	}
+	var rpAmt =0;
+	var data =rightGrid.getData();
+	for(var i=0;i<data.length;i++){
+		if(data[i]==row){
+			rpAmt +=parseFloat(value);
+		}else{
+			rpAmt +=parseFloat(data[i].rpAmt);
+		}
+		
+	}
+	nui.get("rpAmt").setValue(rpAmt);
+}
 
 var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
 function setGuestInfo(params)
@@ -1085,6 +1136,9 @@ function addDetail(rows)
             typeCode:row.orderTypeId,
             rpDc:row.dc,
             billAmt:row.billAmt,
+            voidAmt:0,
+            rpAmt : row.noStateAmt,
+            noStateAmt :row.noStateAmt,
             billTypeId:row.billTypeId,
             settleTypeId:row.settleTypeId,
             orderMan:row.orderMan,
@@ -1096,6 +1150,12 @@ function addDetail(rows)
 
 
         rightGrid.addRow(newRow);
+        var voidAmt =nui.get('voidAmt').getValue();
+        var rpAmt =nui.get("rpAmt").getValue();
+        voidAmt +=parseFloat(newRow.voidAmt);
+        rpAmt +=parseFloat(newRow.rpAmt);
+        nui.get('voidAmt').setValue(voidAmt);
+        nui.get('rpAmt').setValue(rpAmt);
     }
 
 }
@@ -1124,7 +1184,18 @@ function deleteBill(){
     }
 
     var rows = rightGrid.getSelecteds();
+    
     rightGrid.removeRows(rows);
+    var data =rightGrid.getData();
+    var voidAmt =0;
+    var rpAmt =0;
+    for(var i=0;i<data.length;i++){
+    	voidAmt+=parseFloat(data[i].voidAmt);
+    	rpAmt += parseFloat(data[i].rpAmt);
+    }
+    nui.get('voidAmt').setValue(voidAmt);
+    nui.get('rpAmt').setValue(rpAmt);
+   
 }
 function onDrawCell(e)
 {

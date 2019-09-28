@@ -459,7 +459,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link29</targetConnections>
-    <location x="1139" y="401"/>
+    <location x="1168" y="401"/>
     <size height="28" width="28"/>
     <nodeLabel>assign7label</nodeLabel>
     <process:copy>
@@ -476,7 +476,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
-    <location x="1137" y="437"/>
+    <location x="1166" y="437"/>
     <figSize height="17" width="32"/>
     <node>assign7</node>
   </nodes>
@@ -893,7 +893,7 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end2" name="结束2" displayName="结束" type="end">
     <targetConnections>link30</targetConnections>
-    <location x="1216" y="401"/>
+    <location x="1245" y="400"/>
     <size height="28" width="28"/>
     <nodeLabel>end2label</nodeLabel>
     <process:returns>
@@ -903,7 +903,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end2label" name="label" nodeType="label">
-    <location x="1214" y="437"/>
+    <location x="1243" y="436"/>
     <figSize height="17" width="32"/>
     <node>end2</node>
   </nodes>

@@ -7,8 +7,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.jsp.JspException;
@@ -70,19 +72,23 @@ public class BtnAuthTag extends TagSupport{
 				CollectionUtils.addAll(btnList, btnArr);
 			}
 			
+			Map map = new HashMap();
 			List<DataObject> btnInfoList = new ArrayList<DataObject>();
 			for(int j=0; j<btnList.size(); j++) {
 				DataObject resObj = btnList.get(j);
 				String btnId = resObj.getString("btnId");
-				DataObject[] btnInfo = ResauthUtils.getBtnInfo(btnId);
-				CollectionUtils.addAll(btnInfoList, btnInfo);
+				if(!map.containsKey(btnId)) {
+					DataObject[] btnInfo = ResauthUtils.getBtnInfo(btnId);
+					map.put(btnId, true);
+					CollectionUtils.addAll(btnInfoList, btnInfo);
+				}
 			}
 			
-			Set<DataObject> setAll = new HashSet<DataObject>();    //去重 
-			setAll.addAll(btnInfoList);  
-	        List<DataObject> c = new ArrayList<DataObject>(setAll); 
+			//Set<DataObject> setAll = new HashSet<DataObject>();    //去重 
+			//setAll.addAll(btnInfoList);  
+	        //List<DataObject> c = new ArrayList<DataObject>(setAll); 
 			//拼接并排序
-			Collections.sort(c, new Comparator<DataObject>() {
+			Collections.sort(btnInfoList, new Comparator<DataObject>() {
 	            public int compare(DataObject arg0, DataObject arg1) {
 	                int hits0 = arg0.getInt("displayorder");
 	                int hits1 = arg1.getInt("displayorder");
@@ -96,9 +102,8 @@ public class BtnAuthTag extends TagSupport{
 	            }
 	        });
 			
-			List<Menu> list=new ArrayList<Menu>();
-	        for(int i = 0; i<c.size(); i++) {
-	        	DataObject d = c.get(i);
+	        for(int i = 0; i<btnInfoList.size(); i++) {
+	        	DataObject d = btnInfoList.get(i);
 	        	
 	        	String tagContent = d.getString("tagContent");
 	        	if(tagContent != null || tagContent != "") {

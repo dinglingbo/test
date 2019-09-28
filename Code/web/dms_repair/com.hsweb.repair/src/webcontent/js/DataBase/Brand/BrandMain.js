@@ -75,6 +75,7 @@ $(document).ready(function(v){
        editModel();
 
     });
+
 	onSearch(currType);
 });
 var currType = 2;
@@ -177,7 +178,7 @@ function addOrEditBrand(brand)
 	nui.open({
 		// targetWindow: window,
         url: "com.hsweb.repair.DataBase.CarBrandDetail.flow",
-        title: title, width: 400, height: 190,
+        title: title, width: 400, height: 290,
         allowResize:false,
         onload: function ()
         {
@@ -477,6 +478,13 @@ function onDrawCell(e)
         case "isDisabled":
             e.cellHtml = e.value==1?"禁用":"启用";
             break;
+        case "imageUrl":
+        	if(e.value){   	             		
+        		e.cellHtml = "<img src='"+ e.value+ "'alt='配件图片' height='25px' width=' '/><br>";
+        	}else{
+        		e.cellHtml = "";
+        	}
+            break;            
         default:
             break;
     }

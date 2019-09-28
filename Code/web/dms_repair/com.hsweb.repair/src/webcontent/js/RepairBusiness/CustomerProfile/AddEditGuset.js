@@ -997,9 +997,9 @@ function onannualInsureChange(e){
 function getCarModel(callBack) {
 	nui.open({
 		//// targetWindow: window,,
-		url : "com.hsweb.repair.common.carModelSelect.flow",
+		url : webPath + contextPath + "/com.hsweb.repair.common.carModelSelectT.flow?token="+token,
 		title : "选择车型",
-		width : 900,
+		width : 855,
 		height : 600,
 		allowDrag : true,
 		allowResize : false,

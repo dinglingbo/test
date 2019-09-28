@@ -135,7 +135,7 @@
     </select>
     <!--车辆品牌-->
     <select id="getCarBrand" parameterClass="HashMap" resultClass="HashMap">
-    	SELECT DISTINCT id, car_brand_zh nameCn, car_brand_zh name, first_code as firstCode  
+    	SELECT DISTINCT id, car_brand_zh nameCn, car_brand_zh name, first_code as firstCode, image_url as imageUrl
     	FROM com_car_brand 
 		WHERE  is_disabled=0
     </select>

@@ -331,6 +331,14 @@
       <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">auditMain/billStatusId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">auditMain/orderAmt</process:from>
+      <process:to type="query">auditMain/noStateAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">auditMain/haveStateAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="436" y="323"/>
@@ -754,6 +762,7 @@
     <sourceConnections xsi:type="process:tLink" id="link35" name="link35" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess6</sourceNode>
       <targetNode>subprocess7</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link37" name="link37" displayName="连接线" type="transition">
       <sourceNode>subprocess6</sourceNode>

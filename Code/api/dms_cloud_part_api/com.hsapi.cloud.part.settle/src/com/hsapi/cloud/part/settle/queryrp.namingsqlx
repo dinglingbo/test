@@ -20,6 +20,7 @@
 			a.billDate as billDate,
 			a.orderMan as orderMan,
 			a.billAmt as billAmt,
+			a.noStateAmt as noStateAmt,
 			a.accountSign as accountSign,
 			a.accountAmt as accountAmt,
 			a.accountor as accountor,
@@ -50,6 +51,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="isState"> 
                     (a.isState = #isState#)
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="isStateList"> 
+                    (a.isState in ($isStateList$))
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="settleTypeId"> 
                     (a.settleTypeId = #settleTypeId#)
@@ -479,6 +483,7 @@
 			a.orderTypeId AS orderTypeId,
 			a.`CODE` AS `code`,
 			a.orderMan AS orderMan,
+			a.noStateAmt as noStateAmt,
 			a.billAmt AS billAmt,
 			a.guestId AS guestId,
 			a.creator AS creator,

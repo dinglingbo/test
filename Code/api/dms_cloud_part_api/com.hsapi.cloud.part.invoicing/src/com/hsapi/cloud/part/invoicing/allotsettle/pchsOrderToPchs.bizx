@@ -980,6 +980,14 @@
       <process:from type="query" pattern="reference">mOrderQty</process:from>
       <process:to type="query">pchsMain/orderQty</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pchsMain/orderAmt</process:from>
+      <process:to type="query">pchsMain/noStateAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">pchsMain/haveStateAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
     <location x="1213" y="254"/>

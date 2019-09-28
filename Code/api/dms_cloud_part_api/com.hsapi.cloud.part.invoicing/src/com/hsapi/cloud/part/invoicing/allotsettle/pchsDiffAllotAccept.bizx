@@ -235,6 +235,14 @@
       <process:to type="query">acceptMain/orderAmt</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">enterMain/enterAmt</process:from>
+      <process:to type="query">acceptMain/noStateAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">acceptMain/haveStateAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">2</process:from>
       <process:to type="query">acceptMain/orderTypeId</process:to>
     </process:copy>
@@ -376,6 +384,7 @@
     <sourceConnections xsi:type="process:tLink" id="link22" name="link22" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
       <targetNode>invokePojo6</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link21</targetConnections>
     <location x="876" y="227"/>

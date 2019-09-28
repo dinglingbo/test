@@ -503,6 +503,7 @@ function onAdvancedSearchCancel()
 }
 function onRightGridDraw(e)
 {
+	var data= basicInfoForm.getData();
     switch (e.field)
     {
         case "comPartBrandId":
@@ -550,6 +551,12 @@ function onRightGridDraw(e)
                 e.cellHtml = accountSignHash[e.value];
             }
             break;
+            
+        case "noStateAmt":
+        	var rpAmt =parseFloat(e.record.rpAmt);
+        	if(e.value<rpAmt && data.auditSign==0){
+        		e.cellHtml = '<a style="color:red;">' + e.value + '</a>';
+        	}
         default:
             break;
     }
@@ -573,6 +580,13 @@ function audit()
         return;
     }
 
+    var p =checkRightData();
+    if (p && p.billServiceId) {
+		var billServiceId = p.billServiceId;
+		showMsg("业务单号:"+billServiceId+"的信息有误,请检查","W");
+		return;
+	}
+    
     var data = getMainData();
 
     var stateDetailAdd = rightGrid.getChanges("added");
@@ -619,11 +633,13 @@ function audit()
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                showMsg("审核成功!","S");
-                var newRow = {auditSign: 1};
-                leftGrid.updateRow(row, newRow);
+                showMsg("审核成功!","S");                
+                var leftRow = list[0];
+                var row = leftGrid.getSelected();
+                leftGrid.updateRow(row,leftRow);
 
-                setBtnable(false);
+                //保存成功后重新加载数据
+                loadMainAndDetailInfo(leftRow);
               
                 
             } else {
@@ -900,8 +916,13 @@ function save() {
     }else{
         return;
     }
+    var p =checkRightData();
+    if (p && p.billServiceId) {
+		var billServiceId = p.billServiceId;
+		showMsg("业务单号:"+billServiceId+"的信息有误,请检查","W");
+		return;
+	}
     
-
     data = getMainData();
 
     var stateDetailAdd = rightGrid.getChanges("added");
@@ -969,6 +990,8 @@ function save() {
         }
     });
 }
+
+
 function onGuestValueChanged(e)
 {
     //供应商中直接输入名称加载供应商信息
@@ -986,47 +1009,181 @@ function onGuestValueChanged(e)
     var data = rightGrid.getData();
     rightGrid.removeRows(data);
 }
-//优惠金额
-function onVoidValueChanged(e){
-	var value =e.value;
-	var row = rightGrid.getSelected();
-	if(value<0){
-		showMsg("不能小于0","W");
-		e.cancel = true;
-		return;
-	}
-	var data =rightGrid.getData();
-	var voidAmt =0;
-	for(var i=0;i<data.length;i++){
-		if(data[i]==row){
-			voidAmt +=parseFloat(value);
-		}else{
-			voidAmt+=parseFloat(data[i].voidAmt);
+
+function checkRightData() {
+	var msg = '';
+	var amtArr =[];
+	var rows = rightGrid.findRows(function(row) {
+		if(row.billServiceId){
+			if (row.voidAmt) {
+				var rpAmt = parseFloat(row.rpAmt);
+				if (row.voidAmt < 0){
+					var newRow = {billServiceId: row.billServiceId};
+					amtArr.push(newRow);
+					return true;
+				}
+				if(row.voidAmt>row.rpAmt){
+					var newRow = {billServiceId: row.billServiceId};
+					amtArr.push(newRow);
+					return true;
+				}
+			} 
+			if (row.rpAmt) {
+				var billAmt = parseFloat(row.billAmt);
+	            var noStateAmt = parseFloat(row.noStateAmt);
+				if (row.rpAmt <= 0){
+					var newRow = {billServiceId: row.billServiceId};
+					amtArr.push(newRow);
+					return true;
+				}
+				if(row.rpAmt>billAmt){
+					var newRow = {billServiceId: row.billServiceId};
+					amtArr.push(newRow);
+					return true;
+				}
+				if(row.rpAmt>noStateAmt){
+					var newRow = {billServiceId: row.billServiceId};
+					amtArr.push(newRow);
+					return true;
+				}
+			}
+			
+			
 		}
+
+	});
+
+	var p = {};
+	if(amtArr && amtArr.length>0){
+		p.billServiceId = amtArr[0].billServiceId;
 	}
 	
-	nui.get("voidAmt").setValue(voidAmt);
+	return p;
 }
 
-function onRpValueChanged(e){
-	var value =e.value;
-	var row = rightGrid.getSelected();
-	if(value<0){
-		showMsg("不能小于0","W");
-		return;
-	}
-	var rpAmt =0;
-	var data =rightGrid.getData();
-	for(var i=0;i<data.length;i++){
-		if(data[i]==row){
-			rpAmt +=parseFloat(value);
-		}else{
-			rpAmt +=parseFloat(data[i].rpAmt);
-		}
-		
-	}
-	nui.get("rpAmt").setValue(rpAmt);
+function onCellCommitEdit(e){
+	var editor = e.editor;
+    var record = e.record;
+    var row = e.row;
+    
+    editor.validate();
+    if (editor.isValid() == false) {
+    	showMsg("请输入数字！","W");
+        e.cancel = true;
+    }else {
+        var newRow = {};
+        if (e.field == "voidAmt") {
+            var value = parseFloat(e.value);
+            var rpAmt = parseFloat(record.rpAmt);
+            
+            if(e.value==null || e.value=='') {
+                e.value = 0;
+            }else if(e.value < 0) {
+                e.value = 0;
+                showMsg("请输入正整数","W");
+                return;
+            }else if(value>rpAmt){
+        		showMsg("优惠金额不能大于对账金额","W");
+        		return;
+        	}
+            var data =rightGrid.getData();
+        	var voidAmt =0;
+        	for(var i=0;i<data.length;i++){
+        		if(data[i]==row){
+        			voidAmt +=parseFloat(value);
+        		}else{
+        			voidAmt+=parseFloat(data[i].voidAmt);
+        		}
+        	}
+        	
+        	nui.get("voidAmt").setValue(voidAmt);
+                     
+            //record.enteramt.cellHtml = enterqty * enterprice;
+        }else if (e.field == "rpAmt") {
+        	var value = parseFloat(e.value);
+            var billAmt = parseFloat(record.billAmt);
+            var noStateAmt =parseFloat(record.noStateAmt);
+            if(value>billAmt){
+         		showMsg("对账金额不能大于单据金额","W");
+         		return;
+         	}
+            if(value>noStateAmt){
+            	showMsg("对账金额不能大于未单据金额","W");
+         		return;
+            }
+            if(e.value==null || e.value=='') {
+                e.value = 0;
+            }else if(e.value < 0) {
+                e.value = 0;
+            }
+            
+            var rpAmt =0;
+        	var data =rightGrid.getData();
+        	for(var i=0;i<data.length;i++){
+        		if(data[i]==row){
+        			rpAmt +=parseFloat(value);
+        		}else{
+        			rpAmt +=parseFloat(data[i].rpAmt);
+        		}
+        		
+        	}
+        	nui.get("rpAmt").setValue(rpAmt);
+        }
+    }
 }
+////优惠金额
+//function onVoidValueChanged(e){
+//	var value =e.value;
+//	var oldValue =e.oldValue;
+//	var row = rightGrid.getSelected();
+//	var rpAmt =row.rpAmt;
+//	if(value>rpAmt){
+//		showMsg("优惠金额不能大于对账金额","W");
+//
+//		return;
+//	}
+//	if(value<0){
+//		showMsg("不能小于0","W");
+//		return;
+//	}
+//	var data =rightGrid.getData();
+//	var voidAmt =0;
+//	for(var i=0;i<data.length;i++){
+//		if(data[i]==row){
+//			voidAmt +=parseFloat(value);
+//		}else{
+//			voidAmt+=parseFloat(data[i].voidAmt);
+//		}
+//	}
+//	
+//	nui.get("voidAmt").setValue(voidAmt);
+//}
+//
+//function onRpValueChanged(e){
+//	var value =e.value;
+//	var oldValue =e.oldValue;
+//	var row = rightGrid.getSelected();
+//	var billAmt =row.billAmt;
+//	if(value>billAmt){
+//		showMsg("对账金额不能小于单据金额","W");
+//		return;
+//	}
+//	if(value<0){
+//		showMsg("不能小于0","W");
+//		return;
+//	}
+//	var rpAmt =0;
+//	var data =rightGrid.getData();
+//	for(var i=0;i<data.length;i++){
+//		if(data[i]==row){
+//			rpAmt +=parseFloat(value);
+//		}else{
+//			rpAmt +=parseFloat(data[i].rpAmt);
+//		}
+//		
+//	}
+//	nui.get("rpAmt").setValue(rpAmt);
+//}
 
 var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
 function setGuestInfo(params)
@@ -1150,8 +1307,8 @@ function addDetail(rows)
 
 
         rightGrid.addRow(newRow);
-        var voidAmt =nui.get('voidAmt').getValue();
-        var rpAmt =nui.get("rpAmt").getValue();
+        var voidAmt =parseFloat(nui.get('voidAmt').getValue())||0;
+        var rpAmt =parseFloat(nui.get("rpAmt").getValue())||0;
         voidAmt +=parseFloat(newRow.voidAmt);
         rpAmt +=parseFloat(newRow.rpAmt);
         nui.get('voidAmt').setValue(voidAmt);
@@ -1466,7 +1623,7 @@ function backAudit(){
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
-        html: '审核中...'
+        html: '反审核中...'
     });
 
     nui.ajax({

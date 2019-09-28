@@ -9,7 +9,7 @@
 -->
 <head>
 <title>月结对账</title>
-<script src="<%=webPath + contextPath%>/settlement/js/billStatement.js?v=1.0.10"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/billStatement.js?v=1.0.22"></script>
 <style type="text/css">
 .title {
   width: 85px;
@@ -24,7 +24,7 @@
   width: 100px;
 }
 
-.mini-panel-border {
+.mini-panel-bopder {
   border: 0;
 }
 
@@ -297,7 +297,7 @@
                            ondrawcell="onRightGridDraw"
                            allowCellSelect="true"
                            allowCellEdit="true"
-                           oncellcommitedit=""
+                           oncellcommitedit="onCellCommitEdit"
                            ondrawsummarycell=""
                            onselectionchanged=""
                            oncellbeginedit=""
@@ -314,11 +314,11 @@
                               <div field="guestName" width="60" headerAlign="center" header="客户名称" visible="false"></div>
                               <div field="typeCode" width="60" headerAlign="center" header="业务类型"></div>
                               <div field="billAmt" width="60" headerAlign="center" summaryType="sum" header="单据金额"></div>
-                              <div field="voidAmt" width="60" headerAlign="center" summaryType="sum" header="优惠金额" vtype="float">
-                               		<input property="editor" class="nui-textbox" onvaluechanged="onVoidValueChanged" />
+                              <div field="voidAmt" width="60" headerAlign="center" summaryType="sum" header="优惠金额" >
+                               		<input property="editor" class="nui-textbox" onvaluechanged="" vtype="float"/>
                               </div>
-                              <div field="rpAmt" width="60" headerAlign="center" summaryType="sum" header="对账金额"  vtype="float">
-                              		<input property="editor" class="nui-textbox" onvaluechanged="onRpValueChanged"/>
+                              <div field="rpAmt" width="60" headerAlign="center" summaryType="sum" header="对账金额"  >
+                              		<input property="editor" class="nui-textbox" onvaluechanged="" vtype="float"/>
                               </div>
                               <div field="noStateAmt" width="60" headerAlign="center" summaryType="sum" header="未对账金额"></div>
                               <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>

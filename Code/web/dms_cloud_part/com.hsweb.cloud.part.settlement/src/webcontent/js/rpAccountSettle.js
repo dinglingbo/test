@@ -1489,6 +1489,14 @@ function settleOK(){
     	var stateHash ={};
     	stateHash.id =rows[i].billMainId;
     	stateHash.amt =rows[i].nowAmt;
+    	if(name =='rpRightTab'){
+    		if(rows[i].amt2){
+    			stateHash.amt =rows[i].amt2;
+    		}else{
+    			stateHash.amt =rows[i].amt12;
+    		}
+    		
+    	}
     	stateMentList.push(stateHash);
     }
     var s = rows.length;
@@ -1858,4 +1866,16 @@ function onAccountValueChanged(e){
     var newRow = {balaTypeCode:null};
     settleAccountGrid.updateRow(r,newRow);
 
+}
+function onDrawSummaryCell(e){
+	  var rows = e.data;//rightGrid.getData();
+	    if (e.field == "rpAmt") { 
+	        var rpAmt = 0;
+	        for (var i = 0; i < rows.length; i++) {
+	        	rpAmt += parseFloat(rows[i].rpAmt*rows[i].rpDc);
+	        }
+	        var value =Math.abs(rpAmt)
+	        e.value=value;
+	        e.cellHtml =value;
+	    }
 }

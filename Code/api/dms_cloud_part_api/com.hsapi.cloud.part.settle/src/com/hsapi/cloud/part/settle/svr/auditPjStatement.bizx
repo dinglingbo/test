@@ -268,6 +268,10 @@
     <location x="1444" y="151"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">stateMain/id</process:from>
+      <process:to type="query">p/id</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
     <location x="1438" y="187"/>
@@ -1006,7 +1010,7 @@
         <process:inputVariable id="0" name="page" type="query" value="com.eos.foundation.PageCond" valueType="DataObject" pattern="reference">value</process:inputVariable>
         <process:inputVariable id="1" name="pageIndex" type="query" value="Int" valueType="Primitive" pattern="reference">value</process:inputVariable>
         <process:inputVariable id="2" name="pageSize" type="query" value="Int" valueType="Primitive" pattern="reference">value</process:inputVariable>
-        <process:inputVariable id="3" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">params</process:inputVariable>
+        <process:inputVariable id="3" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">p</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="list" type="query" value="commonj.sdo.DataObject[]" valueType="Java">list</process:outputVariable>
@@ -1792,6 +1796,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="noStateAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="rpAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="billAmt" primitiveType="Float"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="p"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjStatementMain" name="stateMain"/>

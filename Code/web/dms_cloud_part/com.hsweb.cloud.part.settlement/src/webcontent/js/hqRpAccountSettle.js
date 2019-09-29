@@ -2025,3 +2025,16 @@ function onAccountValueChanged(e){
     settleAccountGrid.updateRow(r,newRow);
 
 }
+
+function onDrawSummaryCell(e){
+	  var rows = e.data;//rightGrid.getData();
+	    if (e.field == "rpAmt") { 
+	        var rpAmt = 0;
+	        for (var i = 0; i < rows.length; i++) {
+	        	rpAmt += parseFloat(rows[i].rpAmt*rows[i].rpDc);
+	        }
+	        var value =Math.abs(rpAmt)
+	        e.value=value;
+	        e.cellHtml =value;
+	    }
+}

@@ -634,7 +634,7 @@ function audit()
             data = data || {};
             if (data.errCode == "S") {
                 showMsg("审核成功!","S");                
-                var leftRow = list[0];
+                var leftRow = data.list[0];
                 var row = leftGrid.getSelected();
                 leftGrid.updateRow(row,leftRow);
 
@@ -1022,7 +1022,7 @@ function checkRightData() {
 					amtArr.push(newRow);
 					return true;
 				}
-				if(row.voidAmt>row.rpAmt){
+				if(row.voidAmt>rpAmt){
 					var newRow = {billServiceId: row.billServiceId};
 					amtArr.push(newRow);
 					return true;
@@ -1031,7 +1031,7 @@ function checkRightData() {
 			if (row.rpAmt) {
 				var billAmt = parseFloat(row.billAmt);
 	            var noStateAmt = parseFloat(row.noStateAmt);
-				if (row.rpAmt <= 0){
+				if (row.rpAmt < 0){
 					var newRow = {billServiceId: row.billServiceId};
 					amtArr.push(newRow);
 					return true;
@@ -1061,6 +1061,29 @@ function checkRightData() {
 	return p;
 }
 
+function onDrawSummaryCell(e)
+{
+    var rows = e.data;//rightGrid.getData();
+    if (e.field == "voidAmt") { 
+        var voidAmt = 0;
+        for (var i = 0; i < rows.length; i++) {
+        	voidAmt += parseFloat(rows[i].voidAmt*rows[i].rpDc);
+        }
+        var value =Math.abs(voidAmt)
+        e.value=value;
+        e.cellHtml =value;
+    }
+    
+    if (e.field == "rpAmt") { 
+        var rpAmt = 0;
+        for (var i = 0; i < rows.length; i++) {
+        	rpAmt += parseFloat(rows[i].rpAmt*rows[i].rpDc);
+        }
+        var value =Math.abs(rpAmt)
+        e.value=value;
+        e.cellHtml =value;
+    }
+}
 function onCellCommitEdit(e){
 	var editor = e.editor;
     var record = e.record;
@@ -1089,14 +1112,15 @@ function onCellCommitEdit(e){
             var data =rightGrid.getData();
         	var voidAmt =0;
         	for(var i=0;i<data.length;i++){
+        		var rpDc =data[i].rpDc;
         		if(data[i]==row){
-        			voidAmt +=parseFloat(value);
+        			voidAmt +=parseFloat(value*rpDc);
         		}else{
-        			voidAmt+=parseFloat(data[i].voidAmt);
+        			voidAmt+=parseFloat(data[i].voidAmt*rpDc);
         		}
         	}
         	
-        	nui.get("voidAmt").setValue(voidAmt);
+        	nui.get("voidAmt").setValue(Math.abs(voidAmt));
                      
             //record.enteramt.cellHtml = enterqty * enterprice;
         }else if (e.field == "rpAmt") {
@@ -1131,59 +1155,7 @@ function onCellCommitEdit(e){
         }
     }
 }
-////优惠金额
-//function onVoidValueChanged(e){
-//	var value =e.value;
-//	var oldValue =e.oldValue;
-//	var row = rightGrid.getSelected();
-//	var rpAmt =row.rpAmt;
-//	if(value>rpAmt){
-//		showMsg("优惠金额不能大于对账金额","W");
-//
-//		return;
-//	}
-//	if(value<0){
-//		showMsg("不能小于0","W");
-//		return;
-//	}
-//	var data =rightGrid.getData();
-//	var voidAmt =0;
-//	for(var i=0;i<data.length;i++){
-//		if(data[i]==row){
-//			voidAmt +=parseFloat(value);
-//		}else{
-//			voidAmt+=parseFloat(data[i].voidAmt);
-//		}
-//	}
-//	
-//	nui.get("voidAmt").setValue(voidAmt);
-//}
-//
-//function onRpValueChanged(e){
-//	var value =e.value;
-//	var oldValue =e.oldValue;
-//	var row = rightGrid.getSelected();
-//	var billAmt =row.billAmt;
-//	if(value>billAmt){
-//		showMsg("对账金额不能小于单据金额","W");
-//		return;
-//	}
-//	if(value<0){
-//		showMsg("不能小于0","W");
-//		return;
-//	}
-//	var rpAmt =0;
-//	var data =rightGrid.getData();
-//	for(var i=0;i<data.length;i++){
-//		if(data[i]==row){
-//			rpAmt +=parseFloat(value);
-//		}else{
-//			rpAmt +=parseFloat(data[i].rpAmt);
-//		}
-//		
-//	}
-//	nui.get("rpAmt").setValue(rpAmt);
-//}
+
 
 var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
 function setGuestInfo(params)
@@ -1292,10 +1264,10 @@ function addDetail(rows)
             billServiceId:row.serviceId,
             typeCode:row.orderTypeId,
             rpDc:row.dc,
-            billAmt:row.billAmt,
+            billAmt:row.billAmt||0,
             voidAmt:0,
-            rpAmt : row.noStateAmt,
-            noStateAmt :row.noStateAmt,
+            rpAmt : row.noStateAmt||0,
+            noStateAmt :row.noStateAmt||0,
             billTypeId:row.billTypeId,
             settleTypeId:row.settleTypeId,
             orderMan:row.orderMan,
@@ -1619,7 +1591,10 @@ var backAuditUrl =baseUrl+"com.hsapi.cloud.part.settle.svr.backAuditStatement.bi
 function backAudit(){
 
 	var data = getMainData();
-
+	if(data.auditSign!=1){
+		showMsg("订单未审，不能反审核","W");
+		return;
+	}
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',

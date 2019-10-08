@@ -9,7 +9,7 @@
 -->
 <head>
 <title>应收应付结算</title>
-<script src="<%=webPath + contextPath%>/settlement/js/rpAccountSettle.js?v=2.3.34"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/rpAccountSettle.js?v=2.3.42"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -620,13 +620,14 @@
        multiSelect="true"
        editNextOnEnterKey="true"
        onshowrowdetail=""
+       ondrawsummarycell="onDrawSummaryCell"
        url="">
       <div property="columns">
           <div type="indexcolumn" width="20">序号</div>
           <!-- <div type="checkcolumn" width="20"></div>
           <div type="expandcolumn" width="20" >#</div> -->
           <div field="typeCode" width="60" headerAlign="center" header="业务类型"></div>
-          <div field="billAmt" width="60" headerAlign="center" summaryType="sum" header="金额"></div>
+          <div field="rpAmt" width="60" headerAlign="center" summaryType="sum" header="金额"></div>
           <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
           <div allowSort="true" field="billDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
           <div field="remark" width="120" headerAlign="center" header="备注"></div>

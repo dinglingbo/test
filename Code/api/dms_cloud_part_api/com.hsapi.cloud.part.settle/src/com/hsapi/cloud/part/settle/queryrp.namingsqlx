@@ -408,6 +408,10 @@
 				
 	</select>
 	
+	<select id="queryStateAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT noStateAmt,haveStateAmt from  vw_pchs_sell_order_main
+		 WHERE orderTypeId =#orderTypeId# and mainId = #mainId#
+	</select>
 	<select id="queryNotStateBillAmt" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
 		SELECT sum(IFNULL(a.billAmt,0)*(case when a.dc = -1 then -1 else 0 end)) as pAmt,
 	     	   sum(IFNULL(a.billAmt,0)*(case when a.dc = 1 then 1 else 0 end)) as rAmt
@@ -515,6 +519,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="isState"> 
                     (a.isState = #isState#)
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="stateSign"> 
+                    (a.stateSign = #stateSign#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="settleTypeId"> 
                     (a.settleTypeId = #settleTypeId#)
@@ -831,6 +838,9 @@
 			a.type_code as typeCode,
 			a.rp_dc as rpDc,
 			a.bill_amt as billAmt,
+			a.void_amt as voidAmt,
+			a.rp_amt as rpAmt,
+			a.no_state_amt as noStateAmt,
 			a.bill_type_id as billTypeId ,
 			a.settle_type_id as settleTypeId, 
 			a.order_man as orderMan,

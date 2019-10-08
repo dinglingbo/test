@@ -193,7 +193,7 @@ function onDrawCell(e)
 function getBillSearchParam(){
 
     var params = {};
-    params.sAuditDate = sBillAuditDateEl.getValue();
+    params.sAuditDate = sBillAuditDateEl.getFormValue();
     params.eAuditDate = addDate(eBillAuditDateEl.getValue(), 1);
     params.serviceId = billServiceIdEl.getValue().replace(/\s+/g, "");
     var guestId = billSearchGuestIdEl.getValue();
@@ -214,7 +214,7 @@ function doNotStatement(params){
     params.sortOrder = "desc";
     params.settleTypeId = "020502";
     params.stateSign = 0;
-    params.isState = 0;
+//    params.isState = 0;
     notStatementGrid.load({
         params:params,
         token: token

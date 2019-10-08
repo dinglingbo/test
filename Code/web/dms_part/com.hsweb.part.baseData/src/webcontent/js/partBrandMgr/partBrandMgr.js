@@ -598,7 +598,7 @@ function saveLocalBrand(){
     });
 }
 
-var savePictureUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.savePartBrand.biz.ext";
+var savePictureUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.savePartBrand.biz.ext";
 function savePicture(imageUrl){
     var row=rightGrid.getSelected();
     row.imageUrl=imageUrl;

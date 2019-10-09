@@ -49,22 +49,27 @@ public class SyncElectronicArchives {
 		
 		//佛山需要请求的参数
 		//报文头
-		/*SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMdd");
+		Map <String, Map<String, String>> companydata = new HashMap <String, Map<String, String>>();
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMdd");
 		SimpleDateFormat format2 = new SimpleDateFormat("HHmmss");
 		Date date = new Date();
 		String headerDate = format1.format(date);
 		String headerTime = format2.format(date);
 		Map <String, String> header = new HashMap <String, String>();
 		header.put("date", headerDate);
-		header.put("time", headerTime);*/
+		header.put("time", headerTime);
 		
-		/*jsonObj.put("header", header);*/
+		companydata.put("header", header);
 		
 		//报文体
-		/*Map <String, String> body = new HashMap <String, String>();
+		Map <String, String> body = new HashMap <String, String>();
 		body.put("companycode", companycode);
 		body.put("companypassword", companypassword);
-		jsonObj.put("body", body);*/
+		
+		companydata.put("body", body);
+		
+		jsonObj.put("companydata", companydata);
+		
 		
 		//上海需要的参数
 		jsonObj.put("companycode", companycode);
@@ -73,6 +78,7 @@ public class SyncElectronicArchives {
 		String param = null;
 		param = jsonObj.toString();
 		String result = HttpUtils.sendPostByJson(eTokenUrl, param);
+		//String result = HttpUtils.sendGet(eTokenUrl, param);
 		
 		Gson gson = new Gson();
         Map<String, String> map = new HashMap<String, String>();
@@ -147,13 +153,13 @@ public class SyncElectronicArchives {
 	        	}
 	        	
 	        	JSONObject jsonObj = new JSONObject();
-	        	/*Map <String, Object> info = new HashMap <String, Object>();*/
 	        	jsonObj.put("access_token", accessToken);
+	        	/*Map <String, Object> info = new HashMap <String, Object>();*/
 	        	//jsonObj.put("info", info);
-	    		/*Map <String, String> header = new HashMap <String, String>();
+	    		Map <String, String> header = new HashMap <String, String>();
 	    		header.put("date", headerDate);
 	    		header.put("time", headerTime);
-	    		jsonObj.put("header", header);*/
+	    		jsonObj.put("header", header);
 	    		
 	    		Map <String, String> basicInfo = new HashMap <String, String>();
 	    		
@@ -180,7 +186,7 @@ public class SyncElectronicArchives {
 	    		basicInfo = getFormatData(basicInfo);
 	    		jsonObj.put("basicInfo", basicInfo);
 	    		
-	    		//jsonObj.put("body", basicInfo);
+	    		jsonObj.put("body", basicInfo);
 	    		
 	    		List<Map<String,String>> tList=new ArrayList<Map<String,String>>();
 	    		for (DataObject obj : itemList) {
@@ -300,7 +306,7 @@ public class SyncElectronicArchives {
 				}
 				if(accessToken != null && !"".equals(accessToken)) { 
 					Calendar cal = Calendar.getInstance();
-					cal.add(Calendar.DATE, 0);
+					cal.add(Calendar.DATE, 1);
 				    String endDate = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());
 				    cal.add(Calendar.DATE, -1);
 				    String startDate = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());

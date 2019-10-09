@@ -55,6 +55,16 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link39" name="link39" displayName="连接线" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign17</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">billTypeId</process:leftOperand>
+          <process:rightOperand type="literal">119</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <location x="-148" y="279"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
@@ -122,11 +132,13 @@
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>invokePojo0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
     <targetConnections>link50</targetConnections>
     <targetConnections>link51</targetConnections>
     <targetConnections>link52</targetConnections>
+    <targetConnections>link40</targetConnections>
     <location x="-55" y="279"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
@@ -964,6 +976,21 @@
     <location x="333" y="96"/>
     <figSize height="20" width="49"/>
     <node>assign16</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign17" name="赋值17" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link40" name="link40" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign17</sourceNode>
+      <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <targetConnections>link39</targetConnections>
+    <location x="60" y="92"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign17label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign17label" name="label" nodeType="label">
+    <location x="50" y="128"/>
+    <figSize height="20" width="49"/>
+    <node>assign17</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

@@ -500,7 +500,7 @@
     </sourceConnections>
     <targetConnections>link14</targetConnections>
     <targetConnections>link23</targetConnections>
-    <location x="288" y="302"/>
+    <location x="244" y="253"/>
     <size height="28" width="28"/>
     <nodeLabel>assign7label</nodeLabel>
     <process:copy>
@@ -513,13 +513,13 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
-    <location x="283" y="338"/>
+    <location x="239" y="289"/>
     <figSize height="17" width="39"/>
     <node>assign7</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link24</targetConnections>
-    <location x="394" y="300"/>
+    <location x="240" y="337"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -530,7 +530,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
-    <location x="396" y="336"/>
+    <location x="242" y="373"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>

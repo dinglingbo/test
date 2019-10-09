@@ -231,16 +231,10 @@
 
         });
 		function SetData(params){
-			var frmBill = {};
-			$.post(params.p.frmApiUrl+"com.hsapi.frm.frmService.finance.queryRPAccountDetail.biz.ext?params/billServiceId="+params.billServiceId||""+"&token="+params.p.token,{},function(text){
-    		    if(text.list){
-    		      frmBill = text.list;
-    		      document.getElementById("serviceCode").innerHTML = frmBill[0].rpAccountId||"";
-    		      	var payDate = frmBill[0].auditDate;
-    		      	payDate = payDate.replace(/-/g,"/");
+		    		document.getElementById("serviceCode").innerHTML = params.businessNumber||"";
+    		      	var payDate = params.guestData[0].auditDate;
+    		      	//payDate = payDate.replace(/-/g,"/");
 	        		payDate = new Date(payDate);
-	        		payDate = format(payDate, "yyyy-MM-dd HH:mm");
-	        		document.getElementById("payDate").innerHTML = payDate;
 	        		//所有车牌号
 	        		var carNoList = "";
 	        		for(var i =0;i<params.guestData.length;i++){
@@ -254,8 +248,6 @@
 					document.getElementById("netInAmt").innerHTML = params.netInAmt||"";
 					document.getElementById("makeMan").innerHTML=params.p.currUserName||"";
 					document.getElementById("companyName").innerHTML=params.p.comp||"";
-    		    }
-	         });
 			
 		}
 		

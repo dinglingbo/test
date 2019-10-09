@@ -59,6 +59,18 @@ import org.dom4j.io.SAXReader;
 import com.alibaba.fastjson.JSONObject;
 import com.eos.system.annotation.Bizlet;
 
+
+
+
+import java.net.URL;
+import java.security.SecureRandom;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+
+
 /**
  * @author chenyy
  * @date 2016-07-06 10:19:35
@@ -279,6 +291,7 @@ public class HttpUtils {
 		return result.toJSONString();
 	}
 
+	
 	/**
 	 * @param urlParam
 	 * @param json
@@ -290,10 +303,45 @@ public class HttpUtils {
 		HttpURLConnection con = null;
 		OutputStreamWriter osw = null;
 		BufferedReader br = null;
+		
+		
+		
+		
 		// 发送请求
 		try {
+			/*URL url = new URL(urlParam);
+			con = (HttpURLConnection) url.openConnection();
+			con.setRequestMethod("POST");
+			con.setDoOutput(true);
+			con.setDoInput(true);
+			con.setUseCaches(true);
+			con.setRequestProperty("Content-Type",
+					"application/json;charset=UTF-8");*/
+		//	con.setRequestProperty("accept", "application/json,text/plain,*/*");
+
+			/*con.setConnectTimeout(30000);// 连接超时 单位毫秒
+			con.setReadTimeout(30000);// 读取超时 单位毫秒
+			if (json != null && json.length() > 0) {
+				osw = new OutputStreamWriter(con.getOutputStream(), "UTF-8");
+				osw.write(json);
+				osw.flush();
+			}
+			*/
+			
+			SSLContext sslcontext = SSLContext.getInstance("SSL", "SunJSSE");//第一个参数为协议,第二个参数为提供者(可以缺省)
+			TrustManager[] tm = {new MyX509TrustManager()};
+			sslcontext.init(null, tm, new SecureRandom());
+			HostnameVerifier ignoreHostnameVerifier = new HostnameVerifier() {
+				public boolean verify(String s, SSLSession sslsession) {
+					System.out.println("WARNING: Hostname is not matched for cert.");
+						return true;
+				}
+			};
+			HttpsURLConnection.setDefaultHostnameVerifier(ignoreHostnameVerifier);
+			HttpsURLConnection.setDefaultSSLSocketFactory(sslcontext.getSocketFactory());
 			URL url = new URL(urlParam);
 			con = (HttpURLConnection) url.openConnection();
+			
 			con.setRequestMethod("POST");
 			con.setDoOutput(true);
 			con.setDoInput(true);
@@ -359,6 +407,9 @@ public class HttpUtils {
 		}
 	}
 
+
+
+	
 	private static StringBuffer getParamFromMap(Map<String, Object> params) {
 		// 构建请求参数
 		StringBuffer sbParams = new StringBuffer();

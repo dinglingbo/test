@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
     <title>付款明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%=webPath + contextPath%>/frm/js/finance/accountPDetail.js?v=1.0.0"></script>
+    <script src="<%=webPath + contextPath%>/frm/js/finance/accountPDetail.js?v=1.0.5"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -55,47 +55,63 @@ pageEncoding="UTF-8" session="false" %>
         <input id="advanceGuestId" name="guestId" class="nui-buttonedit" emptyText="请选择结算单位..." onvalueChanged="onSearch()" onbuttonclick="selectSupplier('advanceGuestId')" width="150px" allowInput="false"  selectOnFocus="true" />
 
 
-        <input id="isMain" width="100px" data="pList" textField="text" valueField="id"  emptyText="是否主营业务" onvalueChanged="onSearch()" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
+        <input id="isMain" width="100px" data="pList" textField="text" valueField="id"  emptyText="是否主营业务" onvalueChanged="onSearch()" class="nui-combobox" allowinput="true" valueFromSelect="true" visible="false"/>
                 <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
         <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120"  onenter="onSearch(this.value)"/>
-        </br>
         <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
         <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
         <a class="nui-button" iconCls="" plain="true" onclick="print()"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
         <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
     </div>
-    <div class="nui-fit">
-        <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" 
-             ondrawcell="onDrawCell" showPager="true"  dataField="list"   url="" sortMode="client" 
-             pageSize="500" sizeList="[500,1000,2000]" showSummaryRow="true" allowResize="true" multiSelect="true" >
-            <div property="columns">   
-                <div type="indexcolumn"  headeralign="center" width="30">序号</div>
-                <div type="checkcolumn" field="check" width="20" header="选择"></div>
-<!--                 <div field="settAccountId" name="code" width="60" summaryType="count"  headeralign="center" visible="false" allowsort="true" >账户编码</div>
-                <div field="settAccountId" name="name" width="100"  headeralign="center" visible="false" allowsort="true"  >账户名称</div> -->
-                <div field="billServiceId" name="billServiceId" width="170"  headeralign="center" summaryType="count" allowsort="true" >业务单号</div>
-                <div field="billTypeId" name="billTypeId" width="100"  headeralign="center" allowsort="true" >收支类型</div>
-                <div field="isPrimaryBusiness" name="name" width="100"  headeralign="center" allowsort="true" >是否主营业务</div>
-                <div name="shortName" field="shortName"  width="100"  headeralign="center"  allowsort="true" >结算单位简称
+	<div class="nui-splitter" vertical="true" style="width: 100%; height: 100%;" allowResize="true">
+	<!-- 上 -->
 
-                </div>
-                <div field="carNo" name="carNo" width="70"  headeralign="center" allowsort="true" >车牌号</div>
-                <div field="charOffAmt" name="charOffAmt" width="80" summaryType="sum" headeralign="center" allowsort="true" dataType="float">付款金额</div>
-                <div field="feeService" name="feeService" width="80" summaryType="sum" headeralign="center" allowsort="true" dataType="float">手续费</div>
-                <!-- <div field="trueInoutAmt" name="trueInoutAmt" width="80" summaryType="sum" headeralign="center" allowsort="true" dataType="float" >实付金额 </div> -->
-                <div field="settAccountName" name="settAccountName" width="110"  headeralign="center" allowsort="true" >付款账户 </div>
-                <div field="balaTypeCode" name="balaTypeCode" width="110"  headeralign="center" allowsort="true" >收款方式 </div>
-                <div field="settCharOffAmt" name="settCharOffAmt" width="80" summaryType="sum" headeralign="center" allowsort="true" dataType="float">付款金额</div>
-                <div field="auditor" name="auditor" width="80"  headeralign="center" allowsort="true"  >付款人</div>
-                <div field="remark" name="remark" width="180"  headeralign="center" allowsort="true">付款备注</div>
-                <div field="auditDate" name="auditDate" width="150" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" allowsort="true" >付款日期</div>
-                <div field="fullName" name="fullName" width="150"  headeralign="center" allowsort="true" >结算单位全称</div>
-                <div field="rpAccountId" name="fullName" width="170"  headeralign="center" allowsort="true" >付款单号</div>
-                <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
-            </div>
-        </div>
-    </div>
+			<div size="65%" showCollapseButton="false">
+			    <div class="nui-fit">
+			        <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" 
+			             ondrawcell="onDrawCell" showPager="true"  dataField="list"   url="" sortMode="client" 
+			             pageSize="500" sizeList="[500,1000,2000]" showSummaryRow="true" allowResize="true" multiSelect="true" onrowclick="queryFrm()">
+			            <div property="columns">   
+			                <div type="indexcolumn"  headeralign="center" width="30">序号</div>
+			                <div type="checkcolumn" field="check" width="20" header="选择"></div>
+
+							<div field="rpAccountId" name="rpAccountId" width="170" headeralign="center" summaryType="count" allowsort="true">财务单号</div>
+			                <div name="guestName" field="guestName"  width="100"  headeralign="center"  allowsort="true" >结算单位名称</div>
+			                <div field="settAccountName" name="settAccountName" width="110"  headeralign="center" allowsort="true" >付款账户 </div>
+			                <div field="balaTypeCode" name="balaTypeCode" width="110"  headeralign="center" allowsort="true" >收款方式 </div>
+			                <div field="settCharOffAmt" name="settCharOffAmt" width="80" summaryType="sum" headeralign="center" allowsort="true" dataType="float">付款金额</div>
+			                <div field="auditor" name="auditor" width="80"  headeralign="center" allowsort="true"  >付款人</div>
+			                <div field="remark" name="remark" width="180"  headeralign="center" allowsort="true">付款备注</div>
+			                <div field="auditDate" name="auditDate" width="150" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" allowsort="true" >付款日期</div>
+			                <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
+			            </div>
+			        </div>
+			    </div>
+			    </div>
+				<!-- 下 -->
+				<div showCollapseButton="false">
+					<div class="nui-fit">
+						<div id="datagrid2" dataField="data" ondrawcell="onDrawCell1" class="nui-datagrid" style="width: 100%; height: 100%;" sortMode="client" allowSortColumn="true"
+						 showPager="false" allowCellWrap=true>
+							<div property="columns">
+								<div type="indexcolumn">序号</div>
+								<div allowSort="true" field="guestName" name="guestName" width="150" headerAlign="center" header="结算单位"></div>
+								<div allowSort="true" field="carNo" name="carNo" width="80" headerAlign="center" header="车牌号"></div>
+								<div allowSort="true" summaryType="count" field="billServiceId" name="billServiceId" width="150" summaryType="count" headerAlign="center" header="业务单号"></div>
+								<div allowSort="true" field="billTypeId" name="billTypeId" width="90" headerAlign="center" header="收支项目"></div>
+								<div allowSort="true" field="remark" name="remark" width="150" headerAlign="center" header="业务备注"></div>
+								<div allowSort="true" field="rpAmt" width="70" headerAlign="center" align="right" numberFormat="0.0000" dataType="float" summaryType="sum" header="应收金额"></div>
+								<div allowSort="true" field="charOffAmt" width="70" headerAlign="center" align="right" numberFormat="0.0000" dataType="float" summaryType="sum" header="已结金额"></div>
+								<div allowSort="true" field="creator" name="settleStatus" width="60" headerAlign="center" header="转单人"></div>
+								<div allowSort="true" field="createDate" headerAlign="center" header="转单日期" width="120" dateFormat="yyyy-MM-dd HH:mm"></div>
+								<div allowSort="true" field="settleStatus" name="settleStatus" width="50" headerAlign="center" header="结算状态"></div>
+								<div allowSort="true" field="auditSign" name="auditSign" width="50" headerAlign="center" header="审核状态"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
 <div id="exportDiv" style="display:none">  
 </div>
 </body>

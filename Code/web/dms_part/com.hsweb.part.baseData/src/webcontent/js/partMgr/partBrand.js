@@ -2,11 +2,16 @@ var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/
 var partCode = "A";//记录点击的那个a标签
 var partName = "";//选中的品牌名称
 var partId = "";//选择的品牌iD
+var qualityTypeId = "";//父页面传过来的品质ID
+var oneB = true;//第一次进来，查询A如果没有，再查一次，默认当前品质查询所有
 $(document).ready(function(v){
-	getPartBrandLetter("A");
+
 });
 
-function setData(type){}
+function setData(type){
+	qualityTypeId = type;
+	getPartBrandLetter("A");
+}
 
 function getPartBrandLetter(letter){
 	document.getElementById("part").innerHTML = "";
@@ -15,7 +20,8 @@ function getPartBrandLetter(letter){
 	document.getElementById(letter).style.background = "#00BFFF";
 	var queryPartBrandUrl = baseUrl +"com.hsapi.system.dict.dictMgr.queryPartBrandParams.biz.ext";
 	var params = {
-			firstCodeCh : letter
+			firstCodeCh : letter,
+			parentId : qualityTypeId
 			//name : document.getElementById("brandName").value
 	};
 	nui.mask({
@@ -43,7 +49,13 @@ function getPartBrandLetter(letter){
 						addDiv(num,list[i].name,list[i].imageUrl,list[i].id);
 					}
 				}
-				
+				//第一次进来，查询A如果没有，再查一次，默认当前品质查询所有
+				if(list.length==0){
+					if(oneB){
+						getPartBrandName();
+					}					
+				}
+				oneB = false;
 			}else{
 				showMsg("查询失败","E");
 			}
@@ -58,7 +70,8 @@ function getPartBrandName(){
 	document.getElementById("part").innerHTML = "";
 	var queryPartBrandUrl = baseUrl +"com.hsapi.system.dict.dictMgr.queryPartBrandParams.biz.ext";
 	var params = {
-			name : document.getElementById("brandName").value
+			name : document.getElementById("brandName").value,
+			parentId : qualityTypeId
 	};
 	nui.mask({
 		el : document.body,
@@ -101,7 +114,7 @@ function addDiv(number,name,img,id){
 	if(number%6==0&&number!=0){
 		html=html+"<br/>"
 	}
-	html+='<li onclick="choosePart('+"'"+name+"'"+','+"'"+id+"'"+')">';
+	html+='<li id="'+id+'" onclick="choosePart('+"'"+name+"'"+','+"'"+id+"'"+')">';
 	html+='	<a style="background-color: #fff;" clsaa="partA" href="javascript:void(0)" >';
 //	html+=`<a style="background-color: #fff;" clsaa="partA" href="javascript:void(0)" onclick="choosePart($(name),$(id))">`;
 	html+='		<img src="'+img+'" width="100" height="100">';
@@ -114,7 +127,12 @@ function addDiv(number,name,img,id){
 function choosePart(name,id){
 	document.getElementById("selectmodels").innerHTML = name;
 	partName = name;
+	if(partId!=""){		
+		document.getElementById(partId).classList.remove("xz");
+	}
 	partId = id;
+	document.getElementById(partId).classList.add("xz");
+
 }
 function getData (){
 	var part={

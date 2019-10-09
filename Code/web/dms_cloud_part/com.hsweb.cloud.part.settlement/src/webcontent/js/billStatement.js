@@ -503,6 +503,7 @@ function onAdvancedSearchCancel()
 }
 function onRightGridDraw(e)
 {
+	var data= basicInfoForm.getData();
     switch (e.field)
     {
         case "comPartBrandId":
@@ -550,6 +551,12 @@ function onRightGridDraw(e)
                 e.cellHtml = accountSignHash[e.value];
             }
             break;
+            
+        case "noStateAmt":
+        	var rpAmt =parseFloat(e.record.rpAmt);
+        	if(e.value<rpAmt && data.auditSign==0){
+        		e.cellHtml = '<a style="color:red;">' + e.value + '</a>';
+        	}
         default:
             break;
     }
@@ -573,11 +580,22 @@ function audit()
         return;
     }
 
+    var p =checkRightData();
+    if (p && p.billServiceId) {
+		var billServiceId = p.billServiceId;
+		showMsg("业务单号:"+billServiceId+"的信息有误,请检查","W");
+		return;
+	}
+    
     var data = getMainData();
 
     var stateDetailAdd = rightGrid.getChanges("added");
     for(var i=0;i<stateDetailAdd.length;i++){
     	stateDetailAdd[i].billDate=format(stateDetailAdd[i].billDate, 'yyyy-MM-dd HH:mm:ss');
+    }
+    var stateDetailUpdate = rightGrid.getChanges("modified");
+    for(var i=0;i<stateDetailUpdate.length;i++){
+    	stateDetailUpdate[i].billDate=format(stateDetailUpdate[i].billDate, 'yyyy-MM-dd HH:mm:ss');
     }
     var stateDetailDelete = rightGrid.getChanges("removed");
     for(var i=0;i<stateDetailDelete.length;i++){
@@ -592,7 +610,7 @@ function audit()
         return;
     }
 
-    stateDetailList = removeChanges(stateDetailAdd, [], stateDetailDelete, stateDetailList);
+    stateDetailList = removeChanges(stateDetailAdd, stateDetailUpdate, stateDetailDelete, stateDetailList);
 
     nui.mask({
         el: document.body,
@@ -606,6 +624,7 @@ function audit()
         data : JSON.stringify({
             stateMain : data,
             stateDetailAdd : stateDetailAdd,
+            stateDetailUpdate:stateDetailUpdate,
             stateDetailDelete : stateDetailDelete,
             stateDetailList : stateDetailList,
             token : token
@@ -614,11 +633,13 @@ function audit()
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                showMsg("审核成功!","S");
-                var newRow = {auditSign: 1};
-                leftGrid.updateRow(row, newRow);
+                showMsg("审核成功!","S");                
+                var leftRow = data.list[0];
+                var row = leftGrid.getSelected();
+                leftGrid.updateRow(row,leftRow);
 
-                setBtnable(false);
+                //保存成功后重新加载数据
+                loadMainAndDetailInfo(leftRow);
               
                 
             } else {
@@ -895,13 +916,23 @@ function save() {
     }else{
         return;
     }
+    var p =checkRightData();
+    if (p && p.billServiceId) {
+		var billServiceId = p.billServiceId;
+		showMsg("业务单号:"+billServiceId+"的信息有误,请检查","W");
+		return;
+	}
     
-
     data = getMainData();
 
     var stateDetailAdd = rightGrid.getChanges("added");
     for(var i=0;i<stateDetailAdd.length;i++){
     	stateDetailAdd[i].billDate=format(stateDetailAdd[i].billDate, 'yyyy-MM-dd HH:mm:ss');
+    }
+    
+    var stateDetailUpdate = rightGrid.getChanges("modified");
+    for(var i=0;i<stateDetailUpdate.length;i++){
+    	stateDetailUpdate[i].billDate=format(stateDetailUpdate[i].billDate, 'yyyy-MM-dd HH:mm:ss');
     }
     var stateDetailDelete = rightGrid.getChanges("removed");
     for(var i=0;i<stateDetailDelete.length;i++){
@@ -911,7 +942,7 @@ function save() {
     for(var i=0;i<stateDetailList.length;i++){
     	stateDetailList[i].billDate=format(stateDetailList[i].billDate, 'yyyy-MM-dd HH:mm:ss');
     }
-    stateDetailList = removeChanges(stateDetailAdd, [], stateDetailDelete, stateDetailList);
+    stateDetailList = removeChanges(stateDetailAdd, stateDetailUpdate, stateDetailDelete, stateDetailList);
 
     nui.mask({
         el: document.body,
@@ -925,6 +956,7 @@ function save() {
         data : JSON.stringify({
             stateMain : data,
             stateDetailAdd : stateDetailAdd,
+            stateDetailUpdate : stateDetailUpdate,
             stateDetailDelete : stateDetailDelete,
             stateDetailList : stateDetailList,
             token : token
@@ -958,6 +990,8 @@ function save() {
         }
     });
 }
+
+
 function onGuestValueChanged(e)
 {
     //供应商中直接输入名称加载供应商信息
@@ -974,6 +1008,152 @@ function onGuestValueChanged(e)
     
     var data = rightGrid.getData();
     rightGrid.removeRows(data);
+}
+
+function checkRightData() {
+	var msg = '';
+	var amtArr =[];
+	var rows = rightGrid.findRows(function(row) {
+		if(row.billServiceId){
+			if (row.voidAmt) {
+				var rpAmt = parseFloat(row.rpAmt);
+				if (row.voidAmt < 0){
+					var newRow = {billServiceId: row.billServiceId};
+					amtArr.push(newRow);
+					return true;
+				}
+				if(row.voidAmt>rpAmt){
+					var newRow = {billServiceId: row.billServiceId};
+					amtArr.push(newRow);
+					return true;
+				}
+			} 
+			if (row.rpAmt) {
+				var billAmt = parseFloat(row.billAmt);
+	            var noStateAmt = parseFloat(row.noStateAmt);
+				if (row.rpAmt < 0){
+					var newRow = {billServiceId: row.billServiceId};
+					amtArr.push(newRow);
+					return true;
+				}
+				if(row.rpAmt>billAmt){
+					var newRow = {billServiceId: row.billServiceId};
+					amtArr.push(newRow);
+					return true;
+				}
+				if(row.rpAmt>noStateAmt){
+					var newRow = {billServiceId: row.billServiceId};
+					amtArr.push(newRow);
+					return true;
+				}
+			}
+			
+			
+		}
+
+	});
+
+	var p = {};
+	if(amtArr && amtArr.length>0){
+		p.billServiceId = amtArr[0].billServiceId;
+	}
+	
+	return p;
+}
+
+function onDrawSummaryCell(e)
+{
+    var rows = e.data;//rightGrid.getData();
+    if (e.field == "voidAmt") { 
+        var voidAmt = 0;
+        for (var i = 0; i < rows.length; i++) {
+        	voidAmt += parseFloat(rows[i].voidAmt*rows[i].rpDc);
+        }
+        var value =Math.abs(voidAmt)
+        e.value=value;
+        e.cellHtml =value;
+    }
+    
+    if (e.field == "rpAmt") { 
+        var rpAmt = 0;
+        for (var i = 0; i < rows.length; i++) {
+        	rpAmt += parseFloat(rows[i].rpAmt*rows[i].rpDc);
+        }
+        var value =Math.abs(rpAmt)
+        e.value=value;
+        e.cellHtml =value;
+    }
+}
+function onCellCommitEdit(e){
+	var editor = e.editor;
+    var record = e.record;
+    var row = e.row;
+    
+    editor.validate();
+    if (editor.isValid() == false) {
+    	showMsg("请输入数字！","W");
+        e.cancel = true;
+    }else {
+        var newRow = {};
+        if (e.field == "voidAmt") {
+            var value = parseFloat(e.value);
+            var rpAmt = parseFloat(record.rpAmt);
+            
+            if(e.value==null || e.value=='') {
+                e.value = 0;
+            }else if(e.value < 0) {
+                e.value = 0;
+                showMsg("请输入正整数","W");
+                return;
+            }else if(value>rpAmt){
+        		showMsg("优惠金额不能大于对账金额","W");
+        		return;
+        	}
+            var data =rightGrid.getData();
+        	var voidAmt =0;
+        	for(var i=0;i<data.length;i++){
+        		var rpDc =data[i].rpDc;
+        		if(data[i]==row){
+        			voidAmt +=parseFloat(value*rpDc);
+        		}else{
+        			voidAmt+=parseFloat(data[i].voidAmt*rpDc);
+        		}
+        	}
+        	
+        	nui.get("voidAmt").setValue(Math.abs(voidAmt));
+                     
+            //record.enteramt.cellHtml = enterqty * enterprice;
+        }else if (e.field == "rpAmt") {
+        	var value = parseFloat(e.value);
+            var billAmt = parseFloat(record.billAmt);
+            var noStateAmt =parseFloat(record.noStateAmt);
+            if(value>billAmt){
+         		showMsg("对账金额不能大于单据金额","W");
+         		return;
+         	}
+            if(value>noStateAmt){
+            	showMsg("对账金额不能大于未单据金额","W");
+         		return;
+            }
+            if(e.value==null || e.value=='') {
+                e.value = 0;
+            }else if(e.value < 0) {
+                e.value = 0;
+            }
+            
+            var rpAmt =0;
+        	var data =rightGrid.getData();
+        	for(var i=0;i<data.length;i++){
+        		if(data[i]==row){
+        			rpAmt +=parseFloat(value);
+        		}else{
+        			rpAmt +=parseFloat(data[i].rpAmt);
+        		}
+        		
+        	}
+        	nui.get("rpAmt").setValue(rpAmt);
+        }
+    }
 }
 
 
@@ -1084,7 +1264,10 @@ function addDetail(rows)
             billServiceId:row.serviceId,
             typeCode:row.orderTypeId,
             rpDc:row.dc,
-            billAmt:row.billAmt,
+            billAmt:row.billAmt||0,
+            voidAmt:0,
+            rpAmt : row.noStateAmt||0,
+            noStateAmt :row.noStateAmt||0,
             billTypeId:row.billTypeId,
             settleTypeId:row.settleTypeId,
             orderMan:row.orderMan,
@@ -1096,6 +1279,12 @@ function addDetail(rows)
 
 
         rightGrid.addRow(newRow);
+        var voidAmt =parseFloat(nui.get('voidAmt').getValue())||0;
+        var rpAmt =parseFloat(nui.get("rpAmt").getValue())||0;
+        voidAmt +=parseFloat(newRow.voidAmt);
+        rpAmt +=parseFloat(newRow.rpAmt);
+        nui.get('voidAmt').setValue(voidAmt);
+        nui.get('rpAmt').setValue(rpAmt);
     }
 
 }
@@ -1124,7 +1313,18 @@ function deleteBill(){
     }
 
     var rows = rightGrid.getSelecteds();
+    
     rightGrid.removeRows(rows);
+    var data =rightGrid.getData();
+    var voidAmt =0;
+    var rpAmt =0;
+    for(var i=0;i<data.length;i++){
+    	voidAmt+=parseFloat(data[i].voidAmt);
+    	rpAmt += parseFloat(data[i].rpAmt);
+    }
+    nui.get('voidAmt').setValue(voidAmt);
+    nui.get('rpAmt').setValue(rpAmt);
+   
 }
 function onDrawCell(e)
 {
@@ -1391,11 +1591,14 @@ var backAuditUrl =baseUrl+"com.hsapi.cloud.part.settle.svr.backAuditStatement.bi
 function backAudit(){
 
 	var data = getMainData();
-
+	if(data.auditSign!=1){
+		showMsg("订单未审，不能反审核","W");
+		return;
+	}
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
-        html: '审核中...'
+        html: '反审核中...'
     });
 
     nui.ajax({

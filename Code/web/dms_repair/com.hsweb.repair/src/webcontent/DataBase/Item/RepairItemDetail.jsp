@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增和编辑</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemDetail.js?v=1.1.22"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemDetail.js?v=1.0.1"></script>
 <style type="text/css">
 /* table {
 	table-layout: fixed;
@@ -122,43 +122,23 @@
 									<label>品牌：</label>
 								</td>
 								<td>
-									<input class="nui-combobox" name="carBrandId" id="carBrandId"
-											valueField="id"
-											textField="nameCn"
-											onValuechanged="initCarSeries('carSeriesId', e.value)"
-											width="100%" popupHeight="100%"
-											allowInput="true"
-											valueFromSelect="true"
-											/>
+									<input class="nui-textbox" width="100%" name="carBrandId" id="carBrandId" readonly="readonly"/>
 								</td>
 								
 							  <td class="form_label">
 									<label>车系：</label>
 								</td>
 								<td>
-									<input class="nui-combobox" name="carSeriesId" id="carSeriesId"
-											valueField="carSeriesId"
-											textField="carSeriesName"
-											onValuechanged="initCarModel('carModelId', '', e.value)"
-											width="100%" popupHeight="100%"
-											allowInput="true"
-											valueFromSelect="true"
-											/>
+									<input class="nui-textbox" width="100%" name="carSeriesId" id="carSeriesId" readonly="readonly"/>
 								</td>
 								
 							</tr>
 							<tr>
 							   <td class="form_label">
-									<label>品牌车型：</label>
+									<label>车型信息：</label>
 								</td>
 								<td colspan="3">
-									<input class="nui-combobox" name="carModelId" id="carModelId"
-											valueField="carModelId"
-											textField="carModel"
-											width="100%" popupHeight="100%"
-											allowInput="true"
-											valueFromSelect="true"
-											/>
+								 <input class="mini-buttonedit" allowInput="false" onbuttonclick="getCarModel" width="100%" name="carModelId" id="carModelId"  />
 								</td>
 							</tr>
 							<tr>

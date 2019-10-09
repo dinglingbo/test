@@ -883,6 +883,14 @@
       <process:to type="query">main/orderAmt</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">main/haveStateAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">sumAmt</process:from>
+      <process:to type="query">main/noStateAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">erpMainId</process:from>
       <process:to type="query">params/mainId</process:to>
     </process:copy>
@@ -897,6 +905,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">sumShowAmt</process:from>
       <process:to type="query">auditMain/orderAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">auditMain/haveStateAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">sumShowAmt</process:from>
+      <process:to type="query">auditMain/noStateAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">

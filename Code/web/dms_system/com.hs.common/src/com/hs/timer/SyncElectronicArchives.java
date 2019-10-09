@@ -25,6 +25,7 @@ import com.eos.system.annotation.Bizlet;
 import com.google.gson.Gson;
 import com.hs.common.HttpUtils;
 import com.hs.common.Menu;
+import com.hs.utils.APIUtils;
 
 import commonj.sdo.DataObject;
 
@@ -223,7 +224,7 @@ public class SyncElectronicArchives {
 	    		Gson gson = new Gson();
 	            Map<String, String> map = new HashMap<String, String>();
 	            map = gson.fromJson(result, map.getClass());
-	            System.out.println(id);
+	            //System.out.println(id);
 	    		
 	        }
 		}
@@ -311,7 +312,25 @@ public class SyncElectronicArchives {
 				    cal.add(Calendar.DATE, -1);
 				    String startDate = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());
 				    if(ePushUrl != null && !"".equals(ePushUrl)){
+				    	Date tstart = new Date();
 				    	pushRepairData(orgid, compName, startDate, endDate, accessToken,ePushUrl);
+				    	Date tend = new Date();
+				    	
+				    	List<Object> params = new ArrayList<Object>();
+	            		
+	        			params.add("电子档案");
+	        			params.add("com.hs.timer.SyncElectronicArchives");
+	        			params.add("orgid="+orgid);
+	        			params.add("1");
+	        			params.add("1");
+	        			params.add(tstart);
+	        			params.add(tend);
+				    	
+				    	try {
+							Object[] resultRes = APIUtils.callLogicFlowMethd("com.hsapi.system.employee.slog", "saveTimerExecuteLog", params.toArray(new Object[params.size()]));
+						} catch (Throwable e) {
+							e.printStackTrace();
+						}
 				    }
 					
 				}

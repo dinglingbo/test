@@ -311,6 +311,14 @@
       <process:to type="query">applyMain/orderAmt</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">outMain/outAmt</process:from>
+      <process:to type="query">applyMain/noStateAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">applyMain/haveStateAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">2</process:from>
       <process:to type="query">applyMain/settleStatus</process:to>
     </process:copy>

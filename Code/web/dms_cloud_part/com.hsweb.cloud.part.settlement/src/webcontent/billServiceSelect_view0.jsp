@@ -9,7 +9,7 @@
 -->
 <head>
 <title>业务单选择</title>
-<script src="<%=webPath + contextPath%>/settlement/js/billServiceSelect.js?v=1.0.33"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/billServiceSelect.js?v=1.0.40"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -96,6 +96,7 @@
               <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
               <div field="orderTypeId" width="60" headerAlign="center" header="业务类型"></div>
               <div field="billAmt" width="60" headerAlign="center" summaryType="sum" header="金额"></div>
+              <div field="noStateAmt" width="80" headerAlign="center" summaryType="sum" header="未对账金额"></div>
               <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
               <div field="remark" width="120" headerAlign="center" header="备注"></div>
               <div allowSort="true" summaryType="count" field="serviceId" width="150" summaryType="count" headerAlign="center" header="业务单号"></div>

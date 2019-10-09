@@ -208,7 +208,8 @@ function doNotStatement(params){
     params.settleTypeId = "020502";
     params.enterTypeIdList="'050101','050102','050201','050202'";
     params.accountSign = 0;
-    params.isState = 0;
+//    params.isState=0;
+    params.stateSign=0;
     notStatementGrid.load({
         params:params,
         token: token

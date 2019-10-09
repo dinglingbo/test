@@ -14,55 +14,8 @@ var requiredField = {
 	//code: "项目编码"
 	//carModelId: "车型"
 };
+var carBrandIdList = [];//品牌
 $(document).ready(function(){
-	
-	serviceTypeIdEl = nui.get("serviceTypeId");
-	if(currIsMaster=="1"){
-		$("#isShareTd").show();
-		$("#isShare").show();
-	}else{
-		$("#isShareTd").hide();
-		$("#isShare").hide();
-	}
-/*	if(currIsMaster!="1"){
-		document.getElementById("isShareTd").innerHTML= "是否禁用："; 
-		document.getElementById("isDisabledTd").style.display= "none"; 
-		nui.get("isShare").setVisible(false);
-	}*/
-	nui.get("type").focus();
-	document.onkeyup=function(event){
-        var e=event||window.event;
-        var keyCode=e.keyCode||e.which;//38向上 40向下
-
-        if((keyCode==27))  {  //ESC
-            onCancel();
-        }
-      };
-      
-      initServiceType("serviceTypeId",function(data) {
-          servieTypeList = nui.get("serviceTypeId").getData();
-          servieTypeList.forEach(function(v) {
-              servieTypeHash[v.id] = v;
-          });
-      });
-   
-});
-function onInputFocus(e)
-{
-	var el = e.sender;
-	el.setInputStyle("text-align:left;");
-}
-function onInputBlur(e)
-{
-	var el = e.sender;
-	el.setInputStyle("text-align:right;");
-}
-var carBrandIdEl;
-var carSeriesId;
-var carModelIdEl;
-var carModelIdHash = {};
-function init(callback)
-{
 	basicInfoForm = new nui.Form("#basicInfoForm");
 	deductForm = new nui.Form("#deductForm");
 	carBrandIdEl = nui.get("carBrandId");
@@ -89,11 +42,53 @@ function init(callback)
 			});
 		}
 	});
+	
+	serviceTypeIdEl = nui.get("serviceTypeId");
+	if(currIsMaster=="1"){
+		$("#isShareTd").show();
+		$("#isShare").show();
+	}else{
+		$("#isShareTd").hide();
+		$("#isShare").hide();
+	}
+
+	nui.get("type").focus();
+	document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;//38向上 40向下
+
+        if((keyCode==27))  {  //ESC
+            onCancel();
+        }
+      };
+      
+      initServiceType("serviceTypeId",function(data) {
+          servieTypeList = nui.get("serviceTypeId").getData();
+          servieTypeList.forEach(function(v) {
+              servieTypeHash[v.id] = v;
+          });
+      });
+
+});
+function onInputFocus(e)
+{
+	var el = e.sender;
+	el.setInputStyle("text-align:left;");
 }
+function onInputBlur(e)
+{
+	var el = e.sender;
+	el.setInputStyle("text-align:right;");
+}
+var carBrandIdEl;
+var carSeriesId;
+var carModelIdEl;
+var carModelIdHash = {};
+
 var typeList = [{id:"1",text:"按原价比例"},{id:"2",text:"按折后价比例"},{id:"3",text:"按产值比例"},{id:"4",text:"固定金额"}];
 function setData(data)
 {
-	init();
+	
 	data = data||{};
 	if(data.typeList)
 	{//项目类型
@@ -109,8 +104,8 @@ function setData(data)
 	}
 	if(data.carBrandIdList)
 	{//品牌
-		var carBrandIdList = data.carBrandIdList;
-		carBrandIdEl.setData(carBrandIdList);
+		carBrandIdList = data.carBrandIdList;
+		//carBrandIdEl.setData(carBrandIdList);
 	}
 	if(data.item)
 	{
@@ -118,8 +113,7 @@ function setData(data)
 		basicInfoForm.setData(item);
 		deductForm.setData(item);
 		carBrandIdEl.doValueChanged();
-		carSeriesId.doValueChanged();
-		
+		carSeriesId.doValueChanged();		
 		var salesDeductType = item.salesDeductType||0;
 		var techDeductType = item.techDeductType||0;
 		var advisorDeductType = item.advisorDeductType||0;
@@ -140,8 +134,68 @@ function setData(data)
 		}else {
 			$("#advisorDeductValue").next().show();
 		}
+		if(item.carBrandId){
+			//查找车型
+			var modelName = "";
+			for(var i = 0;i<carBrandIdList.length;i++){
+				if(carBrandIdList[i].id ==item.carBrandId){
+					nui.get("carBrandId").setValue(carBrandIdList[i].id);
+					nui.get("carBrandId").setText(carBrandIdList[i].name);
+					break;
+				}
+			}
+		}
+		if(item.carSeriesId){
+			var json={
+					carBrandId : item.carBrandId,
+					token:token
+			};
+			nui.ajax({
+				url : webPath + sysDomain +"/systemApi/com.hsapi.system.dict.dictMgr.queryCarSeries.biz.ext",
+				type : 'POST',
+				data : json,
+				cache : false,
+				contentType : 'text/json',
+				success : function(text) {
+					if(text.errCode=="S"){
+						for(var i = 0;i<text.data.length;i++){
+							if(text.data[i].carSeriesId ==item.carSeriesId){
+								nui.get("carSeriesId").setValue(text.data[i].id);
+								nui.get("carSeriesId").setText(text.data[i].carSeriesName);
+								break;
+							}
+						}
+
+					}
+				}
+			});
+		}
+		if(item.carModelId){
+			var json={
+				carSeriesId : item.carSeriesId,
+				token:token
+			};			
+			nui.ajax({
+				url : webPath + sysDomain +"/systemApi/com.hsapi.system.dict.dictMgr.queryCarModel.biz.ext",
+				type : 'POST',
+				data : json,
+				cache : false,
+				contentType : 'text/json',
+				success : function(text) {
+					if(text.errCode=="S"){
+						for(var i = 0;i<text.data.length;i++){
+							if(text.data[i].carModelId ==item.carModelId){
+								nui.get("carModelId").setValue(text.data[i].carModelId);
+								nui.get("carModelId").setText(text.data[i].carModel);
+								break;
+							}
+						}
+
+					}
+				}
+			});
+		}
 	}
-	
 }
 var saveUrl = baseUrl+"com.hsapi.repair.baseData.item.saveRpbItem.biz.ext";
 function onOk(){
@@ -470,6 +524,41 @@ function judge(data,callback){
 		success : function(text) {
 			var returnJson = nui.decode(text);
 			callback && callback(returnJson.errCode);
+		}
+	});
+}
+function getCarModel() {
+	nui.open({
+		//// targetWindow: window,,
+		url : webPath + contextPath + "/com.hsweb.repair.common.carModelSelectT.flow?token="+token,
+		title : "选择车型",
+		width : 855,
+		height : 600,
+		allowDrag : true,
+		allowResize : false,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+            var type = "item";//项目设置传过来，可不全部选择
+            iframe.contentWindow.setData(type);
+		},
+		ondestroy : function(action) {
+			if (action == "ok") {
+				var iframe = this.getIFrameEl();
+				var data = iframe.contentWindow.getData(true);
+				if (data && data.carModel) {
+					var carModel = data.carModel;
+					nui.get("carBrandId").setValue(data.carModel.carBrandId||"");
+					nui.get("carBrandId").setText(data.carModel.carBrandName||"");
+					
+					nui.get("carSeriesId").setValue(data.carModel.carSeriesId||"");
+					nui.get("carSeriesId").setText(data.carModel.carSeriesName||"");
+					
+					nui.get("carModelId").setValue(data.carModel.id||"");
+					nui.get("carModelId").setText(data.carModel.carModel||"");
+					
+
+				}
+			}
 		}
 	});
 }

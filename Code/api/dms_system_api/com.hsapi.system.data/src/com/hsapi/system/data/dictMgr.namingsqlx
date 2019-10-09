@@ -135,7 +135,7 @@
     </select>
     <!--车辆品牌-->
     <select id="getCarBrand" parameterClass="HashMap" resultClass="HashMap">
-    	SELECT DISTINCT id, car_brand_zh nameCn, car_brand_zh name, first_code as firstCode  
+    	SELECT DISTINCT id, car_brand_zh nameCn, car_brand_zh name, first_code as firstCode, image_url as imageUrl
     	FROM com_car_brand 
 		WHERE  is_disabled=0
     </select>
@@ -231,6 +231,9 @@
 		where parent_id > 0 and is_disabled = 0 
 		<isNotNull property="firstCodeCh">
 			AND a.first_code_ch = #firstCodeCh#
+		</isNotNull>
+		<isNotNull property="parentId">
+			AND a.parent_id = #parentId#
 		</isNotNull>
 		<isNotNull property="name">
 			AND a.name like '%$name$%'

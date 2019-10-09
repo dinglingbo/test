@@ -33,9 +33,11 @@ public class APIUtils {
 				.create(componentName);
 		Object[] ps = new Object[len];
 		int idx = 0;
-		for (Object o : params) {
-			ps[idx] = o;
-			idx++;
+		if(params != null) {
+			for (Object o : params) {
+				ps[idx] = o;
+				idx++;
+			}
 		}
 		return logicComponent.invoke(operationName, ps);
 	}

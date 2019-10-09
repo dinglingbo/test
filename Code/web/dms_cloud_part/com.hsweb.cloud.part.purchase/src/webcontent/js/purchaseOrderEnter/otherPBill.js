@@ -23,10 +23,10 @@ var auditSignList = [
     {id:0,text:"未审"},
     {id:1,text:"已审"}
 ];
-var guestId =0;
+//var guestId =0;
 var code ="";
 var codeId =0;
-var guestName ="";
+//var guestName ="";
 $(document).ready(function(v)
 {
 
@@ -307,16 +307,56 @@ function selectSupplier(elId)
     });
 }
 
+function onCancel(){
+	 CloseWindow("cancel");
+}
+function CloseWindow(action)
+{
+    if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
+    else window.close();
+}
 function addNewRow(){
-	var newRow={
-		guestId :guestId,
-		code : code,
-		codeId :codeId,
-		guestName :guestName,
-		billDc: -1,
-		rpTypeId: 2
-	};
-	mainGrid.addRow(newRow);
+	
+	supplier = null;
+    nui.open({
+        // targetWindow: window,,
+        url : webPath+contextPath+"/com.hsweb.cloud.part.common.guestSelect.flow?token="+token,
+        title : "选择往来单位",
+        width : 880,
+        height : 560,
+        allowDrag : true,
+        allowResize : true,
+        onload : function() {
+            var iframe = this.getIFrameEl();
+            var params = {
+//                isSupplier: 1,
+//                guestType:'01020202'
+            };
+            iframe.contentWindow.setGuestData(params);
+        },
+        ondestroy : function(action) {
+            if (action == 'ok') {
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+
+                supplier = data.supplier;
+                var guestId = supplier.id;
+                var guestName = supplier.fullName;
+                var newRow={
+            			guestId :guestId,
+            			code : code,
+            			codeId :codeId,
+            			guestName :guestName,
+            			billDc: -1,
+            			rpTypeId: 2
+            		};
+        		mainGrid.addRow(newRow);
+            }
+
+        }
+    });
+
+	
 }
 
 function deleteRow(){
@@ -324,9 +364,9 @@ function deleteRow(){
 }
 
 function setData(params){
-	guestId =params.guestId;
+//	guestId =params.guestId;
 	code =params.code;
 	codeId =params.codeId;
-	guestName = params.guestName;
+//	guestName = params.guestName;
 	doSearch();
 }

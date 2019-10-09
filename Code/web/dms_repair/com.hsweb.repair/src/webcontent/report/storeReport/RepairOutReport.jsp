@@ -10,7 +10,7 @@
 -->
 <head>
     <title>维修出库明细</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.0.0"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.0.7"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -79,77 +79,13 @@
         allowInput="true"
         showNullItem="true"
         nullItemText="所有仓库" onvaluechanged="onSearch"/>
-    <input id="partBrandId"
-        name="partBrandId"
-        class="nui-combobox"
-        width="80px"
-        textField="name"
-        valueField="id"
-        valueFromSelect="true"
-        emptyText="品牌"
-        url=""
-        allowInput="true"
-        showNullItem="false"
-        nullItemText="品牌"
-        onvaluechanged="onSearch"/>
-    
-    <input class="nui-combobox" 
-      id="partTypeId" 
-      name="partTypeId"
-      textField="name"
-      valueField="id"
-      dataField="partTypes"
-      emptyText="配件分类"
-      url=""
-      allowInput="true"
-      valueFromSelect="false"
-      width="100px" onvaluechanged="onSearch">
-      <input name="serviceTypeId"
-       id="serviceTypeId"
-       class="nui-combobox"
-       textField="name"
-       valueField="id"
-       emptyText="业务类型"
-       url=""
-       allowInput="true"
-       showNullItem="false"
-       width="90px"
-       valueFromSelect="true"
-       nullItemText="请选择..."
-       onvaluechanged="onSearch"
-       />
-<!--        0综合，1检查，2洗美，3销售，4理赔，5退货，6波箱 -->
-       <input class="nui-combobox" 
-          id="billTypeId" 
-          name="billTypeId"
-          textField="name"
-          valueField="id"
-          dataField="billTypeIdList"
-          emptyText="工单类型"
-          url=""
-          allowInput="true"
-          valueFromSelect="false"
-          width="100px"
-          onvaluechanged="onSearch"
-          >
-       <input class="nui-combobox" 
-          id="workTeamId" 
-          name="workTeamId"
-          textField="name"
-          valueField="id"
-          dataField="workTeamIdList"
-          emptyText="工作组"
-          url=""
-          allowInput="true"
-          valueFromSelect="false"
-          width="100px"
-          onvaluechanged="onSearch"
-          >
+   
       <input class="nui-textbox" width="80px" id="carNo" name="carNo" selectOnFocus="true" enabled="true" emptyText="车牌号"/>
 
      <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+	<a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> 
     <input type="checkbox" id="ReturnSign" class="mini-checkbox"  onclick="changed()" >
 	<span >是否显示归库</span>
 	 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a> 
@@ -213,6 +149,7 @@
         </div>
         <div header="其他" headerAlign="center">
             <div property="columns">
+            	<div allowSort="true" field="mtAdvisor" width="80" headerAlign="center" header="服务顾问"></div>
                 <div allowSort="true" field="fullName" width="150" headerAlign="center" header="供应商"></div>
                 <div allowSort="true" field="enterDate" width="120" headerAlign="center" header="采购日期" dateFormat="yyyy-MM-dd HH:mm"></div>
             	<div allowSort="true"  field="recorder" width="80" name="recorder" headerAlign="center" header="创建人"  align="left"></div>
@@ -232,7 +169,106 @@
     </div>
 </div>
 </div>
-
+<div id="advancedSearchWin" class="nui-window" title="高级查询" style="width: 450px; height: 230px;" showModal="true" allowResize="false"
+	 allowDrag="false">
+		<div id="advancedSearchForm" class="form">
+			<table style="width: 100%;">	       							
+				 <tr>
+					<td class="title">
+						<label>品牌:</label>
+					</td>
+					<td colspan="">
+						<input id="partBrandId"
+					        name="partBrandId"
+					        class="nui-combobox"
+					        width="100%"
+					        textField="name"
+					        valueField="id"
+					        valueFromSelect="true"
+					        allowInput="true"
+					        showNullItem="false"
+					        nullItemText="品牌" />
+					</td>
+					<td width="60px" align="center">
+						<label>配件分类:</label>
+					</td>
+					<td colspan="">
+					   <input class="nui-combobox" 
+					      id="partTypeId" 
+					      name="partTypeId"
+					      textField="name"
+					      valueField="id"
+					      dataField="partTypes"
+					      allowInput="true"
+					      valueFromSelect="false"
+					      width="100%"  />
+					</td>
+				</tr> 
+				<tr>
+					<td class="title">
+						<label>业务类型:</label>
+					</td>
+					<td colspan="">
+						<input name="serviceTypeId"
+					       id="serviceTypeId"
+					       class="nui-combobox"
+					       textField="name"
+					       valueField="id"
+					       allowInput="true"
+					       showNullItem="false"
+					       width="100%"
+					       valueFromSelect="true"
+					       nullItemText="请选择..." />
+					</td>
+					<td class="title">
+						<label>工作组:</label>
+					</td>
+					<td colspan="">
+					   <input class="nui-combobox" 
+				          id="workTeamId" 
+				          name="workTeamId"
+				          textField="name"
+				          valueField="id"
+				          dataField="workTeamIdList"
+				          allowInput="true"
+				          valueFromSelect="false"
+				          width="100%" />
+					</td>
+					
+				</tr>				
+				<tr>
+					<td align="center">
+						<label>单据类型:</label>
+					</td>
+					<td colspan="">
+					   <input class="nui-combobox" 
+				          id="billTypeId" 
+				          name="billTypeId"
+				          textField="name"
+				          valueField="id"
+				          dataField="billTypeIdList"
+				          allowInput="true"
+				          valueFromSelect="false"
+				          width="100%" />
+					</td>
+					<td class="title">
+						<label>业务单号:</label>
+					</td>
+					<td colspan="">
+					   <input class="nui-textbox" 
+				          id="serviceCode" 
+				          name="serviceCode"
+				          width="100%" />
+					</td>
+				</tr>
+			</table>
+			<div style="text-align: center; padding: 10px;padding-top : 50px;">
+				<a class="nui-button" onclick="onAdvancedSearchOk" style="width: 60px; margin-right: 20px;">确定</a>
+				<a class="nui-button" onclick="onAdvancedSearchCancel" style="width: 60px;margin-right: 20px;">取消</a>
+				<a class="nui-button" onclick="cancelData" style="width: 60px;">清除</a>
+			</div>
+		</div>
+	</div>
 <div id="exportDiv" style="display:none">  
 
 </div>  

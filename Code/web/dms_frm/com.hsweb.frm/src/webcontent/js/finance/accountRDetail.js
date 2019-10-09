@@ -215,6 +215,7 @@ function onSearch(){
 	doSearch(params);
 }
 function doSearch(params) {
+	datagrid2.setData([]);
 	mainGrid.load({
 		params:params,
 		token : token

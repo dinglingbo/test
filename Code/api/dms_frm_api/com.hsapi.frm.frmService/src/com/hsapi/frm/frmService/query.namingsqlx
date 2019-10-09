@@ -309,7 +309,9 @@
 			   <isNotEmpty prepend="and" property="id">  
                     (a.id = #id#)
                 </isNotEmpty>
-			
+				<isNotEmpty prepend="and" property="rpBillId">  
+                    (a.id in ($rpBillId$))
+                </isNotEmpty>
 			    <isNotEmpty prepend="and" property="mobile"> 
                     (b.mobile like '%$mobile$%')
                 </isNotEmpty>

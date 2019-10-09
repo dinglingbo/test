@@ -45,6 +45,10 @@ $(document).ready(function(v)
 
     workTeamIdEl=nui.get('workTeamId');
     billTypeIdEl=nui.get('billTypeId');
+    advancedSearchWin = nui.get("advancedSearchWin");
+    advancedSearchForm = new nui.Form("#advancedSearchWin");
+    advancedSearchForm.clear();
+    advancedSearchForm.gusetId=null;
     billTypeIdEl.setData(billTypeIdList);
 	document.onkeyup = function(event) {
 		var e = event || window.event;
@@ -246,50 +250,19 @@ function getSearchParams(){
     params.partCode=nui.get("partCode").getValue();
     params.partName=nui.get("partName").getValue();
     params.pjBillTypeId="050206";
-    params.partBrandId=nui.get("partBrandId").getValue();
-    params.partTypeId=nui.get("partTypeId").value;
+
+    //params.partTypeId=nui.get("partTypeId").value;
     params.storeId=nui.get("storeId").getValue();
     params.carNo = nui.get("carNo").getValue();
-    params.serviceTypeId=nui.get("serviceTypeId").value;
-    params.billTypeId =nui.get("billTypeId").value;
+    //params.serviceTypeId=nui.get("serviceTypeId").value;
+    //params.billTypeId =nui.get("billTypeId").value;
     var orgidsElValue = orgidsEl.getValue();
     if(orgidsElValue==null||orgidsElValue==""){
     	 params.orgids =  currOrgs;
     }else{
     	params.orgid=orgidsElValue;
     }
-    var workTeamId = workTeamIdEl.getValue();
-    if(workTeamId) {
-    	var pickMans = "''";
-    	var pd = {
-    		memberGroupId: workTeamId,
-    		token: token
-    	};
-    	nui.ajax({
-    		url : apiPath + sysApi + "/com.hsapi.system.dict.org.queryMember.biz.ext",
-    		type : "post",
-    		async: false,
-    		data : JSON.stringify(pd),
-    		success : function(data) {
-    			var memList = data.data||[];
-    			if(memList && memList.length>0) {
-    				
-    				for(var i=0; i<memList.length; i++) {
-    					if(i==0) {
-    						pickMans = "'" + memList[i].empName + "'";
-    					}else {
-    						pickMans = pickMans + ",'" + memList[i].empName + "'";
-    					}
-    				}
-    				
-    			}
-    		},
-    		error : function(jqXHR, textStatus, errorThrown) {
-    			console.log(jqXHR.responseText);
-    		}
-    	});
-    	params.pickMans = pickMans; 
-    }
+
 
    
     return params;
@@ -476,4 +449,65 @@ function onExport(){
 		setInitExportData( detail,rightGrid.columns,"配件出库明细表");
 	}
 	
+}
+
+function advancedSearch()
+{
+	
+    advancedSearchWin.show();
+    advancedSearchForm.clear();
+    if(advancedSearchFormData)
+    {
+        advancedSearchForm.setData(advancedSearchFormData);
+    }
+}
+function onAdvancedSearchOk()
+{
+    var searchData = advancedSearchForm.getData(true);
+    searchData.pjBillTypeId="050206";
+    advancedSearchFormData = {};
+    var workTeamId = workTeamIdEl.getValue();
+    if(workTeamId) {
+    	var pickMans = "''";
+    	var pd = {
+    		memberGroupId: workTeamId,
+    		token: token
+    	};
+    	nui.ajax({
+    		url : apiPath + sysApi + "/com.hsapi.system.dict.org.queryMember.biz.ext",
+    		type : "post",
+    		async: false,
+    		data : JSON.stringify(pd),
+    		success : function(data) {
+    			var memList = data.data||[];
+    			if(memList && memList.length>0) {
+    				
+    				for(var i=0; i<memList.length; i++) {
+    					if(i==0) {
+    						pickMans = "'" + memList[i].empName + "'";
+    					}else {
+    						pickMans = pickMans + ",'" + memList[i].empName + "'";
+    					}
+    				}
+    				
+    			}
+    		},
+    		error : function(jqXHR, textStatus, errorThrown) {
+    			console.log(jqXHR.responseText);
+    		}
+    	});
+    	searchData.pickMans = pickMans; 
+    }
+
+    advancedSearchWin.hide();
+    doSearch(searchData);
+    advancedSearchForm.gusetId=null;
+  
+}
+function onAdvancedSearchCancel(){
+    advancedSearchForm.clear();
+    advancedSearchWin.hide();
+}
+function cancelData(){
+	advancedSearchForm.setData([]);
 }

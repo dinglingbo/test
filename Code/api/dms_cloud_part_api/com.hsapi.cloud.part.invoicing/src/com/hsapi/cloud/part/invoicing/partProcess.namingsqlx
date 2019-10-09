@@ -477,7 +477,7 @@
         </dynamic>  	
     </select>
     
-     <select id="queryProcessDetailAndEnterPart" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PjProcessDetail">
+     <select id="queryProcessDetailAndEnterPart" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.pts.PjProcessDetail">
     	SELECT
 			distinct a.main_id as mainId,
 			a.id as id,

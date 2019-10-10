@@ -18,15 +18,20 @@ var outTypeIdHash = {};
 var orgidsEl = null;
 var sEnterDateEl=null;
 var eEnterDateEl = null;
+
+var sDateEl=null;
+var eDateEl =null;
 $(document).ready(function(v)
 {
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
-    sOutDateEl =nui.get('sOutDate');
+/*    sOutDateEl =nui.get('sOutDate');
     eOutDateEl = nui.get('eOutDate');
     sEnterDateEl = nui.get('sEnterDate');
-    eEnterDateEl = nui.get('eEnterDate');
+    eEnterDateEl = nui.get('eEnterDate');*/
     
+    sDateEl =nui.get('sDate');
+    eDateEl = nui.get('eDate');
     orgidsEl = nui.get("orgids");
     orgidsEl.setData(currOrgList);
     if(currOrgList.length==1){
@@ -92,11 +97,12 @@ function getSearchParams(){
     params.partName=nui.get("partName").getValue();
     params.serviceCode =nui.get('serviceCode').getValue();
     params.carNo =nui.get('carNo').getValue();
-    params.sEnterDate =nui.get('sEnterDate').getFormValue();
-    params.eEnterDate=addDate(eEnterDateEl.getFormValue(),1);
-    params.sOutDate=nui.get("sOutDate").getFormValue();
-    if(eOutDateEl.getFormValue()){    	
-    	params.eOutDate=addDate(eOutDateEl.getFormValue(),1);
+    if((nui.get("sdDate").getValue())==0){
+    	params.sEnterDate=nui.get("sDate").getFormValue();	
+        params.eEnterDate=addDate(eDateEl.getValue(),1);
+    }else{
+    	params.sOutDate=nui.get("sDate").getFormValue();
+    	params.eOutDate=addDate(eDateEl.getValue(),1);	
     }
     params.billTypeId=3;
     var orgidsElValue = orgidsEl.getValue();
@@ -167,8 +173,9 @@ function quickSearch(type){
             break;
     }
     currType = type;
-    sEnterDateEl.setValue(params.sEnterDate);
-    eEnterDateEl.setValue(addDate(params.eEnterDate,-1));
+    
+    sDateEl.setValue(params.sPickDate);
+    eDateEl.setValue(addDate(params.ePickDate,-1));
     var menunamedate = nui.get("menunamedate");
     menunamedate.setText(queryname);
     doSearch(params);

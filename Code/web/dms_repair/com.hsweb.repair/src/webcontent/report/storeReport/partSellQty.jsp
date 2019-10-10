@@ -8,8 +8,8 @@
   - Description:
 -->
 <head>
-    <title>配件销售明细表查询</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/partSellQty.js?v=1.0.0"></script>
+    <title>配件零售销售明细表</title>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/partSellQty.js?v=1.0.3"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -47,6 +47,11 @@
                    <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
                    <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                </ul>
+               <input class="nui-combobox" id="sdDate"  name="sdDate" data="[{isDisabled:0,text:'进厂日期'},{isDisabled:1,text:'结算日期'}]"
+                          width="110px"  onvaluechanged="onSearch" textField="text" valueField="isDisabled" value="0" /> 从:
+				     <input class="nui-datepicker"width="100px" id="sDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
+				 至:
+				    <input class="nui-datepicker" width="100px"id="eDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                <span class="separator"></span>
               
              	<input class="nui-textbox" width="100px" id="partCode" name="partCode" selectOnFocus="true" enabled="true" emptyText="配件编码"/>
@@ -57,11 +62,12 @@
                 
                 
 				<input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
-                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/> <br>
-                        进厂日期 从:<input class="nui-datepicker" id="sEnterDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
+                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/> 
+				    
+<!--                         进厂日期 从:<input class="nui-datepicker" id="sEnterDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
 				至:    <input class="nui-datepicker" id="eEnterDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
 				 结算日期 从:<input class="nui-datepicker" id="sOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
-				至:    <input class="nui-datepicker" id="eOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+				至:    <input class="nui-datepicker" id="eOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                  <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a> 
         </td>

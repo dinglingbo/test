@@ -49,7 +49,7 @@ function setInitData(data) {
 	
 	//预销售单
 	if(sourceType==5){
-		$('#guest').text("选择往来单位");
+		$('#guest').text("供应商：");
 	}
 	partList = data.partList;
 	type = data.type;// 采购订单 销售订单 采购车 销售车 EPC采购订单，EPC销售订单，EPC采购车，EPC销售车

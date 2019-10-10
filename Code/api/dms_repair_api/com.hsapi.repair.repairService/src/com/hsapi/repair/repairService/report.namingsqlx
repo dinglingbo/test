@@ -1894,10 +1894,116 @@
 			b.out_date as outDate,
 			b.enter_date as enterDate,
 			a.sale_man as saleMan
+
 		FROM
 			 wb_repair.rps_part a
 		INNER JOIN wb_repair.rps_maintain b ON a.service_id = b.id
-    	INNER JOIN wb_common.com_guest d on b.guest_id =d.id
+    	INNER JOIN wb_common.com_guest d on b.guest_id =d.id  
+		WHERE 1=1
+		
+		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">
+                (b.orgid = #orgid#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="orgids">
+                (b.orgid in ($orgids$))
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="carNo">  
+                (b.car_no like '%$carNo$%' )
+            </isNotEmpty>
+  			
+  			<isNotEmpty prepend="and" property="serviceCode">  
+                (b.service_code like '%$serviceCode$%' )
+            </isNotEmpty>
+            
+            <!--进厂日期 -->
+            <isNotEmpty prepend="and" property="sEnterDate">  
+                (b.enter_date &gt;= #sEnterDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eEnterDate">  
+                (b.enter_date &lt; #eEnterDate#)
+            </isNotEmpty>
+            <!--开单日期 -->
+            <isNotEmpty prepend="and" property="sRecordDate">  
+                (b.record_date &gt;= #sRecordDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eRecordDate">  
+                (b.record_date &lt; #eRecordDate#)
+            </isNotEmpty>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="sOutDate">  
+                (b.out_date &gt;= #sOutDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eOutDate">  
+                (b.out_date &lt; #eOutDate#)
+            </isNotEmpty>
+            <!--预计完工日期 -->
+            <isNotEmpty prepend="and" property="sPlanFinishDate">  
+                (b.plan_finish_date &gt;= #sPlanFinishDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="ePlanFinishDate">  
+                (b.plan_finish_date &lt; #ePlanFinishDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="billTypeId">  
+                (b.bill_type_id = #billTypeId#)
+            </isNotEmpty>         
+            <isNotEmpty prepend="and" property="serviceTypeId">  
+                (b.service_type_id = #serviceTypeId#)
+            </isNotEmpty>
+              <!--是否出库-->
+            <isNotEmpty prepend="and" property="isCheck">  
+                (b.is_check= #isCheck#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="partId">  
+                (a.PART_ID = #partId#)
+            </isNotEmpty>
+  
+            <isNotEmpty prepend="and" property="partName">  
+                (a.part_name like '%$partName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">  
+                (a.part_code like '%$partCode$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCodeList">  
+                (a.part_code in ($partCodeList$))
+            </isNotEmpty> 
+            
+        </dynamic>  
+	</select>
+	<!--配件维修明细-->
+	   <select id="queryPartR" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    
+		SELECT
+			b.orgid as orgid,
+			b.id as id,
+			d.full_name as guestName,
+			b.service_code AS serviceCode,
+			b.car_no AS carNo,
+			a.part_code AS partCode,
+			a.part_name AS partName,
+			a.qty as qty,
+            a.unit_price as unitPrice,
+			a.unit as unit,
+            a.amt as amt,
+            a.subtotal as subtotal,
+            a.pick_qty  as pickQty,
+			a.remark as remark,
+			a.out_return_qty as outReturnQty,
+			a.source_id as sourceId,
+			b.out_date as outDate,
+			b.enter_date as enterDate,
+			a.sale_man as saleMan,
+			(SELECT SUM(true_cost) FROM wb_part.pj_repair_out e WHERE e.main_id=a.id and e.return_sign=0 and e.bill_type_id ='050206' ) AS trueCost,
+			a.subtotal-(SELECT SUM(true_cost) FROM wb_part.pj_repair_out e WHERE e.main_id=a.id and e.return_sign=0 and e.bill_type_id ='050206') AS gross,
+			f.workers as workers
+		FROM
+			 wb_repair.rps_part a
+		INNER JOIN wb_repair.rps_maintain b ON a.service_id = b.id
+    	INNER JOIN wb_common.com_guest d on b.guest_id =d.id  
+		INNER JOIN wb_repair.rps_item f on f.id =a.bill_item_id
 		WHERE 1=1
 		
 		<dynamic>
@@ -1948,6 +2054,9 @@
             <isNotEmpty prepend="and" property="billTypeId">  
                 (b.bill_type_id = #billTypeId#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="noBillTypeId">  
+                (b.bill_type_id != #noBillTypeId#)
+            </isNotEmpty>            
             <isNotEmpty prepend="and" property="serviceTypeId">  
                 (b.service_type_id = #serviceTypeId#)
             </isNotEmpty>
@@ -2083,6 +2192,7 @@
 			a.return_date as returnDate,
 			a.return_sign as returnSign,
 			b.is_settle   isSsettle,
+			b.mt_advisor mtAdvisor,
 			a.out_qty outQty,
 			b.service_type_id serviceTypeId,
 			d.enter_date as enterDate,
@@ -2214,6 +2324,9 @@
   
             <isNotEmpty prepend="and" property="partName">  
                 (a.part_name like '%$partName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceCode">  
+                (b.service_Code like '%$serviceCode$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">  
                 (c.FULL_NAME like '%$partNameAndPY$%' or d.name_py like '%$partNameAndPY$%')

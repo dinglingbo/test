@@ -221,7 +221,7 @@ function checkConditions(){
     var applyCarModel = (data.applyCarModel||"").replace(/\s+/g, "");
     var namePy = (data.namePy||"").replace(/\s+/g, "");
     var partBrandId = (data.partBrandId||"").replace(/\s+/g, "");
-    var partCodeList = (data.partCodeList||"").replace(/\s+/g, "");
+    var partCodeList = (data.partCodeList||"");
     if(!partCode && !partName && !applyCarModel && !namePy && !partBrandId && !partCodeList){
         return false;
     }
@@ -235,7 +235,7 @@ function getSearchParams()
     params.applyCarModel = nui.get("search-applyCarModel").getValue().replace(/\s+/g, "");
     params.namePy = nui.get("search-namePy").getValue().replace(/\s+/g, "");
     params.partBrandId = nui.get("partBrandId").getValue().replace(/\s+/g, "");
-    params.partCodeList = nui.get("partCodeList").getValue().replace(/\s+/g, "");
+    params.partCodeList = nui.get("partCodeList").getValue();
     params.isDisabled = 0;
     //是否开启APP
     if(currIsOpenApp ==1){   	
@@ -243,7 +243,7 @@ function getSearchParams()
     }else{
     	params.orgid = currOrgid;
     }
-    var partCodeList = nui.get("partCodeList").getValue().replace(/\s+/g, "");
+    var partCodeList = nui.get("partCodeList").getValue();
     // 订单单号
     if (partCodeList) {
         var tmpList = partCodeList.split("\n");

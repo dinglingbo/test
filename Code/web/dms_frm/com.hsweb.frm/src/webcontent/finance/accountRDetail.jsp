@@ -13,7 +13,7 @@ pageEncoding="UTF-8" session="false" %>
 		<title>收款明细</title>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<%@include file="/common/sysCommon.jsp"%>
-			<script src="<%=webPath + contextPath%>/frm/js/finance/accountRDetail.js?v=1.0.1"></script>
+			<script src="<%=webPath + contextPath%>/frm/js/finance/accountRDetail.js?v=1.0.2"></script>
 			<link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
 			<script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 			<style type="text/css">
@@ -59,11 +59,10 @@ pageEncoding="UTF-8" session="false" %>
 			<input id="advanceGuestId" name="guestId" class="nui-buttonedit" emptyText="请选择客户..." onvalueChanged="onSearch()" onbuttonclick="selectSupplier('advanceGuestId')"
 			 allowInput="false" width="150px" selectOnFocus="true" />
 
-			<input id="isMain" width="100px" data="pList" textField="text" valueField="id" emptyText="是否主营业务" onvalueChanged="onSearch()"
-			 class="nui-combobox" allowinput="true" valueFromSelect="true" visible="false" />
-			<input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" visible="false" allowInput="false"
-			/>
-			<input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" visible="false" onenter="onSearch(this.value)" />
+			<input id="isMain" width="100px" data="pList" textField="text" valueField="id" emptyText="是否主营业务" onvalueChanged="onSearch()" visible="false"
+			 class="nui-combobox" allowinput="true" valueFromSelect="true" />
+			<input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList"  allowInput="false"/>
+			<input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120"  onenter="onSearch(this.value)" />
 			<input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid" emptyText="公司选择" url=""
 			 allowInput="true" showNullItem="false" width="130" valueFromSelect="true" />
 			<a class="nui-button" iconCls="" plain="true" onclick="onSearch()">

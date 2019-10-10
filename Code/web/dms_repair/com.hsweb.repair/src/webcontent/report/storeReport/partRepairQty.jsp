@@ -8,8 +8,8 @@
   - Description:
 -->
 <head>
-    <title>配件维修销售明细表</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/partRepairQty.js?v=1.0.2"></script>
+    <title>配件销售明细表</title>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/partRepairQty.js?v=1.0.5"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -96,6 +96,7 @@
             	<div allowSort=false field="serviceCode" width="160" headerAlign="center" header="业务单号"></div>
             	<div allowSort="false" field="carNo" width="100" headerAlign="center" header="车牌号"></div>
             	<div allowSort="false" field="guestName" width="80" headerAlign="center" header="客户名称"></div>  
+            	<div allowSort="false" field="mtAdvisor" width="80" headerAlign="center" header="服务顾问"></div> 
             </div>
         </div>
         
@@ -104,6 +105,11 @@
                 <div allowSort="false" field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
                 <div allowSort="false" field="partName" name="partName" width="150" headerAlign="center" header="配件名称"></div>
                 <div allowSort="false" field="unit" width="50" headerAlign="center" header="单位"></div>
+                
+                <div allowSort="true" field="partBrandId" width="100" headerAlign="center" header="品牌"></div>
+                <div allowSort="true" field="carTypeIdF" width="100" headerAlign="center" header="配件分类一级"></div>
+                <div allowSort="true" field="carTypeIdS" width="100" headerAlign="center" header="配件分类二级"></div>
+                <div allowSort="true" field="carTypeIdT" width="100" headerAlign="center" header="配件分类三级"></div>
             </div>
         </div>
          <div header="销售信息" headerAlign="center">

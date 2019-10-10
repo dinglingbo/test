@@ -100,7 +100,7 @@ public class SyncElectronicArchives {
 		}
 		
 		//String result = HttpsUtils.sendHttpsPost(eTokenUrl, body, header);
-		//String result = HttpUtils.getHttpByParamAddHeaders(eTokenUrl, body, "GET", null);
+		//String result = HttpUtils.getHttpByParamAddHeaders(eTokenUrl, body, "POST", header);
 		
 		Gson gson = new Gson();
         Map<String, String> map = new HashMap<String, String>();

@@ -7,10 +7,10 @@
   - Description:
 -->
 <head>
-    <title>配件销售汇总表</title>
+    <title>销售开单汇总表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
-  <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/partSaleSummary.js?v=1.0.1"></script>
+  <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/sellPartSumQuery.js?v=1.0.0"></script>
     <style type="text/css">
     body { 
         margin: 0;
@@ -77,18 +77,16 @@
     showSummaryRow="true">
             <div property="columns">          
         <div type="indexcolumn">序号</div>
-                <div  field="groupName" name="groupName" width="60" headerAlign="center" header="业务类型"></div>
+                <div  field="groupName" name="groupName" width="60" headerAlign="center" header="日期"></div>
                 <div  field="partName" name="partName" width="60" headerAlign="center" header="配件名称"></div> 
                 <div  field="ct" width="60" headerAlign="center" summaryType="sum" header="单数"></div>
                 <div  field="qty" width="60" headerAlign="center" summaryType="sum" header="配件数量"></div>
                 <div  field="trueCost" width="60" headerAlign="center" summaryType="sum" header="成本"></div>
-                <div  field="amt" width="60" headerAlign="center" summaryType="sum" header="销售金额 "></div>
-                <div  field="discountAmt" width="60" headerAlign="center" summaryType="sum" header="优惠金额"></div>
-                <div  field="subtotal" width="60" headerAlign="center" summaryType="sum" header="配件小计"></div>
-<!--                  <div  field="costAmt" width="60" headerAlign="center" header="计次卡抵扣次数"></div>
-                  <div  field="costAmt" width="60" headerAlign="center" header="计次卡抵扣金额"></div> -->
+                <div  field="subtotal" width="60" headerAlign="center" summaryType="sum" header="销售金额 "></div>
+               <!--  <div  field="discountAmt" width="60" headerAlign="center" summaryType="sum" header="优惠金额"></div>
+                <div  field="subtotal" width="60" headerAlign="center" summaryType="sum" header="配件小计"></div> -->
     </div>
-</div>
+</div>	
 </div>
 <div id="exportDiv" style="display:none">  
 

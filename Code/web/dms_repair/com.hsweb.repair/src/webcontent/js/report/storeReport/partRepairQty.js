@@ -10,8 +10,8 @@ var basicInfoForm = null;
 var rightGrid = null;
 var brandHash = {};
 var brandList = [];
-partTypeList=[];
-partTypeHash={};
+var partTypeList=[];
+var partTypeHash={};
 var billTypeIdHash = {};
 var settTypeIdHash = {};
 var outTypeIdHash = {};
@@ -39,7 +39,18 @@ $(document).ready(function(v)
     }else{
     	orgidsEl.setValue(currOrgid);
     }
-	
+	getAllPartBrand(function(data) {
+		brandList = data.brand;
+		brandList.forEach(function(v) {
+			brandHash[v.id] = v;
+		});
+	});
+	getAllPartType(function(data){
+		partTypeList=data.partTypes;
+		partTypeList.forEach(function(v){
+			partTypeHash[v.id]=v;
+		});
+	});
 	rightGrid.on("drawcell",function(e){
 		switch (e.field) {
 		 case "serviceCode":
@@ -48,6 +59,32 @@ $(document).ready(function(v)
 		case "outReturnSign":
 				e.cellHtml="已归库";
 			break;
+		case "partBrandId":
+			  if(brandHash[e.value])
+            {
+//                e.cellHtml = brandHash[e.value].name||"";
+            	if(brandHash[e.value].imageUrl){
+            		
+            		e.cellHtml = "<img src='"+ brandHash[e.value].imageUrl+ "'alt='配件图片' height='25px' width=' '/><br> "+brandHash[e.value].name||"";
+            	}else{
+            		e.cellHtml = brandHash[e.value].name||"";
+            	}
+            }
+            else{
+                e.cellHtml = "";
+            }
+			break;
+		 case "carTypeIdF":
+		 case "carTypeIdS":
+		 case "carTypeIdT":
+          if(partTypeHash[e.value])
+          {
+              e.cellHtml = partTypeHash[e.value].name||"";
+          }
+          else{
+              e.cellHtml = "";
+          }
+          break;
 		 case  "orgid":
 	        	for(var i=0;i<currOrgList.length;i++){
 	        		if(currOrgList[i].orgid==e.value){
@@ -104,7 +141,7 @@ function getSearchParams(){
     	params.sOutDate=nui.get("sDate").getFormValue();
     	params.eOutDate=addDate(eDateEl.getValue(),1);	
     }
-    params.noBillTypeId=3;
+    //params.noBillTypeId=3;
     var orgidsElValue = orgidsEl.getValue();
     if(orgidsElValue==null||orgidsElValue==""){
     	 params.orgids =  currOrgs;

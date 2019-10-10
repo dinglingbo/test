@@ -95,7 +95,8 @@
             <div property="columns">
             	<div allowSort=false field="serviceCode" width="160" headerAlign="center" header="业务单号"></div>
             	<div allowSort="false" field="carNo" width="100" headerAlign="center" header="车牌号"></div>
-            	<div allowSort="false" field="guestName" width="80" headerAlign="center" header="客户名称"></div>  
+            	<div allowSort="false" field="guestName" width="80" headerAlign="center" header="客户名称"></div> 
+            	<div allowSort="false" field="mtAdvisor" width="80" headerAlign="center" header="服务顾问"></div>  
             </div>
         </div>
         

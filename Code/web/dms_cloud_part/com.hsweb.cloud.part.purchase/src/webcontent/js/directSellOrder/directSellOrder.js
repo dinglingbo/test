@@ -313,18 +313,26 @@ $(document).ready(function(v)
             	onPartClose2();
             }
         }
+//        if((keyCode==13))  { 
+//        	if(partShow==1){
+//    			if(advancedMorePartWin2.visible){
+//	    			var row = morePartGrid2.getSelected();
+//					if(row){
+//						addSelectPart2();
+//					}
+//    			}
+//        	}           
+//            
+//        }
         if((keyCode==13))  { 
         	if(partShow==1){
-    			if(advancedMorePartWin2.visible){
-	    			var row = morePartGrid2.getSelected();
-					if(row){
-						addSelectPart2();
-					}
-    			}
-        	}
-            
-            
-        }
+        		if(partIn==true){
+                	addSelectPart2();
+                	
+                }
+        		partIn=true;
+        	}                        
+        }  
      
     }
 

@@ -1880,6 +1880,7 @@
 			d.full_name as guestName,
 			b.service_code AS serviceCode,
 			b.car_no AS carNo,
+			b.mt_advisor as mtAdvisor,
 			a.part_code AS partCode,
 			a.part_name AS partName,
 			a.qty as qty,
@@ -1982,6 +1983,7 @@
 			d.full_name as guestName,
 			b.service_code AS serviceCode,
 			b.car_no AS carNo,
+			b.mt_advisor as mtAdvisor,
 			a.part_code AS partCode,
 			a.part_name AS partName,
 			a.qty as qty,
@@ -1995,15 +1997,20 @@
 			a.source_id as sourceId,
 			b.out_date as outDate,
 			b.enter_date as enterDate,
-			a.sale_man as saleMan,
+			a.sale_man as saleMan,		
 			(SELECT SUM(true_cost) FROM wb_part.pj_repair_out e WHERE e.main_id=a.id and e.return_sign=0 and e.bill_type_id ='050206' ) AS trueCost,
 			a.subtotal-(SELECT SUM(true_cost) FROM wb_part.pj_repair_out e WHERE e.main_id=a.id and e.return_sign=0 and e.bill_type_id ='050206') AS gross,
-			f.workers as workers
+			f.workers as workers,
+			g.part_brand_id as partBrandId,
+			g.car_type_id_f as carTypeIdF,
+			g.car_type_id_s carTypeIdS,
+			g.car_type_id_t carTypeIdT
 		FROM
 			 wb_repair.rps_part a
 		INNER JOIN wb_repair.rps_maintain b ON a.service_id = b.id
     	INNER JOIN wb_common.com_guest d on b.guest_id =d.id  
-		INNER JOIN wb_repair.rps_item f on f.id =a.bill_item_id
+		left JOIN wb_repair.rps_item f on f.id =a.bill_item_id
+		INNER JOIN wb_common.com_attribute g on g.id =a.part_id
 		WHERE 1=1
 		
 		<dynamic>

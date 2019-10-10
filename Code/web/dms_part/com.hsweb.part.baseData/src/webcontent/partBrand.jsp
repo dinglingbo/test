@@ -12,7 +12,7 @@
 		<head>
 			<title>配件品牌选择</title>
 			<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-			<script src="<%= request.getContextPath() %>/baseDataPart/js/partMgr/partBrand.js?v=1.0.1" type="text/javascript"></script>
+			<script src="<%= request.getContextPath() %>/baseDataPart/js/partMgr/partBrand.js?v=1.0.4" type="text/javascript"></script>
 			<style type="text/css">
 				.yuan {
 					display: inline-block;

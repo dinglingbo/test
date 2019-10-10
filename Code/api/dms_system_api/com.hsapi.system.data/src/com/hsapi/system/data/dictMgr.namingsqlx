@@ -232,6 +232,9 @@
 		<isNotNull property="firstCodeCh">
 			AND a.first_code_ch = #firstCodeCh#
 		</isNotNull>
+		<isNotNull property="parentId">
+			AND a.parent_id = #parentId#
+		</isNotNull>
 		<isNotNull property="name">
 			AND a.name like '%$name$%'
 		</isNotNull>

@@ -18,10 +18,21 @@ var pList = [];
 var pHash = {};
 var orgidsEl = null;
 var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"业务单号"}];
+var settleStatusHash = {
+		"0" : "未收款",
+		"1" : "部分收款",
+		"2" : "已收款"
+	};
+var auditSignHash = {
+		"0" : "未审核",
+		"1" : "已审核"
+	};
 var type=0;
 var typeRela = [];//用于结算方式
+var datagrid2 = null;
 $(document).ready(function(v) {
 	mainGrid = nui.get("mainGrid");
+	datagrid2 = nui.get("datagrid2");
 	mainGrid.setUrl(queryUrl);
 
 	accountIdEl = nui.get("accountId");
@@ -61,12 +72,9 @@ $(document).ready(function(v) {
     var filter = new HeaderFilter(mainGrid, {  
         columns: [
             { name: 'auditor' },
-             {name:'shortName'},
-            { name: 'billServiceId' },
-            { name: 'billTypeId' },
+             {name:'guestName'},   
             { name: 'settAccountName' },
-            { name: 'balaTypeCode' },
-            {name:'carNo'}
+            { name: 'balaTypeCode' }
         ],
         callback: function (column, filtered) {
         },
@@ -207,6 +215,7 @@ function onSearch(){
 	doSearch(params);
 }
 function doSearch(params) {
+	datagrid2.setData([]);
 	mainGrid.load({
 		params:params,
 		token : token
@@ -393,20 +402,21 @@ function print(){
 	var businessNumber = "";
 	var netInAmt =0;
 	for(var i = 0;i<rows.length;i++){
-		rows[i].guestName = rows[i].fullName;//打印界面用的是guestName
+		rows[i].guestName = rows[i].guestName;//打印界面用的是guestName
 		if(i==rows.length-1){
-			businessNumber = businessNumber+rows[i].billServiceId
-			netInAmt = parseFloat(netInAmt)+parseFloat(rows[i].charOffAmt);
+			businessNumber = businessNumber+rows[i].rpAccountId
+			netInAmt = parseFloat(netInAmt)+parseFloat(rows[i].settCharOffAmt);
 			netInAmt = netInAmt.toFixed(2);
 			
 		}else{
-			businessNumber = businessNumber+rows[i].billServiceId+","
-			netInAmt = parseFloat(netInAmt)+parseFloat(rows[i].charOffAmt);
+			businessNumber = businessNumber+rows[i].rpAccountId+",";
+			netInAmt = parseFloat(netInAmt)+parseFloat(rows[i].settCharOffAmt);
 			netInAmt = netInAmt.toFixed(2)
 		}
 		
 	}
 	//var guestData = [{guestName:rows[0].fullName}]
+	rows[0].carNo="";
 	params = {
 		guestData:rows,
 		businessNumber :businessNumber,
@@ -498,4 +508,83 @@ function onExport(){
 		setInitExportDataNoMultistage( detail,mainGrid.columns,"收款明细表导出");
 	}
 	
+}
+
+function queryFrm(){
+	var row =mainGrid.getSelected(); 
+	var queryRPAccountListUrl = baseUrl + "com.hsapi.frm.frmService.crud.queryFrm.biz.ext";
+    nui.ajax({
+        url : queryRPAccountListUrl,
+        data : {
+        	params:{
+        		mainId : row.id
+        	},
+            token: token
+        },
+        type : "post",
+        success : function(data) {
+            if (data.errCode=="S") {
+            	datagrid2.setData(data.detailList);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+
+function onDrawCell1(e) {
+	switch (e.field) {
+	case "comPartBrandId":
+		if (partBrandIdHash && partBrandIdHash[e.value]) {
+			e.cellHtml = partBrandIdHash[e.value].name;
+		}
+		break;
+	case "billTypeId":
+		if (enterTypeIdHash && enterTypeIdHash[e.value]) {
+			e.cellHtml = enterTypeIdHash[e.value].name;
+		}
+		break;
+	case "billStatus":
+		if (billStatusHash && billStatusHash[e.value]) {
+			e.cellHtml = billStatusHash[e.value];
+		}
+		break;
+	case "settleTypeId":
+		if (settTypeIdHash && settTypeIdHash[e.value]) {
+			e.cellHtml = settTypeIdHash[e.value].name;
+		}
+		break;
+	case "storeId":
+		if (storehouseHash && storehouseHash[e.value]) {
+			e.cellHtml = storehouseHash[e.value].name;
+		}
+		break;
+	case "enterDayCount":
+		var row = e.record;
+		var enterTime = (new Date(row.enterDate)).getTime();
+		var nowTime = (new Date()).getTime();
+		var dayCount = parseInt((nowTime - enterTime) / 1000 / 60 / 60 / 24);
+		e.cellHtml = dayCount + 1;
+		break;
+	case "settleStatus":
+		if (settleStatusHash && settleStatusHash[e.value]) {
+			e.cellHtml = settleStatusHash[e.value];
+		}
+		break;
+	case "auditSign":
+		if (auditSignHash && auditSignHash[e.value]) {
+			e.cellHtml = auditSignHash[e.value];
+		}
+		break;		
+	case "nowAmt":
+		e.cellStyle = 'background-color:#90EE90';
+		break;
+	case "nowVoidAmt":
+		e.cellStyle = 'background-color:#90EE90';
+		break;
+	default:
+		break;
+	}
 }

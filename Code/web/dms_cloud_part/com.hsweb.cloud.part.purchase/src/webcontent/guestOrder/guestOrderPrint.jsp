@@ -308,7 +308,7 @@ hr {
 							<td id="orderQty">数量</td>
 							<td id="orderPrice">单价</td>
 							<td id="orderAmt">金额</td>
-							<td id="remark">备注</td>
+<!--							<td id="remark">备注</td>-->
 						</tr>
                         <tbody id="tbodyId">
 						</tbody>
@@ -529,8 +529,7 @@ hr {
 							'<td align="center">[comUnit]</td>'+
 							'<td align="center">[orderQty]</td>'+
 							'<td align="center">[orderPrice]</td>'+
-							'<td align="center">[orderAmt]</td>'+
-							'<td align="center">[remark]</td>';
+							'<td align="center">[orderAmt]</td>';
 						for(var i = 0; i < data.length; i++ ){ 
 							var tr=$("<tr></tr>");
 							tr.append(
@@ -544,8 +543,7 @@ hr {
 									.replace("[comUnit]",data[i].comUnit ||"")
 									.replace("[orderQty]",data[i].orderQty ||"")
 									.replace("[orderPrice]",data[i].showPrice ||"")
-									.replace("[orderAmt]",data[i].showAmt ||"")
-									.replace("[remark]",data[i].remark ||""));
+									.replace("[orderAmt]",data[i].showAmt ||""));
 							tBody.append(tr);
 							sumOrderQty +=parseFloat(data[i].orderQty);
 							sumOrderAmt +=parseFloat(data[i].showAmt);

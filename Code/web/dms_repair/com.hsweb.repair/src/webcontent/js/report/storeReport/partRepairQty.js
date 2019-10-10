@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/2/1.
  */
 var baseUrl = apiPath + repairApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.repair.repairService.report.queryPartSell.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.repair.repairService.report.queryPartRepair.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -104,7 +104,7 @@ function getSearchParams(){
     	params.sOutDate=nui.get("sDate").getFormValue();
     	params.eOutDate=addDate(eDateEl.getValue(),1);	
     }
-    params.billTypeId=3;
+    params.noBillTypeId=3;
     var orgidsElValue = orgidsEl.getValue();
     if(orgidsElValue==null||orgidsElValue==""){
     	 params.orgids =  currOrgs;

@@ -88,13 +88,13 @@ $(document).ready(function(v)
         });
         
         
-        initPartBrand("partBrandId",function(){
+/*        initPartBrand("partBrandId",function(){
             initDicts({
 
             },function(){
 
             });
-        });
+        });*/
 
     });
 
@@ -163,10 +163,8 @@ var oldData = null;
 var saveUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.savePart.biz.ext";
 function onOk()
 {
-    var data = basicInfoForm.getData();
-    if(!data.name){    	
+    var data = basicInfoForm.getData();    	
     	data.name = nui.get("partNameId").getText();
-    }
     for(var key in requiredField)
     {
     	if(!data[key] || data[key].toString().trim().length==0)
@@ -389,6 +387,11 @@ function getData(){
 }
 
 function getPartBrandId(){
+	var qualityTypeIdValue = nui.get("qualityTypeId").getValue();
+	if(qualityTypeIdValue==""){
+		showMsg("请先选择配件品质","W");
+		return;
+	}
 	 nui.open({
 	        url: webPath + contextPath + "/com.hsweb.part.baseData.partBrand.flow?token="+token,
 	        title: '品牌选择',
@@ -396,8 +399,8 @@ function getPartBrandId(){
 	        onload: function () {
 	            var iframe = this.getIFrameEl();
 	           // var params = sendGuestForm.getData();
-	            var type = "guest";//客户车辆界面跳转过来
-	            iframe.contentWindow.setData(type);
+	            //var qualityTypeId = "guest";//客户车辆界面跳转过来
+	            iframe.contentWindow.setData(qualityTypeIdValue);
 	        },
 	        ondestroy: function (action)
 	        {

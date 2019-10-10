@@ -106,7 +106,7 @@
                         <td><input type="text" id="guestName1" class="peijianss" value="" /></td>
                     </tr>
                      <tr>
-                        <td class="color999" height="46">业务单号：</td>
+                        <td class="color999" height="46">单号：</td>
                         <td><input type="text" id="businessNumber1" class="peijianss" value="" /></td>
                     </tr> 
                      <tr>
@@ -175,7 +175,7 @@
             	<p ><b>
             	<div style="margin-left: 40px;margin-top: 5px;">即收:<div style="border-bottom: 1px solid black;margin-left: 35px;margin-top: -22px;"><span  id="guestName"  style="font-weight: bold;"></span></div></div>
             	
-            	<div style="margin-left: 5px;margin-top: 3px;margin-right: 0px;border-bottom: 1px solid black;"><div style="margin-top: 10px;font-weight: bold;">业务单号:<span id="businessNumber" style="font-weight: bold;"></span></div></div>
+            	<div style="margin-left: 5px;margin-top: 3px;margin-right: 0px;border-bottom: 1px solid black;"><div style="margin-top: 10px;font-weight: bold;">单号:<span id="businessNumber" style="font-weight: bold;"></span></div></div>
             	<div style="margin-left: 10px;margin-top: 3px;float:left;font-weight: bold; ">人民币（大写）:</div>
             	<div style="margin-top: 5px;margin-top: 3px;border-bottom: 1px solid black;float:left;width: 40%;font-weight: bold;"><span id="money"></span></div>
             	<div style="margin-top: 5px;margin-top: 3px;float:left;font-weight: bold;">￥:</div>
@@ -237,19 +237,9 @@
 
         });
 		function SetData(params){
-			var frmBill = {};
-/* 			document.getElementById("comp").innerHTML = params.comp||"";
-			var imgUrl = params.currCompLogoPath || "";
-            if(imgUrl && imgUrl != ""){
-               $('#showImg').show();
-               $("#showImg").attr("src",imgUrl);
-            } */
-			$.post(params.p.frmApiUrl+"com.hsapi.frm.frmService.finance.queryRPAccountDetail.biz.ext?params/billServiceId="+params.billServiceId||""+"&token="+params.p.token,{},function(text){
-    		    if(text.list){
-    		      frmBill = text.list;
-    		      document.getElementById("serviceCode").innerHTML = frmBill[0].rpAccountId||"";
-    		      	var payDate = frmBill[0].auditDate;
-    		      	payDate = payDate.replace(/-/g,"/");
+    		      document.getElementById("serviceCode").innerHTML = params.businessNumber||"";
+    		      	var payDate = params.guestData[0].auditDate;
+    		      	//payDate = payDate.replace(/-/g,"/");
 	        		payDate = new Date(payDate);
 	        		payDate = format(payDate, "yyyy-MM-dd HH:mm");
 	        		document.getElementById("payDate").innerHTML = payDate;
@@ -265,10 +255,7 @@
 					document.getElementById("money").innerHTML = money;
 					document.getElementById("netInAmt").innerHTML = params.netInAmt||"";
 					document.getElementById("makeMan").innerHTML=params.p.currUserName||"";
-					document.getElementById("companyName").innerHTML=params.p.comp||"";
-    		    }
-	         });
-			
+					document.getElementById("companyName").innerHTML=params.p.comp||"";			
 		}
 		
 		function box_setup_open() {

@@ -132,6 +132,7 @@
             <div header="数量金额" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" datatype="float" summaryType="sum" field="packItem" width="60" headerAlign="center" header="总包数"></div>
+                    <div allowSort="true" datatype="float" summaryType="sum" field="packPayAmt" width="60" headerAlign="center" header="运费"></div>
                     <div allowSort="true" datatype="float" summaryType="sum" field="collectMoney" width="60" headerAlign="center" header="代收货款"></div>
                     <div allowSort="true" datatype="float" summaryType="sum" field="valuationStatement" width="60" headerAlign="center" header="保价声明"></div>
                 </div>

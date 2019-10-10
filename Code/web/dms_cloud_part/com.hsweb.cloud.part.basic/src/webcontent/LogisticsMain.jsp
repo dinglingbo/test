@@ -11,7 +11,7 @@
 -->
 <head>
 <title>物流公司</title>
-<script src="<%= request.getContextPath() %>/basic/js/LogisticsMain.js?v=1.0.4"></script>
+<script src="<%= request.getContextPath() %>/basic/js/LogisticsMain.js?v=1.0.5"></script>
 <style type="text/css">
 table {
 	width: 100%;

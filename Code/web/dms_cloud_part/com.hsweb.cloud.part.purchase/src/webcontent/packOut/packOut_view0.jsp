@@ -371,7 +371,7 @@
                                           <label>运费：</label>
                                       </td>
                                       <td colspan="1">
-                                          <input class="nui-textbox" id="packPayAmt" name="packPayAmt" width="100%" vtype="float" enabled="true">
+                                          <input class="nui-textbox" id="" name="packPayAmt" width="100%" vtype="float" enabled="true">
                                       </td>
                                       <td class="title">
                                           <label>备注：</label>

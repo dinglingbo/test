@@ -533,6 +533,8 @@
 			  window.top.location.href= sysDomain + '/coframe/auth/cw/login.jsp';
 			} else if (currDomain == 'qxy60.hszb.harsons.cn') {
 			  window.top.location.href= sysDomain + '/coframe/auth/login/login.jsp';
+			} else if (currDomain == '122.112.144.88') {
+				window.top.location.href= sysDomain + '/coframe/auth/house/login.jsp';
 			}
 		    /* if(currSource=="easy"){
 		 		window.top.location.href = sysDomain + "/coframe/auth/easy/login.jsp";

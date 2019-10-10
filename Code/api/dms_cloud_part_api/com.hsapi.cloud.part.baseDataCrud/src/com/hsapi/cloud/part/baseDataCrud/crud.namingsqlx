@@ -715,6 +715,10 @@
     		<isNotEmpty prepend="and" property="code">  
                 (code like '%$code$%')
             </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="guestType">  
+                (guest_type = #guestType#)
+            </isNotEmpty>
     		
     		<isNotEmpty prepend="and" property="isInternal">  
                 (a.is_internal = #isInternal#)
@@ -782,11 +786,14 @@
 			a.is_disabled isDisabled
 		FROM
 			com_guest a 
-		WHERE
+		WHERE 1=1
 	<!--		(a.orgid = 0 or a.orgid = #orgid#)-->
-			(a.orgid = #orgid# )
+		<!--		(a.orgid = #orgid# )  -->
 			and a.guest_type = '01020204'
 		<dynamic>
+			<isNotEmpty prepend="and" property="tenantId">  
+                (a.tenant_id = #tenantId#)
+            </isNotEmpty> 
     		<isNotEmpty prepend="and" property="isDisabled">  
                 (a.is_disabled = #isDisabled#)
             </isNotEmpty> 

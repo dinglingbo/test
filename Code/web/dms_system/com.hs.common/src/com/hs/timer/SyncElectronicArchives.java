@@ -89,7 +89,7 @@ public class SyncElectronicArchives {
 		String result = HttpUtils.sendHttpsGet(eTokenUrl, "companydata={'body':{'companycode':'111111111111001','companypassword':'123456a'},'header':{'date':'20191010','time':'112657'}}");
 		
 		//String result = HttpsUtils.sendHttpsPost(eTokenUrl, body, header);
-		//String result = HttpUtils.getHttpByParamAddHeaders(eTokenUrl, body, "GET", null);
+		//String result = HttpUtils.getHttpByParamAddHeaders(eTokenUrl, body, "POST", header);
 		
 		Gson gson = new Gson();
         Map<String, String> map = new HashMap<String, String>();

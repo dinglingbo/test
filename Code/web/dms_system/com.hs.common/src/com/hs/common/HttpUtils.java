@@ -62,8 +62,12 @@ import com.eos.system.annotation.Bizlet;
 
 
 
+
+import com.google.gson.Gson;
+
 import java.net.URL;
 import java.security.SecureRandom;
+
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -346,6 +350,23 @@ public class HttpUtils {
 			con.setDoOutput(true);
 			con.setDoInput(true);
 			con.setUseCaches(true);
+			
+			//处理请求头
+			/*Gson gson = new Gson();
+	        Map<String, String> map = new HashMap<String, String>();
+	        map = gson.fromJson(json, map.getClass());
+	        for(Map.Entry<String,String> str : map.entrySet()){
+	        	if("date".equals(str.getKey())) {
+   
+	            	//con.setRequestProperty("date",str.getValue());
+	            	((HttpMessage) con).addHeader("date",str.getValue());
+	            	//con.addHeader("date",str.getValue());
+
+	           }
+	            if("time".equals(str.getKey())) {
+	            	((HttpMessage) con).addHeader("time",str.getValue());
+	           }
+	        }*/
 			con.setRequestProperty("Content-Type",
 					"application/json;charset=UTF-8");
 			con.setRequestProperty("accept", "application/json,text/plain,*/*");

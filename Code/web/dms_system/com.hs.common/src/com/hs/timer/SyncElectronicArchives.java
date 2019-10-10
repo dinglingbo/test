@@ -81,10 +81,15 @@ public class SyncElectronicArchives {
 		//上海需要的参数
 		jsonObj.put("companycode", companycode);
 		jsonObj.put("companypassword", companypassword);
+		//请求头
+		//jsonObj.put("date", headerDate);
+		jsonObj.put("time", headerTime);
 		
 		String param = null;
 		param = jsonObj.toString();
-		String result = HttpUtils.sendPostByJson(eTokenUrl, param);
+		
+		String result = HttpUtils.getHttpByJsonParamAddHeaders(eTokenUrl, body, "POST" , header);
+		//String result = HttpUtils.sendPostByJson(eTokenUrl, param);
 		
 		Gson gson = new Gson();
         Map<String, String> map = new HashMap<String, String>();

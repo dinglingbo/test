@@ -50,7 +50,7 @@ public class SyncElectronicArchives {
 		
 		//佛山需要请求的参数
 		//报文头
-		Map <String, Map<String, String>> companydata = new HashMap <String, Map<String, String>>();
+		Map <String, Map <String, String>> companydata = new HashMap <String, Map <String, String>>();
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMdd");
 		SimpleDateFormat format2 = new SimpleDateFormat("HHmmss");
 		Date date = new Date();
@@ -60,17 +60,23 @@ public class SyncElectronicArchives {
 		header.put("date", headerDate);
 		header.put("time", headerTime);
 		
-		companydata.put("header", header);
+		/*String headerStr = null;
+		headerStr = header.toString();*/
+		
 		
 		//报文体
 		Map <String, String> body = new HashMap <String, String>();
 		body.put("companycode", companycode);
 		body.put("companypassword", companypassword);
 		
+		/*String bodyStr = null;
+		bodyStr = body.toString();*/
+		
+		companydata.put("header", header);
 		companydata.put("body", body);
-		
-		jsonObj.put("companydata", companydata);
-		
+		//jsonObj.put("companydata", companydata);
+		//jsonObj.put("body", body);
+		//jsonObj.put("header", header);
 		
 		//上海需要的参数
 		jsonObj.put("companycode", companycode);
@@ -79,7 +85,6 @@ public class SyncElectronicArchives {
 		String param = null;
 		param = jsonObj.toString();
 		String result = HttpUtils.sendPostByJson(eTokenUrl, param);
-		//String result = HttpUtils.sendGet(eTokenUrl, param);
 		
 		Gson gson = new Gson();
         Map<String, String> map = new HashMap<String, String>();
@@ -305,9 +310,9 @@ public class SyncElectronicArchives {
 						}
 					}
 				}
-				if(accessToken != null && !"".equals(accessToken)) { 
+				if(accessToken != null && !"".equals(accessToken) && 1 != 1) { 
 					Calendar cal = Calendar.getInstance();
-					cal.add(Calendar.DATE, 1);
+					cal.add(Calendar.DATE, 0);
 				    String endDate = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());
 				    cal.add(Calendar.DATE, -1);
 				    String startDate = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());

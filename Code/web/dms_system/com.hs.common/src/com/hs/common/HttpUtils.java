@@ -328,7 +328,7 @@ public class HttpUtils {
 			}
 			*/
 			
-			SSLContext sslcontext = SSLContext.getInstance("SSL", "SunJSSE");//第一个参数为协议,第二个参数为提供者(可以缺省)
+			SSLContext sslcontext = SSLContext.getInstance("SSL");//第一个参数为协议,第二个参数为提供者(可以缺省)
 			TrustManager[] tm = {new MyX509TrustManager()};
 			sslcontext.init(null, tm, new SecureRandom());
 			HostnameVerifier ignoreHostnameVerifier = new HostnameVerifier() {

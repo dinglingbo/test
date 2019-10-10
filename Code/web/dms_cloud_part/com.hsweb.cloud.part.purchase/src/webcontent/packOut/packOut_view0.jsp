@@ -9,7 +9,7 @@
 -->
 <head>
 <title>打包发货</title>
-<script src="<%=webPath + contextPath%>/purchase/js/packOut/packOut.js?v=1.0.66"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/packOut/packOut.js?v=1.0.67"></script>
 <style type="text/css">
 .title {
   width: 75px;
@@ -371,7 +371,7 @@
                                           <label>运费：</label>
                                       </td>
                                       <td colspan="1">
-                                          <input class="nui-textbox" id="packPayAmt" name="packPayAmt" width="100%" vtype="float" enabled="true">
+                                          <input class="nui-textbox" id="" name="packPayAmt" width="100%" vtype="float" enabled="true">
                                       </td>
                                       <td class="title">
                                           <label>备注：</label>

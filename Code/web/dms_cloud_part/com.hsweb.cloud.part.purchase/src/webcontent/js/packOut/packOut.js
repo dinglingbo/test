@@ -1405,9 +1405,9 @@ function onDrawCell(e)
             }
             break;
         case "storeId":
-            if(storehouse && storehouse[e.value])
+            if(storeHash && storeHash[e.value])
             {
-                e.cellHtml = storehouse[e.value].name;
+                e.cellHtml = storeHash[e.value].name;
             }
             break;
         default:

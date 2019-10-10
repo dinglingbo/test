@@ -24,6 +24,7 @@ import com.eos.foundation.database.DatabaseExt;
 import com.eos.system.annotation.Bizlet;
 import com.google.gson.Gson;
 import com.hs.common.HttpUtils;
+import com.hs.common.HttpsUtils;
 import com.hs.common.Menu;
 import com.hs.utils.APIUtils;
 
@@ -50,7 +51,7 @@ public class SyncElectronicArchives {
 		
 		//佛山需要请求的参数
 		//报文头
-		Map <String, Map<String, String>> companydata = new HashMap <String, Map<String, String>>();
+		Map <String, Map <String, String>> companydata = new HashMap <String, Map <String, String>>();
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMdd");
 		SimpleDateFormat format2 = new SimpleDateFormat("HHmmss");
 		Date date = new Date();
@@ -60,26 +61,35 @@ public class SyncElectronicArchives {
 		header.put("date", headerDate);
 		header.put("time", headerTime);
 		
-		companydata.put("header", header);
+		/*String headerStr = null;
+		headerStr = header.toString();*/
+		
 		
 		//报文体
 		Map <String, String> body = new HashMap <String, String>();
 		body.put("companycode", companycode);
 		body.put("companypassword", companypassword);
 		
+		/*String bodyStr = null;
+		bodyStr = body.toString();*/
+		
+		companydata.put("header", header);
 		companydata.put("body", body);
-		
 		jsonObj.put("companydata", companydata);
-		
+		//jsonObj.put("body", body);
+		//jsonObj.put("header", header);
 		
 		//上海需要的参数
-		jsonObj.put("companycode", companycode);
-		jsonObj.put("companypassword", companypassword);
+		//jsonObj.put("companycode", companycode);
+		//jsonObj.put("companypassword", companypassword);
 		
 		String param = null;
 		param = jsonObj.toString();
-		String result = HttpUtils.sendPostByJson(eTokenUrl, param);
-		//String result = HttpUtils.sendGet(eTokenUrl, param);
+		//String result = HttpUtils.sendPostByJson(eTokenUrl, "companydata={'body':{'companycode':'111111111111001','companypassword':'123456a'},'header':{'date':'20191010','time':'112657'}}");
+		String result = HttpUtils.sendHttpsGet(eTokenUrl, "companydata={'body':{'companycode':'111111111111001','companypassword':'123456a'},'header':{'date':'20191010','time':'112657'}}");
+		
+		//String result = HttpsUtils.sendHttpsPost(eTokenUrl, body, header);
+		//String result = HttpUtils.getHttpByParamAddHeaders(eTokenUrl, body, "GET", null);
 		
 		Gson gson = new Gson();
         Map<String, String> map = new HashMap<String, String>();
@@ -282,6 +292,7 @@ public class SyncElectronicArchives {
     	return result;
 	}
 	
+	@SuppressWarnings("unused")
 	@Bizlet("推送维修数据")
 	 /*凌晨2点上传，取前一天的数据*/
 	public static String pushElectricData() {
@@ -305,9 +316,9 @@ public class SyncElectronicArchives {
 						}
 					}
 				}
-				if(accessToken != null && !"".equals(accessToken)) { 
+				if(accessToken != null && !"".equals(accessToken) && 1 != 1) { 
 					Calendar cal = Calendar.getInstance();
-					cal.add(Calendar.DATE, 1);
+					cal.add(Calendar.DATE, 0);
 				    String endDate = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());
 				    cal.add(Calendar.DATE, -1);
 				    String startDate = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());
@@ -343,10 +354,13 @@ public class SyncElectronicArchives {
 	public static void main(String args[]) {
 		
 		//Map map = getAccessToken("881812010733001", "abcdefg");
-		Map map = getAccessToken("431302000062483", "07388971111a","https://hunan.qichedangan.cn/restservices/lcipprodatarest/lcipprogetaccesstoken/query");
+		//Map map = getAccessToken("431302000062483", "07388971111a","https://hunan.qichedangan.cn/restservices/lcipprodatarest/lcipprogetaccesstoken/query");
+		//System.out.println(map.get("access_token"));
+		
+		Map map = getAccessToken("111111111111001", "123456a","https://218.13.12.75:444/api/getAccessToken.ashx");
 		System.out.println(map.get("access_token"));
 		
-		Calendar cal = Calendar.getInstance();
+		/*Calendar cal = Calendar.getInstance();
 	    String today = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());
 	    System.out.println(today);
 	    cal.add(Calendar.DATE, -1);
@@ -379,6 +393,6 @@ public class SyncElectronicArchives {
 		}
 		body.put("t", userList);
 		jsonObj.put("body", body);
-		System.out.println(jsonObj.toString());
+		System.out.println(jsonObj.toString());*/
 	}
 }

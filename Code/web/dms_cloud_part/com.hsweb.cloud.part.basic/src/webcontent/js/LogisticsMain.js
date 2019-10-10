@@ -59,7 +59,7 @@ function onRowClick(e)
 }
 function loadDataGridData(params)
 {
-	params.orgid = currOrgid;
+	params.tenantId = currTenantId;
     dataGrid.load({
         params:params
     });

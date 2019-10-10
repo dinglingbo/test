@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售订单</title>
-<script src="<%=webPath + contextPath%>/purchase/js/sellOrder/sellOrder.js?v=1.0.80"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/sellOrder/sellOrder.js?v=1.0.81"></script>
 <style type="text/css">
 .title {
 	width: 70px;

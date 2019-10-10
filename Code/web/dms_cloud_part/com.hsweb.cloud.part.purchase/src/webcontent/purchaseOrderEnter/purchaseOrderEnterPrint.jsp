@@ -304,7 +304,7 @@ hr {
 							<td id="orderQty">数量</td>
 							<td id="orderPrice">单价</td>
 							<td id="orderAmt">金额</td>
-							<td id="remark">备注</td>
+						<!--	<td id="remark">备注</td>-->
 							<td id="storehouse">仓库</td>
 							<td id="storeShelf">仓位</td>
 						</tr>
@@ -477,7 +477,7 @@ hr {
 							'<td align="center">[orderQty]</td>'+
 							'<td align="center">[orderPrice]</td>'+
 							'<td align="center">[orderAmt]</td>'+
-							'<td align="center">[remark]</td>'+
+				<!--			'<td align="center">[remark]</td>'+-->
 							'<td align="center">[storehouse]</td>'+
 							'<td align="center">[storeShelf]</td>';
 						for(var i = 0; i < data.length; i++ ){ 
@@ -494,7 +494,7 @@ hr {
 									.replace("[orderQty]",data[i].orderQty ||"")
 									.replace("[orderPrice]",data[i].orderPrice ||"")
 									.replace("[orderAmt]",data[i].orderAmt ||"")
-									.replace("[remark]",data[i].remark ||"")
+								<!--	.replace("[remark]",data[i].remark ||"")-->
 									.replace("[storehouse]",data[i].storeId?storeHash[data[i].storeId].name :"")
 									.replace("[storeShelf]",data[i].storeShelf ||""));
 							tBody.append(tr);

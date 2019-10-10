@@ -18,6 +18,7 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,8 +63,11 @@ import com.eos.system.annotation.Bizlet;
 
 
 
+import com.hs.common.HttpsUtils.NullHostNameVerifier;
+
 import java.net.URL;
 import java.security.SecureRandom;
+
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -92,6 +96,68 @@ public class HttpUtils {
 			String urlNameString = url
 					+ ((param == null || (param.trim().length() == 0) ? ""
 							: ("?" + param)));
+			URL realUrl = new URL(urlNameString);
+			// 打开和URL之间的连接
+			URLConnection connection = realUrl.openConnection();
+			// 设置通用的请求属性
+			connection.setRequestProperty("accept", "*/*");
+			connection.setRequestProperty("connection", "Keep-Alive");
+			connection.setRequestProperty("user-agent",
+					"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+			connection.setRequestProperty("Content-Type",
+					"application/json;charset=UTF-8");
+			// 建立实际的连接
+			connection.connect();
+			// 获取所有响应头字段
+			Map<String, List<String>> map = connection.getHeaderFields();
+			// 遍历所有的响应头字段
+			// for (String key : map.keySet()) {
+			// System.out.println(key + "--->" + map.get(key));
+			// }
+			// 定义 BufferedReader输入流来读取URL的响应
+			in = new BufferedReader(new InputStreamReader(
+					connection.getInputStream()));
+			String line;
+			while ((line = in.readLine()) != null) {
+				result += line;
+			}
+		} catch (Exception e) {
+			System.out.println("发送GET请求出现异常！" + e);
+			e.printStackTrace();
+		}
+		// 使用finally块来关闭输入流
+		finally {
+			try {
+				if (in != null) {
+					in.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	@Bizlet("")
+	public static String sendHttpsGet(String url, String param) {
+		String result = "";
+		BufferedReader in = null;
+		try {
+			String urlNameString = url
+					+ ((param == null || (param.trim().length() == 0) ? ""
+							: ("?" + param)));
+			
+			SSLContext sslcontext = SSLContext.getInstance("SSL");//第一个参数为协议,第二个参数为提供者(可以缺省)
+			TrustManager[] tm = {new MyX509TrustManager()};
+			sslcontext.init(null, tm, new SecureRandom());
+			HostnameVerifier ignoreHostnameVerifier = new HostnameVerifier() {
+				public boolean verify(String s, SSLSession sslsession) {
+					System.out.println("WARNING: Hostname is not matched for cert.");
+						return true;
+				}
+			};
+			HttpsURLConnection.setDefaultHostnameVerifier(ignoreHostnameVerifier);
+			HttpsURLConnection.setDefaultSSLSocketFactory(sslcontext.getSocketFactory());
 			URL realUrl = new URL(urlNameString);
 			// 打开和URL之间的连接
 			URLConnection connection = realUrl.openConnection();
@@ -328,7 +394,7 @@ public class HttpUtils {
 			}
 			*/
 			
-			SSLContext sslcontext = SSLContext.getInstance("SSL", "SunJSSE");//第一个参数为协议,第二个参数为提供者(可以缺省)
+			SSLContext sslcontext = SSLContext.getInstance("SSL");//第一个参数为协议,第二个参数为提供者(可以缺省)
 			TrustManager[] tm = {new MyX509TrustManager()};
 			sslcontext.init(null, tm, new SecureRandom());
 			HostnameVerifier ignoreHostnameVerifier = new HostnameVerifier() {
@@ -584,6 +650,101 @@ public class HttpUtils {
 			} else {
 /*				System.out.println("getResponseCode："
 						+ connection.getResponseCode());*/
+			}
+
+			/*System.out.println("length：" + result.length());*/
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+/*		System.out.println("getHttpToString URL：" + urlPath);
+		System.out.println("getHttpToString Result：" + result);*/
+		return result;
+	}
+	
+	static TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
+		@Override
+		public void checkClientTrusted(X509Certificate[] chain, String authType)
+				throws CertificateException {
+			// TODO Auto-generated method stub
+		}
+
+		@Override
+		public void checkServerTrusted(X509Certificate[] chain, String authType)
+				throws CertificateException {
+			// TODO Auto-generated method stub
+		}
+
+		@Override
+		public X509Certificate[] getAcceptedIssuers() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+	} };
+	
+	@Bizlet("")
+	public static String getHttpByParamAddHeaders(String urlPath,
+			Map<String, String> params, String method, Map<String, String> headers) {
+		String result = null;
+		try {
+			HttpsURLConnection
+					.setDefaultHostnameVerifier(new HttpsUtils().new NullHostNameVerifier());
+			SSLContext sc = SSLContext.getInstance("TLS");
+			sc.init(null, trustAllCerts, new SecureRandom());
+			HttpsURLConnection
+			.setDefaultSSLSocketFactory(sc.getSocketFactory());
+	
+			URL url = new URL(urlPath);
+			//URL url= new URL(null, urlPath, new sun.net.www.protocol.https.Handler());
+			HttpsURLConnection connection = (HttpsURLConnection) url
+					.openConnection();
+			connection.setRequestMethod(method);
+			connection.setConnectTimeout(30000);
+			connection.setReadTimeout(30000);
+			connection.setRequestProperty("accept", "*/*");
+			connection.setRequestProperty("connection", "Keep-Alive");
+	        connection.setRequestProperty("user-agent",
+	                "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+			connection.setDoOutput(true);
+			connection.setDoInput(true);
+			connection.setUseCaches(true);
+
+			/*if (params != null && params.size() > 0) {
+				for (Entry<String, String> e : params.entrySet()) {
+					connection.setRequestProperty(e.getKey(), e.getValue());
+				}
+			}*/
+			
+			if (headers != null) {
+				for (Map.Entry<String, String> e : headers.entrySet()) {
+					connection.setRequestProperty(e.getKey(), e.getValue());
+				}
+			}
+
+			// connection.setRequestProperty("Content-type", "text/html");
+			connection.setRequestProperty("Content-type", "application/json");
+			connection.setRequestProperty("Accept-Charset", "utf-8");
+			connection.setRequestProperty("contentType", "utf-8");
+			
+			if (params != null) {
+				String json = JSONObject.toJSONString(params);
+				json = "companydata=" + "{'body':{'companycode':'111111111111001','companypassword':'123456a'},'header':{'date':'20191010','time':'142542'}}";
+				OutputStreamWriter osw = new OutputStreamWriter(connection.getOutputStream(), "UTF-8");
+				osw.write(json);
+				osw.flush();
+			} else {
+				params = new HashMap();
+			}
+
+			params.clear();
+			
+			if (connection.getResponseCode() == 200) {
+				InputStream inputStream = connection.getInputStream();
+				result = new String(readStream(inputStream).toByteArray(),
+						"UTF-8");
+			} else {
+				System.out.println("getResponseCode："
+						+ connection.getResponseCode());
 			}
 
 			/*System.out.println("length：" + result.length());*/

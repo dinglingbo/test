@@ -175,6 +175,11 @@ function setGuestData(data){
                 });
             }
             nui.get("type").show();
+            if(data.guestType){
+	            guestType = data.guestType;
+
+	            typeEl.setValue(guestType);
+	        }
         }
         if(data.isClient){
             isClient = data.isClient;
@@ -205,6 +210,11 @@ function setGuestData(data){
                 });
             }
             nui.get("type").show();
+            if(data.guestType){
+	            guestType = data.guestType;
+
+	            typeEl.setValue(guestType);
+	        }
         }
        
         if(data.supplierType){

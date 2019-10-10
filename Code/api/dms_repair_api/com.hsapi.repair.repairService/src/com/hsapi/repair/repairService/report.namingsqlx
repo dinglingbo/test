@@ -1246,7 +1246,12 @@
 			 A.partSubtotal partSubtotal,
 			 A.partTrueCost partTrueCost,
 			 A.cardTimesAmt cardTimesAmt,
-			 A.orgid orgid
+			 A.netinAmt netinAmt,
+			 A.grossProfit grossProfit,
+			 A.orgid orgid,
+			 case when A.times = 0 then 0 else A.netinAmt / A.times end as guestAmt,
+			 case when A.netinAmt = 0 then 0 else A.grossProfit / A.netinAmt end as grossProfitRate,
+			 case when A.netinAmt = 0 then 0 else A.totalPrefAmt / A.netinAmt end as totalPrefRate
 		FROM
 			(
 		  SELECT 
@@ -1254,7 +1259,7 @@
 		    a.mt_advisor_id mtAdvisorId,
 		    a.mt_advisor mtAdvisor,
 		    a.out_date outDate,
-            COUNT(*) times,
+            COUNT(1) times,
             SUM(
              CASE WHEN comp_come_times = 1 THEN 1 ELSE 0 end
              ) compTimes,
@@ -1262,27 +1267,33 @@
            SUM(b.item_subtotal) itemSubtotal,
            SUM(b.part_subtotal) partSubtotal,
            SUM(b.part_true_cost) partTrueCost,
-           SUM(b.card_times_amt) cardTimesAmt
-           FROM rps_maintain a  LEFT JOIN  rps_settlement b ON a.id = b.service_id
-           WHERE a.is_settle = 1 
+           SUM(b.card_times_amt) cardTimesAmt,
+           sum(b.netin_amt) as netinAmt,
+           sum(b.gross_profit) as grossProfit,
+           sum(b.total_pref_amt) as totalPrefAmt
+           FROM rps_maintain a  INNER JOIN  rps_settlement b ON a.id = b.service_id
+           WHERE a.is_settle = 1 AND a.bill_type_id in (0,2,4,6) 
+           
+		           <isNotEmpty prepend="and" property="orgid">
+		                (a.orgid = #orgid#)
+		            </isNotEmpty>
+		            <isNotEmpty prepend="and" property="orgids">
+		                (a.orgid in ($orgids$))
+		            </isNotEmpty>
+		         <isNotEmpty prepend="and" property="mtAdvisorId"> 
+				      A.mt_Advisor_Id = #mtAdvisorId#
+				 </isNotEmpty>
+				 <isNotEmpty prepend="and" property="startDate"> 
+				      A.out_Date &gt;= #startDate#
+				 </isNotEmpty>
+				 <isNotEmpty prepend="and" property="endDate"> 
+				      A.out_Date &lt;= #endDate#
+				 </isNotEmpty> 
+		 
            GROUP BY a.mt_advisor_id
          ) A
-         where 1=1
-         <isNotEmpty prepend="and" property="orgid">
-                (a.orgid = #orgid#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="orgids">
-                (a.orgid in ($orgids$))
-            </isNotEmpty>
-         <isNotEmpty prepend="and" property="mtAdvisorId"> 
-		      A.mtAdvisorId = #mtAdvisorId#
-		 </isNotEmpty>
-		 <isNotEmpty prepend="and" property="startDate"> 
-		      A.outDate &gt;= #startDate#
-		 </isNotEmpty>
-		 <isNotEmpty prepend="and" property="endDate"> 
-		      A.outDate &lt;= #endDate#
-		 </isNotEmpty>   	
+         where 1 = 1
+           	
     </select>
     
     <select id="queryPopulation" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">

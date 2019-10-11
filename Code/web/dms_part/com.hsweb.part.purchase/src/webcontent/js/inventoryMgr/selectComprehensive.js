@@ -795,6 +795,9 @@ function onAdvancedSearchOk()
     searchData.vin = nui.get("vin").getValue();
     searchData.name = nui.get("name").getValue();
     searchData.mobile = nui.get("mobile").getValue();
+    var carModel   = nui.get("carModel").getValue();
+    searchData.carModel = carModel.replace(/\s+/g,""); 
+    searchData.itemId = nui.get("itemId").getValue();
     advancedSearchWin.hide();
     doSearch2(searchData);
     advancedSearchForm.gusetId=null;
@@ -955,6 +958,34 @@ function onLeftGridSelectionChanged(){
 	activechangedmain();
 }
 
+function getItemId(){
+	nui.open({
+		// targetWindow: window,,
+		url : webPath + contextPath + "/com.hsweb.repair.DataBase.RepairItemMain.flow?token=" + token,
+		title : "维修项目",
+		width : 1000,
+		height : 560,
+		allowDrag : true,
+		allowResize : true,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+			var params = {};
+			iframe.contentWindow.setData(params);
+			iframe.contentWindow.showCheckcolumn();
+		},
+		ondestroy : function(action) {
+			var iframe = this.getIFrameEl();
+            var data = iframe.contentWindow.getDataAll();
+            for(var i = 0 , l = data.length; i < l ; i++){
+            	var itemName = data[i].name || "";
+            	var itemId = data[i].id;
+            	
+            	nui.get("itemId").setText(itemName);
+            	nui.get("itemId").setValue(itemId);
+            }
+		}
+	});
+}
 
 
 

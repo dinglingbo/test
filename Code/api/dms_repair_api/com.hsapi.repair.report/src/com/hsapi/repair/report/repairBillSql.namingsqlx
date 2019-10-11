@@ -280,8 +280,8 @@
 		
 	</select>
 	
-	<!--配件销售汇总表  and c.bill_type_id in (0,2,3,4,6)-->
-	<select id="queryPartSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	<!--配件维修销售汇总表-->
+	<select id="queryBillPartSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT  
 	   <isEqual  prepend=""  property="groupByType"   compareValue="0">
         DATE_FORMAT(c.out_date,'%Y-%m-%d')  as groupName,
@@ -293,12 +293,11 @@
 	   <isEqual  prepend="" property="groupByType"  compareValue="2">
 	     	 b.part_code as groupName,
 	     	 b.part_name as partName,
-	    </isEqual> 
-	    <isEqual  prepend="" property="groupByType"  compareValue="3">
-	     	 c.mt_advisor as groupName,
-	    </isEqual> 
-	     
-	        count(DISTINCT c.id) as ct,    
+	    </isEqual>   
+	   <isEqual  prepend="" property="groupByType"  compareValue="3">
+	     	c.mt_advisor as groupName,
+	    </isEqual>    
+	        count(distinct c.id) as ct,
  			SUM(a.true_cost) as trueCost,
 			SUM(b.subtotal) as subtotal,
 			SUM(b.qty) as qty,
@@ -310,20 +309,19 @@
 				select sum(a.true_cost) as true_cost ,a.main_id as main_id from wb_part.pj_repair_out a 
 					where a.orgid = #orgid# and  a.return_sign = 0 GROUP BY a.main_id) a on a.main_id = b.id
 			inner join wb_repair.rps_maintain c on b.service_id = c.id 
-			where c.is_settle = 1 and c.orgid = #orgid# and b.is_disabled = 0
-			
-			
-			<isNotEmpty prepend="and" property="billTypeId">  
-                c.bill_type_id = #billTypeId#
-            </isNotEmpty>
-            <isEmpty prepend="and" property="billTypeId">  
-                c.bill_type_id in (0,2,3,4,6)
-            </isEmpty>
+			where  c.orgid = #orgid#
+			and c.bill_type_id != 5 and b.is_disabled = 0
 			
 		
             <isNotEmpty prepend="and" property="startDate">  
                 (c.out_date &gt;= #startDate#)
             </isNotEmpty>
+             <isNotEmpty prepend="and" property="billTypeId">  
+                (c.bill_type_id = #billTypeId#)
+            </isNotEmpty>  
+             <isNotEmpty prepend="and" property="noBillTypeId">  
+                (c.bill_type_id != #noBillTypeId#)
+            </isNotEmpty>           
             <isNotEmpty prepend="and" property="endDate">  
                 (c.out_date &lt; #endDate#)
             </isNotEmpty>
@@ -339,19 +337,19 @@
 	    <isEqual  prepend="" property="groupByType"  compareValue="2">
 	     	group by b.part_code , b.part_name
 	    </isEqual>
-	     <isEqual  prepend="" property="groupByType"  compareValue="3">
+	    <isEqual  prepend="" property="groupByType"  compareValue="3">
 	     	group by c.mt_advisor
 	    </isEqual>
 	</select>
-	<!--配件销售汇总表-->
-	<select id="queryPartSummaryBy2" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	<!--配件维修销售汇总表-->
+	<select id="queryBillPartSummaryBy2" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT  	     
 	   <isEqual  prepend="" property="groupByType"  compareValue="2">
 	   		 b.id as id,
 	     	 b.part_code as groupName,
 	     	 b.part_name as partName,
-	    </isEqual>   
-	        count(DISTINCT c.id) as ct,    
+	    </isEqual>  
+	        count(distinct c.id) as ct,     
  			SUM(a.true_cost) as trueCost,
 			SUM(b.subtotal) as subtotal,
 			SUM(b.qty) as qty,
@@ -363,14 +361,110 @@
 				select sum(a.true_cost) as true_cost ,a.main_id as main_id from wb_part.pj_repair_out a 
 					where a.orgid = #orgid# and  a.return_sign = 0 GROUP BY a.main_id) a on a.main_id = b.id
 			inner join wb_repair.rps_maintain c on b.service_id = c.id 
-			where c.is_settle = 1 and c.orgid = #orgid# and b.is_disabled = 0
+			where  c.orgid = #orgid#
+			and c.bill_type_id != 5 and b.is_disabled = 0
 			
-			<isNotEmpty prepend="and" property="billTypeId">  
-                c.bill_type_id = #billTypeId#
+		
+            <isNotEmpty prepend="and" property="startDate">  
+                (c.out_date &gt;= #startDate#)
             </isNotEmpty>
-            <isEmpty prepend="and" property="billTypeId">  
-                c.bill_type_id in (0,2,3,4,6)
-            </isEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (c.out_date &lt; #endDate#)
+            </isNotEmpty>				  
+            <isNotEmpty prepend="and" property="billTypeId">  
+                (c.bill_type_id = #billTypeId#)
+            </isNotEmpty>  
+             <isNotEmpty prepend="and" property="noBillTypeId">  
+                (c.bill_type_id != #noBillTypeId#)
+            </isNotEmpty>             
+	    <isEqual  prepend="" property="groupByType"  compareValue="2">
+	     	group by b.part_code , b.part_name
+	    </isEqual>
+	</select>
+	
+	<!--配件销售汇总表-->
+	<select id="queryPartSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT  
+	   <isEqual  prepend=""  property="groupByType"   compareValue="0">
+        DATE_FORMAT(c.out_date,'%Y-%m-%d')  as groupName,
+     </isEqual>   
+      <isEqual  prepend="" property="groupByType"  compareValue="1">
+	     	 c.service_type_id as groupName,
+	    </isEqual> 
+	     
+	   <isEqual  prepend="" property="groupByType"  compareValue="2">
+	     	 b.part_code as groupName,
+	     	 b.part_name as partName,
+	    </isEqual>  
+	    <isEqual  prepend="" property="groupByType"  compareValue="3">
+	     	c.mt_advisor as groupName,
+	    </isEqual>     
+	        count(distinct c.id) as ct,
+ 			SUM(a.true_cost) as trueCost,
+			SUM(b.subtotal) as subtotal,
+			SUM(b.qty) as qty,
+ 			SUM(b.discount_amt) as discountAmt,
+ 			SUM(b.amt) as amt
+ 			      		
+       		FROM wb_repair.rps_part b 
+			INNER JOIN  (
+				select sum(a.true_cost) as true_cost ,a.main_id as main_id from wb_part.pj_repair_out a 
+					where a.orgid = #orgid# and  a.return_sign = 0 GROUP BY a.main_id) a on a.main_id = b.id
+			inner join wb_repair.rps_maintain c on b.service_id = c.id 
+			where  c.orgid = #orgid#
+			and c.bill_type_id != 5 and b.is_disabled = 0
+			
+		
+            <isNotEmpty prepend="and" property="startDate">  
+                (c.out_date &gt;= #startDate#)
+            </isNotEmpty>
+             <isNotEmpty prepend="and" property="billTypeId">  
+                (c.bill_type_id = #billTypeId#)
+            </isNotEmpty>  
+             <isNotEmpty prepend="and" property="noBillTypeId">  
+                (c.bill_type_id != #noBillTypeId#)
+            </isNotEmpty>           
+            <isNotEmpty prepend="and" property="endDate">  
+                (c.out_date &lt; #endDate#)
+            </isNotEmpty>
+ 			
+		<isEqual  prepend="" property="groupByType"   compareValue="0">
+	        GROUP BY DATE_FORMAT(c.out_date,'%Y-%m-%d')
+	   </isEqual>
+	   
+        <isEqual  prepend="" property="groupByType"  compareValue="1">
+	     	group by c.service_type_id
+	    </isEqual>
+	    
+	    <isEqual  prepend="" property="groupByType"  compareValue="2">
+	     	group by b.part_code , b.part_name
+	    </isEqual>
+	    <isEqual  prepend="" property="groupByType"  compareValue="3">
+	     	group by c.mt_advisor
+	    </isEqual>
+	</select>
+	<!--配件销售汇总表-->
+	<select id="queryPartSummaryBy2" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT  	     
+	   <isEqual  prepend="" property="groupByType"  compareValue="2">
+	   		 b.id as id,
+	     	 b.part_code as groupName,
+	     	 b.part_name as partName,
+	    </isEqual>      
+	        count(distinct c.id) as ct, 
+ 			SUM(a.true_cost) as trueCost,
+			SUM(b.subtotal) as subtotal,
+			SUM(b.qty) as qty,
+ 			SUM(b.discount_amt) as discountAmt,
+ 			SUM(b.amt) as amt
+ 			      		
+       		FROM wb_repair.rps_part b 
+			INNER JOIN  (
+				select sum(a.true_cost) as true_cost ,a.main_id as main_id from wb_part.pj_repair_out a 
+					where a.orgid = #orgid# and  a.return_sign = 0 GROUP BY a.main_id) a on a.main_id = b.id
+			inner join wb_repair.rps_maintain c on b.service_id = c.id 
+			where  c.orgid = #orgid#
+			and c.bill_type_id != 5 and b.is_disabled = 0
 			
 		
             <isNotEmpty prepend="and" property="startDate">  

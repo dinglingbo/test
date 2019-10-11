@@ -666,106 +666,11 @@ function onExport(){
 	}
 	
 	if(detail && detail.length > 0){
-		setInitExportData( detail);
-	}
-}
-
-
-function setInitExportData( detail){
-
-    var tds = '<td  colspan="1" align="left">[serviceCode]</td>' +
-        "<td  colspan='1' align='left'>[billTypeId]</td>" +
-        "<td  colspan='1' align='left'>[serviceTypeName]</td>" +
-        "<td  colspan='1' align='left'>[guestFullName]</td>" +
-        "<td  colspan='1' align='left'>[carNo]</td>" +
-        "<td  colspan='1' align='left'>[mtAdvisor]</td>" +
-        "<td  colspan='1' align='left'>[isCollectMoney]</td>" +       
-        "<td  colspan='1' align='left'>[collectMoneyDate]</td>" +
-        
-        "<td  colspan='1' align='left'>[carModel]</td>" +
-        "<td  colspan='1' align='left'>[carVin]</td>" +
-        "<td  colspan='1' align='left'>[enterKilometers]</td>" +
-        
-        "<td  colspan='1' align='left'>[packageAmt]</td>" +
-        "<td  colspan='1' align='left'>[packagePrefAmt]</td>" +
-        "<td  colspan='1' align='left'>[packageSubtotal]</td>"+
-        "<td  colspan='1' align='left'>[itemAmt]</td>"+
-        "<td  colspan='1' align='left'>[itemPrefAmt]</td>"+
-        "<td  colspan='1' align='left'>[itemSubtotal]</td>"+      
-        "<td  colspan='1' align='left'>[partAmt]</td>" +
-        "<td  colspan='1' align='left'>[partPrefAmt]</td>" +
-        "<td  colspan='1' align='left'>[partSubtotal]</td>" +
-        "<td  colspan='1' align='left'>[otherAmt]</td>" +                     
-        "<td  colspan='1' align='left'>[incomeTotal]</td>" +
-        
-        "<td  colspan='1' align='left'>[netinAmt]</td>" +
-        "<td  colspan='1' align='left'>[cardTimesAmt]</td>" +
-        "<td  colspan='1' align='left'>[balaAmt]</td>" +      
-        "<td  colspan='1' align='left'>[grossProfit]</td>" +        
-        "<td  colspan='1' align='left'>[grossProfitRate]</td>"+
-        "<td  colspan='1' align='left'>[grossProfitRemark]</td>"+
-        
-        "<td  colspan='1' align='left'>[remark]</td>"+
-        "<td  colspan='1' align='left'>[enterDate]</td>"+  
-        "<td  colspan='1' align='left'>[checkDate]</td>"+
-        "<td  colspan='1' align='left'>[outDate]</td>"+
-        "<td  colspan='1' align='left'>[isOutBill]</td>"+       
-        "<td  colspan='1' align='left'>[orgid]</td>";
-        
-        
-    var tableExportContent = $("#tableExportContent");
-    tableExportContent.empty();
-    for (var i = 0; i < detail.length; i++) {
-        var row = detail[i];
-        if(row.id){
-            var tr = $("<tr></tr>");
-            tr.append(tds.replace("[serviceCode]", detail[i].serviceCode?detail[i].serviceCode:"")
-                         .replace("[billTypeId]", detail[i].billTypeId?detail[i].billTypeId:"")
-                         .replace("[serviceTypeName]", detail[i].serviceTypeName?detail[i].serviceTypeName:"")
-                         .replace("[guestFullName]", detail[i].guestFullName?detail[i].guestFullName:"")                        
-                         .replace("[carNo]", detail[i].carNo?detail[i].carNo:"")
-                         .replace("[mtAdvisor]", detail[i].mtAdvisor?detail[i].mtAdvisor:"")
-                         .replace("[isCollectMoney]", detail[i].isCollectMoney?detail[i].isCollectMoney:"")
-                         .replace("[collectMoneyDate]", nui.formatDate(detail[i].collectMoneyDate?detail[i].collectMoneyDate:"",'yyyy-MM-dd HH:mm'))
-                         
-                         .replace("[carModel]", detail[i].carModel?detail[i].carModel:"")                       
-                         .replace("[carVin]", detail[i].carVin?detail[i].carVin:"")
-                         .replace("[enterKilometers]", detail[i].enterKilometers?detail[i].enterKilometers:"") 
-                         
-                         .replace("[packageAmt]", detail[i].packageAmt?detail[i].packageAmt:0)                        
-                         .replace("[packagePrefAmt]", detail[i].packagePrefAmt?detail[i].packagePrefAmt:0)
-                         .replace("[packageSubtotal]", detail[i].packageSubtotal?detail[i].packageSubtotal:0)
-                         
-                         .replace("[itemAmt]", detail[i].itemAmt?detail[i].itemAmt:0)
-                         .replace("[itemPrefAmt]", detail[i].itemPrefAmt?detail[i].itemPrefAmt:0)
-                         .replace("[itemSubtotal]", detail[i].itemSubtotal?detail[i].itemSubtotal:0)
-                         
-                         .replace("[partAmt]", detail[i].partAmt?detail[i].partAmt:0)
-                         .replace("[partPrefAmt]", detail[i].partPrefAmt?detail[i].partPrefAmt:0)
-                         .replace("[partSubtotal]", detail[i].partSubtotal?detail[i].partSubtotal:0)         
-                         .replace("[otherAmt]", detail[i].otherAmt?detail[i].otherAmt:0)
-                         .replace("[incomeTotal]", detail[i].incomeTotal?detail[i].incomeTotal:0)
-                                             
-                         
-                         .replace("[netinAmt]", detail[i].netinAmt?detail[i].netinAmt:0)                         
-                         .replace("[cardTimesAmt]", detail[i].cardTimesAmt?detail[i].cardTimesAmt:0)
-                         .replace("[balaAmt]", detail[i].balaAmt?detail[i].balaAmt:0)
-                         
-                         .replace("[grossProfit]", detail[i].grossProfit?detail[i].grossProfit:0)
-                         .replace("[grossProfitRate]", detail[i].grossProfitRate?detail[i].grossProfitRate*100+"%":"0%")
-                         .replace("[grossProfitRemark]", detail[i].grossProfitRemark?detail[i].grossProfitRemark:"")                         
-                         .replace("[remark]", detail[i].remark?detail[i].remark:"")                         
-                         .replace("[enterDate]",nui.formatDate(detail[i].enterDate?detail[i].enterDate:"",'yyyy-MM-dd HH:mm') ) 
-                         .replace("[checkDate]",nui.formatDate(detail[i].checkDate?detail[i].checkDate:"",'yyyy-MM-dd HH:mm') )
-                         .replace("[outDate]",nui.formatDate(detail[i].outDate?detail[i].outDate:"",'yyyy-MM-dd HH:mm') )
-                         .replace("[isOutBill]", detail[i].isOutBill?detail[i].isOutBill:"") 
-                         .replace("[orgid]", detail[i].orgid?detail[i].orgid:""));
-            tableExportContent.append(tr);
-        }
-    }
-
- 
-    method5('tableExcel',"已结算工单明细表导出",'tableExportA');
+		//多级表头类型
+				setInitExportData( detail,mainGrid.columns,"维修档案导出");
+		//单级表头类型  与上二选一
+		//setInitExportDataNoMultistage( detail,rightGrid.columns,"已结算工单明细表导出");
+			}
 }
 
 function showCarInfo(row_uid){
@@ -826,6 +731,9 @@ function onAdvancedSearchOk()
     searchData.mtAuditorId = mtAdvisorIdEl.getValue();
     searchData.guestProperty = nui.get("guestProperty").getValue();
     searchData.propertyFeatures = nui.get("propertyFeatures").getValue();
+    var carModel   = nui.get("carModel").getValue();
+    searchData.carModel = carModel.replace(/\s+/g,""); 
+    searchData.itemId = nui.get("itemId").getValue();
     var billTypeIdList =  nui.get("billTypeIdList").getValue();
     if(billTypeIdList!=""&&billTypeIdList!=null){
     	searchData.billTypeIdList = billTypeIdList;
@@ -992,6 +900,33 @@ function onLeftGridSelectionChanged(){
 	activechangedmain();
 }
 
-
+function getItemId(){
+	nui.open({
+		// targetWindow: window,,
+		url : webPath + contextPath + "/com.hsweb.repair.DataBase.RepairItemMain.flow?token=" + token,
+		title : "维修项目",
+		width : 1000,
+		height : 560,
+		allowDrag : true,
+		allowResize : true,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+			var params = {};
+			iframe.contentWindow.setData(params);
+			iframe.contentWindow.showCheckcolumn();
+		},
+		ondestroy : function(action) {
+			var iframe = this.getIFrameEl();
+            var data = iframe.contentWindow.getDataAll();
+            for(var i = 0 , l = data.length; i < l ; i++){
+            	var itemName = data[i].name || "";
+            	var itemId = data[i].id;
+            	
+            	nui.get("itemId").setText(itemName);
+            	nui.get("itemId").setValue(itemId);
+            }
+		}
+	});
+}
 
 

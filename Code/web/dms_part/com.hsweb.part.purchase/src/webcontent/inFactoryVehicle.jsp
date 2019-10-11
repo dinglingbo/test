@@ -10,7 +10,7 @@
 -->
 <head>
 <title>未结算工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/inFactoryVehicle.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/inFactoryVehicle.js?v=1.0.4"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -256,38 +256,7 @@
 						<input class="nui-datepicker" id="eEnterDate1" name="eEnterDate1" allowInput="false" width="100%" format="yyyy-MM-dd"  showTime="false" showOkButton="false" showClearButton="false"/>  
 					</td>
 					
-				</tr>
-<!-- 				<tr>
-				
-					<td class="title">
-						<label>出厂日期 从:</label>
-					</td>
-					<td>
-						<input class="nui-datepicker" id="outDateStart" name="outDateStart" allowInput="false" width="100%" format="yyyy-MM-dd"  showTime="false" showOkButton="false" showClearButton="false"/> 
-					</td>
-					<td class="title">
-						<label>至:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-					</td>
-					<td>
-						<input class="nui-datepicker" id="outDateEnd" name="outDateEnd" allowInput="false" width="100%" format="yyyy-MM-dd"  showTime="false" showOkButton="false" showClearButton="false"/> 
-						
-					</td>
-				</tr>
- 
-				<tr>
-					<td class="title">
-						<label>结算日期 从:</label>
-					</td>
-					<td>
-						<input class="nui-datepicker" id="collectMoneyDateStart" name="collectMoneyDateStart" allowInput="false" width="100%" format="yyyy-MM-dd"  showTime="false" showOkButton="false" showClearButton="false"/> 
-					</td>
-					<td class="title">
-						<label>至:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-					</td>
-					<td>
-						<input class="nui-datepicker" id="collectMoneyDateEnd" name="collectMoneyDateEnd" allowInput="false" width="100%" format="yyyy-MM-dd"  showTime="false" showOkButton="false" showClearButton="false"/> 					
-					</td>
-				</tr>  -->     			 
+				</tr>   			 
 				<tr>
 					<td class="title">
 						<label>车牌号：</label>
@@ -348,13 +317,13 @@
 						<label>车型：</label>
 					</td>
 					<td>
-				        <input class="nui-textbox" name="" id=""   width="100%"  />
+				        <input class="nui-textbox" name="carModel" id="carModel"   width="100%"  />
 					</td>
 					<td class="title">
 						<label>维修项目：</label>
 					</td>
 					<td>
-				        <input class="nui-radiobuttonlist" name="guestProperty" id="guestProperty" emptyText="客户属性" valueField="customid"  textField="name" width="100%" allowInput="true" showNullItem="false" valueFromSelect="true" />
+				         <input class="mini-buttonedit" allowInput="false" onbuttonclick="getItemId" name="itemId" id="itemId" style="width: 100%;" />
 					</td>
 				</tr>					
 				 <tr>
@@ -410,17 +379,7 @@
 					<td colspan="3">
 				        <input class="nui-textbox" name="propertyFeatures" id="propertyFeatures" emptyText="" valueField="customid"  textField="name" width="100%"  />
 					</td>
-				</tr>	
-<!-- 				<tr>
-					<td class="title">
-						<label> 包含未收款：：</label>
-					</td>
-					<td colspan="3">
-				         <div  class="nui-checkbox" id="isCollectMoney" name="isCollectMoney" value="1"  trueValue="1" falseValue="0"></div> 
-					</td>
-				</tr>	 -->								
-
-                       
+				</tr>								                      
                         
 			</table>
 			<div style="text-align: center; padding: 10px;">

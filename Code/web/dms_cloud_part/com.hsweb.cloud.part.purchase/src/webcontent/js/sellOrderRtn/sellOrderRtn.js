@@ -517,10 +517,12 @@ function setBtnable(flag) {
         nui.get("saveBtn").enable();
         //nui.get("auditToEnterBtn").disable();
         nui.get("auditBtn").enable();
+        nui.get("selectSupplierBtn").enable();
     } else {
         nui.get("saveBtn").disable();
         //nui.get("auditToEnterBtn").enable();
         nui.get("auditBtn").disable();
+        nui.get("selectSupplierBtn").disable();
     }
 }
 function setEditable(flag) {

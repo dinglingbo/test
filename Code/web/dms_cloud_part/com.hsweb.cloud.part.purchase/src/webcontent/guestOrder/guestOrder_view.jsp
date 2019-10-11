@@ -9,7 +9,7 @@
 -->
 <head>
 <title>预售单</title>
-<script src="<%=webPath + contextPath%>/purchase/js/guestOrder/guestOrder.js?v=1.0.44"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/guestOrder/guestOrder.js?v=1.0.45"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -180,7 +180,7 @@ body .mini-grid-row-selected{
                                              width="86%"
                                              placeholder="请选择客户"
                                              selectOnFocus="true" />
-                                           <a class="nui-button" iconCls="" plain="false" onclick="selectSupplier('guestId')" id="addBtn"><span class="fa fa-check fa-lg"></span></a>
+                                           <a class="nui-button" iconCls="" plain="false" onclick="selectSupplier('guestId')" id="selectSupplierBtn"><span class="fa fa-check fa-lg"></span></a>
 <!--                                       	<input id="btnEdit1" width="7.2%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/> -->
 <!--                                          <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn"><span class="fa fa-plus fa-lg"></span></a> -->
                                       </td>

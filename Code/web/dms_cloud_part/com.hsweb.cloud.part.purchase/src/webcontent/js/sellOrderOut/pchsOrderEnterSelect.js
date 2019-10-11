@@ -285,6 +285,20 @@ function onOk()
     			partList[i].orderAmt=partList[i].enterAmt;
     			partList[i].comSpec=partList[i].spec;
     			partList[i].outUnitId=partList[i].enterUnitId;
+    			
+    			//开单和修改配件的信息赋默认值
+    			partList[i].showPrice = partList[i].orderPrice;
+    			partList[i].showAmt = partList[i].orderAmt;
+    			partList[i].showPartId = partList[i].partId || "";
+    			partList[i].showPartCode = partList[i].comPartCode || "";
+    			partList[i].showFullName = partList[i].fullName || "";
+    			partList[i].showCarModel = partList[i].comApplyCarModel || "";
+    			partList[i].showOemCode = partList[i].comOemCode || "";
+    			partList[i].showSpec = partList[i].comSpec || "";
+    		    if(partBrandIdHash[partList[i].partBrandId]){
+    		    	partList[i].showBrandName =partBrandIdHash[partList[i].partBrandId].name;
+    		    }
+
     		}
     		var innerPartRow=innerPchsEnterGrid.getSelecteds();
     		if(innerPartRow.length>0){
@@ -297,6 +311,19 @@ function onOk()
     				innerPartRow[i].orderAmt=innerPartRow[i].enterAmt;
     				innerPartRow[i].comSpec=innerPartRow[i].spec;
     				innerPartRow[i].outUnitId=innerPartRow[i].enterUnitId;
+    				
+    				//开单和修改配件的信息赋默认值
+    				innerPartRow[i].showPrice = innerPartRow[i].orderPrice;
+    				innerPartRow[i].showAmt = innerPartRow[i].orderAmt;
+    				innerPartRow[i].showPartId = innerPartRow[i].partId || "";
+    				innerPartRow[i].showPartCode = innerPartRow[i].comPartCode || "";
+    				innerPartRow[i].showFullName = innerPartRow[i].fullName || "";
+    				innerPartRow[i].showCarModel = innerPartRow[i].comApplyCarModel || "";
+    				innerPartRow[i].showOemCode = innerPartRow[i].comOemCode || "";
+    				innerPartRow[i].showSpec = innerPartRow[i].comSpec || "";
+        		    if(partBrandIdHash[innerPartRow[i].partBrandId]){
+        		    	innerPartRow[i].showBrandName =partBrandIdHash[innerPartRow[i].partBrandId].name;
+        		    }
     			}
     			var id=innerPartRow[0].id;
     			for(var i=0;i<partList.length;i++){

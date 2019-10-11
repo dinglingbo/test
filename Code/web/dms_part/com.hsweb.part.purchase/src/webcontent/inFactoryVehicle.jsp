@@ -342,7 +342,21 @@
                                    valueFromSelect="true"
                                    nullItemText="请选择..."/>
                         </td>
-				</tr>		
+				</tr>	
+				<tr>
+					<td class="title">
+						<label>车型：</label>
+					</td>
+					<td>
+				        <input class="nui-textbox" name="" id=""   width="100%"  />
+					</td>
+					<td class="title">
+						<label>维修项目：</label>
+					</td>
+					<td>
+				        <input class="nui-radiobuttonlist" name="guestProperty" id="guestProperty" emptyText="客户属性" valueField="customid"  textField="name" width="100%" allowInput="true" showNullItem="false" valueFromSelect="true" />
+					</td>
+				</tr>					
 				 <tr>
 					<td class="title">
 						<label> 工单类型:</label>

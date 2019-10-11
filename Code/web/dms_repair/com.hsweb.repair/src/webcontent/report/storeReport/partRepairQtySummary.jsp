@@ -7,10 +7,10 @@
   - Description:
 -->
 <head>
-    <title>配件销售汇总表</title>
+    <title>维修配件销售汇总表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
-  <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/partSaleSummary.js?v=1.0.3"></script>
+  <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/partRepairQtySummary.js?v=1.0.1"></script>
     <style type="text/css">
     body { 
         margin: 0;

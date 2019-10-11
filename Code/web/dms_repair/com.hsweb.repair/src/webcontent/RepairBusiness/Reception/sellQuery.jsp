@@ -143,7 +143,9 @@
                          <!-- <div field="partCodel" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件类型" align="center"></div> -->
                          <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="数量" name="partQty" summaryType="sum" > </div>
                          <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="销售单价" name="partUnitPrice" dataType="float"> </div>
-                         <div field="amt" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="销售金额" summaryType="sum" dataType="float"> </div>
+                		 <div allowSort="true" summaryType="sum" allowSort="true" field="amt"   width="60"headerAlign="center" header="销售金额" dataType="float" align="left"></div>
+               		     <div allowSort="true" summaryType="sum" allowSort="true" field="discountAmt"   width="60"headerAlign="center" header="优惠金额" dataType="float" align="left"></div>
+               			 <div allowSort="true" summaryType="sum" allowSort="true" field="subtotal"   width="60"headerAlign="center" header="小计" dataType="float" align="left"></div>
 <!--                          <div field="camt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center" header="成本" summaryType="sum" dataType="float"> </div>
                          <div field="mamt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center" header="毛利" summaryType="sum" dataType="float"> </div> -->
                       </div>

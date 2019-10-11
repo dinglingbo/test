@@ -9,7 +9,7 @@
 -->
 <head>
     <title>配件销售明细表</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/partRepairQty.js?v=1.0.5"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/partRepairQty.js?v=1.0.8"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -117,6 +117,8 @@
                 <div allowSort="true" summaryType="sum" allowSort="true" field="qty" width="60" headerAlign="center" header="销售数量" dataType="float" align="left"></div>
                 <div allowSort="true" summaryType="sum" allowSort="true" field="unitPrice" width="60" headerAlign="center" header="销售单价" dataType="float" align="left"></div>
                 <div allowSort="true" summaryType="sum" allowSort="true" field="amt"   width="60"headerAlign="center" header="销售金额" dataType="float" align="left"></div>
+                <div allowSort="true" summaryType="sum" allowSort="true" field="discountAmt"   width="60"headerAlign="center" header="优惠金额" dataType="float" align="left"></div>
+                <div allowSort="true" summaryType="sum" allowSort="true" field="subtotal"   width="60"headerAlign="center" header="小计" dataType="float" align="left"></div>
                 <div summaryType="sum" allowSort="true" field="trueCost" headerAlign="center" header="成本金额" dataType="float" align="left"></div>
                 <div allowSort="true" summaryType="sum" allowSort="true" field="gross" width="80" headerAlign="center" header="毛利"  align="left"></div>
                 <div allowSort="true"  allowSort="true" field="saleMan"  width="60"headerAlign="center" header="销售员" dataType="float" align="left"></div>

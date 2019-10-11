@@ -104,7 +104,7 @@ function getSearchParams(){
     	params.sOutDate=nui.get("sDate").getFormValue();
     	params.eOutDate=addDate(eDateEl.getValue(),1);	
     }
-    params.billTypeId=3;
+    //params.billTypeId=3;
     var orgidsElValue = orgidsEl.getValue();
     if(orgidsElValue==null||orgidsElValue==""){
     	 params.orgids =  currOrgs;
@@ -116,7 +116,7 @@ function getSearchParams(){
 }
 var currType = 2;
 function quickSearch(type){
-	var params = getSearchParams();
+	var params = {};
     var queryname = "本日";
     switch (type)
     {
@@ -174,10 +174,11 @@ function quickSearch(type){
     }
     currType = type;
     
-    sDateEl.setValue(params.sPickDate);
-    eDateEl.setValue(addDate(params.ePickDate,-1));
+    sDateEl.setValue(params.sEnterDate);
+    eDateEl.setValue(addDate(params.eEnterDate,-1));
     var menunamedate = nui.get("menunamedate");
     menunamedate.setText(queryname);
+    params = getSearchParams();
     doSearch(params);
 }
 

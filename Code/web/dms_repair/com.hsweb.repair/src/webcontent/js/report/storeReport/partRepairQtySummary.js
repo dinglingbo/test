@@ -49,7 +49,7 @@ function load(e){
     var data= form.getData();
 	data.endDate = formatDate(data.endDate) +" 23:59:59";
 	data.groupByType = cType;
-	data.billTypeId=3;
+	data.noBillTypeId=3;
     updateGridColoumn(cType);
     grid1.load({params:data,token :token});
 }
@@ -141,7 +141,7 @@ function quickSearch(type){
 //  if(params.endDate){
 //  params.endDate = params.endDate +" 23:59:59";
 //}
-//params.billTypeId=3;
+ params.noBillTypeId=3;
 grid1.load({params:params});
 updateGridColoumn(cType);
 }

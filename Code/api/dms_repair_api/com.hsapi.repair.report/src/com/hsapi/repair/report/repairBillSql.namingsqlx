@@ -305,13 +305,19 @@
 				select sum(a.true_cost) as true_cost ,a.main_id as main_id from wb_part.pj_repair_out a 
 					where a.orgid = #orgid# and  a.return_sign = 0 GROUP BY a.main_id) a on a.main_id = b.id
 			inner join wb_repair.rps_maintain c on b.service_id = c.id 
-			where c.is_settle = 1 and c.orgid = #orgid#
-			and c.bill_type_id in (0,2,4)
+			where  c.orgid = #orgid#
+			and c.bill_type_id != 5 and b.is_disabled = 0
 			
 		
             <isNotEmpty prepend="and" property="startDate">  
                 (c.out_date &gt;= #startDate#)
             </isNotEmpty>
+             <isNotEmpty prepend="and" property="billTypeId">  
+                (c.bill_type_id = #billTypeId#)
+            </isNotEmpty>  
+             <isNotEmpty prepend="and" property="noBillTypeId">  
+                (c.bill_type_id != #noBillTypeId#)
+            </isNotEmpty>           
             <isNotEmpty prepend="and" property="endDate">  
                 (c.out_date &lt; #endDate#)
             </isNotEmpty>
@@ -347,8 +353,8 @@
 				select sum(a.true_cost) as true_cost ,a.main_id as main_id from wb_part.pj_repair_out a 
 					where a.orgid = #orgid# and  a.return_sign = 0 GROUP BY a.main_id) a on a.main_id = b.id
 			inner join wb_repair.rps_maintain c on b.service_id = c.id 
-			where c.is_settle = 1 and c.orgid = #orgid#
-			and c.bill_type_id in (0,2,4)
+			where  c.orgid = #orgid#
+			and c.bill_type_id != 5 and b.is_disabled = 0
 			
 		
             <isNotEmpty prepend="and" property="startDate">  

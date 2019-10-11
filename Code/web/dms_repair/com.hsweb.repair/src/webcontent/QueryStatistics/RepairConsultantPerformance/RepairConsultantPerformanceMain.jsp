@@ -81,7 +81,7 @@
 </div>
 <div class="nui-fit">
 	<div id="datagrid1" class="nui-datagrid" style="width: 100%; height: 100%;"
-		 dataField="list"
+		 dataField="list" showSummaryRow="true"
 		 pageSize="20"
 		 showPager="true"
 		 allowCellWrap = true
@@ -97,17 +97,17 @@
 			
 			<div header="基本信息" headerAlign="center">
 				<div property="columns">
-				    <div field="mtAdvisor" headerAlign="center" allowSort="true" visible="true" width="190" align="right">服务顾问</div>
-					<div field="compTimes" headerAlign="center" allowSort="true" visible="true" width="100" align="right">首次到店车辆数</div>
-					<div field="times" headerAlign="center" allowSort="true" visible="true" width="100" align="right">结算车次</div>
+				    <div field="mtAdvisor" headerAlign="center" allowSort="true" visible="true" width="100" align="right">服务顾问</div>
+					<div field="compTimes" headerAlign="center" allowSort="true" visible="true" width="100" summaryType="sum" align="right">首次到店车辆数</div>
+					<div field="times" headerAlign="center" allowSort="true" visible="true" width="100" summaryType="sum" align="right">结算车次</div>
 				</div>
 			</div>
 			<div header="维修金额信息" headerAlign="center">
 				<div property="columns">
-					<div field="packageSubtotal" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">套餐小计</div>
-					<div field="itemSubtotal" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">项目小计</div>
-					<div field="partSubtotal" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">配件小计</div>
-					<div field="itemSubtot" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">实营金额</div>
+					<div field="packageSubtotal" headerAlign="center" allowSort="true" visible="true" summaryType="sum" width="100" datatype="float" align="right">套餐小计</div>
+					<div field="itemSubtotal" headerAlign="center" allowSort="true" visible="true" summaryType="sum" width="100" datatype="float" align="right">项目小计</div>
+					<div field="partSubtotal" headerAlign="center" allowSort="true" visible="true" summaryType="sum" width="100" datatype="float" align="right">配件小计</div>
+					<div field="netinAmt" headerAlign="center" allowSort="true" visible="true" summaryType="sum" width="100" datatype="float" align="right">营收金额</div>
 				</div>
 			</div>
 			<!-- <div header="配件成本信息" headerAlign="center">
@@ -119,8 +119,8 @@
 			</div> -->
 			<div header="毛利信息" headerAlign="center" >
 				<div property="columns">
-					<div field="mtAmt" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">毛利</div>
-					<div field="partManageExp" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">毛利率</div>
+					<div field="grossProfit" headerAlign="center" allowSort="true" visible="true" width="100" summaryType="sum" datatype="float" align="right">毛利</div>
+					<div field="grossProfitRate" headerAlign="center" numberFormat="p" allowSort="true" visible="true" width="100" datatype="float" align="right">毛利率</div>
 				</div>
 			</div>
 			<!-- <div header="运营毛利信息" headerAlign="center">
@@ -131,9 +131,9 @@
 			</div> -->
 			<div header="其他信息" headerAlign="center">
 				<div property="columns">
-					<div field="mtAmt" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">整单优惠率</div>
-					<div field="partManageExp" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">单客值</div>
-				    <div field="cardTimesAmt" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">预存抵扣</div>
+					<div field="totalPrefRate" headerAlign="center" allowSort="true" numberFormat="p" visible="true" width="100" datatype="float" align="right">整单优惠率</div>
+					<div field="guestAmt" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">单客值</div>
+				    <div field="cardTimesAmt" headerAlign="center" allowSort="true" visible="true" width="100" summaryType="sum" datatype="float" align="right">预存抵扣</div>
 				    <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
 				</div>
 			</div>

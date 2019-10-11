@@ -508,6 +508,7 @@ function setBtnable(flag)
         //nui.get("unAuditBtn").disable();
         nui.get("auditBtn").enable();
         nui.get("saveBtn").enable();
+        nui.get("selectSupplierBtn").enable();
         //nui.get("auditToOutBtn").disable();
         //nui.get("printBtn").enable();
     }
@@ -517,6 +518,7 @@ function setBtnable(flag)
         nui.get("auditBtn").disable();
         //nui.get("auditToOutBtn").enable();
         nui.get("saveBtn").disable();
+        nui.get("selectSupplierBtn").disable();
     }
 }
 var requiredField = {

@@ -634,6 +634,9 @@
                 $sortField$ $sortOrder$
             </isNotEmpty>  
         </dynamic>
+        
+        limit 10000
+        
     </select>
     
     <!--

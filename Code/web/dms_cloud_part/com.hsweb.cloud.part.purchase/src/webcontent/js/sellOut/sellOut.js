@@ -264,12 +264,14 @@ function setBtnable(flag)
     {
         nui.get("unAuditBtn").enable();
         nui.get("auditBtn").enable();
+        nui.get("selectSupplierBtn").enable();
         //nui.get("printBtn").enable();
     }
     else
     {
         nui.get("unAuditBtn").disable();
         nui.get("auditBtn").disable();
+        nui.get("selectSupplierBtn").disable();
     }
 }
 function setEditable(flag)

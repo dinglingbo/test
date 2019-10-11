@@ -1033,6 +1033,7 @@ function setBtnable(flag)
         //nui.get("deletePartBtn").enable();
         nui.get("saveBtn").enable();
         nui.get("auditBtn").enable();
+        nui.get("selectSupplierBtn").enable();
         //nui.get("printBtn").enable();
     }
     else
@@ -1042,6 +1043,7 @@ function setBtnable(flag)
         //nui.get("deletePartBtn").disable();
         nui.get("saveBtn").disable();
         nui.get("auditBtn").disable();
+        nui.get("selectSupplierBtn").disable();
         //nui.get("printBtn").disable();
     }
 }
@@ -2904,6 +2906,15 @@ function onMoreTabChanged(e){
 }
 function addPchsEnter()
 {
+	var row = leftGrid.getSelected();
+    if(row){
+        if(row.auditSign == 1) {
+            showMsg("此单已出库!","W");
+            return;
+        } 
+    }else{
+        return;
+    }
 
     var guestId = nui.get("guestId").getValue();
     if(!guestId) {

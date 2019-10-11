@@ -49,8 +49,8 @@ function load(e){
     var data= form.getData();
 	data.endDate = formatDate(data.endDate) +" 23:59:59";
 	data.groupByType = cType;
-	data.billTypeId=3;
     updateGridColoumn(cType);
+    data.billTypeId = 3;
     grid1.load({params:data,token :token});
 }
 
@@ -140,12 +140,12 @@ function quickSearch(type){
  var menunamedate = nui.get("menunamedate");
  menunamedate.setText(queryname);
  params.groupByType = cType;
+ params.billTypeId = 3;
  // doSearch(params);
 
 //  if(params.endDate){
 //  params.endDate = params.endDate +" 23:59:59";
 //}
-//params.billTypeId=3;
 grid1.load({params:params});
 updateGridColoumn(cType);
 }
@@ -166,7 +166,7 @@ function onExport(){
 //多级表头类型
 		//setInitExportData( detail,grid1.columns,"配件销售汇总表导出");
 //单级表头类型  与上二选一
-setInitExportDataNoMultistage( detail,grid1.columns,"配件销售汇总表导出");
+setInitExportDataNoMultistage( detail,grid1.columns,"销售开单汇总表导出");
 	}
 	
 }

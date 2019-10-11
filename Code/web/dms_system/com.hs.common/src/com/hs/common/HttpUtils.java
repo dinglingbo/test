@@ -687,64 +687,47 @@ public class HttpUtils {
 			Map<String, String> params, String method, Map<String, String> headers) {
 		String result = null;
 		try {
-			HttpsURLConnection
-					.setDefaultHostnameVerifier(new HttpsUtils().new NullHostNameVerifier());
-			SSLContext sc = SSLContext.getInstance("TLS");
-			sc.init(null, trustAllCerts, new SecureRandom());
-			HttpsURLConnection
-			.setDefaultSSLSocketFactory(sc.getSocketFactory());
-	
+			SSLContext sslcontext = SSLContext.getInstance("SSL");//第一个参数为协议,第二个参数为提供者(可以缺省)
+			TrustManager[] tm = {new MyX509TrustManager()};
+			sslcontext.init(null, tm, new SecureRandom());
+			HostnameVerifier ignoreHostnameVerifier = new HostnameVerifier() {
+				public boolean verify(String s, SSLSession sslsession) {
+					System.out.println("WARNING: Hostname is not matched for cert.");
+						return true;
+				}
+			};
+			HttpsURLConnection.setDefaultHostnameVerifier(ignoreHostnameVerifier);
+			HttpsURLConnection.setDefaultSSLSocketFactory(sslcontext.getSocketFactory());
+			
 			URL url = new URL(urlPath);
-			//URL url= new URL(null, urlPath, new sun.net.www.protocol.https.Handler());
-			HttpsURLConnection connection = (HttpsURLConnection) url
+			HttpURLConnection connection = (HttpURLConnection) url
 					.openConnection();
 			connection.setRequestMethod(method);
 			connection.setConnectTimeout(30000);
 			connection.setReadTimeout(30000);
-			connection.setRequestProperty("accept", "*/*");
-			connection.setRequestProperty("connection", "Keep-Alive");
-	        connection.setRequestProperty("user-agent",
-	                "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
-			connection.setDoOutput(true);
-			connection.setDoInput(true);
-			connection.setUseCaches(true);
 
-			/*if (params != null && params.size() > 0) {
+			if (params != null && params.size() > 0) {
 				for (Entry<String, String> e : params.entrySet()) {
 					connection.setRequestProperty(e.getKey(), e.getValue());
 				}
-			}*/
-			
+			}
 			if (headers != null) {
 				for (Map.Entry<String, String> e : headers.entrySet()) {
-					connection.setRequestProperty(e.getKey(), e.getValue());
+					((HttpMessage) connection).addHeader(e.getKey(), e.getValue());
+					//connection.setRequestProperty(e.getKey(), e.getValue());
 				}
 			}
-
 			// connection.setRequestProperty("Content-type", "text/html");
 			connection.setRequestProperty("Content-type", "application/json");
 			connection.setRequestProperty("Accept-Charset", "utf-8");
 			connection.setRequestProperty("contentType", "utf-8");
-			
-			if (params != null) {
-				String json = JSONObject.toJSONString(params);
-				json = "companydata=" + "{'body':{'companycode':'111111111111001','companypassword':'123456a'},'header':{'date':'20191010','time':'142542'}}";
-				OutputStreamWriter osw = new OutputStreamWriter(connection.getOutputStream(), "UTF-8");
-				osw.write(json);
-				osw.flush();
-			} else {
-				params = new HashMap();
-			}
-
-			params.clear();
-			
 			if (connection.getResponseCode() == 200) {
 				InputStream inputStream = connection.getInputStream();
 				result = new String(readStream(inputStream).toByteArray(),
 						"UTF-8");
 			} else {
-				System.out.println("getResponseCode："
-						+ connection.getResponseCode());
+/*				System.out.println("getResponseCode："
+						+ connection.getResponseCode());*/
 			}
 
 			/*System.out.println("length：" + result.length());*/
@@ -755,6 +738,7 @@ public class HttpUtils {
 /*		System.out.println("getHttpToString URL：" + urlPath);
 		System.out.println("getHttpToString Result：" + result);*/
 		return result;
+		
 	}
 	
 	@Bizlet("")

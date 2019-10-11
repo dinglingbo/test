@@ -12,6 +12,8 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
@@ -58,38 +60,47 @@ public class SyncElectronicArchives {
 		String headerDate = format1.format(date);
 		String headerTime = format2.format(date);
 		Map <String, String> header = new HashMap <String, String>();
+		
 		header.put("date", headerDate);
 		header.put("time", headerTime);
 		
-		/*String headerStr = null;
-		headerStr = header.toString();*/
-		
-		
+
 		//报文体
 		Map <String, String> body = new HashMap <String, String>();
 		body.put("companycode", companycode);
 		body.put("companypassword", companypassword);
-		
-		/*String bodyStr = null;
-		bodyStr = body.toString();*/
-		
+	
 		companydata.put("header", header);
 		companydata.put("body", body);
-		jsonObj.put("companydata", companydata);
-		//jsonObj.put("body", body);
-		//jsonObj.put("header", header);
 		
-		//上海需要的参数
-		//jsonObj.put("companycode", companycode);
-		//jsonObj.put("companypassword", companypassword);
-		
-		String param = null;
-		param = jsonObj.toString();
-		//String result = HttpUtils.sendPostByJson(eTokenUrl, "companydata={'body':{'companycode':'111111111111001','companypassword':'123456a'},'header':{'date':'20191010','time':'112657'}}");
-		String result = HttpUtils.sendHttpsGet(eTokenUrl, "companydata={'body':{'companycode':'111111111111001','companypassword':'123456a'},'header':{'date':'20191010','time':'112657'}}");
+	    //截取到域名或者地址
+	    String[] words = eTokenUrl.split("/");
+	    String ipUtl = words[2];
+		String regex=".*[a-zA-Z]+.*";
+		//判断是否包含字母
+		boolean falg = ipUtl.matches(regex);
+		String result = "";
+		if(falg){
+			//是域名
+			//上海需要的参数
+			jsonObj.put("companycode", companycode);
+			jsonObj.put("companypassword", companypassword);
+			String param = null;
+			param = jsonObj.toString();
+			result = HttpUtils.sendPostByJson(eTokenUrl, param);
+		}else{
+			//是IP地址
+			jsonObj.put("header", header);
+			jsonObj.put("body", body);
+			//jsonObj.put("companydata", companydata);
+			String param = null;
+			param = jsonObj.toString();
+			String getStr = "companydata="+param;
+			result = HttpUtils.sendHttpsGet(eTokenUrl,getStr);
+		}
 		
 		//String result = HttpsUtils.sendHttpsPost(eTokenUrl, body, header);
-		//String result = HttpUtils.getHttpByParamAddHeaders(eTokenUrl, body, "GET", null);
+		//String result = HttpUtils.getHttpByParamAddHeaders(eTokenUrl, body, "POST", header);
 		
 		Gson gson = new Gson();
         Map<String, String> map = new HashMap<String, String>();
@@ -123,6 +134,11 @@ public class SyncElectronicArchives {
 		Date date = new Date();
 		String headerDate = format1.format(date);
 		String headerTime = format2.format(date);
+		
+		//请求头
+        Map <String, String> header = new HashMap <String, String>();
+		header.put("date", headerDate);
+		header.put("time", headerTime);
 		
 		Object[] objs = DatabaseExt.queryByNamedSql("repair",
 				"com.hs.repair.query.queryRpsMaintain",
@@ -167,10 +183,6 @@ public class SyncElectronicArchives {
 	        	jsonObj.put("access_token", accessToken);
 	        	/*Map <String, Object> info = new HashMap <String, Object>();*/
 	        	//jsonObj.put("info", info);
-	    		Map <String, String> header = new HashMap <String, String>();
-	    		header.put("date", headerDate);
-	    		header.put("time", headerTime);
-	    		jsonObj.put("header", header);
 	    		
 	    		Map <String, String> basicInfo = new HashMap <String, String>();
 	    		
@@ -196,8 +208,6 @@ public class SyncElectronicArchives {
 	    		
 	    		basicInfo = getFormatData(basicInfo);
 	    		jsonObj.put("basicInfo", basicInfo);
-	    		
-	    		jsonObj.put("body", basicInfo);
 	    		
 	    		List<Map<String,String>> tList=new ArrayList<Map<String,String>>();
 	    		for (DataObject obj : itemList) {
@@ -227,10 +237,45 @@ public class SyncElectronicArchives {
 	    		
 	    		jsonObj.put("vehiclepartslist", pList);
 	    		
-	    		paramStr = jsonObj.toString();
-	    		
-	    		String result = HttpUtils.sendPostByJson(ePushUrl, paramStr);
+	    		//ePushUrl
+	    		//截取到域名或者地址
+	    	    String[] words = ePushUrl.split("/");
+	    	    String ipUtl = words[2];
+	    		String regex=".*[a-zA-Z]+.*";
+	    		//判断是否包含字母
+	    		boolean falg = ipUtl.matches(regex);
+	    		String result = "";
+	    		if(falg){
+	    			//是域名
+	    			//上海需要的参数
+	    			paramStr = jsonObj.toString();
+		    		result = HttpUtils.sendPostByJson(ePushUrl, paramStr);
+	    		}else{
+	    			//是IP地址
+	    			JSONObject jsonObjIp = new JSONObject();
+	    			jsonObjIp.put("access_token", accessToken);
+	    			jsonObjIp.put("header", header);
 	    			
+	    			JSONObject jsonObjBody = new JSONObject();
+	    			jsonObjBody.put("repairprojectlist", tList);
+	    			jsonObjBody.put("vehiclepartslist", pList);
+	    		   
+	    			jsonObjBody.put("vehicleplatecolor", "黑");
+	    			jsonObjBody.put("companyname", basicInfo.get("companyname"));
+	    			jsonObjBody.put("costlistcode", basicInfo.get("costlistcode"));
+	    			jsonObjBody.put("vin", basicInfo.get("vin"));
+	    			jsonObjBody.put("vehicleplatenumber", basicInfo.get("vehicleplatenumber"));
+	    			jsonObjBody.put("repairdate", basicInfo.get("repairdate"));
+	    			jsonObjBody.put("repairmileage", basicInfo.get("repairmileage"));
+	    			jsonObjBody.put("settledate", basicInfo.get("settledate"));
+	    			jsonObjBody.put("faultdescription", basicInfo.get("faultdescription"));
+	    			jsonObjBody.put("costlistcode", basicInfo.get("costlistcode"));
+	    			
+	    			jsonObjIp.put("body", jsonObjBody);
+	    			paramStr = jsonObjIp.toString();
+	    			String getStr = "repairdata="+paramStr;
+	    			result = HttpUtils.sendHttpsGet(ePushUrl,getStr);    			
+	    		}	
 	    		Gson gson = new Gson();
 	            Map<String, String> map = new HashMap<String, String>();
 	            map = gson.fromJson(result, map.getClass());
@@ -316,7 +361,7 @@ public class SyncElectronicArchives {
 						}
 					}
 				}
-				if(accessToken != null && !"".equals(accessToken) && 1 != 1) { 
+				if(accessToken != null && !"".equals(accessToken)) { 
 					Calendar cal = Calendar.getInstance();
 					cal.add(Calendar.DATE, 0);
 				    String endDate = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());

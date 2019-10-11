@@ -365,7 +365,7 @@
              
              <!--包含中文   只按名称查询 -->
             <isNotEmpty prepend="and" property="chis">  
-                (b.full_name like '%$chis$%' or d.name like '%$chis$%')
+                (b.full_name like '%$chis$%' or d.name like '%$chis$%' or a.car_no like '%$chis$%')
             </isNotEmpty>
              
         </dynamic>

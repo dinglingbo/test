@@ -83,8 +83,8 @@
                 <div  field="qty" width="60" headerAlign="center" summaryType="sum" header="配件数量"></div>
                 <div  field="trueCost" width="60" headerAlign="center" summaryType="sum" header="成本"></div>
                 <div  field="subtotal" width="60" headerAlign="center" summaryType="sum" header="销售金额 "></div>
-               <!--  <div  field="discountAmt" width="60" headerAlign="center" summaryType="sum" header="优惠金额"></div>
-                <div  field="subtotal" width="60" headerAlign="center" summaryType="sum" header="配件小计"></div> -->
+                <div  field="discountAmt" width="60" headerAlign="center" summaryType="sum" header="优惠金额"></div>
+                <div  field="subtotal" width="60" headerAlign="center" summaryType="sum" header="配件小计"></div>
     </div>
 </div>	
 </div>

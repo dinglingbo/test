@@ -2071,7 +2071,9 @@
 			e.part_name partName,
 			e.qty qty,
 			e.unit_price unitPrice,
-			e.amt amt
+			e.amt amt,
+			e.discount_amt discountAmt,
+			e.subtotal subtotal
 		FROM
 			rps_maintain a
 			inner join rpb_contactor d on (a.contactor_id = d.id)

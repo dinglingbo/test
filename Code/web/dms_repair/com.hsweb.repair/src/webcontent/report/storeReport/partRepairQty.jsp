@@ -8,7 +8,7 @@
   - Description:
 -->
 <head>
-    <title>配件销售明细表</title>
+    <title>配件维修销售明细表</title>
     <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/partRepairQty.js?v=1.0.8"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>

@@ -65,6 +65,7 @@
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(0)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按日期汇总</a>
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(1)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按业务类型汇总</a>
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(2)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按配件编码汇总</a>
+     <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(3)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按服务顾问汇总</a>
  </div>
  <div class="nui-fit">
     <div id="grid1" class="nui-datagrid" style="width:100%;height:100%;"
@@ -78,7 +79,8 @@
         <div type="indexcolumn">序号</div>
                 <div  field="groupName" name="groupName" width="60" headerAlign="center" header="业务类型"></div>
                 <div  field="partName" name="partName" width="60" headerAlign="center" header="配件名称"></div> 
-                <div  field="qty" width="60" headerAlign="center" summaryType="sum" header="数量"></div>
+                <div  field="ct" width="60" headerAlign="center" summaryType="sum" header="单数"></div>
+                <div  field="qty" width="60" headerAlign="center" summaryType="sum" header="配件数量"></div>
                 <div  field="trueCost" width="60" headerAlign="center" summaryType="sum" header="成本"></div>
                 <div  field="amt" width="60" headerAlign="center" summaryType="sum" header="销售金额 "></div>
                 <div  field="discountAmt" width="60" headerAlign="center" summaryType="sum" header="优惠金额"></div>

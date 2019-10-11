@@ -12,7 +12,7 @@ var serviceTypeIdEl = null;
 var servieTypeList = [];
 var servieTypeHash = {};
 var cType = 0;
-var gridUrl = apiPath + repairApi+'/com.hsapi.repair.report.dataStatistics.queryPartSummary.biz.ext';
+var gridUrl = apiPath + repairApi+'/com.hsapi.repair.report.dataStatistics.queryTPartSummary.biz.ext';
 $(document).ready(function (v)
 {
 
@@ -49,7 +49,7 @@ function load(e){
     var data= form.getData();
 	data.endDate = formatDate(data.endDate) +" 23:59:59";
 	data.groupByType = cType;
-	data.billTypeId=3;
+	//data.billTypeId=3;
     updateGridColoumn(cType);
     grid1.load({params:data,token :token});
 }

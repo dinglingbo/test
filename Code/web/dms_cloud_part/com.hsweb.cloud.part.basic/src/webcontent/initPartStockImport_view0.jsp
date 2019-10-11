@@ -76,6 +76,8 @@
     color: #004974;
     text-decoration: none;
 }
+
+
 </style>
 </head>
 
@@ -89,11 +91,11 @@
 	        <tr>
 	            <td style="width:100%;">
 					<span>非4S用</span><a href="javascript:;" class="file">点击这里选择文件
-					    <input type="file" name="" id="" onchange="importf(this)">
+					    <input type="file" name="" id="" onchange="importf(this)" style="width:100%;">
 					</a>
-
+					
 					<a style="margin-left:10px" href="javascript:;" class="file">4S店库存导入接口
-					    <input type="file" name="" id="" onchange="importfBMW(this)">
+					    <input type="file" name="" id="" onchange="importfBMW(this)" style="width:100%;">
 					</a>
 				
 	                <a class="nui-button" iconCls="" plain="true" onclick="sure()" id="openBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>

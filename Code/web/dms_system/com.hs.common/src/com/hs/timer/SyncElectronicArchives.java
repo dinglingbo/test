@@ -363,7 +363,7 @@ public class SyncElectronicArchives {
 				}
 				if(accessToken != null && !"".equals(accessToken)) { 
 					Calendar cal = Calendar.getInstance();
-					cal.add(Calendar.DATE, 1);
+					cal.add(Calendar.DATE, 0);
 				    String endDate = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());
 				    cal.add(Calendar.DATE, -1);
 				    String startDate = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());

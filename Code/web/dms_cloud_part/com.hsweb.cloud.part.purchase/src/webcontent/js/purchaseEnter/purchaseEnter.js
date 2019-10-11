@@ -334,10 +334,12 @@ function getSearchParam() {
 function setBtnable(flag) {
     if (flag) {
         nui.get("saveBtn").enable();
+        nui.get("selectSupplierBtn").enable();
         //nui.get("auditBtn").enable();
         //nui.get("printBtn").enable();
     } else {
         nui.get("saveBtn").disable();
+        nui.get("selectSupplierBtn").disable();
         //nui.get("auditBtn").disable();
         //nui.get("printBtn").disable();
     }

@@ -381,6 +381,7 @@ function setBtnable(flag)
         nui.get("deleteBillBtn").enable();
         nui.get("saveBtn").enable();
         nui.get("auditBtn").enable();
+        nui.get("selectSupplierBtn").enable();
     }
     else
     {
@@ -388,6 +389,8 @@ function setBtnable(flag)
         nui.get("deleteBillBtn").disable();
         nui.get("saveBtn").disable();
         nui.get("auditBtn").disable();
+        nui.get("selectSupplierBtn").disable();
+        
     }
 }
 function setEditable(flag)

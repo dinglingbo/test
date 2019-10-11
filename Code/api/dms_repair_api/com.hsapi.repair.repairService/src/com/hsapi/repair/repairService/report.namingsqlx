@@ -1898,6 +1898,7 @@
             a.unit_price as unitPrice,
 			a.unit as unit,
             a.amt as amt,
+            a.discount_amt as discountAmt,
             a.subtotal as subtotal,
             a.pick_qty  as pickQty,
 			a.remark as remark,
@@ -1911,7 +1912,7 @@
 			 wb_repair.rps_part a
 		INNER JOIN wb_repair.rps_maintain b ON a.service_id = b.id
     	INNER JOIN wb_common.com_guest d on b.guest_id =d.id  
-		WHERE 1=1
+		WHERE 1=1 and a.is_disabled = 0
 		
 		<dynamic>
 			<isNotEmpty prepend="and" property="orgid">
@@ -1925,6 +1926,11 @@
             <isNotEmpty prepend="and" property="carNo">  
                 (b.car_no like '%$carNo$%' )
             </isNotEmpty>
+            
+            
+            <isEmpty prepend="and" property="billTypeId">  
+                (b.bill_type_id != 5)
+            </isEmpty>  
   			
   			<isNotEmpty prepend="and" property="serviceCode">  
                 (b.service_code like '%$serviceCode$%' )
@@ -2001,6 +2007,7 @@
             a.unit_price as unitPrice,
 			a.unit as unit,
             a.amt as amt,
+            a.discount_amt as discountAmt,
             a.subtotal as subtotal,
             a.pick_qty  as pickQty,
 			a.remark as remark,
@@ -2022,7 +2029,7 @@
     	INNER JOIN wb_common.com_guest d on b.guest_id =d.id  
 		left JOIN wb_repair.rps_item f on f.id =a.bill_item_id
 		INNER JOIN wb_common.com_attribute g on g.id =a.part_id
-		WHERE 1=1
+		WHERE b.bill_type_id != 5 and b.bill_type_id != 3 and a.is_disabled = 0
 		
 		<dynamic>
 			<isNotEmpty prepend="and" property="orgid">

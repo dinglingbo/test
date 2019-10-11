@@ -1361,6 +1361,14 @@
 			<isNotEmpty prepend="and" property="rid">
                 (a.id = #rid#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="carModel">
+                (replace(b.car_model_full_name,' ','') like '%$carModel$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="itemId">
+	                 EXISTS (
+							select 1 from rps_item e 
+								where a.id = e.service_id and e.item_id = #itemId#)
+	        </isNotEmpty>            
             <isNotEmpty prepend="and" property="guestProperty">
                 (c.guest_property = #guestProperty#)
             </isNotEmpty>
@@ -1728,12 +1736,21 @@
 		inner JOIN rpb_car b ON ( a.car_id = b.id )
 		INNER JOIN wb_common.com_guest c on a.guest_id = c.id
 		inner join rpb_contactor d on (a.contactor_id = d.id and c.id = d.guest_id)
+
 		where a.is_settle = 0 and a.is_disabled = 0 
 		      and a.bill_type_id in (0,2,4,6)
 		<dynamic>
 			<isNotEmpty prepend="and" property="rid">
                 (a.id = #rid#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="carModel">
+                (replace(b.car_model_full_name,' ','') like '%$carModel$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="itemId">
+	                 EXISTS (
+							select 1 from rps_item e 
+								where a.id = e.service_id and e.item_id = #itemId#)
+	        </isNotEmpty> 
             <isNotEmpty prepend="and" property="guestProperty">
                 (c.guest_property = #guestProperty#)
             </isNotEmpty>
@@ -1930,6 +1947,14 @@
 			<isNotEmpty prepend="and" property="rid">
                 (a.id = #rid#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="carModel">
+                (replace(b.car_model_full_name,' ','') like '%$carModel$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="itemId">
+	                 EXISTS (
+							select 1 from rps_item e 
+								where a.id = e.service_id and e.item_id = #itemId#)
+	        </isNotEmpty> 
 			<isNotEmpty prepend="and" property="orgid">
                 (a.orgid = #orgid#)
             </isNotEmpty>
@@ -2045,7 +2070,9 @@
 			e.part_name partName,
 			e.qty qty,
 			e.unit_price unitPrice,
-			e.amt amt
+			e.amt amt,
+			e.discount_amt discountAmt,
+			e.subtotal subtotal
 		FROM
 			rps_maintain a
 			inner join rpb_contactor d on (a.contactor_id = d.id)

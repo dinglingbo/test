@@ -12,7 +12,7 @@ var serviceTypeIdEl = null;
 var servieTypeList = [];
 var servieTypeHash = {};
 var cType = 0;
-var gridUrl = apiPath + repairApi+'/com.hsapi.repair.report.dataStatistics.queryTPartSummary.biz.ext';
+var gridUrl = apiPath + repairApi+'/com.hsapi.repair.report.dataStatistics.queryPartSummary.biz.ext';
 $(document).ready(function (v)
 {
 
@@ -49,7 +49,7 @@ function load(e){
     var data= form.getData();
 	data.endDate = formatDate(data.endDate) +" 23:59:59";
 	data.groupByType = cType;
-	//data.billTypeId=3;
+	data.noBillTypeId=3;
     updateGridColoumn(cType);
     grid1.load({params:data,token :token});
 }
@@ -69,10 +69,6 @@ function updateGridColoumn(e){
     if(e == 2){
         grid1.updateColumn(column,{header:"配件编码"});
         grid1.showColumn ( partName );
-    }
-    if(e == 3){
-        grid1.updateColumn(column,{header:"服务顾问"});
-        grid1.hideColumn ( partName );
     }
 
 }
@@ -145,7 +141,7 @@ function quickSearch(type){
 //  if(params.endDate){
 //  params.endDate = params.endDate +" 23:59:59";
 //}
-//params.billTypeId=3;
+ params.noBillTypeId=3;
 grid1.load({params:params});
 updateGridColoumn(cType);
 }

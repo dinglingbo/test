@@ -10,7 +10,7 @@
 -->
 <head>
 <title>维修档案</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.1.1"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.1.4"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -132,7 +132,6 @@
                   <div type="indexcolumn">序号</div>
                   <div header="工单信息" headerAlign="center">
                   	 <div property="columns" >
-	                  <div type="checkcolumn" name="checkcolumn" visible="false"></div>
 	                  <div field="serviceCode" name="serviceCode" width="170" headerAlign="center" allowsort="true" header="工单号" summaryType="count"></div>
 	                  <div field="billTypeId" name="billTypeId" width="70" headerAlign="center" allowsort="true"  header="工单类型"></div>
 	                  <div field="serviceTypeName" name="serviceTypeName" width="70" headerAlign="center" allowsort="true" header="业务类型"></div>
@@ -144,7 +143,6 @@
 	                   <div field="collectMoneyDate" name="collectMoneyDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="收款日期" allowsort="true"></div>	
 	                 </div>
                   </div>
-                  <div type="checkcolumn" name="checkcolumn" visible="false"></div>
                   <div header="客户车辆信息" headerAlign="center">
 	                  <div property="columns" > 
 
@@ -693,6 +691,20 @@
                                    valueFromSelect="true"
                                    nullItemText="请选择..."/>
                         </td>
+				</tr>
+				<tr>
+					<td class="title">
+						<label>车型：</label>
+					</td>
+					<td>
+				        <input class="nui-textbox" name="carModel" id="carModel"   width="100%"  />
+					</td>
+					<td class="title">
+						<label>维修项目：</label>
+					</td>
+					<td>
+				         <input class="mini-buttonedit" allowInput="false" onbuttonclick="getItemId" name="itemId" id="itemId" style="width: 100%;" />
+					</td>
 				</tr>		
 				 <tr>
 					<td class="title">

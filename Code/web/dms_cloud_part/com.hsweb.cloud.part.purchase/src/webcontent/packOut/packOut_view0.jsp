@@ -9,7 +9,7 @@
 -->
 <head>
 <title>打包发货</title>
-<script src="<%=webPath + contextPath%>/purchase/js/packOut/packOut.js?v=1.0.67"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/packOut/packOut.js?v=1.0.69"></script>
 <style type="text/css">
 .title {
   width: 75px;
@@ -174,7 +174,7 @@
 	                                             width="80%"
 	                                             placeholder="请选择客户"
 	                                             selectOnFocus="true" />
-	                                      <a class="nui-button" iconCls="" plain="false" onclick="selectSupplier('guestId')" id="addBtn"><span class="fa fa-check fa-lg"></span></a>
+	                                      <a class="nui-button" iconCls="" plain="false" onclick="selectSupplier('guestId')" id="selectSupplierBtn"><span class="fa fa-check fa-lg"></span></a>
 <!-- 	                                      <input id="btnEdit1" width="11%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/> -->
                                           <input class="nui-textbox" id="guestName" name="guestName" width="100%" visible="false">
                                       </td>

@@ -125,7 +125,7 @@
 				        <div property="columns">
 				            <div type="indexcolumn">序号</div>
 				          <!--  <div type="checkcolumn" width="20"></div>-->
-				            <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="销售单号"></div>
+				            <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="订单单号"></div>
 				            <div field="guestFullName" width="150" headerAlign="center" header="客户"></div>
 				            <div allowSort="true" field="outDate" headerAlign="center" header="出库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
 				            <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div> 
@@ -162,7 +162,7 @@
 				         showSummaryRow="true">
 				        <div property="columns">
 				            <div type="indexcolumn">序号</div>
-				            <div allowSort="true" field="serviceId" width="180" summaryType="count" headerAlign="center" header="采购单号"></div>
+				            <div allowSort="true" field="serviceId" width="180" summaryType="count" headerAlign="center" header="订单单号"></div>
 				            <div field="guestFullName" width="150" headerAlign="center" header="供应商"></div>
 				            <div allowSort="true" width="150"field="enterDate" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
 				            <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div> 

@@ -1182,6 +1182,7 @@ function setBtnable(flag)
         //nui.get("deletePartBtn").enable();
         nui.get("saveBtn").enable();
         nui.get("auditBtn").enable();
+        nui.get("selectSupplierBtn").enable();
         //nui.get("printBtn").enable();
     }
     else
@@ -1191,6 +1192,7 @@ function setBtnable(flag)
         //nui.get("deletePartBtn").disable();
         nui.get("saveBtn").disable();
         nui.get("auditBtn").disable();
+        nui.get("selectSupplierBtn").disable();
         //nui.get("printBtn").disable();
     }
 }

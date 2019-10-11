@@ -179,6 +179,7 @@
 				a.orgid as orgid,
 				a.orderTypeId as orderTypeId,
 				a.billStatusId as billStatusId,
+				a.isDiffOrder as isDiffOrder,
 				a.guestId as guestId,
 				a.creator as creator,
 				a.auditor as auditor,
@@ -189,7 +190,7 @@
 				a.addr as addr
 			FROM
 			vw_order_main AS a
-			WHERE to_days(auditDate) = to_days(now())
+			WHERE to_days(auditDate) = to_days(now()) and isDiffOrder = 0
 			<isNotEmpty prepend="and" property="orgid"> 
                     (a.orgid = #orgid#)
                 </isNotEmpty>

@@ -88,7 +88,7 @@
 		            <div property="columns">
 		                <div allowSort="true" datatype="float" summaryType="sum" field="outableQty" width="60" headerAlign="center" header="数量"></div>
 		                <div allowSort="true" datatype="float" field="enterPrice" width="60" headerAlign="center" header="单价"></div>
-		                <div allowSort="true" datatype="float" summaryType="sum" field="totalAmt" width="60" headerAlign="center" header="金额"></div>
+		                <div allowSort="true" datatype="float" summaryType="sum" field="enterAmt" width="60" headerAlign="center" header="金额"></div>
 		                <!-- <div allowSort="true" field="detailRemark" width="120" headerAlign="center" header="备注"></div> -->
 		            </div>
               </div>

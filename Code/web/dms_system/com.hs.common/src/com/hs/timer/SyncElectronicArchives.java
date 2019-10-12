@@ -3,7 +3,9 @@
  */
 package com.hs.timer;
 
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -95,8 +97,14 @@ public class SyncElectronicArchives {
 			//jsonObj.put("companydata", companydata);
 			String param = null;
 			param = jsonObj.toString();
-			String getStr = "companydata="+param;
-			result = HttpUtils.sendHttpsGet(eTokenUrl,getStr);
+			try {
+				param = URLEncoder.encode(param, "utf-8");
+				String getStr = "companydata="+param;
+				result = HttpUtils.sendHttpsGet(eTokenUrl,getStr);
+			} catch (UnsupportedEncodingException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
 		}
 		
 		//String result = HttpsUtils.sendHttpsPost(eTokenUrl, body, header);
@@ -233,6 +241,7 @@ public class SyncElectronicArchives {
 		    			item = getFormatData(item);
 		    			pList.add(item);
 	    			}
+	    			
 				}
 	    		
 	    		jsonObj.put("vehiclepartslist", pList);
@@ -273,8 +282,14 @@ public class SyncElectronicArchives {
 	    			
 	    			jsonObjIp.put("body", jsonObjBody);
 	    			paramStr = jsonObjIp.toString();
-	    			String getStr = "repairdata="+paramStr;
-	    			result = HttpUtils.sendHttpsGet(ePushUrl,getStr);    			
+	    			try {
+	    				paramStr = URLEncoder.encode(paramStr, "utf-8");
+						String getStr = "repairdata="+paramStr;
+		    			result = HttpUtils.sendHttpsGet(ePushUrl,getStr);
+					} catch (UnsupportedEncodingException e) {
+						// TODO 自动生成的 catch 块
+						e.printStackTrace();
+					}
 	    		}	
 	    		Gson gson = new Gson();
 	            Map<String, String> map = new HashMap<String, String>();

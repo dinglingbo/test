@@ -147,6 +147,9 @@ public class HttpUtils {
 					+ ((param == null || (param.trim().length() == 0) ? ""
 							: ("?" + param)));
 			
+			/*byte[] bytes=str.getBytes("ISO-8859-1");
+			String name=new String(bytes,"utf-8");*/
+			
 			SSLContext sslcontext = SSLContext.getInstance("SSL");//第一个参数为协议,第二个参数为提供者(可以缺省)
 			TrustManager[] tm = {new MyX509TrustManager()};
 			sslcontext.init(null, tm, new SecureRandom());
@@ -168,6 +171,8 @@ public class HttpUtils {
 					"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
 			connection.setRequestProperty("Content-Type",
 					"application/json;charset=UTF-8");
+			
+			//connection.setRequestProperty("Charsert", "UTF-8");
 			// 建立实际的连接
 			connection.connect();
 			// 获取所有响应头字段
@@ -178,7 +183,7 @@ public class HttpUtils {
 			// }
 			// 定义 BufferedReader输入流来读取URL的响应
 			in = new BufferedReader(new InputStreamReader(
-					connection.getInputStream()));
+					connection.getInputStream(),"utf-8"));
 			String line;
 			while ((line = in.readLine()) != null) {
 				result += line;

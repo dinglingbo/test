@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售记录</title>
-<script src="<%=webPath + contextPath%>/common/js/embed/containSellOrderRecord.js?v=1.0.29"></script>
+<script src="<%=webPath + contextPath%>/common/js/embed/containSellOrderRecord.js?v=1.0.35"></script>
 <style type="text/css">
 .title {
   width: 90px;
@@ -86,4 +86,5 @@
 </html>
 <script>
     var partId = '<b:write property="partId"/>';
+    var guestId = '<b:write property="guestId"/>';
 </script>

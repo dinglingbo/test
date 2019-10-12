@@ -53,9 +53,9 @@ $(document).ready(function(v){
 	// 	});
     // });
     
-    if(partId){ 
+    if(partId && guestId){ 
    
-        var params = {partId: partId};
+        var params = {partId: partId,guestId:guestId};
         doSearch(params);
     }
 

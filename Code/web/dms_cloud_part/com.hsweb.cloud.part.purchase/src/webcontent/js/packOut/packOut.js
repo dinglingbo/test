@@ -437,6 +437,7 @@ function quickSearch(type){
     var querysign = 1;
     var queryname = "本日";
     var querytypename = "所有";
+    gsparams.isDiffOrder =1;
     gsparams.isNeedPack=1;
     switch (type)
     {
@@ -1098,6 +1099,9 @@ function save() {
     var data = basicInfoForm.getData();
     for ( var key in requiredField) {
         if (!data[key] || $.trim(data[key]).length == 0) {
+        	if(key=="isWooden" && data[key]!==""){
+        		continue;
+        	}
             showMsg(requiredField[key] + "不能为空!","W");
             return;
         }

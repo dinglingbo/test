@@ -208,8 +208,8 @@ function onMoreTabChanged(e){
     if(!row)return;
 	var tab = e.tab;
     var name = tab.name;
-    if(row.strategyId){
-    	var strategyId=row.strategyId;
+    if(row.id){
+    	var strategyId=row.id;
     }
     var params = {strategyId: strategyId,token:token};
     if(name == "guestInfo"){

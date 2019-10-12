@@ -386,7 +386,7 @@
 	                $sortField$ $sortOrder$
 	            </isNotEmpty> 
             </dynamic> 
-				
+			group by a.id	
 	</select>
 	
 	<select id="querySellOrderPartChoose" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">

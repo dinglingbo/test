@@ -1247,10 +1247,12 @@ function showBottomTabInfo(partId){
             var params = {};
             params.partId=partId;
             params.guestId =guestId;
-            if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containSellOrderRecord.jsp?partId="+partId, tab);
-            }else{
-                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);
+            if(!url && partId>0){
+                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containSellOrderRecord.jsp?partId="+partId+"&guestId="+guestId, tab);
+            }else{  
+            	url =contextPath + "/common/embedJsp/containSellOrderRecord.jsp?partId="+partId+"&guestId="+guestId;
+//            	mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containSellOrderRecord.jsp?partId="+partId, tab);
+                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);                
             }
             
         	break;

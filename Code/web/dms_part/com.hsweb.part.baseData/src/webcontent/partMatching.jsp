@@ -13,7 +13,7 @@
 <head>
 <title>配件清单设置</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<script src="<%=webPath + contextPath%>/baseDataPart/js/partMgr/partMatching.js?v=1.0.0"></script>
+		<script src="<%=webPath + contextPath%>/baseDataPart/js/partMgr/partMatching.js?v=1.0.1"></script>
    
 <style type="text/css">
 .table-label {

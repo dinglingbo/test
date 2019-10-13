@@ -1000,7 +1000,7 @@
 			a.remark AS remark
 		FROM
 			pj_part_matching a
-		INNER JOIN pj_part_matching_detail b
+		LEFT JOIN pj_part_matching_detail b
 		on a.id =b.parent_id
 		where 1=1
 		<dynamic>

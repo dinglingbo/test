@@ -113,6 +113,7 @@
                                 <div type="indexcolumn" name="index" width="30px" headeralign="center" >  <strong>序号</strong></div>
                                 <div field="orderTypeId" name="orderTypeId" width="80px" headeralign="center" ><strong>订单类型</strong></div>
                                 <div field="shortName" name="shortName" width="80px" headeralign="center" ><strong>客户/供应商</strong></div>
+                                <div field="fullName" name="shortName" width="80px" headeralign="center" ><strong>客户全称/供应商全称</strong></div>
                                 <div field="addr" name="addr" width="80px" headeralign="center" ><strong>地址</strong></div>
                                 <div field="auditDate" name="auditDate" dateFormat="H:mm" width="80px" headeralign="center" ><strong>时间</strong></div>
                                 <div field="billStatusId" name="billStatusId" width="80px" headeralign="center" ><strong>状态</strong></div>

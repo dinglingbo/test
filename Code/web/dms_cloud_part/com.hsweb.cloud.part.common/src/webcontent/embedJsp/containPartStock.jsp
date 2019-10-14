@@ -99,6 +99,7 @@
                             <div field="guestFullName" width="150px" headerAlign="center" allowSort="true" header="供应商"></div>  
                             <div field="serviceId" align="left" width="100px" headerAlign="center" allowSort="true" header="单号"></div>
                             <div field="comPartFullName" name="comPartFullName" width="200" headerAlign="center" header="配件全称"></div> 
+                            <div field="mainRemark" name="mainRemark" width="200" headerAlign="center" header="备注"></div> 
                         </div>
                     </div>
                 </div>

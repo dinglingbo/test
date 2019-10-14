@@ -47,7 +47,7 @@
 		         sizeList="[50,100,200]">
 		        <div property="columns">
 		            <div type="indexcolumn">序号</div>
-		            <div allowSort="true" field="serviceId" width="120" summaryType="count" headerAlign="center" header="单号"></div>
+		            <div allowSort="true" field="serviceId" width="180" summaryType="count" headerAlign="center" header="单号"></div>
 		            <div field="guestShortName" width="120" headerAlign="center" header="客户"></div>
 		            <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="120px" header="出库日期" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>
 		            <div field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>

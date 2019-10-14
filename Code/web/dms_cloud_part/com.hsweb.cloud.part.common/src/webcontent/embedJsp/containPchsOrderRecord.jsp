@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购记录</title>
-<script src="<%=webPath + contextPath%>/common/js/embed/containPchsOrderRecord.js?v=1.0.9"></script>
+<script src="<%=webPath + contextPath%>/common/js/embed/containPchsOrderRecord.js?v=1.0.12"></script>
 <style type="text/css">
 .title {
   width: 90px;
@@ -43,8 +43,8 @@
             allowCellSelect="true" allowCellEdit="false">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div field="serviceId" align="left" width="120px" headerAlign="center" allowSort="true" header="单号"></div>
-            <div field="guestShortName" width="120px" headerAlign="center" allowSort="true" header="供应商"></div>  
+            <div field="serviceId" align="left" width="180px" headerAlign="center" allowSort="true" header="单号"></div>
+            <div field="guestShortName" width="180px" headerAlign="center" allowSort="true" header="供应商"></div>  
             <div field="auditDate" allowSort="true" width="120px" dateFormat="yyyy-MM-dd HH:mm" width="120px" header="入库日期" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>
             <div field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
             <div field="partName" partName="name" width="100" headerAlign="center" header="配件名称"></div>

@@ -1193,6 +1193,16 @@ function onGuestValueChanged(e)
 
     }
 }
+
+function onSettleTypeValueChanged(e){
+	var payType =nui.get('payType').getValue();
+	//到付
+	if(payType == "051301"){
+		nui.get("settleTypeId").setValue("");
+		showMsg("到付不需要填写结算方式","W");
+	}
+	
+}
 var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
 function setGuestInfo(params)
 {

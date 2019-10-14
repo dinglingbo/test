@@ -9,7 +9,7 @@
 -->
 <head>
 <title>快速录入</title>
-<script src="<%=webPath + contextPath%>/common/js/fastPartChoose.js?v=1.0.55"></script>
+<script src="<%=webPath + contextPath%>/common/js/fastPartChoose.js?v=1.0.59"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -145,6 +145,7 @@ body .mini-grid-row-selected{
                                     <div field="guestName" width="150px" headerAlign="center" allowSort="true" header="供应商"></div>  
                                     <div field="enterCode" align="left" width="100px" headerAlign="center" allowSort="true" header="入库单号"></div>
                                     <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div> 
+                                    <div field="mainRemark" name="mainRemark" width="200" headerAlign="center" header="备注"></div> 
                                 </div>
                             </div>
                         </div>
@@ -162,6 +163,7 @@ body .mini-grid-row-selected{
                     style="width:100%; height:100%;" 
                     plain="false" >
                     <div title="销售记录" name="outRecordTab" url="" ></div> 
+                    <div title="采购记录" name="enterRecordTab" url="" ></div> 
                     <div title="价格信息" name="priceTab" url="" ></div> 
                     <div title="替换件" name="partCommonTab" url="" ></div> 
                 </div>	
@@ -342,6 +344,7 @@ body .mini-grid-row-selected{
             <div field="guestName" width="150px" headerAlign="center" allowSort="true" header="供应商"></div>  
             <div field="enterCode" align="left" width="100px" headerAlign="center" allowSort="true" header="入库单号"></div>
             <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div> 
+            <div field="mainRemark" name="mainRemark" width="200" headerAlign="center" header="备注"></div> 
       </div>
    </div>
 </div>

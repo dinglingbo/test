@@ -483,6 +483,10 @@
       <process:to type="query">orderMain/orderType</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">orderMain/orderDate</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">orderMain/id</process:from>
       <process:to type="query">mainId</process:to>
     </process:copy>

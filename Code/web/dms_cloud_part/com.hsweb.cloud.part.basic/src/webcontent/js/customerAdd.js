@@ -689,6 +689,19 @@ function onOk()
     if(!data.contactorTel){
     	data.contactorTel=data.mobile
     }
+    
+    var row =logisticsGrid.getData();
+	if(row.length==0 && !data.id){
+    	var  logisticsRow ={
+			receiveCompName : data.fullName,
+			receiveMan : data.manager,
+			receiveManTel : data.mobile,
+			provinceId :data.provinceId,
+			cityId : data.cityId,
+			address : data.addr,
+			isDefault : 0
+    	}
+	}
     nui.mask({
         el : document.body,
     	cls : 'mini-mask-loading',
@@ -707,7 +720,8 @@ function onOk()
             data = data||{};
             if(data.errCode == "S")
             {
-            	saveLogistics(data.guestId);
+            	
+            	saveLogistics(logisticsRow,data.guestId);
             	//保存客户关系
             	saveGuestCon(data.guestId);
                 parent.showMsg("保存成功","S");
@@ -724,10 +738,15 @@ function onOk()
     });
 }
 var saveLogisticsUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveGuestLogistics.biz.ext";
-function saveLogistics(guestId){
+function saveLogistics(logisticsRow,guestId){
 	var logisticsAdd = logisticsGrid.getChanges("added");
 	var logisticsUpdate = logisticsGrid.getChanges("modified");
 	var logisticsDelete = logisticsGrid.getChanges("removed");
+	var data =logisticsGrid.getData();
+	if(logisticsRow){
+		logisticsAdd.push(logisticsRow);
+	}
+	
 	nui.ajax({
         url:saveLogisticsUrl,
         type:"post",

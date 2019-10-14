@@ -9,7 +9,7 @@
 -->
 <head>
 <title>打包发货</title>
-<script src="<%=webPath + contextPath%>/purchase/js/packOut/packOut.js?v=1.0.72"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/packOut/packOut.js?v=1.0.76"></script>
 <style type="text/css">
 .title {
   width: 75px;
@@ -273,6 +273,7 @@
                                            allowInput="true"
                                            selectOnFocus="true"
                                            showNullItem="false"
+                                           onvaluechanged="onSettleTypeValueChanged"
                                            width="100%"/>
                                       </td>
                                       <td class="title required">

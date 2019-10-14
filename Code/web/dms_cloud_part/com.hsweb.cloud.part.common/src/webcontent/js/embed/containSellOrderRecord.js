@@ -53,7 +53,7 @@ $(document).ready(function(v){
 	// 	});
     // });
     
-    if(partId && guestId){ 
+    if(partId){ 
    
         var params = {partId: partId,guestId:guestId};
         doSearch(params);

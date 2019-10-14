@@ -138,7 +138,7 @@
             <div allowSort="true" datatype="float" width="60" field="outableQty" name="outableQty" headerAlign="center" header="库存数量"></div>
             <div allowSort="true" datatype="float" width="60" field="preOutQty" headerAlign="center" header="待出库数量"></div>
             <div field="enterPrice" width="55px" headerAlign="center" allowSort="true" header="库存单价"></div>
-            <div field="storeId" width="60" headerAlign="center" allowSort="true" header="仓库"></div>
+            <div field="storeId" width="120" headerAlign="center" allowSort="true" header="仓库"></div>
             <div field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true" header="仓位"></div>
             <div field="partBrandId" name="partBrandId" width="60" headerAlign="center" header="品牌"></div>
             <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="品牌车型"></div>

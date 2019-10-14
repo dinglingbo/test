@@ -115,7 +115,7 @@
 				            <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>-->
 				            <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
 				            <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
-				            <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
+				            <div allowSort="true" field="storeId" width="120" headerAlign="center" header="仓库"></div>
 				            <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>
 				            <div allowSort="true" datatype="float" field="sellQty" summaryType="sum" width="60" headerAlign="center" header="销售数量"></div>
 				            <div allowSort="true" datatype="float" field="sellPrice" width="60" headerAlign="center" header="销售单价"></div>
@@ -152,7 +152,7 @@
 				            <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>-->
 				            <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
 				            <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
-				            <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
+				            <div allowSort="true" field="storeId" width="120" headerAlign="center" header="仓库"></div>
 				            <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
 				            <div allowSort="true" datatype="float" field="enterQty" summaryType="sum" width="60" headerAlign="center" header="采购数量"></div>
 				            <div allowSort="true" datatype="float" field="enterPrice" width="60" headerAlign="center" header="采购单价"></div>

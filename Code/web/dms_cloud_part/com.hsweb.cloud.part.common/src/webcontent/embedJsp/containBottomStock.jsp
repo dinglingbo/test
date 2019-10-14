@@ -46,8 +46,8 @@
          showSummaryRow="false">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
-            <div allowSort="true" field="shelf" width="60" headerAlign="center" header="仓位"></div>
+            <div allowSort="true" field="storeId" width="120" headerAlign="center" header="仓库"></div>
+            <div allowSort="true" field="shelf" width="80" headerAlign="center" header="仓位"></div>
             <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
             <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
             <div allowSort="true" datatype="float" field="stockAmt" summaryType="sum" width="60" headerAlign="center" header="库存金额"></div>

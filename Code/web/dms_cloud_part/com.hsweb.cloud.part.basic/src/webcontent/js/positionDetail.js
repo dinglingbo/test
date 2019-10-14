@@ -52,6 +52,7 @@ function onOk()
             firstChar:data.firstChar,
             numId:i,
             name:data.firstChar+"-"+i,
+            region :data.region,
             isDisabled:0
         });
     }

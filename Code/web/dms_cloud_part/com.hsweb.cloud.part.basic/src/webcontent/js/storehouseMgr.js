@@ -155,7 +155,7 @@ function addPosition()
         // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.cloud.part.basic.positionDetail.flow?token=" + token,
         title: "仓位定义",
-        width: 525, height: 230,
+        width: 525, height: 280,
         allowDrag:true,
         allowResize:false,
         onload: function ()
@@ -336,7 +336,8 @@ function savePosition()
     	});
         locations.push({
             id:rows[i].id,
-            name:rows[i].name
+            name:rows[i].name,
+            region :rows[i].region
         });
     }
     literainfos =JSON.stringify(literainfos);

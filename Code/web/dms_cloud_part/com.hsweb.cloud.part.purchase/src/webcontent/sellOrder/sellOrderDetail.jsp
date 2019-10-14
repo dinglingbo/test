@@ -263,7 +263,7 @@
                                           <input property="editor" class="nui-textbox" />
                                       </div>
                                       <div field="comPartName" visible="false" headerAlign="center" header="配件名称"></div>
-                                       <div field="fullName"width="220"  headerAlign="center" header="配件全称"></div>
+                                       <div field="fullName"width="150"  headerAlign="center" header="配件全称"></div>
                                       <div field="comPartBrandId" visible="false" width="60" headerAlign="center" header="品牌"></div>
                                       <div field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
                                       <div field="comUnit" name="comUnit" width="40" headerAlign="center" header="单位"></div>
@@ -302,18 +302,18 @@
                               
                               <div header="辅助信息" headerAlign="center">
                                   <div property="columns">
-                                      <div type="comboboxcolumn" field="storeId" width="80" headerAlign="center" allowSort="true">
+                                      <div type="comboboxcolumn" field="storeId" width="90" headerAlign="center" allowSort="true">
                                       	仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" 
                                               url="" data="storehouse"
                                               onvaluechanged="onStoreValueChange" emptyText=""  vtype="required"
                                               /> 
                                       </div>  
-                                       <div field="storeShelf" width="90" headerAlign="center" allowSort="true" header="仓位">
+                                       <div field="storeShelf" width="80" headerAlign="center" allowSort="true" header="仓位">
 		                             	 仓位<input  property="editor" id="storeShelf" name='storeShelf'  class="nui-textbox"/>
 		                          		</div>  
-                                      <div field="stockOutQty" summaryType="sum" numberFormat="0.00" width="70" headerAlign="center" header="缺货数量">
+                                      <div field="stockOutQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="缺货数量">
                                       </div>
-                                      <div type="checkboxcolumn" field="isMarkBatch" trueValue="1" falseValue="0" width="45" headerAlign="center" header="批次">
+                                      <div type="checkboxcolumn" field="isMarkBatch" trueValue="1" falseValue="0" width="35" headerAlign="center" header="批次">
                                       </div>
                                       <div field="occupyQty" visible="false" width="70" headerAlign="center" allowSort="true" header="占用数量"></div>
                                       <div field="comOemCode" width="70" headerAlign="center" allowSort="true" header="OE码"></div>   

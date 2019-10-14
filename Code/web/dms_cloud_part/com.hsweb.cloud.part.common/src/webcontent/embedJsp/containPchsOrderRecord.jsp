@@ -53,7 +53,7 @@
             <div field="orderAmt" width="55px" headerAlign="center" allowSort="true" header="采购金额"></div>
             <div field="billTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="票据类型"></div>
             <div field="settelTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="结算方式"></div>
-            <div field="storeId" width="80" headerAlign="center" allowSort="true" header="仓库"></div>
+            <div field="storeId" width="120" headerAlign="center" allowSort="true" header="仓库"></div>
             <div field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true" header="仓位"></div>
             <div field="comOemCode" name="comOemCode" width="100" headerAlign="center" header="OE码"></div>
             <div field="partBrandId" name="partBrandId" width="80" headerAlign="center" header="品牌"></div>

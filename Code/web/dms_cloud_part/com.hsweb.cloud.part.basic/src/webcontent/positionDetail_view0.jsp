@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%=webPath + contextPath%>/basic/js/positionDetail.js?v=1.0.9"></script>
+<script src="<%=webPath + contextPath%>/basic/js/positionDetail.js?v=1.0.11"></script>
 <style type="text/css">
 .row {
 	margin-top: 5px;
@@ -44,7 +44,7 @@
             </tr>
         </table>
     </div>
-<div title="仓位信息" class="nui-panel" style="width:calc(100% - 20px);height:130px;margin: 10px;"
+<div title="仓位信息" class="nui-panel" style="width:calc(100% - 20px);height:180px;margin: 10px;"
      onbuttonclick="onbuttonclick">
     <div id="basicInfoForm" class="form">
         <input class="nui-hidden" name="id"/>
@@ -79,6 +79,10 @@
             <input class="nui-textbox width1" enabled="false" id="startName"/>
             <span class="title title-width2">终止仓位：</span>
             <input class="nui-textbox width1" enabled="false" id="endName"/>
+        </div>
+         <div class="row">
+            <span class="title title-width2">区域：</span>
+            <input class="nui-textbox width1" enabled="true" id="region" name="region"/>
         </div>
     </div>
 </div>

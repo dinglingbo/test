@@ -1257,11 +1257,12 @@ function showBottomTabInfo(partId){
             var params = {};
             params.partId=partId;
             params.guestId =guestId;
-            if(!url && partId>0){
+            if(!url & partId>0){
                 mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containSellOrderRecord.jsp?partId="+partId+"&guestId="+guestId, tab);
-            }else{  
+            }
+            else{  
             	url =contextPath + "/common/embedJsp/containSellOrderRecord.jsp?partId="+partId+"&guestId="+guestId;
-//            	mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containSellOrderRecord.jsp?partId="+partId, tab);
+            	mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containSellOrderRecord.jsp?partId="+partId+"&guestId="+guestId, tab);
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);                
             }
             

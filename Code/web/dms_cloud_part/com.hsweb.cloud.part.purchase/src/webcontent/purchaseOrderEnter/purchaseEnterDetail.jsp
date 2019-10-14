@@ -268,7 +268,7 @@
                             <div header="采购入库明细" headerAlign="center">
                                 <div property="columns">
                                     <div field="operateBtn" name="operateBtn" align="center" width="30" headerAlign="center" header="操作"></div>
-                                    <div field="comPartCode" name="comPartCode" width="80" headerAlign="center" header="配件编码">
+                                    <div field="comPartCode" name="comPartCode" width="60" headerAlign="center" header="配件编码">
                                         <input property="editor" class="nui-textbox" />
                                     </div>
                                     <div field="comPartName" visible="false" headerAlign="center" header="配件名称">

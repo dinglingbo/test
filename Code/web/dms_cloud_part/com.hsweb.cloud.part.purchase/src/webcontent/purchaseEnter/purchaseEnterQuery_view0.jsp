@@ -99,7 +99,7 @@
             <div header="" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="serviceId" width="170" summaryType="count" headerAlign="center" header="采购单号"></div>
-                    <div field="guestFullName" width="150" headerAlign="center" header="供应商"></div>
+                    <div field="guestFullName" width="180" headerAlign="center" header="供应商"></div>
                     <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
                     <div allowSort="true" width="120"field="enterDate" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div> 
@@ -138,8 +138,8 @@
             </div>
             <div header="不含税信息" headerAlign="center">
                 <div property="columns">
-                    <div field="noTaxPrice" width="60" headerAlign="center" header="不含税单价"></div>
-                    <div field="noTaxAmt" width="60" headerAlign="center" summaryType="sum" header="不含税金额"></div>
+                    <div field="noTaxPrice" width="80" headerAlign="center" header="不含税单价"></div>
+                    <div field="noTaxAmt" width="80" headerAlign="center" summaryType="sum" header="不含税金额"></div>
                 </div>
             </div>
             <div header="其他" headerAlign="center">

@@ -48,7 +48,7 @@
                    <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                </ul>
                <input class="nui-combobox" id="sdDate"  name="sdDate" data="[{isDisabled:0,text:'进厂日期'},{isDisabled:1,text:'结算日期'}]"
-                          width="110px"  onvaluechanged="onSearch" textField="text" valueField="isDisabled" value="0" /> 从:
+                          width="110px"  onvaluechanged="onSearch" textField="text" valueField="isDisabled" value="1" /> 从:
 				     <input class="nui-datepicker"width="100px" id="sDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
 				 至:
 				    <input class="nui-datepicker" width="100px"id="eDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
@@ -114,7 +114,10 @@
                 <div allowSort="true" summaryType="sum" allowSort="true" field="amt"   width="60"headerAlign="center" header="销售金额" dataType="float" align="left"></div>
                 <div allowSort="true" summaryType="sum" allowSort="true" field="discountAmt"   width="60"headerAlign="center" header="优惠金额" dataType="float" align="left"></div>
                 <div allowSort="true" summaryType="sum" allowSort="true" field="subtotal"   width="60"headerAlign="center" header="小计" dataType="float" align="left"></div>
+                <div summaryType="sum" allowSort="true" field="trueCost" headerAlign="center" header="成本金额" dataType="float" align="left"></div>
+                <div allowSort="true" summaryType="sum" allowSort="true" field="gross" width="80" headerAlign="center" header="毛利"  align="left"></div>
                 <div allowSort="true"  allowSort="true" field="saleMan"  width="60"headerAlign="center" header="销售员" dataType="float" align="left"></div>
+                <div allowSort="true"  allowSort="true" field="workers"  width="100"headerAlign="center" header="施工员"  dataType="float" align="left"></div>
             </div>
         </div>
 

@@ -1906,12 +1906,16 @@
 			a.source_id as sourceId,
 			b.out_date as outDate,
 			b.enter_date as enterDate,
+			(SELECT SUM(true_cost) FROM wb_part.pj_repair_out e WHERE e.main_id=a.id and e.return_sign=0 and e.bill_type_id ='050206' ) AS trueCost,
+			a.subtotal-(SELECT SUM(true_cost) FROM wb_part.pj_repair_out e WHERE e.main_id=a.id and e.return_sign=0 and e.bill_type_id ='050206') AS gross,
+			f.workers as workers,
 			a.sale_man as saleMan
 
 		FROM
 			 wb_repair.rps_part a
 		INNER JOIN wb_repair.rps_maintain b ON a.service_id = b.id
     	INNER JOIN wb_common.com_guest d on b.guest_id =d.id  
+    	left JOIN wb_repair.rps_item f on f.id =a.bill_item_id
 		WHERE 1=1 and a.is_disabled = 0
 		
 		<dynamic>

@@ -3122,7 +3122,7 @@ function onMoreTabChanged(e){
 }
 
 //直接出库，生成isDifferOrder =1数据
-var auditToOutUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjPchsOrderRtn.biz.ext";
+var auditToOutUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjPchsOrderRtnTp.biz.ext";
 function auditToOut()
 {
 

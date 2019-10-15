@@ -50,7 +50,7 @@
             <div field="id" name="id" width="100" headerAlign="center" header="id" visible="false"></div>
             <div field="mainId" width="100px" headerAlign="center" allowSort="true"  visible="false" header=""></div>
             <div field="serviceId" name="serviceId" width="160px" headerAlign="center" allowSort="true"  header="单号"></div>
-            <div field="storeId" name="storeId" allowSort="true"  width="80px" header="仓库"  headerAlign="center" allowSort="true"></div>
+            <div field="storeId" name="storeId" allowSort="true"  width="120px" header="仓库"  headerAlign="center" allowSort="true"></div>
              
             <div field="partCode" name="partCode" width="100" headerAlign="center"align="center"  header="配件编码"></div>
             <div field="partName" name="partName" width="100" headerAlign="center" header="配件名称"></div>

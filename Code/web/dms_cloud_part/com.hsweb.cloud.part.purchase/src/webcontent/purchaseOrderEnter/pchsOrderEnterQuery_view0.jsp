@@ -106,7 +106,7 @@
                     <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
                     <div allowSort="true" field="settelTypeId" width="60" headerAlign="center" header="结算方式"></div>
                     <div allowSort="true" field="createDate" width="120"headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-                    <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
+                    <div allowSort="true" field="storeId" width="120" headerAlign="center" header="仓库"></div>
                 </div>
             </div>
             <div header="配件信息" headerAlign="center">

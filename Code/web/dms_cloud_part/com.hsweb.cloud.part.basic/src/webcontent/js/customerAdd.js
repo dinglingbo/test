@@ -699,7 +699,7 @@ function onOk()
 			provinceId :data.provinceId,
 			cityId : data.cityId,
 			address : data.addr,
-			isDefault : 0
+			isDefault : 1
     	}
 	}
     nui.mask({

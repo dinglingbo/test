@@ -9,7 +9,7 @@
 -->
 <head>
 <title>快速录入</title>
-<script src="<%=webPath + contextPath%>/common/js/fastPartChoose.js?v=1.0.59"></script>
+<script src="<%=webPath + contextPath%>/common/js/fastPartChoose.js?v=1.0.67"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -136,7 +136,7 @@ body .mini-grid-row-selected{
                                     <div allowSort="true" datatype="float" width="60" field="preOutQty" headerAlign="center" header="待出库数量"></div>
                                     <div field="enterPrice" width="55px" headerAlign="center" allowSort="true" header="库存单价"></div>
                                     <div field="billTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="票据类型"></div>
-                                    <div field="storeId" width="60" headerAlign="center" allowSort="true" header="仓库"></div>
+                                    <div field="storeId" width="120" headerAlign="center" allowSort="true" header="仓库"></div>
                                     <div field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true" header="仓位"></div>
                                     <div field="partBrandId" name="partBrandId" width="80" headerAlign="center" header="品牌"></div>
                                     <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="品牌车型"></div>
@@ -335,7 +335,7 @@ body .mini-grid-row-selected{
             <div allowSort="true" datatype="float" width="60" field="preOutQty" headerAlign="center" header="待出库数量"></div>
             <div field="enterPrice" width="55px" visible="true" headerAlign="center" allowSort="true" header="库存单价"></div>
             <div field="billTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="票据类型"></div>
-            <div field="storeId" width="60" headerAlign="center" allowSort="true" header="仓库"></div>
+            <div field="storeId" width="120" headerAlign="center" allowSort="true" header="仓库"></div>
             <div field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true" header="仓位"></div>
             <div field="partBrandId" name="partBrandId" width="80" headerAlign="center" header="品牌"></div>
             <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="品牌车型"></div>

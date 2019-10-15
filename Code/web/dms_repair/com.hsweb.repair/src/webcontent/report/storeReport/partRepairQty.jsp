@@ -48,7 +48,7 @@
                    <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                </ul>
                <input class="nui-combobox" id="sdDate"  name="sdDate" data="[{isDisabled:0,text:'进厂日期'},{isDisabled:1,text:'结算日期'}]"
-                          width="110px"  onvaluechanged="onSearch" textField="text" valueField="isDisabled" value="0" /> 从:
+                          width="110px"  onvaluechanged="onSearch" textField="text" valueField="isDisabled" value="1" /> 从:
 				     <input class="nui-datepicker"width="100px" id="sDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
 				 至:
 				    <input class="nui-datepicker" width="100px"id="eDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>

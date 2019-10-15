@@ -9,7 +9,7 @@
 -->
 <head>
 <title>维修历史</title>
-<script src="<%=request.getContextPath()%>/commonRepair/js/repairHistory.js?v=1.1.9"></script>
+<script src="<%=request.getContextPath()%>/commonRepair/js/repairHistory.js?v=1.2.0"></script>
 <style type="text/css">
 
 .form_label {

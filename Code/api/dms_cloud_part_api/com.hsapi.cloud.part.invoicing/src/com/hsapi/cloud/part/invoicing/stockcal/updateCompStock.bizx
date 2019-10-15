@@ -567,6 +567,10 @@
       <process:from type="expression" pattern="reference">partStoreStocks.length</process:from>
       <process:to type="query">size</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">partStoreStock/operateDate</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
     <location x="255" y="222"/>

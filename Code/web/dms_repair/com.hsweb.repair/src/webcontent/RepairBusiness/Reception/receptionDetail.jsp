@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修接待</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/receptionDetail.js?v=1.1.4"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/receptionDetail.js?v=1.1.5"></script>
 <style type="text/css">
 
 .form_label {

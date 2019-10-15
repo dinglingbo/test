@@ -8,7 +8,7 @@
 -->
 <head>
 <title>单据审核</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/billServiceQuery.js?v=2.0.4"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/billServiceQuery.js?v=2.0.5"></script>
 <style type="text/css">
 .title {
     width: 90px;

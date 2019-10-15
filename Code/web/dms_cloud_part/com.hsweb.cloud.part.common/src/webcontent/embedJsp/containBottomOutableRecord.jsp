@@ -44,14 +44,14 @@
          showSummaryRow="false">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="入库单号"></div>
-            <div field="guestFullName" width="150" headerAlign="center" header="供应商"></div>
-            <div allowSort="true" field="enterDate" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+            <div allowSort="true" field="serviceId" width="180" summaryType="count" headerAlign="center" header="入库单号"></div>
+            <div field="guestFullName" width="180" headerAlign="center" header="供应商"></div>
+            <div allowSort="true" field="enterDate"width="120" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
             <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div> 
             <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>
             <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
             <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>-->
-            <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
+            <div allowSort="true" field="storeId" width="120" headerAlign="center" header="仓库"></div>
             <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
             <div allowSort="true" datatype="float" field="enterQty" summaryType="sum" width="60" headerAlign="center" header="入库数量"></div>
             <div allowSort="true" datatype="float" field="enterPrice" width="60" headerAlign="center" header="入库单价"></div>
@@ -65,9 +65,9 @@
             <div field="taxAmt" width="60" headerAlign="center" summaryType="sum" header="含税金额"></div>
             <div field="noTaxPrice" width="60" headerAlign="center" header="不含税单价"></div>
             <div field="noTaxAmt" width="60" headerAlign="center" summaryType="sum" header="不含税金额"></div> -->
-            <div allowSort="true" field="manualCode" width="150" headerAlign="center" header="手工单号"></div>
+            <div allowSort="true" field="manualCode" width="180" headerAlign="center" header="手工单号"></div>
             <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
-            <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+            <div allowSort="true" field="auditDate" headerAlign="center"width="120" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
         </div>
     </div>
 </div>

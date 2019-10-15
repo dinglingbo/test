@@ -85,12 +85,12 @@
 		            <div field="id" width="40" visible="false" headerAlign="center" header="id"></div>
 		            <div field="orgid" width="40" visible="false" headerAlign="center" header="id"></div>
 		            <div field="orgName" width="60" headerAlign="center" header="公司"></div>
-		            <div field="guestFullName" width="60" headerAlign="center" header="客户"></div>
+		            <div field="guestFullName" width="120" headerAlign="center" header="客户"></div>
 		            <div field="serviceId" width="120px" headerAlign="center" allowSort="true" header="预售单号"></div>
 		            <div field="status" width="40px" headerAlign="center" allowSort="true" header="状态"></div>
 		            <div field="storeId" width="55px" headerAlign="center" allowSort="true" header="仓库" visible="false"></div>
 		            <div field="orderQty" width="30px" headerAlign="center" allowSort="true" header="订单数量"></div>
-		            <div field="orderAmt" width="30px" headerAlign="center" allowSort="true" header="订单金额"></div>
+		            <div field="orderAmt" width="40px" headerAlign="center" allowSort="true" header="订单金额"></div>
 		            <div field="auditDate" width="80px" headerAlign="center" allowSort="true" header="提交日期"  dateFormat="yyyy-MM-dd HH:mm"></div>
 		            <div field="planSendDate" width="85px" headerAlign="center" allowSort="true" header="预计发货日期"  dateFormat="yyyy-MM-dd HH:mm"></div>
 		            <div field="planArriveDate" width="85px" headerAlign="center" allowSort="true" header="预计到货日期"  dateFormat="yyyy-MM-dd HH:mm"></div>

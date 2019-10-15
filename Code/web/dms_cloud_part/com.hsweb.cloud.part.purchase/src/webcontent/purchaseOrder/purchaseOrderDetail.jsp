@@ -318,13 +318,13 @@
                             <div header="采购订单明细" headerAlign="center">
                                 <div property="columns" >
                                     <div field="operateBtn" name="operateBtn" align="center" width="30" headerAlign="center" header="操作"></div>
-                                    <div field="comPartCode" name="comPartCode" width="70" headerAlign="center" header="配件编码">
+                                    <div field="comPartCode" name="comPartCode" width="60" headerAlign="center" header="配件编码">
                                         <input property="editor" class="nui-textbox" />
                                     </div>
                                     <div field="comPartName" visible="false" headerAlign="center" header="配件名称">
                                         <!-- <input property="editor" class="nui-textbox" data="codeList" valueField="code" textField="code"/> -->
                                     </div>
-                                    <div field="fullName" width="180" headerAlign="center" header="配件全称"></div>
+                                    <div field="fullName" width="100" headerAlign="center" header="配件全称"></div>
                                     <div field="comPartBrandId" visible="false" width="60" headerAlign="center" header="品牌"></div>
                                     <div field="comApplyCarModel" width="40" headerAlign="center" header="品牌车型"></div>
                                     <div field="comUnit" name="comUnit" width="20" headerAlign="center" header="单位"></div>
@@ -335,10 +335,10 @@
                                     <div field="orderQty" name="orderQty" summaryType="sum" numberFormat="0.00" width="30" headerAlign="center" header="数量">
                                       <input property="editor" vtype="float" class="nui-textbox"/>
                                     </div>
-                                    <div field="orderPrice" numberFormat="0.0000" width="60" headerAlign="center" header="单价">
+                                    <div field="orderPrice" numberFormat="0.0000" width="50" headerAlign="center" header="单价">
                                       <input property="editor" vtype="float" class="nui-textbox"/>
                                     </div>
-                                    <div field="orderAmt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="金额">
+                                    <div field="orderAmt" summaryType="sum" numberFormat="0.0000" width="50" headerAlign="center" header="金额">
                                       <input property="editor" vtype="float" class="nui-textbox"/>
                                     </div>
                                     <div field="remark" width="40" headerAlign="center" allowSort="">
@@ -348,39 +348,39 @@
                             </div>
                             <div header="辅助信息" headerAlign="center">
                                 <div property="columns">
-                                    <div type="comboboxcolumn" field="storeId" width="40" headerAlign="center" allowSort="true" header="仓库">
+                                    <div type="comboboxcolumn" field="storeId" width="70" headerAlign="center" allowSort="true" header="仓库">
                         仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" data="storehouse"
                                       url=""
                                       onvaluechanged="onStoreValueChange" emptyText=""  vtype="required"
                                       /> 
                         </div>  
-                        <div field="storeShelf" width="20" headerAlign="center" allowSort="true" header="仓位">
+                        <div field="storeShelf" width="40" headerAlign="center" allowSort="true" header="仓位">
                               仓位<input id="storeShelf" allowInput="true" name='storeShelf' property="editor" class="nui-textbox"/>
                           </div>  
                       <div field="comOemCode" allowSelect="false" width="60" headerAlign="center" visible="false"  allowSort="true" header="OE码"></div> 
                       <div field="comSpec" allowSelect="false" width="100" headerAlign="center" visible="false" allowSort="true" header="规格/方向/颜色"></div>
-                      <div field="sellUnitPrice" name="sellUnitPrice" allowSelect="false" width="20" headerAlign="center" visible="true" allowSort="true" header="统一售价">
+                      <div field="sellUnitPrice" name="sellUnitPrice" allowSelect="false" width="40" headerAlign="center" visible="true" allowSort="true" header="统一售价">
                       	<input property="editor" class="nui-textbox"/>
                       </div>
-                      <div field="price1" name="price1" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="" header="">
+                      <div field="price1" name="price1" allowSelect="false" width="40" headerAlign="center" visible="false" allowSort="" header="">
                       	<input property="editor" class="nui-textbox"/>
                       </div>
-                      <div field="price2" name="price2" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="" header="">
+                      <div field="price2" name="price2" allowSelect="false" width="40" headerAlign="center" visible="false" allowSort="" header="">
                       	<input property="editor" class="nui-textbox"/>
                       </div>
-                      <div field="price3" name="price3" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="" header="">
+                      <div field="price3" name="price3" allowSelect="false" width="40" headerAlign="center" visible="false" allowSort="" header="">
                       	<input property="editor" class="nui-textbox"/>
                       </div>
-                      <div field="price4" name="price4" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="" header="">
+                      <div field="price4" name="price4" allowSelect="false" width="40" headerAlign="center" visible="false" allowSort="" header="">
                       	<input property="editor" class="nui-textbox"/>
                       </div>
-                      <div field="price5" name="price5" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="" header="">
+                      <div field="price5" name="price5" allowSelect="false" width="40" headerAlign="center" visible="false" allowSort="" header="">
                       	<input property="editor" class="nui-textbox"/>
                       </div>
-                      <div field="price6" name="price6" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="" header="">
+                      <div field="price6" name="price6" allowSelect="false" width="40" headerAlign="center" visible="false" allowSort="" header="">
                       	<input property="editor" class="nui-textbox"/>
                       </div>
-                      <div field="price7" name="price7" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="" header="">
+                      <div field="price7" name="price7" allowSelect="false" width="40" headerAlign="center" visible="false" allowSort="" header="">
                       	<input property="editor" class="nui-textbox"/>
                       </div>   
                                                   

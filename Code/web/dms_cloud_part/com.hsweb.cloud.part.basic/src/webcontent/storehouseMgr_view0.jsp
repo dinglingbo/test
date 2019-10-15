@@ -9,7 +9,7 @@
 -->
 <head>
 <title>仓库定义</title>
-<script src="<%=webPath + contextPath%>/basic/js/storehouseMgr.js?v=1.1.90"></script>
+<script src="<%=webPath + contextPath%>/basic/js/storehouseMgr.js?v=1.0.6"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -78,6 +78,9 @@
                 <div property="columns">
                     <div type="indexcolumn">序号</div>
                     <div field="name" name="name" headerAlign="center" allowSort="true">仓位
+                        <input property="editor" class="nui-textbox" style="width:100%;"/>
+                    </div>
+                    <div field="region" name="region" headerAlign="center" allowSort="true">区域
                         <input property="editor" class="nui-textbox" style="width:100%;"/>
                     </div>
                     <div field="isDisabled" width="80" headerAlign="center" allowSort="true">是否禁用</div>

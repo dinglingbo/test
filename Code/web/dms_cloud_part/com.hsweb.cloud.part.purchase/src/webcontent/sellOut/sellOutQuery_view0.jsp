@@ -102,14 +102,14 @@
             <div header="" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="serviceId" width="170" summaryType="count" headerAlign="center" header="销售单号"></div>
-                    <div field="guestFullName" width="150" headerAlign="center" header="客户"></div>
+                    <div field="guestFullName" width="200" headerAlign="center" header="客户"></div>
                     <div field="auditor" width="60" headerAlign="center" header="销售员"></div>
                     <div allowSort="true" width="120"field="auditDate" headerAlign="center" header="出库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div> 
                     <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>-->
                     <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
                     <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
-                    <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
+                    <div allowSort="true" field="storeId" width="120" headerAlign="center" header="仓库"></div>
                 </div>
             </div>
             <div header="销售信息" headerAlign="center">
@@ -155,8 +155,8 @@
             </div>
             <div header="不含税信息" headerAlign="center">
                 <div property="columns">
-                    <div field="noTaxPrice" width="60" headerAlign="center" header="不含税单价"></div>
-                    <div field="noTaxAmt" width="60" headerAlign="center" summaryType="sum" header="不含税金额"></div>
+                    <div field="noTaxPrice" width="80" headerAlign="center" header="不含税单价"></div>
+                    <div field="noTaxAmt" width="80" headerAlign="center" summaryType="sum" header="不含税金额"></div>
                 </div>
             </div>
             <div header="其他" headerAlign="center">

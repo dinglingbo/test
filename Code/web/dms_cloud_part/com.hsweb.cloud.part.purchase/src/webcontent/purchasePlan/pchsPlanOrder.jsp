@@ -296,15 +296,15 @@ body .mini-grid-row-selected{
                                       </div>
                                       <div field="branchStockQty" summaryType="sum"  width="60" headerAlign="center" header="门店库存">
                                       </div>
-                                      <div field="onWayQty" width="60" headerAlign="center" allowSort="true" header="在途库存">
+                                      <div field="onWayQty" width="90" headerAlign="center" allowSort="true" header="在途库存">
                                       </div>
-                                      <div field="upLimit" width="60" headerAlign="center" allowSort="true" header="库存上限">
+                                      <div field="upLimit" width="90" headerAlign="center" allowSort="true" header="库存上限(夏季)">
                                       </div>
-                                      <div field="downLimit" width="60" headerAlign="center" allowSort="true" header="库存下限">
+                                      <div field="downLimit" width="90" headerAlign="center" allowSort="true" header="库存下限(夏季)">
                                       </div>
-                                      <div field="upLimitWinter" width="80" headerAlign="center" allowSort="true" header="库存上限(冬季)">
+                                      <div field="upLimitWinter" width="90" headerAlign="center" allowSort="true" header="库存上限(冬季)">
                                       </div>
-                                      <div field="downLimitWinter" width="80" headerAlign="center" allowSort="true" header="库存下限(冬季)">
+                                      <div field="downLimitWinter" width="90" headerAlign="center" allowSort="true" header="库存下限(冬季)">
                                       </div>
                                   </div>
                               </div>

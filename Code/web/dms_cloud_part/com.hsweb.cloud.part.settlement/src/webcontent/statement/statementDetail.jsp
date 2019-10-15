@@ -259,7 +259,7 @@
                                   </div>
                                   <div header="辅助信息" headerAlign="center">
                                       <div property="columns">
-                                          <div type="comboboxcolumn" field="storeId" width="60" headerAlign="center" allowSort="true">
+                                          <div type="comboboxcolumn" field="storeId" width="120" headerAlign="center" allowSort="true">
                               仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" data="storehouse"
                                             url=""
                                             onvaluechanged="" emptyText=""  vtype="required"

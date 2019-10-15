@@ -701,14 +701,14 @@ body .mini-grid-row-selected{
                               
                               <div header="辅助信息" headerAlign="center">
                                   <div property="columns">
-                                      <div type="comboboxcolumn" field="storeId" width="80" headerAlign="center" allowSort="true">
+                                      <div type="comboboxcolumn" field="storeId" width="120" headerAlign="center" allowSort="true">
                                       	仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" 
                                               url="" data="storehouse"
                                               onvaluechanged="onStoreValueChange" emptyText=""  vtype="required"
                                               /> 
                                       </div>  
                                       
-                                      <div type="comboboxcolumn" field="directStoreId" width="80" headerAlign="center" allowSort="true">
+                                      <div type="comboboxcolumn" field="directStoreId" width="120" headerAlign="center" allowSort="true">
                                       	直发门店仓库<input  property="editor" enabled="true" name="directStoreId" dataField="directStoreHouse" class="nui-combobox" valueField="id" textField="name" 
                                               url="" data="directStoreHouse"
                                               onvaluechanged="" emptyText=""  vtype="required"

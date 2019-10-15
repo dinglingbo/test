@@ -9,7 +9,7 @@
 -->
 <head>
 <title>快速录入</title>
-<script src="<%=webPath + contextPath%>/common/js/fastPartChoose.js?v=1.0.35"></script>
+<script src="<%=webPath + contextPath%>/common/js/fastPartChoose.js?v=1.0.67"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -136,7 +136,7 @@ body .mini-grid-row-selected{
                                     <div allowSort="true" datatype="float" width="60" field="preOutQty" headerAlign="center" header="待出库数量"></div>
                                     <div field="enterPrice" width="55px" headerAlign="center" allowSort="true" header="库存单价"></div>
                                     <div field="billTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="票据类型"></div>
-                                    <div field="storeId" width="60" headerAlign="center" allowSort="true" header="仓库"></div>
+                                    <div field="storeId" width="120" headerAlign="center" allowSort="true" header="仓库"></div>
                                     <div field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true" header="仓位"></div>
                                     <div field="partBrandId" name="partBrandId" width="80" headerAlign="center" header="品牌"></div>
                                     <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="品牌车型"></div>
@@ -145,6 +145,7 @@ body .mini-grid-row-selected{
                                     <div field="guestName" width="150px" headerAlign="center" allowSort="true" header="供应商"></div>  
                                     <div field="enterCode" align="left" width="100px" headerAlign="center" allowSort="true" header="入库单号"></div>
                                     <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div> 
+                                    <div field="mainRemark" name="mainRemark" width="200" headerAlign="center" header="备注"></div> 
                                 </div>
                             </div>
                         </div>
@@ -162,6 +163,7 @@ body .mini-grid-row-selected{
                     style="width:100%; height:100%;" 
                     plain="false" >
                     <div title="销售记录" name="outRecordTab" url="" ></div> 
+                    <div title="采购记录" name="enterRecordTab" url="" ></div> 
                     <div title="价格信息" name="priceTab" url="" ></div> 
                     <div title="替换件" name="partCommonTab" url="" ></div> 
                 </div>	
@@ -333,7 +335,7 @@ body .mini-grid-row-selected{
             <div allowSort="true" datatype="float" width="60" field="preOutQty" headerAlign="center" header="待出库数量"></div>
             <div field="enterPrice" width="55px" visible="true" headerAlign="center" allowSort="true" header="库存单价"></div>
             <div field="billTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="票据类型"></div>
-            <div field="storeId" width="60" headerAlign="center" allowSort="true" header="仓库"></div>
+            <div field="storeId" width="120" headerAlign="center" allowSort="true" header="仓库"></div>
             <div field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true" header="仓位"></div>
             <div field="partBrandId" name="partBrandId" width="80" headerAlign="center" header="品牌"></div>
             <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="品牌车型"></div>
@@ -342,6 +344,7 @@ body .mini-grid-row-selected{
             <div field="guestName" width="150px" headerAlign="center" allowSort="true" header="供应商"></div>  
             <div field="enterCode" align="left" width="100px" headerAlign="center" allowSort="true" header="入库单号"></div>
             <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div> 
+            <div field="mainRemark" name="mainRemark" width="200" headerAlign="center" header="备注"></div> 
       </div>
    </div>
 </div>

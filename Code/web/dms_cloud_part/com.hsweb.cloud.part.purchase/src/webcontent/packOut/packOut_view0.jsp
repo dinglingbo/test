@@ -9,7 +9,7 @@
 -->
 <head>
 <title>打包发货</title>
-<script src="<%=webPath + contextPath%>/purchase/js/packOut/packOut.js?v=1.0.69"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/packOut/packOut.js?v=1.0.76"></script>
 <style type="text/css">
 .title {
   width: 75px;
@@ -273,6 +273,7 @@
                                            allowInput="true"
                                            selectOnFocus="true"
                                            showNullItem="false"
+                                           onvaluechanged="onSettleTypeValueChanged"
                                            width="100%"/>
                                       </td>
                                       <td class="title required">
@@ -529,7 +530,7 @@
               <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
               <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
               <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>
-              <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
+              <div allowSort="true" field="storeId" width="120" headerAlign="center" header="仓库"></div>
               <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="销售数量"></div>
               <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="销售单价"></div>
               <div allowSort="true" datatype="float" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="销售金额"></div>

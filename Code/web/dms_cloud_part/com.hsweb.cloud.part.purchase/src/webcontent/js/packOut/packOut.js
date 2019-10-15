@@ -437,6 +437,7 @@ function quickSearch(type){
     var querysign = 1;
     var queryname = "本日";
     var querytypename = "所有";
+    gsparams.isDiffOrder =1;
     gsparams.isNeedPack=1;
     switch (type)
     {
@@ -1098,6 +1099,9 @@ function save() {
     var data = basicInfoForm.getData();
     for ( var key in requiredField) {
         if (!data[key] || $.trim(data[key]).length == 0) {
+        	if(key=="isWooden" && data[key]!==""){
+        		continue;
+        	}
             showMsg(requiredField[key] + "不能为空!","W");
             return;
         }
@@ -1188,6 +1192,16 @@ function onGuestValueChanged(e)
         setGuestLogistics(value,false);
 
     }
+}
+
+function onSettleTypeValueChanged(e){
+	var payType =nui.get('payType').getValue();
+	//到付
+	if(payType == "051301"){
+		nui.get("settleTypeId").setValue("");
+		showMsg("到付不需要填写结算方式","W");
+	}
+	
 }
 var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
 function setGuestInfo(params)

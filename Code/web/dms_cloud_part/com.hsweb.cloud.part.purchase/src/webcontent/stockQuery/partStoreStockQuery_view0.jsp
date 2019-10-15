@@ -94,12 +94,12 @@
                 <div property="columns">
                     <div allowSort="true" field="comPartCode" width="120" headerAlign="center" header="配件编码"></div>
                     <div allowSort="true" field="comPartName" width="150"headerAlign="center" header="配件名称"></div>
-                    <div allowSort="true" field="comOemCode" width="220" headerAlign="center" header="OE码"></div>
+                    <div allowSort="true" field="comOemCode" width="100" headerAlign="center" header="OE码"></div>
                     <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
-                    <div allowSort="true" field="applyCarModel" width="280" headerAlign="center" header="品牌车型"></div>
+                    <div allowSort="true" field="applyCarModel" width="120" headerAlign="center" header="品牌车型"></div>
                     <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
-                    <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
-                    <div allowSort="true" field="shelf" width="60" headerAlign="center" header="仓位"></div>
+                    <div allowSort="true" field="storeId" width="120" headerAlign="center" header="仓库"></div>
+                    <div allowSort="true" field="shelf" width="120" headerAlign="center" header="仓位"></div>
                 </div>
             </div>
             <div header="数量金额" headerAlign="center">
@@ -116,8 +116,8 @@
                     <div allowSort="true" datatype="float" field="onRoadQty" visible="false" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div>
                     <div allowSort="true" field="lastEnterDate" headerAlign="center" width="120"header="最近入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div allowSort="true" field="lastOutDate" headerAlign="center"  width="120" header="最近出库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-                    <div allowSort="true" field="upLimit" width="60" headerAlign="center" header="库存上限(夏季)"></div>
-                    <div allowSort="true" field="downLimit" width="60" headerAlign="center" header="库存下限(夏季)"></div>
+                    <div allowSort="true" field="upLimit" width="95" headerAlign="center" header="库存上限(夏季)"></div>
+                    <div allowSort="true" field="downLimit" width="95" headerAlign="center" header="库存下限(夏季)"></div>
                     <div allowSort="true" field="upLimitWinter" width="95" headerAlign="center" header="库存上限(冬季)" numberFormat="0.00"></div>
                     <div allowSort="true" field="downLimitWinter" width="95" headerAlign="center" header="库存下限(冬季)" numberFormat="0.00"></div>
                     <div allowSort="true" field="remark" width="200" headerAlign="center" header="备注"></div>

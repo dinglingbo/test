@@ -1243,14 +1243,27 @@ function showBottomTabInfo(partId){
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);
             }  
             break;
+        case "enterRecordTab":
+            var params = {};
+            params.partId=partId;
+            if(!url){
+                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containPchsOrderRecord.jsp?partId="+partId, tab);
+            }else{
+                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);  
+            }
+            
+            break;
         case "outRecordTab":
             var params = {};
             params.partId=partId;
             params.guestId =guestId;
-            if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containSellOrderRecord.jsp?partId="+partId, tab);
-            }else{
-                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);
+            if(!url & partId>0){
+                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containSellOrderRecord.jsp?partId="+partId+"&guestId="+guestId, tab);
+            }
+            else{  
+            	url =contextPath + "/common/embedJsp/containSellOrderRecord.jsp?partId="+partId+"&guestId="+guestId;
+            	mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containSellOrderRecord.jsp?partId="+partId+"&guestId="+guestId, tab);
+                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);                
             }
             
         	break;
@@ -1285,6 +1298,9 @@ function onShowRowDetail(e) {
     var partId = row.id;
     innerPartGrid.load({
     	partId:partId,
+    	page : {
+    		 length:100
+    	},
 		type :"LOCAL",
     	token:token
 	});
@@ -1303,10 +1319,16 @@ function onShowRowDetail2(e) {
     editFormDetail2.style.display = "";
     innerPartGrid.setData([]);
     var commonId = row.commonId;
+    if(commonId ==0){
+    	return;
+    }
     var params={};
     params.commonId =commonId;
     innerPartGrid2.load({
     	params:params,
+    	page : {
+   		 length:100
+    	},
     	token:token
 	});
     

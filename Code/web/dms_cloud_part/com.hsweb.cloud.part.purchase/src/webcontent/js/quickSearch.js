@@ -659,14 +659,47 @@ function addToCartGrid(type, row){
             showMsg("此配件已经添加到购物车!","W");
             return;
         }else{
-            var newRow = {partId: row.partId, partCode: row.partCode, partName: row.partName, fullName:row.fullName, unit:row.unit, orderQty: 1, orderPrice: row.orderPrice};
+            var newRow = {
+            		partId: row.partId,
+            		partCode: row.partCode,
+            		partName: row.partName,
+            		fullName: row.fullName,
+            		unit: row.unit,
+            		orderQty: 1,
+            		orderPrice: row.orderPrice,
+            		showPartId :row.partId,
+            		showPartCode : row.partCode,
+                    showFullName : row.fullName,
+                    showBrandName :row.partBrandName,
+                    showCarModel : row.applyCarModel,
+                    showOemCode : row.oemCode,
+                    showSpec : row.spec,
+                    showPrice :row.orderPrice
+
+            	};
             cartGrid.addRow(newRow);       
         }
     }else{
         if(!row.partId || row.partId <= 0) {
             row.partId = -1;
         }
-        var newRow = {partId: row.partId, partCode: row.partCode, partName: row.partName, fullName:row.fullName, unit:row.unit, orderQty: 1, orderPrice: row.orderPrice};
+        var newRow = {
+        		partId: row.partId,
+        		partCode: row.partCode,
+        		partName: row.partName,
+        		fullName: row.fullName,
+        		unit: row.unit,
+        		orderQty: 1,
+        		orderPrice: row.orderPrice,
+        		showPartId :row.partId,
+        		showPartCode : row.partCode,
+                showFullName : row.fullName,
+                showBrandName :row.partBrandName,
+                showCarModel : row.applyCarModel,
+                showOemCode : row.oemCode,
+                showSpec : row.spec,
+                showPrice :row.orderPrice
+        	};
         cartGrid.addRow(newRow);       
     }
 
@@ -705,7 +738,7 @@ function addToPchsCart(){
     var rows = cartGrid.getSelecteds();
     if(rows && rows.length > 0){
 
-        openGeneratePop(rows, "fromPchsCart", "添加采购车");
+        openGeneratePop(rows, "pchsCart", "添加采购车");
 
     }else{
         showMsg("请选择配件信息!","W");
@@ -716,7 +749,7 @@ function addToSellCart(){
     var rows = cartGrid.getSelecteds();
     if(rows && rows.length > 0){
 
-        openGeneratePop(rows, "fromSellCart", "添加销售车");
+        openGeneratePop(rows, "sellCart", "添加销售车");
 
     }else{
         showMsg("请选择配件信息!","W");

@@ -149,13 +149,13 @@ function onAdvancedSearchOk()
     var i;
     if(searchData.sOrderDate)
     {
-        searchData.sOrderDate = searchData.sOrderDate.substr(0,10);
+        searchData.sOrderDate = formatDate(searchData.sOrderDate);
     }
     if(searchData.eOrderDate)
     {
         var date = searchData.eOrderDate;
         searchData.eOrderDate = addDate(date, 1);
-        searchData.eOrderDate = searchData.eOrderDate.substr(0,10);
+//        searchData.eOrderDate = searchData.eOrderDate.substr(0,10);
     }
     //审核日期
     if(searchData.sAuditDate)

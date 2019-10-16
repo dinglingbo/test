@@ -177,6 +177,12 @@
                                       <td colspan="1">
                                           <input class="nui-textbox" enabled="true" id="orderMan" name="orderMan" width="100%">
                                       </td>
+                                       <td class="title">
+                                          <label>备注：</label>
+                                      </td>
+                                      <td>
+                                          <input class="nui-textbox" width="100%" id="remark" name="remark" enabled="true"/>
+                                      </td>
                                       <td class="title required">
                                           <label>移仓日期：</label>
                                       </td>
@@ -194,6 +200,7 @@
                                       <td>
                                           <input class="nui-textbox" width="100%" id="serviceId" name="serviceId" enabled="false"/>
                                       </td>
+                                     
                                   </tr>
                               </table>
                           </div>

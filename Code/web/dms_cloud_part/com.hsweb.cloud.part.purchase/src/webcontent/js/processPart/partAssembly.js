@@ -1251,21 +1251,21 @@ function onAdvancedSearchOk()
     //审核日期
     if(searchData.sAuditDate)
     {
-        searchData.sAuditDate = searchData.sAuditDate.substr(0,10);
+        searchData.sAuditDate = formatDate(searchData.sAuditDate);
     }
     if(searchData.eAuditDate)
     {
-        searchData.eAuditDate = searchData.eAuditDate.substr(0,10);
+//        searchData.eAuditDate = searchData.eAuditDate.substr(0,10);
         searchData.eAuditDate = addDate(searchData.eAuditDate, 1);
     }
     //创建日期
     if(searchData.sCreateDate)
     {
-        searchData.sCreateDate = searchData.sCreateDate.substr(0,10);
+        searchData.sCreateDate = formatDate(searchData.sCreateDate);
     }
     if(searchData.eCreateDate)
     {
-        searchData.eCreateDate = searchData.eCreateDate.substr(0,10);
+//        searchData.eCreateDate = searchData.eCreateDate.substr(0,10);
         searchData.eCreateDate = addDate(searchData.eCreateDate, 1);
     }
     

@@ -7,7 +7,52 @@
     <resultMap class="commonj.sdo.DataObject" id="resultMap">
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
-    <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
+    <select id="queryPjShopCart" parameterMap="parameterMap" resultClass="com.hsapi.cloud.part.data.pts.PjShopCart">
+		SELECT
+			a.id AS id,
+			a.time_flag AS timeFlag,
+			a.org_id AS orgId,
+			a.shop_type as shopType,
+			a.part_id as partId,
+			a.part_code as partCode,
+			a.full_name as fullName,
+			a.unit as unit,
+			a.guest_id as guestId,
+			a.guest_name as guestName,
+			a.short_name as shortName,
+			a.bill_type_id as billTypeId,
+			a.settle_type_id as settleTypeId,
+			a.order_qty as orderQty,
+			a.order_price as orderPrice,
+			a.remark as remark,
+			a.creator_id as creatorId,
+			a.creator as creator,
+			a.create_date as createDate,
+			a.is_confirm as isConfirm,
+			a.operator_id as operatorId,
+			a.operator as operator,
+			a.operate_date as operateDate,
+			a.part_id as showPartId,
+			a.part_code as showPartCode,
+		  	a.full_name as  showFullName,
+		 	c.`name` as   showBrandName,
+			b.apply_car_model as showCarModel,
+			b.oem_code as showOemCode,
+			b.spec as showSpec,
+			a.order_price as showPrice
+		FROM
+			pj_shop_cart a
+		LEFT JOIN wb_common.com_attribute b ON a.part_id = b.id
+		LEFT JOIN wb_common.com_part_brand c ON b.part_brand_id = c.id
+		Where 1=1
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgid">(a.org_id = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(a.part_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="fullName">(a.full_name like '%$fullName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="isConfirm">(a.is_confirm = #isConfirm#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="shopType">(a.shop_type = #shopType#)</isNotEmpty>
+        </dynamic>
+	</select>
     <select id="queryPjPchsOrderMainList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
 		SELECT
 		    a.id as id,

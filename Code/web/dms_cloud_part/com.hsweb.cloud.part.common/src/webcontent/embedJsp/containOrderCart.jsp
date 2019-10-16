@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购车/销售车</title>
-<script src="<%=webPath + contextPath%>/common/js/embed/containOrderCart.js?v=1.0.4"></script>
+<script src="<%=webPath + contextPath%>/common/js/embed/containOrderCart.js?v=1.0.7"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -71,6 +71,15 @@
                         <div field="shortName" width="60" headerAlign="center" allowSort="true">往来单位</div>
                         <div field="creator" width="50" headerAlign="center" allowSort="true">业务员</div>
                         <div field="createDate" width="80" dateFormat="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true">创建日期</div>
+                        <div field="showPartId" width="50" visible="false" headerAlign="center"></div>
+                        <div field="showPartCode" width="50" visible="false" headerAlign="center"></div>
+                        <div field="showFullName" width="50" visible="false" headerAlign="center"></div>
+                        <div field="showBrandName" width="50" visible="false" headerAlign="center"></div>
+                        <div field="showCarModel" width="50" visible="false" headerAlign="center"></div>
+                        <div field="showOemCode" width="50" visible="false" headerAlign="center"></div>
+                        <div field="showSpec" width="50" visible="false" headerAlign="center"></div>
+                        <div field="showPrice" width="50" visible="false" headerAlign="center"></div>
+                        <div field="showAmt" width="50" visible="false" headerAlign="center"></div>
                 </div>
         </div>
 </div>

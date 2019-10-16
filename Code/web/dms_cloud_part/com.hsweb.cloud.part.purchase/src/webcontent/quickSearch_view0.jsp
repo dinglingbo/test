@@ -9,7 +9,7 @@
 -->
 <head>
 <title>快速报价</title>
-<script src="<%=webPath + contextPath%>/purchase/js/quickSearch.js?v=1.0.32"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/quickSearch.js?v=1.0.35"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -58,7 +58,7 @@
                 <table style="width:100%;" border="0">
                     <tr>
                         <td>
-							<input name="queryConditions" id="queryConditions" class="nui-combobox" textField="name" valueField="id"
+							<input name="queryConditions" data='conList' id="queryConditions" class="nui-combobox" textField="name" valueField="id"
                        emptyText="请选择..." allowInput="false" value="0" showNullItem="false" width="100%" valueFromSelect="true"/>
 						</td>
 						<td>
@@ -246,6 +246,15 @@
                                     单价<input property="editor" vtype="float" class="nui-textbox"/>
                                 </div>
                                 <div field="remark" width="80" headerAlign="center" allowSort="true">备注<input property="editor" class="nui-textbox"/></div>
+                                <div field="showPartId" width="50" visible="false" headerAlign="center"></div>
+                                <div field="showPartCode" width="50" visible="false" headerAlign="center"></div>
+                                <div field="showFullName" width="50" visible="false" headerAlign="center"></div>
+                                <div field="showBrandName" width="50" visible="false" headerAlign="center"></div>
+                                <div field="showCarModel" width="50" visible="false" headerAlign="center"></div>
+                                <div field="showOemCode" width="50" visible="false" headerAlign="center"></div>
+                                <div field="showSpec" width="50" visible="false" headerAlign="center"></div>
+                                <div field="showPrice" width="50" visible="false" headerAlign="center"></div>
+                                <div field="showAmt" width="50" visible="false" headerAlign="center"></div>
                         </div>
                 </div>
         </div>

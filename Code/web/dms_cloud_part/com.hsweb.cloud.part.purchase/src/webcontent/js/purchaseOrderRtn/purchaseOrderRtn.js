@@ -1369,7 +1369,7 @@ function onCellCommitEdit(e) {
             
             var orderAmt = orderQty * orderPrice;                  
                                 
-            newRow = { orderAmt: orderAmt};
+            newRow = { orderAmt: orderAmt,showAmt :orderAmt};
             rightGrid.updateRow(e.row, newRow);
             
             //record.enteramt.cellHtml = enterqty * enterprice;
@@ -1387,7 +1387,7 @@ function onCellCommitEdit(e) {
             
             var orderAmt = orderQty * orderPrice; 
                            
-            newRow = { orderAmt: orderAmt};
+            newRow = { orderAmt: orderAmt,showAmt :orderAmt};
             rightGrid.updateRow(e.row, newRow);
 
             if(orderPrice){
@@ -2204,7 +2204,16 @@ function addDetail(rows)
             partName : row.comPartName,
             fullName : row.comFullName,
             systemUnitId : row.comUnit,
-            outUnitId : row.comUnit
+            outUnitId : row.comUnit,
+            showPartId :row.partId,
+    		showPartCode : row.comPartCode,
+            showFullName : row.comFullName,
+            showBrandName :row.partBrandName,
+            showCarModel : row.comApplyCarModel,
+            showOemCode : row.comOemCode,
+            showSpec : row.comSpec,
+            showPrice :row.orderPrice,
+            showAmt: row.orderAmt
         };
 
 

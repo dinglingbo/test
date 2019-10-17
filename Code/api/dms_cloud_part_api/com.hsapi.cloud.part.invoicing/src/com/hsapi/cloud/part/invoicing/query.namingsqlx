@@ -1367,6 +1367,101 @@
             <isNotEmpty prepend="" property="limitQuery">limit 50</isNotEmpty>
         </dynamic>
     </select>
+    <select id="queryDynamicPartStoreStockList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.orgid as orgid,
+			a.store_id as storeId,
+			a.store_name as storeName,
+			a.shelf as shelf,
+			a.part_id as partId,
+			a.part_code as partCode,
+			a.part_name as partName,
+			a.full_name as fullName,
+			a.out_unit_id as outUnitId,
+			a.system_unit_id as systemUnitId,
+			a.qc_price as qcPrice,
+			a.qc_qty as qcQty,
+			a.qc_amt as qcAmt,
+			a.enter_qty as enterQty,
+			a.enter_amt as enterAmt,
+			a.out_qty as outQty,
+			a.out_amt as outAmt,
+			a.cost_price as costPrice,
+			a.stock_qty as stockQty,
+			a.stock_amt as stockAmt,
+			a.occupy_qty as occupyQty,
+			a.outable_qty as outableQty,
+			a.on_road_qty as onRoadQty,
+			a.last_supplier_id as lastSupplierId,
+			a.last_enter_date as lastEnterDate,
+			a.last_out_date as lastOutDate,
+			a.remark as remark,
+			a.version_no as versionNo,
+			a.creator_id as creatorId,
+			a.creator as creator,
+			a.create_date as createDate,
+			a.operator_id as operatorId,
+			a.operator as operator,
+			a.operate_date as operateDate,
+			a.order_qty as orderQty,
+			a.up_limit as upLimit,
+			a.down_limit as downLimit,
+			a.up_limit_winter as upLimitWinter,
+			a.down_limit_winter as downLimitWinter,
+			a.min_order_qty as minOrderQty,
+			a.min_pack_qty as minPackQty,
+			b.code as comPartCode,
+			b.`name` as comPartName,
+			b.full_name as comPartFullName,
+			b.brand_code as comBrandCode,
+			b.oem_code as comOemCode,
+			b.common_code as comCommonCode,
+			b.quality_type_id as qualityTypeId,
+			b.name_py as comNamePy,
+			b.goods_code as goodsCode,
+			b.part_brand_id as partBrandId,
+			b.apply_carbrand_id as applyCarbrandId,
+			b.apply_car_model as applyCarModel,
+			b.car_type_id_f as carTypeIdF,
+			b.car_type_id_s as carTypeIdS,
+			b.car_type_id_t as carTypeIdT,
+			b.spec as spec,
+			b.direction as direction,
+			b.model as model,
+			b.unit as unit
+		FROM
+		pj_part_store_stock a
+		inner join wb_common.com_attribute b
+		on a.part_id = b.id
+
+		WHERE 1 = 1 
+				
+			<dynamic>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <!--最近入库日期 -->
+            <isNotEmpty prepend="and" property="startDate">
+				exists (
+					select 1 from pj_store_invocing c 
+				    where a.orgid = c.orgid and a.store_id = c.store_id and a.part_id = c.part_id  
+				          and c.create_date &gt;= #startDate# and c.create_date &lt; #endDate#
+				)
+
+			</isNotEmpty>
+           
+            <isNotEmpty prepend="and" property="storeId">(a.store_id = #storeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="storeShelf">(a.shelf = #storeShelf#)</isNotEmpty>
+           
+            <isNotEmpty prepend="and" property="partId">(a.PART_ID = #partId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">(b.FULL_NAME like '%$partName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partNameAndPY">(b.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="applyCarModel">(b.apply_car_model like '%$applyCarModel$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(b.query_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partBrandId">(b.part_brand_id = #partBrandId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCodeList">(b.code in ($partCodeList$))</isNotEmpty>
+            <!--业务界面的库存详情限制50 -->
+            <isNotEmpty prepend="" property="limitQuery">limit 50</isNotEmpty>
+        </dynamic>
+    </select>
     <select id="queryOutableDetailList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
 		SELECT
 			a.service_id as serviceId,

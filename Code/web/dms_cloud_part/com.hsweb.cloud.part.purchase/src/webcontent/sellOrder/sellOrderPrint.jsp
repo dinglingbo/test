@@ -446,6 +446,18 @@ hr {
 				isDisabled :0
 		   }
     		var dueAmt = getDueAmt(pr,pp);
+			$.ajaxSettings.async = false;
+    		initDicts(dictDefs, function(){
+	        	billTypeIdList=nui.get('billTypeIdE').getData();     		
+	        	settleTypeIdList=nui.get('settleTypeIdE').getData();
+	        	billTypeIdList.forEach(function(v){
+	        		billTypeIdHash[v.customid]=v;
+	        	});
+	        	settleTypeIdList.forEach(function(v){
+	        		settleTypeIdHash[v.customid]=v;
+	        	});
+	        	
+	        });    	
     		$('#currOrgName').text(params.currRepairSettorderPrintShow||params.currOrgName);
     		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
     		$('#currUserName').text("制单:"+params.currUserName);
@@ -458,7 +470,7 @@ hr {
 	   			$('#logImg').show();
 	   			$('#logImg').attr("src",currCompLogoPath);
 	   		}
-	   		$.ajaxSettings.async = false;
+	   	
 	   		if(params.id){
 		   		$.post(MainUrl+"?params/id="+params.id+"&params/auditSign="+params.auditSign+"&token="+token,{},function(text){
 		   			var formParms =text.pjSellOrderMainList[0];

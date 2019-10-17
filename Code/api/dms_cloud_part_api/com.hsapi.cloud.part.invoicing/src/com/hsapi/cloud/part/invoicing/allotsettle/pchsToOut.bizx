@@ -166,6 +166,10 @@
       <process:to type="query">enterMain/auditDate</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">pchsMain/remark</process:from>
+      <process:to type="query">enterMain/remark</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">enterMain/id</process:from>
       <process:to type="query">mainId</process:to>
     </process:copy>
@@ -514,7 +518,7 @@
       <targetNode>end1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

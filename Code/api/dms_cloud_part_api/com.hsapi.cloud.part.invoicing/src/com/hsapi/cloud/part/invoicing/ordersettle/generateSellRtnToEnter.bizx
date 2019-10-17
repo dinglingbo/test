@@ -202,6 +202,10 @@
       <process:to type="query">enterMain/auditDate</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">main/remark</process:from>
+      <process:to type="query">enterMain/remark</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">enterMain/id</process:from>
       <process:to type="query">mainId</process:to>
     </process:copy>

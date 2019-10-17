@@ -157,11 +157,11 @@ function onAdvancedSearchOk()
     var i;
     if(searchData.startDate)
     {
-        searchData.startDate = searchData.startDate.substr(0,10);
+        searchData.startDate =  formatDate(searchData.startDate);
     }
     if(searchData.endDate)
     {
-        searchData.endDate = searchData.endDate.substr(0,10);
+        searchData.endDate = addDate(searchData.endDate, 1);
     }
     if(searchData.enterIdList)
     {

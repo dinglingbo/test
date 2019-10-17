@@ -333,13 +333,13 @@ function onAdvancedSearchOk()
     //订货日期
     if(searchData.sOrderDate)
     {
-        searchData.sOrderDate = searchData.sOrderDate.substr(0,10);
+        searchData.sOrderDate = formatDate(searchData.sOrderDate);
     }
     if(searchData.eOrderDate)
     {
         var date = searchData.eOrderDate;
         searchData.eOrderDate = addDate(date, 1);
-        searchData.eOrderDate = searchData.eOrderDate.substr(0,10);
+//        searchData.eOrderDate = searchData.eOrderDate.substr(0,10);
     }
     //创建日期
     if(searchData.sCreateDate)

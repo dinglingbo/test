@@ -118,6 +118,7 @@
             form.validate();
             if (form.isValid() == false) return;
             o.token = token;
+            o.action = "add";
 			//"org.gocom.components.coframe.framework.FunctionManager.saveFunction.biz.ext",
             var json = nui.encode(o);
             $.ajax({
@@ -127,7 +128,13 @@
                 cache: false,
                 contentType:'text/json',
                 success: function (text) {
-                    CloseWindow("ok");
+                    if(text.errCode=="S"){
+                        showMsg("保存成功","S");
+                        CloseWindow("ok");
+                    }else{
+                      showMsg(text.errMsg,"E");
+                    }
+                   
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     alert(jqXHR.responseText);

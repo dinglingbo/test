@@ -9,7 +9,7 @@
 -->
 <head>
 <title>安全库存设置</title>
-<script src="<%=webPath + contextPath%>/purchase/js/stockQuery/partStoreStockSet.js?v=1.0.13"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/stockQuery/partStoreStockSet.js?v=1.0.14"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -86,6 +86,8 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="save()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                <span class="separator"></span>
+                <a class="nui-button" iconCls="" plain="true" onclick="importStockSet()"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
             </td>
         </tr>
     </table>

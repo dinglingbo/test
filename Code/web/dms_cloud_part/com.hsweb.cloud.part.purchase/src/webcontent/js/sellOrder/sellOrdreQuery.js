@@ -209,7 +209,7 @@ function onAdvancedSearchOk()
     var i;
     if(searchData.sOrderDate)
     {
-        searchData.sOrderDate = searchData.sOrderDate.substr(0,10);
+        searchData.sOrderDate = formatDate(searchData.sOrderDate);
     }
     if(searchData.eOrderDate)
     {

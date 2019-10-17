@@ -9,7 +9,7 @@
 -->
 <head>
 <title>打包发货</title>
-<script src="<%=webPath + contextPath%>/purchase/js/packOut/packOut.js?v=1.0.76"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/packOut/packOut.js?v=1.0.77"></script>
 <style type="text/css">
 .title {
   width: 75px;
@@ -257,9 +257,10 @@
                                            valuefromselect="true"
                                            allowInput="true"
                                            selectOnFocus="true"
+                                           onvaluechanged="onPayTypeValueChanged"
                                            showNullItem="false" id="payType" name="payType" width="100%" enabled="true">
                                       </td>
-                                      <td class="title required">
+                                      <td class="title">
                                           <label>结算方式：</label>
                                       </td>
                                       <td colspan="1">

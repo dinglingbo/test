@@ -170,13 +170,13 @@ function onAdvancedSearchOk()
     var i;
     if(searchData.sOrderDate)
     {
-        searchData.sOrderDate = searchData.sOrderDate.substr(0,10);
+        searchData.sOrderDate = formatDate(searchData.sOrderDate);
     }
     if(searchData.eOrderDate)
     {
         var date = searchData.eOrderDate;
         searchData.eOrderDate = addDate(date, 1);
-        searchData.eOrderDate = searchData.eOrderDate.substr(0,10);
+//        searchData.eOrderDate = searchData.eOrderDate.substr(0,10);
     }
     //审核日期
     if(searchData.sAuditDate)
@@ -348,4 +348,29 @@ function save(){
             }
         });
     }
+}
+
+function  importStockSet(){
+	 nui.open({
+	        // targetWindow: window,
+	        url: webPath + contextPath + "/com.hsweb.cloud.part.basic.importPart.flow?token="+token,
+	        title: "库存设置导入", 
+	        width: 930, 
+	        height: 560,
+	        allowDrag:true,
+	        allowResize:true,
+	        onload: function ()
+	        {
+	            var iframe = this.getIFrameEl();
+	            var carBrandList = nui.get("applyCarBrandId").getData();
+	            iframe.contentWindow.initData({
+	                    partBrandIdList:brandList,
+	                    carBrandList: carBrandList
+	                });
+	        },
+	        ondestroy: function (action)
+	        {
+	            onSearch();
+	        }
+	    });
 }

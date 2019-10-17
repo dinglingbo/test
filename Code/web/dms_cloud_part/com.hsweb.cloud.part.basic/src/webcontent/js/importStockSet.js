@@ -20,6 +20,8 @@ var partBrandIdHash = {};
 var carBrandList = [];
 var carBrandHash = {};
 
+var storehouse =[];
+var storeHash ={};
 $(document).ready(function(v)
 {
 
@@ -27,6 +29,12 @@ $(document).ready(function(v)
 	advancedTipWin = nui.get("advancedTipWin");
 	advancedTipForm  = new nui.Form("#advancedTipForm");
 	
+	getStorehouse(function(data){
+        storehouse = data.storehouse||[];
+        storehouse.forEach(function(v){
+        	storeHash[v.name] =v;
+        });
+    });
 	nui.get("openBtn").focus();
 	document.onkeyup=function(event){
         var e=event||window.event;
@@ -46,12 +54,6 @@ function initData(data){
         partBrandIdHash[v.name] = v;
 	});
 	
-	carBrandList = data.carBrandList||[];
-    carBrandList.forEach(function(v)
-    {
-        carBrandHash[v.nameCn] = v;
-	});
-
 }
 
 function importf(obj) {//导入
@@ -96,13 +98,14 @@ function fixdata(data) { //文件流转BinaryString
 			* w)));
 	return o;
 }
-var requiredField = {
+var requiredField = {	
+	partCode : "配件编码",
 	partBrandId : "品牌",
-	partCode : "编码"
+	storeId : "仓库"
 };
 function sure() {
 	var data = mainGrid.getData();
-	var partList = [];
+	var stockList = [];
 	var length = 0;//用于限制大小不能超过一千
 	if (data) {
 		//alert(data.length);
@@ -114,14 +117,16 @@ function sure() {
 			}
 			var newRow = {};
 			newRow.partBrandId = data[i].品牌||"";
-			newRow.partCode = data[i].编码||"";
+			newRow.partCode = data[i].配件编码||"";
+			newRow.storeId = data[i].仓库||"";
 			newRow.shelf = data[i].仓位||"";
-			newRow.upLimit = data[i].库存上限(夏季)||"";
-			newRow.downLimit = data[i].库存下限(夏季)||"";
-			newRow.upLimitWinter = data[i].库存上限(冬季)||"";
-			newRow.downLimitWinter = data[i].库存上限(冬季)||"";
+			newRow.upLimit = data[i]["库存上限(夏季)"]||"";
+			newRow.downLimit = data[i]["库存下限(夏季)"] ||"";
+			newRow.upLimitWinter = data[i]["库存上限(冬季)"]||"";
+			newRow.downLimitWinter = data[i]["库存下限(冬季)"]||"";
 			newRow.minOrderQty = data[i].最小起订量||"";
 			newRow.minPackQty = data[i].最小包装量||"";
+			
 
 
 			for ( var key in requiredField) {
@@ -131,39 +136,24 @@ function sure() {
 				}
 			}
 
-			newRow.fullName = newRow.name;
-		    newRow.fullName = newRow.fullName + " " + newRow.partBrandId;
-		    if(newRow.spec)
-		    {
-		        newRow.fullName = newRow.fullName + " " + newRow.spec;
-		    }
-		    
-	        var matches = newRow.code.match(/([\w]*)/ig);
-	        newRow.queryCode = "";
-	        for(var j=0;j<matches.length;j++)
-	        {
-	            newRow.queryCode+=matches[j];
-	        }		  
+			if(storeHash && storeHash[newRow.storeId]){
+				newRow.storeId = storeHash[newRow.storeId].id;
+			}else{
+				parent.parent.showMsg("第"+(i+1)+"行记录的仓库信息有误!","W");
+				return;
+			}
+			
 
 			if(partBrandIdHash && partBrandIdHash[newRow.partBrandId]){
-				newRow.qualityTypeId = partBrandIdHash[newRow.partBrandId].parentId;
 				newRow.partBrandId = partBrandIdHash[newRow.partBrandId].id;
 			}else{
 				parent.parent.showMsg("第"+(i+1)+"行记录的品牌信息有误!","W");
 				return;
 			}
 
-			var carBrand = newRow.applyCarbrandId.replace(/\s+/g, "");
-			if(carBrand){
-				if(carBrandHash && carBrandHash[newRow.applyCarbrandId.replace(/\s+/g, "")]){
-					newRow.applyCarbrandId = carBrandHash[newRow.applyCarbrandId.replace(/\s+/g, "")].id;
-				}else{
-					parent.parent.showMsg("第"+(i+1)+"行记录的厂牌信息有误!","W");
-					return;
-				}
-			}
+			
 
-			partList.push(newRow);
+			stockList.push(newRow);
 		}
 		//btnEdit.setValue(data.id);
 		//btnEdit.setText(data.guestname);
@@ -172,7 +162,7 @@ function sure() {
 	//faddPart(partList);
 	  nui.confirm("确定导入吗？", "友情提示",function(action){
 	       if(action == "ok"){
-	    		saveEnterPart(partList);
+	    		saveStock(stockList);
 	     }else {
 				return;
 		 }
@@ -189,9 +179,9 @@ function close(){
     else window.close();
 }
 
-var saveUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.getImportPart.biz.ext";
-function saveEnterPart(partList){
-	if(partList && partList.length>0) {
+var saveUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.getImportStockSet.biz.ext";
+function saveStock(stockList){
+	if(stockList && stockList.length>0) {
 		nui.mask({
 	        el: document.body,
 	        cls: 'mini-mask-loading',
@@ -202,7 +192,7 @@ function saveEnterPart(partList){
 	        url : saveUrl,
 	        type : "post",
 	        data : JSON.stringify({
-	            list : partList,
+	            list : stockList,
 	            token : token
 	        }),
 	        success : function(data) {
@@ -211,11 +201,13 @@ function saveEnterPart(partList){
 	            if (data.errCode == "S") {
 	                var errMsg = data.errMsg;
 	                if(errMsg){
-						nui.get("fastCodeList").setValue(errMsg);
-						advancedTipWin.show();
-						//parent.parent.showMsg(errMsg,"S");
+//						nui.get("fastCodeList").setValue(errMsg);
+//						advancedTipWin.show();
+						parent.parent.showMsg(errMsg,"S");
+						CloseWindow('ok');
 	                }else{
 						parent.parent.showMsg("导入成功!","S");
+						CloseWindow('ok');
 	                }
 	            } else {
 					nui.get("fastCodeList").setValue(data.errMsg);

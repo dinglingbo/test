@@ -96,7 +96,7 @@
           <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
                selectOnLoad="true"
                frozenStartColumn="0"
-             
+               frozenEndColumn="9"
                pageSize="500"
                totalField="page.count"
                sizeList=[500,1000,2000]

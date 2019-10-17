@@ -118,6 +118,7 @@
                   <div field="carVin" name="carVin" width="150px" headerAlign="center" header="车架号(VIN)"></div>
                   <div field="contactName" name="contactName" width="70px" headerAlign="center" header="联系人姓名"></div>
                   <div field="contactMobile" name="contactMobile" width="100px" headerAlign="center" header="联系人手机"></div>
+                  <div field="guestFullName" name="guestFullName" width="70px" headerAlign="center" header="客户姓名"></div>
                   <div field="mtAdvisor" name="mtAdvisor" width="90px" headerAlign="center" header="服务顾问"></div>
                   <div field="balaAuditSign" name="balaAuditSign" width="85px" headerAlign="center" header="结算状态"></div>
                   <div field="planFinishDate" name="planFinishDate" width="115px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="预计交车时间"></div>

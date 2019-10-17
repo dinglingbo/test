@@ -11,7 +11,7 @@
 -->
 <head>
 <title>已结算工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.1.7"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.1.8"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -113,6 +113,8 @@
 		<div size="65%" showCollapseButton="false">
     <div class="nui-fit">
           <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
+               frozenStartColumn="0"
+               frozenEndColumn="5"
                selectOnLoad="true"
                showPager="true"
                pageSize="500" sortMode="client"
@@ -137,6 +139,7 @@
 	                  <div field="billTypeId" name="billTypeId" width="70" headerAlign="center" allowsort="true"  header="工单类型"></div>
 	                  <div field="serviceTypeName" name="serviceTypeName" width="70" headerAlign="center" allowsort="true" header="业务类型"></div>
 	                  	<div field="guestFullName" name="guestFullName" width="100" headerAlign="center"  allowsort="true" header="客户名称" allowsort="ture"></div> 
+	                  	<div field="contactorName" name="contactorName" width="100" headerAlign="center"  allowsort="true" header="联系人名称" allowsort="ture"></div> 
 		                <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌号" allowsort="true"></div>
 		                <div field="fileNo" name="fileNo" width="80" headerAlign="center" header="档案号" allowsort="true"></div>
 	                  <div field="mtAdvisor" name="mtAdvisor" width="110" headerAlign="center" allowsort="true" header="服务顾问"></div>

@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/orderDetail.js?v=1.3.65"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/orderDetail.js?v=1.3.66"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
@@ -195,7 +195,7 @@
             <tr>   
                 <td class="title">客户名称:</td> 
                 <td class=""><input  class="nui-textbox" name="guestFullName" id="guestFullName" enabled="false" width="100%"/></td>
-                <td class="title">性别:</td> 
+                <td class="title">客户性别:</td> 
                 <td class="">  <input name="sex"
                                  id="sex"
                                  enabled="false"
@@ -213,10 +213,31 @@
                 <td class="title">客户手机:</td> 
                 <td class=""><input  class="nui-textbox" name="guestMobile" id="guestMobile" enabled="false" width="100%"/></td>
                 <td class="title">证件号:</td> 
-                <td class=""><input  class="nui-textbox" name="idNo" id="idNo"enabled="false" width="100%" /></td>
+                <td class="" colspan="3"><input  class="nui-textbox" name="idNo" id="idNo"enabled="false" width="100%" /></td>
+               
+            </tr>
+             <tr>   
+                <td class="title">联系人名称:</td> 
+                <td class=""><input  class="nui-textbox" name="contactorName" id="contactorName" enabled="false" width="100%"/></td>
+                <td class="title">联系人性别:</td> 
+                <td class="">  <input name="contactorSex"
+                                 id="contactorSex"
+                                 enabled="false"
+                                 class="nui-combobox width1"
+                                 textField="text"
+                                 valueField="id"
+                                 emptyText="请选择..."
+                                 data="[{id:0,text:'男'},{id:1,text:'女'},{id:2,text:'未知'}]"
+                                 allowInput="true"
+                                 showNullItem="false"
+                                 width="100%"
+                                 valueFromSelect="true"
+                                 nullItemText="请选择..."/>
+                 	</td>
+                <td class="title">联系人手机:</td> 
+                <td class=""><input  class="nui-textbox" name="mobile" id="mobile" enabled="false" width="100%"/></td>
                 <td class="title">联系人备注:</td> 
-                <td class=""><input  class="nui-textbox" name="contactRemark" id="contactRemark" enabled="false" width="100%"/></td>
- 
+                <td class="" colspan="3"><input  class="nui-textbox" name="contactRemark" id="contactRemark" enabled="false" width="100%"/></td>
             </tr>
             <tr>   
                 <td class="title">进厂油量:</td> 

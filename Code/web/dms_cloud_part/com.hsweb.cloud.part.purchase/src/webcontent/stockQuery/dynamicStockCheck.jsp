@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件库存动态盘点</title>
-<script src="<%=webPath + contextPath%>/purchase/js/stockQuery/dynamicStockCheck.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/stockQuery/dynamicStockCheck.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -60,9 +60,9 @@
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
 
                 <span class="separator"></span> 
-                <input id="partNameAndPY" width="80px" emptyText="配件名称/拼音" class="nui-textbox"/>
+                <input id="partNameAndPY" width="100px" emptyText="配件名称/拼音" class="nui-textbox"/>
                 <!-- <label style="font-family:Verdana;">配件ID：</label> -->
-                <input id="partCode" width="80px" emptyText="配件编码" class="nui-textbox"/>
+                <input id="partCode" width="100px" emptyText="配件编码" class="nui-textbox"/>
                  <input id="storeId"
                            name="storeId"
                            class="nui-combobox width1"
@@ -96,13 +96,13 @@
             <div type="indexcolumn">序号</div>
             <div header="库存信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="comPartCode" width="120" headerAlign="center" header="配件编码"></div>
+                    <div allowSort="true" field="comPartCode" width="120" headerAlign="center" header="配件编码" summaryType="count"></div>
                     <div allowSort="true" field="comPartName" width="150"headerAlign="center" header="配件名称"></div>
-                    <div allowSort="true" field="comOemCode" width="220" headerAlign="center" header="OE码"></div>
+                    <div allowSort="true" field="comOemCode" width="120" headerAlign="center" header="OE码"></div>
                     <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
-                    <div allowSort="true" field="applyCarModel" width="280" headerAlign="center" header="品牌车型"></div>
+                    <div allowSort="true" field="applyCarModel" width="120" headerAlign="center" header="品牌车型"></div>
                     <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
-                    <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
+                    <div allowSort="true" field="storeId" width="120" headerAlign="center" header="仓库"></div>
                     <div allowSort="true" field="shelf" width="60" headerAlign="center" header="仓位"></div>
                 </div>
             </div>
@@ -147,8 +147,10 @@
             <td colspan="1" align="center">可售数量</td>
             <td colspan="1" align="center">最近入库日期</td>
             <td colspan="1" align="center">最近出库日期</td>
-            <td colspan="1" align="center">库存上限</td>
-            <td colspan="1" align="center">库存下限</td>
+            <td colspan="1" align="center">库存上限(夏季)</td>
+            <td colspan="1" align="center">库存下限(夏季)</td>
+            <td colspan="1" align="center">库存上限(冬季)</td>
+            <td colspan="1" align="center">库存下限(冬季)</td>
             <td colspan="1" align="center">备注</td>
         </tr>
         <tbody id="tableExportContent">

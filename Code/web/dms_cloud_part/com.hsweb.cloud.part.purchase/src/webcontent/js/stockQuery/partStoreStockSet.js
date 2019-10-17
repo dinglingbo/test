@@ -14,6 +14,7 @@ var storeId = null;
 var storeShelf = null;
 var partId = null;
 var showAll = null;
+var partBrandList =[];
 
 var storehouseHash = {};
 var billTypeIdHash = {};
@@ -42,7 +43,7 @@ $(document).ready(function(v)
     //console.log("xxx");
     getAllPartBrand(function(data)
     {
-        var partBrandList = data.brand;
+        partBrandList = data.brand;
         nui.get("partBrandId").setData(partBrandList);
         partBrandList.forEach(function(v)
         {
@@ -170,13 +171,13 @@ function onAdvancedSearchOk()
     var i;
     if(searchData.sOrderDate)
     {
-        searchData.sOrderDate = searchData.sOrderDate.substr(0,10);
+        searchData.sOrderDate = formatDate(searchData.sOrderDate);
     }
     if(searchData.eOrderDate)
     {
         var date = searchData.eOrderDate;
         searchData.eOrderDate = addDate(date, 1);
-        searchData.eOrderDate = searchData.eOrderDate.substr(0,10);
+//        searchData.eOrderDate = searchData.eOrderDate.substr(0,10);
     }
     //审核日期
     if(searchData.sAuditDate)
@@ -348,4 +349,52 @@ function save(){
             }
         });
     }
+}
+
+function onExport(){
+	var detail = nui.clone(rightGrid.getData());
+	//多级
+	exportMultistage(rightGrid.columns)
+	//单级
+	//exportNoMultistage(rightGrid.columns)
+	for(var i=0;i<detail.length;i++){
+		if(storehouseHash[detail[i].storeId]){
+			detail[i].storeId=storehouseHash[detail[i].storeId].name;
+		}
+		if(partBrandIdHash[detail[i].partBrandId]){
+			detail[i].partBrandId = partBrandIdHash[detail[i].partBrandId].name;
+		}
+		
+		
+	}
+	if(detail && detail.length > 0){
+		//多级表头类型
+		setInitExportData( detail,rightGrid.columns,"安全库存设置导出");
+		//单级表头类型 与上二选一
+		//setInitExportDataNoMultistage( detail,rightGrid.columns,"调拨受理明细表导出");
+	}
+}
+
+function  importStockSet(){
+	 nui.open({
+	        // targetWindow: window,
+	        url: webPath + contextPath + "/com.hsweb.cloud.part.basic.importStockSet.flow?token="+token,
+	        title: "库存设置导入", 
+	        width: 930, 
+	        height: 560,
+	        allowDrag:true,
+	        allowResize:true,
+	        onload: function ()
+	        {
+	            var iframe = this.getIFrameEl();
+	
+	            iframe.contentWindow.initData({
+	                    partBrandIdList:partBrandList
+	                });
+	        },
+	        ondestroy: function (action)
+	        {
+	            onSearch();
+	        }
+	    });
 }

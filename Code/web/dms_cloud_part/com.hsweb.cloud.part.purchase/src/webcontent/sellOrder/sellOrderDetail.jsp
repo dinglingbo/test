@@ -98,6 +98,7 @@
                         <div field="printTimes" width="60" headerAlign="center" header="打印次数"></div>
                         <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
                         <div field="auditDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="审核日期"></div>
+                        <div field="remark" width="120" headerAlign="center" header="备注"></div>
                     </div>
                 </div>
             </div>

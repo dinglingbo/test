@@ -1077,7 +1077,7 @@ var requiredField = {
     logisticsNo : "物流单号",
     destinationStation :"目的站",
     payType :"付款方式",
-    settleTypeId : "结算方式",
+//    settleTypeId : "结算方式",
     packItem :"总包数",
     isWooden :"是否钉木箱",
     receiveMan : "收货人",
@@ -1194,6 +1194,16 @@ function onGuestValueChanged(e)
     }
 }
 
+function onPayTypeValueChanged(e){
+	var payType =nui.get('payType').getValue();
+	var settleTypeId =nui.get('settleTypeId').getValue();
+	
+	//到付
+	if(payType == "051301" && settleTypeId){
+		nui.get("settleTypeId").setValue("");
+		showMsg("到付不需要填写结算方式","W");
+	}
+}
 function onSettleTypeValueChanged(e){
 	var payType =nui.get('payType').getValue();
 	//到付

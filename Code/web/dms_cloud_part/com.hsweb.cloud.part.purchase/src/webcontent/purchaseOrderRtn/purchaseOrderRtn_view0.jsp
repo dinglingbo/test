@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购退货</title>
-<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.0.18"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.0.22"></script>
 <style type="text/css">
 .title {
 	width: 70px;
@@ -347,7 +347,16 @@ body .mini-grid-row-selected{
                                       <div field="stockOutQty" summaryType="sum" numberFormat="0.00" width="35" headerAlign="center" header="缺货数量">
                                       </div>
                                       <div field="comOemCode" width="40" headerAlign="center" allowSort="true" header="OE码"></div>   
-                                      <div field="comSpec" width="30" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>                                                        
+                                      <div field="comSpec" width="30" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div> 
+                                      <div field="showPartId" width="50" visible="false" headerAlign="center"></div>
+		                              <div field="showPartCode" width="50" visible="false" headerAlign="center"></div>
+		                              <div field="showFullName" width="50" visible="false" headerAlign="center"></div>
+		                              <div field="showBrandName" width="50" visible="false" headerAlign="center"></div>
+		                              <div field="showCarModel" width="50" visible="false" headerAlign="center"></div>
+		                              <div field="showOemCode" width="50" visible="false" headerAlign="center"></div>
+		                              <div field="showSpec" width="50" visible="false" headerAlign="center"></div>
+		                              <div field="showPrice" width="50" visible="false" headerAlign="center"></div>
+		                              <div field="showAmt" width="50" visible="false" headerAlign="center"></div>                                                       
                                   </div>
                               </div>
                           </div>

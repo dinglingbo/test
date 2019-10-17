@@ -3,7 +3,7 @@
  * Query what not done
  */
 var baseUrl = apiPath + cloudPartApi + "/";
-var cartGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryOrderCart.biz.ext";
+var cartGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryOrderCartSql.biz.ext";
 var cartGrid = null;
 var type = null;
 var pchsOrderBtn = null;

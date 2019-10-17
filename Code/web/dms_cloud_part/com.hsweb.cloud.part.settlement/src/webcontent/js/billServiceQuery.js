@@ -273,13 +273,13 @@ function onAdvancedSearchOk()
     var i;
     if(searchData.sBillDate)
     {
-        searchData.sBillDate = searchData.sBillDate.substr(0,10);
+        searchData.sBillDate = formatDate(searchData.sBillDate);
     }
     if(searchData.eBillDate)
     {
         var date = searchData.eBillDate;
         searchData.eBillDate = addDate(date, 1);
-        searchData.eBillDate = searchData.eBillDate.substr(0,10);
+//        searchData.eBillDate = searchData.eBillDate.substr(0,10);
     }
     //审核日期
     if(searchData.sCreateDate)

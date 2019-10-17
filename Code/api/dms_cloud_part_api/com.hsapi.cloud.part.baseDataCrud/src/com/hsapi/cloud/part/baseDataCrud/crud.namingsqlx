@@ -44,8 +44,10 @@
 		       a.spec spec,
 		       a.is_disabled isDisabled,
 		       a.is_host isHost,
-		       a.common_id as commonId
+		       a.common_id as commonId,
+		       b.`name` as partBrandName
         FROM com_attribute a
+        INNER JOIN com_part_brand b on a.part_brand_id =b.id
         where 1=1 and a.is_disabled=0
     	<dynamic>
     		<isNotEmpty prepend="and" property="orgid">  
@@ -64,16 +66,16 @@
                (a.common_id in ($commonIds$))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="partBrandId">  
-                (PART_BRAND_ID = #partBrandId#)
+                (a.PART_BRAND_ID = #partBrandId#)
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="carTypeIdF">  
-                (car_type_id_f = #carTypeIdF#)
+                (a.car_type_id_f = #carTypeIdF#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="carTypeIdS">  
-                (car_type_id_s = #carTypeIdS#)
+                (a.car_type_id_s = #carTypeIdS#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="carTypeIdT">  
-                (car_type_id_t = #carTypeIdT#)
+                (a.car_type_id_t = #carTypeIdT#)
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="partId">  
                 (a.id = #partId#)
@@ -82,7 +84,7 @@
                 (a.id in ($partIds$))
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="code">  
-                (code like '%$code$%')
+                (a.code like '%$code$%')
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="lcode">  
                 (a.code like '$code$%')
@@ -91,19 +93,19 @@
                 (a.code like '%$code$')
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="acode">  
-                (code  = #acode#)
+                (a.code  = #acode#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">
             	(a.code in ($partCodeList$))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="name">  
-                (name like '%$name$%' or full_name like '%$name$%')
+                (a.name like '%$name$%' or a.full_name like '%$name$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="applyCarModel">  
-                (apply_car_model like '%$applyCarModel$' or apply_car_model like '$applyCarModel$%')
+                (a.apply_car_model like '%$applyCarModel$' or a.apply_car_model like '$applyCarModel$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="namePy">  
-                (name_py like '%$namePy$' or name_py like '$namePy$%')
+                (a.name_py like '%$namePy$' or a.sname_py like '$namePy$%')
             </isNotEmpty>  
             <isNotEmpty prepend="order by " property="sortField">  
                 $sortField$ $sortOrder$
@@ -1075,4 +1077,30 @@
             </isNotEmpty>
         </dynamic>
 	</select>
+	
+<!-- <update id="updateStockSet" resultMap="Select" parameterClass="list">  
+	   begin  
+	  <iterate conjunction="">  
+		  UPDATE pj_part_store_stock
+			SET shelf = #[].shelf#,
+			 up_limit = #[].upLimit#,
+			 down_limit =#[].downLimit#,
+			 up_limit_winter = #[].upLimitWinter#,
+			 down_limit_winter = #[].downLimitWinter#,
+			 min_order_qty =  #[].minOrderQty#,
+			 min_pack_qty = #[].packQty#
+		WHERE 1=1
+			and orgid =
+			and store_id =
+			and part_id =
+	    update SYS_TABLE set  
+	    Category=#[].Category#,  
+	    Name =#[].Name#,  
+	    Code =#[].Code#,                 
+	    Status =#[].Status#  
+	    where id = #[].Id#;       
+	  </iterate>  
+	  end;      
+    </update>  -->
+    
 </sqlMap>

@@ -8,7 +8,7 @@
 -->
 <head>
 <title>安全库存设置</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockQuery/partStoreStockSet.js?v=1.0.16"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockQuery/partStoreStockSet.js?v=1.0.17"></script>
 <style type="text/css">
 .title {
 	width: 90px;

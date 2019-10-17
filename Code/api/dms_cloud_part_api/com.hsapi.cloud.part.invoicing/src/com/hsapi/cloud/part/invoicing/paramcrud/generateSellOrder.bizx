@@ -204,6 +204,46 @@
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">orderTemp/isFinished</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">partId</process:from>
+      <process:to type="query">orderTemp/showPartId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/showPartCode</process:from>
+      <process:to type="query">orderTemp/showPartCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/showFullName</process:from>
+      <process:to type="query">orderTemp/showFullName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/showBrandName</process:from>
+      <process:to type="query">orderTemp/showBrandName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/showCarModel</process:from>
+      <process:to type="query">orderTemp/showCarModel</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/showFullName</process:from>
+      <process:to type="query">orderTemp/showFullName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/showOemCode</process:from>
+      <process:to type="query">orderTemp/showOemCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/showSpec</process:from>
+      <process:to type="query">orderTemp/showSpec</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">price</process:from>
+      <process:to type="query">orderTemp/showPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">qty*price</process:from>
+      <process:to type="query">orderTemp/showAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
     <location x="264" y="209"/>

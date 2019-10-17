@@ -251,34 +251,28 @@ function onExport(){
 		setInitExportData(data);
 	}
 }
-
 function setInitExportData(data){
-	var tds = '<td  colspan="1" align="left">[index]</td>' +
-    "<td  colspan='1' align='left'>[manualCode]</td>" +
-    "<td  colspan='1' align='left'>[guestFullName]</td>" +
-    "<td  colspan='1' align='left'>[orderMan]</td>" +
-    "<td  colspan='1' align='left'>[billTypeId]</td>" +
-    "<td  colspan='1' align='left'>[settleTypeId]</td>" +
-    "<td  colspan='1' align='left'>[enterDate]</td>" +
-    "<td  colspan='1' align='left'>[storeId]</td>" +
-    
-    "<td  colspan='1' align='left'>[comPartCode]</td>" +
+	var tds = "<td  colspan='1' align='left'>[comPartCode]</td>" +
     "<td  colspan='1' align='left'>[comPartName]</td>" +
     "<td  colspan='1' align='left'>[comOemCode]</td>" +
     "<td  colspan='1' align='left'>[partBrandId]</td>" +
-    "<td  colspan='1' align='left'>[applyCarModel]</td>"+
-    "<td  colspan='1' align='left'>[enterUnitId]</td>"+
+    "<td  colspan='1' align='left'>[applyCarModel]</td>" +
+    "<td  colspan='1' align='left'>[unit]</td>" +
+    "<td  colspan='1' align='left'>[storeId]</td>" +
     
-    "<td  colspan='1' align='left'>[enterQty]</td>"+
-    "<td  colspan='1' align='left'>[enterPrice]</td>"+      
-    "<td  colspan='1' align='left'>[enterAmt]</td>" +
+    "<td  colspan='1' align='left'>[shelf]</td>" +
+    "<td  colspan='1' align='left'>[stockQty]</td>" +
+    "<td  colspan='1' align='left'>[stockAmt]</td>" +
     "<td  colspan='1' align='left'>[outableQty]</td>" +
-    "<td  colspan='1' align='left'>[detailRemark]</td>" +
     
-    "<td  colspan='1' align='left'>[suggSellPrice]</td>" +                     
-    "<td  colspan='1' align='left'>[auditor]</td>" +
-    "<td  colspan='1' align='left'>[auditDate]</td>" +
-    "<td  colspan='1' align='left'>[orgid]</td>";
+    "<td  colspan='1' align='left'>[lastEnterDate]</td>"+
+    "<td  colspan='1' align='left'>[lastOutDate]</td>"+      
+    "<td  colspan='1' align='left'>[upLimit]</td>" +
+    "<td  colspan='1' align='left'>[downLimit]</td>" +
+    "<td  colspan='1' align='left'>[upLimitWinter]</td>" +
+    
+    "<td  colspan='1' align='left'>[downLimitWinter]</td>" +                     
+    "<td  colspan='1' align='left'>[remark]</td>";
 	
 	var tableExportContent = $("#tableExportContent");
     tableExportContent.empty();
@@ -286,43 +280,31 @@ function setInitExportData(data){
     for(var i = 0 , l = data.length; i < l ; i++){
     	var row = data[i];
     	var orgid = null;
-    	for(var j=0;j<currOrgList.length;j++){
-    		if(currOrgList[j].orgid==row.orgid){
-    			orgid = currOrgList[j].shortName || "";
-    		}
-    	}
     	
     	var tr = $("<tr></tr>");
-    	tr.append(tds.replace("[index]", i+1)
-                .replace("[manualCode]", row.manualCode || "")
-                .replace("[guestFullName]", row.guestFullName || "")
-                .replace("[orderMan]", row.orderMan  || "")
-                .replace("[billTypeId]", row.billTypeId?billTypeIdHash[row.billTypeId].name :"")
-                .replace("[settleTypeId]", row.settleTypeId?settTypeIdHash[row.settleTypeId].name :"")     
-                .replace("[enterDate]", nui.formatDate(row.enterDate?row.enterDate:"",'yyyy-MM-dd HH:mm') )
-                .replace("[storeId]", row.storeId?storehouseHash[row.storeId].name : "")
-                
-                .replace("[comPartCode]", row.comPartCode || "")                        
+    	tr.append(tds.replace("[comPartCode]", row.comPartCode || "")
                 .replace("[comPartName]", row.comPartName || "")
-                .replace("[comOemCode]", row.comOemCode || "")
-                .replace("[partBrandId]", row.partBrandId?partBrandIdHash[row.partBrandId].name : "")
-                .replace("[applyCarModel]", row.applyCarModel || "")
-                .replace("[enterUnitId]", row.enterUnitId || "")
-                
-                .replace("[enterQty]", row.enterQty ||  0)
-                .replace("[enterPrice]", row.enterPrice || 0)
-                .replace("[enterAmt]", row.enterAmt || 0)         
-                .replace("[outableQty]", row.outableQty || 0)
-                .replace("[detailRemark]", row.detailRemark || "")
-                
-                .replace("[suggSellPrice]", row.suggSellPrice || 0)
-                .replace("[auditor]", row.auditor || "")    
-                .replace("[auditDate]", nui.formatDate(row.auditDate?row.auditDate:"",'yyyy-MM-dd HH:mm') )
-                .replace("[orgid]", orgid || ""));
+                .replace("[comOemCode]", row.comOemCode  || "")
+                .replace("[partBrandId]", row.partBrandId?partBrandIdHash[row.partBrandId].name :"")
+                .replace("[applyCarModel]", row.applyCarModel || "")  
+                .replace("[unit]", row.unit || "") 
+                .replace("[storeId]", row.storeId?storehouseHash[row.storeId].name : "")
+                .replace("[shelf]", row.shelf || "") 
+                .replace("[stockQty]", row.stockQty || "") 
+                .replace("[stockAmt]", row.stockAmt || "") 
+                .replace("[outableQty]", row.outableQty || "") 
+                   
+                .replace("[lastEnterDate]", nui.formatDate(row.lastEnterDate?row.lastEnterDate:"",'yyyy-MM-dd HH:mm') )
+                .replace("[lastOutDate]", nui.formatDate(row.lastOutDate?row.lastOutDate:"",'yyyy-MM-dd HH:mm') )
+                .replace("[upLimit]", row.upLimit || "") 
+                .replace("[downLimit]", row.downLimit || "") 
+                .replace("[upLimitWinter]", row.upLimitWinter || "") 
+                .replace("[downLimitWinter]", row.downLimitWinter || "") 
+                .replace("[remark]", row.remark || "") );
     			tableExportContent.append(tr);
     }
     var date = new Date();
-    var title = "采购入库明细表";
+    var title = "配件库存动态盘点表";
     title = title + nui.formatDate(date,'yyyy-MM-dd HH:mm');
     method5('tableExcel',title,'tableExportA');
 }

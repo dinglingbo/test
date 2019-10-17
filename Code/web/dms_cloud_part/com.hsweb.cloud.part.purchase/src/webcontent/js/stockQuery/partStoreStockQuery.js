@@ -149,13 +149,13 @@ function onAdvancedSearchOk()
     var i;
     if(searchData.sOrderDate)
     {
-        searchData.sOrderDate = searchData.sOrderDate.substr(0,10);
+        searchData.sOrderDate = formatDate(searchData.sOrderDate);
     }
     if(searchData.eOrderDate)
     {
         var date = searchData.eOrderDate;
         searchData.eOrderDate = addDate(date, 1);
-        searchData.eOrderDate = searchData.eOrderDate.substr(0,10);
+//        searchData.eOrderDate = searchData.eOrderDate.substr(0,10);
     }
     //审核日期
     if(searchData.sAuditDate)
@@ -265,6 +265,8 @@ function setInitExportData(detail){
         "<td  colspan='1' align='left'>[lastOutDate]</td>" +
         "<td  colspan='1' align='left'>[upLimit]</td>" +
         "<td  colspan='1' align='left'>[downLimit]</td>" +
+        "<td  colspan='1' align='left'>[upLimitWinter]</td>" +
+        "<td  colspan='1' align='left'>[downLimitWinter]</td>" +
         "<td  colspan='1' align='left'>[remark]</td>";
     var tableExportContent = $("#tableExportContent");
     tableExportContent.empty();
@@ -305,6 +307,8 @@ function setInitExportData(detail){
                          .replace("[lastOutDate]", lastOutDate)
                          .replace("[upLimit]", detail[i].upLimit?detail[i].upLimit:"")
                          .replace("[downLimit]", detail[i].downLimit?detail[i].downLimit:"")
+                         .replace("[upLimitWinter]", detail[i].upLimitWinter?detail[i].upLimitWinter:"")
+                         .replace("[downLimitWinter]", detail[i].downLimitWinter?detail[i].downLimitWinter:"")
                          .replace("[remark]", detail[i].remark?detail[i].remark:""));
             tableExportContent.append(tr);
         }

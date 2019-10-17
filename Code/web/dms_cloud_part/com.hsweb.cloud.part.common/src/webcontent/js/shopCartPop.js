@@ -119,9 +119,9 @@ function initGridData(data) {
 	if (data && data.length > 0) {
 		for (var i = 0; i < data.length; i++) {
 			var part = data[i];
-			var partId = part.id;
-			var partCode = part.code;
-			var partName = part.name;
+			var partId = part.partId;
+			var partCode = part.partCode;
+			var partName = part.partName;
 			var fullName = part.fullName;
 			var unit = part.unit;
 			var orderQty = part.orderQty || 1;
@@ -162,7 +162,15 @@ function initGridDataTwo(data) {
 				fullName : fullName,
 				unit : unit,
 				orderQty : orderQty,
-				orderPrice : orderPrice
+				orderPrice : orderPrice,
+				showPartId : partId,
+        		showPartCode : partCode,
+                showFullName : fullName,
+                showBrandName :part.showBrandName || "",
+                showCarModel : part.showCarModel  || "",
+                showOemCode : part.showOemCode  || "",
+                showSpec : part.spec  || "",
+                showPrice :orderPrice
 			};
 			rows.push(row);
 		}

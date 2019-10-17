@@ -305,6 +305,8 @@
                 document.getElementById("mainMenu").style.height = (document.documentElement.clientHeight - 50) + 'px'
             }
             document.getElementById("mainMenu").style.height = (document.documentElement.clientHeight - 50) + 'px'
+            
+            gio('setUserId', currUserId);
 
             var defDomin = "<%=request.getContextPath()%>";
             var baseUrl = apiPath + sysApi + "/";

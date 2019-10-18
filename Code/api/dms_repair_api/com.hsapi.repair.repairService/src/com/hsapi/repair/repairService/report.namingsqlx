@@ -1921,25 +1921,19 @@
 		<dynamic>
 			<isNotEmpty prepend="and" property="orgid">
                 (b.orgid = #orgid#)
-            </isNotEmpty>
-            
+            </isNotEmpty>         
             <isNotEmpty prepend="and" property="orgids">
                 (b.orgid in ($orgids$))
-            </isNotEmpty>
-            
+            </isNotEmpty>         
             <isNotEmpty prepend="and" property="carNo">  
                 (b.car_no like '%$carNo$%' )
-            </isNotEmpty>
-            
-            
+            </isNotEmpty>         
             <isEmpty prepend="and" property="billTypeId">  
                 (b.bill_type_id != 5)
-            </isEmpty>  
-  			
+            </isEmpty>		
   			<isNotEmpty prepend="and" property="serviceCode">  
                 (b.service_code like '%$serviceCode$%' )
-            </isNotEmpty>
-            
+            </isNotEmpty>            
             <!--进厂日期 -->
             <isNotEmpty prepend="and" property="sEnterDate">  
                 (b.enter_date &gt;= #sEnterDate#)

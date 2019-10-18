@@ -95,7 +95,7 @@
 				}
 
 				.car_type_list ul li a img {
-					width: 30px;
+					width: 65px;
 					height: 30px;
 					margin: 5px;
 					float: left;
@@ -180,18 +180,17 @@
 								<li onclick="choosePart('AC德科','5')">	<a style="background-color: #fff;"  href="javascript:void(0)">		<img src="/default/baseDataPart/img/brandDefault.jpg" width="100" height="100">		<font>AC德科</font>	</a></li>
 							</ul>
 						</div>
-
 					</div>
-
-				</div></div>
-											<div class="boxbtn" style="position: absolute;bottom:4px;">
-								<ul style="text-align: left;">
-									<font style="float: left; padding-left: 16px; width: 580px;" class="color999">您已选择：&nbsp;
-										<span style="color:#ff7800;font-size:15px;" id="selectmodels"> </span>
-									</font>
-									<a class="kaitong" href="#" style="background: #4f9ada; font-size:14px;margin-left:100px;" onclick="onCancel()">确定</a>
-								</ul>
-							</div>
+				</div>
+			</div>
+				<div class="boxbtn" style="position: absolute;bottom:4px;">
+					<ul style="text-align: left;">
+						<font style="float: left; padding-left: 16px; width: 580px;" class="color999">您已选择：&nbsp;
+							<span style="color:#ff7800;font-size:15px;" id="selectmodels"></span>
+						</font>
+						<a class="kaitong" href="#" style="background: #4f9ada; font-size:14px;margin-left:100px;" onclick="onCancel()">确定</a>
+					</ul>
+				</div>
 			</div>
 		</body>
 

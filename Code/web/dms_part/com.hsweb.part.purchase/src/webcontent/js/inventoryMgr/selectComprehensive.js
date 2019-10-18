@@ -13,7 +13,7 @@ var getRpsPartUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsMainPart
 //var getdRpsPackageBillUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPartBill.biz.ext";
 var beginDateEl = null;
 var endDateEl = null;
-var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"车架号(VIN)"},{id:"2",name:"客户名称"},{id:"3",name:"手机号"},{id:"4",name:"工单号"}];
+var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"车架号(VIN)"},{id:"2",name:"客户名称"},{id:"3",name:"客户手机"},{id:"4",name:"工单号"},{id:"5",name:"联系人名称"},{id:"6",name:"联系人手机"}];
 var billTypeIdList = [{name:"综合开单"},{name:"检查开单"},{name:"洗美开单"},{name:"销售开单"},{name:"理赔开单"},{name:"退货开单"},{name:"波箱开单"}];
 var brandList = [];
 var brandHash = {};
@@ -537,6 +537,10 @@ function getSearchParam() {
         params.mobile = typeValue;
     }else if(type==4){
         params.serviceCode = typeValue;
+    }else if(type==5){
+        params.contactorName = typeValue;
+    }else if(type==6){
+        params.contactorMobile = typeValue;
     }
     return params;
 }

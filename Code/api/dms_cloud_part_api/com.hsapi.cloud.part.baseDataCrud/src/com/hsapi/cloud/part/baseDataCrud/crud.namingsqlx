@@ -1077,4 +1077,30 @@
             </isNotEmpty>
         </dynamic>
 	</select>
+	
+<!-- <update id="updateStockSet" resultMap="Select" parameterClass="list">  
+	   begin  
+	  <iterate conjunction="">  
+		  UPDATE pj_part_store_stock
+			SET shelf = #[].shelf#,
+			 up_limit = #[].upLimit#,
+			 down_limit =#[].downLimit#,
+			 up_limit_winter = #[].upLimitWinter#,
+			 down_limit_winter = #[].downLimitWinter#,
+			 min_order_qty =  #[].minOrderQty#,
+			 min_pack_qty = #[].packQty#
+		WHERE 1=1
+			and orgid =
+			and store_id =
+			and part_id =
+	    update SYS_TABLE set  
+	    Category=#[].Category#,  
+	    Name =#[].Name#,  
+	    Code =#[].Code#,                 
+	    Status =#[].Status#  
+	    where id = #[].Id#;       
+	  </iterate>  
+	  end;      
+    </update>  -->
+    
 </sqlMap>

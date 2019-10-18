@@ -117,7 +117,7 @@
                   <div field="balaAuditSign" name="balaAuditSign" width="90px" headerAlign="center" header="结算状态"></div>
                   <div field="contactName" name="contactName" width="80px" headerAlign="center" header="联系人姓名"></div>
                   <div field="contactMobile" name="contactMobile" width="100px" headerAlign="center" header="联系人手机"></div>
-
+                  <div field="guestFullName" name="guestFullName" width="70px" headerAlign="center" header="客户姓名"></div>
               </div>
           </div>
     </div>

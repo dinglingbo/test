@@ -9,7 +9,7 @@
 -->
 <head>
 <title>库存查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/stockQuery/partStoreStockQuery.js?v=2.2.4"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/stockQuery/partStoreStockQuery.js?v=2.2.5"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -242,8 +242,10 @@
             <td colspan="1" align="center">在途数量</td>
             <td colspan="1" align="center">最近入库日期</td>
             <td colspan="1" align="center">最近出库日期</td>
-            <td colspan="1" align="center">库存上限</td>
-            <td colspan="1" align="center">库存下限</td>
+            <td colspan="1" align="center">库存上限(夏季)</td>
+            <td colspan="1" align="center">库存下限(夏季)</td>
+            <td colspan="1" align="center">库存上限(冬季)</td>
+            <td colspan="1" align="center">库存下限(冬季)</td>
             <td colspan="1" align="center">备注</td>
         </tr>
         <tbody id="tableExportContent">

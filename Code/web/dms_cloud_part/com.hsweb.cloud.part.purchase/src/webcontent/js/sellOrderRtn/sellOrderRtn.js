@@ -1176,6 +1176,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
             var pchsOrderDetailUpdate = rightGrid.getChanges("modified");
             var pchsOrderDetailDelete = rightGrid.getChanges("removed");
             var pchsOrderDetailUpdate = getModifyData(detailData, pchsOrderDetailAdd, pchsOrderDetailDelete);
+            //先注释
             var cangHash ="";
 			if(currIsOpenApp ==1){
 				cangHash=getCangHash(data,detailData);

@@ -56,9 +56,9 @@
 				
            			</tr>
                     <tr>
-                        <td align="right">员工工号:</td>
+                        <td align="right">员工工号：</td>
                         <td><input class="nui-textbox" required="false" id="empid" name="empid" vtype="int" onvalidation="onempid" readonly="readonly" emptyText="系统自动分配"/></td>
-                        <td align="right">所属工作组:</td>
+                        <td align="right">所属工作组：</td>
                         <td><input class="nui-combobox"  required="false" id="memberGroupId" name="memberGroupId" textField="name" valueField="id" emptyText="选择工作组"/></td>
                     </tr>
 

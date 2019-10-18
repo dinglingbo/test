@@ -1057,6 +1057,14 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
+      <process:from type="query" pattern="reference">orderTemp/mainId</process:from>
+      <process:to type="query">orderTemp/sourceMainId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderTemp/id</process:from>
+      <process:to type="query">orderTemp/sourceDetailId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">orderMain/id</process:from>
       <process:to type="query">orderTemp/mainId</process:to>
     </process:copy>

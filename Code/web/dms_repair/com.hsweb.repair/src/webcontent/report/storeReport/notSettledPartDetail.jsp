@@ -108,6 +108,8 @@
 
 <div class="nui-fit">
     <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
+    frozenStartColumn="0"
+    frozenEndColumn="6"
     showPager="true"
     dataField="list"
     idField="partId"

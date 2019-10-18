@@ -229,9 +229,12 @@ function setInitData(params){
 
                 data.guestFullName = guest.fullName;
                 data.guestMobile = guest.mobile;
+                data.sex = guest.sex;
+                
                 data.contactorName = contactor.name;
-                data.sex = contactor.sex;
+                data.contactorSex = contactor.sex;
                 data.mobile = contactor.mobile;
+                data.contactRemark = contactor.remark;
                 data.carModel = car.carModel;
 
                 fguestId = data.guestId||0;

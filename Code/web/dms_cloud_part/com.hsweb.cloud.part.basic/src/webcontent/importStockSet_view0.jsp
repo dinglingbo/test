@@ -12,7 +12,7 @@
 <title>库存设置导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-<script src="<%=webPath + contextPath%>/basic/js/importStockSet.js?v=1.0.4"></script>
+<script src="<%=webPath + contextPath%>/basic/js/importStockSet.js?v=1.0.19"></script>
 <style type="text/css">
 /*.a-upload {
     padding: 4px 10px;
@@ -101,20 +101,23 @@
 			showSummaryRow="true" showModified="false" allowCellSelect="true" allowCellEdit="true"
 			style="width:100%;height:100%;">
 			<div property="columns">
-				<div type="indexcolumn">序号</div>
-				<div field="品牌" width="50px" summaryType="count" headerAlign="center" allowSort="true">
+				<div type="indexcolumn">序号</div>				
+				<div field="配件编码" width="100px" summaryType="count" headerAlign="center" allowSort="true">
+					*配件编码<input property="editor" class="nui-textbox"/>
+				</div>
+				<div field="品牌" width="60px" summaryType="count" headerAlign="center" allowSort="true">
 					*品牌<input property="editor" class="nui-textbox"/>
 				</div>
-				<div field="编码" width="100px" summaryType="count" headerAlign="center" allowSort="true">
-					*编码<input property="editor" class="nui-textbox"/>
+				<div field="仓库" width="100px" summaryType="count" headerAlign="center" allowSort="true">
+					*仓库<input property="editor" class="nui-textbox"/>
 				</div>
 				<div field="仓位" width="80px" headerAlign="center" allowSort="true">
                 	仓位<input property="editor" class="nui-textbox"/>
             	</div>
-                <div field="库存上限(夏季)" width="80px" headerAlign="center" allowSort="true">
+                <div field="库存上限(夏季)" width="100px" headerAlign="center" allowSort="true">
                 	库存上限(夏季)<input property="editor" class="nui-textbox"/>
             	</div>
-				<div field="库存下限(夏季)" width="80px" headerAlign="center" allowSort="true">
+				<div field="库存下限(夏季)" width="100px" headerAlign="center" allowSort="true">
 					库存下限(夏季)<input property="editor" class="nui-textbox"/>
 				</div>
 				<div field="库存上限(冬季)" width="100px" headerAlign="center" allowSort="true">
@@ -123,10 +126,10 @@
 				<div field="库存下限(冬季)" width="100px" headerAlign="center" allowSort="true">
 					库存下限(冬季)<input property="editor" class="nui-textbox"/>
 				</div>
-				<div field="最小起订量" width="120px" headerAlign="center" allowSort="true">
+				<div field="最小起订量" width="100px" headerAlign="center" allowSort="true">
 					最小起订量<input property="editor" class="nui-textbox"/>
 				</div>
-                <div field="最小包装量" width="120px" headerAlign="center" allowSort="true">
+                <div field="最小包装量" width="100px" headerAlign="center" allowSort="true">
                 	最小包装量<input property="editor" class="nui-textbox"/>
             	</div>
                 
@@ -134,6 +137,24 @@
 		</div>
 	</div>
 
+
+ <div id="advancedTipWin" class="nui-window"
+        title="未成功导入库存配置的配件" style="width:400px;height:200px;"
+        showModal="true"
+        allowResize="false"
+        allowDrag="true">
+        <div id="advancedTipForm" class="form">
+            <table style="width:100%;height: 100%;">
+            
+                <tr>
+                    <td colspan="3">
+                        <textarea class="nui-textarea" emptyText="" width="100%" style="height: 100%;" id="fastCodeList" name="fastCodeList"></textarea>
+                    </td>
+                </tr>
+                
+            </table>
+        </div>
+    </div>
    
 </body>
 </html>

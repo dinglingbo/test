@@ -108,7 +108,7 @@
 				         showSummaryRow="false">
 				        <div property="columns">
 				            <div type="indexcolumn">序号</div>
-				            <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="销售单号"></div>
+				            <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="订单单号"></div>
 				            <div field="guestFullName" width="150" headerAlign="center" header="客户"></div>
 				            <div allowSort="true" field="outDate" headerAlign="center" header="出库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
 				            <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div> 
@@ -117,9 +117,9 @@
 				            <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
 				            <div allowSort="true" field="storeId" width="120" headerAlign="center" header="仓库"></div>
 				            <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>
-				            <div allowSort="true" datatype="float" field="sellQty" summaryType="sum" width="60" headerAlign="center" header="销售数量"></div>
-				            <div allowSort="true" datatype="float" field="sellPrice" width="60" headerAlign="center" header="销售单价"></div>
-				            <div allowSort="true" datatype="float" field="sellAmt" summaryType="sum" width="60" headerAlign="center" header="销售金额"></div>
+				            <div allowSort="true" datatype="float" field="sellQty" summaryType="sum" width="60" headerAlign="center" header="数量"></div>
+				            <div allowSort="true" datatype="float" field="sellPrice" width="60" headerAlign="center" header="单价"></div>
+				            <div allowSort="true" datatype="float" field="sellAmt" summaryType="sum" width="60" headerAlign="center" header="金额"></div>
 				            <div field="orderMan" width="60" headerAlign="center" header="销售员"></div>
 				            <div allowSort="true" field="detailRemark" width="60" headerAlign="center" header="备注"></div>
 				            <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
@@ -145,7 +145,7 @@
 				         showSummaryRow="false">
 				        <div property="columns">
 				            <div type="indexcolumn">序号</div>
-				            <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="采购单号"></div>
+				            <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="订单单号"></div>
 				            <div field="guestFullName" width="150" headerAlign="center" header="供应商"></div>
 				            <div allowSort="true" field="enterDate" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
 				            <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div> 
@@ -154,9 +154,9 @@
 				            <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
 				            <div allowSort="true" field="storeId" width="120" headerAlign="center" header="仓库"></div>
 				            <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
-				            <div allowSort="true" datatype="float" field="enterQty" summaryType="sum" width="60" headerAlign="center" header="采购数量"></div>
-				            <div allowSort="true" datatype="float" field="enterPrice" width="60" headerAlign="center" header="采购单价"></div>
-				            <div allowSort="true" datatype="float" field="enterAmt" summaryType="sum" width="60" headerAlign="center" header="采购金额"></div>
+				            <div allowSort="true" datatype="float" field="enterQty" summaryType="sum" width="60" headerAlign="center" header="数量"></div>
+				            <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="单价"></div>
+				            <div allowSort="true" datatype="float" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="金额"></div>
 				            <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可出库数量"></div>
 				            <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
 				            <div allowSort="true" field="detailRemark" width="60" headerAlign="center" header="备注"></div>

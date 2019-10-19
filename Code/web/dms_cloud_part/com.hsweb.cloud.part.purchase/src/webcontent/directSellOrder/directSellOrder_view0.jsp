@@ -9,7 +9,7 @@
 -->
 <head>
 <title>直发销售订单</title>
-<script src="<%=webPath + contextPath%>/purchase/js/directSellOrder/directSellOrder.js?v=1.0.52"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/directSellOrder/directSellOrder.js?v=1.0.56"></script>
 <style type="text/css">
 .title {
 	width: 70px;
@@ -496,7 +496,7 @@ body .mini-grid-row-selected{
             
 
              <div class="nui-fit">
-                  <fieldset id="fd1" style="width:99.5%;height:100px;">
+                  <fieldset id="fd1" style="width:99.5%;height:130px;">
                       <legend><span>销售订单信息</span></legend>
                       <div class="fieldset-body">
                           <div id="basicInfoForm" class="form" contenteditable="false">
@@ -613,11 +613,17 @@ body .mini-grid-row-selected{
                                                  nullItemText="请选择..."/>
                                       </td>
                                       <td class="title">
-                                          <label>备注：</label>
-                                      </td>
-                                      <td colspan="2">
-                                          <input class="nui-textbox" selectOnFocus="true" width="100%" id="remark" name="remark"/>
-                                      </td>
+	                                      <label>仓库：</label>
+	                                  </td>
+	                                  <td colspan="1">
+	                                      <input width="100%" id="storeId" name="storeId"                                   
+	                                       enabled="true"  dataField="storehouse" class="nui-combobox" valueField="id" textField="name"
+	                                       data="storehouse" onvaluechanged="onStoreIdValueChange"/>
+	                                  </td>
+                                      
+                                      <td class="title">
+                                          <label></label>
+                                      </td>                               
                                       <td colspan="1" class="required">
                                           <input id="isNeedPack" name="isNeedPack" class="nui-checkbox" text="需要打包发货" onvaluechanged="onValueChanged" trueValue="1" falseValue="0">
                                       </td>
@@ -626,6 +632,14 @@ body .mini-grid-row-selected{
                                       </td>
                                       <td>
                                           <input class="nui-textbox" width="100%" id="serviceId" name="serviceId" enabled="false" placeholder="新销售订单"/>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                           			  <td class="title">
+                                          <label>备注：</label>
+                                      </td>
+                                      <td colspan="10">
+                                          <input class="nui-textbox" selectOnFocus="true" width="100%" id="remark" name="remark"/>
                                       </td>
                                   </tr>
                               </table>

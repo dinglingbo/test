@@ -142,7 +142,7 @@
                           <input class="nui-hidden" name="operateDate"/>
                           <input class="nui-hidden" name="createDate"/>
                           <input class="nui-hidden" name="versionNo"/>
-                          <input class="nui-hidden" name="storeId" id="storeId"/>
+                       <!--   <input class="nui-hidden" name="storeId" id="storeId"/>-->
                           <input class="nui-hidden" name="taxRate" id="taxRate"/>
                           <input class="nui-hidden" name="taxSign" id="taxSign"/>
                           <input class="nui-hidden" name="orderAmt" id="orderAmt"/>
@@ -264,9 +264,17 @@
                               
                               <tr>
                               	 <td class="title">
+                                      <label>仓库：</label>
+                                  </td>
+                                  <td colspan="1">
+                                      <input width="100%" id="storeId" name="storeId"                                   
+                                       enabled="true"  dataField="storehouse" class="nui-combobox" valueField="id" textField="name"
+                                       data="storehouse" onvaluechanged="onStoreIdValueChange"/>
+                                  </td>
+                              	 <td class="title">
                                       <label>备注：</label>
                                   </td>
-                                  <td colspan="3">
+                                  <td colspan="1">
                                       <input class="nui-textbox" width="100%" id="remark" name="remark"/>
                                   </td>
                                   <td class="title">

@@ -385,6 +385,7 @@ $(document).ready(function(v) {
 				storehouse.forEach(function(v){
 	        		storeHash[v.id]=v;
 	        	});
+				nui.get('storeId').setData(storehouse);
 			}else{
 				isNeedSet = true;
 			}
@@ -2494,6 +2495,21 @@ function onGuestValueChanged(e) {
     }
 }
 
+function onStoreIdValueChange(e){
+	var data = e.selected;
+	var rows =rightGrid.getData();
+	var changes=[];
+	if(data){
+		if(rows.length>0){
+			for(var i=0;i<rows.length;i++){
+				if(rows[i].partId){
+					rows[i].storeId =data.id;
+				}
+			}
+			rightGrid.setData(rows);
+		}
+	}
+}
 function onStoreValueChange(e){
 	var data = e.selected;
 	if(data){

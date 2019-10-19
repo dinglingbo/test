@@ -2046,7 +2046,13 @@ function onCellCommitEdit(e) {
         }else if(e.field =="showPrice"){
         	 var orderQty = record.orderQty;
              var showPrice = e.value;
+             var orderPrice = record.orderPrice;
              
+             if(showPrice<orderPrice){
+            	 e.value =e.oldValue;
+            	 showMsg("开单价不能低于销售价","W");
+            	 return;
+             }
              if(e.value==null || e.value=='') {
                  e.value = 0;
                  showPrice = 0;

@@ -2038,3 +2038,60 @@ function onDrawSummaryCell(e){
 	        e.cellHtml =value;
 	    }
 }
+
+function onRpDrawSummaryCell(e){
+	var rows = e.data;
+	var field=e.field;
+	if(field=='amt1'){
+		var amt1 = 0;
+		 for (var i = 0; i < rows.length; i++) {
+			 if(rows[i].billDc == 1) {
+				 amt1 += parseFloat(rows[i].rpAmt);
+			 }
+		 }
+		 e.value=amt1;
+		 e.cellHtml = amt1;
+		
+	}
+	
+	
+	if(field=='amt4'){
+		var amt4 = 0;
+		
+		 for (var i = 0; i < rows.length; i++) {
+			 if(rows[i].billDc == 1) {
+				 amt4 += parseFloat(rows[i].charOffAmt);
+			 }
+		 }
+		 e.value=amt4;
+		 e.cellHtml = amt4;
+		
+	}
+
+	if(field=='amt11'){
+		var amt11 = 0;
+		 for (var i = 0; i < rows.length; i++) {
+			 if(rows[i].billDc == -1) {
+				 amt11 += parseFloat(rows[i].rpAmt);
+			 }
+		 }
+		 e.value=amt11;
+		 e.cellHtml = amt11;
+		
+	}
+
+	
+	if(field=='amt14'){
+		var amt14 = 0;
+		
+		 for (var i = 0; i < rows.length; i++) {
+			 if(rows[i].billDc == -1) {
+				 amt14 += parseFloat(rows[i].charOffAmt);
+			 }
+		 }
+		 e.value=amt14;
+		 e.cellHtml = amt14;
+		
+	}
+        
+}

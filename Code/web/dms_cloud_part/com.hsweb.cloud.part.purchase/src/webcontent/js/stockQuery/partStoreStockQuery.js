@@ -26,6 +26,7 @@ var billStatusHash = {
     "2":"已过账",
     "3":"已取消"
 };
+var UpOrDownList=[{id:1,"name" :"低于下限"},{id:2,"name" :"高于上限"}];
 $(document).ready(function(v)
 {
 	rightGrid = nui.get("rightGrid");
@@ -96,6 +97,8 @@ $(document).ready(function(v)
     onSearch();
 });
 function getSearchParam(){
+	var date =new Date();
+	var mongth = date.getMonth()+1;
     var params = {};
     /*var outableQtyGreaterThanZero = nui.get("outableQtyGreaterThanZero").getValue();
     if(outableQtyGreaterThanZero == 1)
@@ -107,6 +110,29 @@ function getSearchParam(){
         params.notShowAll = 1;
     }
 
+    var upOrDown=nui.get('upOrDown').getValue();
+    if(showZero == 0){
+        params.notShowAll = 1;
+    }
+   
+    if(upOrDown == 2){
+    	//夏(4-9)
+    	if(mongth>= 4 && mongth<=9){
+    		params.showUp = 1;
+    	}else{
+    		params.showUpWinter = 1;
+    	}
+        
+    }
+    if(upOrDown ==1){
+    	//夏(4-9)
+    	if(mongth>= 4 && mongth<=9){
+    		params.showDown = 1;
+    	}else{
+    		params.showDownWinter = 1;
+    	}
+    }
+    
     params.partNameAndPY = nui.get("comPartNameAndPY").getValue().replace(/\s+/g, "");
 	params.partCode = (nui.get("comPartCode").getValue()).replace(/\s+/g, "");
 	params.partBrandId = nui.get("partBrandId").getValue();

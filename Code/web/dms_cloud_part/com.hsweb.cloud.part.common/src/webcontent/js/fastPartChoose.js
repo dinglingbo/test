@@ -1253,6 +1253,17 @@ function showBottomTabInfo(partId){
             }
             
             break;
+        case "outRtnRecordTab":
+            var params = {};
+            params.partId=partId;
+            params.guestId =guestId;
+            if(!url){
+                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containSellOrderRtnRecord.jsp?partId="+partId+"&guestId="+guestId, tab);
+            }else{
+                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);  
+            }
+            
+            break;
         case "outRecordTab":
             var params = {};
             params.partId=partId;

@@ -65,7 +65,7 @@ function getSearchParam(){
 	params.partNameAndPY = comPartNameAndPY.getValue().replace(/\s+/g, "");
 	params.storeId = nui.get("storeId").getValue();
 	
-	params.endDate = searchEndDate.getFormValue();
+	params.endDate = addDate(searchEndDate.getFormValue(), 1);
 	params.startDate = searchBeginDate.getFormValue();
     return params;
 }

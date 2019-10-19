@@ -579,6 +579,14 @@ function onrpRightGridDrawCell(e){
                 e.cellHtml = 0;
             }
             break;
+        case "amt5":
+            var row = e.row;
+            if(row.billDc == 1) {
+                e.cellHtml = row.noCharOffAmt;
+            }else{
+                e.cellHtml = 0;
+            }
+            break;
         case "amt11":
             var row = e.row;
             if(row.billDc == -1) {
@@ -603,6 +611,14 @@ function onrpRightGridDrawCell(e){
             var row = e.row;
             if(row.billDc == -1) {
                 e.cellHtml = row.charOffAmt;
+            }else{
+                e.cellHtml = 0;
+            }
+            break;
+        case "amt15":
+            var row = e.row;
+            if(row.billDc == -1) {
+                e.cellHtml = row.noCharOffAmt;
             }else{
                 e.cellHtml = 0;
             }
@@ -1868,14 +1884,54 @@ function onAccountValueChanged(e){
 
 }
 function onDrawSummaryCell(e){
-	  var rows = e.data;//rightGrid.getData();
-	    if (e.field == "rpAmt") { 
-	        var rpAmt = 0;
-	        for (var i = 0; i < rows.length; i++) {
-	        	rpAmt += parseFloat(rows[i].rpAmt*rows[i].rpDc);
-	        }
-	        var value =Math.abs(rpAmt)
-	        e.value=value;
-	        e.cellHtml =value;
-	    }
+	var rows = e.data;//rightGrid.getData();
+	var rrpAmt = 0;
+	var rcharOffAmt = 0;
+	var rnoCharOffAmt = 0;
+	var prpAmt = 0;
+	var pcharOffAmt = 0;
+	var pnoCharOffAmt = 0;
+	for (var i = 0; i < rows.length; i++) {
+		var row = rows[i];
+		if(row.billDc == 1) {
+			rrpAmt = rrpAmt + row.rpAmt;
+			rcharOffAmt = rcharOffAmt + row.charOffAmt;
+			rnoCharOffAmt = rnoCharOffAmt + row.noCharOffAmt;
+		} else if(row.billDc == -1) {
+			prpAmt = prpAmt + row.rpAmt;
+			pcharOffAmt = pcharOffAmt + row.charOffAmt;
+			pnoCharOffAmt = pnoCharOffAmt + row.noCharOffAmt;
+		}
+	}
+	
+
+    if (e.field == "amt1") {
+    	e.cellHtml = rrpAmt;
+    }
+    if (e.field == "amt4") {
+    	e.cellHtml = rcharOffAmt;
+    }
+    if (e.field == "amt5") {
+    	e.cellHtml = rnoCharOffAmt;
+    }
+    
+    if (e.field == "amt11") {
+    	e.cellHtml = prpAmt;
+    }
+    if (e.field == "amt14") {
+    	e.cellHtml = pcharOffAmt;
+    }
+    if (e.field == "amt15") {
+    	e.cellHtml = pnoCharOffAmt;
+    }
+	  
+    if (e.field == "rpAmt") { 
+        var rpAmt = 0;
+        for (var i = 0; i < rows.length; i++) {
+        	rpAmt += parseFloat(rows[i].rpAmt*rows[i].rpDc);
+        }
+        var value =Math.abs(rpAmt)
+        e.value=value;
+        e.cellHtml =value;
+    }
 }

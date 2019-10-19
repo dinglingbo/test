@@ -147,12 +147,12 @@
                      sizeList="[500,1000,2000]"
                      oncellbeginedit="OnrpRightGridCellBeginEdit"
                      onshowrowdetail="onShowRowDetail"
-                     ondrawsummarycell="onRpDrawSummaryCell"
                      showModified="false"
                      showSummaryRow="true"
                      oncellclick="onGridbeforeselect"
                      onheadercellclick="onGridheadercellclick"
                      oncellcommitedit="onCellCommitEdit"
+                     ondrawsummarycell="onDrawSummaryCell"
                      >
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
@@ -165,26 +165,28 @@
                         <div field="remark" width="120" headerAlign="center" header="业务备注"></div>
                         <div header="应收信息(+)" headerAlign="center">
                             <div property="columns">
-                                <div field="amt1" width="60" headerAlign="center" align="right" numberFormat="0.00" header="应收金额" summaryType="sum"></div>
-                                <div field="amt2" width="60" headerAlign="center" align="right" numberFormat="0.00" header="结算金额" summaryType="sum">
+                                <div field="amt1" width="60" headerAlign="center" align="right" summaryType="sum" numberFormat="0.00" header="应收金额"></div>
+                                <div field="amt2" width="60" headerAlign="center" align="right" numberFormat="0.00" header="结算金额">
                                     <input property="editor" vtype="float" class="nui-textbox"/>
                                 </div>
-                                <div field="amt3" width="60" visible="false" headerAlign="center" align="right" numberFormat="0.00" header="优惠金额" summaryType="sum">
+                                <div field="amt3" width="60" visible="false" headerAlign="center" align="right" numberFormat="0.00" header="优惠金额">
                                     <input property="editor" vtype="float" class="nui-textbox"/>
                                 </div>
-                                <div field="amt4" width="60" headerAlign="center" align="right" numberFormat="0.00" header="已结金额" summaryType="sum"></div>
+                                <div field="amt4" width="60" headerAlign="center" align="right" summaryType="sum" numberFormat="0.00" header="已结金额"></div>
+                                <div field="amt5" width="60" headerAlign="center" align="right" summaryType="sum" numberFormat="0.00" header="未结金额"></div>
                             </div>
                         </div>
                         <div header="应付信息(-)" headerAlign="center">
                             <div property="columns">
-                                <div field="amt11" width="60" headerAlign="center" align="right" numberFormat="0.00" header="应付金额" summaryType="sum"></div>
-                                <div field="amt12" width="60" headerAlign="center" align="right" numberFormat="0.00" header="结算金额" summaryType="sum">
+                                <div field="amt11" width="60" headerAlign="center" align="right" summaryType="sum" numberFormat="0.00" header="应付金额"></div>
+                                <div field="amt12" width="60" headerAlign="center" align="right" numberFormat="0.00" header="结算金额">
                                     <input property="editor" vtype="float" class="nui-textbox"/>
                                 </div>
-                                <div field="amt13" width="60" visible="false" headerAlign="center" align="right" numberFormat="0.00" header="免付金额" summaryType="sum">
+                                <div field="amt13" width="60" visible="false" headerAlign="center" align="right" numberFormat="0.00" header="免付金额">
                                     <input property="editor" vtype="float" class="nui-textbox"/>
                                 </div>
-                                <div field="amt14" width="60" headerAlign="center" align="right" numberFormat="0.00" header="已结金额" summaryType="sum"></div>
+                                <div field="amt14" width="60" headerAlign="center" align="right" summaryType="sum" numberFormat="0.00" header="已结金额"></div>
+                                <div field="amt15" width="60" headerAlign="center" align="right" summaryType="sum" numberFormat="0.00" header="未结金额"></div>
                             </div>
                         </div>
                         <div allowSort="true" field="createDate" headerAlign="center" header="转单日期" dateFormat="yyyy-MM-dd HH:mm"></div>
@@ -226,16 +228,17 @@
                         <div allowSort="true" summaryType="count" field="billServiceId" width="150" summaryType="count" headerAlign="center" header="业务单号"></div>
                         <div field="billTypeId" width="100" headerAlign="center" header="收支项目"></div>
                         <div field="remark" width="120" headerAlign="center" header="业务备注"></div>
-                        <div field="rpAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="应付金额" summaryType="sum"></div>
-                        <div field="nowAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="结算金额" summaryType="sum">
+                        <div field="rpAmt" width="60" headerAlign="center" align="right" summaryType="sum" numberFormat="0.00" header="应付金额"></div>
+                        <div field="nowAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="结算金额">
                             <input property="editor" vtype="float" class="nui-textbox"/>
                         </div>
-                        <div field="nowVoidAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" visible="false" header="免付金额" summaryType="sum">
+                        <div field="nowVoidAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" visible="false" header="免付金额">
                             <input property="editor" vtype="float" class="nui-textbox"/>
                         </div>
                         <div allowSort="true" field="createDate" headerAlign="center" header="转单日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                         <div field="settleStatus" width="60" headerAlign="center" header="结算状态"></div>
-                        <div field="charOffAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="已结金额" summaryType="sum"></div>
+                        <div field="charOffAmt" width="60" headerAlign="center" align="right" summaryType="sum" numberFormat="0.00" header="已结金额"></div>
+                        <div field="noCharOffAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" summaryType="sum" header="未结金额"></div>
                         <!-- <div field="balanceSign" type="checkboxcolumn" trueValue="1" falseValue="0" width="60" headerAlign="center" header="是否对账"></div>
                         <div field="balancer" width="60" headerAlign="center" header="对账人"></div>
                         <div allowSort="true" field="balanceDate" headerAlign="center" header="对账日期" dateFormat="yyyy-MM-dd HH:mm"></div> -->
@@ -273,16 +276,17 @@
                         <div allowSort="true" summaryType="count" field="billServiceId" width="150" summaryType="count" headerAlign="center" header="业务单号"></div>
                         <div field="billTypeId" width="100" headerAlign="center" header="收支项目"></div>
                         <div field="remark" width="120" headerAlign="center" header="业务备注"></div>
-                        <div field="rpAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="应收金额" summaryType="sum"></div>
-                        <div field="nowAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="结算金额" summaryType="sum">
+                        <div field="rpAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" summaryType="sum" header="应收金额"></div>
+                        <div field="nowAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="结算金额">
                             <input property="editor" vtype="float" class="nui-textbox"/>
                         </div>
-                        <div field="nowVoidAmt" visible="false" width="60" headerAlign="center" align="right" numberFormat="0.00" header="优惠金额" summaryType="sum">
+                        <div field="nowVoidAmt" visible="false" width="60" headerAlign="center" align="right" numberFormat="0.00" header="优惠金额">
                             <input property="editor" vtype="float" class="nui-textbox"/>
                         </div>
                         <div allowSort="true" field="createDate" headerAlign="center" header="转单日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                         <div field="settleStatus" width="60" headerAlign="center" header="结算状态"></div>
-                        <div field="charOffAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="已结金额" summaryType="sum"></div>
+                        <div field="charOffAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" summaryType="sum" header="已结金额"></div>
+                        <div field="noCharOffAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" summaryType="sum" header="未结金额"></div>
                         <!-- <div field="balanceSign" type="checkboxcolumn" trueValue="1" falseValue="0" width="60" headerAlign="center" header="是否对账"></div>
                         <div field="balancer" width="60" headerAlign="center" header="对账人"></div>
                         <div allowSort="true" field="balanceDate" headerAlign="center" header="对账日期" dateFormat="yyyy-MM-dd HH:mm"></div> -->
@@ -304,7 +308,7 @@
                      pageSize="10000"
                      sizeList="[1000,5000,10000]"
                      onshowrowdetail="onShowRowDetail"
-                     showSummaryRow="false">
+                     showSummaryRow="true">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
                         <div type="checkcolumn" width="20"></div>
@@ -313,12 +317,13 @@
                         <div allowSort="true" summaryType="count" field="billServiceId" width="150" summaryType="count" headerAlign="center" header="业务单号"></div>
                         <div field="billTypeId" width="100" headerAlign="center" header="收支项目"></div>
                         <div field="remark" width="120" headerAlign="center" header="业务备注"></div>
-                        <div field="rpAmt" width="60" headerAlign="center" header="应收金额"></div>
+                        <div field="rpAmt" width="60" summaryType="sum" headerAlign="center" header="应收金额"></div>
                         <div field="nowAmt" width="60" headerAlign="center" header="结算金额"></div>
                         <div field="nowVoidAmt" width="60" headerAlign="center" header="优惠金额"></div>
                         <div allowSort="true" field="createDate" headerAlign="center" header="转单日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                         <div field="settleStatus" width="60" headerAlign="center" header="结算状态"></div>
-                        <div field="charOffAmt" width="60" headerAlign="center" header="已结金额"></div>
+                        <div field="charOffAmt" width="60" summaryType="sum" headerAlign="center" header="已结金额"></div>
+                        <div field="noCharOffAmt" width="60" summaryType="sum" headerAlign="center" header="未结金额"></div>
                         <!-- <div field="balanceSign" width="60" headerAlign="center" header="是否对账"></div>
                         <div field="balancer" width="60" headerAlign="center" header="对账人"></div>
                         <div allowSort="true" field="balanceDate" headerAlign="center" header="对账日期" dateFormat="yyyy-MM-dd HH:mm"></div> -->

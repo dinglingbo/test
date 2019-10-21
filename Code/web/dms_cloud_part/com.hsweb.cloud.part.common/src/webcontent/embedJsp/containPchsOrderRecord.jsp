@@ -53,6 +53,12 @@
             <div field="orderAmt" width="55px" headerAlign="center" allowSort="true" header="采购金额"></div>
             <div field="billTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="票据类型"></div>
             <div field="settelTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="结算方式"></div>
+            <div allowSort="true" type="checkboxcolumn" field="taxSign" width="40" headerAlign="center" header="是否含税" trueValue="1" falseValue="0"></div>
+            <div allowSort="true" field="taxRate" width="40" headerAlign="center" header="税点"></div>
+            <div field="taxPrice" width="60" headerAlign="center" header="含税单价"></div>
+            <div field="taxAmt" width="60" headerAlign="center" summaryType="sum" header="含税金额"></div>
+            <div field="noTaxPrice" width="60" headerAlign="center" header="不含税单价"></div>
+            <div field="noTaxAmt" width="60" headerAlign="center" summaryType="sum" header="不含税金额"></div>
             <div field="storeId" width="120" headerAlign="center" allowSort="true" header="仓库"></div>
             <div field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true" header="仓位"></div>
             <div field="comOemCode" name="comOemCode" width="100" headerAlign="center" header="OE码"></div>

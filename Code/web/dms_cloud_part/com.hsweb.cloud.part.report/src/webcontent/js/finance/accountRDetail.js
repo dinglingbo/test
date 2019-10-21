@@ -14,10 +14,22 @@ var accountHash = {};
 var enterTypeIdList = [];
 var enterTypeIdHash = {};
 var pList = [];
-var pHash = {};
+var pHash = {};var settleStatusHash = {
+		"0" : "未收款",
+		"1" : "部分收款",
+		"2" : "已收款"
+	};
+var auditSignHash = {
+		"0" : "未审核",
+		"1" : "已审核"
+	};
+var type=0;
+var typeRela = [];//用于结算方式
+var datagrid2 = null;
 
 $(document).ready(function(v) {
 	mainGrid = nui.get("mainGrid");
+	datagrid2 = nui.get("datagrid2");
 	mainGrid.setUrl(queryUrl);
 
 	accountIdEl = nui.get("accountId");
@@ -44,30 +56,113 @@ $(document).ready(function(v) {
         });
 
     });
+    
 
-	doSearch();
+	quickSearch(2);
+	queryTypeRela();//查询付款方式
 });
-function doSearch() {
+
+function quickSearch(type){
+	var params = getSearchParam();
+    var querysign = 1;
+    var queryname = "本日";
+    switch (type)
+    {
+        case 0:
+            params.today = 1;
+            params.startDate = getNowStartDate();
+            params.endDate = addDate(getNowEndDate(), 1);
+            querysign = 1;
+            queryname = "本日";
+            break;
+        case 1:
+            params.yesterday = 1;
+            params.startDate = getPrevStartDate();
+            params.endDate = addDate(getPrevEndDate(), 1);
+            querysign = 1;
+            queryname = "昨日";
+            break;
+        case 2:
+            params.thisWeek = 1;
+            params.startDate = getWeekStartDate();
+            params.endDate = addDate(getWeekEndDate(), 1);
+            querysign = 1;
+            queryname = "本周";
+            break;
+        case 3:
+            params.lastWeek = 1;
+            params.startDate = getLastWeekStartDate();
+            params.endDate = addDate(getLastWeekEndDate(), 1);
+            querysign = 1;
+            queryname = "上周";
+            break;
+        case 4:
+            params.thisMonth = 1;
+            params.startDate = getMonthStartDate();
+            params.endDate = addDate(getMonthEndDate(), 1);
+            querysign = 1;
+            queryname = "本月";
+            break;
+        case 5:
+            params.lastMonth = 1;
+            params.startDate = getLastMonthStartDate();
+            params.endDate = addDate(getLastMonthEndDate(), 1);
+            querysign = 1;
+            queryname = "上月";
+            break;
+        case 10:
+            params.thisYear = 1;
+            params.startDate = getYearStartDate();
+            params.endDate = getYearEndDate();
+            querysign = 1;
+            queryname = "本年";
+            break;
+        case 11:
+            params.lastYear = 1;
+            params.startDate = getPrevYearStartDate();
+            params.endDate = getPrevYearEndDate();
+            querysign = 1;
+            queryname = "上年";
+            break;      
+        default:
+            break;
+    }
+    beginDateEl.setValue(params.startDate);
+    endDateEl.setValue(addDate(params.endDate,-1));
+    currType = type;
+    if(querysign == 1){
+        var menunamedate = nui.get("menunamedate");
+        menunamedate.setText(queryname);    
+    }
+    doSearch(params);
+}
+function getSearchParam(){
 	var params = {};
-	params.id = accountIdEl.getValue();
+	params.settAccountId = accountIdEl.getValue();
 	params.startDate = beginDateEl.getFormValue();
-    params.endDate = endDateEl.getFormValue();;
+    params.endDate = addDate(endDateEl.getValue(),1);
     params.guestId = advanceGuestIdEl.getValue();
     params.isMain = isMainEl.getValue();
     params.rpDc = 1;
-    params.orgid =currOrgId;
+    return params;
+}
 
+function onSearch(){
+	var params=getSearchParam();
+	doSearch(params);
+}
+function doSearch(params) {
+	datagrid2.setData([]);
 	mainGrid.load({
 		params:params,
 		token : token
 	});
 }
-var queryAccountUrl = baseUrl + "com.hsapi.cloud.part.settle.svr.queryFiSettleAccountForTenant.biz.ext";
+var queryAccountUrl = baseUrl + "com.hsapi.cloud.part.settle.svr.queryFiSettleAccount.biz.ext";
 function getAccountList(callback) {
     nui.ajax({
         url : queryAccountUrl,
         data : {
-        	tenantId :currTenantId,
             token: token
         },
         type : "post",
@@ -86,9 +181,9 @@ var supplier = null;
 function selectSupplier(elId) {
     supplier = null;
     nui.open({
-        // targetWindow: window,,
+        targetWindow : window,
         url : webPath+contextPath+"/com.hsweb.cloud.part.common.guestSelect.flow?token="+token,
-        title : "客户资料",
+        title : "往来单位选择",
         width : 980,
         height : 560,
         allowDrag : true,
@@ -111,7 +206,7 @@ function selectSupplier(elId) {
                 var el = nui.get(elId);
                 el.setValue(value);
                 el.setText(text);
-
+                onSearch();
             }
         }
     });
@@ -149,6 +244,23 @@ function onDrawCell(e){
                 e.cellHtml = "";
             }
             break;
+        case "orgid":
+        	for(var i=0;i<currOrgList.length;i++){
+        		if(currOrgList[i].orgid==e.value){
+        			e.cellHtml = currOrgList[i].shortName;
+        		}
+        	}
+        	
+            break;
+        case "balaTypeCode":
+        	for(var i=0;i<typeRela.length;i++){
+        		if(typeRela[i].customId==e.value){
+        			e.cellHtml = typeRela[i].customName;
+        		}
+        	}
+        	
+            break;            
+
         default:
             break;
     }
@@ -172,6 +284,129 @@ function getItemType(callback) {
             console.log(jqXHR.responseText);
         }
     });
+}
+
+//查询付款方式
+var queryTypeRelaUrl = baseUrl
++ "com.hsapi.cloud.part.settle.svr.queryfibAccountTypeRela.biz.ext";
+function queryTypeRela(){
+    nui.ajax({
+        url : queryTypeRelaUrl,
+        data : {
+            token: token
+        },
+        type : "post",
+        success : function(data) {
+            if(data.errCode=="S"){
+            	typeRela = data.list;
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+
+function onExport(){
+	var detail = nui.clone(mainGrid.getData());
+	exportNoMultistage(mainGrid.columns)
+	for(var i=0;i<detail.length;i++){
+        if(enterTypeIdHash && enterTypeIdHash[detail[i].billTypeId]){
+        	detail[i].billTypeId = enterTypeIdHash[detail[i].billTypeId].name;
+        }
+        if(pHash && pHash[detail[i].isPrimaryBusiness]){
+        	detail[i].isPrimaryBusiness = pHash[detail[i].isPrimaryBusiness];
+        }
+        for(var j=0;j<typeRela.length;j++){
+        	if(typeRela[j].customId==detail[i].balaTypeCode){
+        		detail[i].balaTypeCode = typeRela[j].customName;
+        	}
+        }
+	}
+	if(detail && detail.length > 0){
+		setInitExportDataNoMultistage( detail,mainGrid.columns,"收款明细表导出");
+	}
+	
+}
+
+function queryFrm(){
+	var row =mainGrid.getSelected(); 
+	var queryRPAccountListUrl = baseUrl + "com.hsapi.cloud.part.settle.svr.queryFrm.biz.ext";
+    nui.ajax({
+        url : queryRPAccountListUrl,
+        data : {
+        	params:{
+        		mainId : row.id
+        	},
+            token: token
+        },
+        type : "post",
+        success : function(data) {
+            if (data.errCode=="S") {
+            	datagrid2.setData(data.detailList);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+
+function onDrawCell1(e) {
+	switch (e.field) {
+	case "comPartBrandId":
+		if (partBrandIdHash && partBrandIdHash[e.value]) {
+			e.cellHtml = partBrandIdHash[e.value].name;
+		}
+		break;
+	case "billTypeId":
+		if (enterTypeIdHash && enterTypeIdHash[e.value]) {
+			e.cellHtml = enterTypeIdHash[e.value].name;
+		}
+		break;
+	case "billStatus":
+		if (billStatusHash && billStatusHash[e.value]) {
+			e.cellHtml = billStatusHash[e.value];
+		}
+		break;
+	case "settleTypeId":
+		if (settTypeIdHash && settTypeIdHash[e.value]) {
+			e.cellHtml = settTypeIdHash[e.value].name;
+		}
+		break;
+	case "storeId":
+		if (storehouseHash && storehouseHash[e.value]) {
+			e.cellHtml = storehouseHash[e.value].name;
+		}
+		break;
+	case "enterDayCount":
+		var row = e.record;
+		var enterTime = (new Date(row.enterDate)).getTime();
+		var nowTime = (new Date()).getTime();
+		var dayCount = parseInt((nowTime - enterTime) / 1000 / 60 / 60 / 24);
+		e.cellHtml = dayCount + 1;
+		break;
+	case "settleStatus":
+		if (settleStatusHash && settleStatusHash[e.value]) {
+			e.cellHtml = settleStatusHash[e.value];
+		}
+		break;
+	case "auditSign":
+		if (auditSignHash && auditSignHash[e.value]) {
+			e.cellHtml = auditSignHash[e.value];
+		}
+		break;		
+	case "nowAmt":
+		e.cellStyle = 'background-color:#90EE90';
+		break;
+	case "nowVoidAmt":
+		e.cellStyle = 'background-color:#90EE90';
+		break;
+	default:
+		break;
+	}
 }
 
 

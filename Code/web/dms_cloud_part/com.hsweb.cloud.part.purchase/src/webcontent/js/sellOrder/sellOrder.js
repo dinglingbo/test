@@ -352,6 +352,7 @@ $(document).ready(function(v)
         }else{
             isNeedSet = true;
         }
+        nui.get('storeId').setData(storehouse);
         
         var dictDefs ={"billTypeId":"DDT20130703000008", "settleTypeId":"DDT20130703000035"};
         initDicts(dictDefs, null);
@@ -2502,6 +2503,24 @@ function onGuestValueChanged(e)
 
 		addNewRow(true);
     }
+}
+
+
+
+function onStoreIdValueChange(e){
+	var data = e.selected;
+	var rows =rightGrid.getData();
+	var changes=[];
+	if(data){
+		if(rows.length>0){
+			for(var i=0;i<rows.length;i++){
+				if(rows[i].partId){
+					rows[i].storeId =data.id;
+				}
+			}
+			rightGrid.setData(rows);
+		}
+	}
 }
 
 function onStoreValueChange(e){

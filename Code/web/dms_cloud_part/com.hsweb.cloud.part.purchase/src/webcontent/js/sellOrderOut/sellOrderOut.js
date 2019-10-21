@@ -2140,125 +2140,133 @@ function checkStockOutQty(){
 var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjSellOrder.biz.ext";
 function audit()
 {
-    var data = basicInfoForm.getData();
-    for ( var key in requiredField) {
-        if (!data[key] || $.trim(data[key]).length == 0) {
-            showMsg(requiredField[key] + "不能为空!","W");
-            return;
-        }
-    }
+	nui.confirm("是否确定出库?", "友情提示", function(action) {
+		if (action == "ok") {
+			 var data = basicInfoForm.getData();
+			    for ( var key in requiredField) {
+			        if (!data[key] || $.trim(data[key]).length == 0) {
+			            showMsg(requiredField[key] + "不能为空!","W");
+			            return;
+			        }
+			    }
 
-    var row = leftGrid.getSelected();
-    if(row){
-        if(row.auditSign == 1) {
-            showMsg("此单已出库!","W");
-            return;
-        } 
-    }else{
-        return;
-    }
+			    var row = leftGrid.getSelected();
+			    if(row){
+			        if(row.auditSign == 1) {
+			            showMsg("此单已出库!","W");
+			            return;
+			        } 
+			    }else{
+			        return;
+			    }
 
-    //审核时，数量，单价，金额，仓库不能为空
-    var msg = checkStockOutQty();
-    if(msg){
-        showMsg(msg,"W");
-        return;
-    }
-    //审核时，判断是否存在缺货信息
-    var msg = checkRightData();
-    if(msg){
-        showMsg(msg,"W");
-        return;
-    }
+			    //审核时，数量，单价，金额，仓库不能为空
+			    var msg = checkStockOutQty();
+			    if(msg){
+			        showMsg(msg,"W");
+			        return;
+			    }
+			    //审核时，判断是否存在缺货信息
+			    var msg = checkRightData();
+			    if(msg){
+			        showMsg(msg,"W");
+			        return;
+			    }
 
-    data = getMainData();
+			    data = getMainData();
 
-    var sellOrderDetailAdd = rightGrid.getChanges("added");
-    var sellOrderDetailUpdate = rightGrid.getChanges("modified");
-    var sellOrderDetailDelete = rightGrid.getChanges("removed");
-    var sellOrderDetailList = rightGrid.getData();
-    if(sellOrderDetailList.length <= 0) {
-        showMsg("销售明细为空，不能出库!","W");
-        return;
-    }
-    
-  //开启额度管理
-    if(currIsOpenCredit ==1){
-    	 var flag = beforeSave();
-    	    if(flag ==false){
-    	    	return;
-    	    }
-    }
-    
-    getStoreLimit();
-	var rightRow =rightGrid.getData();
-	for(var i=0;i<rightRow.length;i++){
-		if(Object.getOwnPropertyNames(storeLimitMap ).length >0){
-			if(!storeLimitMap.hasOwnProperty(rightRow[i].storeId)  && storeHash[rightRow[i].storeId]){
-				showMsg("没有选择"+storeHash[rightRow[i].storeId].name+"的权限","W");
-				return;
-			}
-		}
-	}
-    
-    sellOrderDetailList = removeChanges(sellOrderDetailAdd, sellOrderDetailUpdate, sellOrderDetailDelete, sellOrderDetailList);
-
-
-    nui.mask({
-        el: document.body,
-        cls: 'mini-mask-loading',
-        html: '出库中...'
-    });
-
-    nui.ajax({
-        url : auditUrl,
-        type : "post",
-        data : JSON.stringify({
-            sellOrderMain : data,
-            sellOrderDetailAdd : sellOrderDetailAdd,
-            sellOrderDetailUpdate : sellOrderDetailUpdate,
-            sellOrderDetailDelete : sellOrderDetailDelete,
-            sellOrderDetailList : sellOrderDetailList,
-            operateFlag:1,
-            token : token
-        }),
-        success : function(data) {
-            nui.unmask(document.body);
-            data = data || {};
-            if (data.errCode == "S") {
-//                showMsg("出库成功!","S");
-                //onLeftGridRowDblClick({});
-                var pjSellOrderMainList = data.pjSellOrderMainList;
-                if(pjSellOrderMainList && pjSellOrderMainList.length>0) {
-                    var leftRow = pjSellOrderMainList[0];
-                    var row = leftGrid.getSelected();
-                    leftGrid.updateRow(row,leftRow);
-
-                    //保存成功后重新加载数据
-                    loadMainAndDetailInfo(leftRow);
-                    nui.confirm("本单已出库，是否打印？", "友情提示", function(action) {
-						if(action== 'ok'){
-							onPrint();
-						}else{
-						 if(checkNew() > 0){
-						    	return;
-						    }
-						    rightGrid.setData([]);
-							add();
+			    var sellOrderDetailAdd = rightGrid.getChanges("added");
+			    var sellOrderDetailUpdate = rightGrid.getChanges("modified");
+			    var sellOrderDetailDelete = rightGrid.getChanges("removed");
+			    var sellOrderDetailList = rightGrid.getData();
+			    if(sellOrderDetailList.length <= 0) {
+			        showMsg("销售明细为空，不能出库!","W");
+			        return;
+			    }
+			    
+			  //开启额度管理
+			    if(currIsOpenCredit ==1){
+			    	 var flag = beforeSave();
+			    	    if(flag ==false){
+			    	    	return;
+			    	    }
+			    }
+			    
+			    getStoreLimit();
+				var rightRow =rightGrid.getData();
+				for(var i=0;i<rightRow.length;i++){
+					if(Object.getOwnPropertyNames(storeLimitMap ).length >0){
+						if(!storeLimitMap.hasOwnProperty(rightRow[i].storeId)  && storeHash[rightRow[i].storeId]){
+							showMsg("没有选择"+storeHash[rightRow[i].storeId].name+"的权限","W");
+							return;
 						}
-					});
-//                    rightGrid.setData([]);
-//                    add();
-                }
-            } else {
-                showMsg(data.errMsg || "出库失败!","W");
-            }
-        },
-        error : function(jqXHR, textStatus, errorThrown) {
-            // nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
-    });
+					}
+				}
+			    
+			    sellOrderDetailList = removeChanges(sellOrderDetailAdd, sellOrderDetailUpdate, sellOrderDetailDelete, sellOrderDetailList);
+
+
+			    nui.mask({
+			        el: document.body,
+			        cls: 'mini-mask-loading',
+			        html: '出库中...'
+			    });
+
+			    nui.ajax({
+			        url : auditUrl,
+			        type : "post",
+			        data : JSON.stringify({
+			            sellOrderMain : data,
+			            sellOrderDetailAdd : sellOrderDetailAdd,
+			            sellOrderDetailUpdate : sellOrderDetailUpdate,
+			            sellOrderDetailDelete : sellOrderDetailDelete,
+			            sellOrderDetailList : sellOrderDetailList,
+			            operateFlag:1,
+			            token : token
+			        }),
+			        success : function(data) {
+			            nui.unmask(document.body);
+			            data = data || {};
+			            if (data.errCode == "S") {
+//			                showMsg("出库成功!","S");
+			                //onLeftGridRowDblClick({});
+			                var pjSellOrderMainList = data.pjSellOrderMainList;
+			                if(pjSellOrderMainList && pjSellOrderMainList.length>0) {
+			                    var leftRow = pjSellOrderMainList[0];
+			                    var row = leftGrid.getSelected();
+			                    leftGrid.updateRow(row,leftRow);
+
+			                    //保存成功后重新加载数据
+			                    loadMainAndDetailInfo(leftRow);
+			                    nui.confirm("本单已出库，是否打印？", "友情提示", function(action) {
+									if(action== 'ok'){
+										onPrint();
+									}else{
+									 if(checkNew() > 0){
+									    	return;
+									    }
+									    rightGrid.setData([]);
+										add();
+									}
+								});
+//			                    rightGrid.setData([]);
+//			                    add();
+			                }
+			            } else {
+			                showMsg(data.errMsg || "出库失败!","W");
+			            }
+			        },
+			        error : function(jqXHR, textStatus, errorThrown) {
+			            // nui.alert(jqXHR.responseText);
+			            console.log(jqXHR.responseText);
+			        }
+			    });
+		}else{
+			return;
+		}
+	 });
+		
+   
 }
 function onDrawSummaryCell(e)
 {

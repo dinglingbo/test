@@ -3150,70 +3150,77 @@ var auditToOutUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjPchsOrde
 function auditToOut()
 {
 
-    var row = leftGrid.getSelected();
-    if(row){
-        if(row.auditSign != 1){
-            showMsg("请先提交单据!","W");
-            return;
-        }
-        if(row.isOut == 1) {
-            showMsg("此单已出库!","W");
-            return;
-        } 
-    }else{
-        return;
-    }
+	nui.confirm("是否确定出库?", "友情提示", function(action) {
+		if (action == "ok") {
+			var row = leftGrid.getSelected();
+		    if(row){
+		        if(row.auditSign != 1){
+		            showMsg("请先提交单据!","W");
+		            return;
+		        }
+		        if(row.isOut == 1) {
+		            showMsg("此单已出库!","W");
+		            return;
+		        } 
+		    }else{
+		        return;
+		    }
 
-    var data = basicInfoForm.getData();
-    var mainId = data.id;
+		    var data = basicInfoForm.getData();
+		    var mainId = data.id;
 
-    var main = getMainData();
+		    var main = getMainData();
 
-    var sellOrderDetailList = rightGrid.getData();
+		    var sellOrderDetailList = rightGrid.getData();
+		    
+		    nui.mask({
+		        el: document.body,
+		        cls: 'mini-mask-loading',
+		        html: '出库中...'
+		    });
+
+		    nui.ajax({
+		        url : auditToOutUrl,
+		        type : "post",
+		        data : JSON.stringify({
+		            mainId : mainId,
+		            main : main,
+		            detail :sellOrderDetailList,
+		            token : token
+		        }),
+		        success : function(data) {
+		            nui.unmask(document.body);
+		            data = data || {};
+		            if (data.errCode == "S") {
+		                showMsg("出库成功!","S");
+		                var newRow = {isOut: 1,billStatusId :2};
+		                leftGrid.updateRow(row, newRow);
+
+		                setBtnable(false);
+		                nui.confirm("是否打印？", "友情提示", function(action) {
+							if(action== 'ok'){
+								onPrint();
+							}else{
+								
+							}
+						});
+
+//		                add();
+		                
+		            } else {
+		                showMsg(data.errMsg || "出库失败!","W");
+		            }
+		        },
+		        error : function(jqXHR, textStatus, errorThrown) {
+		            // nui.alert(jqXHR.responseText);
+		            console.log(jqXHR.responseText);
+		        }
+		    });
+		}else{
+			return;
+		}
+	 });
     
-    nui.mask({
-        el: document.body,
-        cls: 'mini-mask-loading',
-        html: '出库中...'
-    });
-
-    nui.ajax({
-        url : auditToOutUrl,
-        type : "post",
-        data : JSON.stringify({
-            mainId : mainId,
-            main : main,
-            detail :sellOrderDetailList,
-            token : token
-        }),
-        success : function(data) {
-            nui.unmask(document.body);
-            data = data || {};
-            if (data.errCode == "S") {
-                showMsg("出库成功!","S");
-                var newRow = {isOut: 1,billStatusId :2};
-                leftGrid.updateRow(row, newRow);
-
-                setBtnable(false);
-                nui.confirm("是否打印？", "友情提示", function(action) {
-					if(action== 'ok'){
-						onPrint();
-					}else{
-						
-					}
-				});
-
-//                add();
-                
-            } else {
-                showMsg(data.errMsg || "出库失败!","W");
-            }
-        },
-        error : function(jqXHR, textStatus, errorThrown) {
-            // nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
-    });
 }
 var unAuditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.unAuditSellOrderToOut.biz.ext";
 function unAudit()

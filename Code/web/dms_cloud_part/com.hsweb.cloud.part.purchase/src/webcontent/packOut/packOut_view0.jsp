@@ -9,7 +9,7 @@
 -->
 <head>
 <title>打包发货</title>
-<script src="<%=webPath + contextPath%>/purchase/js/packOut/packOut.js?v=1.0.77"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/packOut/packOut.js?v=1.0.85"></script>
 <style type="text/css">
 .title {
   width: 75px;
@@ -305,19 +305,19 @@
                                           <label>收货人电话：</label>
                                       </td>
                                       <td colspan="1">
-                                          <input class="nui-textbox" id="receiveManTel" name="receiveManTel" width="100%" enabled="false">
+                                          <input class="nui-textbox" id="receiveManTel" name="receiveManTel" width="100%" enabled="">
                                       </td>
                                       <td class="title">
                                           <label>收货地址：</label>
                                       </td>
                                       <td colspan="3">
-                                          <input class="nui-textbox" id="address" name="address" width="100%" enabled="false">
+                                          <input class="nui-textbox" id="address" name="address" width="100%" enabled="">
                                       </td>
                                       <td class="title">
                                           <label>收货单位：</label>
                                       </td>
                                       <td colspan="3">
-                                          <input class="nui-textbox" id="receiveCompName" name="receiveCompName" width="100%" enabled="false">
+                                          <input class="nui-textbox" id="receiveCompName" name="receiveCompName" width="100%" enabled="">
                                           <input class="nui-textbox" id="provinceId" name="provinceId" width="100%" visible="false">
                                           <input class="nui-textbox" id="cityId" name="cityId" width="100%" visible="false">
                                           <input class="nui-textbox" id="countyId" name="countyId" width="100%" visible="false">

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>库存查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/stockQuery/partStoreStockQuery.js?v=2.2.7"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/stockQuery/partStoreStockQuery.js?v=2.2.8"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -85,6 +85,13 @@
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
+                <a class="nui-menubutton" plain="true" menu="#popupMenuMore" id="menuMore">
+                <span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
+                <ul id="popupMenuMore" class="nui-menu" style="display:none;">
+                     <li name="enterBtn" iconCls="icon-add" onclick="onEnter">入库记录</li>
+	                 <li name="outBtn" iconCls="icon-edit" onclick="onOut">出库记录</li>
+	      <!--           <li name="outBtn" iconCls="icon-edit" onclick="sellRecord">库存占用记录</li>-->
+                </ul>
             </td>
         </tr>
     </table>

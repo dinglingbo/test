@@ -341,3 +341,77 @@ function setInitExportData(detail){
     }
     method5('tableExcel',"库存查询"+(format((new Date()), 'yyyy-MM-dd HH:mm:ss')),'tableExportA');
 }
+
+//查看入库记录
+function onEnter(){
+	var row ={};
+	row = rightGrid.getSelected();
+	if(!row){
+		showMsg("请选择一条记录","W");
+		return;
+	}
+	var partId = row.partId;
+	onEnterRecord(partId);
+	
+}
+
+//查看出库记录
+function onOut(){
+	var row ={};
+	row = rightGrid.getSelected();
+	if(!row){
+		showMsg("请选择一条记录","W");
+		return;
+	}
+	var partId = row.partId;
+	onOutRecord(partId);
+}
+
+//查看入库记录
+function onEnterRecord(partId){
+
+	nui.open({
+		url : webPath+contextPath+"/com.hsweb.cloud.part.common.partEnterRecord.flow?token="+token,
+		title : "入库记录",
+		width : 1000,
+		height : 500,
+		allowDrag : true,
+		allowResize : true,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+			var params = {
+				partId: partId,
+                token :token
+            };
+            iframe.contentWindow.SetData(params);
+		},
+		ondestroy : function(action) {
+			
+		}
+	});
+}
+
+//查看出库记录
+function onOutRecord(partId){
+	
+	nui.open({
+		url : webPath+contextPath+"/com.hsweb.cloud.part.common.partOutRecord.flow?token="+token,
+		title : "出库记录",
+		width : 850,
+		height : 500,
+		allowDrag : true,
+		allowResize : true,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+			var params = {
+				partId: partId,
+                token :token
+            };
+            iframe.contentWindow.SetData(params);
+		},
+		ondestroy : function(action) {
+			
+		}
+	});
+}
+

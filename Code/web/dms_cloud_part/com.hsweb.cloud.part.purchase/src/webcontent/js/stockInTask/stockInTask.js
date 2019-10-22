@@ -3018,3 +3018,30 @@ function onCost(){
 		}
 	});
 }
+
+function onBeforeOpen(e) {
+    var rightGrid = mini.get("rightGrid");
+    var menu = e.sender;
+            
+    var row = rightGrid.getSelected();
+    var rowIndex = rightGrid.indexOf(row);            
+    if (!row ||  rowIndex== 0) {
+        e.cancel = true;
+        //阻止浏览器默认右键菜单
+        e.htmlEvent.preventDefault();
+        return;
+    }
+    ////////////////////////////////
+    var editItem = mini.getbyName("edit", menu);
+    var removeItem = mini.getbyName("remove", menu);
+    editItem.show();
+    removeItem.enable();
+
+    if (rowIndex == 1) {
+        editItem.hide();
+    }
+    if (rowIndex == 1) {
+        removeItem.disable();
+    }
+
+}

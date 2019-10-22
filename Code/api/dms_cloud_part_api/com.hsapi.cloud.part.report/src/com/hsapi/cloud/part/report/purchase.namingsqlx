@@ -1207,4 +1207,69 @@
 				deduct_mem_id
 	
     </select>
+    
+     <!-- 入库记录 -->
+    <select id="queryEnterRecord" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT
+    		b.orgid as orgid,
+			a.part_id as partId,
+			a.enter_date as enterDate,
+		    a.enter_qty as enterQty,
+		    a.enter_price as enterPrice,
+		    a.enter_amt as enterAmt,
+			b.`code` as code,
+			a.store_id as storeId,
+			b.guest_id as guestId,
+			c.full_name as guestName,
+		    b.enter_type_id as enterTypeId,
+			b.order_man as orderMan
+			
+		FROM
+			pj_enter_detail_chk a
+		INNER JOIN pj_enter_main_chk b ON a.main_id = b.id
+		INNER JOIN wb_common.com_guest c ON c.id=b.guest_id
+		where 1 = 1 
+		
+		<isNotEmpty prepend="and" property="orgid"> 
+            (b.orgid = #orgid#)
+        </isNotEmpty>
+        
+        <isNotEmpty prepend="and" property="partId">  
+            (a.PART_ID = #partId#)
+        </isNotEmpty>
+        order by a.enter_date desc
+    </select>
+    
+     <!-- 出库记录 -->
+    <select id="queryOutRecord" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT
+			b.orgid AS orgid,
+			a.part_id AS partId,
+			b.out_date AS outDate,
+			a.sell_qty AS sellQty,
+			a.sell_price AS sellPrice,
+			a.sell_amt AS sellAmt,
+			b.`code` AS code,
+			a.store_id AS storeId,
+			b.guest_id AS guestId,
+			c.full_name AS guestName,
+			b.enter_type_id AS enterTypeId,
+			b.auditor AS auditor
+		FROM
+			pj_out_detail_chk a
+		INNER JOIN pj_out_main_chk b ON a.main_id = b.id
+		INNER JOIN wb_common.com_guest c ON c.id = b.guest_id
+		WHERE
+			1 = 1
+
+		
+		<isNotEmpty prepend="and" property="orgid"> 
+            (b.orgid = #orgid#)
+        </isNotEmpty>
+        
+        <isNotEmpty prepend="and" property="partId">  
+            (a.PART_ID = #partId#)
+        </isNotEmpty>
+        order by b.out_date desc
+    </select>
 </sqlMap>

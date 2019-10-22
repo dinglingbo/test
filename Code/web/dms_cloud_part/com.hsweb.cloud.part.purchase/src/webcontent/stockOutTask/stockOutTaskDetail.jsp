@@ -249,6 +249,7 @@
                            showModified="false"
                            editNextOnEnterKey="true"
                            allowCellWrap = true
+                           contextMenu="#gridMenu"
                            url="">
                           <div property="columns">
                               <div type="indexcolumn">序号</div>
@@ -340,6 +341,12 @@
 
         </div>
     </div>
+    
+    <ul id="gridMenu" class="mini-contextmenu" onbeforeopen="onBeforeOpen">              
+        <li name="enterRecord" iconCls="icon-add" onclick="onEnter">入库记录</li>
+	    <li name="outRecord" iconCls="icon-edit" onclick="onOut">出库记录</li>   
+    </ul>
+    
 </div>
 
 

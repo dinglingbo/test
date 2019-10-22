@@ -351,8 +351,8 @@
 
 
 	<ul id="gridMenu" class="mini-contextmenu" onbeforeopen="onBeforeOpen">              
-        <li name="enterRecord" iconCls="" onclick="onAdd">入库记录</li>
-	    <li name="outRecord" iconCls="" onclick="onEdit">出库记录</li>   
+        <li name="enterRecord" iconCls="icon-add" onclick="onEnter">入库记录</li>
+	    <li name="outRecord" iconCls="icon-edit" onclick="onOut">出库记录</li>   
     </ul>
 
 </div>

@@ -246,6 +246,9 @@
                 <isNotEmpty prepend="and" property="creator">  
                     (A.creator = #creator#)
                 </isNotEmpty>
+                 <isNotEmpty prepend="and" property="orderMan">  
+                    (A.order_man = #orderMan#)
+                </isNotEmpty>
             </dynamic>  
             
             union all
@@ -374,6 +377,9 @@
                 </isNotEmpty> 
                  <isNotEmpty prepend="and" property="creator">  
                     (A.creator = #creator#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="orderMan">  
+                    (A.order_man = #orderMan#)
                 </isNotEmpty>
             </dynamic>  
         )M
@@ -1498,6 +1504,9 @@
                 <isNotEmpty prepend="and" property="creator">  
                     (a.creator = #creator#)
                 </isNotEmpty>
+                 <isNotEmpty prepend="and" property="orderMan">  
+                    (A.order_man = #orderMan#)
+                </isNotEmpty>
             </dynamic>  
            
         
@@ -1639,6 +1648,9 @@
                  <isNotEmpty prepend="and" property="creator">  
                     (a.creator = #creator#)
                 </isNotEmpty> 
+                 <isNotEmpty prepend="and" property="orderMan">  
+                    (A.order_man = #orderMan#)
+                </isNotEmpty>
             </dynamic>  
            
         

@@ -1,19 +1,23 @@
 var baseUrl = apiPath + cloudPartApi + "/";
 var companyUrl = apiPath + sysApi + "/"+"com.hsapi.system.basic.organization.getCompanyAll.biz.ext";
 var mainGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.queryNoSettleBill.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryPjPchsEnterMainDetailList.biz.ext";
-var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryReceiveMainDetails.biz.ext";
+var purGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryPjPchsEnterMainDetailList.biz.ext";
+var sellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryReceiveMainDetails.biz.ext";
 var exportUrl= baseUrl + "com.hsapi.cloud.part.invoicing.query.exportReceiveMainDetails.biz.ext";
 var orgidsEl =null;
 var orgids="";
 var mainGrid =null;
 var searchBeginDate = null;
 var searchEndDate = null;
-var leftGrid = null;
-var rightGrid =null;
+var purEnterGrid = null;
+var sellOutGrid =null;
+var purRtnGrid = null;
+var sellRtnGrid =null;
 var mainTabs =null;
-var allotPayGrid = null;
-var allotReceiveGrid = null;
+var allotApplyGrid = null;
+var allotAcceptGrid = null;
+var allotInRtnGrid = null;
+var allotOutRtnGrid = null;
 var allotPayGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryAllotApplyDetails.biz.ext";
 var allotReceiveGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryAllotAcceptDetails.biz.ext";
 
@@ -23,6 +27,8 @@ var settTypeIdHash = {};
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
 var settleTypeIdEl =null;
+
+//1:"采购订单",2:"销售订单",3:"采购退货",4:"销售退货",5:"调拨申请",6:"调拨受理",7:"调出退回",8:"调入退回"
 $(document).ready(function(v) {
 	orgidsEl = nui.get("orgids");
 	if(currIsMaster!=1){

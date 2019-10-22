@@ -664,6 +664,12 @@ function loadMainAndDetailInfo(row) {
 			nui.get("guestId").enable();
 			nui.get("selectSupplierBtn").enable();
 		}
+		if(currIsSalesman ==1 && currIsCanSubmitOtherBill ==1 && row.creator !=currUserName ){
+			nui.get("auditBtn").disable();
+		}else {
+			nui.get("auditBtn").enable();
+		}
+		
 		// 序列化入库主表信息，保存时判断主表信息有没有修改，没有修改则不需要保存
 		var data = basicInfoForm.getData();
 		data.orderAmt = data.orderAmt||0;
@@ -927,18 +933,23 @@ function getSearchParam() {
 	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
 		params.creator= currUserName;
 	}
+	if(currIsSalesman ==1 && currIsCanViewOtherBill ==1){
+		params.creator= currUserName;
+	}
 	return params;
 }
 function setBtnable(flag) {
 	if (flag) {
 		nui.get("saveBtn").enable();
 		nui.get("auditBtn").enable();
+		nui.get("enterBtn").enable();
 		//nui.get("printBtn").enable();
 		 nui.get("selectSupplierBtn").enable();
 		 
 	} else {
 		nui.get("saveBtn").disable();
 		nui.get("auditBtn").disable();
+		nui.get("enterBtn").disable();
 		//nui.get("printBtn").disable();
 		nui.get("selectSupplierBtn").disable();
 	}
@@ -958,6 +969,11 @@ function doSearch(params) {
 	//是业务员且业务员禁止可见
 	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
 		params.creator= currUserName;
+
+	}
+	if(currIsSalesman ==1 && currIsCanViewOtherBill ==1){
+		params.creator= currUserName;
+	
 	}
 	leftGrid.load({
 		params : params,
@@ -965,6 +981,7 @@ function doSearch(params) {
 	}, function() {
 		// onLeftGridRowDblClick({});
 		var data = leftGrid.getData().length;
+		
 		if (data <= 0) {
 			basicInfoForm.reset();
 			rightGrid.clearRows();
@@ -996,6 +1013,11 @@ function doSearch(params) {
 				nui.get("guestId").disable();
 			}else{
 				nui.get("guestId").enable();
+			}
+			if(currIsSalesman ==1 && currIsCanSubmitOtherBill ==1 && row.creator !=currUserName ){
+				nui.get("auditBtn").disable();
+			}else {
+				nui.get("auditBtn").enable();
 			}
 			
 		}

@@ -151,6 +151,8 @@
 	String isBanSeePrice ="";
 	String isSalesman = "";
 	String isCommission = "";
+	String isCanViewOtherBill = "";
+	String isCanSubmitOtherBill = "";
 	//仓先生公司ID
 	String agencyId = "";
 	
@@ -344,6 +346,14 @@
 	                if(billParams.get("repairSettPrintUrl") != null){
 	                	repairSettPrintUrl = billParams.get("repairSettPrintUrl").toString();
 	                }
+	                //是否允许查看其他人创建的单据
+	                if(billParams.get("isCanViewOtherBill") != null){
+	                	isCanViewOtherBill = billParams.get("isCanViewOtherBill").toString();
+	                }
+	                //是否允许提交其他人创建的单据
+	                if(billParams.get("isCanSubmitOtherBill") != null){
+	                	isCanSubmitOtherBill = billParams.get("isCanSubmitOtherBill").toString();
+	                }
 	                
                 }
               
@@ -434,6 +444,8 @@
 	var currIsSalesman = "<%=isSalesman %>";
 	var currIsCommission ="<%=isCommission %>";
 	var currRepairSettPrintUrl ="<%=repairSettPrintUrl %>";
+	var currIsCanViewOtherBill ="<%=isCanViewOtherBill %>";
+	var currIsCanSubmitOtherBill ="<%=isCanSubmitOtherBill %>";
     //alert("token=" + token);
     
     /* var _sysMsg_;

@@ -294,7 +294,6 @@ hr {
                         <tr>
                         	<td id="index">序号</td>
 							<td id="comPartCode">配件编码</td>
-							<td id="comOemCode" >OE码</td>
 							<td id="comPartName">配件名称</td>
 							<td id="comPartBrandId">品牌</td>
 							<td id="comApplyCarModel">品牌车型</td>
@@ -514,7 +513,6 @@ hr {
 					tBody.empty();
 					var tds='<td align="center">[index]</td>'+
 							'<td align="center">[comPartCode]</td>'+
-							'<td align="center">[comOemCode]</td>'+
 							'<td align="center">[comPartName]</td>'+
 							'<td align="center">[comPartBrindId]</td>'+
 							'<td id="CarModel" align="center">[comApplyCarModel]</td>'+
@@ -531,7 +529,6 @@ hr {
 							tr.append(
 								tds.replace("[index]",i+1 ||"")
 									.replace("[comPartCode]",data[i].showPartCode ||"")
-									.replace("[comOemCode]",data[i].showOemCode ||"")
 									.replace("[comPartName]",data[i].showFullName ||"")
 									.replace("[comPartBrindId]",data[i].showBrandName || "")
 									.replace("[comApplyCarModel]",data[i].showCarModel ||"")

@@ -287,6 +287,11 @@ function loadMainAndDetailInfo(row) {
                 setBtnable(true);
                 setEditable(true);
             }
+            if(currIsSalesman ==1 && currIsCanSubmitOtherBill ==1 && row.creator !=currUserName ){
+   				nui.get("auditBtn").disable();
+	   		}else {
+	   			nui.get("auditBtn").enable();
+	   		}
         }
 
 
@@ -511,6 +516,9 @@ function getSearchParam() {
 	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
 		params.creator= currUserName;
 	}
+	if(currIsSalesman ==1 && currIsCanViewOtherBill ==1){
+		params.creator= currUserName;
+	}
     return params;
 }
 function setBtnable(flag) {
@@ -540,6 +548,10 @@ function doSearch(params) {
 	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
 		params.creator= currUserName;
 	}
+	if(currIsSalesman ==1 && currIsCanViewOtherBill ==1){
+		params.creator= currUserName;
+	
+	}
     leftGrid.load({
         params : params,
         token : token
@@ -568,6 +580,11 @@ function doSearch(params) {
                 setBtnable(true);
                 setEditable(true);
             }
+            if(currIsSalesman ==1 && currIsCanSubmitOtherBill ==1 && row.creator !=currUserName ){
+				nui.get("auditBtn").disable();
+			}else {
+				nui.get("auditBtn").enable();
+			}
         }
     });
 }

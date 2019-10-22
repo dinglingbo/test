@@ -562,6 +562,11 @@ function loadMainAndDetailInfo(row)
                 setBtnable(true);
                 setEditable(true);
            }
+           if(currIsSalesman ==1 &&currIsCanSubmitOtherBill ==1 && row.creator !=currUserName ){
+  				nui.get("auditBtn").disable();
+	   		}else {
+	   			nui.get("auditBtn").enable();
+	   		}
        }
         
        //序列化入库主表信息，保存时判断主表信息有没有修改，没有修改则不需要保存
@@ -1172,6 +1177,9 @@ function getSearchParam(){
 	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
 		params.creator= currUserName;
 	}
+	if(currIsSalesman ==1 &&currIsCanViewOtherBill ==1){
+		params.creator= currUserName;
+	}
     return params;
 }
 function setBtnable(flag)
@@ -1218,6 +1226,10 @@ function doSearch(params)
 	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
 		params.creator= currUserName;
 	}
+	if(currIsSalesman ==1 &&currIsCanViewOtherBill ==1){
+		params.creator= currUserName;
+	
+	}
 	leftGrid.load({
 		params : params,
         token : token
@@ -1242,6 +1254,11 @@ function doSearch(params)
                 setBtnable(true);
                 setEditable(true);
             }
+            if(currIsSalesman ==1 && currIsCanSubmitOtherBill ==1 && row.creator !=currUserName ){
+				nui.get("auditBtn").disable();
+			}else {
+				nui.get("auditBtn").enable();
+			}
         }
 	});
 }

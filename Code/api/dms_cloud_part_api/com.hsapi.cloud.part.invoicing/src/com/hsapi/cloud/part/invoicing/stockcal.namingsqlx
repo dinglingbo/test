@@ -803,6 +803,16 @@
 		set a.on_road_qty = case when a.on_road_qty - b.orderQty > 0 then a.on_road_qty - b.orderQty else 0 end
 	</update>
 	
+	<update id="updatePartStoreStockOnroadQtyByPchsAdjD" parameterClass="java.util.HashMap" >
+		update pj_part_store_stock set on_road_qty = case when on_road_qty - #qty# > 0 then on_road_qty - #qty# else 0 end
+		where part_id = #partId# and store_id = #storeId# and orgid = #orgid#
+	</update>
+	
+	<update id="updatePartStockOnroadQtyByPchsAdjD" parameterClass="java.util.HashMap" >
+		update pj_part_stock set on_road_qty = case when on_road_qty - #qty# > 0 then on_road_qty - #qty# else 0 end
+		where part_id = #partId# and orgid = #orgid#
+	</update>
+	
 	<!--调拨申请提交后更新在途数量  增加-->
 	<update id="updatePartStockOnroadQtyByAllotA" parameterClass="java.util.HashMap" >
 		update pj_part_stock a

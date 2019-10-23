@@ -1660,7 +1660,7 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.cloud.part.invoicing.stockcal.updateOnroadQty</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="id" type="query" value="Long" valueType="Primitive" pattern="reference">auditMain/id</process:inputVariable>
+        <process:inputVariable id="0" name="id" type="query" value="Long" valueType="Primitive" pattern="reference">main/id</process:inputVariable>
         <process:inputVariable id="1" name="type" type="literal" value="Int" valueType="Primitive" pattern="reference">2</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>

@@ -4,6 +4,7 @@
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var basicInfoForm = null;
 
+var partNameUrl =baseUrl+"com.hsapi.cloud.part.common.svr.queryPartName.biz.ext";
 function initForm(){
     basicInfoForm = new nui.Form("#basicInfoForm");
 }
@@ -15,7 +16,7 @@ var unit = null;
 var qualityHash = {};
 var partBrandIdHash = {};
 var partBrandIdList = [];
-
+var partNameIdEl = null;
 
 var abcTypeList = [
     {
@@ -66,6 +67,27 @@ function initComboBox()
 }
 $(document).ready(function(v)
 {
+	partNameIdEl =nui.get('partNameId');
+	
+	partNameIdEl.setUrl(partNameUrl);
+	partNameIdEl.on("beforeload",function(e){
+      
+        var data = {};
+        var params = {};
+        var value = e.data.key;
+        value = value.replace(/\s+/g, "");
+        if(value.length<2){
+            e.cancel = true;
+            return;
+        }
+      
+        data.searchKey = e.data.key.replace(/\s+/g, "");
+
+        e.data =data;
+        return;      
+        
+    });
+	
     initComboBox();
     initForm();
 
@@ -359,6 +381,7 @@ function setData(data)
     });
     qualityTypeId.setData(qualityTypeIdList);
     //unit.setData(unitList);
+    var  customClassId =data.partData.customClassId|| "";
     if(data.partData.customClassId){
     	nui.get("customClassId").setText(data.partData.customClassName);
         setHotWord(data.partData.customClassId);
@@ -514,3 +537,5 @@ function setHotWord(customClassId){
 		}
 	});
 }
+
+

@@ -942,7 +942,8 @@ function showPartInfo(row, value, mainId){
                 type: "sellOrder",
                 value:value,
                 mainId:mainId,
-                guestId: nui.get("guestId").getValue()
+                guestId: nui.get("guestId").getValue(),
+                storeId :nui.get("storeId").getValue()
             };
             iframe.contentWindow.setInitData(params,
                 function(data,ck) {
@@ -1897,6 +1898,7 @@ function onCellEditEnter(e){
                         nui.get("serviceId").setValue(data.serviceId);
                         record.serviceId = data.serviceId;
                         record.mainId = data.id;
+                        record.storeId =nui.get('storeId').getValue() || "";
                         showPartInfo(record,partCode,data.id);
 
                         /*var rs = addInsertRow(record.comPartCode,record);

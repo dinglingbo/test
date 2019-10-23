@@ -772,7 +772,8 @@ function showPartInfo(row, value, mainId){
                 type: "sellOrder",
                 value:value,
                 mainId:mainId,
-                guestId: nui.get("guestId").getValue()
+                guestId: nui.get("guestId").getValue(),
+                storeId :nui.get("storeId").getValue()
             };
             iframe.contentWindow.setInitData(params,
                 function(data,ck) {

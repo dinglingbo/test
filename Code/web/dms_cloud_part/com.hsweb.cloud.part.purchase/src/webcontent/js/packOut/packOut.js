@@ -1295,12 +1295,12 @@ function setMember(empId){
 	        },
 	        type : "post",
 	        success : function(data) {
-	            if (data && data.rs) {
+	            if (data && data.rs.length>0) {	            	
 	               var rs =data.rs[0];
-	               nui.get('packMan').setValue(rs.name);
-	               nui.get('idNo').setValue(rs.idcardno);
-	               nui.get('senderPhone').setValue(rs.tel);
-	               nui.get('senderAddress').setValue(currCompAddress);
+	               nui.get('packMan').setValue(rs.name||"");
+	               nui.get('idNo').setValue(rs.idcardno||"");
+	               nui.get('senderPhone').setValue(rs.tel||"");
+	               nui.get('senderAddress').setValue(currCompAddress||"");
 	            }
 	        },
 	        error : function(jqXHR, textStatus, errorThrown) {

@@ -249,6 +249,9 @@
                  <isNotEmpty prepend="and" property="orderMan">  
                     (A.order_man = #orderMan#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="storeId">  
+                    (c.store_id = #storeId#)
+                </isNotEmpty>
             </dynamic>  
             
             union all
@@ -1507,6 +1510,9 @@
                  <isNotEmpty prepend="and" property="orderMan">  
                     (A.order_man = #orderMan#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="storeId">  
+                    (c.store_id = #storeId#)
+                </isNotEmpty>
             </dynamic>  
            
         
@@ -1650,6 +1656,9 @@
                 </isNotEmpty> 
                  <isNotEmpty prepend="and" property="orderMan">  
                     (A.order_man = #orderMan#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="storeId">  
+                    (c.store_id = #storeId#)
                 </isNotEmpty>
             </dynamic>  
            

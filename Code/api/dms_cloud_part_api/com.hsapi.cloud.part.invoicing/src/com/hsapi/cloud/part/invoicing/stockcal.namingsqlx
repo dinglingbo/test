@@ -753,5 +753,112 @@
 		DELETE FROM pj_part_store_stock WHERE orgid = #orgid#
 	</delete>
 	
+	<!--采购订单提交后更新在途数量  增加-->
+	<update id="updatePartStockOnroadQtyByPchsA" parameterClass="java.util.HashMap" >
+		update pj_part_stock a
+		inner join (
+		  select part_id, sum(order_qty) as orderQty
+		  from pj_pchs_order_detail_chk a
+		  where main_id = #id#
+		  group by part_id
+		) b
+		on a.part_id = b.part_id
+		set a.on_road_qty = a.on_road_qty + b.orderQty
+	</update>
+	
+	<update id="updatePartStoreStockOnroadQtyByPchsA" parameterClass="java.util.HashMap" >
+		update pj_part_store_stock a
+		inner join (
+		  select part_id, store_id, sum(order_qty) as orderQty
+		  from pj_pchs_order_detail_chk a
+		  where main_id = #id#
+		  group by part_id, store_id
+		) b
+		on a.store_id = b.store_id and a.part_id = b.part_id
+		set a.on_road_qty = a.on_road_qty + b.orderQty
+	</update>
+	
+	<!--采购订单入库后更新在途数量  减少-->
+	<update id="updatePartStockOnroadQtyByPchsD" parameterClass="java.util.HashMap" >
+		update pj_part_stock a
+		inner join (
+		  select part_id, sum(order_qty) as orderQty
+		  from pj_pchs_order_detail_chk a
+		  where main_id = #id#
+		  group by part_id
+		) b
+		on a.part_id = b.part_id
+		set a.on_road_qty = case when a.on_road_qty - b.orderQty > 0 then a.on_road_qty - b.orderQty else 0 end
+	</update>
+	
+	<update id="updatePartStoreStockOnroadQtyByPchsD" parameterClass="java.util.HashMap" >
+		update pj_part_store_stock a
+		inner join (
+		  select part_id, store_id, sum(order_qty) as orderQty
+		  from pj_pchs_order_detail_chk a
+		  where main_id = #id#
+		  group by part_id, store_id
+		) b
+		on a.store_id = b.store_id and a.part_id = b.part_id
+		set a.on_road_qty = case when a.on_road_qty - b.orderQty > 0 then a.on_road_qty - b.orderQty else 0 end
+	</update>
+	
+	<!--调拨申请提交后更新在途数量  增加-->
+	<update id="updatePartStockOnroadQtyByAllotA" parameterClass="java.util.HashMap" >
+		update pj_part_stock a
+		inner join (
+		  select a.part_id, sum(apply_qty) as orderQty
+		  from pj_allot_apply_detail a
+		  inner join pj_allot_apply_main b
+		  on a.main_id = b.id
+		  where a.main_id = #id# 
+		  group by part_id
+		) b
+		on a.part_id = b.part_id
+		set a.on_road_qty = a.on_road_qty + b.orderQty
+	</update>
+	
+	<update id="updatePartStoreStockOnroadQtyByAllotA" parameterClass="java.util.HashMap" >
+		update pj_part_store_stock a
+		inner join (
+		  select a.part_id, a.store_id, sum(apply_qty) as orderQty
+		  from pj_allot_apply_detail a
+		  inner join pj_allot_apply_main b
+		  on a.main_id = b.id
+		  where main_id = #id#
+		  group by a.part_id, a.store_id
+		) b
+		on a.store_id = b.store_id and a.part_id = b.part_id
+		set a.on_road_qty = a.on_road_qty + b.orderQty
+	</update>
+	
+	<!--调拨申请入库后更新在途数量  减少-->
+	<update id="updatePartStockOnroadQtyByAllotD" parameterClass="java.util.HashMap" >
+		update pj_part_stock a
+		inner join (
+		  select a.part_id, sum(apply_qty) as orderQty
+		  from pj_allot_apply_detail a
+		  inner join pj_allot_apply_main b
+		  on a.main_id = b.id
+		  where a.main_id = #id# 
+		  group by part_id
+		) b
+		on a.part_id = b.part_id
+		set a.on_road_qty = case when a.on_road_qty - b.orderQty > 0 then a.on_road_qty - b.orderQty else 0 end
+	</update>
+	
+	<update id="updatePartStoreStockOnroadQtyByAllotD" parameterClass="java.util.HashMap" >
+		update pj_part_store_stock a
+		inner join (
+		  select a.part_id, a.store_id, sum(apply_qty) as orderQty
+		  from pj_allot_apply_detail a
+		  inner join pj_allot_apply_main b
+		  on a.main_id = b.id
+		  where main_id = #id#
+		  group by a.part_id, a.store_id
+		) b
+		on a.store_id = b.store_id and a.part_id = b.part_id
+		set a.on_road_qty = case when a.on_road_qty - b.orderQty > 0 then a.on_road_qty - b.orderQty else 0 end
+	</update>
 	
 </sqlMap>

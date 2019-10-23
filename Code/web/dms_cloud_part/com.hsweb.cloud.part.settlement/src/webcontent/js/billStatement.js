@@ -66,6 +66,7 @@ var accountSignHash = {
 var enterTypeIdHash = {1:"采购订单",2:"销售订单",3:"采购退货",4:"销售退货",
                        5:"调拨申请",6:"调拨受理",7:"调出退回",8:"调入退回"};
 
+var billTypeList=[{id:"1",name:"采购对账"},{id:"2",name:"销售对账"},{id:"3",name:"调入对账"},{id:"4",name:"调出对账"}];
 $(document).ready(function(v)
 {
     leftGrid = nui.get("leftGrid");
@@ -892,7 +893,8 @@ function getMainData()
 var requiredField = {
     guestId : "往来单位",
     stateMan : "对账员",
-    createDate : "对账日期"
+    createDate : "对账日期",
+    billType :"对账类型"
 };
 var saveUrl = baseUrl + "com.hsapi.cloud.part.settle.svr.savePjStatement.biz.ext";
 function save() {

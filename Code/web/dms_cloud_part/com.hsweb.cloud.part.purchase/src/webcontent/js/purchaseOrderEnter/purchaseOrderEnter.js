@@ -2824,6 +2824,7 @@ function addOrderToEnter(data){
 	nui.get("settleTypeId").setValue(data.settleTypeId);
 	nui.get("taxRate").setValue(data.taxRate);
 	nui.get("taxSign").setValue(data.taxSign);
+	nui.get("remark").setValue(data.remark);
 //	nui.get("createDate").setValue(new Date());
 	nui.get("orderDate").setValue(data.orderDate);
 	nui.get("orderMan").setValue(data.orderMan);
@@ -2887,7 +2888,8 @@ function getOrderDetail(params)
 							taxAmt : parseFloat(row.orderQty) * parseFloat(row.taxPrice),
 							taxPrice : row.taxPrice,
 							sourceMainId : row.mainId,
-							sourceDetailId : row.id
+							sourceDetailId : row.id,
+							remark :row.remark
 						};
                    
                         rightGrid.addRow(enterDetail);

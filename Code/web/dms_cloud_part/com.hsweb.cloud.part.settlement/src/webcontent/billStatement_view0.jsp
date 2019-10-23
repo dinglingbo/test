@@ -9,7 +9,7 @@
 -->
 <head>
 <title>月结对账</title>
-<script src="<%=webPath + contextPath%>/settlement/js/billStatement.js?v=1.0.46"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/billStatement.js?v=1.0.51"></script>
 <style type="text/css">
 .title {
   width: 85px;
@@ -253,8 +253,8 @@
                                           <label>对账类型：</label>
                                       </td>
                                       <td colspan="1">
-                                           <input name="billType" visible=""
-			                                 id="billType"
+                                           <input name="balaType" visible=""
+			                                 id="balaType"
 			                                 class="nui-combobox width1"
 			                                 textField="name"
 			                                 valueField="id"
@@ -263,7 +263,7 @@
 			                                 allowInput="true"
 			                                 selectOnFocus="true"
 			                                 showNullItem="false"
-			                                 data="billTypeList"
+			                                 data="balaTypeList"
 			                                 width="100%"/>
                                       </td>
                                   	 <td class="title">

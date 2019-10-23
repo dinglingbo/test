@@ -447,6 +447,7 @@ function onOk()
                 guestId:node.guestId,
                 fullName:node.fullName,
                 orderDate : node.orderDate,
+                remark : node.mainRemark,
                 type:"pchs"
             };
             //  return;

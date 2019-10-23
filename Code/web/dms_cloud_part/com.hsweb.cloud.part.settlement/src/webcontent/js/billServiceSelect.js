@@ -38,7 +38,6 @@ var eBillAuditDateEl = null;
 var billSearchGuestIdEl = null;
 var billServiceIdEl = null;
 var billServiceManEl = null;
-
 $(document).ready(function(v)
 {
     notStatementGrid = nui.get("notStatementGrid");
@@ -111,12 +110,11 @@ $(document).ready(function(v)
     
 
 });
-function setInitData(data, ck, cck){
+function setInitData(data,orderTypeIdList, ck, cck){
     callback = ck;
     checkcallback = cck;
-
     billSearchGuestIdEl.setValue(data);
-
+    nui.get('orderTypeIdList').setValue(orderTypeIdList);
     searchBill();
 }
 
@@ -201,6 +199,7 @@ function getBillSearchParam(){
     if(params.guestIdList==""){
     	params.guestId = guestId;
     }
+    params.orderTypeIdList = nui.get('orderTypeIdList').getValue();
     return params;
 }
 function searchBill()
@@ -214,6 +213,7 @@ function doNotStatement(params){
     params.sortOrder = "desc";
     params.settleTypeId = "020502";
     params.stateSign = 0;
+    
 //    params.isState = 0;
     notStatementGrid.load({
         params:params,

@@ -342,7 +342,7 @@
 			a.receive_amt as receiveAmt,
 			b.full_name as guestName,
 			a.invoice_register as invoiceRegister,
-			a.bill_type as billType
+			a.bala_type as balaType
 		FROM
 			pj_statement_main AS a
 			inner join wb_common.com_guest b

@@ -1009,7 +1009,7 @@ function checkBalaType(){
 	var data =rightGrid.getData();
 	if(balaType ==1){
 		for(var i=0;i<data.length;i++){
-			if(data[i].typeCode !=1 || data[i].typeCode !=3){
+			if(data[i].typeCode !=1 && data[i].typeCode !=3){
 				showMsg("明细的业务类型与对账类型不匹配","W");
 				return false;
 			}
@@ -1017,7 +1017,7 @@ function checkBalaType(){
 	}
 	if(balaType ==2){
 		for(var i=0;i<data.length;i++){
-			if(data[i].typeCode !=2 || data[i].typeCode !=4){
+			if(data[i].typeCode !=2 && data[i].typeCode !=4){
 				showMsg("明细的业务类型与对账类型不匹配","W");
 				return false;
 			}
@@ -1025,7 +1025,7 @@ function checkBalaType(){
 	}
 	if(balaType ==3){
 		for(var i=0;i<data.length;i++){
-			if(data[i].typeCode !=5 || data[i].typeCode !=7){
+			if(data[i].typeCode !=5 && data[i].typeCode !=7){
 				showMsg("明细的业务类型与对账类型不匹配","W");
 				return false;
 			}
@@ -1033,7 +1033,7 @@ function checkBalaType(){
 	}
 	if(balaType ==4){
 		for(var i=0;i<rows.length;i++){
-			if(data[i].typeCode !=6 || data[i].typeCode !=8){
+			if(data[i].typeCode !=6 && data[i].typeCode !=8){
 				showMsg("明细的业务类型与对账类型不匹配","W");
 				return false;
 			}

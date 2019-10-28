@@ -739,7 +739,12 @@ function addSelectInnerPart(){
         if(record){
             column = innerPartGrid.getColumn("outableQty");
             advancedAddWin.show();
-            nui.get("storeId").setValue(StoreId);
+            if(StoreId){
+            	nui.get("storeId").setValue(StoreId);
+            }else{
+            	nui.get("storeId").setValue(FStoreId);
+            }
+            
            
             nui.get("storeShelf").setValue(record.storeShelf);
             nui.get("qty").setValue(1);

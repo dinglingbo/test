@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件资料</title>
-<script src="<%=webPath + contextPath%>/basic/js/partDetail.js?v=1.0.76"></script>
+<script src="<%=webPath + contextPath%>/basic/js/partDetail.js?v=1.0.5"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -146,10 +146,25 @@
                     <td ><input name="code" class="nui-textbox" width="150px" id="code"/></td>
                     <td class=" right fwidthb required">名称:</td>
                     <td >
-                        <input name="partNameId" id="partNameId"
+                 		<input id="partNameId"
+                             name="partNameId"                            
+                             dataField="partNames"
+                             textField="name"
+                             loadingText="查询中"
+                             valueField="id"
+                             class="nui-autocomplete"
+                             emptyText="请选择名称..."
+                             allowInput="true"
+                             popupEmptyText="未找到名称"
+                             url=""  searchField="key"
+                             width="150px"
+                             placeholder="请选择名称"
+                             selectOnFocus="true" />
+                       <!-- <a class="nui-button" iconCls="" plain="false" onclick="onButtonEdit" id="selectNameBtn"><span class="fa fa-check fa-lg"></span></a>-->
+                    <!--    <input name="partNameId" id="partNameId"
                         class="nui-buttonedit" emptyText=""
                         allowInput="false" width="150px"
-                        onbuttonclick="onButtonEdit" selectOnFocus="true" />
+                        onbuttonclick="onButtonEdit" selectOnFocus="true" />-->
                     </td>
                 </tr>
                 <tr class="htr">

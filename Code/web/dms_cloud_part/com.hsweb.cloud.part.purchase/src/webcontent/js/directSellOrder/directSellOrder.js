@@ -917,7 +917,8 @@ function showPartInfo(row, value, mainId){
                 value:value,
                 mainId:mainId,
                 guestId: nui.get("guestId").getValue(),
-                directOrgid : directOrgidEl.getValue()
+                directOrgid : directOrgidEl.getValue(),
+                storeId :nui.get("storeId").getValue()
             };
             iframe.contentWindow.setInitData(params,
                 function(data,ck) {

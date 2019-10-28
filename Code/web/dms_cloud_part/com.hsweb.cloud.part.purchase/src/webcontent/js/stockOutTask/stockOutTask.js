@@ -298,6 +298,7 @@ $(document).ready(function(v)
                 storehouse.forEach(function(v) {
                     storeHash[v.id] = v;
                 });
+                nui.get("selectStoreId").setData(storehouse);
             }else{
                 isNeedSet = true;
             }
@@ -1038,6 +1039,7 @@ function getSearchParam(){
 	var params = {};
     params = gsparams;
     params.guestId = nui.get("searchGuestId").getValue();
+    params.storeId =nui.get("selectStoreId").getValue()||"";
   //是业务员且业务员禁止可见
 	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
 		params.creator= currUserName;

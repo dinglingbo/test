@@ -19,6 +19,7 @@ var billTypeHash = {};
 var storeHash = {};
 var advancedAddWin = null;
 var FStoreId = null;
+var StoreId = null;
 var advancedAddForm = null;
 var mainId = 0;
 var guestId = null;
@@ -482,6 +483,7 @@ function setInitData(params, ck, cck){
     mainId = params.mainId;
     guestId = params.guestId;
     directOrgid =params.directOrgid;
+    StoreId = params.storeId;
     queryStore();
     callback = ck;
     checkcallback = cck;
@@ -737,7 +739,7 @@ function addSelectInnerPart(){
         if(record){
             column = innerPartGrid.getColumn("outableQty");
             advancedAddWin.show();
-            nui.get("storeId").setValue(FStoreId);
+            nui.get("storeId").setValue(StoreId);
            
             nui.get("storeShelf").setValue(record.storeShelf);
             nui.get("qty").setValue(1);
@@ -813,9 +815,9 @@ function addSelectPart(){
         if(record){
             column = morePartGrid.getColumn("outableQty");
             advancedAddWin.show();
-            nui.get("storeId").setValue(FStoreId);
+            nui.get("storeId").setValue(StoreId);
             nui.get("directStoreId").setValue(directStoreHouse[0].id);
-            getLocationListByStoreId(FStoreId,function(data) {
+            getLocationListByStoreId(StoreId,function(data) {
         		storeShelfList = data.locationList || [];
         		nui.get('storeShelf').setData(storeShelfList);
         		

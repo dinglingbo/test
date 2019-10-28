@@ -29,6 +29,9 @@
                     <li iconCls="" onclick="quickSearch(8)" id="type8">部分出库</li>
                     <li iconCls="" onclick="quickSearch(9)" id="type9">已出库</li>
                 </ul>
+                 <input id="selectStoreId" with="100px"  enabled="true" name="selectStoreId" dataField="storehouse"
+ 					class="nui-combobox" valueField="id" textField="name" data="storehouse"
+                  onvaluechanged="search()" emptyText="选择仓库" />
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择客户..." visible="false"
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
@@ -82,18 +85,20 @@
                      onselectionchanged="onLeftGridSelectionChanged"
                      onbeforedeselect="onLeftGridBeforeDeselect"
                      dataField="pjSellOrderMainList"
+                     sortMode="client"
                      url="">
                     <div property="columns">
                       <div type="indexcolumn">序号</div>
                       	<div field="auditSign" width="55" headerAlign="center" header="状态" visible="false"></div>
                       	<div field="billStatusId" width="55" headerAlign="center" header="状态" ></div>
-                        <div field="guestFullName" width="140" headerAlign="center" header="客户"></div>
-                        <div field="orderDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="订单日期"></div>
+                        <div field="guestFullName" width="140" headerAlign="center" header="客户" allowSort="true"></div>
+                        <div field="orderDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="订单日期" allowSort="true"></div>
                         <div field="orderMan" width="60" headerAlign="center" header="销售员"></div>
                         <div field="serviceId" headerAlign="center" width="150" header="出库单号"></div>
-                        <div field="printTimes" width="60" headerAlign="center" header="打印次数"></div>
+                        <div field="remark" headerAlign="center" width="150" header="备注" ></div>
+                        <div field="printTimes" width="60" headerAlign="center" header="打印次数" visible="false"></div>
                         <div field="auditor" width="60" headerAlign="center" header="出库人"></div>
-                        <div field="auditDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="出库日期"></div>
+                        <div field="auditDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="出库日期" allowSort="true"></div>
                     </div>
                 </div>
             </div>

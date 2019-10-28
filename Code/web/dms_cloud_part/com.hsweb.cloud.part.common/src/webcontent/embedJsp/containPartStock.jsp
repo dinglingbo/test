@@ -97,9 +97,9 @@
                             <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="品牌车型"></div>
                             <div field="enterDate" allowSort="true" width="120" dateFormat="yyyy-MM-dd HH:mm" width="120px" header="入库日期" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>
                             <div field="guestFullName" width="180px" headerAlign="center" allowSort="true" header="供应商"></div>  
-                            <div field="serviceId" align="left" width="180px" headerAlign="center" allowSort="true" header="单号"></div>
+                            <div field="manualCode" align="left" width="180px" headerAlign="center" allowSort="true" header="单号"></div>
                             <div field="comPartFullName" name="comPartFullName" width="200" headerAlign="center" header="配件全称"></div> 
-                            <div field="mainRemark" name="mainRemark" width="200" headerAlign="center" header="备注"></div> 
+                            <div field="detailRemark" name="detailRemark" width="200" headerAlign="center" header="备注"></div> 
                         </div>
                     </div>
                 </div>

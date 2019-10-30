@@ -33,10 +33,10 @@
 			select 'ALL' as type, 0 as id, '全部' as name
 			union
 				select 'BZ' as type, id, name from wb_common.com_member_group 
-				where is_disabled = 0 and tenant_id = #tenantId#
+				where is_disabled = 0 and tenant_id = #tenantId# and orgid = #orgid#
 			union
 				select 'DJ' as type, id, name from wb_common.com_member_level 
-				where is_disabled = 0 and tenant_id = #tenantId#) m
+				where is_disabled = 0 and tenant_id = #tenantId# and orgid = #orgid#) m
 
 	</select>
 </sqlMap>

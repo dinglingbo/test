@@ -33,6 +33,7 @@
          b.sell_amt sellAmt,
          b.bala_times balaTimes,
          b.use_times useTimes,
+         b.can_use_times as canUseTimes,
          a.buy_source as buySource,
          b.total_times totalTimes,
          (b.bala_times * b.sell_price) remainAmt
@@ -101,7 +102,7 @@
 			INNER JOIN wb_common.com_guest c ON(a.guest_id = c.id) 
 			where 1=1 and a.orgid=#orgid#
 		<isNotEmpty prepend="and" property="id">  
-	            (a.id = #id#)
+	           (a.id = #id#)
 	    </isNotEmpty>
 		</select>
 		

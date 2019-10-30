@@ -77,12 +77,16 @@
         <a class="nui-button" iconCls="" plain="true" onclick="query_vin(0)" id="query0">车架号查询</a>
         <a class="nui-button" iconCls="" plain="true" onclick="query_vin(1)" id="query1">车型查询</a>
         <a class="nui-button" iconCls="" plain="true" onclick="query_vin(2)" id="query2">零件号查询</a>
+<!--         <a class="nui-button" iconCls="" plain="true" onclick="query_vin(3)" id="query3">品牌件查询</a>
+        <a class="nui-button" iconCls="" plain="true" onclick="query_vin(4)" id="query4">保养件查询</a> -->
         <a class="nui-button" iconCls="" plain="true" onclick="showPanel('')" id="query2">（购物车）</a>
     </div>
     <div class="nui-fit">
             <iframe id="mainFrame0" class="theIframe" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
             <iframe id="mainFrame1" class="theIframe" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
             <iframe id="mainFrame2" class="theIframe" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
+            <iframe id="mainFrame3" class="theIframe" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
+            <iframe id="mainFrame4" class="theIframe" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
     </div>
 
 

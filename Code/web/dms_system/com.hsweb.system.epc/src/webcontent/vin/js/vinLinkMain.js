@@ -43,7 +43,9 @@ function query_vin(type){
     $("#query0").css("color","black");
     $("#query1").css("color","black");
     $("#query2").css("color","black");
-
+    $("#query3").css("color","black");
+    $("#query4").css("color","black");
+    
     if($("#query"+type).length>0){
         $("#query"+type).css("color","blue");
         $("#query"+type).css("font-weight","true");
@@ -63,6 +65,12 @@ function query_vin(type){
         case 2:
             document.getElementById("mainFrame2").src=webPath + contextPath + "/com.hsweb.system.epc.partQuery.flow?token="+token;
             break;
+        case 3:
+            document.getElementById("mainFrame3").src=webPath + contextPath + "/com.hsweb.system.epc.partQuery.flow?token="+token;
+            break;  
+        case 4:
+            document.getElementById("mainFrame4").src=webPath + contextPath + "/com.hsweb.system.epc.partQuery.flow?token="+token;
+            break;            
         /* default:
         	document.getElementById("mainFrame").src=webPath + contextPath + "/com.hsweb.system.llqv2.vinQuery.flow.ext?token=214e2f71-4237-4601-9a1a-538bf982b995";
             break; */

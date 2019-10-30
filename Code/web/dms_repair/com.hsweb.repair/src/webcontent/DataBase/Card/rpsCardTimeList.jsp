@@ -11,7 +11,7 @@
 <head>
 <title>计次卡查询</title>
 
-<script src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.0.1"></script>
+<script src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.0.2"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 	
@@ -92,9 +92,11 @@
 						<div field="useTimes" headerAlign="center" allowSort="true" dataType="int">
 							已使用次数
 						</div>
-						<div field="balaTimes" headerAlign="center" allowSort="true" dataType="int">
+						<div field="doTimes" name="doTimes" width="70" headerAlign="center" header="使用中次数"></div>
+          				<div field="canUseTimes" name="canUseTimes" width="70" headerAlign="center" header="可使用次数"></div>
+<!-- 					<div field="balaTimes" headerAlign="center" allowSort="true" dataType="int">
 							剩余次数
-						</div>
+						</div> -->
 						<div field="sellAmt" headerAlign="center" allowSort="true" summaryType="sum" dataType="int">
 							总金额
 						</div>

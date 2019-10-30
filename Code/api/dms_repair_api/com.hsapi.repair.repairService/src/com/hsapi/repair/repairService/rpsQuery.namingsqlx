@@ -1357,7 +1357,7 @@
 		  	INNER JOIN wb_common.com_guest c on a.guest_id = c.id
 		  	INNER JOIN rpb_contactor e on a.contactor_id = e.id
 			inner join rps_settlement d on (a.id =  d.service_id)
-		WHERE 1 = 1 and a.bill_type_id in (0,2,4,6)
+		WHERE 1 = 1 and a.bill_type_id in (0,2,4,6) and a.is_disabled = 0
 			
       <dynamic>
 			<isNotEmpty prepend="and" property="rid">
@@ -1734,9 +1734,9 @@
 	       where e.service_id = a.id) as serviceTypeName,-->
 	       	(select GROUP_CONCAT(name) from rpb_business_type f 	       
 	       where a.service_type_id = f.id) as serviceTypeName,
-		      ifnull((SELECT sum(g.subtotal) from rps_package g where a.id = g.service_id),0) as packageSubtotal,
-		      ifnull((SELECT sum(h.subtotal) from rps_item h where a.id = h.service_id),0) as itemSubtotal,
-		      ifnull((SELECT sum(i.subtotal) from rps_part i where a.id = i.service_id),0) as partSubtotal,
+		      ifnull((SELECT sum(g.subtotal) from rps_package g where a.id = g.service_id and g.is_disabled = 0 ),0) as packageSubtotal,
+		      ifnull((SELECT sum(h.subtotal) from rps_item h where a.id = h.service_id ),0) as itemSubtotal,
+		      ifnull((SELECT sum(i.subtotal) from rps_part i where a.id = i.service_id and i.is_disabled = 0),0) as partSubtotal,
 		      ifnull((SELECT sum(g.subtotal) from rps_package g where a.id = g.service_id),0)+
 		      ifnull((SELECT sum(h.subtotal) from rps_item h where a.id = h.service_id),0)+
 		      ifnull((SELECT sum(i.subtotal) from rps_part i where a.id = i.service_id),0) as total 

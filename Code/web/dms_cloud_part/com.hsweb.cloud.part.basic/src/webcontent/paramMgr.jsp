@@ -68,7 +68,7 @@
                 </td>
             </tr> 
             <tr>
-                <td class="tbtext">是否允许查看其他人创建的单据：</td>
+                <td class="tbtext">是否禁止查看其他人创建的单据：</td>
                 <td class="tbCtrl" >
                    <div id="isCanViewOtherBill" name="isCanViewOtherBill" 
                         class="nui-radiobuttonlist" value="" repeatItems="2" 
@@ -77,7 +77,7 @@
                 </td>
             </tr> 
             <tr>
-                <td class="tbtext">是否允许提交其他人创建的单据：</td>
+                <td class="tbtext">是否禁止提交其他人创建的单据：</td>
                 <td class="tbCtrl" >
                    <div id="isCanSubmitOtherBill" name="isCanSubmitOtherBill" 
                         class="nui-radiobuttonlist" value="" repeatItems="2" 

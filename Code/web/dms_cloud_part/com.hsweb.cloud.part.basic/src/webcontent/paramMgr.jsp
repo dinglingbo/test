@@ -10,7 +10,7 @@
 -->
 <head>
 <title>参数设置</title>
-    <script src="<%=webPath + contextPath%>/basic/js/paramMgr.js?v=1.0.23"></script>
+    <script src="<%=webPath + contextPath%>/basic/js/paramMgr.js?v=1.1.0"></script>
     
     <style type="text/css">
 
@@ -66,6 +66,24 @@
                         repeatDirection="" repeatLayout="table" 
                         textField="text" valueField="id" ></div>
                 </td>
+            </tr> 
+            <tr>
+                <td class="tbtext">是否禁止查看其他人创建的单据：</td>
+                <td class="tbCtrl" >
+                   <div id="isCanViewOtherBill" name="isCanViewOtherBill" 
+                        class="nui-radiobuttonlist" value="" repeatItems="2" 
+                        repeatDirection="" repeatLayout="table" 
+                        textField="text" valueField="id" ></div>
+                </td>
+            </tr> 
+            <tr>
+                <td class="tbtext">是否禁止提交其他人创建的单据：</td>
+                <td class="tbCtrl" >
+                   <div id="isCanSubmitOtherBill" name="isCanSubmitOtherBill" 
+                        class="nui-radiobuttonlist" value="" repeatItems="2" 
+                        repeatDirection="" repeatLayout="table" 
+                        textField="text" valueField="id" ></div>
+                </td>
             </tr>   
         	<tr>
                 <td class="tbtext">销售单、销售出库配件选择tab切换成批次选择：</td>
@@ -75,19 +93,7 @@
                         repeatDirection="" repeatLayout="table" 
                         textField="text" valueField="id" ></div>
                 </td>      
-            </tr> 
-            <tr>
-                <td class="tbtext">打印抬头显示：</td>
-                <td class="tbCtrl" >
-                    <input id="repairSettorderPrintShow" name="repairSettorderPrintShow" class="nui-textbox" >
-                </td>
             </tr>
-            <tr>
-                <td class="tbtext">销售单、销售出库单打印内容：</td>
-                <td class="tbCtrl" >
-                    <input id="cloudSellOrderPrintContent" name="cloudSellOrderPrintContent" class="nui-textarea"   style="height:100px;width:300px">
-                </td>
-            </tr> 
             
             <tr>
                 <td class="tbtext">打印单表格是否换行：</td>
@@ -133,7 +139,19 @@
                         repeatDirection="" repeatLayout="table" 
                         textField="text" valueField="id" ></div>
                 </td>
-            </tr>     
+            </tr>    
+            <tr>
+                <td class="tbtext">打印抬头显示：</td>
+                <td class="tbCtrl" >
+                    <input id="repairSettorderPrintShow" name="repairSettorderPrintShow" class="nui-textbox" >
+                </td>
+            </tr>
+            <tr>
+                <td class="tbtext">销售单、销售出库单打印内容：</td>
+                <td class="tbCtrl" >
+                    <input id="cloudSellOrderPrintContent" name="cloudSellOrderPrintContent" class="nui-textarea"   style="height:100px;width:300px">
+                </td>
+            </tr>   
         </table>
     </div>
 	<script type="text/javascript">

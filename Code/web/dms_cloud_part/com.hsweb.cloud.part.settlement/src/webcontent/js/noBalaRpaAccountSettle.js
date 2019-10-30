@@ -1,19 +1,23 @@
 var baseUrl = apiPath + cloudPartApi + "/";
 var companyUrl = apiPath + sysApi + "/"+"com.hsapi.system.basic.organization.getCompanyAll.biz.ext";
 var mainGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.queryNoSettleBill.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryPjPchsEnterMainDetailList.biz.ext";
-var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryReceiveMainDetails.biz.ext";
+var purGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryPjPchsEnterMainDetailList.biz.ext";
+var sellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryReceiveMainDetails.biz.ext";
 var exportUrl= baseUrl + "com.hsapi.cloud.part.invoicing.query.exportReceiveMainDetails.biz.ext";
 var orgidsEl =null;
 var orgids="";
 var mainGrid =null;
 var searchBeginDate = null;
 var searchEndDate = null;
-var leftGrid = null;
-var rightGrid =null;
+var purEnterGrid = null;
+var sellOutGrid =null;
+var purRtnGrid = null;
+var sellRtnGrid =null;
 var mainTabs =null;
-var allotPayGrid = null;
-var allotReceiveGrid = null;
+var allotApplyGrid = null;
+var allotAcceptGrid = null;
+var allotInRtnGrid = null;
+var allotOutRtnGrid = null;
 var allotPayGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryAllotApplyDetails.biz.ext";
 var allotReceiveGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryAllotAcceptDetails.biz.ext";
 
@@ -23,6 +27,8 @@ var settTypeIdHash = {};
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
 var settleTypeIdEl =null;
+
+//1:"采购订单",2:"销售订单",3:"采购退货",4:"销售退货",5:"调拨申请",6:"调拨受理",7:"调出退回",8:"调入退回"
 $(document).ready(function(v) {
 	orgidsEl = nui.get("orgids");
 	if(currIsMaster!=1){
@@ -36,15 +42,27 @@ $(document).ready(function(v) {
 	mainGrid.setUrl(mainGridUrl);
     searchBeginDate = nui.get("beginDate");
     searchEndDate = nui.get("endDate");
-    leftGrid =nui.get("leftGrid");
-    rightGrid = nui.get("rightGrid");
-    leftGrid.setUrl(leftGridUrl);
-    rightGrid.setUrl(rightGridUrl);
+    purEnterGrid =nui.get("purEnterGrid");
+    purRtnGrid  =nui.get("purRtnGrid");
+    sellOutGrid = nui.get("sellOutGrid");
+    sellRtnGrid = nui.get("sellRtnGrid");
+
     
-    allotReceiveGrid =nui.get("allotReceiveGrid");
-    allotPayGrid = nui.get("allotPayGrid");
-    allotReceiveGrid.setUrl(allotReceiveGridUrl);
-    allotPayGrid.setUrl(allotPayGridUrl);
+    purEnterGrid.setUrl(purGridUrl);
+    purRtnGrid.setUrl(sellGridUrl);
+    sellOutGrid.setUrl(sellGridUrl);
+    sellRtnGrid.setUrl(purGridUrl);
+
+    
+    allotApplyGrid =nui.get("allotApplyGrid");
+    allotInRtnGrid = nui.get("allotInRtnGrid");
+    allotAcceptGrid =nui.get("allotAcceptGrid");
+    allotOutRtnGrid = nui.get("allotOutRtnGrid");
+    
+    allotApplyGrid.setUrl(allotPayGridUrl);
+    allotInRtnGrid.setUrl(allotReceiveGridUrl);
+    allotAcceptGrid.setUrl(allotReceiveGridUrl);
+    allotOutRtnGrid.setUrl(allotPayGridUrl);
     
     mainTabs =nui.get("mainTabs");
     mainTabs.on("activechanged",function(e){
@@ -56,17 +74,29 @@ $(document).ready(function(v) {
         if(mainGrid.getSelected()){
         	 params.guestId=mainGrid.getSelected().guestId;
         }
-        if(name == 'receiveTab'){
-        	loadLeftGridData(params);
+        if(name == 'purEnterTab'){
+        	loadPurEnterGridData(params);
         }
-        else if(name== 'payTab'){
-        	loadRightGridData(params);
+        if(name== 'purRtnTab'){
+        	loadPurRtnGridData(params);
         }
-        else if(name== 'allotReceiveTab'){
-        	loadAllotReceiveGridData(params);
+        if(name == 'sellOutTab'){
+        	loadSellOutGridData(params);
         }
-        else if(name== 'allotPayTab'){
-        	loadAllotPayGridData(params);
+        if(name== 'sellRtnrTab'){
+        	loadSellRtnGridData(params);
+        }
+        if(name== 'allotApplyTab'){
+        	loadAllotApplyGridData(params);
+        }
+        if(name== 'allotInRtnTab'){
+        	loadAllotInRtnGridData(params);
+        }
+        if(name== 'allotAcceptTab'){
+        	loadAllotAcceptGridData(params);
+        }
+        if(name== 'allotOuRtnTab'){
+        	loadAllotOutRtnGridData(params);
         }
     });
     
@@ -270,55 +300,121 @@ function doSearch(params)
         if(mainGrid.getSelected()){
        	 	params.guestId=mainGrid.getSelected().guestId;
         }
-        if(name == 'receiveTab'){
-        	loadLeftGridData(params);
+        if(name == 'purEnterTab'){
+        	loadPurEnterGridData(params);
         }
-        else if(name== 'payTab'){
-        	loadRightGridData(params);
+        if(name== 'purRtnTab'){
+        	loadPurRtnGridData(params);
         }
-        else if(name== 'allotReceiveTab'){
-        	loadAllotReceiveGridData(params);
+        if(name == 'sellOutTab'){
+        	loadSellOutGridData(params);
         }
-        else if(name== 'allotPayTab'){
-        	loadAllotPayGridData(params);
+        if(name== 'sellRtnrTab'){
+        	loadSellRtnGridData(params);
+        }
+        if(name== 'allotApplyTab'){
+        	loadAllotApplyGridData(params);
+        }
+        if(name== 'allotInRtnTab'){
+        	loadAllotInRtnGridData(params);
+        }
+        if(name== 'allotAcceptTab'){
+        	loadAllotAcceptGridData(params);
+        }
+        if(name== 'allotOuRtnTab'){
+        	loadAllotOutRtnGridData(params);
         }
     });
 	
 	
 }
 
-function loadRightGridData(params){
+//采购入库
+function loadPurEnterGridData(params){
 	params.sortField ="a.audit_date";
 	params.sortOrder ="desc";
-    rightGrid.load({
+	params.orderTypeId =1;
+	purEnterGrid.load({
         params:params,
         token:token
     });
 }
 
-function loadLeftGridData(params){
+//采购退货
+function loadPurRtnGridData(params){
 	params.sortField ="a.audit_date";
 	params.sortOrder ="desc";
-    leftGrid.load({
+	params.orderTypeId =3;
+	purRtnGrid.load({
         params:params,
         token:token
     });
 }
 
-function loadAllotReceiveGridData(params){
+//销售出库
+function loadSellOutGridData(params){
+	params.sortField ="a.audit_date";
+	params.sortOrder ="desc";
+	params.orderTypeId =2;
+	sellOutGrid.load({
+        params:params,
+        token:token
+    });
+}
+
+//销售退货
+function loadSellRtnGridData(params){
+	params.sortField ="a.audit_date";
+	params.sortOrder ="desc";
+	params.orderTypeId =4;
+	sellRtnGrid.load({
+        params:params,
+        token:token
+    });
+}
+
+//调拨入库
+function loadAllotApplyGridData(params){
+	params.orderTypeId =1;
     params.isDiffOrder = 1;
 	params.sortField = "audit_date";
 	params.sortOrder = "desc";
-	allotReceiveGrid.load({
+	allotApplyGrid.load({
         params:params,
         token:token
     });
 }
-function loadAllotPayGridData(params){
+
+//调入退货
+function loadAllotInRtnGridData(params){
+	params.orderTypeId =4;
     params.isDiffOrder = 1;
 	params.sortField = "audit_date";
 	params.sortOrder = "desc"
-    allotPayGrid.load({
+	allotInRtnGrid.load({
+        params:params,
+        token:token
+    });
+}
+
+//调拨出库
+function loadAllotAcceptGridData(params){
+	params.orderTypeId =2;
+    params.isDiffOrder = 1;
+	params.sortField = "audit_date";
+	params.sortOrder = "desc";
+	allotAcceptGrid.load({
+        params:params,
+        token:token
+    });
+}
+//调出退货
+function loadAllotOutRtnGridData(params){
+	params.orderTypeId =3;
+    params.isDiffOrder = 1;
+	params.sortField = "audit_date";
+	params.sortOrder = "desc"
+	allotOutRtnGrid.load({
         params:params,
         token:token
     });
@@ -439,35 +535,48 @@ function onMainGridClick(e){
 	    var url = tab.url;
 	    var params = getSearchParam();
 	    params.guestId = guestId;
-	    if(name == 'receiveTab'){
-	    	loadLeftGridData(params);
-	    }
-	    else if(name== 'payTab'){
-	    	loadRightGridData(params);
-	    }
-	    else if(name== 'allotReceiveTab'){
-	    	loadAllotReceiveGridData(params);
-	    }
-	    else if(name== 'allotPayTab'){
-	    	loadAllotPayGridData(params);
-	    }
+	    if(name == 'purEnterTab'){
+        	loadPurEnterGridData(params);
+        }
+        if(name== 'purRtnTab'){
+        	loadPurRtnGridData(params);
+        }
+        if(name == 'sellOutTab'){
+        	loadSellOutGridData(params);
+        }
+        if(name== 'sellRtnrTab'){
+        	loadSellRtnGridData(params);
+        }
+        if(name== 'allotApplyTab'){
+        	loadAllotApplyGridData(params);
+        }
+        if(name== 'allotInRtnTab'){
+        	loadAllotInRtnGridData(params);
+        }
+        if(name== 'allotAcceptTab'){
+        	loadAllotAcceptGridData(params);
+        }
+        if(name== 'allotOuRtnTab'){
+        	loadAllotOutRtnGridData(params);
+        }
 	}else{
 		rightUnifyGrid.setData([]);
 	}
 }
 
-
-function onExport(){
+function onPurExport(){
 	$.ajaxSettings.async = false;
-	var leftRows=leftGrid.getData();
+//	var leftRows=leftGrid.getData();
 	if(!mainGrid.getSelected()){
 		return;
 	}
-	if(leftRows.length<0){
-		return;	
-	}
+//	if(leftRows.length<0){
+//		return;	
+//	}
 	var params = getSearchParam();
     params.guestId = mainGrid.getSelected().guestId;
+    params.sellTypeId =3;
+    params.purTypeId = 1;
     nui.ajax({
         url: exportUrl,
         type: 'post',
@@ -488,6 +597,42 @@ function onExport(){
             console.log(jqXHR.responseText);
         }
 	});
+
+}
+function onSellExport(){
+	$.ajaxSettings.async = false;
+//	var leftRows=leftGrid.getData();
+	if(!mainGrid.getSelected()){
+		return;
+	}
+//	if(leftRows.length<0){
+//		return;	
+//	}
+	var params = getSearchParam();
+    params.guestId = mainGrid.getSelected().guestId;
+    params.sellTypeId =2;
+    params.purTypeId = 4;
+    nui.ajax({
+        url: exportUrl,
+        type: 'post',
+        async:false,
+        data: nui.encode({
+        	params: params,
+        	page :{length:1000,size:1000},
+            token: token
+        }),
+        cache: false,
+        success: function (data) {
+        	detail =data.detailList;    	
+        	if(detail && detail.length > 0){
+        		setInitExportData(detail);
+        	}
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
+	});
+
   
 }
 
@@ -498,27 +643,27 @@ function setInitExportData(detail){
         "<td  colspan='1' align='left'>[carBrandName]</td>" +
         "<td  colspan='1' align='left'>[serviceId]</td>" +
         "<td  colspan='1' align='left'>[outDate]</td>" +
-        "<td  colspan='1' align='left'>[showPartCode]</td>" +
-        "<td  colspan='1' align='left'>[showFullName]</td>" +
+        "<td  colspan='1' align='left'>[partCode]</td>" +
+        "<td  colspan='1' align='left'>[fullName]</td>" +
         "<td  colspan='1' align='left'>[orderQty]</td>"+
-        "<td  colspan='1' align='left'>[showPrice]</td>"+
-        "<td  colspan='1' align='left'>[showAmt]</td>" ;
+        "<td  colspan='1' align='left'>[orderPrice]</td>"+
+        "<td  colspan='1' align='left'>[orderAmt]</td>" ;
     var tableExportContent = $("#tableExportContent");
     tableExportContent.empty();
     for (var i = 0; i < detail.length; i++) {
         var row = detail[i];
-        if(row.showPartId){
+        if(row.partId){
             var tr = $("<tr></tr>");
             tr.append(tds.replace("[guestFullName]", detail[i].guestFullName?detail[i].guestFullName:"")
                          .replace("[orgName]", detail[i].orgName?detail[i].orgName:"")
                          .replace("[carBrandName]", detail[i].carBrandName?detail[i].carBrandName:"")
                          .replace("[serviceId]", detail[i].serviceId?detail[i].serviceId:"")
                          .replace("[outDate]", detail[i].outDate?format(detail[i].outDate,"yyyy-MM-dd HH:mm"):"")
-                         .replace("[showPartCode]", detail[i].showPartCode?detail[i].showPartCode:"")
-                         .replace("[showFullName]", detail[i].showFullName?detail[i].showFullName:"")
+                         .replace("[partCode]", detail[i].partCode?detail[i].partCode:"")
+                         .replace("[fullName]", detail[i].fullName?detail[i].fullName:"")
                          .replace("[orderQty]", detail[i].orderQty?detail[i].orderQty:"")
-                         .replace("[showPrice]", detail[i].showPrice?detail[i].showPrice:"")
-                         .replace("[showAmt]", detail[i].showAmt?detail[i].showAmt:""));
+                         .replace("[orderPrice]", detail[i].orderPrice?detail[i].orderPrice:"")
+                         .replace("[orderAmt]", detail[i].orderAmt?detail[i].orderAmt:""));
             tableExportContent.append(tr);
         }
     }

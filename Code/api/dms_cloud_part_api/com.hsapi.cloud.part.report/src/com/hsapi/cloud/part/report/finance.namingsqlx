@@ -94,7 +94,7 @@
 	            </isNotEmpty> 
     </select>
     
-    <!--收付款明细  rpDc 1收  -1付-->
+    <!--收付款明细  rpDc 1收  -1付
 	<select id="queryRPAccountDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	
             SELECT a.bill_main_id as billMainId, a.bill_service_id as billServiceId, a.bill_type_id as billTypeId,
@@ -116,7 +116,7 @@
 				<isNotEmpty prepend="and" property="orgid"> 
                     (b.orgid = #orgid#)
                 </isNotEmpty>
-                <!--本日 昨日 本周 上周 本月 下月 -->
+                
                 <isNotEmpty prepend="and" property="startDate">  
                     (b.audit_date &gt;= #startDate#)
                 </isNotEmpty>
@@ -142,6 +142,67 @@
                 <isNotEmpty prepend="order by" property="sortField">  
 	                $sortField$ $sortOrder$
 	            </isNotEmpty> 
+    </select>
+    		本日 昨日 本周 上周 本月 下月 
+    -->
+    <select id="queryRPAccountDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT 
+    			a.id as id,	    
+			    a.orgid as orgid,
+			    a.guest_name as guestName,
+		        a.rp_account_id as rpAccountId,
+		        a.guest_id as guestId,
+		        a.auditor as auditor, 
+		        a.audit_date as auditDate,
+		        a.rp_dc as rpDc, 
+		        a.remark as remark,
+		        c.bala_type_code as balaTypeCode,
+		        c.sett_account_id as settAccountId,
+		        d.name as settAccountName,
+		        c.char_off_amt as settCharOffAmt
+			       			       
+			from fi_rp_account a
+			inner join fi_rp_account_d_type c on a.id = c.main_id 
+			inner join fi_settle_account d on c.sett_account_id = d.id
+			where 1 = 1 
+				<isNotEmpty prepend="and" property="carNo">  
+					 EXISTS (
+							select 1 from fis_rp_account_detail d 
+								inner join fis_rp_bill e on d.bill_rp_id = e.id 
+								where a.id = d.main_id and e.car_no = #carNo#)
+
+                </isNotEmpty>    
+				<isNotEmpty prepend="and" property="billServiceId">
+	                 EXISTS (
+							select 1 from fis_rp_account_detail d 
+								inner join fis_rp_bill e on d.bill_rp_id = e.id 
+								where a.id = d.main_id and e.bill_service_id = #billServiceId#)
+	            </isNotEmpty>                        
+			    <isNotEmpty prepend="and" property="settAccountId">  
+                    (c.sett_account_id = #settAccountId#)
+                </isNotEmpty>
+				<isNotEmpty prepend="and" property="orgid">
+	                (a.orgid = #orgid#)
+	            </isNotEmpty>
+	            <isNotEmpty prepend="and" property="orgids">
+	                (a.orgid in ($orgids$))
+	            </isNotEmpty>
+                <isNotEmpty prepend="and" property="startDate">  
+                    (a.audit_date &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                    (a.audit_date &lt; #endDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="guestId">  
+                    (a.guest_id = #guestId#)
+                </isNotEmpty>     
+                <isNotEmpty prepend="and" property="rpDc">  
+                    (a.rp_dc = #rpDc#)
+                </isNotEmpty>
+                <isNotEmpty prepend="order by" property="sortField">  
+	                $sortField$ $sortOrder$
+	            </isNotEmpty> 
+	            order by a.audit_date desc
     </select>
     
      <!--总部收付款明细  rpDc 1收  -1付-->

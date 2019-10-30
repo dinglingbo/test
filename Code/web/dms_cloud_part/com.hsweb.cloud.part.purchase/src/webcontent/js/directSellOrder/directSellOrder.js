@@ -347,6 +347,7 @@ $(document).ready(function(v)
             storehouse.forEach(function(v) {
                 storeHash[v.id] = v;
             });
+            nui.get('storeId').setData(storehouse);
         }else{
             isNeedSet = true;
         }
@@ -561,6 +562,11 @@ function loadMainAndDetailInfo(row)
                 setBtnable(true);
                 setEditable(true);
            }
+           if(currIsSalesman ==1 &&currIsCanSubmitOtherBill ==1 && row.creator !=currUserName ){
+  				nui.get("auditBtn").disable();
+	   		}else {
+	   			nui.get("auditBtn").enable();
+	   		}
        }
         
        //序列化入库主表信息，保存时判断主表信息有没有修改，没有修改则不需要保存
@@ -911,7 +917,8 @@ function showPartInfo(row, value, mainId){
                 value:value,
                 mainId:mainId,
                 guestId: nui.get("guestId").getValue(),
-                directOrgid : directOrgidEl.getValue()
+                directOrgid : directOrgidEl.getValue(),
+                storeId :nui.get("storeId").getValue()
             };
             iframe.contentWindow.setInitData(params,
                 function(data,ck) {
@@ -1171,6 +1178,9 @@ function getSearchParam(){
 	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
 		params.creator= currUserName;
 	}
+	if(currIsSalesman ==1 &&currIsCanViewOtherBill ==1){
+		params.creator= currUserName;
+	}
     return params;
 }
 function setBtnable(flag)
@@ -1217,6 +1227,10 @@ function doSearch(params)
 	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
 		params.creator= currUserName;
 	}
+	if(currIsSalesman ==1 &&currIsCanViewOtherBill ==1){
+		params.creator= currUserName;
+	
+	}
 	leftGrid.load({
 		params : params,
         token : token
@@ -1241,6 +1255,11 @@ function doSearch(params)
                 setBtnable(true);
                 setEditable(true);
             }
+            if(currIsSalesman ==1 && currIsCanSubmitOtherBill ==1 && row.creator !=currUserName ){
+				nui.get("auditBtn").disable();
+			}else {
+				nui.get("auditBtn").enable();
+			}
         }
 	});
 }
@@ -2016,9 +2035,14 @@ function onCellCommitEdit(e) {
         	 oldValue2 = e.oldValue;
              oldRow2 = row;
         }else if(e.field =="showPrice"){
-        	 var orderQty = record.orderQty;
-             var showPrice = e.value;
-             
+        	var orderQty = record.orderQty;
+            var showPrice = e.value;
+            var orderPrice = record.orderPrice;
+            if(showPrice<orderPrice){
+	           	 e.value =e.oldValue;
+	           	 showMsg("开单价不能低于销售价","W");
+	           	 return;
+            }
              if(e.value==null || e.value=='') {
                  e.value = 0;
                  showPrice = 0;
@@ -2470,6 +2494,22 @@ function onGuestValueChanged(e)
 
 		addNewRow(true);
     }
+}
+
+function onStoreIdValueChange(e){
+	var data = e.selected;
+	var rows =rightGrid.getData();
+	var changes=[];
+	if(data){
+		if(rows.length>0){
+			for(var i=0;i<rows.length;i++){
+				if(rows[i].partId){
+					rows[i].storeId =data.id;
+				}
+			}
+			rightGrid.setData(rows);
+		}
+	}
 }
 
 function onStoreValueChange(e){

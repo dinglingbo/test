@@ -9,7 +9,7 @@
 -->
 <head>
 <title>库存查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/stockQuery/partStoreStockQuery.js?v=2.2.5"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/stockQuery/partStoreStockQuery.js?v=2.2.8"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -66,6 +66,18 @@
                            showNullItem="false"
                            nullItemText="请选择..."/>
                 <input id="storeShelf" width="120px" emptyText="仓位" class="nui-textbox"/>
+                 <input id="upOrDown"
+                           name="upOrDown"
+                           class="nui-combobox width1"
+                           textField="name"
+                           valueField="id"
+                           emptyText="库存上下限"
+                           url=""
+                           data="UpOrDownList"
+                           valueFromSelect="true"
+                           allowInput="true"
+                           showNullItem="true"
+                           nullItemText="请选择..."/>
                 <input id="partId" width="80px" visible="false" emptyText="配件ID" class="nui-textbox"/>
                 <span class="separator"></span>
                 <label style="font-family:Verdana;">显示零库存：</label>
@@ -73,6 +85,13 @@
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
+                <a class="nui-menubutton" plain="true" menu="#popupMenuMore" id="menuMore">
+                <span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
+                <ul id="popupMenuMore" class="nui-menu" style="display:none;">
+                     <li name="enterBtn" iconCls="icon-add" onclick="onEnter">入库记录</li>
+	                 <li name="outBtn" iconCls="icon-edit" onclick="onOut">出库记录</li>
+	      <!--           <li name="outBtn" iconCls="icon-edit" onclick="sellRecord">库存占用记录</li>-->
+                </ul>
             </td>
         </tr>
     </table>
@@ -113,7 +132,7 @@
                 <div property="columns">
                     <div allowSort="true" datatype="float" field="orderQty" visible="false" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div>
                     <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
-                    <div allowSort="true" datatype="float" field="onRoadQty" visible="false" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div>
+                    <div allowSort="true" datatype="float" field="onRoadQty" visible="true" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div>
                     <div allowSort="true" field="lastEnterDate" headerAlign="center" width="120"header="最近入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div allowSort="true" field="lastOutDate" headerAlign="center"  width="120" header="最近出库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div allowSort="true" field="upLimit" width="95" headerAlign="center" header="库存上限(夏季)"></div>

@@ -60,7 +60,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <!-- <a class="nui-button" iconCls="icon-undo" plain="true" onclick="cancelEditInbound()" id="cancelEditEnterMainBtn">取消</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="auditToEnter()" id="auditBtn" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;入库</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="auditToEnter()" id="enterBtn" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;入库</a>
                 
                 <!-- <a class="nui-menubutton " menu="#popupMenuPrint" id="menuprint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
 
@@ -142,7 +142,7 @@
                           <input class="nui-hidden" name="operateDate"/>
                           <input class="nui-hidden" name="createDate"/>
                           <input class="nui-hidden" name="versionNo"/>
-                          <input class="nui-hidden" name="storeId" id="storeId"/>
+                       <!--   <input class="nui-hidden" name="storeId" id="storeId"/>-->
                           <input class="nui-hidden" name="taxRate" id="taxRate"/>
                           <input class="nui-hidden" name="taxSign" id="taxSign"/>
                           <input class="nui-hidden" name="orderAmt" id="orderAmt"/>
@@ -264,9 +264,17 @@
                               
                               <tr>
                               	 <td class="title">
+                                      <label>仓库：</label>
+                                  </td>
+                                  <td colspan="1">
+                                      <input width="100%" id="storeId" name="storeId"                                   
+                                       enabled="true"  dataField="storehouse" class="nui-combobox" valueField="id" textField="name"
+                                       data="storehouse" onvaluechanged="onStoreIdValueChange"/>
+                                  </td>
+                              	 <td class="title">
                                       <label>备注：</label>
                                   </td>
-                                  <td colspan="3">
+                                  <td colspan="1">
                                       <input class="nui-textbox" width="100%" id="remark" name="remark"/>
                                   </td>
                                   <td class="title">

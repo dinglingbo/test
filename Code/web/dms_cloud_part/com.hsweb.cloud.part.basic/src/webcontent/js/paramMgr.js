@@ -8,7 +8,9 @@ var isOpenCredit = null;
 var isOnlySeeOwn=null;
 var isBanSeePrice = null;
 var isOpenApp = null;
-var isCommission= null;
+var isCommission = null;
+var isCanViewOtherBill = null;
+var isCanSubmitOtherBill = null;
 var radioList = [{id:1,text:"开启"},{id:0,text:"关闭"}];
 $(document).ready(function(v) {
 	 basicInfoForm = new nui.Form("#basicInfoForm");
@@ -21,6 +23,8 @@ $(document).ready(function(v) {
 	 isBanSeePrice = nui.get('isBanSeePrice');
 	 isOpenApp = nui.get('isOpenApp');
 	 isCommission = nui.get('isCommission');
+	 isCanViewOtherBill = nui.get('isCanViewOtherBill');
+	 isCanSubmitOtherBill = nui.get('isCanSubmitOtherBill');
 	 swithBatchFlag.setData(radioList);
 	 isNeedNewLine.setData(radioList);
 	 isOpenCredit.setData(radioList);
@@ -28,6 +32,8 @@ $(document).ready(function(v) {
 	 isBanSeePrice.setData(radioList);
 	 isOpenApp.setData(radioList);
 	 isCommission.setData(radioList);
+	 isCanViewOtherBill.setData(radioList);
+	 isCanSubmitOtherBill.setData(radioList);
 	 getComParamsList();
 	 	
 	 

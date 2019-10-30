@@ -19,6 +19,7 @@ var billTypeHash = {};
 var storeHash = {};
 var advancedAddWin = null;
 var FStoreId = null;
+var StoreId = null;
 var advancedAddForm = null;
 var mainId = 0;
 var guestId = null;
@@ -33,6 +34,7 @@ var innerPartGrid = null;
 var editFormDetail2 = null;
 var innerPartGrid2 = null;
 var storeShelfList=[]; 
+var StoreId =null;
 $(document).ready(function(v)
 {
     morePartGrid = nui.get("morePartGrid");
@@ -518,6 +520,7 @@ function setInitData(params, ck, cck){
     var value = params.value;
     mainId = params.mainId;
     guestId = params.guestId;
+    StoreId = params.storeId;
     callback = ck;
     checkcallback = cck;
 
@@ -769,7 +772,7 @@ function addSelectInnerPart(){
         if(record){
             column = innerPartGrid.getColumn("outableQty");
             advancedAddWin.show();
-            nui.get("storeId").setValue(FStoreId);
+            nui.get("storeId").setValue(StoreId);
            
             nui.get("storeShelf").setValue(record.storeShelf);
             nui.get("qty").setValue(1);
@@ -845,8 +848,12 @@ function addSelectPart(){
         if(record){
             column = morePartGrid.getColumn("outableQty");
             advancedAddWin.show();
-            nui.get("storeId").setValue(FStoreId);
-            getLocationListByStoreId(FStoreId,function(data) {
+            if(StoreId){
+            	nui.get("storeId").setValue(StoreId);
+            }else{
+            	nui.get("storeId").setValue(FStoreId);
+            }
+            getLocationListByStoreId(StoreId,function(data) {
         		storeShelfList = data.locationList || [];
         		nui.get('storeShelf').setData(storeShelfList);
         		
@@ -1248,6 +1255,17 @@ function showBottomTabInfo(partId){
             params.partId=partId;
             if(!url){
                 mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containPchsOrderRecord.jsp?partId="+partId, tab);
+            }else{
+                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);  
+            }
+            
+            break;
+        case "outRtnRecordTab":
+            var params = {};
+            params.partId=partId;
+            params.guestId =guestId;
+            if(!url){
+                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containSellOrderRtnRecord.jsp?partId="+partId+"&guestId="+guestId, tab);
             }else{
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);  
             }

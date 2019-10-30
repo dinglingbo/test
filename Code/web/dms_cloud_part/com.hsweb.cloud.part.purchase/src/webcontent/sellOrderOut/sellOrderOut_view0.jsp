@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售出库</title>
-<script src="<%=webPath + contextPath%>/purchase/js/sellOrderOut/sellOrderOut.js?v=1.1.12"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/sellOrderOut/sellOrderOut.js?v=1.1.20"></script>
 <style type="text/css">
 .title {
 	width: 70px;
@@ -281,7 +281,7 @@ body .mini-grid-row-selected{
             <tr>
                 <td style="width:100%;">
                     <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart2" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="onPartClose2" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onPartClose2" id="cancelBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
                 </td>
             </tr>
         </table>

@@ -352,6 +352,7 @@ $(document).ready(function(v)
         }else{
             isNeedSet = true;
         }
+        nui.get('storeId').setData(storehouse);
         
         var dictDefs ={"billTypeId":"DDT20130703000008", "settleTypeId":"DDT20130703000035"};
         initDicts(dictDefs, null);
@@ -560,6 +561,12 @@ function loadMainAndDetailInfo(row)
                 setBtnable(true);
                 setEditable(true);
            }
+           if(currIsSalesman ==1 && currIsCanSubmitOtherBill ==1 && row.creator !=currUserName ){
+   				nui.get("auditBtn").disable();
+	   		}else {
+	   			nui.get("auditBtn").enable();
+	   		}
+           
        }
         
        //序列化入库主表信息，保存时判断主表信息有没有修改，没有修改则不需要保存
@@ -935,7 +942,8 @@ function showPartInfo(row, value, mainId){
                 type: "sellOrder",
                 value:value,
                 mainId:mainId,
-                guestId: nui.get("guestId").getValue()
+                guestId: nui.get("guestId").getValue(),
+                storeId :nui.get("storeId").getValue()
             };
             iframe.contentWindow.setInitData(params,
                 function(data,ck) {
@@ -1201,6 +1209,10 @@ function getSearchParam(){
   //是业务员且业务员禁止可见
 	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
 		params.creator= currUserName;
+
+	}
+	if(currIsSalesman ==1 && currIsCanViewOtherBill ==1){
+		params.creator= currUserName;
 	}
     return params;
 }
@@ -1247,6 +1259,10 @@ function doSearch(params)
 	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
 		params.creator= currUserName;
 	}
+	if(currIsSalesman ==1 && currIsCanViewOtherBill ==1){
+		params.creator= currUserName;
+	
+	}
 	leftGrid.load({
 		params : params,
         token : token
@@ -1271,6 +1287,11 @@ function doSearch(params)
                 setBtnable(true);
                 setEditable(true);
             }
+            if(currIsSalesman ==1 && currIsCanSubmitOtherBill ==1 && row.creator !=currUserName ){
+				nui.get("auditBtn").disable();
+			}else {
+				nui.get("auditBtn").enable();
+			}
         }
 	});
 }
@@ -1877,6 +1898,7 @@ function onCellEditEnter(e){
                         nui.get("serviceId").setValue(data.serviceId);
                         record.serviceId = data.serviceId;
                         record.mainId = data.id;
+                        record.storeId =nui.get('storeId').getValue() || "";
                         showPartInfo(record,partCode,data.id);
 
                         /*var rs = addInsertRow(record.comPartCode,record);
@@ -2046,7 +2068,13 @@ function onCellCommitEdit(e) {
         }else if(e.field =="showPrice"){
         	 var orderQty = record.orderQty;
              var showPrice = e.value;
+             var orderPrice = record.orderPrice;
              
+             if(showPrice<orderPrice){
+            	 e.value =e.oldValue;
+            	 showMsg("开单价不能低于销售价","W");
+            	 return;
+             }
              if(e.value==null || e.value=='') {
                  e.value = 0;
                  showPrice = 0;
@@ -2496,6 +2524,24 @@ function onGuestValueChanged(e)
 
 		addNewRow(true);
     }
+}
+
+
+
+function onStoreIdValueChange(e){
+	var data = e.selected;
+	var rows =rightGrid.getData();
+	var changes=[];
+	if(data){
+		if(rows.length>0){
+			for(var i=0;i<rows.length;i++){
+				if(rows[i].partId){
+					rows[i].storeId =data.id;
+				}
+			}
+			rightGrid.setData(rows);
+		}
+	}
 }
 
 function onStoreValueChange(e){
@@ -3125,70 +3171,77 @@ var auditToOutUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjPchsOrde
 function auditToOut()
 {
 
-    var row = leftGrid.getSelected();
-    if(row){
-        if(row.auditSign != 1){
-            showMsg("请先提交单据!","W");
-            return;
-        }
-        if(row.isOut == 1) {
-            showMsg("此单已出库!","W");
-            return;
-        } 
-    }else{
-        return;
-    }
+	nui.confirm("是否确定出库?", "友情提示", function(action) {
+		if (action == "ok") {
+			var row = leftGrid.getSelected();
+		    if(row){
+		        if(row.auditSign != 1){
+		            showMsg("请先提交单据!","W");
+		            return;
+		        }
+		        if(row.isOut == 1) {
+		            showMsg("此单已出库!","W");
+		            return;
+		        } 
+		    }else{
+		        return;
+		    }
 
-    var data = basicInfoForm.getData();
-    var mainId = data.id;
+		    var data = basicInfoForm.getData();
+		    var mainId = data.id;
 
-    var main = getMainData();
+		    var main = getMainData();
 
-    var sellOrderDetailList = rightGrid.getData();
+		    var sellOrderDetailList = rightGrid.getData();
+		    
+		    nui.mask({
+		        el: document.body,
+		        cls: 'mini-mask-loading',
+		        html: '出库中...'
+		    });
+
+		    nui.ajax({
+		        url : auditToOutUrl,
+		        type : "post",
+		        data : JSON.stringify({
+		            mainId : mainId,
+		            main : main,
+		            detail :sellOrderDetailList,
+		            token : token
+		        }),
+		        success : function(data) {
+		            nui.unmask(document.body);
+		            data = data || {};
+		            if (data.errCode == "S") {
+		                showMsg("出库成功!","S");
+		                var newRow = {isOut: 1,billStatusId :2};
+		                leftGrid.updateRow(row, newRow);
+
+		                setBtnable(false);
+		                nui.confirm("是否打印？", "友情提示", function(action) {
+							if(action== 'ok'){
+								onPrint();
+							}else{
+								
+							}
+						});
+
+//		                add();
+		                
+		            } else {
+		                showMsg(data.errMsg || "出库失败!","W");
+		            }
+		        },
+		        error : function(jqXHR, textStatus, errorThrown) {
+		            // nui.alert(jqXHR.responseText);
+		            console.log(jqXHR.responseText);
+		        }
+		    });
+		}else{
+			return;
+		}
+	 });
     
-    nui.mask({
-        el: document.body,
-        cls: 'mini-mask-loading',
-        html: '出库中...'
-    });
-
-    nui.ajax({
-        url : auditToOutUrl,
-        type : "post",
-        data : JSON.stringify({
-            mainId : mainId,
-            main : main,
-            detail :sellOrderDetailList,
-            token : token
-        }),
-        success : function(data) {
-            nui.unmask(document.body);
-            data = data || {};
-            if (data.errCode == "S") {
-                showMsg("出库成功!","S");
-                var newRow = {isOut: 1,billStatusId :2};
-                leftGrid.updateRow(row, newRow);
-
-                setBtnable(false);
-                nui.confirm("是否打印？", "友情提示", function(action) {
-					if(action== 'ok'){
-						onPrint();
-					}else{
-						
-					}
-				});
-
-//                add();
-                
-            } else {
-                showMsg(data.errMsg || "出库失败!","W");
-            }
-        },
-        error : function(jqXHR, textStatus, errorThrown) {
-            // nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
-    });
 }
 var unAuditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.unAuditSellOrderToOut.biz.ext";
 function unAudit()

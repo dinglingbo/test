@@ -9,7 +9,7 @@
 -->
 <head>
 <title>业务单选择</title>
-<script src="<%=webPath + contextPath%>/settlement/js/billServiceSelect.js?v=1.0.40"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/billServiceSelect.js?v=1.0.47"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -56,6 +56,7 @@
                          onbuttonclick="selectSupplier('searchBillGuestId')" selectOnFocus="true" />
                   <input id="billServiceId" width="120px" emptyText="业务单号" class="nui-textbox"/>
                   <input id="billServiceMan" width="60px" emptyText="业务员" class="nui-hidden"/>
+                  <input id="orderTypeIdList" width="60px" emptyText="" class="nui-hidden"/>
                   <!-- <input id="searchGuestId" class="nui-buttonedit"
                          emptyText="请选择往来单位..."
                          onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" /> -->

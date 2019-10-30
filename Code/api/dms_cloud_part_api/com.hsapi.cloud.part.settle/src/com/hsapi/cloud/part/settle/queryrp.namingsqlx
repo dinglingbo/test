@@ -341,7 +341,8 @@
 			a.f_month as fMonth,
 			a.receive_amt as receiveAmt,
 			b.full_name as guestName,
-			a.invoice_register as invoiceRegister
+			a.invoice_register as invoiceRegister,
+			a.bala_type as balaType
 		FROM
 			pj_statement_main AS a
 			inner join wb_common.com_guest b
@@ -582,6 +583,14 @@
 	<select id="queryNoSettleBill" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
 		SELECT
 			a.orgid AS orgid,
+			SUM(CASE WHEN a.orderTypeId = 1 THEN a.billAmt ELSE 0 end) as purchaseEnterAmt,
+			SUM(CASE WHEN a.orderTypeId = 2 THEN a.billAmt ELSE 0 end) as sellOutAmt,
+			SUM(CASE WHEN a.orderTypeId = 3 THEN a.billAmt ELSE 0 end) as purchaseRtnAmt,
+			SUM(CASE WHEN a.orderTypeId = 4 THEN a.billAmt ELSE 0 end) as sellRtnAmt,
+			SUM(CASE WHEN a.orderTypeId = 5 THEN a.billAmt ELSE 0 end) as allotApplyAmt,
+			SUM(CASE WHEN a.orderTypeId = 6 THEN a.billAmt ELSE 0 end) as allotAcceptAmt,
+			SUM(CASE WHEN a.orderTypeId = 7 THEN a.billAmt ELSE 0 end) as allotOutRtnAmt,
+			SUM(CASE WHEN a.orderTypeId = 8 THEN a.billAmt ELSE 0 end) as allotInRtnAmt,
 			sum(case WHEN a.dc='1'THEN a.billAmt ELSE 0 end) as rAmt,
 			sum(case WHEN a.dc='-1'THEN (-a.billAmt) ELSE 0 end) as pAmt,	
 			 '' as billAmt,
@@ -1058,6 +1067,162 @@
                         
             </dynamic> 
 				
+	</select>
+	
+	<!-- 收款明细表点击事件  -->
+    <select id="queryRPAccountDetailForA" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT 
+    			a.id as id,	    
+			    a.bill_rp_id as billRpId,
+			    a.main_id as mainId
+			       			       
+			from fi_rp_account_detail a
+			where 1 = 1 
+			    <isNotEmpty prepend="and" property="mainId">  
+                    (a.main_id = #mainId#)
+                </isNotEmpty>
+    </select>
+    
+    <select id="queryRpsBillList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id AS id,
+			a.rp_bill_id AS rpBillId,
+			a.orgid AS orgid,
+			a.guest_id AS guestId,
+			a.guest_name AS guestName,
+			a.bill_main_id AS billMainId,
+			a.bill_service_id AS billServiceId,
+			a.bill_code AS billCode,
+			a.bill_dc AS billDc,
+			a.bill_type_id as billTypeId,
+			a.rp_amt AS rpAmt,
+			a.char_off_amt AS charOffAmt,
+			a.no_char_off_amt AS noCharOffAmt,
+			a.pre_char_off_amt AS preCharOffAmt,
+			a.void_amt AS voidAmt,
+			a.print_times AS printTimes,
+			a.balance_sign AS balaceSign,
+			a.balancer_id AS balancerId,
+			a.balancer AS balancer,
+			a.balance_date AS balanceDate,
+			a.settle_sign AS settleSign,
+			a.settler_id AS settlerId, 
+			a.settler AS settler,
+			a.auditor AS auditor,
+			a.settle_date AS settleDate,
+			a.settle_status AS settleStatus,
+			a.audit_sign AS auditSign,
+			a.auditor_id AS auditorid,
+			a.audit_date AS auditDate,
+			a.remark AS remark,
+			a.version_no AS versionNo,
+			a.creator_id AS creatorId,
+			a.creator AS creator,
+			a.create_date AS createDate,
+			a.operator_id AS operatorId,
+			a.operator AS operator,
+			a.operate_date AS operateDate,
+			a.f_year AS fYear,
+			a.f_month AS fMonth,
+			a.is_disabled AS isDisabled,
+			a.rp_type_id AS rpTypeId,
+			b.mobile as mobile
+			<!--c.wechat_open_id as wechatOpenId,
+			c.wechat_service_id as wechatServiceId-->
+		FROM
+			fi_rp_bill a
+		LEFT JOIN wb_common.com_guest b on a.guest_id= b.id	
+		<!--LEFT JOIN wb_repair.rpb_contactor c on a.guest_id = c.guest_id-->
+		where a.is_disabled = 0
+			<dynamic>
+			   <isNotEmpty prepend="and" property="id">  
+                    (a.id = #id#)
+                </isNotEmpty>
+				<isNotEmpty prepend="and" property="rpBillId">  
+                    (a.id in ($rpBillId$))
+                </isNotEmpty>
+			    <isNotEmpty prepend="and" property="mobile"> 
+                    (b.mobile like '%$mobile$%')
+                </isNotEmpty>
+			    <isNotEmpty prepend="and" property="guestName"> 
+                    (a.guest_name like '%$guestName$%' )
+                </isNotEmpty>
+				<isNotEmpty prepend="and" property="carNo"> 
+                    (a.car_no like '%$carNo$%' )
+                </isNotEmpty>
+			    <isNotEmpty prepend="and" property="billDc"> 
+                    (a.bill_dc = #billDc#)
+                </isNotEmpty>
+                
+            	<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="guestId">  
+                    (a.guest_id = #guestId#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="billServiceId"> 
+                    (a.bill_service_id like '%$billServiceId$%')
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="balancer"> 
+                    (a.balancer = #balancer#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="balanceSign"> 
+                    (a.balance_sign = #balanceSign#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="billTypeId"> 
+                    (a.bill_type_id = #billTypeId#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="billTypeIds">  
+                    (a.bill_type_id in ($billTypeIds$))
+                </isNotEmpty>
+                
+                <!--对账日期 -->
+                <isNotEmpty prepend="and" property="sBalanceDate">  
+                    (a.balance_date &gt;= #sBalanceDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eBalanceDate">  
+                    (a.balance_date &lt; #eBalanceDate#)
+                </isNotEmpty>
+                
+                <!--创建日期 -->
+                <isNotEmpty prepend="and" property="sCreateDate">  
+                    (a.create_date &gt;= #sCreateDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eCreateDate">  
+                    (a.create_date &lt; #eCreateDate#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="billServiceIdList">  
+                    (a.bill_service_id in ($billServiceIdList$))
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="auditSign">  
+                    (a.audit_sign = #auditSign#)
+                </isNotEmpty>
+                
+                
+                 <isNotEmpty prepend="and" property="settleStatus">  
+                    (a.settle_status = #settleStatus#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="rpTypeId">  
+                    (a.rp_type_id = #rpTypeId#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="noSettle">  
+                    (a.settle_status !=2)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="isDisabled">  
+                    (a.is_disabled = #isDisabled#)
+                </isNotEmpty>
+            </dynamic> 
+            order by  a.create_date desc
 	</select>
 	
 </sqlMap>

@@ -66,6 +66,7 @@ var accountSignHash = {
 var enterTypeIdHash = {1:"采购订单",2:"销售订单",3:"采购退货",4:"销售退货",
                        5:"调拨申请",6:"调拨受理",7:"调出退回",8:"调入退回"};
 
+var balaTypeList=[{id:"1",name:"采购对账"},{id:"2",name:"销售对账"},{id:"3",name:"调入对账"},{id:"4",name:"调出对账"}];
 $(document).ready(function(v)
 {
     leftGrid = nui.get("leftGrid");
@@ -590,6 +591,10 @@ function audit()
 		return;
 	}
     
+    var f =checkBalaType();
+    if(f==false){
+    	return;
+    }
     var data = getMainData();
 
     var stateDetailAdd = rightGrid.getChanges("added");
@@ -892,7 +897,8 @@ function getMainData()
 var requiredField = {
     guestId : "往来单位",
     stateMan : "对账员",
-    createDate : "对账日期"
+    createDate : "对账日期",
+    balaType :"对账类型"
 };
 var saveUrl = baseUrl + "com.hsapi.cloud.part.settle.svr.savePjStatement.biz.ext";
 function save() {
@@ -925,6 +931,10 @@ function save() {
 		showMsg("业务单号:"+billServiceId+"的信息有误,请检查","W");
 		return;
 	}
+    var f =checkBalaType();
+    if(f==false){
+    	return;
+    }
     
     data = getMainData();
 
@@ -994,7 +1004,43 @@ function save() {
     });
 }
 
-
+function checkBalaType(){
+	var balaType =nui.get('balaType').getValue();
+	var data =rightGrid.getData();
+	if(balaType ==1){
+		for(var i=0;i<data.length;i++){
+			if(data[i].typeCode !=1 && data[i].typeCode !=3){
+				showMsg("明细的业务类型与对账类型不匹配","W");
+				return false;
+			}
+		}
+	}
+	if(balaType ==2){
+		for(var i=0;i<data.length;i++){
+			if(data[i].typeCode !=2 && data[i].typeCode !=4){
+				showMsg("明细的业务类型与对账类型不匹配","W");
+				return false;
+			}
+		}
+	}
+	if(balaType ==3){
+		for(var i=0;i<data.length;i++){
+			if(data[i].typeCode !=5 && data[i].typeCode !=7){
+				showMsg("明细的业务类型与对账类型不匹配","W");
+				return false;
+			}
+		}
+	}
+	if(balaType ==4){
+		for(var i=0;i<rows.length;i++){
+			if(data[i].typeCode !=6 && data[i].typeCode !=8){
+				showMsg("明细的业务类型与对账类型不匹配","W");
+				return false;
+			}
+		}
+	}
+	return true;
+}
 function onGuestValueChanged(e)
 {
     //供应商中直接输入名称加载供应商信息
@@ -1228,8 +1274,24 @@ function addBill(){
         showMsg("请选择往来单位!","W");
         return;
     }
-
-    selectPart(guestId,function(rows) {
+    var balaType =nui.get("balaType").getValue();
+    if(!balaType){
+    	showMsg("请选择对账类型!","W");
+    	return; 
+    }
+    if(balaType==1){
+    	orderTypeIdList="1,3";
+    }
+    if(balaType ==2){
+    	orderTypeIdList="2,4";
+    }
+    if(balaType==3){
+    	orderTypeIdList="5,7";
+    }
+    if(balaType==4){
+    	orderTypeIdList="6,8";
+    }
+    selectPart(guestId,orderTypeIdList,function(rows) {
         
         addDetail(rows);
 
@@ -1238,7 +1300,7 @@ function addBill(){
         return rtn;
     });
 }
-function selectPart(guestId,callback,checkcallback)
+function selectPart(guestId,orderTypeIdList,callback,checkcallback)
 {
     nui.open({
         // targetWindow: window,
@@ -1249,7 +1311,7 @@ function selectPart(guestId,callback,checkcallback)
         onload: function ()
         {
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.setInitData(guestId,callback,checkcallback);
+            iframe.contentWindow.setInitData(guestId,orderTypeIdList,callback,checkcallback);
         },
         ondestroy: function (action)
         {

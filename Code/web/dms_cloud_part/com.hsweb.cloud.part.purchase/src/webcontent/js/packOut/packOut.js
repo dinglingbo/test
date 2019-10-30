@@ -323,6 +323,7 @@ function onLeftGridSelectionChanged(){
 	   nui.get("senderAddress").setValue(currCompAddress);
 	   nui.get("collectMoney").setValue(amt);
 	   nui.get("valuationStatement").setValue(amt);
+	   nui.get("payType").setValue("051301");
 	   
 //	   basicInfoForm.setData({});
 	   setEditable(true);
@@ -331,6 +332,7 @@ function onLeftGridSelectionChanged(){
 		   nui.get("guestId").setText(guestShortName);
 		   nui.get("guestId").setValue(guestId);
 		   setGuestLogistics(guestId,false);
+		   setMember(currEmpId);
 	   }
 	   rightGrid.clearRows();
 	   addDetail(rows);
@@ -1276,6 +1278,36 @@ function setGuestInfo(params)
             console.log(jqXHR.responseText);
         }
     });
+}
+
+var getMemberUrl =apiPath + sysApi +"/com.hsapi.system.tenant.employee.queryEmployee.biz.ext" ;
+function setMember(empId){
+	 var params={	            
+	            orgid :currOrgId,
+	            tenantId:currTenantId,
+	            empid: empId,
+	            token: token 
+	        };
+	 nui.ajax({
+	        url : getMemberUrl,
+	        data:{
+	        	params: params
+	        },
+	        type : "post",
+	        success : function(data) {
+	            if (data && data.rs.length>0) {	            	
+	               var rs =data.rs[0];
+	               nui.get('packMan').setValue(rs.name||"");
+	               nui.get('idNo').setValue(rs.idcardno||"");
+	               nui.get('senderPhone').setValue(rs.tel||"");
+	               nui.get('senderAddress').setValue(currCompAddress||"");
+	            }
+	        },
+	        error : function(jqXHR, textStatus, errorThrown) {
+	            //  nui.alert(jqXHR.responseText);
+	            console.log(jqXHR.responseText);
+	        }
+	    });
 }
 function setGuestLogistics(guestId,setNull){
     receiveManEl.setValue(null);

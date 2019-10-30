@@ -26,6 +26,7 @@ var billStatusHash = {
     "2":"已过账",
     "3":"已取消"
 };
+var UpOrDownList=[{id:1,"name" :"低于下限"},{id:2,"name" :"高于上限"}];
 $(document).ready(function(v)
 {
 	rightGrid = nui.get("rightGrid");
@@ -96,6 +97,8 @@ $(document).ready(function(v)
     onSearch();
 });
 function getSearchParam(){
+	var date =new Date();
+	var mongth = date.getMonth()+1;
     var params = {};
     /*var outableQtyGreaterThanZero = nui.get("outableQtyGreaterThanZero").getValue();
     if(outableQtyGreaterThanZero == 1)
@@ -107,6 +110,29 @@ function getSearchParam(){
         params.notShowAll = 1;
     }
 
+    var upOrDown=nui.get('upOrDown').getValue();
+    if(showZero == 0){
+        params.notShowAll = 1;
+    }
+   
+    if(upOrDown == 2){
+    	//夏(4-9)
+    	if(mongth>= 4 && mongth<=9){
+    		params.showUp = 1;
+    	}else{
+    		params.showUpWinter = 1;
+    	}
+        
+    }
+    if(upOrDown ==1){
+    	//夏(4-9)
+    	if(mongth>= 4 && mongth<=9){
+    		params.showDown = 1;
+    	}else{
+    		params.showDownWinter = 1;
+    	}
+    }
+    
     params.partNameAndPY = nui.get("comPartNameAndPY").getValue().replace(/\s+/g, "");
 	params.partCode = (nui.get("comPartCode").getValue()).replace(/\s+/g, "");
 	params.partBrandId = nui.get("partBrandId").getValue();
@@ -315,3 +341,77 @@ function setInitExportData(detail){
     }
     method5('tableExcel',"库存查询"+(format((new Date()), 'yyyy-MM-dd HH:mm:ss')),'tableExportA');
 }
+
+//查看入库记录
+function onEnter(){
+	var row ={};
+	row = rightGrid.getSelected();
+	if(!row){
+		showMsg("请选择一条记录","W");
+		return;
+	}
+	var partId = row.partId;
+	onEnterRecord(partId);
+	
+}
+
+//查看出库记录
+function onOut(){
+	var row ={};
+	row = rightGrid.getSelected();
+	if(!row){
+		showMsg("请选择一条记录","W");
+		return;
+	}
+	var partId = row.partId;
+	onOutRecord(partId);
+}
+
+//查看入库记录
+function onEnterRecord(partId){
+
+	nui.open({
+		url : webPath+contextPath+"/com.hsweb.cloud.part.common.partEnterRecord.flow?token="+token,
+		title : "入库记录",
+		width : 1000,
+		height : 500,
+		allowDrag : true,
+		allowResize : true,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+			var params = {
+				partId: partId,
+                token :token
+            };
+            iframe.contentWindow.SetData(params);
+		},
+		ondestroy : function(action) {
+			
+		}
+	});
+}
+
+//查看出库记录
+function onOutRecord(partId){
+	
+	nui.open({
+		url : webPath+contextPath+"/com.hsweb.cloud.part.common.partOutRecord.flow?token="+token,
+		title : "出库记录",
+		width : 850,
+		height : 500,
+		allowDrag : true,
+		allowResize : true,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+			var params = {
+				partId: partId,
+                token :token
+            };
+            iframe.contentWindow.SetData(params);
+		},
+		ondestroy : function(action) {
+			
+		}
+	});
+}
+

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>月结对账</title>
-<script src="<%=webPath + contextPath%>/settlement/js/billStatement.js?v=1.0.43"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/billStatement.js?v=1.0.52"></script>
 <style type="text/css">
 .title {
   width: 85px;
@@ -249,16 +249,35 @@
                                       </td>
                                   </tr>
                                   <tr>
+                           			  <td class="title required">
+                                          <label>对账类型：</label>
+                                      </td>
+                                      <td colspan="1">
+                                           <input name="balaType" visible=""
+			                                 id="balaType"
+			                                 class="nui-combobox width1"
+			                                 textField="name"
+			                                 valueField="id"
+			                                 enabled="true"
+			                                 valuefromselect="true"
+			                                 allowInput="true"
+			                                 selectOnFocus="true"
+			                                 showNullItem="false"
+			                                 data="balaTypeList"
+			                                 width="100%"/>
+                                      </td>
                                   	 <td class="title">
                                           <label>开票登记：</label>
                                       </td>
                                       <td colspan="1">
                                           <input class="nui-textbox" id="invoiceRegister" name="invoiceRegister" width="100%">
                                       </td>
+                                      
+                                      <td cl
                                       <td class="title">
                                           <label>备注：</label>
                                       </td>
-                                      <td colspan="3">
+                                      <td colspan="1">
                                           <input class="nui-textbox" id="remark" name="remark" width="100%">
                                       </td>
                                       <td class="title">

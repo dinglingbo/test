@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryComParams.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="缓存的域为：&#xD;&#xA;params/isDisabled = 0, params/keyidIds = 1001,1002,1003,1004,1006,1007,1008,1009,1011,1014,1017,&#xD;&#xA;params/orgid = 123。 以上的hashCode" title="Administrator&#x9;18-11-18 上午11:49">
-    <location x="456" y="30"/>
-    <size height="100" width="490"/>
+    <location x="470" y="-75"/>
+    <size height="151" width="490"/>
   </nodes>
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="结算单打印内容是根据keyidId&#xD;&#xA;params/keyidId&#xD;&#xA;params/type&#xD;&#xA;params/keyidIds&#xD;&#xA;params/isDisabled&#xD;&#xA;&#xD;&#xA;com.hsapi.system.data.dictMgr.queryBillParams&#xD;&#xA;&#xD;&#xA;hDel，保存时根据 key 和 域名 删除值" title="Administrator&#x9;18-7-9 下午10:24">
     <location x="-9" y="-165"/>
@@ -30,13 +30,13 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="65" y="184"/>
-    <figSize height="17" width="25"/>
+    <location x="62" y="184"/>
+    <figSize height="20" width="31"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="692" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="689" y="186"/>
+    <figSize height="20" width="31"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
@@ -64,8 +64,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="160" y="185"/>
-    <figSize height="17" width="25"/>
+    <location x="157" y="185"/>
+    <figSize height="20" width="31"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="getRedisCacheBasic" displayName="getRedisCacheBasic" type="subprocess">
@@ -95,8 +95,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="340" y="185"/>
-    <figSize height="17" width="117"/>
+    <location x="325" y="185"/>
+    <figSize height="20" width="146"/>
     <node>subprocess1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
@@ -114,8 +114,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="156" y="261"/>
-    <figSize height="17" width="32"/>
+    <location x="152" y="261"/>
+    <figSize height="20" width="40"/>
     <node>assign1</node>
   </nodes>
   <topRuler/>

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购退货</title>
-<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.0.22"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.0.25"></script>
 <style type="text/css">
 .title {
 	width: 70px;
@@ -141,7 +141,7 @@ body .mini-grid-row-selected{
                           <div id="basicInfoForm" class="form" contenteditable="false">
                               <input class="nui-hidden" name="id"/>
                               <input class="nui-hidden" name="operateDate"/>
-                              <input class="nui-hidden" name="storeId" id="storeId"/>
+                     <!--         <input class="nui-hidden" name="storeId" id="storeId"/>-->
                               <input class="nui-hidden" name="auditSign"/>
                               <input class="nui-hidden" name="createDate"/>
                               <table style="width: 100%;">
@@ -243,9 +243,17 @@ body .mini-grid-row-selected{
                                                  nullItemText="请选择..."/>
                                       </td>
                                       <td class="title">
+	                                      <label>仓库：</label>
+	                                  </td>
+	                                  <td colspan="1">
+	                                      <input width="100%" id="storeId" name="storeId"                                   
+	                                       enabled="true"  dataField="storehouse" class="nui-combobox" valueField="id" textField="name"
+	                                       data="storehouse" onvaluechanged="onStoreIdValueChange"/>
+	                                  </td>
+                                      <td class="title">
                                           <label>备注：</label>
                                       </td>
-                                      <td colspan="6">
+                                      <td colspan="4">
                                           <input class="nui-textbox" selectOnFocus="true" width="100%" id="remark" name="remark" enabled="true"/>
                                       </td>
                                       <td class="title required" style="display:none;">

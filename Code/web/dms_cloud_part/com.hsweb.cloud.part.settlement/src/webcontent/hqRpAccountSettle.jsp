@@ -9,7 +9,7 @@
 -->
 <head>
 <title>总部应收应付结算</title>
-<script src="<%=webPath + contextPath%>/settlement/js/hqRpAccountSettle.js?v=1.0.18"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/hqRpAccountSettle.js?v=1.0.19"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -111,6 +111,7 @@
                 <!-- <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择结算单位..."
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" /> -->
+                <input id="guestName" width="120px" emptyText="往来单位名称" onEnter="onSearch()" class="nui-textbox" visible=""/> 
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <input id="proId" width="120px" visible="false" emptyText="业务单号" class="nui-combobox"/>
                 

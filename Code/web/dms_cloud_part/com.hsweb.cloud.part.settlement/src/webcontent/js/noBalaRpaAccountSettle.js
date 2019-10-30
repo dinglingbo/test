@@ -654,16 +654,30 @@ function setInitExportData(detail){
         var row = detail[i];
         if(row.partId){
             var tr = $("<tr></tr>");
-            tr.append(tds.replace("[guestFullName]", detail[i].guestFullName?detail[i].guestFullName:"")
-                         .replace("[orgName]", detail[i].orgName?detail[i].orgName:"")
-                         .replace("[carBrandName]", detail[i].carBrandName?detail[i].carBrandName:"")
-                         .replace("[serviceId]", detail[i].serviceId?detail[i].serviceId:"")
-                         .replace("[outDate]", detail[i].outDate?format(detail[i].outDate,"yyyy-MM-dd HH:mm"):"")
-                         .replace("[partCode]", detail[i].partCode?detail[i].partCode:"")
-                         .replace("[fullName]", detail[i].fullName?detail[i].fullName:"")
-                         .replace("[orderQty]", detail[i].orderQty?detail[i].orderQty:"")
-                         .replace("[orderPrice]", detail[i].orderPrice?detail[i].orderPrice:"")
-                         .replace("[orderAmt]", detail[i].orderAmt?detail[i].orderAmt:""));
+            
+            if(row.orderTypeId== 4){
+            	tr.append(tds.replace("[guestFullName]", detail[i].guestFullName?detail[i].guestFullName:"")
+                        .replace("[orgName]", detail[i].orgName?detail[i].orgName:"")
+                        .replace("[carBrandName]", detail[i].carBrandName?detail[i].carBrandName:"")
+                        .replace("[serviceId]", detail[i].serviceId?detail[i].serviceId:"")
+                        .replace("[outDate]", detail[i].outDate?format(detail[i].outDate,"yyyy-MM-dd HH:mm"):"")
+                        .replace("[partCode]", detail[i].partCode?detail[i].partCode:"")
+                        .replace("[fullName]", detail[i].fullName?detail[i].fullName:"")
+                        .replace("[orderQty]", detail[i].orderQty?detail[i].orderQty:"")
+                        .replace("[orderPrice]", detail[i].orderPrice?detail[i].orderPrice:"")
+                        .replace("[orderAmt]", detail[i].orderAmt?-detail[i].orderAmt:""));
+            }else{
+            	tr.append(tds.replace("[guestFullName]", detail[i].guestFullName?detail[i].guestFullName:"")
+                        .replace("[orgName]", detail[i].orgName?detail[i].orgName:"")
+                        .replace("[carBrandName]", detail[i].carBrandName?detail[i].carBrandName:"")
+                        .replace("[serviceId]", detail[i].serviceId?detail[i].serviceId:"")
+                        .replace("[outDate]", detail[i].outDate?format(detail[i].outDate,"yyyy-MM-dd HH:mm"):"")
+                        .replace("[partCode]", detail[i].partCode?detail[i].partCode:"")
+                        .replace("[fullName]", detail[i].fullName?detail[i].fullName:"")
+                        .replace("[orderQty]", detail[i].orderQty?detail[i].orderQty:"")
+                        .replace("[orderPrice]", detail[i].orderPrice?detail[i].orderPrice:"")
+                        .replace("[orderAmt]", detail[i].orderAmt?detail[i].orderAmt:""));
+            }
             tableExportContent.append(tr);
         }
     }

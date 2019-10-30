@@ -248,10 +248,11 @@ function getSearchParam(){
 
     params.billServiceId = searchServiceId.getValue().replace(/\s+/g, "");
     //params.guestId = comSearchGuestId.getValue();
-    
+    params.guestName =nui.get('guestName').getValue().replace(/\s+/g, "");
     params.sCreateDate = searchBeginDate.getFormValue();
     params.eCreateDate = searchEndDate.getFormValue();
     params.settleStatus = nui.get("settleStatus").getValue();
+    
     if(params.settleStatus ==4){
     	params.settleStatus =null;
     }
@@ -406,7 +407,7 @@ function onAdvancedSearchOk()
     //供应商
     if(searchData.guestId)
     {
-        params.guestId = nui.get("btnEdit2").getValue();
+    	searchData.guestId = nui.get("btnEdit2").getValue();
     }
     //订单单号
     if(searchData.billServiceIdList)

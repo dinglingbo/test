@@ -14,8 +14,8 @@
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" nodeType="label">
-    <location x="-253" y="335"/>
-    <figSize height="17" width="25"/>
+    <location x="-256" y="335"/>
+    <figSize height="20" width="31"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" collapsed="false" type="assign">
@@ -57,8 +57,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="-178" y="335"/>
-    <figSize height="17" width="25"/>
+    <location x="-181" y="335"/>
+    <figSize height="20" width="31"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值2" displayName="赋值" collapsed="false" type="assign">
@@ -76,8 +76,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="1183" y="335"/>
-    <figSize height="17" width="32"/>
+    <location x="1179" y="335"/>
+    <figSize height="20" width="40"/>
     <node>assign3</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值4" displayName="赋值" collapsed="false" type="assign">
@@ -99,8 +99,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="-182" y="414"/>
-    <figSize height="17" width="32"/>
+    <location x="-186" y="414"/>
+    <figSize height="20" width="40"/>
     <node>assign2</node>
   </nodes>
   <nodes xsi:type="model:GroupNode" id="group0" name="group" grouped="true" gstart="loopstart0" gend="loopend0">
@@ -116,17 +116,18 @@
     <chidren>invokePojo0</chidren>
     <chidren>invokePojo2</chidren>
     <chidren>assign4</chidren>
-    <chidren>subprocess0</chidren>
     <chidren>assign7</chidren>
     <chidren>subprocess7</chidren>
     <chidren>assign8</chidren>
     <chidren>assign11</chidren>
     <chidren>assign13</chidren>
     <chidren>assign10</chidren>
+    <chidren>subprocess0</chidren>
+    <chidren>invokePojo3</chidren>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
-    <location x="45" y="334"/>
-    <figSize height="17" width="25"/>
+    <location x="42" y="334"/>
+    <figSize height="20" width="31"/>
     <node>loopstart0</node>
   </nodes>
   <nodes xsi:type="process:tLoopStart" description="" id="loopstart0" name="循环" displayName="循环" grouped="true" type="loopstart" matchedName="loopend0" loopType="iterate">
@@ -148,8 +149,8 @@
     <process:iterate iterable="list" iterableElement="temp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">
-    <location x="1014" y="334"/>
-    <figSize height="17" width="49"/>
+    <location x="1008" y="334"/>
+    <figSize height="20" width="61"/>
     <node>loopend0</node>
   </nodes>
   <nodes xsi:type="process:tLoopEnd" id="loopend0" name="循环结束" displayName="循环结束" grouped="true" type="loopend" matchedName="loopstart0">
@@ -219,8 +220,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess4label" name="label" nodeType="label">
-    <location x="559" y="334"/>
-    <figSize height="17" width="49"/>
+    <location x="553" y="334"/>
+    <figSize height="20" width="61"/>
     <node>subprocess4</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess5" name="更新库存表" displayName="updateCompStock" collapsed="false" grouped="true" type="subprocess">
@@ -275,8 +276,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess5label" name="label" nodeType="label">
-    <location x="778" y="334"/>
-    <figSize height="17" width="61"/>
+    <location x="770" y="334"/>
+    <figSize height="20" width="76"/>
     <node>subprocess5</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess7" name="checkOutQty" displayName="checkOutQty" grouped="true" type="subprocess">
@@ -316,8 +317,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess7label" name="label" nodeType="label">
-    <location x="401" y="334"/>
-    <figSize height="17" width="75"/>
+    <location x="390" y="334"/>
+    <figSize height="20" width="96"/>
     <node>subprocess7</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign12" name="赋值12" displayName="赋值" grouped="true" type="assign">
@@ -345,8 +346,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign12label" name="label" nodeType="label">
-    <location x="640" y="335"/>
-    <figSize height="17" width="39"/>
+    <location x="635" y="335"/>
+    <figSize height="20" width="49"/>
     <node>assign12</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="更新可出库数" displayName="更新可出库数" grouped="true" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
@@ -369,8 +370,8 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="695" y="335"/>
-    <figSize height="17" width="73"/>
+    <location x="686" y="335"/>
+    <figSize height="20" width="91"/>
     <node>invokePojo1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign9" name="赋值9" displayName="赋值" collapsed="false" type="assign">
@@ -400,8 +401,8 @@
     <nodeLabel>assign9label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
-    <location x="1093" y="335"/>
-    <figSize height="17" width="32"/>
+    <location x="1089" y="335"/>
+    <figSize height="20" width="40"/>
     <node>assign9</node>
   </nodes>
   <nodes xsi:type="process:tTransactionBegin" id="transactionbegin0" name="事务开始" displayName="事务开始" type="transactionbegin">
@@ -416,8 +417,8 @@
     <nodeLabel>transactionbegin0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactionbegin0label" name="label" nodeType="label">
-    <location x="-25" y="335"/>
-    <figSize height="17" width="49"/>
+    <location x="-31" y="335"/>
+    <figSize height="20" width="61"/>
     <node>transactionbegin0</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
@@ -431,8 +432,8 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
-    <location x="-67" y="414"/>
-    <figSize height="17" width="25"/>
+    <location x="-70" y="414"/>
+    <figSize height="20" width="31"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" grouped="true" type="assign">
@@ -564,8 +565,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
-    <location x="493" y="335"/>
-    <figSize height="17" width="32"/>
+    <location x="489" y="335"/>
+    <figSize height="20" width="40"/>
     <node>assign6</node>
   </nodes>
   <nodes xsi:type="process:tAssign" id="assign5" name="赋值5" displayName="赋值" type="assign">
@@ -580,8 +581,8 @@
     <nodeLabel>assign5label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="1093" y="396"/>
-    <figSize height="17" width="32"/>
+    <location x="1089" y="396"/>
+    <figSize height="20" width="40"/>
     <node>assign5</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
@@ -596,8 +597,8 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="1183" y="471"/>
-    <figSize height="17" width="32"/>
+    <location x="1179" y="471"/>
+    <figSize height="20" width="40"/>
     <node>end1</node>
   </nodes>
   <nodes xsi:type="process:tTransactionCommit" id="transactioncommit0" name="事务提交" displayName="事务提交" type="transactioncommit">
@@ -611,8 +612,8 @@
     <nodeLabel>transactioncommit0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactioncommit0label" name="label" nodeType="label">
-    <location x="1175" y="405"/>
-    <figSize height="17" width="49"/>
+    <location x="1169" y="405"/>
+    <figSize height="20" width="61"/>
     <node>transactioncommit0</node>
   </nodes>
   <nodes xsi:type="process:tTransactionRollback" id="transactionrollback0" name="事务回滚" displayName="事务回滚" type="transactionrollback">
@@ -626,8 +627,8 @@
     <nodeLabel>transactionrollback0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactionrollback0label" name="label" nodeType="label">
-    <location x="1085" y="471"/>
-    <figSize height="17" width="49"/>
+    <location x="1079" y="471"/>
+    <figSize height="20" width="61"/>
     <node>transactionrollback0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
@@ -642,8 +643,8 @@
     <nodeLabel>assign1label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="-98" y="335"/>
-    <figSize height="17" width="32"/>
+    <location x="-102" y="335"/>
+    <figSize height="20" width="40"/>
     <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="getPrimaryKey" displayName="getPrimaryKey" grouped="true" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
@@ -665,8 +666,8 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="137" y="335"/>
-    <figSize height="17" width="85"/>
+    <location x="125" y="335"/>
+    <figSize height="20" width="108"/>
     <node>invokePojo0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="insertEntity" displayName="insertEntity" grouped="true" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
@@ -693,8 +694,8 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="855" y="335"/>
-    <figSize height="17" width="64"/>
+    <location x="846" y="335"/>
+    <figSize height="20" width="83"/>
     <node>invokePojo2</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值3" displayName="赋值" grouped="true" type="assign">
@@ -716,14 +717,14 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
-    <location x="943" y="365"/>
-    <figSize height="17" width="32"/>
+    <location x="939" y="365"/>
+    <figSize height="20" width="40"/>
     <node>assign4</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="updateSellQtyTempRecordA" displayName="updateSellQtyTempRecordA" grouped="true" type="subprocess">
     <sourceConnections xsi:type="process:tLink" description="" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
-      <targetNode>assign8</targetNode>
+      <targetNode>invokePojo3</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query"/>
@@ -742,7 +743,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link11</targetConnections>
-    <location x="255" y="299"/>
+    <location x="239" y="299"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="12" synchronization="true" transactionType="join" varArgs="false">
@@ -769,8 +770,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="186" y="334"/>
-    <figSize height="17" width="165"/>
+    <location x="147" y="334"/>
+    <figSize height="20" width="211"/>
     <node>subprocess0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值7" displayName="赋值" grouped="true" type="assign">
@@ -788,13 +789,13 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">库存缺货</process:from>
+      <process:from type="query" pattern="reference">dq</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
-    <location x="478" y="294"/>
-    <figSize height="17" width="32"/>
+    <location x="474" y="294"/>
+    <figSize height="20" width="40"/>
     <node>assign7</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" grouped="true" type="assign">
@@ -803,8 +804,8 @@
       <targetNode>assign7</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="GT">
-          <process:leftOperand type="query">temp/outQty</process:leftOperand>
-          <process:rightOperand type="query">occupyQty</process:rightOperand>
+          <process:leftOperand type="query">dq</process:leftOperand>
+          <process:rightOperand type="literal">0.001</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -818,14 +819,14 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link7</targetConnections>
+    <targetConnections>link37</targetConnections>
     <location x="361" y="299"/>
     <size height="28" width="28"/>
     <nodeLabel>assign8label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
-    <location x="359" y="335"/>
-    <figSize height="17" width="32"/>
+    <location x="355" y="335"/>
+    <figSize height="20" width="40"/>
     <node>assign8</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign11" name="赋值11" displayName="赋值" grouped="true" type="assign">
@@ -853,8 +854,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
-    <location x="85" y="335"/>
-    <figSize height="17" width="39"/>
+    <location x="80" y="335"/>
+    <figSize height="20" width="49"/>
     <node>assign11</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign13" name="赋值13" displayName="赋值" grouped="true" type="assign">
@@ -872,8 +873,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign13label" name="label" nodeType="label">
-    <location x="490" y="386"/>
-    <figSize height="17" width="39"/>
+    <location x="485" y="386"/>
+    <figSize height="20" width="49"/>
     <node>assign13</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign10" name="赋值10" displayName="赋值" grouped="true" type="assign">
@@ -896,9 +897,35 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
-    <location x="195" y="371"/>
-    <figSize height="17" width="39"/>
+    <location x="190" y="371"/>
+    <figSize height="20" width="49"/>
     <node>assign10</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="sub" displayName="sub" grouped="true" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link37" name="link37" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo3</sourceNode>
+      <targetNode>assign8</targetNode>
+    </sourceConnections>
+    <targetConnections>link7</targetConnections>
+    <location x="316" y="299"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo3label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.ArrayUtils.sub</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="v1" type="query" value="double" valueType="Java" pattern="reference">outQty</process:inputVariable>
+      <process:inputVariable id="1" name="v2" type="query" value="double" valueType="Java" pattern="reference">occupyQty</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="double" valueType="Java">dq</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
+    <location x="314" y="335"/>
+    <figSize height="20" width="27"/>
+    <node>invokePojo3</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -924,6 +951,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="noTaxPrice" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="occupyQty" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="outQty" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="dq" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjRepairOut" name="list"/>

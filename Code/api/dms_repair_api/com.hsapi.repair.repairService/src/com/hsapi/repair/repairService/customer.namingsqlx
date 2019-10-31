@@ -67,7 +67,10 @@
 	            </isNotEmpty>	            
             <isNotEmpty prepend="and" property="tenantId">  
                 (b.tenant_id = #tenantId#)
-            </isNotEmpty>  
+            </isNotEmpty> 
+            <isNotEmpty prepend="and" property="orgid">  
+                (b.orgid = #orgid#)
+            </isNotEmpty>             
             <isNotEmpty prepend="and" property="lastOrgid">  
                 (c.last_orgid = #lastOrgid#)
             </isNotEmpty> 

@@ -19,6 +19,7 @@ var billTypeHash = {};
 var storeHash = {};
 var advancedAddWin = null;
 var FStoreId = null;
+var StoreId = null;
 var advancedAddForm = null;
 var mainId = 0;
 var guestId = null;
@@ -847,7 +848,11 @@ function addSelectPart(){
         if(record){
             column = morePartGrid.getColumn("outableQty");
             advancedAddWin.show();
-            nui.get("storeId").setValue(StoreId);
+            if(StoreId){
+            	nui.get("storeId").setValue(StoreId);
+            }else{
+            	nui.get("storeId").setValue(FStoreId);
+            }
             getLocationListByStoreId(StoreId,function(data) {
         		storeShelfList = data.locationList || [];
         		nui.get('storeShelf').setData(storeShelfList);

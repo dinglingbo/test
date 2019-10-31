@@ -240,6 +240,14 @@
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">ct/_and[1]/_expr[12/_op</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/guestName</process:from>
+      <process:to type="query">ct/_and[1]/_expr[12]/guestName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">like</process:from>
+      <process:to type="query">ct/_and[1]/_expr[12/_op</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
     <location x="215" y="186"/>

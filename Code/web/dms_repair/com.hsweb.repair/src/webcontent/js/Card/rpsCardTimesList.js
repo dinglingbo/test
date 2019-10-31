@@ -95,6 +95,12 @@ $(document).ready(function (v)
         		   e.cellHtml = "APP";
         	   }
         	   break;
+           case "doTimes":
+        	   var row = e.row;
+               var balaTimes = row.balaTimes || 0;
+               var canUseTimes = row.canUseTimes||0;
+               e.cellHtml = balaTimes - canUseTimes;
+        	   break;        	   
            default:
                break;
         }

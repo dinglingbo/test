@@ -599,6 +599,18 @@
       <process:to type="query">detailTemp/fullName</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">listTemp/partId</process:from>
+      <process:to type="query">detailTemp/showPartId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">listTemp/partCode</process:from>
+      <process:to type="query">detailTemp/showPartCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">listTemp/fullName</process:from>
+      <process:to type="query">detailTemp/showFullName</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">listTemp/outUnitId</process:from>
       <process:to type="query">detailTemp/outUnitId</process:to>
     </process:copy>
@@ -617,6 +629,14 @@
     <process:copy>
       <process:from type="expression" pattern="reference">qty*orderPrice</process:from>
       <process:to type="query">detailTemp/orderAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">qty*orderPrice</process:from>
+      <process:to type="query">detailTemp/showAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderPrice</process:from>
+      <process:to type="query">detailTemp/showPrice</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">qty</process:from>

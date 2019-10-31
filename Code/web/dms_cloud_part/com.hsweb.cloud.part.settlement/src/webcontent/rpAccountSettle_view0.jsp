@@ -9,7 +9,7 @@
 -->
 <head>
 <title>应收应付结算</title>
-<script src="<%=webPath + contextPath%>/settlement/js/rpAccountSettle.js?v=2.4.6"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/rpAccountSettle.js?v=2.4.7"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -105,12 +105,14 @@
 
                 <span class="separator"></span> 
                 <input id="serviceId" width="120px" emptyText="业务单号" class="nui-textbox"/>
+                
                 <input class="nui-combobox" id ="settleStatus" name="settleStatus" value="0"
                      		nullitemtext="请选择..." emptyText="结算状态" data="settleStatusList" width="100px" />
 		
                 <!-- <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择结算单位..."
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" /> -->
+                <input id="guestName" width="120px" emptyText="往来单位名称" onEnter="onSearch()" class="nui-textbox" visible=""/> 
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <input id="proId" width="120px" visible="false" emptyText="业务单号" class="nui-combobox"/>
                 

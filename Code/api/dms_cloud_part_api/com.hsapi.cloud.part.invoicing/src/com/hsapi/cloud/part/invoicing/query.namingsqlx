@@ -869,6 +869,7 @@
         <!-- 导出销售的订单记录-->
      <select id="exportReceiveMainDetails" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
 	   SELECT
+	   		a.order_type_id as orderTypeId,
 			a.service_id AS serviceId,
 			a.guest_id AS guestId,
 			a.orgid AS orgid,
@@ -934,6 +935,7 @@
       <!-- 导出采购的订单记录-->
      <select id="exportPchDetails" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
 	   SELECT
+	   		a.order_type_id as orderTypeId,
 			a.service_id AS serviceId,
 			a.guest_id AS guestId,
 			a.orgid AS orgid,

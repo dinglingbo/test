@@ -2,22 +2,11 @@
  * Created by steven on 2018/1/31.
  */
 
-baseUrl = apiPath + sysApi + "/";;
-var saveUrl = baseUrl + "com.hsapi.system.tenant.tenant.saveCompany.biz.ext";
+baseUrl = apiPath + repairApi + "/";;
+var saveUrl = baseUrl + "com.hsapi.repair.repairService.timersettle.registerElectronicArchives.biz.ext";
 var company = {};
 $(document).ready(function(v) {
-    provinceEl = nui.get("provinceId");
-    cityEl = nui.get("cityId");
-    countyEl = nui.get("countyId");
-    streetAddressEl = nui.get("streetAddress");
-    addressEl = nui.get("address");
-
-    getRegion(null,function(data) {
-        provinceHash = data.rs || [];
-        provinceEl.setData(provinceHash);
-
-    });
-    nui.get("code").focus();
+   
 	document.onkeyup=function(event){
         var e=event||window.event;
         var keyCode=e.keyCode||e.which;//38向上 40向下
@@ -26,9 +15,6 @@ $(document).ready(function(v) {
         	closeWindow("cal");
         }
       };
-
-		
-
 });
 
 
@@ -53,7 +39,8 @@ var requiredField = {
 	companyoperationstate:"维修企业经营状态",
 	companyadministrativedivisioncode:"维修企业注册区域编码",
 	companyemail:"维修企业注册邮箱",
-	support:"接入支持服务商"
+	support:"接入支持服务商",
+	registerUrl:"注册地址"
 };
 function save(action) {
 	var form = new nui.Form("#basicInfoForm");
@@ -65,9 +52,6 @@ function save(action) {
     		provinceId = data[key];
     	}
         if (!data[key] || $.trim(data[key]).length == 0) {
-        	if(key == "cityId" && (provinceId==81 || provinceId==82) ){
-        		continue;
-        	}
             showMsg(requiredField[key] + "不能为空!","W");
             return;
         }
@@ -87,7 +71,7 @@ function save(action) {
         url:saveUrl,
         type:"post",
         data:JSON.stringify({
-        	comd:data,
+        	params:data,
         	token: token
         }),
         success:function(data)
@@ -101,6 +85,7 @@ function save(action) {
                 	 closeWindow("cal");
                 }
             }
+            nui.unmask();
         },
         error:function(jqXHR, textStatus, errorThrown){
             //  nui.alert(jqXHR.responseText);

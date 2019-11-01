@@ -410,6 +410,148 @@ public class SyncElectronicArchives {
 				
 		return null;
 	}
+	@SuppressWarnings("unused")
+	@Bizlet("开通电子档案")
+	public static String registerElectronicArchives(Map<String, String> map) {
+		String registerUrl = null;
+		registerUrl = map.get("registerUrl");
+		if(registerUrl != null && !"".equals(registerUrl)){
+			
+			Map<String, String> data = getCompanyCode(map,registerUrl);
+            String result = data.toString();
+			return result;
+		}
+		return null;
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	@Bizlet("获取companyCode")
+	public static Map<String, String> getCompanyCode(Map <String, String> companydata, String registerUrl) {
+		JSONObject jsonObj = new JSONObject();
+		
+		//佛山需要请求的参数
+		//报文头
+		
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat format2 = new SimpleDateFormat("HHmmss");
+		Date date = new Date();
+		String headerDate = format1.format(date);
+		String headerTime = format2.format(date);
+		Map <String, String> header = new HashMap <String, String>();
+		
+		header.put("date", headerDate);
+		header.put("time", headerTime);
+		
+
+		//报文体
+		Map <String, String> body = new HashMap <String, String>();
+		//维修企业名称
+		String companyname = companydata.get("companyname");
+		body.put("companyname", companyname);
+		//维修企业登录密码
+		String companypassword = companydata.get("companypassword");
+		body.put("companypassword", companypassword);
+		//维修企业道路运输经营许可证
+		String companyroadtransportationlicense = companydata.get("companyroadtransportationlicense");
+		body.put("companyroadtransportationlicense", companyroadtransportationlicense);
+		//维修企业统一社会代码
+		String companyunifiedsocialcreditidentifier = companydata.get("companyunifiedsocialcreditidentifier");
+		body.put("companyunifiedsocialcreditidentifier", companyunifiedsocialcreditidentifier);
+		//维修企业地址
+		String companyaddress = companydata.get("companyaddress");
+		body.put("companyaddress", companyaddress);
+		//维修企业邮政编码
+		String companypostalcode = companydata.get("companypostalcode");
+		body.put("companypostalcode", companypostalcode);
+		//维修企业经济类型
+		String companyeconomicategory = companydata.get("companyeconomicategory");
+		body.put("companyeconomicategory", companyeconomicategory);
+		//维修企业经营业务类别
+		String companycategory = companydata.get("companycategory");
+		body.put("companycategory", companycategory);
+		//维修企业联系人姓名
+		String companylinkmanname = companydata.get("companylinkmanname");
+		body.put("companylinkmanname", companylinkmanname);
+		
+		//维修企业联系人电话
+		String companylinkmantel = companydata.get("companylinkmantel");
+		body.put("companylinkmantel", companylinkmantel);
+
+		//维修企业联系人姓名
+		String companysuperintendentname = companydata.get("companysuperintendentname");
+		body.put("companysuperintendentname", companysuperintendentname);
+		
+		//维修企业负责人姓名
+		String companysupereintendenttel = companydata.get("companysupereintendenttel");
+		body.put("companysupereintendenttel", companysupereintendenttel);
+		
+		//维修企业经营范围
+		String companybusinessscope = companydata.get("companybusinessscope");
+		body.put("companybusinessscope", companybusinessscope);
+		
+		//道路运输经营许可证起始日期
+		String roadtransportationlicensestartdate = companydata.get("roadtransportationlicensestartdate");
+		body.put("roadtransportationlicensestartdate", roadtransportationlicensestartdate);
+		
+		//道路运输经营许可证结束日期
+		String roadtransportationlicenseenddate = companydata.get("roadtransportationlicenseenddate");
+		body.put("roadtransportationlicenseenddate", roadtransportationlicenseenddate);
+		
+		//维修企业经营状态
+		String companyoperationstate = companydata.get("companyoperationstate");
+		body.put("companyoperationstate", companyoperationstate);
+		
+		//维修企业注册区域编码
+		String companyadministrativedivisioncode = companydata.get("companyadministrativedivisioncode");
+		body.put("companyadministrativedivisioncode", companyadministrativedivisioncode);
+
+		//维修企业注册邮箱
+		String companyemail = companydata.get("companyemail");
+		body.put("companyemail", companyemail);
+		
+		//接入支持服务商
+		String support = companydata.get("support");
+		body.put("support", support);
+
+
+	    //截取到域名或者地址
+	    String[] words = registerUrl.split("/");
+	    String ipUtl = words[2];
+		String regex=".*[a-zA-Z]+.*";
+		//判断是否包含字母
+		boolean falg = ipUtl.matches(regex);
+		String result = "";
+		if(falg){
+			//是域名
+			//上海需要的参数
+			jsonObj.put("body", body);
+			String param = null;
+			param = jsonObj.toString();
+			result = HttpUtils.sendPostByJson(registerUrl, param);
+		}else{
+			//是IP地址
+			jsonObj.put("header", header);
+			jsonObj.put("body", body);
+			String param = null;
+			param = jsonObj.toString();
+			try {
+				param = URLEncoder.encode(param, "utf-8");
+				String getStr = "regcompany="+param;
+				result = HttpUtils.sendHttpsGet(registerUrl,getStr);
+			} catch (UnsupportedEncodingException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+		}
+				
+		Gson gson = new Gson();
+        Map<String, String> map = new HashMap<String, String>();
+        map = gson.fromJson(result, map.getClass());
+		return map;
+	}
+	
+	
 	
 	public static void main(String args[]) {
 		

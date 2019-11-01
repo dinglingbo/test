@@ -11,7 +11,7 @@
 <head>
     <title>开通电子档案</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  	<script src="<%=webPath + contextPath%>/common/js/orgExtendEdit.js?v=2.1.4" type="text/javascript"></script>
+  	<script src="<%=webPath + contextPath%>/common/js/openElectronicArcgives.js?v=1.0.0" type="text/javascript"></script>
   	<script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
   	    <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
  	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
@@ -187,7 +187,7 @@ position:relative;
                     </tr>
                 </table>
             </div>
-        <div class="form" id="basicInfoForm" name="basicInfoForm" style="width:950px;height:100%;left:0;right:0;margin: 0 auto;">
+        <div class="form" id="basicInfoForm" name="basicInfoForm" style="width:950px;height:90%;left:0;right:0;margin: 0 auto;">
         		     
            <table  id="table1">
             <tr>
@@ -316,9 +316,12 @@ position:relative;
             </tr> 
              <tr>
                 <td class="tbtext">维修企业经营范围<span style="color:red">*</span></td>
-                <td colspan="1"><input class="nui-textbox tabwidth" name="companylinkmanname" id="companylinkmanname"/></td>
+                <td colspan="1"><input class="nui-textbox tabwidth" name="companybusinessscope" id="companybusinessscope"/></td>
             </tr> 
-            
+            <tr>
+                <td class="tbtext">注册地址<span style="color:red">*</span></td>
+                <td colspan="3"><input class="nui-textbox tabwidth" name="registerUrl" id="registerUrl"/></td>
+            </tr> 
         </table>
    
     </div>

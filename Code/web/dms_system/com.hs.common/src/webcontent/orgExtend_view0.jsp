@@ -64,6 +64,8 @@
 				<a class="nui-button "  iconcls="" plain="true" onclick="stoporstart('2')"
 				 visible="false" id="qy" name="qy">
 					<span class="fa fa-check fa-lg"></span>&nbsp;启用</a>
+				<a class="nui-button "  margin-right: 10px;" iconcls="" plain="true" onclick="openEle">
+				<span class="fa fa-pencil fa-lg"></span>&nbsp;开通电子档案</a>
 			</div>
 
 			<div class="nui-fit">

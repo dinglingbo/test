@@ -654,6 +654,10 @@
                     (a.guestId  in ($guestIdList$))
                 </isNotEmpty>
                 
+                 <isNotEmpty prepend="and" property="guestName">  
+                    (a.fullName like'%$guestName$%' or a.shortName like '%$guestName$%')
+                </isNotEmpty>
+                
                 <isNotEmpty prepend="and" property="serviceMan">  
                     (a.orderMan = #serviceMan#)
                 </isNotEmpty>
@@ -1019,6 +1023,10 @@
                  <!-- 月结 020502 -->
                  <isNotEmpty prepend="and" property="settleTypeId"> 
                     (c.settle_type_id = #settleTypeId#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="guestName"> 
+                    (a.guest_name like '%$guestName$%' )
                 </isNotEmpty>
                 
              ORDER BY a.audit_date desc             

@@ -927,22 +927,24 @@ function showButton(main){
 			$("#refuseBtn").hide();
 			$("#outStockBtn").hide();
 			
+			$("#addBtn").show();
 			$("#submitBtn").show();
 			$("#inStockBtn").show();
-			$("#del").show();
+			$("#delBtn").show();
 			nui.get("addPartBtn").enable();
 			nui.get("deletePartBtn").enable();
 			
 			
 		}else{
-			//显示新增，保存，受理，出库，拒绝，打印
+			//显示保存，受理，出库，拒绝，打印
 			$("#acceptBtn").show();
 			$("#refuseBtn").show();
 			$("#outStockBtn").show();
 			
+			$("#addBtn").hide();
 			$("#submitBtn").hide();
 			$("#inStockBtn").hide();
-			$("#del").hide();
+			$("#delBtn").hide();
 			nui.get("addPartBtn").disable();
 			nui.get("deletePartBtn").disable();
 		}
@@ -953,7 +955,7 @@ function showButton(main){
 		
 		$("#submitBtn").show();
 		$("#inStockBtn").show();
-		$("#del").show();
+		$("#ddelBtn").show();
 		nui.get("addPartBtn").enable();
 		nui.get("deletePartBtn").enable();
 	}

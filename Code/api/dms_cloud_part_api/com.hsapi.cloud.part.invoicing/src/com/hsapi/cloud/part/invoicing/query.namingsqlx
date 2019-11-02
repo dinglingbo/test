@@ -183,6 +183,7 @@
 			<dynamic>
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
             <isNotEmpty prepend="and" property="orderTypeId">(a.order_type_id = #orderTypeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isDiffOrder">(a.is_diff_order = #isDiffOrder#)</isNotEmpty>
             <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
             <isNotEmpty prepend="and" property="isFinished">(a.is_finished = #isFinished#)</isNotEmpty>
             <!--订货日期 -->
@@ -869,6 +870,7 @@
         <!-- 导出销售的订单记录-->
      <select id="exportReceiveMainDetails" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
 	   SELECT
+	   		a.order_type_id as orderTypeId,
 			a.service_id AS serviceId,
 			a.guest_id AS guestId,
 			a.orgid AS orgid,
@@ -934,6 +936,7 @@
       <!-- 导出采购的订单记录-->
      <select id="exportPchDetails" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
 	   SELECT
+	   		a.order_type_id as orderTypeId,
 			a.service_id AS serviceId,
 			a.guest_id AS guestId,
 			a.orgid AS orgid,

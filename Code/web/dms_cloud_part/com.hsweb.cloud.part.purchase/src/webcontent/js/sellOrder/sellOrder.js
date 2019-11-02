@@ -1064,11 +1064,17 @@ function loadRightGridData(mainId)
 }
 function onLeftGridDrawCell(e)
 {
+	if(e.record.billStatusId == 2 && e.field) {
+    	e.cellHtml = '<a style="color:red;">' + e.value + '</a>';
+    }
     switch (e.field){
         case "auditSign":
             if(AuditSignHash && AuditSignHash[e.value])
             {
                 e.cellHtml = AuditSignHash[e.value];
+            }
+            if(e.record.billStatusId == 2) {
+            	e.cellHtml = '<a style="color:red;">' + AuditSignHash[e.value] + '</a>';
             }
             break;
         case "billStatusId":
@@ -1076,6 +1082,11 @@ function onLeftGridDrawCell(e)
             {
                 e.cellHtml = StatusHash[e.value];
             }
+            
+            if(e.value == 2) {
+            	e.cellHtml = '<a style="color:red;">' + StatusHash[e.value] + '</a>';
+            }
+            
             break;
     }
 }

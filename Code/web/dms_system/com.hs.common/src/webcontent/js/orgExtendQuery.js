@@ -149,6 +149,32 @@ function edit(action) {
         }
     });	    
 }
+
+
+function openEle(){
+	 var comCompay = {};
+	 var comCompay = grid.getSelected();
+     if (!comCompay) {
+         showMsg("请选中一条记录","W");
+         return;
+         
+     }
+    nui.open({
+        url: webPath + contextPath + "/com.hs.common.openElectronicArcgives.flow?token="+token,
+        width: 1200,      //宽度
+        height: 600,    //高度
+        title: "开通电子档案",      //标题 组织编码选择
+        allowResize:true,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.SetInitData(comCompay);
+        },
+        ondestroy: function (action) {  //弹出页面关闭前
+	            grid.reload();
+	        }
+	});	    
+}
+
 /*
 *
 *

@@ -539,7 +539,7 @@ function setInitData(params, ck, cck){
     }
 
     if(currSwithBatchFlag ==1){	
-    	morePartTabs.activeTab("enterTab"); 
+    	//2019.11.2去掉批次选择morePartTabs.activeTab("enterTab"); 
     }
 
     var tab = morePartTabs.getActiveTab();

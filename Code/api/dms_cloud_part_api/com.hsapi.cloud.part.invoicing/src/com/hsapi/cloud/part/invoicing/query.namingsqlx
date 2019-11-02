@@ -183,6 +183,7 @@
 			<dynamic>
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
             <isNotEmpty prepend="and" property="orderTypeId">(a.order_type_id = #orderTypeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isDiffOrder">(a.is_diff_order = #isDiffOrder#)</isNotEmpty>
             <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
             <isNotEmpty prepend="and" property="isFinished">(a.is_finished = #isFinished#)</isNotEmpty>
             <!--订货日期 -->

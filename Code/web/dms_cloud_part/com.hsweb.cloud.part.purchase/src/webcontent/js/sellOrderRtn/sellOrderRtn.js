@@ -2273,7 +2273,8 @@ function getCangHash(data,detailData){
 		var warehouse=[];
 		var warehousetemp={};
 		var part_id=detailData[i].partId;
-		if(!partHash[part_id].cangPartId){
+		/*2019.11.2不考虑cangPartId
+		 * if(!partHash[part_id].cangPartId){
 			showMsg("该配件未同步仓先生","W");
 			return;
 		}
@@ -2281,7 +2282,7 @@ function getCangHash(data,detailData){
 		if(!temp.part_id){
 			showMsg("该配件未同步仓先生","W");
 			return;
-		}
+		}*/
 		temp.detailId = detailData[i].id;
 		warehousetemp.num =detailData[i].orderQty;
 		if(storeHash && storeHash[detailData[i].storeId]){

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>快速录入</title>
-<script src="<%=webPath + contextPath%>/common/js/fastPartChoose.js?v=1.0.3"></script>
+<script src="<%=webPath + contextPath%>/common/js/fastPartChoose.js?v=1.0.4"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -109,7 +109,7 @@ body .mini-grid-row-selected{
                             </div>
                             
                         </div> 
-                        <div title="批次选择" id="enterTab" name="enterTab" >
+                        <div title="批次选择" id="enterTab" name="enterTab" visible="false">
                             <div id="enterGrid" class="nui-datagrid" style="width:100%;height:100%;"
                                     borderStyle="border:1;"
                                     selectOnLoad="true"

@@ -181,7 +181,7 @@
                                       <td class="title required">
                                           <label>物流公司：</label>
                                       </td>
-                                      <td colspan="1">
+                                      <td colspan="3">
                                           <input id="logisticsGuestId"
                                                  name="logisticsGuestId"
                                                  loadingText="查询中"
@@ -193,7 +193,7 @@
                                                  placeholder="请选择物流公司..."
                                                  emptyText="请选择物流公司..."
                                                  popupEmptyText="未找到物流公司"
-                                                 width="40%"
+                                                 width="70%"
                                                  placeholder="请选择物流公司"
                                                  selectOnFocus="true" />
 <!--                                           <input id="btnEdit1" width="15%" class="mini-buttonedit"  onbuttonclick="selectLogisticsSupplier('logisticsGuestId')"/> -->
@@ -208,10 +208,10 @@
                                           <input class="nui-textbox" id="logisticsNo" name="logisticsNo" width="100%" enabled="true">
                                       </td>
                                       <td class="title required">
-                                          <label>目的站：</label>
+                                          <label>运费：</label>
                                       </td>
-                                      <td colspan="3">
-                                          <input class="nui-combobox" data="cityList" textField="name" valueField="name" allowInput="true" id="destinationStation" name="destinationStation" width="100%">
+                                      <td colspan="1">
+                                          <input class="nui-textbox" id="" name="packPayAmt" width="100%" vtype="float" enabled="true">
                                       </td>
                                       
                                   </tr>
@@ -344,19 +344,25 @@
                                           <input class="nui-combobox" data="cityList" textField="name" valueField="name" allowInput="true" id="senderCity" name="senderCity" width="100%"  enabled="true">
                                       </td>
                                       <td class="title required">
+                                          <label>目的站：</label>
+                                      </td>
+                                      <td colspan="1">
+                                          <input class="nui-combobox" data="cityList" textField="name" valueField="name" allowInput="true" id="destinationStation" name="destinationStation" width="100%">
+                                      </td>
+                                      <td class="title">
+                                          <label>备注：</label>
+                                      </td>
+                                      <td colspan="3">
+                                          <input class="nui-textbox" id="remark" name="remark" width="100%" enabled="true">
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td class="title required">
                                           <label>发货员：</label>
                                       </td>
                                       <td colspan="1">
                                           <input class="nui-textbox" id="packMan" name="packMan" width="100%" enabled="true">
                                       </td>
-                                      <td class="title required">
-                                          <label>身份证号：</label>
-                                      </td>
-                                      <td colspan="3">
-                                          <input class="nui-textbox" id="idNo" name="idNo"vtype="int" width="100%" enabled="true">
-                                      </td>
-                                  </tr>
-                                  <tr>
                                       <td class="title required">
                                           <label>发件人电话：</label>
                                       </td>
@@ -366,20 +372,14 @@
                                       <td class="title required">
                                           <label>发件人地址：</label>
                                       </td>
-                                      <td colspan="1">
+                                      <td colspan="3">
                                           <input class="nui-textbox" id="senderAddress" name="senderAddress" width="100%"  selectOnFocus="true">
                                       </td>
                                       <td class="title required">
-                                          <label>运费：</label>
+                                          <label>身份证号：</label>
                                       </td>
-                                      <td colspan="1">
-                                          <input class="nui-textbox" id="" name="packPayAmt" width="100%" vtype="float" enabled="true">
-                                      </td>
-                                      <td class="title">
-                                          <label>备注：</label>
-                                      </td>
-                                      <td colspan="5">
-                                          <input class="nui-textbox" id="remark" name="remark" width="100%" enabled="true">
+                                      <td colspan="3">
+                                          <input class="nui-textbox" id="idNo" name="idNo"vtype="int" width="100%" enabled="true">
                                       </td>
                                   </tr>
                               </table>

@@ -80,7 +80,7 @@ public class BillStateUtils {
 	}
 	@Bizlet("")
 	public static String administratorLimit(String administrator) {
-		if(administrator.equals("sysadmin")||administrator.equals("sysqxy")||administrator.equals("sysqpy")){
+		if(administrator.equals("sysadmin")||administrator.equals("sysqxy")||administrator.equals("sysqpy")||administrator.equals("SYSADMIN")||administrator.equals("SYSQXY")||administrator.equals("SYSQPY")){
 			return "S";
 		}else{
 			return "E";

@@ -84,10 +84,9 @@
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>subprocess4</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">isOpenApp</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
+        <process:complexCondition>
+          <process:code>1!=1</process:code>
+        </process:complexCondition>
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
@@ -123,14 +122,13 @@
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>subprocess3</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">isOpenApp</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
+        <process:complexCondition>
+          <process:code>1!=1</process:code>
+        </process:complexCondition>
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link24</targetConnections>
-    <location x="710" y="23"/>
+    <location x="637" y="15"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -144,7 +142,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="674" y="59"/>
+    <location x="601" y="51"/>
     <figSize height="20" width="94"/>
     <node>invokePojo2</node>
   </nodes>

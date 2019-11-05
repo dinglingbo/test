@@ -1661,7 +1661,7 @@
                     (c.store_id = #storeId#)
                 </isNotEmpty>
                 
-                <isNotEmpty prepend="and" property="sourceType">  
+                <isNotEmpty prepend="and" property="noGuestOrder">  
                     (a.source_type !=5)
                 </isNotEmpty>
             </dynamic>  

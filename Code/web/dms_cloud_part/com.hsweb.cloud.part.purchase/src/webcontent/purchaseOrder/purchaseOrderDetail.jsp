@@ -263,7 +263,7 @@
                               </tr>
                               
                               <tr>
-                              	 <td class="title">
+                              	 <td class="title required">
                                       <label>仓库：</label>
                                   </td>
                                   <td colspan="1">
@@ -357,7 +357,7 @@
                             <div header="辅助信息" headerAlign="center">
                                 <div property="columns">
                                     <div type="comboboxcolumn" field="storeId" width="70" headerAlign="center" allowSort="true" header="仓库">
-                        仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" data="storehouse"
+                        仓库<input  property="editor" enabled="false" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" data="storehouse"
                                       url=""
                                       onvaluechanged="onStoreValueChange" emptyText=""  vtype="required"
                                       /> 

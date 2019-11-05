@@ -173,6 +173,12 @@ function onDrawCell(e)
                 e.cellHtml = accountSignHash[e.value];
             }
             break;
+        case "orderAmt":
+            if(e.record.orderTypeId ==2)
+            {
+                e.cellHtml = e.record.showAmt;
+            }
+            break;
         default:
             break;
     }

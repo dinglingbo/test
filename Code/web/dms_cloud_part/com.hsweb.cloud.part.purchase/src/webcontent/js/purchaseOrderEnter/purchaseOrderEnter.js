@@ -2492,6 +2492,10 @@ function OnrpMainGridCellBeginEdit(e){
 
     var data = basicInfoForm.getData();
 
+    if(e.field=="storeId"){
+    	e.cancel = true;
+    }
+    
     if(data.auditSign == 1){
         e.cancel = true;
 	}

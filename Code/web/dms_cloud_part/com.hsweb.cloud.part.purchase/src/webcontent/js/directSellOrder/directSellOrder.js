@@ -2857,6 +2857,9 @@ function OnrpMainGridCellBeginEdit(e){
         e.cancel = true;
     }
 
+    if(e.field=="storeId"){
+    	e.cancel = true;
+    }
     if(row.partId) {
     	
         if(row.isMarkBatch && row.isMarkBatch == 1){

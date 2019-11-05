@@ -215,6 +215,7 @@ body .mini-grid-row-selected{
                                         allowInput="false"
                                         showNullItem="false"
                                         width="100%"
+                                        enabled="false"
                                         nullItemText="请选择..."/>
                             </td>
                             <td class="title required">

@@ -1413,7 +1413,8 @@ var requiredField = {
     orderMan : "销售员",
     orderDate : "订单日期",
 	billTypeId : "票据类型",
-    settleTypeId : "结算方式"
+    settleTypeId : "结算方式",
+    storeId :"仓库"
 };
 
 var updateCreditUrl= baseUrl +"com.hsapi.cloud.part.invoicing.settle.updateGuestCredit.biz.ext";
@@ -2696,6 +2697,9 @@ function OnrpMainGridCellBeginEdit(e){
         //e.cancel = true;
     }
 
+    if(e.field=="storeId"){
+    	e.cancel = true;
+    }
     if(row.partId) {
         if(row.isMarkBatch && row.isMarkBatch == 1){
             if(column.field != "remark" && column.field != "orderPrice" && column.field != "orderAmt" && column.field != "orderQty"

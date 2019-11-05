@@ -1278,7 +1278,8 @@ var requiredField = {
 	orderDate : "订货日期",
 	billTypeId : "票据类型",
 	settleTypeId : "结算方式",
-	orderType:"订单类型"
+	orderType:"订单类型",
+	storeId:"仓库"
 };
 
 var savePriceUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveUpdatePrice.biz.ext";
@@ -2923,6 +2924,10 @@ function OnrpMainGridCellBeginEdit(e){
     var editor = e.editor;
 
     var data = basicInfoForm.getData();
+    
+    if(e.field=="storeId"){
+    	e.cancel = true;
+    }
 
     if(data.auditSign == 1){
         e.cancel = true;

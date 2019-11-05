@@ -2441,6 +2441,11 @@ function OnrpMainGridCellBeginEdit(e){
     if(data.auditSign == 1){
         e.cancel = true;
 	}
+    
+    if(e.field=="storeId"){
+    	e.cancel = true;
+    }
+    
     if(data.sourceType==1){
 	   if(field=="comPartCode"){
 		   e.cancel = true;

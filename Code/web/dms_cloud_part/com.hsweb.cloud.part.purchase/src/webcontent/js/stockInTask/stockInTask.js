@@ -572,6 +572,13 @@ function onLeftGridDrawCell(e) {
 				e.cellHtml = StatusHash[e.value];
 			}
 			break;
+		case "storeId":
+			if (storeHash && storeHash[e.value]) {
+				e.cellHtml = storeHash[e.value].name;
+			}else {
+				e.cellHtml = "";
+			}
+			break;
 	}
 
 }

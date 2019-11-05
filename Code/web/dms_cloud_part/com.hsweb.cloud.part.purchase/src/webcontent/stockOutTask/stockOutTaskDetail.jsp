@@ -89,16 +89,17 @@
                      url="">
                     <div property="columns">
                       <div type="indexcolumn">序号</div>
-                      	<div field="auditSign" width="55" headerAlign="center" header="状态" visible="false"></div>
-                      	<div field="billStatusId" width="55" headerAlign="center" header="状态" ></div>
+                      	<div field="auditSign" width="55" headerAlign="center" header="状态" visible="false" allowSort="true" dataType="string"></div>
+                      	<div field="billStatusId" width="55" headerAlign="center" header="状态" allowSort="true" dataType="string"></div>
+                   	    <div field="storeId" width="80" headerAlign="center"  header="仓库" allowSort="true" dataType="string"></div>
                         <div field="guestFullName" width="140" headerAlign="center" header="客户" allowSort="true"></div>
-                        <div field="orderDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="订单日期" allowSort="true"></div>
-                        <div field="orderMan" width="60" headerAlign="center" header="销售员"></div>
+                        <div field="orderDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="订单日期" allowSort="true" dataType="date"></div>
+                        <div field="orderMan" width="60" headerAlign="center" header="销售员" allowSort="true" dataType="string"></div>
                         <div field="serviceId" headerAlign="center" width="150" header="出库单号"></div>
-                        <div field="remark" headerAlign="center" width="150" header="备注" ></div>
+                        <div field="remark" headerAlign="center" width="150" header="备注" allowSort="true" dataType="string"></div>
                         <div field="printTimes" width="60" headerAlign="center" header="打印次数" visible="false"></div>
-                        <div field="auditor" width="60" headerAlign="center" header="出库人"></div>
-                        <div field="auditDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="出库日期" allowSort="true"></div>
+                        <div field="auditor" width="60" headerAlign="center" header="出库人" allowSort="true" dataType="string"></div>
+                        <div field="auditDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="出库日期" allowSort="true" dataType="date"></div>
                     </div>
                 </div>
             </div>

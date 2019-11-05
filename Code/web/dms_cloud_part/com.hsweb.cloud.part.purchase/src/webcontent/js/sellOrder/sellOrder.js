@@ -1065,6 +1065,9 @@ function loadRightGridData(mainId)
 function onLeftGridDrawCell(e)
 {
 	if(e.record.billStatusId == 2 && e.field) {
+		if(e.value == null) {
+			e.value = "";
+		}
     	e.cellHtml = '<a style="color:red;">' + e.value + '</a>';
     }
     switch (e.field){
@@ -1085,6 +1088,21 @@ function onLeftGridDrawCell(e)
             
             if(e.value == 2) {
             	e.cellHtml = '<a style="color:red;">' + StatusHash[e.value] + '</a>';
+            }
+            
+            break;
+        case "orderDate":
+            if(e.record.billStatusId == 2) {
+            	e.cellHtml = '<a style="color:red;">' + format(e.value, 'yyyy-MM-dd HH:mm') + '</a>';
+            } else {
+            	e.cellHtml = format(e.value, 'yyyy-MM-dd HH:mm');
+            }
+            break;
+        case "auditDate":
+            if(e.record.billStatusId == 2) {
+            	e.cellHtml = '<a style="color:red;">' + format(e.value, 'yyyy-MM-dd HH:mm') + '</a>';
+            }else {
+            	e.cellHtml = format(e.value, 'yyyy-MM-dd HH:mm');
             }
             
             break;

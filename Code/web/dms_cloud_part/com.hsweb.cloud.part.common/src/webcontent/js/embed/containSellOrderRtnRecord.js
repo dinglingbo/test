@@ -86,6 +86,7 @@ function doSearch(params)
     guestId = params.guestId || ""
     params.isFinished = 1;
     params.orderTypeId = 4;
+    params.isDiffOrder = 1;
     params.sortField = "a.audit_date";
     params.sortOrder = "desc";
     rightGrid.load({

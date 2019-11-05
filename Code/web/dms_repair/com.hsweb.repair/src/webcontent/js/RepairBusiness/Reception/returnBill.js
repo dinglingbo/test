@@ -1294,6 +1294,7 @@ function saveBatch(){
 		for ( var key in requiredField) {
 			if (!data[key] || $.trim(data[key]).length == 0) {
 	            showMsg(requiredField[key] + "不能为空!","W");
+	            nui.unmask(document.body);
 				return;
 			}
 	    }
@@ -1453,69 +1454,79 @@ function finish(){
 		showMsg("工单已归库,不能审核!","W");
         return;
 	}
-	nui.mask({
-        el: document.body,
-        cls: 'mini-mask-loading',
-        html: '审核中...'
-    });
-	var maintain = billForm.getData(true);
-	if(maintain.recordDate){
-		maintain.recordDate = format(maintain.recordDate, 'yyyy-MM-dd HH:mm:ss');
-    }
-	total = null;
-	var sellPartAdd = [];
-	var sellPartUpdate = [];
-	var sellPartDelete = rpsPartGrid.getChanges("removed");
-	var row = rpsPartGrid.findRow(function(row){
-		if(!row.id){
-			total += parseFloat(row.amt);
-			sellPartAdd.push(row);
-		}else{
-			total += parseFloat(row.amt);
-			sellPartUpdate.push(row);
-		}
-    });
-	maintain.partAmt = total;
-	var json = nui.encode({
-		"main" : maintain,
-		"sellPartAdd" : sellPartAdd,
-		"sellPartUpdate" : sellPartUpdate,
-		"sellPartDelete" : sellPartDelete,
-		token : token
-	});	
-	/*var json = nui.encode({
-		"main" : main,
-		token : token
-	});*/
-	
-	nui.ajax({
-		url : updUrl,
-		type : 'POST',
-		data : json,
-		cache : false,
-		contentType : 'text/json',
-		success : function(text) {
-			var returnJson = nui.decode(text);
-			nui.unmask(document.body);
-			if (returnJson.errCode == "S") {
-				main.status = 1;
-				billForm.setData(main);
-				nui.get("mtAdvisorId").setText(main.mtAdvisor);
-				var p3 = {
-                        interType: "part",
-                        data:{
-                            serviceId: maintain.id||0
-                        }
-                    };
-                loadDetail(p3);
-				showMsg("确认开单成功","S");
+	var data = rpsPartGrid.getData();
+	if(data.length==0){
+		showMsg("请添加配件","W");
+		return;
+	}
+	nui.confirm("确认开单后，不能再添加和修改配件，是否继续？", "友情提示",function(action){
+		 if(action == "ok"){
+			 nui.mask({
+			        el: document.body,
+			        cls: 'mini-mask-loading',
+			        html: '审核中...'
+			    });
+				var maintain = billForm.getData(true);
+				if(maintain.recordDate){
+					maintain.recordDate = format(maintain.recordDate, 'yyyy-MM-dd HH:mm:ss');
+			    }
+				total = null;
+				var sellPartAdd = [];
+				var sellPartUpdate = [];
+				var sellPartDelete = rpsPartGrid.getChanges("removed");
+				var row = rpsPartGrid.findRow(function(row){
+					if(!row.id){
+						total += parseFloat(row.amt);
+						sellPartAdd.push(row);
+					}else{
+						total += parseFloat(row.amt);
+						sellPartUpdate.push(row);
+					}
+			    });
+				maintain.partAmt = total;
+				var json = nui.encode({
+					"main" : maintain,
+					"sellPartAdd" : sellPartAdd,
+					"sellPartUpdate" : sellPartUpdate,
+					"sellPartDelete" : sellPartDelete,
+					token : token
+				});	
+				/*var json = nui.encode({
+					"main" : main,
+					token : token
+				});*/
 				
-			} else {
-				showMsg(returnJson.errMsg || "确认开单失败","E");
-			}
-				
-		}
+				nui.ajax({
+					url : updUrl,
+					type : 'POST',
+					data : json,
+					cache : false,
+					contentType : 'text/json',
+					success : function(text) {
+						var returnJson = nui.decode(text);
+						nui.unmask(document.body);
+						if (returnJson.errCode == "S") {
+							main.status = 1;
+							billForm.setData(main);
+							nui.get("mtAdvisorId").setText(main.mtAdvisor);
+							var p3 = {
+			                        interType: "part",
+			                        data:{
+			                            serviceId: maintain.id||0
+			                        }
+			                    };
+			                loadDetail(p3);
+							showMsg("确认开单成功","S");
+							
+						} else {
+							showMsg(returnJson.errMsg || "确认开单失败","E");
+						}
+							
+					}
+				});
+		 }
 	});
+	
 }
 
 var total = null;

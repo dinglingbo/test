@@ -335,7 +335,7 @@ function sendNoticeMsg(socket,params){
 //导入时间限制
 function importTimeLimit(){
 	//免限制权限账户
-	if(currLoginName=="sysadmin"||currLoginName=="sysqxy"||currLoginName=="sysqpy"){
+	if(currLoginName=="sysadmin"||currLoginName=="sysqxy"||currLoginName=="sysqpy"||currLoginName=="SYSADMIN"||currLoginName=="SYSQXY"||currLoginName=="SYSQPY"){
 		return true;
 	}else{
 		var d2=new Date();

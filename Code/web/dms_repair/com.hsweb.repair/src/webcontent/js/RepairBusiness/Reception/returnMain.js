@@ -94,7 +94,6 @@ $(document).ready(function ()
         columns: [
             { name: 'status' },
             { name: 'contactName' },
-            { name: 'carModel' },
             { name: 'isSettle' },
             { name: 'mtAdvisor' },
             {name:'mtAdvisorId'}

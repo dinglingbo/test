@@ -582,6 +582,7 @@ function quickSearch(type) {
 	var queryname = "本日";
 	var querytypename = "已提交";
 	var querystatusname = "已提交";
+	gsparams =getSearchParam();
 	switch (type) {
 	case 0:
 		params.today = 1;
@@ -713,6 +714,7 @@ function getSearchParam() {
 	params = gsparams;
 	params.guestId = nui.get("searchGuestId").getValue();
 	params.storeId =nui.get("selectStoreId").getValue()||"";
+	params.noGuestOrder= 1;
 	//是业务员且业务员禁止可见
 	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
 		params.creator= currUserName;
@@ -3002,6 +3004,7 @@ function onCost(){
 	var p={};
 	p.code =serviceId;
 	p.codeId =id;
+	p.orderTypeId = data.orderTypeId;
 	p.guestId = guestIdEl.getValue();
 	p.guestName = guestIdEl.getText();
 	nui.open({

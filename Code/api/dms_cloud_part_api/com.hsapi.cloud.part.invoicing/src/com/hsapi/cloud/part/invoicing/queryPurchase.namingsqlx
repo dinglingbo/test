@@ -1660,6 +1660,10 @@
                 <isNotEmpty prepend="and" property="storeId">  
                     (c.store_id = #storeId#)
                 </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="sourceType">  
+                    (a.source_type !=5)
+                </isNotEmpty>
             </dynamic>  
            
         

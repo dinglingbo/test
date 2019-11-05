@@ -3067,6 +3067,7 @@ function onCost(){
 	var p={};
 	p.code =serviceId;
 	p.codeId =id;
+	p.orderTypeId =1;
 	p.guestId = guestIdEl.getValue();
 	p.guestName = guestIdEl.getText();
 	nui.open({

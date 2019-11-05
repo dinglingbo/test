@@ -891,6 +891,9 @@ function loadRightGridData(mainId)
 function onLeftGridDrawCell(e)
 {
 	if(e.record.billStatusId == 2 && e.field) {
+		if(e.value == null) {
+			e.value = "";
+		}
     	e.cellHtml = '<a style="color:red;">' + e.value + '</a>';
     }
     switch (e.field){
@@ -912,6 +915,26 @@ function onLeftGridDrawCell(e)
             	e.cellHtml = '<a style="color:red;">' + StatusHash[e.value] + '</a>';
             }
             break;
+        case "orderDate":
+        	e.cellHtml = format(e.value, 'yyyy-MM-dd HH:mm');
+            if(e.record.billStatusId == 2) {
+            	e.cellHtml = '<a style="color:red;">' + format(e.value, 'yyyy-MM-dd HH:mm') + '</a>';
+            }
+            break;
+        case "auditDate":
+        	e.cellHtml = format(e.value, 'yyyy-MM-dd HH:mm');
+            if(e.record.billStatusId == 2) {
+            	e.cellHtml = '<a style="color:red;">' + format(e.value, 'yyyy-MM-dd HH:mm') + '</a>';
+            }
+            
+            break;
+		case "storeId":
+			if (storeHash && storeHash[e.value]) {
+				e.cellHtml = storeHash[e.value].name;
+			}else {
+				e.cellHtml = "";
+			}
+			break;
     }
 }
 var currType = 2;

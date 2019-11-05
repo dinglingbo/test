@@ -83,6 +83,7 @@
 			e_token_url as eTokenUrl,
 			e_push_url as ePushUrl,
 			remark as remark,
+			is_open_system as isOpenSystem,
 			e_record_pwd as eRecordPwd,
 			recorder as recorder,
 			record_date as recordDate,

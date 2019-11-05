@@ -197,7 +197,7 @@
 		from rps_maintain a
 		left join rps_settlement b on a.id = b.service_id
 		inner join rpb_car c on a.car_id = c.id
-		where  a.bill_type_id in (0,2,4,6)
+		where  a.bill_type_id in (0,2,4,6) and a.is_disabled=0
 		
 		<dynamic>
 			<isNotEmpty prepend="and" property="billTypeId">  
@@ -310,7 +310,7 @@
 					where a.orgid = #orgid# and  a.return_sign = 0 GROUP BY a.main_id) a on a.main_id = b.id
 			inner join wb_repair.rps_maintain c on b.service_id = c.id 
 			where  c.orgid = #orgid#
-			and c.bill_type_id != 5 and b.is_disabled = 0
+			and c.bill_type_id != 5 and b.is_disabled = 0 and c.is_disabled=0
 			
 		
             <isNotEmpty prepend="and" property="startDate">  
@@ -686,7 +686,7 @@
 		from rps_maintain a
 		inner join rps_settlement b
 		on a.id = b.service_id
-		where a.is_settle = 1 
+		where a.is_settle = 1 and a.is_disabled=0 and a.bill_type_id in (0,2,4,6)
 		      
 		<dynamic>
 			<isNotEmpty prepend="and" property="orgid">

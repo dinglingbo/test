@@ -86,19 +86,20 @@
                      onselectionchanged="onLeftGridSelectionChanged"
                      onbeforedeselect="onLeftGridBeforeDeselect"
                      dataField="pjSellOrderMainList"
+                     sortMode="client"
                      url="">
                     <div property="columns">
                       <div type="indexcolumn">序号</div>
-                        <div field="auditSign" width="55" visible="false" headerAlign="center" header="状态"></div>
-                        <div field="billStatusId" width="55" headerAlign="center" header="状态"></div>
-                        <div field="guestFullName" width="140" headerAlign="center" header="客户"></div>
-                        <div field="orderDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="订单日期"></div>
-                        <div field="orderMan" width="60" headerAlign="center" header="销售员"></div>
-                        <div field="serviceId" headerAlign="center" width="150" header="订单号"></div>
+                        <div field="auditSign" width="55" visible="false" headerAlign="center" header="状态" allowSort="true" dataType="string"></div>
+                        <div field="billStatusId" width="55" headerAlign="center" header="状态" allowSort="true" dataType="string"></div>
+                        <div field="guestFullName" width="140" headerAlign="center" header="客户" allowSort="true" dataType="string"></div>
+                        <div field="orderDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="订单日期" allowSort="true" dataType="date"></div>
+                        <div field="orderMan" width="60" headerAlign="center" header="销售员" allowSort="true" dataType="string"></div>
+                        <div field="serviceId" headerAlign="center" width="150" header="订单号" allowSort="true" dataType="string"></div>
                         <div field="printTimes" width="60" headerAlign="center" header="打印次数"></div>
-                        <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
-                        <div field="auditDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="审核日期"></div>
-                        <div field="remark" width="120" headerAlign="center" header="备注"></div>
+                        <div field="auditor" width="60" headerAlign="center" header="审核人" allowSort="true" dataType="string"></div>
+                        <div field="auditDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="审核日期" allowSort="true" dataType="date"></div>
+                        <div field="remark" width="120" headerAlign="center" header="备注" allowSort="true" dataType="string"></div>
                     </div>
                 </div>
             </div>
@@ -214,7 +215,7 @@
                                                  width="100%"
                                                  nullItemText="请选择..."/>
                                       </td>
-                                      <td class="title">
+                                      <td class="title required">
 	                                      <label>仓库：</label>
 	                                  </td>
 	                                  <td colspan="1">
@@ -317,7 +318,7 @@
                               <div header="辅助信息" headerAlign="center">
                                   <div property="columns">
                                       <div type="comboboxcolumn" field="storeId" width="90" headerAlign="center" allowSort="true">
-                                      	仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" 
+                                      	仓库<input  property="editor" enabled="false" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" 
                                               url="" data="storehouse"
                                               onvaluechanged="onStoreValueChange" emptyText=""  vtype="required"
                                               /> 

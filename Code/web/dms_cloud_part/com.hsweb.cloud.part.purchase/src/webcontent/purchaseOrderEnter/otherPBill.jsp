@@ -14,7 +14,7 @@
 <head>
 <title>Title</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src ="<%=request.getContextPath()%>/purchase/js/purchaseOrderEnter/otherPBill.js?v=1.0.32"></script>
+    <script src ="<%=request.getContextPath()%>/purchase/js/purchaseOrderEnter/otherPBill.js?v=1.0.33"></script>
     
 </head>
 <body>

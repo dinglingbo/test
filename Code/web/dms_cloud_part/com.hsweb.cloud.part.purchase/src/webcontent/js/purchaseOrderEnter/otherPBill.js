@@ -26,6 +26,7 @@ var auditSignList = [
 //var guestId =0;
 var code ="";
 var codeId =0;
+var orderTypeId = 0;
 //var guestName ="";
 $(document).ready(function(v)
 {
@@ -346,6 +347,7 @@ function addNewRow(){
             			guestId :guestId,
             			code : code,
             			codeId :codeId,
+            			orderTypeId :orderTypeId,
             			guestName :guestName,
             			billDc: -1,
             			rpTypeId: 2
@@ -367,6 +369,7 @@ function setData(params){
 //	guestId =params.guestId;
 	code =params.code;
 	codeId =params.codeId;
+	orderTypeId = params.orderTypeId;
 //	guestName = params.guestName;
 	doSearch();
 }

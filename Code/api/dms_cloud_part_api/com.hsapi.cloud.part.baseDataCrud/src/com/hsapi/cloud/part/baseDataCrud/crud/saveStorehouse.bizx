@@ -143,10 +143,9 @@
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>subprocess0</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">isOpenApp</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
+        <process:complexCondition>
+          <process:code>1==2</process:code>
+        </process:complexCondition>
       </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
@@ -182,10 +181,9 @@
       <sourceNode>invokePojo3</sourceNode>
       <targetNode>assign4</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">isOpenApp</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
+        <process:complexCondition>
+          <process:code>1==2</process:code>
+        </process:complexCondition>
       </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">

@@ -1065,6 +1065,9 @@ function loadRightGridData(mainId)
 function onLeftGridDrawCell(e)
 {
 	if(e.record.billStatusId == 2 && e.field) {
+		if(e.value == null) {
+			e.value = "";
+		}
     	e.cellHtml = '<a style="color:red;">' + e.value + '</a>';
     }
     switch (e.field){
@@ -1085,6 +1088,21 @@ function onLeftGridDrawCell(e)
             
             if(e.value == 2) {
             	e.cellHtml = '<a style="color:red;">' + StatusHash[e.value] + '</a>';
+            }
+            
+            break;
+        case "orderDate":
+            if(e.record.billStatusId == 2) {
+            	e.cellHtml = '<a style="color:red;">' + format(e.value, 'yyyy-MM-dd HH:mm') + '</a>';
+            } else {
+            	e.cellHtml = format(e.value, 'yyyy-MM-dd HH:mm');
+            }
+            break;
+        case "auditDate":
+            if(e.record.billStatusId == 2) {
+            	e.cellHtml = '<a style="color:red;">' + format(e.value, 'yyyy-MM-dd HH:mm') + '</a>';
+            }else {
+            	e.cellHtml = format(e.value, 'yyyy-MM-dd HH:mm');
             }
             
             break;
@@ -1598,7 +1616,8 @@ var requiredField = {
     orderMan : "销售员",
     orderDate : "订单日期",
 	billTypeId : "票据类型",
-    settleTypeId : "结算方式"
+    settleTypeId : "结算方式",
+    storeId :"仓库"
 };
 var updateCreditUrl= baseUrl +"com.hsapi.cloud.part.invoicing.settle.updateGuestCredit.biz.ext";
 function beforeSave(){
@@ -1866,6 +1885,8 @@ function onRightGridDraw(e)
     }
 }
 function onCellEditEnter(e){
+	
+	
     var record = e.record;
     var cell = rightGrid.getCurrentCell();//行，列
     var orderPrice = record.orderPrice;
@@ -1880,10 +1901,18 @@ function onCellEditEnter(e){
         }else if(column.field == "remark"){
             addNewKeyRow();
         }else if(column.field == "comPartCode"){
+        
             var guestId = nui.get("guestId").getValue();
             if(!guestId) {
                 showMsg("请先选择客户再添加配件!","W");
                 nui.get("guestId").focus();
+                return;
+            }
+            
+            var storeId = nui.get("storeId").getValue();
+            if(!storeId) {
+                showMsg("请先选择仓库再添加配件!","W");
+                nui.get("storeId").focus();
                 return;
             }
 
@@ -2898,6 +2927,10 @@ function OnrpMainGridCellBeginEdit(e){
 
     if(data.codeId && data.codeId>0){
         e.cancel = true;
+    }
+    
+    if(e.field=="storeId"){
+    	e.cancel = true;
     }
 
     if(row.partId) {

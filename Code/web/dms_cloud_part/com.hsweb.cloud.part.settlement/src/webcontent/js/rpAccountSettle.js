@@ -252,6 +252,7 @@ function getSearchParam(){
     params.sCreateDate = searchBeginDate.getFormValue();
     params.eCreateDate = searchEndDate.getFormValue();
     params.settleStatus = nui.get("settleStatus").getValue();
+    params.auditSign=1
     
     if(params.settleStatus ==4){
     	params.settleStatus =null;
@@ -1180,7 +1181,7 @@ function checkSettleRow(){
             }
         }
 
-        for(var i=0; i<s; i++){
+        /*for(var i=0; i<s; i++){
             var row = rows[i];
             var balanceSign = row.balanceSign;
             var billServiceId = row.billServiceId;
@@ -1203,7 +1204,7 @@ function checkSettleRow(){
                     msg += "请填写业务单据："+billServiceId+ "的结算金额；</br>";
                 }
             }
-        }
+        }*/
     }else{
         msg = "请选择单据!";
     }
@@ -1828,6 +1829,12 @@ function onCellCommitEdit(e) {
     if (editor.isValid() == false) {
         showMsg("请输入数字!","W");
         e.cancel = true;
+    }else {
+    	if(e.value==null || e.value=='') {
+            e.value = 0;
+        }else if(e.value < 0) {
+            e.value = 0;
+        }
     }
 }
 function checkSettleAccountAmt(charOffAmt){

@@ -209,7 +209,7 @@
       <process:to type="query">ct/_and[1]/_expr[8]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">auditSign</process:from>
+      <process:from type="query" pattern="reference">params/auditSign</process:from>
       <process:to type="query">ct/_and[1]/_expr[9]/auditSign</process:to>
     </process:copy>
     <process:copy>
@@ -238,15 +238,15 @@
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
-      <process:to type="query">ct/_and[1]/_expr[12/_op</process:to>
+      <process:to type="query">ct/_and[1]/_expr[12]/_op</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">params/guestName</process:from>
-      <process:to type="query">ct/_and[1]/_expr[12]/guestName</process:to>
+      <process:to type="query">ct/_and[1]/_expr[13]/guestName</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">like</process:from>
-      <process:to type="query">ct/_and[1]/_expr[12/_op</process:to>
+      <process:to type="query">ct/_and[1]/_expr[13]/_op</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
@@ -274,9 +274,15 @@
     <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值3" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>assign10</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link5" name="link5" displayName="连接线" type="transition">
       <sourceNode>assign2</sourceNode>
@@ -292,10 +298,6 @@
     <location x="108" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
-      <process:to type="query">auditSign</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
     <location x="102" y="186"/>

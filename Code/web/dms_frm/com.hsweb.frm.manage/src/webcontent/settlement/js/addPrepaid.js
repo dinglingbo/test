@@ -40,7 +40,7 @@ var requiredField = {
 		guestId : "往来单位",
 		billTypeId : "预收/预付项目"
 	};
-var saveFisRpAdvanceUrl = bearUrl+"sales.inventory.saveFisRpAdvance.biz.ext";
+var saveFisRpAdvanceUrl = bearUrl+"com.hsapi.sales.svr.inventory.saveFisRpAdvance.biz.ext";
 function onOk(){
 	var data = advancedSearchForm.getData();
 	if(prepaid.type==-2){

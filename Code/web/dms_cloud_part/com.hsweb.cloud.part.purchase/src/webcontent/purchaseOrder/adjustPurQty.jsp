@@ -45,9 +45,12 @@
 	        allowCellEdit="true" allowCellSelect="true" 
 	        editNextOnEnterKey="true"  editNextRowCell="true"
 	        contextMenu="#gridMenu"
+	       	multiSelect="true"
+	        allowCellSelect="true"
         >
          <div property="columns">
             <div type="indexcolumn">序号</div>
+            <div type="checkcolumn" width="30"></div>
             <div field="id" name="id" width="100" headerAlign="center" header="id" visible="false"></div>
             <div field="mainId" width="100px" headerAlign="center" allowSort="true"  visible="false" header=""></div>
             <div field="partCode" name="partCode" width="100" headerAlign="center"align="center"  header="配件编码"></div>
@@ -55,6 +58,9 @@
              <div field="orderQty" name="orderQty" allowSort="true"  width="60" headerAlign="center" align="center" header="订单数量" datatype="float" summaryType="sum"></div>
             <div field="trueEnterQty" name="trueEnterQty" width="90px" headerAlign="center" allowSort="true" align="center" header="实际入库数量"></div>
             <div field=adjustQty name="adjustQty" width="90"  headerAlign="center" align="center" header="已调整数量" datatype="float" summaryType="sum"></div> 
+            <div field="orderPrice" name="orderPrice" width="90"  headerAlign="center" align="center" header="单价" datatype="float" summaryType="sum">
+                <input property="editor" class="nui-textbox" vtype="float"/> 
+            </div>
             <div field="adjQty" name="adjQty" width="90"  headerAlign="center" align="center" header="本次调整数量" datatype="float" summaryType="sum">
                 <input property="editor" class="nui-textbox" vtype="float"/> 
             </div>
@@ -88,6 +94,9 @@
 	    	mainGrid.on("drawcell", function(e) { 
 		        switch (e.field) {
 		            case "adjQty" :
+		            	e.cellStyle = "background:#54FF9F";
+		            break;
+	             	case "orderPrice" :
 		            	e.cellStyle = "background:#54FF9F";
 		            break;
 		            default:
@@ -132,7 +141,7 @@
 		}
 	 
     	function onOk(){
-	   		var list =mainGrid.getChanges("modified");
+	   		var list =mainGrid.getSelecteds();
 	   		if(list.length<=0){
 	   			return;
 	   		}

@@ -1559,6 +1559,18 @@ function onCellEditEnter(e){
 		}else if(column.field == "comPartCode"){
 			var partCode = record.comPartCode||"";
             partCode = partCode.replace(/\s+/g, "");
+            var guestId = nui.get("guestId").getValue();
+            if(!guestId) {
+                showMsg("请选择供应商!","W");
+                return;
+            }
+
+            var storeId = nui.get("storeId").getValue();
+            if(!storeId){
+            	showMsg("请选择仓库!","W");
+                return;
+            }
+            
 			if(!partCode){
 				showMsg("请输入编码!","W");
 				var row = rightGrid.getSelected();
@@ -1832,7 +1844,7 @@ function addDetail(part) {
 				allowResize : false,
 				onload : function() {
 					var iframe = this.getIFrameEl();
-					part.storeId = FStoreId;//nui.get("storeId").getValue();
+					part.storeId = nui.get("storeId").getValue();
 					iframe.contentWindow.setData({
 						part : part,
 						priceType : "pchsIn"
@@ -1853,7 +1865,7 @@ function addDetail(part) {
 						enterDetail.orderPrice = data.price;
 						enterDetail.orderAmt = data.amt;
 						enterDetail.remark = data.remark;
-						enterDetail.storeId = data.storeId;
+						enterDetail.storeId = nui.get("storeId").getValue();
 						enterDetail.comOemCode = data.oemCode;
 						enterDetail.comSpec = data.spec;
 						enterDetail.partCode = data.code;
@@ -1967,14 +1979,15 @@ function addInsertRow(value,row) {
 	if(part){
 		params.partId = part.id;
 		var p={partId :part.id};
-		var storeAndShelf=getStoreIdAndShelf(p);
-		var storeId='';
-		if(storeAndShelf.storeId){		
-			storeId = storeAndShelf.storeId ;
-		}else{
-			storeId = FStoreId;
-		}
+//		var storeAndShelf=getStoreIdAndShelf(p);
+//		var storeId='';
+//		if(storeAndShelf.storeId){		
+//			storeId = storeAndShelf.storeId ;
+//		}else{
+//			storeId = FStoreId;
+//		}
 
+		storeId =nui.get("storeId").getValue();
 		getStratePrice(part.id);
 		params.storeId = storeId;
 		var dInfo = getPartPrice(params);
@@ -2800,14 +2813,15 @@ function addSelectPart(){
 			var params = {partCode:row.partCode};
 			params.partId = row.partId;
 			var p={partId :row.partId};
-			var storeAndShelf=getStoreIdAndShelf(p);
-			if(storeAndShelf.storeId){		
-				params.storeId = storeAndShelf.storeId ;
-			}else{
-				params.storeId =  FStoreId;
-			}
+//			var storeAndShelf=getStoreIdAndShelf(p);
+//			if(storeAndShelf.storeId){		
+//				params.storeId = storeAndShelf.storeId ;
+//			}else{
+//				params.storeId =  FStoreId;
+//			}
+			var storeId = nui.get("storeId").getValue();
 			var dInfo = getPartPrice(params);
-			var storeId= params.storeId;
+//			var storeId= params.storeId;
 			var price = dInfo.price;
 			var shelf = dInfo.shelf;
 			getStratePrice(row.partId);				
@@ -2857,14 +2871,15 @@ function addSelectPart(){
 			var params = {partCode:row.code};
 			params.partId = row.partId;
 			var p={partId :row.partId};
-			var storeAndShelf = getStoreIdAndShelf(p);
-			if(storeAndShelf.storeId){		
-				params.storeId = storeAndShelf.storeId ;
-			}else{
-				params.storeId =  FStoreId;
-			}
+//			var storeAndShelf = getStoreIdAndShelf(p);
+//			if(storeAndShelf.storeId){		
+//				params.storeId = storeAndShelf.storeId ;
+//			}else{
+//				params.storeId =  FStoreId;
+//			}
+
 			var dInfo = getPartPrice(params);
-			var storeId= params.storeId;
+			var storeId= nui.get("storeId").getValue();
 			var price = dInfo.price;
 			var shelf = dInfo.shelf;
 			getStratePrice(row.id);				
@@ -3072,7 +3087,7 @@ function addRtnList(partList){
 				orderQty : orderQty,
 				orderPrice : orderPrice,
 				orderAmt : orderQty * orderPrice,
-				storeId : FStoreId,
+				storeId : nui.get("storeId").getValue(),
 				comOemCode : part.oemCode,
 				comSpec : part.spec,
 				partCode : part.partCode,
@@ -3244,7 +3259,7 @@ function addImportRtnList(partList,msg){
 				orderQty : orderQty,
 				orderPrice : orderPrice,
 				orderAmt : orderQty * orderPrice,
-				storeId : FStoreId,
+				storeId : nui.get("storeId").getValue(),
 				comOemCode : part.oemCode,
 				comSpec : part.spec,
 				partCode : part.partCode,
@@ -3790,4 +3805,48 @@ function generateApplyToEnter(planId, mainId) {
     });
 }
 
+var delUrl = baseUrl+ "com.hsapi.cloud.part.invoicing.crud.delPurchaseOrder.biz.ext";
+function delOrder(){
+	var row = leftGrid.getSelected();
+	if(!row){
+		showMsg("请先选择订单!","W");
+		return;
+	}
+	var billStatusId =row.billStatusId;
+	if(billStatusId ==4 || billStatusId==3){
+		showMsg("此单已有入库记录，不能删除","W");
+		return;
+	}
+	var mainId = row.id;
+	var auditSign = row.auditSign;
+	
+	nui.confirm("是否要删除该订单?", "友情提示", function(action) {
+		if (action == "ok") {
+			nui.ajax({
+				url : delUrl,
+				type : "post",
+				async: false,
+				data : {
+					mainId: mainId,
+					auditSign :auditSign,
+					token: token
+				},
+				success: function(data) {
+					 if (data.errCode == "S"){
+			            showMsg("删除成功","S");
+			            leftGrid.removeRow(row);
+		            }else {
+		            	showMsg("删除失败","E");
+		            }
 
+				},error : function(jqXHR, textStatus, errorThrown) {
+					// nui.alert(jqXHR.responseText);
+					console.log(jqXHR.responseText);
+				}
+			});		
+		} else {
+			return;
+		}
+		
+	});
+}

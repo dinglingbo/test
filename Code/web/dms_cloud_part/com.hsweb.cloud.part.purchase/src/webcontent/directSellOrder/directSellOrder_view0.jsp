@@ -9,7 +9,7 @@
 -->
 <head>
 <title>直发销售订单</title>
-<script src="<%=webPath + contextPath%>/purchase/js/directSellOrder/directSellOrder.js?v=1.0.57"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/directSellOrder/directSellOrder.js?v=1.0.58"></script>
 <style type="text/css">
 .title {
 	width: 70px;
@@ -612,7 +612,7 @@ body .mini-grid-row-selected{
                                                  width="100%"
                                                  nullItemText="请选择..."/>
                                       </td>
-                                      <td class="title">
+                                      <td class="title required">
 	                                      <label>仓库：</label>
 	                                  </td>
 	                                  <td colspan="1">

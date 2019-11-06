@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryRPAccountList.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="params/dc  1应收；-1应付；无  综合&#xD;&#xA;&#xD;&#xA;billServiceIdList 满足  'CGR00001','XSC00003',''...&#xD;&#xA;&#xD;&#xA;其他应收应付默认查询未审核的数据；&#xD;&#xA;系统生成的应收应付应该是查询审核的数据（只会存在审核的数据）" title="Administrator&#x9;18-3-21 下午9:06">
-    <location x="30" y="-30"/>
-    <size height="136" width="455"/>
+    <location x="-4" y="-75"/>
+    <size height="166" width="710"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="link2" isDefault="true" type="transition">
@@ -10,12 +10,22 @@
       <targetNode>assign2</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <location x="23" y="150"/>
+    <sourceConnections xsi:type="process:tLink" description="" id="link7" name="link7" displayName="连接线" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">params/isAdvance</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <location x="-60" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" nodeType="label">
-    <location x="22" y="186"/>
+    <location x="-61" y="186"/>
     <figSize height="20" width="31"/>
     <node>start0</node>
   </nodes>
@@ -209,7 +219,7 @@
       <process:to type="query">ct/_and[1]/_expr[8]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">auditSign</process:from>
+      <process:from type="query" pattern="reference">params/auditSign</process:from>
       <process:to type="query">ct/_and[1]/_expr[9]/auditSign</process:to>
     </process:copy>
     <process:copy>
@@ -248,6 +258,14 @@
       <process:from type="literal" pattern="reference">like</process:from>
       <process:to type="query">ct/_and[1]/_expr[13]/_op</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/isAdvance</process:from>
+      <process:to type="query">ct/_and[1]/_expr[14]/isAdvance</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">ct/_and[1]/_expr[14]/_op</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
     <location x="215" y="186"/>
@@ -274,9 +292,15 @@
     <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值3" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>assign10</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link5" name="link5" displayName="连接线" type="transition">
       <sourceNode>assign2</sourceNode>
@@ -289,18 +313,34 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
+    <targetConnections>link8</targetConnections>
     <location x="108" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
-      <process:to type="query">auditSign</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
     <location x="102" y="186"/>
     <figSize height="20" width="40"/>
     <node>assign2</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值4" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign3</sourceNode>
+      <targetNode>assign2</targetNode>
+    </sourceConnections>
+    <targetConnections>link7</targetConnections>
+    <location x="15" y="225"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign3label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">params/isAdvance</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
+    <location x="9" y="261"/>
+    <figSize height="20" width="40"/>
+    <node>assign3</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

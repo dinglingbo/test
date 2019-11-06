@@ -209,7 +209,7 @@
     <location x="590" y="140"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
-    <process:pojo methodType="static" synchronization="true" transactionType="join">
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
       <process:partner type="literal">com.hs.common.ArrayUtils.transDataObject</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
@@ -416,6 +416,10 @@
     <process:copy>
       <process:from type="expression" pattern="reference">new Date()</process:from>
       <process:to type="query">accountBatch/createDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">accountBatch/orgid</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">

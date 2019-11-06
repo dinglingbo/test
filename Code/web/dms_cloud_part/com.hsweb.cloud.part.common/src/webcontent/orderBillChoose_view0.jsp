@@ -9,7 +9,7 @@
 -->
 <head>
 <title>业务单选择</title>
-<script src="<%=webPath + contextPath%>/common/js/orderBillChoose.js?v=1.0.33"></script>
+<script src="<%=webPath + contextPath%>/common/js/orderBillChoose.js?v=1.0.36"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -154,8 +154,8 @@
               <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>
               <div allowSort="true" field="storeId" width="120" headerAlign="center" header="仓库"></div>
               <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="退货数量"></div>
-              <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="退货单价"></div>
-              <div allowSort="true" datatype="float" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="退货金额"></div>
+              <div allowSort="true" datatype="float" field="showPrice" width="60" headerAlign="center" header="退货单价"></div>
+              <div allowSort="true" datatype="float" field="showAmt" summaryType="sum" width="60" headerAlign="center" header="退货金额"></div>
               <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
           </div>
       </div>

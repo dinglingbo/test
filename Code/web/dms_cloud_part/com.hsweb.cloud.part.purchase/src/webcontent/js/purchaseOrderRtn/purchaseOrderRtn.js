@@ -535,7 +535,8 @@ var requiredField = {
     orderMan : "退货员",
     orderDate : "退货日期",
     rtnReasonId : "退货原因",
-    settleTypeId : "结算方式"
+    settleTypeId : "结算方式",
+    storeId:"仓库"
 };
 var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.savePjSellOrder.biz.ext";
 function save() {
@@ -2058,6 +2059,10 @@ function OnrpMainGridCellBeginEdit(e){
 
     var data = basicInfoForm.getData();
 
+    
+    if(e.field=="storeId"){
+    	e.cancel = true;
+    }
     if(data.auditSign == 1){
         e.cancel = true;
     }

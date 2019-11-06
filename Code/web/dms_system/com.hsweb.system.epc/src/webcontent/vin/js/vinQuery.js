@@ -390,12 +390,52 @@ function clickGdMainGroup(row){
     if (row.label) {   	
     	//主组标识
     	groupnum =row.num;
-        var params = {
+/*    	var lhMic = "";
+        var params1 = {
     			url:"llq/vins/cars/subgroup",
-    			params:"&mcid="+mcid+"&brandCode="+brand+"&num="+groupnum,
+    			params:"&mcid="+mcid+"&brandCode="+brand+"&num="+groupnum+"&level="+1,
     			token:token
         }
-        callAjax(url, params, processAjax, setSubGroupData);
+    	//路虎、捷豹需要调两次
+    	if(brand=="land_rover"||brand=="jaguar"){
+    		nui.ajax({
+    			async: false,
+    			url: "/systemApi/com.hsapi.system.llq.call.maintenanceCallV.biz.ext",
+    			type: "post",
+    	        data: params1,
+    			contentType: 'text/json',
+    			success: function (json) {
+    				lhMic = 
+    			},
+    			error: function () {
+    				nui.alert("获取数据遇到错误！");
+    			}
+    		});
+    	}else{  		
+    		var params = {
+    				url:"llq/vins/cars/subgroup",
+    				params:"&mcid="+mcid+"&brandCode="+brand+"&num="+groupnum,
+    				token:token
+    		}
+    		callAjax(url, params, processAjax, setSubGroupData);
+    	}*/
+    	//路虎、捷豹需要调两次
+    	if(brand=="land_rover"||brand=="jaguar"){
+    		var params = {
+    				url:"llq/parts/structureSub",
+    				params:"&mcid="+mcid+"&brandCode="+brand+"&num="+groupnum+"&level="+1,
+    				token:token
+    		}
+    		callAjax(url, params, processAjax, setSubGroupData);
+    	}else{  		
+    		var params = {
+    				url:"llq/vins/cars/subgroup",
+    				params:"&mcid="+mcid+"&brandCode="+brand+"&num="+groupnum,
+    				token:token
+    		}
+    		callAjax(url, params, processAjax, setSubGroupData);
+    	}	
+    	
     }
 }
 

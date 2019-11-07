@@ -823,6 +823,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="orderId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="outId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="pchsorgid" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="预销售单ID" isArray="false" name="id" primitiveType="Int"/>

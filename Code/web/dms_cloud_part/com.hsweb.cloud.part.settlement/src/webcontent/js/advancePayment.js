@@ -1412,9 +1412,7 @@ function setInitExportData(detail){
                          .replace("[rpAmt]", detail[i].rpAmt?detail[i].rpAmt:0)
                          .replace("[createDate]", detail[i].createDate?detail[i].createDate.Format("yyyy-MM-dd HH:mm:ss"):"")
                          .replace("[settleStatus]", settleStatus?settleStatus:"")
-                         .replace("[charOffAmt]", detail[i].charOffAmt?detail[i].charOffAmt:0)
-                         .replace("[saleMan]", detail[i].saleMan?detail[i].saleMan:"")
-                         .replace("[recordDate]", detail[i].recordDate?detail[i].recordDate.Format("yyyy-MM-dd HH:mm:ss"):""));
+                         .replace("[charOffAmt]", detail[i].charOffAmt?detail[i].charOffAmt:0));
             tableExportContent.append(tr);
         }
     }
@@ -1488,6 +1486,43 @@ function doAudit(){
 			console.log(jqXHR.responseText);
 		}
 	});
+}
+
+function onDeduct() {
+	var rows = rRightGrid.getSelecteds();
+	if(rows && rows.length == 1) {
+		var row = rows[0];
+		if(row.charOffAmt > 0) {
+			nui.open({
+				url : webPath + contextPath
+						+ "/com.hsweb.cloud.part.settlement.deduct.flow?token=" + token,
+				title : "预付款冲减",
+				width : 700,
+				height : 600,
+				allowDrag : true,
+				allowResize : false,
+				onload : function() {
+					var iframe = this.getIFrameEl();
+					var data = {};
+					data.guestId = row.guestId;
+					data.isAdvance = 0;
+					data.billDc = -1;
+					data.guestName = row.guestName;
+					data.billMainId = row.billMainId;
+					data.rpDc = -1;
+					data.settleType = "应付";
+					iframe.contentWindow.setInitDate(data);
+				},
+				ondestroy : function(action) {
+						quickSearch(2);
+				}
+			});
+		}else {
+			showMsg("请选择已结的记录", "W");
+		}
+	}else {
+		showMsg("请选择一条记录", "W");
+	}
 }
 
 function print(){

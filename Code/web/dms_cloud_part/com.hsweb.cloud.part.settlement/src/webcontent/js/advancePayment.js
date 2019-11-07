@@ -2,10 +2,10 @@
  * Created by Administrator on 2018/2/1.
  */
 var webBaseUrl = webPath + contextPath + "/";
-var baseUrl = apiPath + frmApi + "/";// window._rootUrl||"http://127.0.0.1:8080/default/";
-var partBaseUrl = apiPath + partApi + "/";
+var baseUrl = apiPath + cloudPartApi + "/";// window._rootUrl||"http://127.0.0.1:8080/default/";
+var partBaseUrl = apiPath + cloudPartApi + "/";
 var rightGridUrl = baseUrl
-		+ "com.hsapi.frm.frmService.crud.queryRPAccountList.biz.ext";
+		+ "com.hsapi.cloud.part.settle.svr.queryRPAccountList.biz.ext";
 /*
  * var innerPchsGridUrl =
  * baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjEnterDetailList.biz.ext";
@@ -18,15 +18,15 @@ var innerSellGridUrl = partBaseUrl
 		+ "com.hsapi.part.invoice.svr.queryPjSellOrderDetailList.biz.ext";
 var innerStateGridUrl = partBaseUrl
 		+ "com.hsapi.part.invoice.settle.getPJStatementDetailById.biz.ext";
+var rechargeBalaAmt = null;
 var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"手机号"},{id:"2",name:"客户名称"},{id:"3",name:"业务单号"}];
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
 var basicInfoForm = null;
+var rRightGrid = null;
+var rechargeBalaAmt = 0;
 var btnEdit2Name = "";
-
-var pRightGrid = null;
-var qRightGrid = null;
 var searchBeginDate = null;
 var searchEndDate = null;
 var comPartNameAndPY = null;
@@ -67,15 +67,15 @@ var billStatusHash = {
 	"3" : "已取消"
 };
 var settleStatusHash = {
-	"0" : "未付款",
-	"1" : "部分付款",
-	"2" : "已付款"
+	"0" : "未收款",
+	"1" : "部分收款",
+	"2" : "已收款"
 };
 var auditSignHash = {
 		"0" : "未审核",
 		"1" : "已审核"
 	};
-var headerHash = [{ name: '未付款', id: '0' }, { name: '部分付款', id: '1' }, { name: '已付款', id: '2' }];
+var headerHash = [{ name: '未收款', id: '0' }, { name: '部分收款', id: '1' }, { name: '已收款', id: '2' }];
 var balanceList = [ {
 	id : 0,
 	text : "未对"
@@ -88,13 +88,13 @@ var balanceList = [ {
 } ];
 var settleStatusList = [ {
 	id : 0,
-	text : "未付款"
+	text : "未收款"
 }, {
 	id : 1,
-	text : "部分付款"
+	text : "部分收款"
 }, {
 	id : 2,
-	text : "已付款"
+	text : "已收款"
 } ];
 var typeIdHash = {
 	1 : "采购订单",
@@ -105,14 +105,8 @@ var typeIdHash = {
 
 $(document).ready(
 		function(v) {
-	
-		
-			pRightGrid = nui.get("pRightGrid");
-			qRightGrid = nui.get("qRightGrid");
-
-
-			pRightGrid.setUrl(rightGridUrl);
-			qRightGrid.setUrl(rightGridUrl);
+			rRightGrid = nui.get("rRightGrid");
+			rRightGrid.setUrl(rightGridUrl);
 			searchBeginDate = nui.get("beginDate");
 			searchEndDate = nui.get("endDate");
 			// comSearchGuestId = nui.get("searchGuestId");
@@ -154,98 +148,67 @@ $(document).ready(
 			sellOutWin = nui.get("sellOutWin");
 			sellRtnWin = nui.get("sellRtnWin");
 
-			searchBeginDate.setValue(getNowStartDate());
-			searchEndDate.setValue(addDate(getNowEndDate(), 1));
-
-			getAllPartBrand(function(data) {
-				var partBrandList = data.brand;
-				partBrandList.forEach(function(v) {
-					partBrandIdHash[v.id] = v;
-				});
-			});
+			/*rRightGrid.on("cellbeginedit",function(e){
+				var row = rRightGrid.getSelected();
+		    	if(row.status == 2)
+		    	{
+		    		switch (e.field)
+		    		{
+		    		   case "nowAmt":
+		    			   e.cancel = true;
+		    			   break;
+		    		   default:
+		    			   break;
+		    		}
+		    	}
+			});*/
 			
 			getItemType(function(data) {
 				enterTypeIdList = data.list || [];
 				enterTypeIdList.filter(function(v) {
 					enterTypeIdHash[v.id] = v;
 				});
-
 			});
+			var filter = new HeaderFilter(rRightGrid, {
+		        columns: [
+		            { name: 'guestName' },
+		            { name: 'settleStatus' },
+		            { name: 'billServiceId' },
+		            { name: 'remark' },
+		            { name: 'billTypeId' }
+		        ],
+		        callback: function (column, filtered) {
+		        },
+		        tranCallBack: function (field) {
+		        	var value = null;
+		        	switch(field){
+			    		case "settleStatus" : 
+			    			value = headerHash;
+			    			break;
+			    		case "billTypeId" :
+			    			var arr = [];
+			    			for (var i in enterTypeIdHash) {
+			    			    var o = {};
+			    			    o.name = enterTypeIdHash[i].name;
+			    			    o.id = enterTypeIdHash[i].id;
+			    			    arr.push(o);
+			    			}
+			    			value = arr;
+			    			break;			    			
+			    	}
+		        	return value;
+		        }
+		    });
 			
-			  var filter = new HeaderFilter(pRightGrid, {
-			        columns: [
-			            { name: 'guestName' },
-			            { name: 'settleStatus' },  
-			            { name: 'carNo' },
-			            { name: 'billServiceId' },
-			            { name: 'remark' },
-			            { name: 'billTypeId' }
-			        ],
-			        callback: function (column, filtered) {
-			        },
-
-			        tranCallBack: function (field) {
-			        	var value = null;
-			        	switch(field){
-				    		case "settleStatus" : // 预约类型
-				    			value = headerHash;
-				    			break;
-				    		case "billTypeId": 
-				    			var arr = [];
-				    			for (var i in enterTypeIdHash) {
-				    			    var o = {};
-				    			    o.name = enterTypeIdHash[i].name;
-				    			    o.id = enterTypeIdHash[i].id;
-				    			    arr.push(o);
-				    			}
-				    			value = arr;
-				    			break;
-				    	}
-			        	return value;
-			        }
-			    });
-			getStorehouse(function(data) {
-				var storehouse = data.storehouse || [];
-				// nui.get("storeId").setData(storehouse);
-				storehouse.forEach(function(v) {
-					if (v && v.id) {
-						storehouseHash[v.id] = v;
-					}
-				});
-				var dictIdList = [];
-				dictIdList.push('DDT20130703000064');
-				getDictItems(dictIdList, function(data) {
-					if (data && data.dataItems) {
-						var dataItems = data.dataItems || [];
-						var billTypeIdList = dataItems.filter(function(v) {
-							if (v.dictid == "DDT20130703000008") {
-								billTypeIdHash[v.customid] = v;
-								return true;
-							}
-						});
-						// nui.get("billTypeId").setData(billTypeIdList);
-						var settTypeIdList = dataItems.filter(function(v) {
-							if (v.dictid == "DDT20130703000035") {
-								settTypeIdHash[v.customid] = v;
-								return true;
-							}
-						});
-						// nui.get("settType").setData(settTypeIdList);
-						/*
-						 * var enterTypeIdList = dataItems.filter(function(v) {
-						 * if(v.dictid == "DDT20130703000064") {
-						 * enterTypeIdHash[v.customid] = v; return true; } });
-						 */
-						// quickSearch(currType);
-					}
-				});
-			});
-
+			
+			searchBeginDate.setValue(getNowStartDate());
+			searchEndDate.setValue(addDate(getNowEndDate(), 1));
+			 
 
 			quickSearch(currType);
 		});
 var queryUrl = baseUrl
-		+ "com.hsapi.frm.frmService.crud.queryFibInComeExpenses.biz.ext";
+		+ "com.hsapi.cloud.part.settle.svr.queryFibInComeExpenses.biz.ext";
 function getItemType(callback) {
 	nui.ajax({
 		url : queryUrl,
@@ -259,7 +222,6 @@ function getItemType(callback) {
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			// nui.alert(jqXHR.responseText);
 			console.log(jqXHR.responseText);
 		}
 	});
@@ -271,11 +233,15 @@ function getSearchParam() {
 
 	params.sCreateDate = searchBeginDate.getFormValue();
 	params.eCreateDate = searchEndDate.getValue();
-	//params.settleStatus = nui.get("settleStatus").getValue();
 	var settleStatus = nui.get("settleStatus").getValue();
 	if(settleStatus != 3) {
 		params.settleStatus = settleStatus;
 	}
+	var auditSign = nui.get("auditSign").getValue();
+	if(auditSign != 2) {
+		params.auditSign = auditSign;
+	}
+	
 	return params;
 }
 var currType = 2;
@@ -339,44 +305,32 @@ function quickSearch(type) {
 	currType = type;
 	var menunamedate = nui.get("menunamedate");
 	menunamedate.setText(queryname);
+	
 	doSearch(params);
 }
 function onSearch() {
+	
 	var params = getSearchParam();
 
 	doSearch(params);
 }
 function doSearch(params) {
-	params.eCreateDate = addDate(params.eCreateDate, 1);
-	var type = nui.get("search-type").getValue();
-    var typeValue = nui.get("carNo-search").getValue();
-    if(type==0){
-    	params.carNo = typeValue;
-    }else if(type==1){
-    	params.mobile = typeValue;
-    }else if(type==2){
-    	params.guestName = typeValue;
-    }else if(type==3){
-    	params.billServiceId = typeValue;
-    }
 	var tab = mainTabs.getActiveTab();
+	params.eCreateDate = addDate(params.eCreateDate, 1);
+	params.guestId = nui.get("searchGuestId").getValue();
+	params.isAdvance = 1;
+
 	var name = tab.name;
 	switch (name) {
-
-	case "pRightTab":
+	
+	case "rRightTab":
 		params.billDc = -2;
-		pRightGrid.load({
+		rRightGrid.load({
 			params : params,
 			token : token
 		});
 		break;
 
-	case "qRightTab":
-		qRightGrid.load({
-			params : params,
-			token : token
-		});
-		break;
 	default:
 		break;
 	}
@@ -397,7 +351,7 @@ function onAdvancedSearchOk() {
 	for ( var key in searchData) {
 		advancedSearchFormData[key] = searchData[key];
 	}
-	btnEdit2Name = nui.get("btnEdit2").getText();
+	 btnEdit2Name = nui.get("btnEdit2").getText();
 	var i;
 	if (searchData.sCreateDate) {
 		searchData.sCreateDate = formatDate(searchData.sCreateDate);
@@ -439,7 +393,7 @@ function onAdvancedSearchOk() {
 			searchData.settleStatus = null;
 		}
 	}
-
+	
 	advancedSearchWin.hide();
 	doSearch(searchData);
 }
@@ -454,14 +408,18 @@ function selectSupplier(elId) {
 		targetWindow : window,
 		// url: "com.hsweb.frm.arap.supplierSelect.flow",
 		url : webPath + contextPath
-				+ "/com.hsweb.part.common.guestSelect.flow?token=" + token,
+				+ "/com.hsweb.cloud.part.common.guestSelect.flow?token=" + token,
 		title : "结算单位资料",
 		width : 980,
 		height : 560,
 		allowDrag : true,
 		allowResize : true,
 		onload : function() {
-
+			var iframe = this.getIFrameEl();
+            var params = {
+                isClient: 1
+            };
+            iframe.contentWindow.setGuestData(params);
 		},
 		ondestroy : function(action) {
 			if (action == 'ok') {
@@ -520,16 +478,16 @@ function onDrawCell(e) {
 		var dayCount = parseInt((nowTime - enterTime) / 1000 / 60 / 60 / 24);
 		e.cellHtml = dayCount + 1;
 		break;
-	case "auditSign":
-		if (auditSignHash && auditSignHash[e.value]) {
-			e.cellHtml = auditSignHash[e.value];
-		}
-		break;
 	case "settleStatus":
 		if (settleStatusHash && settleStatusHash[e.value]) {
 			e.cellHtml = settleStatusHash[e.value];
 		}
 		break;
+	case "auditSign":
+		if (auditSignHash && auditSignHash[e.value]) {
+			e.cellHtml = auditSignHash[e.value];
+		}
+		break;		
 	case "nowAmt":
 		e.cellStyle = 'background-color:#90EE90';
 		break;
@@ -551,13 +509,10 @@ function onShowRowDetail(e) {
 	var name = tab.name;
 	switch (name) {
 
-	case "pRightTab":
-		rightGrid = pRightGrid;
+	case "rRightTab":
+		rightGrid = rRightGrid;
 		break;
 
-	case "qRightTab":
-		rightGrid = qRightGrid;
-		break;
 	default:
 		break;
 	}
@@ -698,14 +653,10 @@ function doBalance() {
 	var tab = mainTabs.getActiveTab();
 	var name = tab.name;
 	switch (name) {
-
-	case "pRightTab":
-		rightGrid = pRightGrid;
+	case "rRightTab":
+		rightGrid = rRightGrid;
 		break;
 
-	case "qRightTab":
-		rightGrid = qRightGrid;
-		break;
 	default:
 		break;
 	}
@@ -768,14 +719,10 @@ function checkAuditRow(flag) {
 	var tab = mainTabs.getActiveTab();
 	var name = tab.name;
 	switch (name) {
-
-	case "pRightTab":
-		rightGrid = pRightGrid;
+	case "rRightTab":
+		rightGrid = rRightGrid;
 		break;
 
-	case "qRightTab":
-		rightGrid = qRightGrid;
-		break;
 	default:
 		break;
 	}
@@ -812,133 +759,6 @@ function checkAuditRow(flag) {
 
 	return msg;
 }
-var balanceAuditUrl = partBaseUrl
-		+ "com.hsapi.cloud.part.settle.rpsettle.balanceRPAccount.biz.ext";
-function balanceOK() {
-	var rightGrid = null;
-	var tab = mainTabs.getActiveTab();
-	var name = tab.name;
-	switch (name) {
-
-	case "pRightTab":
-		rightGrid = pRightGrid;
-		break;
-
-	case "qRightTab":
-		rightGrid = qRightGrid;
-		break;
-	default:
-		break;
-	}
-	var rows = rightGrid.getSelecteds();
-	var remark = null;
-	var s = rows.length;
-	if (s > 0) {
-
-		nui.mask({
-			el : document.body,
-			cls : 'mini-mask-loading',
-			html : '数据处理中...'
-		});
-
-		nui.ajax({
-			url : balanceAuditUrl,
-			type : "post",
-			data : JSON.stringify({
-				billList : rows,
-				token : token
-			}),
-			success : function(data) {
-				nui.unmask(document.body);
-				data = data || {};
-				if (data.errCode == "S") {
-					showMsg("对账成功!", "S");
-
-					balanceCancel();
-					rightGrid.reload();
-
-				} else {
-					showMsg(data.errMsg || "对账失败!", "W");
-				}
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-				// nui.alert(jqXHR.responseText);
-				console.log(jqXHR.responseText);
-			}
-		});
-
-	} else {
-		showMsg("请选择单据!", "W");
-		return;
-	}
-}
-var billUnAuditUrl = partBaseUrl
-		+ "com.hsapi.cloud.part.settle.rpsettle.unBalanceRPAccount.biz.ext";
-function doUnBalance() {
-
-	var msg = checkAuditRow(0);
-	if (msg) {
-		showMsg(msg, "W");
-		return;
-	}
-
-	var rightGrid = null;
-	var tab = mainTabs.getActiveTab();
-	var name = tab.name;
-	switch (name) {
-
-	case "pRightTab":
-		rightGrid = pRightGrid;
-		break;
-
-	case "qRightTab":
-		rightGrid = qRightGrid;
-		break;
-	default:
-		break;
-	}
-
-	var rows = rightGrid.getSelecteds();
-	var remark = null;
-	var s = rows.length;
-	if (s > 0) {
-
-		nui.mask({
-			el : document.body,
-			cls : 'mini-mask-loading',
-			html : '数据处理中...'
-		});
-
-		nui.ajax({
-			url : billUnAuditUrl,
-			type : "post",
-			data : JSON.stringify({
-				billList : rows,
-				token : token
-			}),
-			success : function(data) {
-				nui.unmask(document.body);
-				data = data || {};
-				if (data.errCode == "S") {
-					showMsg("取消对账成功!", "W");
-
-					rightGrid.reload();
-
-				} else {
-					showMsg(data.errMsg || "取消对账失败!");
-				}
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-				// nui.alert(jqXHR.responseText);
-				console.log(jqXHR.responseText);
-			}
-		});
-
-	} else {
-		showMsg("请选择单据!", "W");
-		return;
-	}
-}
 
 function checkSettleRow() {
 	var rightGrid = null;
@@ -948,13 +768,11 @@ function checkSettleRow() {
 	var name = tab.name;
 	switch (name) {
 
-	case "pRightTab":
-		rightGrid = pRightGrid;
+
+	case "rRightTab":
+		rightGrid = rRightGrid;
 		break;
 
-	case "qRightTab":
-		rightGrid = qRightGrid;
-		break;
 	default:
 		break;
 	}
@@ -988,14 +806,13 @@ function checkSettleRow() {
 				var amt12 = row.amt12 || 0;
 				var amt13 = row.amt13 || 0;
 				var amt14 = row.amt14 || 0;
-				if (amt1 + amt2 + amt3 + amt4 + amt11 + amt12 + amt13 + amt14 < 0) {
+				if (amt1 + amt2 + amt3 + amt4 + amt11 + amt12 + amt13 + amt14 <= 0) {
 					msg += "请填写业务单据：" + billServiceId + "的结算金额；</br>";
 				}
 			} else {
-				var nowAmt = row.nowAmt || 0;
-				var nowVoidAmt = row.nowVoidAmt || 0;
-				if (nowAmt + nowVoidAmt < 0) {
-					msg += "请填写业务单据：" + billServiceId + "的结算金额；</br>";
+				var noCharOffAmt = row.noCharOffAmt || 0;
+				if (noCharOffAmt <= 0) {
+					msg += "业务单据：" + billServiceId + "的未结算金额为0；</br>";
 				}
 			}
 		}
@@ -1005,9 +822,7 @@ function checkSettleRow() {
 
 	return msg;
 }
-
-//单条
-/*function doSettle() {
+function doSettle() {
 	var msg = checkSettleRow();
 	if (msg) {
 		showMsg(msg, "W");
@@ -1030,15 +845,18 @@ function checkSettleRow() {
 		break;
 	}
 
-	var rows = pRightGrid.getSelecteds();
-	if(rows[0].settleStatus==2){
-		showMsg("此单已结算", "W");
-		return;
+	var rows = rightGrid.getSelecteds();
+	for(var i =0;i<rows.length;i++){
+		if(rows[i].settleStatus==2){
+			showMsg(rows[i].billServiceId+"已结算", "W");
+			return;
+		}
+		if(rows[i].auditSign==0){
+			showMsg("请先审核单据："+rows[i].billServiceId, "W");
+			return;
+		}
 	}
-	if(rows[0].nowAmt>rows[0].noCharOffAmt){
-		showMsg("结算金额不能大于应付金额！", "W");
-		return;
-	}
+
 	var s = rows.length;
 	if (s > 0) {
 		if (name == "pRightTab") {
@@ -1069,87 +887,25 @@ function checkSettleRow() {
 		}		
 		settleWin.show();
 		var guestName = rows[0].guestName;
-		nui.open({
-	        url: webPath + contextPath +"/com.hsweb.frm.manage.payable.flow?token="+token,
-	         width: "100%", height: "100%", 
-	        onload: function () {
-	            var iframe = this.getIFrameEl();
-	            iframe.contentWindow.setData(rows);
-	        },
-			ondestroy : function(action) {// 弹出页面关闭前
-				if (action == "saveSuccess") {
-					showMsg("结算成功!", "S");
-					pRightGrid.reload();
-				}
-			}
-	    });
+        document.getElementById('settleGuestName').innerHTML="结算单位："+guestName;
+        document.getElementById('settleBillCount').innerHTML="结算单据数："+s;
+        document.getElementById('rRPAmt').innerHTML=rtn.rRPAmt;
+        document.getElementById('rTrueAmt').innerHTML=rtn.rNoCharOffAmt;
+        //document.getElementById('rVoidAmt').innerHTML=rtn.rVoidAmt;
+        document.getElementById('rNoCharOffAmt').innerHTML=rtn.rNoCharOffAmt;
+        document.getElementById('rCharOffAmt').innerHTML=rtn.rCharOffAmt;
+        document.getElementById('pRPAmt').innerHTML=rtn.pRPAmt;
+        document.getElementById('pTrueAmt').innerHTML=rtn.pNoCharOffAmt;
+        //document.getElementById('pVoidAmt').innerHTML=rtn.pVoidAmt;
+        document.getElementById('pNoCharOffAmt').innerHTML=rtn.pNoCharOffAmt;
+        document.getElementById('pCharOffAmt').innerHTML=rtn.pCharOffAmt;
+        document.getElementById('rpAmt').innerHTML=rtn.rpAmt;
+
+        settleAccountGrid.setData([]);
+        addSettleAccountRow();
+		
 
 
-	} else {
-		showMsg("请选择单据!", "W");
-		return;
-	}
-}*/
-//多条
-function doSettle() {
-	var msg = checkSettleRow();
-	if (msg) {
-		showMsg(msg, "W");
-		return;
-	}
-
-	var rightGrid = null;
-	var firstRow = {};
-	var guestId = null;
-	var tab = mainTabs.getActiveTab();
-	var name = tab.name;
-	switch (name) {
-
-	case "pRightTab":
-		rightGrid = pRightGrid;
-		break;
-
-	case "qRightTab":
-		rightGrid = qRightGrid;
-		break;
-	default:
-		break;
-	}
-
-	var rows = rightGrid.getSelecteds();
-	for(var i =0;i<rows.length;i++){
-		if(rows[i].settleStatus==2){
-			showMsg(rows[i].billServiceId+"已结算", "W");
-			return;
-		}
-		if(rows[i].auditSign==0){
-			showMsg("请先审核单据："+rows[i].billServiceId, "W");
-			return;
-		}
-	}
-	var s = rows.length;
-	if (s > 0) {
-		var rtn = getSettleAmount(rows);
-		var errCode = rtn.errCode;
-		if (errCode != 'S') {
-			showMsg(rtn.errMsg || "结算数据填写有问题!", "W");
-			return;
-		}
-		nui.open({
-	        url: webPath + contextPath +"/com.hsweb.frm.manage.payable.flow?token="+token,
-	         width: "100%", height: "100%", 
-	        onload: function () {
-	            var iframe = this.getIFrameEl();
-	            rows[0].typeUrl = 3;
-	            iframe.contentWindow.setData(rows);
-	        },
-			ondestroy : function(action) {// 弹出页面关闭前
-				if (action == "saveSuccess") {
-					showMsg("结算成功!", "S");
-					pRightGrid.reload();
-				}
-			}
-	    });
 	} else {
 		showMsg("请选择单据!", "W");
 		return;
@@ -1163,10 +919,12 @@ function getSettleAmount(rows) {
 	var rTrueAmt = 0; // 实收应收
 	var rVoidAmt = 0; // 优惠金额
 	var rNoCharOffAmt = 0; // 未结金额
+	var rCharOffAmt = 0; // 已结金额
 	var pRPAmt = 0; // 应付金额
 	var pTrueAmt = 0; // 实付金额
 	var pVoidAmt = 0; // 免付金额
 	var pNoCharOffAmt = 0; // 未结金额
+	var pCharOffAmt = 0; // 已结金额
 	var rpAmt = 0; // 合计金额
 
 	var s = rows.length;
@@ -1182,85 +940,45 @@ function getSettleAmount(rows) {
 		for (var i = 0; i < s; i++) {
 			var row = rows[i];
 			billServiceId = row.billServiceId;
+			var billDc = row.billDc;
+			var charOffAmt = row.charOffAmt || 0; // 已结金额
+			var rpAmt = row.rpAmt || 0; // 应结金额
+			var noCharOffAmt = row.noCharOffAmt || 0;
+			charOffAmt = parseFloat(charOffAmt);
+			rpAmt = parseFloat(rpAmt);
+			noCharOffAmt = parseFloat(noCharOffAmt);
+			if(noCharOffAmt == 0)  {
+				errCode = 'E';
+				errMsg = "业务单：" + billServiceId + "已结算";
+				break;
+			}
+			
 			if (name == "rpRightTab") {
-				var billDc = row.billDc;
-				var charOffAmt = row.charOffAmt || 0; // 已结金额
-				var rpAmt = row.rpAmt || 0; // 应结金额
-				var amt2 = row.amt2 || 0;
-				var amt3 = row.amt3 || 0;
-				var amt12 = row.amt12 || 0;
-				var amt13 = row.amt13 || 0;
-				var noCharOffAmt = rpAmt - charOffAmt;
-				amt2 = parseFloat(amt2);
-				amt3 = parseFloat(amt3);
-				amt12 = parseFloat(amt12);
-				amt13 = parseFloat(amt13);
 
-				if (billDc == 1) {
-					if ((amt2 + amt3) > noCharOffAmt) {
-						errCode = 'E';
-						errMsg = "业务单：" + billServiceId + "的结算金额超出未结金额";
-						break;
-					}
-
+				if (billDc == 2) {
 					rRPAmt += rpAmt;
-					rTrueAmt += amt2;
-					rVoidAmt += amt3;
+					rTrueAmt += charOffAmt;
 					rNoCharOffAmt += noCharOffAmt;
-					s1 += (amt2 + amt3);
-				} else if (billDc == -1) {
-					if ((amt12 + amt13) > noCharOffAmt) {
-						errCode = 'E';
-						errMsg = "业务单：" + billServiceId + "的结算金额超出未结金额";
-						break;
-					}
-
+					rCharOffAmt += charOffAmt;
+				} else if (billDc == -2) {
 					pRPAmt += rpAmt;
-					pTrueAmt += amt12;
-					pVoidAmt += amt13;
+					pTrueAmt += charOffAmt;
 					pNoCharOffAmt += noCharOffAmt;
-					s2 += (amt12 + amt13) * -1;
+					pCharOffAmt += charOffAmt;
 				}
+				s1 += noCharOffAmt;
 			} else if (name == "pRightTab") {
-				var noCharOffAmt = row.noCharOffAmt || 0; // 未结金额
-
-
-
-				var rpAmt = row.rpAmt || 0; // 应结金额
-				var nowAmt = row.nowAmt || 0;
-				var nowVoidAmt = row.nowVoidAmt || 0;
-				nowAmt = parseFloat(nowAmt);
-				nowVoidAmt = parseFloat(nowVoidAmt);
 				pRPAmt += rpAmt;
-				pTrueAmt += nowAmt;
-				pVoidAmt += nowVoidAmt;
+				pTrueAmt += charOffAmt;
 				pNoCharOffAmt += noCharOffAmt;
-				s1 += (nowAmt + nowVoidAmt);
-				if ((nowAmt + nowVoidAmt) > noCharOffAmt) {
-					errCode = 'E';
-					errMsg = "业务单：" + billServiceId + "的结算金额超出未结金额";
-					break;
-				}
+				pCharOffAmt += charOffAmt;
+				s1 += noCharOffAmt;
 			} else if (name == "rRightTab") {
-				var noCharOffAmt = row.noCharOffAmt || 0; // 未结金额
-
-
-
-				var rpAmt = row.rpAmt || 0; // 应结金额
-				var nowAmt = row.nowAmt || 0;
-				var nowVoidAmt = row.nowVoidAmt || 0;
-				nowAmt = parseFloat(nowAmt);
-				nowVoidAmt = parseFloat(nowVoidAmt);
 				rRPAmt += rpAmt;
-				rTrueAmt += nowAmt;
-				rVoidAmt += nowVoidAmt;
+				rTrueAmt += charOffAmt;
 				rNoCharOffAmt += noCharOffAmt;
-				s1 += (nowAmt + nowVoidAmt);
-				if ((nowAmt + nowVoidAmt) > noCharOffAmt) {
-					errCode = 'E';
-					errMsg = "业务单：" + billServiceId + "的结算金额超出未结金额";
-					break;
-				}
+				rCharOffAmt += charOffAmt;
+				s1 += noCharOffAmt;//(nowAmt + nowVoidAmt);
 			}
 		}
 
@@ -1269,12 +987,14 @@ function getSettleAmount(rows) {
 	var rtnMsg = {};
 	rtnMsg.rRPAmt = rRPAmt; // 应收金额
 	rtnMsg.rTrueAmt = rTrueAmt; // 实收应收
-	rtnMsg.rVoidAmt = rVoidAmt; // 优惠金额
+	//rtnMsg.rVoidAmt = rVoidAmt; // 优惠金额
 	rtnMsg.rNoCharOffAmt = rNoCharOffAmt; // 未结金额
+	rtnMsg.rCharOffAmt = rCharOffAmt; // 已结金额
 	rtnMsg.pRPAmt = pRPAmt; // 应付金额
 	rtnMsg.pTrueAmt = pTrueAmt; // 实付金额
-	rtnMsg.pVoidAmt = pVoidAmt; // 免付金额
+	//rtnMsg.pVoidAmt = pVoidAmt; // 免付金额
 	rtnMsg.pNoCharOffAmt = pNoCharOffAmt; // 未结金额
+	rtnMsg.pCharOffAmt = pCharOffAmt; // 已结金额
 	rtnMsg.rpAmt = s1; // 合计金额
 	rtnMsg.errCode = errCode;
 	rtnMsg.errMsg = errMsg;
@@ -1298,7 +1018,7 @@ function settleCancel() {
 	settleAccountGrid.setData([]);
 }
 var settleAuditUrl = baseUrl
-		+ "com.hsapi.frm.frmService.rpsettle.rpAccountSettle.biz.ext";
+		+ "com.hsapi.cloud.part.settle.rpsettle.rpAdvanceSettle.biz.ext";
 function settleOK() {
 	var msg = checkSettleRow();
 	if (msg) {
@@ -1332,13 +1052,11 @@ function settleOK() {
 	var name = tab.name;
 	switch (name) {
 
-	case "pRightTab":
-		rightGrid = pRightGrid;
+
+	case "rRightTab":
+		rightGrid = rRightGrid;
 		break;
 
-	case "qRightTab":
-		rightGrid = qRightGrid;
-		break;
 	default:
 		break;
 	}
@@ -1418,33 +1136,27 @@ function settleOK() {
 			} else if (name == "pRightTab") {
 				var noCharOffAmt = row.noCharOffAmt || 0; // 已结金额
 				var rpAmt = row.rpAmt || 0; // 应结金额
-				var nowAmt = row.nowAmt || 0;
-				var nowVoidAmt = row.nowVoidAmt || 0;
+				var nowAmt = row.noCharOffAmt || 0;
 				accountDetail.rpDc = -1;
 				nowAmt = parseFloat(nowAmt);
-				nowVoidAmt = parseFloat(nowVoidAmt);
 				pRPAmt += rpAmt;
 				pTrueAmt += nowAmt;
-				pVoidAmt += nowVoidAmt;
 				pNoCharOffAmt += noCharOffAmt;
-				s1 += (nowAmt + nowVoidAmt);
+				s1 += (nowAmt);
 				accountDetail.charOffAmt = nowAmt;
-				accountDetail.voidAmt = nowVoidAmt;
+				accountDetail.voidAmt = 0;
 			} else if (name == "rRightTab") {
 				var noCharOffAmt = row.noCharOffAmt || 0; // 已结金额
 				var rpAmt = row.rpAmt || 0; // 应结金额
-				var nowAmt = row.nowAmt || 0;
-				var nowVoidAmt = row.nowVoidAmt || 0;
-				accountDetail.rpDc = 1;
+				var nowAmt = row.noCharOffAmt || 0;
+				accountDetail.rpDc = -1;
 				nowAmt = parseFloat(nowAmt);
-				nowVoidAmt = parseFloat(nowVoidAmt);
 				rRPAmt += rpAmt;
 				rTrueAmt += nowAmt;
-				rVoidAmt += nowVoidAmt;
 				rNoCharOffAmt += noCharOffAmt;
-				s1 += (nowAmt + nowVoidAmt);
+				s1 += (nowAmt);
 				accountDetail.charOffAmt = nowAmt;
-				accountDetail.voidAmt = nowVoidAmt;
+				accountDetail.voidAmt = 0;
 			}
 
 			accountDetailList.push(accountDetail);
@@ -1455,12 +1167,12 @@ function settleOK() {
 			if (s1 < 0) {
 				account.rpDc = -1;
 			} else {
-				account.rpDc = 1;
+				account.rpDc = -1;
 			}
 			account.settleType = "综合";
-			account.voidAmt = Math.abs(rVoidAmt - pVoidAmt);
+			//account.voidAmt = Math.abs(rVoidAmt - pVoidAmt);
 			account.trueCharOffAmt = Math.abs(rTrueAmt - pTrueAmt);
-			account.charOffAmt = account.voidAmt + account.trueCharOffAmt;
+			account.charOffAmt = account.trueCharOffAmt;
 		} else if (name == "pRightTab") {
 			;
 			account.rpDc = -1;
@@ -1469,13 +1181,12 @@ function settleOK() {
 			account.trueCharOffAmt = pTrueAmt;
 			account.charOffAmt = pVoidAmt + pTrueAmt;
 		} else if (name == "rRightTab") {
-			account.rpDc = 1;
-			account.settleType = "应收";
+			account.rpDc = -1;
+			account.settleType = "应付";
 			account.voidAmt = rVoidAmt;
 			account.trueCharOffAmt = rTrueAmt;
 			account.charOffAmt = rVoidAmt + rTrueAmt;
 		}
-
 		var accountTypeList = settleAccountGrid.getData();
 		nui.mask({
 			el : document.body,
@@ -1508,7 +1219,6 @@ function settleOK() {
 				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
-				// nui.alert(jqXHR.responseText);
 				console.log(jqXHR.responseText);
 			}
 		});
@@ -1519,31 +1229,9 @@ function settleOK() {
 	}
 
 }
-function onGridbeforeselect(e) {
-	var field = e.field;
-	var row = e.row;
-	if (field == "check") {
-		var row = e.row;
-		var billDc = row.billDc;
-		var newRow = {};
-		if (billDc == 1) {
-			if (row.amt2) {
-				newRow.amt2 = "";
-			} else {
-				newRow.amt2 = row.noCharOffAmt;
-			}
-		} else {
-			if (row.amt12) {
-				newRow.amt12 = "";
-			} else {
-				newRow.amt12 = row.noCharOffAmt;
-			}
-		}
-		rpRightGrid.updateRow(row, newRow);
-	}
 
-}
-function onPGridbeforeselect(e) {
+
+function onRGridbeforeselect(e) {
 	var row = e.row;
 		var row = e.row;
 		var billDc = row.billDc;
@@ -1551,53 +1239,28 @@ function onPGridbeforeselect(e) {
 			nowAmt : row.noCharOffAmt
 		};
 		if (row.nowAmt) {
-			//newRow.nowAmt = "";
 			newRow.nowAmt = row.noCharOffAmt;
 		} else {
 			newRow.nowAmt = row.noCharOffAmt;
 		}
-		pRightGrid.updateRow(row, newRow);
-
+		rRightGrid.updateRow(row, newRow);
 }
 
-function onGridheadercellclick(e) {
-	rpRightGrid.findRows(function(row) {
-		var newRow = {};
-		var billDc = row.billDc;
-		var newRow = {};
-		if (billDc == 1) {
-			if (row.amt2) {
-				newRow.amt2 = "";
-			} else {
-				newRow.amt2 = row.noCharOffAmt;
-			}
 
-		} else {
-			if (row.amt12) {
-				newRow.amt12 = "";
-			} else {
-				newRow.amt12 = row.noCharOffAmt;
-			}
-		}
-		rpRightGrid.updateRow(row, newRow);
-
-	});
-}
-function onPGridheadercellclick(e) {
-	pRightGrid.findRows(function(row) {
+function onRGridheadercellclick(e) {
+	rRightGrid.findRows(function(row) {
 		var newRow = {};
 		var billDc = row.billDc;
 		var newRow = {};
 		if (row.nowAmt) {
-			newRow.nowAmt = "";
+			newRow.nowAmt = row.noCharOffAmt;
 		} else {
 			newRow.nowAmt = row.noCharOffAmt;
 		}
-		pRightGrid.updateRow(row, newRow);
+		rRightGrid.updateRow(row, newRow);
 
 	});
 }
-
 function onActionRenderer(e) {
 	var grid = e.sender;
 	var record = e.record;
@@ -1631,7 +1294,7 @@ function onCellCommitEdit(e) {
 	editor.validate();
 	if (editor.isValid() == false) {
 		showMsg("请输入数字!", "W");
-		e.cancel = true;
+		e.cancel = false;
 	}
 }
 function checkSettleAccountAmt(charOffAmt) {
@@ -1642,6 +1305,7 @@ function checkSettleAccountAmt(charOffAmt) {
 		if (charOffAmt) {
 			charOffAmt = parseFloat(charOffAmt);
 		}
+
 		tAmt += charOffAmt;
 
 		if (!row.settAccountId) {
@@ -1653,7 +1317,7 @@ function checkSettleAccountAmt(charOffAmt) {
 		showMsg("请选择结算账户!", "W");
 		return false;
 	}
-
+	
 	if (tAmt != charOffAmt) {
 		showMsg("请确定结算金额与合计金额一致!", "W");
 		return false;
@@ -1670,7 +1334,7 @@ function OnModelCellBeginEdit(e) {
 
 	if (column.field == "settAccountId") {
 		var url = baseUrl
-				+ "com.hsapi.frm.frmService.crud.queryFiSettleAccount.biz.ext?token="
+				+ "com.hsapi.cloud.part.settle.svr.queryFiSettleAccount.biz.ext?token="
 				+ token;
 		editor.setUrl(url);
 	}
@@ -1678,7 +1342,7 @@ function OnModelCellBeginEdit(e) {
 	if (column.field == "balaTypeCode") {
 		var str = "accountId=" + row.settAccountId + "&token=" + token;
 		var url = baseUrl
-				+ "com.hsapi.frm.setting.queryAccountSettleType.biz.ext?" + str;
+				+ "com.hsapi.cloud.part.baseDataCrud.crud.queryAccountSettleType.biz.ext?" + str;
 		editor.setUrl(url);
 	}
 
@@ -1693,76 +1357,25 @@ function onAccountValueChanged(e) {
 
 }
 
-
-function doDelete() {
-	var rows = pRightGrid.getSelecteds();
-	if (!rows) {
-		nui.alert("请选择一条记录","提示");
+function onChanged() {
+	var rows = rRightGrid.getSelecteds();
+	var rtn = getSettleAmount(rows);
+	var dk = nui.get("dk").getValue();
+	if(dk>rechargeBalaAmt){
+		showMsg("抵扣金额不能大于储值卡余额!","W");
+		nui.get("dk").setValue(0);
 		return;
 	}
-	json = {
-			id:rows[0].id
-	}
-    nui.confirm("确定作废此条记录吗？", "友情提示",function(action){
-	       if(action == "ok"){
-			    nui.mask({
-			        el : document.body,
-				    cls : 'mini-mask-loading',
-				    html : '处理中...'
-			    });
-				nui.ajax({
-					url : baseUrl
-					+ "com.hsapi.frm.frmService.rpsettle.delFisRpBillForRepair.biz.ext" ,
-					type : "post",
-					data : json,
-					success : function(data) {
-						 nui.unmask(document.body);
-						if(data.errCode=="S"){
-							nui.alert(data.errMsg,"提示");
-							pRightGrid.load;
-						}else{
-							nui.alert(data.errMsg,"提示");
-							pRightGrid.load;
-						}
-					},
-					error : function(jqXHR, textStatus, errorThrown) {
-						// nui.alert(jqXHR.responseText);
-						console.log(jqXHR.responseText);
-					}
-				});
-	     }else {
-				return;
-		 }
-		 });
+	document.getElementById('rpAmt').innerHTML = rtn.rpAmt-dk;
 
-	
 }
 
 
-function openOrderDetail(){
-	var row = pRightGrid.getSelected();
-	if(row){
-		var data={};
-		data.id=row.billMainId;
 
-		if(data.id){
-			var item={};
-			item.id = "11111";
-		    item.text = "应付详情页";
-			item.url =webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow?sourceServiceId="+data.id;
-			item.iconCls = "fa fa-cog";
-			window.parent.activeTabAndInit(item,data);
-		}	
-	}else{
-		showMsg("请选择单据!", "W");
-		return;
-	}
-
-}
 
 function onExport(){
 
-	var detail = pRightGrid.getData();
+	var detail = rRightGrid.getData();
 	
 	if(detail && detail.length > 0){
 		setInitExportData(detail);
@@ -1772,7 +1385,6 @@ function onExport(){
 }
 function setInitExportData(detail){
     var tds = '<td  colspan="1" align="left">[guestName]</td>' +
-        "<td  colspan='1' align='left'>[carNo]</td>" +
         "<td  colspan='1' align='left'>[billServiceId]</td>" +
         "<td  colspan='1' align='left'>[billTypeId]</td>" +
         "<td  colspan='1' align='left'>[remark]</td>" +
@@ -1794,7 +1406,6 @@ function setInitExportData(detail){
         	settleStatus = settleStatusHash[settleStatus];
             var tr = $("<tr></tr>");
             tr.append(tds.replace("[guestName]", detail[i].guestName?detail[i].guestName:"")
-                         .replace("[carNo]", detail[i].carNo?detail[i].carNo:"")
                          .replace("[billServiceId]", detail[i].billServiceId?detail[i].billServiceId:"")
                          .replace("[billTypeId]", billTypeName?billTypeName:"")
                          .replace("[remark]", detail[i].remark?detail[i].remark:"")
@@ -1811,13 +1422,33 @@ function setInitExportData(detail){
     method5('tableExcel',"预付账款管理",'tableExportA');
 }
 
-var doAuditUrl = baseUrl+"com.hsapi.frm.frmService.rpsettle.advanceAudit.biz.ext";
-function doAudit(){
-	var rows = pRightGrid.getSelecteds();
-	if(rows.length<1){
-		showMsg("请选择单据", "W");
+function openOrderDetail(){
+	var row = rRightGrid.getSelected();
+	if(row){
+		if(row.billTypeId==103||row.billTypeId==106||row.billTypeId==108 ||row.billTypeId== 119){		
+			var data={};
+			data.id=row.billMainId;
+
+			if(data.id){
+				var item={};
+				item.id = "11111";
+			    item.text = "应收详情页";
+				item.url =webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow?sourceServiceId="+data.id;
+				item.iconCls = "fa fa-cog";
+				window.parent.activeTabAndInit(item,data);
+			}	
+		}else{
+		showMsg("无详情！","W");
+		}
+	}else{
+		showMsg("请选择单据!", "W");
 		return;
 	}
+
+}
+var doAuditUrl = baseUrl+"com.hsapi.cloud.part.settle.rpsettle.advanceAudit.biz.ext";
+function doAudit(){
+	var rows = rRightGrid.getSelecteds();
 	for(var i =0;i<rows.length;i++){
 		if(rows[i].auditSign==1){
 			showMsg(rows[i].billServiceId+"已审核", "W");
@@ -1859,11 +1490,75 @@ function doAudit(){
 	});
 }
 
+function print(){
+	var msg = checkSettleRow();
+	if (msg) {
+		showMsg(msg, "W");
+		return;
+	}
+	var rows = rRightGrid.getSelecteds();
+	var sourceUrl = webPath + contextPath + "/com.hsweb.RepairBusiness.arrearsPrint.flow?token="+token;
+	var printName = currOrgName;
+	var p = {
+		comp : printName,
+		partApiUrl:apiPath + partApi + "/",
+		frmApiUrl:apiPath + frmApi + "/",
+		baseUrl: apiPath + repairApi + "/",
+		sysUrl: apiPath + sysApi + "/",
+		webUrl:webPath + contextPath + "/",
+        bankName: currBankName,
+        bankAccountNumber: currBankAccountNumber,
+        currCompAddress: currCompAddress,
+        currCompTel: currCompTel,
+        currSlogan1: currSlogan1,
+        currSlogan2: currSlogan2,
+        currUserName : currUserName,
+        currCompLogoPath: currCompLogoPath,
+		token : token
+	};
+	var businessNumber = "";
+	var netInAmt =0;
+	for(var i = 0;i<rows.length;i++){
+		if(i==rows.length-1){
+			businessNumber = businessNumber+rows[i].billServiceId
+			netInAmt = parseFloat(netInAmt)+parseFloat(rows[i].nowAmt);
+			netInAmt = netInAmt.toFixed(2);
+			
+		}else{
+			businessNumber = businessNumber+rows[i].billServiceId+","
+			netInAmt = parseFloat(netInAmt)+parseFloat(rows[i].nowAmt);
+			netInAmt = netInAmt.toFixed(2)
+		}
+		
+	}
+	//var guestData = [{guestName:rows[0].fullName}]
+	params = {
+		guestData:rows,
+		businessNumber :businessNumber,
+		billServiceId : rows[0].billServiceId,
+		netInAmt:netInAmt,
+		p:p
+	};
+
+
+	nui.open({
+        url: sourceUrl,
+        title:"打印欠款证明单",
+		width: "100%",
+		height: "100%",
+        onload: function () {
+            var iframe = this.getIFrameEl();
+           iframe.contentWindow.SetData(params);
+        },
+        ondestroy: function (action){
+        }
+    });
+}
 function addPrepaid(){
 	nui.open({
 		targetWindow : window,
 		url : webPath + contextPath
-				+ "/com.hsweb.frm.manage.addPrepaid.flow?token=" + token,
+				+ "/com.hsweb.cloud.part.settlement.addPrepaid.flow?token=" + token,
 		title : "新增预付账款",
 		width : 480,
 		height : 290,
@@ -1872,7 +1567,7 @@ function addPrepaid(){
 		onload : function() {
 			var iframe = this.getIFrameEl();
 			var data = {};
-			data.type=-2//预付
+			data.type=-2;//预收
 			iframe.contentWindow.setData(data);
 		},
 		ondestroy : function(action) {

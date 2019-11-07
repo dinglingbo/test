@@ -1419,7 +1419,7 @@ function setInitExportData(detail){
         }
     }
 
-    method5('tableExcel',"预收收账款管理",'tableExportA');
+    method5('tableExcel',"预收账款管理",'tableExportA');
 }
 
 function openOrderDetail(){
@@ -1567,7 +1567,7 @@ function addPrepaid(){
 		onload : function() {
 			var iframe = this.getIFrameEl();
 			var data = {};
-			data.type=2//预收
+			data.type=2;//预收
 			iframe.contentWindow.setData(data);
 		},
 		ondestroy : function(action) {

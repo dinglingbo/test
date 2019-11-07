@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="rpAdvanceDeduct.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="预收预付款抵扣&#xD;&#xA;1、根据ID查询预收预付，比对剩余金额和account的收款/付款金额，相等后才往下走&#xD;&#xA;2、调用收款逻辑流&#xD;&#xA;3、生成预收预付抵扣记录&#xD;&#xA;4、更新预收预付的剩余金额" title="dlb&#x9;19-11-6 下午4:41">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="预收预付款冲减&#xD;&#xA;1、根据ID查询预收预付，比对剩余金额和account的收款/付款金额，相等后才往下走&#xD;&#xA;2、调用收款逻辑流&#xD;&#xA;3、生成预收预付抵扣记录&#xD;&#xA;4、更新预收预付的剩余金额&#xD;&#xA;考虑预收款和预付款的结算账户 和 冲减的结算账户不一致，不用考虑预收预付结算账户的余额数据" title="dlb&#x9;19-11-6 下午4:41">
     <location x="45" y="15"/>
     <size height="151" width="721"/>
   </nodes>
@@ -16,7 +16,7 @@
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link16</targetConnections>
     <targetConnections>link19</targetConnections>
-    <location x="1398" y="459"/>
+    <location x="1455" y="459"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -30,7 +30,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="1397" y="495"/>
+    <location x="1454" y="495"/>
     <figSize height="20" width="31"/>
     <node>end0</node>
   </nodes>
@@ -447,12 +447,12 @@
       <targetNode>assign5</targetNode>
     </sourceConnections>
     <targetConnections>link14</targetConnections>
-    <location x="1398" y="255"/>
+    <location x="1455" y="255"/>
     <size height="28" width="28"/>
     <nodeLabel>transactioncommit0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactioncommit0label" name="label" nodeType="label">
-    <location x="1382" y="291"/>
+    <location x="1439" y="291"/>
     <figSize height="20" width="61"/>
     <node>transactioncommit0</node>
   </nodes>
@@ -462,7 +462,7 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link15</targetConnections>
-    <location x="1398" y="360"/>
+    <location x="1455" y="360"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
     <process:copy>
@@ -471,7 +471,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="1392" y="396"/>
+    <location x="1449" y="396"/>
     <figSize height="20" width="40"/>
     <node>assign5</node>
   </nodes>

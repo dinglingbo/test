@@ -59,6 +59,8 @@
             <div field="trueEnterQty" name="trueEnterQty" width="90px" headerAlign="center" allowSort="true" align="center" header="实际入库数量"></div>
             <div field=adjustQty name="adjustQty" width="90"  headerAlign="center" align="center" header="已调整数量" datatype="float" summaryType="sum"></div> 
             <div field="orderPrice" name="orderPrice" width="90"  headerAlign="center" align="center" header="单价" datatype="float" summaryType="sum">
+            </div>
+            <div field="adjPrice" name="orderPrice" width="90"  headerAlign="center" align="center" header="本次调整单价" datatype="float" summaryType="sum">
                 <input property="editor" class="nui-textbox" vtype="float"/> 
             </div>
             <div field="adjQty" name="adjQty" width="90"  headerAlign="center" align="center" header="本次调整数量" datatype="float" summaryType="sum">
@@ -96,7 +98,7 @@
 		            case "adjQty" :
 		            	e.cellStyle = "background:#54FF9F";
 		            break;
-	             	case "orderPrice" :
+	             	case "adjPrice" :
 		            	e.cellStyle = "background:#54FF9F";
 		            break;
 		            default:
@@ -144,6 +146,17 @@
 	   		var list =mainGrid.getSelecteds();
 	   		if(list.length<=0){
 	   			return;
+	   		}
+	   		for(var i=0;i<list.length;i++){
+	   			if(list[i].trueEnterQty>0){
+	   				if(list[i].adjPrice>0 ){	   				
+		   				if(list[i].adjPrice != list[i].orderPrice){
+		   					showMsg("该数据已有入库记录，不能修改价格","W");
+		   					return;
+		   				}
+	   				}
+	   				
+	   			}
 	   		}
    			nui.ajax({
 				url : baseUrl + "com.hsapi.cloud.part.invoicing.ordersettle.adjustQtyList.biz.ext",

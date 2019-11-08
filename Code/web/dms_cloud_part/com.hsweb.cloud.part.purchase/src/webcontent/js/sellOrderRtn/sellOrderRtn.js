@@ -1833,7 +1833,7 @@ function addNewKeyRow(){
 function addInsertRow(value,row) {    
     var params = {partCode:value};
     var part = getPartInfo(params);
-    var storeId = FStoreId;
+    var storeId = nui.get("storeId").getValue();
 
     if(part){
         params.partId = part.id;
@@ -1934,7 +1934,7 @@ function addSelectPart(){
     if(row){
         var params = {partCode:row.code};
         params.partId = row.id;
-        params.storeId = FStoreId;
+        params.storeId = nui.get("storeId").getValue();
         var dInfo = getPartPrice(params);
         var price = dInfo.price;
         var shelf = dInfo.shelf;
@@ -1949,7 +1949,7 @@ function addSelectPart(){
             orderQty : 1,
             orderPrice : price,
             orderAmt : price,
-            storeId : FStoreId,
+            storeId : nui.get("storeId").getValue(),
             comOemCode : row.oemCode,
             comSpec : row.spec,
             partCode : row.code,
@@ -2094,7 +2094,7 @@ function addRtnList(partList){
                 orderQty : orderQty,
                 orderPrice : orderPrice,
                 orderAmt : orderQty * orderPrice,
-                storeId : FStoreId,
+                storeId : nui.get("storeId").getValue(),
                 comOemCode : part.oemCode,
                 comSpec : part.spec,
                 partCode : part.partCode,
@@ -2191,6 +2191,12 @@ function addPart() {
         return;
     }
 
+    var storeId = nui.get("storeId").getValue();
+    if(!storeId){
+    	showMsg("请选择仓库!","W");
+        return;
+    }
+    
     selectPart(function(data) {
         addDetail(data);
     },function(data) {
@@ -2230,9 +2236,9 @@ function addDetail(rows)
             comApplyCarModel : row.comApplyCarModel,
             comUnit : row.comUnit,
             orderQty : row.orderQty,
-            orderPrice : row.orderPrice,
-            orderAmt : row.orderAmt,
-            storeId : row.storeId,
+            orderPrice : row.showPrice,
+            orderAmt : row.showAmt,
+            storeId : nui.get("storeId").getValue(),
             comOemCode : row.comOemCode,
             comSpec : row.comSpec,
             partCode : row.comPartCode,

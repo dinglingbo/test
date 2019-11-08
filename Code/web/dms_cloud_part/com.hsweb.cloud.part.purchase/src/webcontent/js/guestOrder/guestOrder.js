@@ -2217,7 +2217,10 @@ function OnrpMainGridCellBeginEdit(e){
         e.cancel = true;
     }
 
- 
+    if(e.field=="storeId"){
+    	e.cancel = true;
+    }
+    
     if(e.field == 'storeId'){
     	editor.setData(storehouse);
     }

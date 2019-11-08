@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    
+    <!-- 删除主表 -->
+    <delete id="deletePchMain" parameterClass="java.util.HashMap">
+		DELETE FROM pj_pchs_order_main WHERE id = #id#
+	</delete>
+	
+	<!-- 删除主表审核 -->
+	<delete id="deletePchMainChk" parameterClass="java.util.HashMap">
+		DELETE FROM  pj_pchs_order_main_chk WHERE id = #id#
+	</delete>
+	
+	<!-- 删除明细表 -->
+	<delete id="deletePchDetail" parameterClass="java.util.HashMap">
+		DELETE FROM pj_pchs_order_detail WHERE main_id = #mainId#
+	</delete>
+	
+	<!-- 删除明细审核 -->
+	<delete id="deletePchDetailChk" parameterClass="java.util.HashMap">
+		DELETE FROM pj_pchs_order_detail_chk WHERE main_id = #mainId#
+	</delete>
+	
+	
+	<!-- 更新采购主表的金额 -->
+	<update id="updatePchAmt" parameterClass="java.util.HashMap">
+		UPDATE pj_pchs_order_main_chk a
+		INNER JOIN (
+			SELECT
+				main_id AS mainId,
+				sum(order_amt) AS orderAmt,
+				sum(tax_amt) AS taxAmt,
+				sum(no_tax_amt) AS noTaxAmt
+			FROM
+				pj_pchs_order_detail_chk
+			WHERE
+				main_id = #mainId#
+			GROUP BY
+				main_id
+		) b ON a.id = b.mainId
+		SET a.order_amt = b.orderAmt,
+		 a.tax_amt = b.taxAmt,
+		 a.no_tax_amt = b.noTaxAmt,
+		 a.tax_diff =  b.taxAmt - b.noTaxAmt,
+		 a.no_state_amt =  b.noTaxAmt
+		WHERE
+			a.id = #mainId#
+	</update>
+	 
+	<!-- 更新明细单价金额 -->
+	<update id="updatePchDetaiLAmt" parameterClass="java.util.HashMap">
+		UPDATE pj_pchs_order_detail_chk a
+		SET 
+		 a.order_price =#orderPrice#,
+		 a.order_amt = #orderAmt#,
+		 a.tax_price  =  #taxPrice#,
+		 a.tax_amt = #taxAmt#,
+		 a.no_tax_price = #noTaxPrice#,
+		 a.no_tax_amt = #noTaxAmt#,
+		 a.tax_diff = #taxDiff#
+		WHERE
+			a.id = #mainId#
+	</update>
+	
+</sqlMap>

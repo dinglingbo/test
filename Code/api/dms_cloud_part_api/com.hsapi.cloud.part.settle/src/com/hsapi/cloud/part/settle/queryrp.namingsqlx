@@ -668,11 +668,13 @@
                     (a.serviceId in ($serviceIdList$))
                 </isNotEmpty>
                 
-	            <isNotEmpty prepend="order by" property="sortField">  
+	            GROUP BY a.guestId
+	           <!-- ,	 a.fullName,  a.shortName-->
+	          <!--  <isNotEmpty prepend="order by" property="sortField">  
 	                $sortField$ $sortOrder$
-	            </isNotEmpty> 
+	            </isNotEmpty> -->
             </dynamic> 
-		GROUP BY a.guestId	
+		
 	</select>
 	
 	<select id="queryNotStateBillAmtCopy" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">

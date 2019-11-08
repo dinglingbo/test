@@ -628,6 +628,12 @@ function addInsertRow(value, row) {
         showMsg("请先选择客户再添加配件!","W");
         return;
     }
+    
+    var storeId = nui.get("storeId").getValue();
+    if(!storeId){
+    	showMsg("请选择仓库再添加配件!","W");
+        return;
+    }
 
     //var type = judgeConditionType(value);//1代表编码，2代表名称，3代表拼音，-1输入信息有误
     value = value.replace(/\s+/g, "");
@@ -648,7 +654,7 @@ function addInsertRow(value, row) {
             orderQty : 1,
             orderPrice : price,
             orderAmt : price,
-            storeId : FStoreId,
+            storeId : nui.get("storeId").getValue(),
             comOemCode : part.oemCode,
             comSpec : part.spec,
             partCode : part.code,
@@ -898,6 +904,12 @@ function showPartInfo(row, value, mainId){
 		showMsg("请先选择直发门店","W");
 		return;
 	}
+	
+	var storeId = nui.get("storeId").getValue();
+    if(!storeId){
+    	showMsg("请选择仓库!","W");
+        return;
+    }
     nui.open({
         // targetWindow: window,
         url: webBaseUrl+"purchase/directSellOrder/fastPartChoose_view0.jsp?token="+token,
@@ -1845,6 +1857,11 @@ function onCellEditEnter(e){
                 nui.get("guestId").focus();
                 return;
             }
+            var storeId = nui.get("storeId").getValue();
+            if(!storeId){
+            	showMsg("请选择仓库再添加配件!","W");
+                return;
+            }
 
             var partCode = record.comPartCode||"";
             partCode = partCode.replace(/\s+/g, "");
@@ -2139,7 +2156,7 @@ function addDetail(row,data,ck)
     enterDetail.orderPrice = data.price;
     enterDetail.orderAmt = data.amt;
     enterDetail.remark = data.remark;
-    enterDetail.storeId = data.storeId;
+    enterDetail.storeId = nui.get("storeId").getValue();
     enterDetail.storeShelf = data.storeShelf;
     enterDetail.directStoreId =data.directStoreId;
     enterDetail.comOemCode = data.oemCode;
@@ -2780,6 +2797,11 @@ function addSelectPart(){
         nui.get("guestId").focus();
         return;
     }
+    var storeId = nui.get("storeId").getValue();
+    if(!storeId){
+    	showMsg("请先选择仓库再添加配件!","W");
+        return;
+    }
     var row = morePartGrid.getSelected();
     if(row){
         var params = {partCode:row.code};
@@ -2797,7 +2819,7 @@ function addSelectPart(){
             orderQty : 1,
             orderPrice : price,
             orderAmt : price,
-            storeId : FStoreId,
+            storeId : nui.get("storeId").getValue(),
             comOemCode : row.oemCode,
             comSpec : row.spec,
             partCode : row.code,
@@ -2857,6 +2879,9 @@ function OnrpMainGridCellBeginEdit(e){
         e.cancel = true;
     }
 
+    if(e.field=="storeId"){
+    	e.cancel = true;
+    }
     if(row.partId) {
     	
         if(row.isMarkBatch && row.isMarkBatch == 1){
@@ -3018,7 +3043,7 @@ function addRtnList(partList){
                 orderQty : orderQty,
                 orderPrice : orderPrice,
                 orderAmt : orderQty * orderPrice,
-                storeId : FStoreId,
+                storeId : nui.get("storeId").getValue(),
                 comOemCode : part.oemCode,
                 comSpec : part.spec,
                 partCode : part.partCode,

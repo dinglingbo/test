@@ -87,7 +87,7 @@
        allowResize="true"
        handlerSize="6"
        style="width:100%;height:100%;">
-      <div size="220" showCollapseButton="true">
+      <div size="300" showCollapseButton="true">
         <div title="入库列表" class="nui-panel"
                showFooter="true"
                style="width:100%;height:100%;border: 0;">
@@ -107,17 +107,18 @@
                   <div property="columns">
                     <div type="indexcolumn">序号</div>
                       <div field="auditSign" width="50" headerAlign="center" header="状态" visible="false"></div>
-                   	  <div field="billStatusId" width="55" headerAlign="center"  header="状态"></div>
-                      <div field="guestFullName" width="120" headerAlign="center" header="供应商" allowSort="true"></div>
-                      <div field="orderDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="订单日期" allowSort="true"></div>
-                      <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
-                      <div field="serviceId" headerAlign="center" width="150" header="入库单号"></div>
-                      <div field="remark" headerAlign="center" width="150" header="备注" ></div>
+                   	  <div field="billStatusId" width="55" headerAlign="center"  header="状态" allowSort="true" dataType="string"></div>
+                   	  <div field="storeId" width="80" headerAlign="center"  header="仓库" allowSort="true" dataType="string"></div>
+                      <div field="guestFullName" width="120" headerAlign="center" header="供应商" allowSort="true" allowSort="true" dataType="string"></div>
+                      <div field="orderDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="订单日期" allowSort="true" dataType="date"></div>
+                      <div field="orderMan" width="60" headerAlign="center" header="业务员" allowSort="true" dataType="string"></div>
+                      <div field="serviceId" headerAlign="center" width="150" header="入库单号" allowSort="true" dataType="string"></div>
+                      <div field="remark" headerAlign="center" width="150" header="备注" allowSort="true" dataType="string"></div>
                       <!-- <div field="enterDate" width="80" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd H:ss:mm"></div> -->
                       <div field="printTimes" width="60" headerAlign="center" header="打印次数" visible="false"></div>
-                      <div field="creator" width="60" headerAlign="center" header="建单人"></div>
-                      <div field="auditor" width="60" headerAlign="center" header="提交人"></div>
-                      <div field="auditDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="入库日期" allowSort="true"></div>
+                      <div field="creator" width="60" headerAlign="center" header="建单人" allowSort="true" dataType="string"></div>
+                      <div field="auditor" width="60" headerAlign="center" header="提交人" allowSort="true" dataType="string"></div>
+                      <div field="auditDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="入库日期" allowSort="true" dataType="date"></div>
                   </div>
               </div>
           </div>

@@ -31,7 +31,7 @@ var isNeedSet = false;
 var oldValue = null;
 var oldRow = null;
 var partShow = 0;
-var qucikAddShow=0;
+var quickAddShow=0;
 var autoNew = 0;
 var memList=[];
 var storeShelfList=[];
@@ -192,7 +192,9 @@ $(document).ready(function(v) {
 			storehouse = data.storehouse || [];
 			if(storehouse && storehouse.length>0){
 				FStoreId = storehouse[0].id;
-				nui.get('storehouse').setData(storehouse);
+				if(nui.get("storehouse")){
+					nui.get('storehouse').setData(storehouse);
+				}		
 				nui.get("storeIdE").setData(storehouse);
 		        if(currRepairStoreControlFlag == "1") {
 		        	nui.get("storeIdE").setValue(FStoreId);
@@ -816,11 +818,14 @@ function getMainData() {
 	}
 
 	rightGrid.findRow(function(row){
-		var partId = row.partId;
-		var partCode = row.comPartCode;
-		if(partId == null || partId == "" || partId == undefined || partCode == null || partCode == "" || partCode == undefined){
-			rightGrid.removeRow(row);
+		if(row.partId){
+			var partId = row.partId;
+			var partCode = row.comPartCode;
+			if(partId == null || partId == "" || partId == undefined || partCode == null || partCode == "" || partCode == undefined){
+				rightGrid.removeRow(row);
+			}
 		}
+		
 	});
 
 	return data;

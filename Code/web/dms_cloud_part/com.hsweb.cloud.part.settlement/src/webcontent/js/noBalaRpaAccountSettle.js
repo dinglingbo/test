@@ -66,6 +66,11 @@ $(document).ready(function(v) {
     
     mainTabs =nui.get("mainTabs");
     mainTabs.on("activechanged",function(e){
+    	var guestId = nui.get('searchGuestId').getValue();
+    	if(!guestId){
+    		showMsg("请先选择客户查询","W");
+    		return;
+    	}
     	var tab = mainTabs.getActiveTab();
     	var name = tab.name;
         var url = tab.url;
@@ -160,7 +165,7 @@ $(document).ready(function(v) {
             }
         });
     });
-    quickSearch(2);
+//    quickSearch(2);
 });
 
 function getCompany(){
@@ -199,7 +204,7 @@ function getSearchParam(){
 
     params.sCreateDate = searchBeginDate.getFormValue();
     params.eCreateDate = searchEndDate.getFormValue();
-    params.guestName =nui.get('guestName').getValue().replace(/\s+/g, "");
+    params.guestId = nui.get("searchGuestId").getValue();
     params.orgid =nui.get('orgids').getValue();
     if(!params.orgid){
     	params.orgid =null;
@@ -288,7 +293,12 @@ function onSearch(){
     
 }
 function doSearch(params)
-{
+{ 
+	var guestId = nui.get('searchGuestId').getValue();
+	if(!guestId){
+		showMsg("请先选择客户查询","W");
+		return;
+	}
 	mainGrid.load({
         params:params,
         token: token
@@ -683,6 +693,37 @@ function setInitExportData(detail){
     }
 
     method5('tableExcel',"未对账应收单",'tableExportA');
+}
+
+var supplier = null;
+function selectSupplier(elId)
+{
+    supplier = null;
+    nui.open({
+        // targetWindow: window,
+        url: webPath+contextPath+"/com.hsweb.cloud.part.common.customerSelect.flow",
+        title: "客户资料", width: 980, height: 560,
+        allowDrag:true,
+        allowResize:true,
+        onload: function ()
+        {
+
+        },
+        ondestroy: function (action)
+        {
+            if(action == 'ok')
+            {
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+                supplier = data.customer;
+                var value = supplier.id;
+                var text = supplier.fullName;
+                var el = nui.get(elId);
+                el.setValue(value);
+                el.setText(text);
+            }
+        }
+    });
 }
 
 //重写toFixed方法,解决精度问题

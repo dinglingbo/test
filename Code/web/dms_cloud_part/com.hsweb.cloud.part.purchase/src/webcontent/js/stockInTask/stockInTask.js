@@ -1885,6 +1885,8 @@ function auditToEnter(){
 var rtnEnterUrl = baseUrl+ "com.hsapi.cloud.part.invoicing.ordersettle.generateNewSellRtnToEnter.biz.ext";
 function rtnOrderEnter(mainId) {
 	var row = leftGrid.getSelected();
+	var main =basicInfoForm.getData();
+	var detail =rightGrid.getData();
 	if(row.auditSign!=1){
 		showMsg("请先提交再入库!","W");
 		return;
@@ -1911,7 +1913,9 @@ function rtnOrderEnter(mainId) {
 				url : rtnEnterUrl,
 				type : "post",
 				data : JSON.stringify({
-					orderMainId : mainId,
+					main:main,
+					detail:detail,
+//					orderMainId : mainId,
 					token: token
 				}),
 				success : function(data) {
@@ -1956,6 +1960,8 @@ var enterUrl = baseUrl
 + "com.hsapi.cloud.part.invoicing.ordersettle.generateNewPchsOrderEnter.biz.ext";
 function orderEnter(mainId) {
 	var row = leftGrid.getSelected();
+	var main = basicInfoForm.getData();
+	var detail =rightGrid.getData();
 	if(row.auditSign!=1){
 		showMsg("请先提交再入库!","W");
 		return;
@@ -1982,7 +1988,9 @@ function orderEnter(mainId) {
 			url : enterUrl,
 			type : "post",
 			data : JSON.stringify({
-				orderMainId : mainId,
+				main : main,
+				detail:detail,
+//				orderMainId : mainId,
 				token: token
 			}),
 			success : function(data) {
@@ -2439,7 +2447,7 @@ function OnrpMainGridCellBeginEdit(e){
     var data = basicInfoForm.getData();
 
     if(data.auditSign == 1){
-        e.cancel = true;
+//        e.cancel = true;
 	}
     
     if(e.field=="storeId"){
@@ -3006,6 +3014,11 @@ function getStratePriceList(params){
 
 
 function onCost(){
+	var row =leftGrid.getSelected();
+	if(!row){
+		showMsg("请选择一条单据!","W");
+		return;
+	}
 	if (checkNew() > 0) {
 		showMsg("请先保存数据!","W");
 		return;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="allotEnterToOut.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="allotEnterDirectOut" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据调拨入库数据生成销售出库数据（供应商直发给客户，生成总部账，门店账）&#xD;&#xA;&#xD;&#xA;预销售单填写销售金额，总部根据预销售单生成采购订单（必须是月结，必须要做对账单）&#xD;&#xA;cloudPartPjSellOrderMain.id    cloudPartPjSellOrderMain.versionNo&#xD;&#xA;cloudPartPjSellOrderDetail.id&#xD;&#xA;cloudPartPjOutMain.id   cloudPartPjOutDetail.id&#xD;&#xA;accept_main_id  accept_detail_id&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.getEnterOutDetail" title="Administrator&#x9;19-7-29 下午12:20">
     <location x="-9" y="-30"/>
     <size height="166" width="586"/>
@@ -68,7 +68,7 @@
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign6</targetNode>
     </sourceConnections>
-    <targetConnections>link3</targetConnections>
+    <targetConnections>link40</targetConnections>
     <location x="94" y="300"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
@@ -117,33 +117,6 @@
     <location x="226" y="335"/>
     <figSize height="20" width="31"/>
     <node>subprocess1</node>
-  </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="取入库明细" displayName="queryByNamedSql" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo1</sourceNode>
-      <targetNode>invokePojo0</targetNode>
-    </sourceConnections>
-    <targetConnections>link2</targetConnections>
-    <location x="165" y="226"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo1label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.queryByNamedSql</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
-      <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.cloud.part.invoicing.allotsettle.getEnterOutDetail</process:inputVariable>
-      <process:inputVariable id="2" name="parameterObject" type="query" value="java.lang.Object" valueType="Java" pattern="reference">params</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="java.lang.Object[]" valueType="Java">enterDetail</process:outputVariable>
-    </process:outputVariables>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="138" y="262"/>
-    <figSize height="20" width="76"/>
-    <node>invokePojo1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="050202" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
@@ -538,7 +511,6 @@
     <location x="344" y="227"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
-    <process:condition/>
     <process:iterate iterable="enterDetail" iterableElement="enterTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -1380,6 +1352,33 @@
     <location x="1181" y="144"/>
     <figSize height="20" width="154"/>
     <node>subprocess5</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="取入库明细" displayName="取入库明细" collapsed="false" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link40" name="link40" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo1</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="166" y="225"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo1label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.queryByNamedSql</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
+      <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.cloud.part.invoicing.allotsettle.getEnterOutDetailByDirectOut</process:inputVariable>
+      <process:inputVariable id="2" name="parameterObject" type="query" value="java.lang.Object" valueType="Java" pattern="reference">params</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.Object[]" valueType="Java">enterDetail</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
+    <location x="139" y="261"/>
+    <figSize height="20" width="76"/>
+    <node>invokePojo1</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

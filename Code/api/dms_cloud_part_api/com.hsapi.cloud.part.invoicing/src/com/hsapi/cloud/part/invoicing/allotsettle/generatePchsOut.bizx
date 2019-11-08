@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="generatePchsOut" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="急件直发（门店发起预销售，总部受理生成采购订单，供应商发货给客户，门店确定完成预销售，生成总部采购入库、调拨出库，生成门店调拨入库，销售出库）&#xD;&#xA;更新预销售单的   accept_main_id   accept_detail_id&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.updatePjGuestOrderDetailAcceptId&#xD;&#xA;生成销售提成&#xD;&#xA;&#xD;&#xA;如果是本店的预销售单，直接根据采购入库生成销售出库&#xD;&#xA;&#xD;&#xA;" title="Administrator&#x9;19-7-26 下午9:00">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="急件直发（门店发起预销售，总部受理生成采购订单，供应商发货给客户，门店确定完成预销售，生成总部采购入库、调拨出库，生成门店调拨入库，销售出库）&#xD;&#xA;更新预销售单的   accept_main_id   accept_detail_id&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.updatePjGuestOrderDetailAcceptId&#xD;&#xA;生成销售提成&#xD;&#xA;allotEnterDirectOut&#xD;&#xA;如果是本店的预销售单，直接根据采购入库生成销售出库&#xD;&#xA;&#xD;&#xA;" title="Administrator&#x9;19-7-26 下午9:00">
     <location x="0" y="-225"/>
     <size height="181" width="630"/>
   </nodes>
@@ -109,8 +109,8 @@
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
         <process:outputVariable id="2" name="enterMain" type="query" value="com.hsapi.cloud.part.data.pts.PjEnterMainChk" valueType="DataObject">enterMain</process:outputVariable>
         <process:outputVariable id="3" name="enterDetail" type="query" value="com.hsapi.cloud.part.data.pts.PjEnterDetailChk[]" valueType="DataObject">enterDetail</process:outputVariable>
-        <process:outputVariable id="4" name="applyMain" type="query" value="com.hsapi.cloud.part.data.pts.PjAllotApplyMain" valueType="DataObject"></process:outputVariable>
-        <process:outputVariable id="5" name="applyDetail" type="query" value="com.hsapi.cloud.part.data.pts.PjAllotApplyDetail[]" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="4" name="applyMain" type="query" value="com.hsapi.cloud.part.data.pts.PjAllotApplyMain" valueType="DataObject"/>
+        <process:outputVariable id="5" name="applyDetail" type="query" value="com.hsapi.cloud.part.data.pts.PjAllotApplyDetail[]" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -135,7 +135,6 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
-    <targetConnections>link40</targetConnections>
     <location x="588" y="150"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
@@ -378,7 +377,7 @@
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">guestOrder</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
@@ -393,6 +392,7 @@
     </sourceConnections>
     <targetConnections>link13</targetConnections>
     <targetConnections>link14</targetConnections>
+    <targetConnections>link43</targetConnections>
     <location x="468" y="255"/>
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
@@ -469,6 +469,7 @@
       <targetNode>transactioncommit0</targetNode>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
+    <targetConnections>link42</targetConnections>
     <location x="696" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign8label</nodeLabel>
@@ -572,7 +573,7 @@
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess4" name="generateDirectPchsEnter" displayName="generateDirectPchsEnter" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link40" name="link40" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess4</sourceNode>
-      <targetNode>subprocess2</targetNode>
+      <targetNode>subprocess5</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link41" name="link41" displayName="连接线" type="transition">
       <sourceNode>subprocess4</sourceNode>
@@ -600,7 +601,7 @@
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
         <process:outputVariable id="2" name="enterMain" type="query" value="com.hsapi.cloud.part.data.pts.PjEnterMainChk" valueType="DataObject">enterMain</process:outputVariable>
-        <process:outputVariable id="3" name="enterDetail" type="query" value="com.hsapi.cloud.part.data.pts.PjEnterDetailChk[]" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="3" name="enterDetail" type="query" value="com.hsapi.cloud.part.data.pts.PjEnterDetailChk[]" valueType="DataObject">enterDetail</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -699,7 +700,7 @@
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">orderMain</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
@@ -723,7 +724,7 @@
       <targetNode>transactionbegin0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -805,6 +806,44 @@
     <figSize height="20" width="76"/>
     <node>invokePojo4</node>
   </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess5" name="allotEnterDirectOut" displayName="allotEnterDirectOut" collapsed="false" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link42" name="link42" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess5</sourceNode>
+      <targetNode>assign8</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link43" name="link43" displayName="连接线" type="transition">
+      <sourceNode>subprocess5</sourceNode>
+      <targetNode>assign6</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="OBJNE">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link40</targetConnections>
+    <location x="551" y="24"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess5label</nodeLabel>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.allotEnterDirectOut</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="guestOrder" type="query" value="com.hsapi.cloud.part.data.pts.PjGuestOrderMain" valueType="DataObject" pattern="reference">guestOrder</process:inputVariable>
+        <process:inputVariable id="1" name="enterMain" type="query" value="com.hsapi.cloud.part.data.pts.PjEnterMainChk" valueType="DataObject" pattern="reference">enterMain</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+        <process:outputVariable id="2" name="orderId" type="query" value="Int" valueType="Primitive">orderId</process:outputVariable>
+        <process:outputVariable id="3" name="outId" type="query" value="Int" valueType="Primitive">outId</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess5label" name="label" nodeType="label">
+    <location x="493" y="59"/>
+    <figSize height="20" width="142"/>
+    <node>subprocess5</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-07-26 21:00:53" date="2019-07-26Z" description="采购直发给门店" name="generatePchsAllotIn" version="7.0.0.0"/>
@@ -823,6 +862,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="orderId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="outId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="pchsorgid" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="预销售单ID" isArray="false" name="id" primitiveType="Int"/>

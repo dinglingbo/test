@@ -91,9 +91,7 @@
                 margin: 0 10px;
             }
 
-            a:hover {
-                color: #fff;
-            }
+
     </style>
     <div title="车辆信息" class="nui-window" id="carview" style="width:100%;height:100%">
         <div class="nui-tabs" activeIndex="0" style="width:100%;height: 100%;">

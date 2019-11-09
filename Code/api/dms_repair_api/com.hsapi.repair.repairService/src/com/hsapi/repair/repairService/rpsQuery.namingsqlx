@@ -1357,7 +1357,7 @@
 		  	INNER JOIN wb_common.com_guest c on a.guest_id = c.id
 		  	INNER JOIN rpb_contactor e on a.contactor_id = e.id
 			inner join rps_settlement d on (a.id =  d.service_id)
-		WHERE 1 = 1 and a.bill_type_id in (0,2,4,6) and a.is_disabled = 0
+		WHERE 1 = 1 and a.bill_type_id in (0,2,4,6) and a.is_disabled = 0 and a.is_settle = 1
 			
       <dynamic>
 			<isNotEmpty prepend="and" property="rid">

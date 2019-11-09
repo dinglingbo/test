@@ -13,7 +13,7 @@
 <head>
 <title>未对账业务单</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/settlement/js/noBalaRpaAccountSettle.js?v=1.0.72"></script>
+    <script src="<%=webPath + contextPath%>/settlement/js/noBalaRpaAccountSettle.js?v=1.0.77"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -48,7 +48,9 @@
 			                <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
 			               
 			                <span class="separator"></span> 
- 		                    <input id="guestName" width="120px" emptyText="往来单位名称" onEnter="onSearch()" class="nui-textbox" visible=""/> 
+ 		                    <input id="searchGuestId" class="nui-buttonedit"
+		                       emptyText="请选择客户..."
+		                       onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
 							<input class="nui-combobox" id ="orgids" name="orgids" value="" allowInput="true" showNullItem="false" 
 			            		 valueFromSelect="true" nullitemtext="请选择..." emptyText="选择公司" data="" width="200px"
 			            		 textField="name" valueField="orgid" onEnter="onSearch()" />
@@ -75,7 +77,7 @@
 			</div>
 			
 			 <div id="mainGrid" class="nui-datagrid" style="width:100%;height:90%;"
-		         showPager="true"
+		         showPager="false"
 		         dataField="detailList"
 		         sortMode="client"
 		         ondrawcell="onMainDrawCell"

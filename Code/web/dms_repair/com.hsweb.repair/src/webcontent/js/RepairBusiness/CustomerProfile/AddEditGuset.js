@@ -1609,9 +1609,9 @@ function isEmptyObject (obj){
 var saveOpenIdUrl = baseUrl + "com.hsapi.repair.repairService.svr.saveWechatOpenId.biz.ext";
 function wechatBin(){
 	var data = contactInfoForm.getData();
-	if (data.isValid() == false){
+	/*if (data.isValid() == false){
 		 return;
-	}
+	}*/
 	if(data.wechatOpenId){
 		showMsg("此联系人已绑定!","W");
 		return 0;
@@ -1620,6 +1620,13 @@ function wechatBin(){
 	if(!wechatServiceId){
 		 showMsg("请输入服务号!","W");
 		 return; 
+	 }else{
+		 var reg=/^[0-9]+$/;
+		 var pattern=new RegExp(reg);
+		if(!pattern.test(wechatServiceId)){
+			showMsg("服务号不应有字母!","W");
+			 return;
+		};
 	 }
 	var wechatUser = {};
 	 wechatUser.userPhone = data.mobile;

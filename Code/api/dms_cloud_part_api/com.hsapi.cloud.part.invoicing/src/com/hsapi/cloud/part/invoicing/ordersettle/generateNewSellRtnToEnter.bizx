@@ -287,7 +287,7 @@
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link48" name="link48" displayName="link11" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
-      <targetNode>subprocess7</targetNode>
+      <targetNode>subprocess9</targetNode>
       <process:transitionCondition>
         <process:complexCondition>
           <process:code>1==2</process:code>
@@ -340,6 +340,7 @@
     <location x="468" y="166"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="auditDetail" iterableElement="temp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">
@@ -1019,6 +1020,7 @@
     <targetConnections>link25</targetConnections>
     <targetConnections>link43</targetConnections>
     <targetConnections>link58</targetConnections>
+    <targetConnections>link77</targetConnections>
     <location x="266" y="356"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionrollback0label</nodeLabel>
@@ -1852,8 +1854,9 @@
     <sourceConnections xsi:type="process:tLink" id="link57" name="link57" displayName="link29" isDefault="true" type="transition">
       <sourceNode>subprocess7</sourceNode>
       <targetNode>invokePojo12</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
-    <targetConnections>link48</targetConnections>
+    <targetConnections>link75</targetConnections>
     <location x="69" y="275"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess7label</nodeLabel>
@@ -1976,6 +1979,57 @@
     <location x="1338" y="342"/>
     <figSize height="20" width="70"/>
     <node>transactionrollback4</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess9" name="updatePurDetails" displayName="updatePurDetails" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link75" name="link75" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess9</sourceNode>
+      <targetNode>subprocess7</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link76" name="link76" displayName="连接线" type="transition">
+      <sourceNode>subprocess9</sourceNode>
+      <targetNode>assign19</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link48</targetConnections>
+    <location x="-69" y="280"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess9label</nodeLabel>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.updatePurDetails</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="detail" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk[]" valueType="DataObject" pattern="reference">detail</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess9label" name="label" nodeType="label">
+    <location x="-119" y="315"/>
+    <figSize height="20" width="126"/>
+    <node>subprocess9</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign19" name="赋值19" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link77" name="link77" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign19</sourceNode>
+      <targetNode>transactionrollback0</targetNode>
+    </sourceConnections>
+    <targetConnections>link76</targetConnections>
+    <location x="-53" y="356"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign19label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign19label" name="label" nodeType="label">
+    <location x="-63" y="392"/>
+    <figSize height="20" width="49"/>
+    <node>assign19</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

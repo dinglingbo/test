@@ -3061,6 +3061,11 @@ function getStratePriceList(params){
 
 
 function onCost(){
+	var row =leftGrid.getSelected();
+	if(!row){
+		showMsg("请选择一条单据!","W");
+		return;
+	}
 	if (checkNew() > 0) {
 		showMsg("请先保存数据!","W");
 		return;

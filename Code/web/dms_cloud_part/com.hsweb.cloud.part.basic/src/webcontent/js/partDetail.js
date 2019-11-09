@@ -200,7 +200,10 @@ function onOk()
             return;
         }
     }
-  //  return;
+    
+    if(typeof data.partNameId !== 'number' ){
+    	data.partNameId =0;
+    }
     if(partName)
     {
         data.carTypeIdF = partName.cartypef||"";
@@ -343,6 +346,7 @@ function applyPartBrand(qualityTypeIdList,partBrandIdList){
 			parentId=qualityTypeIdList[i].id;
 		}
 	}
+	nui.get("qualityTypeId").setValue(parentId);
 	for(var i=0;i<partBrandIdList.length;i++){
 		if(partBrandIdList[i].parentId ==parentId){
 			result.push(partBrandIdList[i]);

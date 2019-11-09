@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件资料</title>
-<script src="<%=webPath + contextPath%>/basic/js/partDetail.js?v=1.0.21"></script>
+<script src="<%=webPath + contextPath%>/basic/js/partDetail.js?v=1.0.23"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -160,17 +160,7 @@
                              onvaluechanged="onPartNameValueChanged"
                              placeholder="请选择名称"
                              selectOnFocus="true" />
-                    <td class=" right fwidthb">通用编码:</td>
-                    <td ><input name="commonCode" class="nui-textbox" width="150px"/></td>
-                       <!-- <a class="nui-button" iconCls="" plain="false" onclick="onButtonEdit" id="selectNameBtn"><span class="fa fa-check fa-lg"></span></a>-->
-                    <!--    <input name="partNameId" id="partNameId"
-                        class="nui-buttonedit" emptyText=""
-                        allowInput="false" width="150px"
-                        onbuttonclick="onButtonEdit" selectOnFocus="true" />-->
-                    </td>
-                </tr>
-                <tr class="htr">
-                    <td class=" right fwidthb required">单位:</td>
+                             <td class=" right fwidthb required">单位:</td>
                     <td >
                         <input name="unit"
                         id="unit"
@@ -184,6 +174,16 @@
                         popupHeight="100%"
                         showNullItem="false"
                         nullItemText="请选择..."/>
+                   
+                       <!-- <a class="nui-button" iconCls="" plain="false" onclick="onButtonEdit" id="selectNameBtn"><span class="fa fa-check fa-lg"></span></a>-->
+                    <!--    <input name="partNameId" id="partNameId"
+                        class="nui-buttonedit" emptyText=""
+                        allowInput="false" width="150px"
+                        onbuttonclick="onButtonEdit" selectOnFocus="true" />-->
+                    </td>
+                </tr>
+                <tr class="htr">
+                    
                     </td><!-- 
                     <td class=" right fwidthb required">ABC分类:</td>
                     <td >
@@ -202,6 +202,8 @@
                     </td> -->
                     <td class=" right fwidthb">OE码:</td>
                     <td ><input name="oemCode" class="nui-textbox" width="150px"/></td>
+                     <td class=" right fwidthb">通用编码:</td>
+                    <td ><input name="commonCode" class="nui-textbox" width="150px"/></td>
                     </tr>
                     <tr>
                     <td class=" right fwidthb">规格:</td>

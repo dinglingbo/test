@@ -101,6 +101,7 @@
          idField="detailId"
          ondrawcell="onDrawCell"
          sortMode="client"
+         allowSort="true"
          url=""
          pageSize="10000"
          sizeList="[1000,5000,10000]"
@@ -127,7 +128,7 @@
                     <div allowSort="true" field="comOemCode" width="120"headerAlign="center" header="OE码" allowSort="true" dataType="string"></div>
                     <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌" allowSort="true" dataType="string"></div>
                     <div allowSort="true" field="applyCarModel" width="160" headerAlign="center" header="品牌车型" allowSort="true" dataType="string"> </div>
-                    <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
+                    <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位" allowSort="true" dataType="string"></div>
                 </div>
             </div>
             <div header="数量单价" headerAlign="center">

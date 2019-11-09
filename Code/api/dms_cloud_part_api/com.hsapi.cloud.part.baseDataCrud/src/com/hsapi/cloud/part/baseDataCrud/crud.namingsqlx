@@ -304,7 +304,8 @@
 		       a.id_card_url           idCardUrl,
 		       a.is_need_pack          isNeedPack,
 		       a.default_logistics_id  defaultLogisticsId,
-		       a.default_logistics     defaultLogistics
+		       a.default_logistics     defaultLogistics,
+		       a.return_rate returnRate
 		       FROM com_guest a
 		       WHERE a.is_client = 1  
 		       <!-- 汽配客户不共享-->

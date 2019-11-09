@@ -51,6 +51,10 @@ body .mini-grid-row-selected{
            plain="false" 
            onactivechanged="ontopTabChanged">
 
+        <div title="销售订单" id="billmain" name="billmain" >
+            <!--采购订单信息-->
+            <%@include file="/purchase/sellOrder/sellOrderDetail.jsp" %>
+        </div>
         <div title="配件信息" id="partInfoTab" name="partInfoTab" url="" >
             <!--配件基本信息-->
             <%@include file="/purchase/sellOrder/sellPartInfo.jsp" %>
@@ -58,10 +62,6 @@ body .mini-grid-row-selected{
               <iframe id="formIframePart" src="" frameborder="0" scrolling="yes" height="height: 110px;" width="100%" noresize="noresize"></iframe>
           </div> -->
         </div> 
-        <div title="销售订单" id="billmain" name="billmain" >
-            <!--采购订单信息-->
-            <%@include file="/purchase/sellOrder/sellOrderDetail.jsp" %>
-        </div>
         <div title="待处理客户订单" name="guestOrdrTab" url="" visible="false" >
           <!-- <div class="nui-fit">
                 <iframe id="formIframePchs" src="" frameborder="0" scrolling="yes" height="height: 110px;" width="100%" noresize="noresize"></iframe>

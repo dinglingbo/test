@@ -472,7 +472,7 @@
         </dynamic>
     </select>
     <select id="queryPjSellOrderMainDetailList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
-		SELECT DISTINCT
+		SELECT 
 			a.id as id,
 			a.service_id as serviceId,
 			a.orgid as orgid,
@@ -512,6 +512,7 @@
 			b.finish_date as finishDate,
 			b.remark as detailRemark,
 			b.direct_store_id as directStoreId,
+			b.order_amt * a.return_rate as detailReturnAmt,
 			c.`code` as comPartCode,
 			c.`name` as comPartName,
 			c.full_name as comPartFullName,
@@ -730,7 +731,8 @@
 				c.apply_carbrand_id as applyCarbrandId,
 				c.spec as spec,
 				d.full_name as guestFullName,
-				d.short_name as guestShortName
+				d.short_name as guestShortName,
+			    e.sell_amt * a.return_rate as detailReturnAmt
 			FROM
 			pj_sell_order_main_chk a 
 			inner join pj_sell_order_detail_chk b 
@@ -1331,7 +1333,7 @@
 			f.branch_stock_age as branchStockAge,
 			f.chain_stock_age as chainStockAge,
 			b.remark as detailRemark,
-		
+			f.rtn_amt * a.return_rate as detailReturnAmt,
 			c.`code` as comPartCode,
 			c.`name` as comPartName,
 			c.full_name as comPartFullName,

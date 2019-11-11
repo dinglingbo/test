@@ -11,7 +11,7 @@
     <title>用户管理</title>
     <%@include file="/common/sysCommon.jsp"%>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	 <script src="<%= request.getContextPath() %>/tenant/js/userManager.js?v=1.9.15"
+	 <script src="<%= request.getContextPath() %>/tenant/js/userManager.js?v=1.9.18"
 	type="text/javascript"></script>
     <style type="text/css">
     body {
@@ -91,6 +91,7 @@
                 <a class="nui-button " plain="true" style="" iconcls="" plain="false" onclick="ViewType(2)"><i class="fa fa-list"></i>&nbsp;查看订单</a>
                 <a class="nui-button " plain="true" style="" iconcls="" plain="false" onclick="ViewType(3)"><i class="fa fa-cny"></i>&nbsp;查看费用</a>
                 <a class="nui-button " plain="true" style="" iconcls="" plain="false" onclick="ViewType(4)"><i class="fa fa-map"></i>&nbsp;查看发票</a>
+                 <a class="nui-button " plain="true" style="" iconcls="" plain="false" onclick="recharge(5)"><i class="fa fa-cny"></i>&nbsp;充值</a>
             </span>
         </div> 
 	</div>

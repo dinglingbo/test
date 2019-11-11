@@ -643,7 +643,7 @@
     <figSize height="20" width="70"/>
     <node>transactionrollback2</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess5" name="generateNewSellRtnToEnter" displayName="generateNewSellRtnToEnter" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess5" name="generateNewSellRtnToEnter" displayName="generateNewSellRtnToEnterNT" type="subprocess">
     <sourceConnections xsi:type="process:tLink" description="" id="link30" name="link30" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>subprocess5</sourceNode>
       <targetNode>transactionrollback2</targetNode>
@@ -669,7 +669,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess5label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.invoicing.ordersettle.generateNewSellRtnToEnter</process:partner>
+      <process:partner type="literal">com.hsapi.cloud.part.invoicing.ordersettle.generateNewSellRtnToEnterNT</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="main" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" valueType="DataObject" pattern="reference">auditMain</process:inputVariable>
         <process:inputVariable id="1" name="detail" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk[]" valueType="DataObject" pattern="reference">auditDetails</process:inputVariable>

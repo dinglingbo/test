@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调拨入库明细查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotApplyInQuery.js?v=2.0.20"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotApplyInQuery.js?v=2.0.21"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -69,6 +69,17 @@
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择客户..."
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
+                 <input id="storeId"
+                   name="storeId"
+                   class="nui-combobox width1"
+                   textField="name"
+                   valueField="id"
+                   emptyText="仓库"
+                   url=""
+                   valueFromSelect="true"
+                   allowInput="true"
+                   showNullItem="false"
+                   nullItemText="请选择..."/>
                 <span class="separator"></span>
                 <!-- <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
                 <span class="separator"></span>
@@ -97,22 +108,22 @@
             <div type="indexcolumn">序号</div>
             <div header="订单信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="serviceId" width="190" summaryType="count" headerAlign="center" header="订单单号"></div>
-                    <div field="orgName" width="200" headerAlign="center" header="调出方"></div>
-                    <div field="orderMan" width="80" headerAlign="center" header="受理人"></div>
-                    <div allowSort="true" field="settleStatus" width="80" headerAlign="center" header="状态"></div>
-                    <div allowSort="true" field="orderDate"width="120" headerAlign="center" header="订单日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-                    <div allowSort="true" field="storeId" width="120" headerAlign="center" header="仓库"></div>
+                    <div allowSort="true" field="serviceId" width="190" summaryType="count" headerAlign="center" header="订单单号" allowSort="true" dataType="string"></div>
+                    <div field="orgName" width="200" headerAlign="center" header="调出方" allowSort="true" dataType="string"></div>
+                    <div field="orderMan" width="80" headerAlign="center" header="受理人" allowSort="true" dataType="string"></div>
+                    <div allowSort="true" field="settleStatus" width="80" headerAlign="center" header="状态" allowSort="true" dataType="string"></div>
+                    <div allowSort="true" field="orderDate"width="120" headerAlign="center" header="订单日期" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" dataType="date"></div>
+                    <div allowSort="true" field="storeId" width="120" headerAlign="center" header="仓库" allowSort="true" dataType="string"></div>
                 </div>
             </div>
             <div header="配件信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="partCode" width="150" headerAlign="center" header="配件编码"></div>
-                    <div allowSort="true" field="fullName"width="220" headerAlign="center" header="配件全称"></div>
-                    <div allowSort="true" field="oemCode"width="220" headerAlign="center" header="OE码"></div>
-                    <div allowSort="true" field="partBrandId" width="80" headerAlign="center" header="品牌"></div>
-                    <div allowSort="true" field="applyCarModel" width="260" headerAlign="center" header="品牌车型"></div>
-                    <div allowSort="true" field="systemUnitId" width="40" headerAlign="center" header="单位"></div>
+                    <div allowSort="true" field="partCode" width="150" headerAlign="center" header="配件编码" allowSort="true" dataType="string"></div>
+                    <div allowSort="true" field="fullName"width="220" headerAlign="center" header="配件全称" allowSort="true" dataType="string"></div>
+                    <div allowSort="true" field="oemCode"width="220" headerAlign="center" header="OE码" allowSort="true" dataType="string"></div>
+                    <div allowSort="true" field="partBrandId" width="80" headerAlign="center" header="品牌" allowSort="true" dataType="string"></div>
+                    <div allowSort="true" field="applyCarModel" width="260" headerAlign="center" header="品牌车型" allowSort="true" dataType="string"></div>
+                    <div allowSort="true" field="systemUnitId" width="40" headerAlign="center" header="单位"allowSort="true" dataType="string"></div>
                 </div>
             </div>
             <div header="数量单价" headerAlign="center">
@@ -131,7 +142,7 @@
                 <div property="columns">
                 	<div allowSort="true" field="code" width="160" headerAlign="center" header="调拨申请单号"></div>
                     <div field="auditor" width="70" headerAlign="center" header="审核人"></div>
-                    <div allowSort="true"  width="120"field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div allowSort="true"  width="120"field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" dataType="date"></div>
                 </div>
             </div>
         </div>

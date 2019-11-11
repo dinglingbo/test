@@ -427,7 +427,7 @@
                 (c.full_name like '%$fullName$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="queryCode">  
-                (c.query_code like '%$queryCode$%')
+                (c.query_code like '%$queryCode$%' or c.code like '%$partCode$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="partBrandId">  
                 (c.part_brand_id = #partBrandId#)
@@ -468,7 +468,7 @@
                 (c.full_name like '%$fullName$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="queryCode">  
-                (c.query_code like '%$queryCode$%')
+                (c.query_code like '%$queryCode$%' or c.code like '%$partCode$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="partBrandId">  
                 (c.part_brand_id = #partBrandId#)
@@ -507,7 +507,7 @@
                 (c.full_name like '%$fullName$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="queryCode">  
-                (c.query_code like '%$queryCode$%')
+                (c.query_code like '%$queryCode$%' or c.code like '%$partCode$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="partBrandId">  
                 (c.part_brand_id = #partBrandId#)

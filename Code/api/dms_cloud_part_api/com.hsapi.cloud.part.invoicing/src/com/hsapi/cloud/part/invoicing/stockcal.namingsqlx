@@ -245,7 +245,7 @@
 			
 			
 			<isNotNull prepend = "" property = "code">
-				AND D.QUERY_CODE like '%$code$%'
+				AND (D.QUERY_CODE like '%$code$%' or d.code like '%$partCode$%')
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "name">
@@ -265,7 +265,7 @@
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "cnp">
-				and (D.QUERY_CODE like '%$cnp$%' or D.NAME like '%$cnp$%' or D.FULL_NAME like '%$cnp$%' or D.NAME_PY like '%$cnp$%')
+				and (D.QUERY_CODE like '%$cnp$%' or D.code like '%$cnp$%' or D.NAME like '%$cnp$%' or D.FULL_NAME like '%$cnp$%' or D.NAME_PY like '%$cnp$%')
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "cartypeid">
@@ -650,7 +650,7 @@
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "code">
-				AND G.QUERY_CODE like '%$code$%'
+				AND (g.QUERY_CODE like '%$code$%' or g.code like '%$partCode$%')
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "name">
@@ -670,7 +670,7 @@
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "cnp">
-				and (G.QUERY_CODE like '%$cnp$%' or G.NAME like '%$cnp$%' or G.FULL_NAME like '%$cnp$%' or G.NAME_PY like '%$cnp$%')
+				and (G.QUERY_CODE like '%$cnp$%' or g.code like '%$cnp$%' or G.NAME like '%$cnp$%' or G.FULL_NAME like '%$cnp$%' or G.NAME_PY like '%$cnp$%')
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "cartypeid">
@@ -703,7 +703,7 @@
 			
 			
 			<isNotNull prepend = "" property = "code">
-				AND F.QUERY_CODE like '%$code$%'
+				AND (F.QUERY_CODE like '%$code$%' or f.code like '%$code$%')
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "name">
@@ -723,7 +723,7 @@
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "cnp">
-				and (F.QUERY_CODE like '%$cnp$%' or F.NAME like '%$cnp$%' or F.FULL_NAME like '%$cnp$%' or F.NAME_PY like '%$cnp$%')
+				and (F.QUERY_CODE like '%$cnp$%' or f.code like '%$cnp$%' or F.NAME like '%$cnp$%' or F.FULL_NAME like '%$cnp$%' or F.NAME_PY like '%$cnp$%')
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "cartypeid">

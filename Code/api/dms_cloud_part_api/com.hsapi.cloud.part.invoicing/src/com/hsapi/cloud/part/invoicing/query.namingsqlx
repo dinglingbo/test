@@ -203,7 +203,7 @@
             <isNotEmpty prepend="and" property="orderMan">(A.order_man = #orderMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or c.name_py like '%$partNameAndPY$%')</isNotEmpty>
-            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%'  or c.code like '%$partCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">(A.service_id like '%$serviceId$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
@@ -355,7 +355,7 @@
             <isNotEmpty prepend="and" property="orderMan">(A.order_man = #orderMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or c.name_py like '%$partNameAndPY$%')</isNotEmpty>
-            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%'  or c.code like '%$partCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">(A.service_id = #serviceId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
@@ -459,7 +459,7 @@
             <isNotEmpty prepend="and" property="orderMan">(A.order_man = #orderMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or c.name_py like '%$partNameAndPY$%')</isNotEmpty>
-            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%'  or c.code like '%$partCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">(A.service_id = #serviceId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
@@ -559,7 +559,7 @@
             <isNotEmpty prepend="and" property="orderMan">(A.order_man = #orderMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or c.name_py like '%$partNameAndPY$%')</isNotEmpty>
-            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%'  or c.code like '%$partCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">(A.service_id = #serviceId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
@@ -663,7 +663,7 @@
             <isNotEmpty prepend="and" property="orderMan">(A.order_man = #orderMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or c.name_py like '%$partNameAndPY$%')</isNotEmpty>
-            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%' or c.code like '%$partCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">(A.service_id = #serviceId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
@@ -766,7 +766,7 @@
             <isNotEmpty prepend="and" property="orderMan">(A.order_man = #orderMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or c.name_py like '%$partNameAndPY$%')</isNotEmpty>
-            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%' or c.code like '%$partCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">(A.service_id = #serviceId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
@@ -857,7 +857,7 @@
             <isNotEmpty prepend="and" property="orderMan">(A.order_man = #orderMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or c.name_py like '%$partNameAndPY$%')</isNotEmpty>
-            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%' or c.code like '%$partCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">(A.service_id = #serviceId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
@@ -923,7 +923,7 @@
             <isNotEmpty prepend="and" property="orderMan">(A.order_man = #orderMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or c.name_py like '%$partNameAndPY$%')</isNotEmpty>
-            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%' or c.code like '%$partCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">(A.service_id = #serviceId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
@@ -988,7 +988,7 @@
             <isNotEmpty prepend="and" property="orderMan">(A.order_man = #orderMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or c.name_py like '%$partNameAndPY$%')</isNotEmpty>
-            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%' or c.code like '%$partCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">(A.service_id = #serviceId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
@@ -1091,7 +1091,7 @@
             <isNotEmpty prepend="and" property="orderMan">(A.order_man = #orderMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or c.name_py like '%$partNameAndPY$%')</isNotEmpty>
-            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%' or c.code like '%$partCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">(A.service_id = #serviceId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
@@ -1184,7 +1184,7 @@
             <isNotEmpty prepend="and" property="orderMan">(A.order_man = #orderMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or c.name_py like '%$partNameAndPY$%')</isNotEmpty>
-            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%' or c.code like '%$partCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">(A.service_id = #serviceId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
@@ -1286,7 +1286,7 @@
             <isNotEmpty prepend="and" property="orderMan">(A.order_man = #orderMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or c.name_py like '%$partNameAndPY$%')</isNotEmpty>
-            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%' or c.code like '%$partCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">(A.service_id = #serviceId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
@@ -1380,7 +1380,7 @@
             <isNotEmpty prepend="and" property="orderMan">(A.order_man = #orderMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or c.name_py like '%$partNameAndPY$%')</isNotEmpty>
-            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%' or c.code like '%$partCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">(A.service_id = #serviceId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
@@ -1478,7 +1478,7 @@
             <isNotEmpty prepend="and" property="partName">(b.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(b.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="applyCarModel">(b.apply_car_model like '%$applyCarModel$%')</isNotEmpty>
-            <isNotEmpty prepend="and" property="partCode">(b.query_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(b.query_code like '%$partCode$%' or b.code like '%$partCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partBrandId">(b.part_brand_id = #partBrandId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(b.code in ($partCodeList$))</isNotEmpty>
             <!--业务界面的库存详情限制50 -->
@@ -1573,7 +1573,7 @@
             <isNotEmpty prepend="and" property="partName">(b.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(b.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="applyCarModel">(b.apply_car_model like '%$applyCarModel$%')</isNotEmpty>
-            <isNotEmpty prepend="and" property="partCode">(b.query_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(b.query_code like '%$partCode$%' or b.code like '%$partCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partBrandId">(b.part_brand_id = #partBrandId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(b.code in ($partCodeList$))</isNotEmpty>
             <!--业务界面的库存详情限制50 -->
@@ -1674,7 +1674,7 @@
             <isNotEmpty prepend="and" property="orderMan">(A.order_man = #orderMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or c.name_py like '%$partNameAndPY$%')</isNotEmpty>
-            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%' or c.code like '%$partCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">(A.service_id = #serviceId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
@@ -1767,7 +1767,7 @@
             <isNotEmpty prepend="and" property="orderMan">(A.order_man = #orderMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or c.name_py like '%$partNameAndPY$%')</isNotEmpty>
-            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%' or c.code like '%$partCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">(A.service_id = #serviceId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
@@ -1864,7 +1864,7 @@
             <isNotEmpty prepend="and" property="orderMan">(A.order_man = #orderMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or c.name_py like '%$partNameAndPY$%')</isNotEmpty>
-            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%' or c.code like '%$partCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">(A.service_id = #serviceId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
@@ -1958,7 +1958,7 @@
             <isNotEmpty prepend="and" property="orderMan">(A.order_man = #orderMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or c.name_py like '%$partNameAndPY$%')</isNotEmpty>
-            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%' or c.code like '%$partCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">(A.service_id = #serviceId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
@@ -2057,7 +2057,7 @@
             <isNotEmpty prepend="and" property="orderMan">(A.order_man = #orderMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or c.name_py like '%$partNameAndPY$%')</isNotEmpty>
-            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%' or c.code like '%$partCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">(A.service_id = #serviceId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
@@ -2176,7 +2176,7 @@
             <isNotEmpty prepend="and" property="orderMan">(A.order_man = #orderMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or c.name_py like '%$partNameAndPY$%')</isNotEmpty>
-            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%' or c.code like '%$partCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">(A.service_id = #serviceId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
@@ -2275,7 +2275,7 @@
             <isNotEmpty prepend="and" property="orderMan">(A.order_man = #orderMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or c.name_py like '%$partNameAndPY$%')</isNotEmpty>
-            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%' or c.code like '%$partCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">(A.service_id = #serviceId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>

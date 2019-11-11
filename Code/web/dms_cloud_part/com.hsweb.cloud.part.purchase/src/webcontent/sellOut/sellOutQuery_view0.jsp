@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售出库查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/sellOut/sellOutQuery.js?v=2.0.9"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/sellOut/sellOutQuery.js?v=2.0.10"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -60,15 +60,28 @@
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
 
                 <span class="separator"></span> 
-                <input id="partNameAndPY" width="120px" emptyText="配件名称/拼音" class="nui-textbox"/>
+                <input id="partNameAndPY" width="100px" emptyText="配件名称/拼音" class="nui-textbox"/>
                 <!-- <label style="font-family:Verdana;">配件ID：</label> -->
-                <input id="partCode" width="120px" emptyText="配件编码" class="nui-textbox"/>
+                <input id="partCode" width="100px" emptyText="配件编码" class="nui-textbox"/>
                 <!-- <label style="font-family:Verdana;">订单单号：</label> -->
-                <input id="serviceId" width="120px" emptyText="订单号" class="nui-textbox"/>
+                <input id="serviceId" width="100px" emptyText="订单号" class="nui-textbox"/>
                 <!-- <label style="font-family:Verdana;">供应商：</label> -->
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择客户..."
+                       width="100px"
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
+                <input id="storeId"
+                   name="storeId"
+                   class="nui-combobox width1"
+                   textField="name"
+                   valueField="id"
+                   emptyText="仓库"
+                    width="100px"
+                   url=""
+                   valueFromSelect="true"
+                   allowInput="true"
+                   showNullItem="false"
+                   nullItemText="请选择..."/>
                 <span class="separator"></span>
                 <label style="font-family:Verdana;">可退货数大于零：</label>
                 <input class="nui-checkbox" id="rtnableQty" trueValue="1" falseValue="0"/>
@@ -93,6 +106,7 @@
          idField="detailId"
          ondrawcell="onDrawCell"
          sortMode="client"
+         allowSort="true"
          url=""
          pageSize="10000"
          sizeList="[1000,5000,10000]"
@@ -101,25 +115,25 @@
             <div type="indexcolumn">序号</div>
             <div header="" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="serviceId" width="170" summaryType="count" headerAlign="center" header="销售单号"></div>
-                    <div field="guestFullName" width="200" headerAlign="center" header="客户"></div>
-                    <div field="auditor" width="60" headerAlign="center" header="销售员"></div>
-                    <div allowSort="true" width="120"field="auditDate" headerAlign="center" header="出库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div allowSort="true" field="serviceId" width="170" summaryType="count" headerAlign="center" header="销售单号" allowSort="true" dataType="string"></div>
+                    <div field="guestFullName" width="200" headerAlign="center" header="客户" allowSort="true" dataType="string"></div>
+                    <div field="auditor" width="60" headerAlign="center" header="销售员" allowSort="true" dataType="string"></div>
+                    <div allowSort="true" width="120"field="auditDate" headerAlign="center" header="出库日期" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" dataType="date"></div>
                     <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div> 
                     <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>-->
-                    <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
-                    <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
-                    <div allowSort="true" field="storeId" width="120" headerAlign="center" header="仓库"></div>
+                    <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型" allowSort="true" dataType="string"></div>
+                    <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式" allowSort="true" dataType="string"></div>
+                    <div allowSort="true" field="storeId" width="120" headerAlign="center" header="仓库" allowSort="true" dataType="string"></div>
                 </div>
             </div>
             <div header="销售信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="comPartCode" width="80" headerAlign="center" header="配件编码"></div>
-                    <div allowSort="true" field="comPartName" width="120"headerAlign="center" header="配件名称"></div>
-                    <div allowSort="true" field="comOemCode" headerAlign="center" header="OE码"></div>
-                    <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
-                    <div allowSort="true" field="applyCarModel" width="200" headerAlign="center" header="品牌车型"></div>
-                    <div allowSort="true" field="outUnitId" width="50" headerAlign="center" header="单位"></div>
+                    <div allowSort="true" field="comPartCode" width="80" headerAlign="center" header="配件编码" allowSort="true" dataType="string"></div>
+                    <div allowSort="true" field="comPartName" width="120"headerAlign="center" header="配件名称" allowSort="true" dataType="string"></div>
+                    <div allowSort="true" field="comOemCode" headerAlign="center" header="OE码" allowSort="true" dataType="string"></div>
+                    <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌" allowSort="true" dataType="string"></div>
+                    <div allowSort="true" field="applyCarModel" width="200" headerAlign="center" header="品牌车型" allowSort="true" dataType="string"></div>
+                    <div allowSort="true" field="outUnitId" width="50" headerAlign="center" header="单位" allowSort="true" dataType="string"></div>
                 </div>
             </div>
             <div header="数量单价" headerAlign="center">
@@ -162,9 +176,9 @@
             </div>
             <div header="其他" headerAlign="center">
                 <div property="columns">
-                	<div allowSort="true" field="manualCode" width="170" headerAlign="center" header="订单号"></div>
-                    <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
-                    <div allowSort="true"width="120" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                	<div allowSort="true" field="manualCode" width="170" headerAlign="center" header="订单号" allowSort="true" dataType="string"></div>
+                    <div field="auditor" width="60" headerAlign="center" header="审核人" allowSort="true" dataType="string"></div>
+                    <div allowSort="true"width="120" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"  allowSort="true" dataType="date"></div>
                     <div allowSort="true" field="partId" width="50" headerAlign="center" header="配件ID"></div>
                 </div>
             </div>

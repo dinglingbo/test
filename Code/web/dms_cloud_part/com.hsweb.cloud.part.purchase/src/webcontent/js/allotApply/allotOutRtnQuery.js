@@ -55,7 +55,7 @@ $(document).ready(function(v)
     getStorehouse(function(data)
     {
         var storehouse = data.storehouse||[];
-     //   nui.get("storeId").setData(storehouse);
+        nui.get("storeId").setData(storehouse);
         storehouse.forEach(function(v)
         {
             if(v && v.id)

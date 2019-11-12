@@ -1497,6 +1497,8 @@
 			a.origin_id as originId,
 			a.origin_guest_id as originGuestId,
 			a.sell_price as sellPrice,
+			a.exp_enter_price as expEnterPrice,
+			a.exp_enter_amt as expEnterAmt,
 			d.id as guestOrderDetailid,
 			d.order_qty as orderQty,
 			d.order_price as orderPrice,
@@ -1563,6 +1565,8 @@
 			a.origin_id as originId,
 			a.origin_guest_id as originGuestId,
 			a.sell_price as sellPrice,
+			a.exp_enter_price as expEnterPrice,
+			a.exp_enter_amt as expEnterAmt,
 			d.id as guestOrderDetailid,
 			d.order_qty as orderQty,
 			d.order_price as orderPrice,
@@ -1626,7 +1630,9 @@
 			a.guest_id as guestId,
 			a.guest_name as guestName,
 			a.origin_id as originId,
-			a.origin_guest_id as originGuestId
+			a.origin_guest_id as originGuestId,
+			a.exp_enter_price as expEnterPrice,
+			a.exp_enter_amt as expEnterAmt
 		from pj_out_detail_chk a
 			inner join pj_out_main_chk b
 			on a.main_id = b.id
@@ -1679,7 +1685,9 @@
 			a.guest_id as guestId,
 			a.guest_name as guestName,
 			a.origin_id as originId,
-			a.origin_guest_id as originGuestId
+			a.origin_guest_id as originGuestId,
+			a.exp_enter_price as expEnterPrice,
+			a.exp_enter_amt as expEnterAmt
 		from pj_out_detail_chk a
 			inner join pj_out_main_chk b
 			on a.main_id = b.id
@@ -1737,7 +1745,9 @@
 			a.guest_id as guestId,
 			a.guest_name as guestName,
 			a.origin_id as originId,
-			a.origin_guest_id as originGuestId
+			a.origin_guest_id as originGuestId,
+			a.exp_enter_price as expEnterPrice,
+			a.exp_enter_amt as expEnterAmt
 		from pj_out_detail_chk a
 			inner join pj_out_main_chk b
 			on a.main_id = b.id

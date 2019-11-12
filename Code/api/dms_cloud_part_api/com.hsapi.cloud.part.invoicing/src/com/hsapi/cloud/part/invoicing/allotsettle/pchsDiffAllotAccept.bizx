@@ -781,6 +781,8 @@
         <process:inputVariable id="17" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">outMain/orgid</process:inputVariable>
         <process:inputVariable id="18" name="operator" type="query" value="String" valueType="Primitive" pattern="reference">outMain/auditor</process:inputVariable>
         <process:inputVariable id="19" name="operatorId" type="query" value="String" valueType="Primitive" pattern="reference">outMain/auditorId</process:inputVariable>
+        <process:inputVariable id="20" name="expPrice" type="query" value="Float" valueType="Primitive" pattern="reference">outDetailTemp/expEnterPrice</process:inputVariable>
+        <process:inputVariable id="21" name="expAmt" type="query" value="Float" valueType="Primitive" pattern="reference">outDetailTemp/expEnterAmt</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -1179,6 +1181,14 @@
       <process:to type="query">detailTemp/noTaxPrice</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">orderTemp/expEnterPrice</process:from>
+      <process:to type="query">detailTemp/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderTemp/expEnterAmt</process:from>
+      <process:to type="query">detailTemp/expEnterAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">outDetailId</process:from>
       <process:to type="query">outDetailTemp/id</process:to>
     </process:copy>
@@ -1325,6 +1335,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">orderTemp/storeShelf</process:from>
       <process:to type="query">outDetailTemp/storeShelf</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderTemp/expEnterPrice</process:from>
+      <process:to type="query">outDetailTemp/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderTemp/expEnterAmt</process:from>
+      <process:to type="query">outDetailTemp/expEnterAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">

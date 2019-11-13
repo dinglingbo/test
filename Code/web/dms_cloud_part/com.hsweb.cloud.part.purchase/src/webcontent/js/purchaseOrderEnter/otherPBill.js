@@ -204,6 +204,12 @@ function save(){
 //        nui.alert("请选择收支项目后再保存!");
         return;
     }
+    
+    var status = checkBillStatus(mainId);
+    if(status) {
+    	showMsg("此单已入库，不能修改费用!","W");
+    	return;
+    }
 
     var rpAdd = mainGrid.getChanges("added");
     var rpUpdate = mainGrid.getChanges("modified");
@@ -252,7 +258,8 @@ function save(){
         data : JSON.stringify({
             rpAdd: rpAddList,
             rpUpdate: rpUpdateList,
-            rpDelete: rpDelete
+            rpDelete: rpDelete,
+            token: token
         }),
         success : function(data) {
             nui.unmask(document.body);
@@ -372,4 +379,40 @@ function setData(params){
 	orderTypeId = params.orderTypeId;
 //	guestName = params.guestName;
 	doSearch();
+	
+	var status = checkBillStatus(codeId);
+	if(status) {
+		nui.get('addBtn').disable();
+		nui.get('saveBtn').disable();
+	}else {
+		nui.get('addBtn').enable();
+		nui.get('saveBtn').enable();
+	}
 }
+
+function checkBillStatus(mainId) {
+	var status = false;
+	nui.ajax({
+        url : baseUrl + "com.hsapi.cloud.part.invoicing.svr.getPjPchsOrderMainChkById.biz.ext",
+        type : "post",
+        async: false,
+        data : JSON.stringify({
+        	mainId: mainId,
+        	token:token
+        }),
+        success : function(text) {
+            var main = text.main || {};
+            if(main.isFinished && main.isFinished == 1) {
+            	status = true;
+            }else {
+            	status = false;
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
+    });
+	return status;
+
+}
+

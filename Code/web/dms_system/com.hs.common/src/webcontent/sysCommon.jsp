@@ -547,6 +547,8 @@
 			  window.top.location.href= sysDomain + '/coframe/auth/login/login.jsp';
 			} else if (currDomain == '122.112.144.88') {
 				window.top.location.href= sysDomain + '/coframe/auth/house/login.jsp';
+			} else if (currDomain == 'xn.7xdr.com') {
+			  window.top.location.href= sysDomain + '/coframe/auth/xn/login.jsp';
 			}
 		    /* if(currSource=="easy"){
 		 		window.top.location.href = sysDomain + "/coframe/auth/easy/login.jsp";

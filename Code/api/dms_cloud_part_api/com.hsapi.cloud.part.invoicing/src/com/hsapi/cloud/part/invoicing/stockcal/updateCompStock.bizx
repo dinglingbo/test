@@ -120,6 +120,14 @@
       <process:from type="query" pattern="reference">f/orderQty</process:from>
       <process:to type="query">orderQty</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">storeBalaExpPrice</process:from>
+      <process:to type="query">partStoreStock/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">storeBalaExpAmt</process:from>
+      <process:to type="query">partStoreStock/expEnterAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="346" y="373"/>
@@ -259,6 +267,14 @@
       <process:from type="query" pattern="reference">billQty</process:from>
       <process:to type="query">partStoreStock/enterQty</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">storeBalaExpPrice</process:from>
+      <process:to type="query">partStoreStock/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">storeBalaExpAmt</process:from>
+      <process:to type="query">partStoreStock/expEnterAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
     <location x="529" y="274"/>
@@ -351,6 +367,14 @@
       <process:from type="query" pattern="reference">billQty</process:from>
       <process:to type="query">partStock/enterQty</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">balaExpPrice</process:from>
+      <process:to type="query">partStock/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">balaExpAmt</process:from>
+      <process:to type="query">partStock/expEnterAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
     <location x="612" y="274"/>
@@ -421,6 +445,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">billQty</process:from>
       <process:to type="query">partStock/outQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">balaExpPrice</process:from>
+      <process:to type="query">partStock/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">balaExpAmt</process:from>
+      <process:to type="query">partStock/expEnterAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
@@ -665,6 +697,14 @@
       <process:from type="query" pattern="reference">billPrice</process:from>
       <process:to type="query">partStoreStock/lastEnterPrice</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">storeBalaExpPrice</process:from>
+      <process:to type="query">partStoreStock/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">storeBalaExpAmt</process:from>
+      <process:to type="query">partStoreStock/expEnterAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
     <location x="518" y="141"/>
@@ -700,6 +740,7 @@
     <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="link96" isDefault="true" type="transition">
       <sourceNode>assign14</sourceNode>
       <targetNode>invokePojo4</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link26</targetConnections>
     <location x="705" y="105"/>
@@ -859,6 +900,14 @@
       <process:from type="query" pattern="reference">billPrice</process:from>
       <process:to type="query">partStock/lastEnterPrice</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">balaExpPrice</process:from>
+      <process:to type="query">partStock/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">balaExpAmt</process:from>
+      <process:to type="query">partStock/expEnterAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
     <location x="916" y="78"/>
@@ -951,6 +1000,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">billQty</process:from>
       <process:to type="query">partStock/enterQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">balaExpPrice</process:from>
+      <process:to type="query">partStock/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">balaExpAmt</process:from>
+      <process:to type="query">partStock/expEnterAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
@@ -1649,6 +1706,10 @@
     <process:input description="" isArray="false" name="guestId" primitiveType="Int"/>
     <process:input description="" isArray="false" name="orgid" primitiveType="Int"/>
     <process:input description="" isArray="false" name="operator" primitiveType="String"/>
+    <process:input description="" isArray="false" name="balaExpPrice" primitiveType="Float"/>
+    <process:input description="" isArray="false" name="balaExpAmt" primitiveType="Float"/>
+    <process:input description="" isArray="false" name="storeBalaExpPrice" primitiveType="Float"/>
+    <process:input description="" isArray="false" name="storeBalaExpAmt" primitiveType="Float"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

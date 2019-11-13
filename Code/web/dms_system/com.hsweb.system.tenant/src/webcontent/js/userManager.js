@@ -434,6 +434,34 @@ function ViewType(e){
 
 }
 
+function addService(){
+	s=grid.getSelected();
+	if(s==undefined){
+		//nui.alert("请选中一行")
+		showMsg("请选中一行","W");
+		return;
+	}
+	nui.open({
+        url: webPath + contextPath + "/tenant/addService.jsp",
+        title: "充值", 
+        width: 600, 
+        height: 300,
+        onload: function () {
+          var iframe = this.getIFrameEl();	
+            //iframe.contentWindow.ShowGrid(e);
+           iframe.contentWindow.setData(s);
+        },
+        ondestroy: function (action) {  //弹出页面关闭前
+       
+        	  if(action=="ok"){
+        		  showMsg("充值成功","S");
+        		  search();
+        	  }
+        }
+    });
+
+}
+
 function recharge(){
 	s=grid.getSelected();
 	if(s==undefined){
@@ -448,13 +476,13 @@ function recharge(){
         height: 150,
         onload: function () {
           var iframe = this.getIFrameEl();	
-            iframe.contentWindow.ShowGrid(e);
-            iframe.contentWindow.SetInitData(s);
+            //iframe.contentWindow.ShowGrid(e);
+          iframe.contentWindow.setData(s);
         },
         ondestroy: function (action) {  //弹出页面关闭前
        
         	  if(action=="ok"){
-        		  showMsg("修改成功","S")
+        		  showMsg("充值成功","S")
         		  search();
         	  }
         }

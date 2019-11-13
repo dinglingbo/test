@@ -240,8 +240,8 @@
         <process:inputVariable id="10" name="periodValidity" type="query" value="Int" valueType="Primitive" pattern="reference">comTenantOrder/periodValidity</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -308,7 +308,7 @@
       <targetNode>invokePojo1</targetNode>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
-    <location x="465" y="150"/>
+    <location x="436" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
     <process:copy>
@@ -333,7 +333,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="463" y="186"/>
+    <location x="434" y="186"/>
     <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>

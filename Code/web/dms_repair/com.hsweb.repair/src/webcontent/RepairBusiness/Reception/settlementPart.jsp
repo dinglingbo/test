@@ -861,11 +861,12 @@
     					          partSubtotal = partSubtotal + data[i].subtotal;
     					       }
 				    			if(data[i].billItemId != 0){
+				    			   var unit = data[i].unit || "--";
 				    			   trPart.append(
 				    				tdsPart.replace("[id]",index)
 				    				.replace("[prdtName]",itemName)
 				    				.replace("[qty]",itemTime)
-				    				.replace("[unit]",data[i].unit)
+				    				.replace("[unit]",unit)
 				    				.replace("[unitPrice]",data[i].unitPrice)
 				    				.replace("[amt]",data[i].amt)
 				    				.replace("[rate]",rate)

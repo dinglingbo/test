@@ -29,7 +29,7 @@
   <div id="form1" class="nui-form" style="height:auto;left:0;right:0;margin:0 auto;">
      <table style="margin-top:15px;">
         <tr>
-            <td class="tbtext" style="width:20px">链车币：</td>
+            <td class="tbtext" style="width:60px">链车币：</td>
             <td colspan="1"><input class="nui-textbox" style="width:100%" name="chargeCoin"  id="chargeCoin" /></td>
         <tr>
      </table>

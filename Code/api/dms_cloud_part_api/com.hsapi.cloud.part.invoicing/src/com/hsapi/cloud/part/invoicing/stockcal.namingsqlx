@@ -522,7 +522,8 @@
 		       a.part_code AS partCode, a.part_name AS partName, a.full_name as fullName, a.enter_unit_id AS unitId,
 		       a.outable_qty AS rtnableQty, a.tax_sign AS taxSign, a.tax_rate AS taxRate,
 		       a.no_tax_price AS noTaxPrice, a.tax_price AS taxPrice, a.enter_price AS enterPrice,
-			   a.enter_date AS enterDate, a.origin_id as originId, a.origin_guest_id as originGuestId
+			   a.enter_date AS enterDate, a.origin_id as originId, a.origin_guest_id as originGuestId,
+			   a.exp_enter_price as expEnterPrice
 		FROM pj_enter_detail_chk a 
 		inner  JOIN pj_enter_main_chk b 
 			ON a.main_id = b.id

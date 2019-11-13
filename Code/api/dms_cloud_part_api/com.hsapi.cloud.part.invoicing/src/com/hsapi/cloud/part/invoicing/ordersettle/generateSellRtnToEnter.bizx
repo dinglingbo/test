@@ -512,10 +512,14 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">rtnTemp/expEnterPrice</process:from>
+      <process:to type="query">expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">expEnterPrice</process:from>
       <process:to type="query">enterTemp/expEnterPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">rtnTemp/expEnterAmt</process:from>
+      <process:from type="expression" pattern="reference">enterQty*expEnterPrice</process:from>
       <process:to type="query">enterTemp/expEnterAmt</process:to>
     </process:copy>
   </nodes>
@@ -1901,6 +1905,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" name="mainTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="enterMainId" primitiveType="Long"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="enterDetailId" primitiveType="Long"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="expEnterPrice" primitiveType="Float"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" name="main"/>

@@ -214,8 +214,7 @@ body .mini-grid-row-selected{
                                         onvaluechanged="onStoreValueChange"
                                         allowInput="false"
                                         showNullItem="false"
-                                        width="100%"
-                                        enabled="false"
+                                        width="100%"                          
                                         nullItemText="请选择..."/>
                             </td>
                             <td class="title required">

@@ -21,7 +21,8 @@
 				B.PREV_DETAIL_ID as preDetailId, B.ORDER_DETAIL_ID as orderDetailId,
 				B.ORDER_MAIN_ID as orderMainId, B.BRANCH_STOCK_AGE as branchStockAge,
 				B.CHAIN_STOCK_AGE as chainStockAge, B.GUEST_ID as guestId,B.GUEST_NAME as guestName,
-				B.REMARK as remark, b.origin_id as originId, b.origin_guest_id as originGuestId
+				B.REMARK as remark, b.origin_id as originId, b.origin_guest_id as originGuestId,
+				b.exp_enter_price as expEnterPrice
 		FROM
 			PJ_ENTER_MAIN_CHK A
 		INNER JOIN PJ_ENTER_DETAIL_CHK B ON A.ID = B.MAIN_ID
@@ -245,7 +246,7 @@
 			
 			
 			<isNotNull prepend = "" property = "code">
-				AND D.QUERY_CODE like '%$code$%'
+				AND (D.QUERY_CODE like '%$code$%' or d.code like '%$partCode$%')
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "name">
@@ -265,7 +266,7 @@
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "cnp">
-				and (D.QUERY_CODE like '%$cnp$%' or D.NAME like '%$cnp$%' or D.FULL_NAME like '%$cnp$%' or D.NAME_PY like '%$cnp$%')
+				and (D.QUERY_CODE like '%$cnp$%' or D.code like '%$cnp$%' or D.NAME like '%$cnp$%' or D.FULL_NAME like '%$cnp$%' or D.NAME_PY like '%$cnp$%')
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "cartypeid">
@@ -287,7 +288,9 @@
 			   A.QC_PRICE as qcPrice, A.QC_AMT as qcAmt, A.QTY as qty, A.PRICE as price, A.AMT as amt, A.COST_PRICE as costPrice, 
 			   A.COST_AMT as costAmt, A.BALA_QTY balaQty, A.BALA_PRICE as balaPrice, A.BALA_AMT as balaAmt, A.REMARK as remark, 
 			   A.CREATOR_ID as creatorId, A.CREATOR as creator, A.CREATE_DATE as createDate, 
-               A.OPERATOR_ID as operatorId, A.OPERATOR as operator, A.OPERATE_DATE as operateDate
+               A.OPERATOR_ID as operatorId, A.OPERATOR as operator, A.OPERATE_DATE as operateDate,
+               a.qc_exp_price as qcExpPrice, a.qc_exp_amt as qcExpAmt, a.exp_price as expPrice, a.exp_amt as expAmt,
+               a.bala_exp_price as balaExpPrice, a.bala_exp_amt as balaExpAmt
                FROM PJ_INVOCING A
                where 1 = 1 and 
                A.ID = (select max(ID) from PJ_INVOCING B
@@ -315,7 +318,9 @@
 			   A.QC_PRICE as qcPrice, A.QC_AMT as qcAmt, A.QTY as qty, A.PRICE as price, A.AMT as amt, A.COST_PRICE as costPrice, 
 			   A.COST_AMT as costAmt, A.BALA_QTY balaQty, A.BALA_PRICE as balaPrice, A.BALA_AMT as balaAmt, A.REMARK as remark, 
 			   A.CREATOR_ID as creatorId, A.CREATOR as creator, A.CREATE_DATE as createDate, 
-               A.OPERATOR_ID as operatorId, A.OPERATOR as operator, A.OPERATE_DATE as operateDate
+               A.OPERATOR_ID as operatorId, A.OPERATOR as operator, A.OPERATE_DATE as operateDate,
+               a.qc_exp_price as qcExpPrice, a.qc_exp_amt as qcExpAmt, a.exp_price as expPrice, a.exp_amt as expAmt,
+               a.bala_exp_price as balaExpPrice, a.bala_exp_amt as balaExpAmt
                FROM PJ_STORE_INVOCING A
                where 1 = 1 and 
                A.ID = (select max(B.ID) from PJ_STORE_INVOCING B
@@ -561,7 +566,8 @@
 		       a.rtnable_qty AS rtnableQty, a.tax_sign AS taxSign, a.tax_rate AS taxRate,
 		       a.no_tax_price AS noTaxPrice, a.tax_price AS taxPrice, 
 		       CASE WHEN a.tax_sign = 1 THEN a.tax_price ELSE a.no_tax_price end AS enterPrice,
-			    a.enter_date AS enterDate, a.origin_id as originId, a.origin_guest_id as originGuestId
+			    a.enter_date AS enterDate, a.origin_id as originId, a.origin_guest_id as originGuestId,
+			    a.exp_enter_price as expEnterPrice, a.exp_enter_amt as expEnterAmt
 		FROM pj_out_detail_chk a
 		INNER JOIN pj_out_main_chk b
 		ON a.main_id = b.id
@@ -650,7 +656,7 @@
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "code">
-				AND G.QUERY_CODE like '%$code$%'
+				AND (g.QUERY_CODE like '%$code$%' or g.code like '%$partCode$%')
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "name">
@@ -670,7 +676,7 @@
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "cnp">
-				and (G.QUERY_CODE like '%$cnp$%' or G.NAME like '%$cnp$%' or G.FULL_NAME like '%$cnp$%' or G.NAME_PY like '%$cnp$%')
+				and (G.QUERY_CODE like '%$cnp$%' or g.code like '%$cnp$%' or G.NAME like '%$cnp$%' or G.FULL_NAME like '%$cnp$%' or G.NAME_PY like '%$cnp$%')
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "cartypeid">
@@ -703,7 +709,7 @@
 			
 			
 			<isNotNull prepend = "" property = "code">
-				AND F.QUERY_CODE like '%$code$%'
+				AND (F.QUERY_CODE like '%$code$%' or f.code like '%$code$%')
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "name">
@@ -723,7 +729,7 @@
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "cnp">
-				and (F.QUERY_CODE like '%$cnp$%' or F.NAME like '%$cnp$%' or F.FULL_NAME like '%$cnp$%' or F.NAME_PY like '%$cnp$%')
+				and (F.QUERY_CODE like '%$cnp$%' or f.code like '%$cnp$%' or F.NAME like '%$cnp$%' or F.FULL_NAME like '%$cnp$%' or F.NAME_PY like '%$cnp$%')
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "cartypeid">

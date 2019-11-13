@@ -510,7 +510,7 @@
             </isNotEmpty>  
             <!--如果是全字母，可能是拼音，也可能是编码-->
             <isNotEmpty prepend="and" property="codePy">  
-                (a.name_py like '%$codePy$%' or a.query_code like '$codePy$%')
+                (a.name_py like '%$codePy$%' or a.query_code like '$codePy$%' or a.code like '%$codePy$%')
             </isNotEmpty>  
             <!--一般按库存的可售数量由多到少排序-->
             <isNotEmpty prepend="order by " property="sortField">  

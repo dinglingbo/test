@@ -10,7 +10,7 @@
 
 <head>
 	<title>预收账款管理</title>
-	<script src="<%=webPath + contextPath%>/settlement/js/advanceSettlement.js?v=1.0.0"></script>
+	<script src="<%=webPath + contextPath%>/settlement/js/advanceSettlement.js?v=1.0.17"></script>
 	    <link href="<%=webPath + contextPath%>/settlement/js/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/settlement/js/HeaderFilter.js" type="text/javascript"></script>
 	<style type="text/css">
@@ -151,6 +151,9 @@
 							class="fa fa-check fa-lg"></span>&nbsp;审核</a>
 						<a class="nui-button" iconCls="" plain="true" onclick="doSettle()">
 							<span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
+						<span class="separator"></span>
+ 						<a class="nui-button" iconCls="" plain="true" onclick="onDeduct()" id="deductBtn">
+							<span class="fa fa-exchange fa-lg"></span>&nbsp;冲减</a>
  						<a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn">
 							<span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
 					</td>
@@ -175,7 +178,7 @@
 								<div allowSort="true" field="billTypeId" name="billTypeId" width="100" headerAlign="center" header="收支项目"></div>
 								<div allowSort="true" field="remark" name="remark" width="120" headerAlign="center" header="业务备注"></div>
 								<div allowSort="true" field="rpAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" dataType="float" summaryType="sum" header="应收金额"></div>
-								<div allowSort="true" field="nowAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" dataType="float" header="结算金额">
+								<div allowSort="true" field="nowAmt" visible="false" width="60" headerAlign="center" align="right" numberFormat="0.00" dataType="float" header="结算金额">
 									<input property="editor" vtype="float" class="nui-textbox" />
 								</div>
 								<div allowSort="true" field="nowVoidAmt" visible="false" width="60" headerAlign="center" align="right" dataType="float" numberFormat="0.00" header="优惠金额">
@@ -509,7 +512,6 @@
 	    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
 	        <tr>  
 	            <td colspan="1" align="center">结算单位</td>
-	            <td colspan="1" align="center">车牌号</td>
 	            <td colspan="1" align="center">业务单号</td>
 	            <td colspan="1" align="center">收支项目</td>
 	            <td colspan="1" align="center">业务备注</td>

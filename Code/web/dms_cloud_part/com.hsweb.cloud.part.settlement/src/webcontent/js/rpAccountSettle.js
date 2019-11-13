@@ -1504,18 +1504,22 @@ function settleOK(){
     var rows = rightGrid.getSelecteds();
     //更新对账单的回款
     for(var i=0;i<rows.length;i++){
-    	var stateHash ={};
-    	stateHash.id =rows[i].billMainId;
-    	stateHash.amt =rows[i].nowAmt;
-    	if(name =='rpRightTab'){
-    		if(rows[i].amt2){
-    			stateHash.amt =rows[i].amt2;
-    		}else{
-    			stateHash.amt =rows[i].amt12;
-    		}
-    		
-    	}
-    	stateMentList.push(stateHash);
+    	
+    	if(rows[i].billTypeId == '102' || rows[i].billTypeId == '202') {        	
+        	var stateHash ={};
+        	stateHash.id =rows[i].billMainId;
+        	stateHash.amt =rows[i].nowAmt;
+        	if(name =='rpRightTab'){
+        		if(rows[i].amt2){
+        			stateHash.amt =rows[i].amt2;
+        		}else{
+        			stateHash.amt =rows[i].amt12;
+        		}
+        		
+        	}
+        	stateMentList.push(stateHash);
+        }
+    	
     }
     var s = rows.length;
     if(s > 0){

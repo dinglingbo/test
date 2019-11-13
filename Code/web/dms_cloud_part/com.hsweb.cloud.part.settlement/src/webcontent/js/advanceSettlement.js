@@ -318,6 +318,7 @@ function doSearch(params) {
 	var tab = mainTabs.getActiveTab();
 	params.eCreateDate = addDate(params.eCreateDate, 1);
 	params.guestId = nui.get("searchGuestId").getValue();
+	params.isAdvance = 1;
 
 	var name = tab.name;
 	switch (name) {
@@ -809,10 +810,9 @@ function checkSettleRow() {
 					msg += "请填写业务单据：" + billServiceId + "的结算金额；</br>";
 				}
 			} else {
-				var nowAmt = row.nowAmt || 0;
-				var nowVoidAmt = row.nowVoidAmt || 0;
-				if (nowAmt + nowVoidAmt < 0) {
-					msg += "请填写业务单据：" + billServiceId + "的结算金额；</br>";
+				var noCharOffAmt = row.noCharOffAmt || 0;
+				if (noCharOffAmt <= 0) {
+					msg += "业务单据：" + billServiceId + "的未结算金额为0；</br>";
 				}
 			}
 		}
@@ -822,51 +822,6 @@ function checkSettleRow() {
 
 	return msg;
 }
-
-function doDelete() {
-	var rows = rRightGrid.getSelecteds();
-	if (!rows) {
-		showMsg("请选择一条记录!","W");
-		return;
-	}
-	json = {
-			id:rows[0].id
-	}
-    nui.confirm("确定作废此条记录吗？", "友情提示",function(action){
-	       if(action == "ok"){
-			    nui.mask({
-			        el : document.body,
-				    cls : 'mini-mask-loading',
-				    html : '处理中...'
-			    });
-				nui.ajax({
-					url : baseUrl
-					+ "com.hsapi.frm.frmService.rpsettle.delFisRpBillForRepair.biz.ext" ,
-					type : "post",
-					data : json,
-					success : function(data) {
-						 nui.unmask(document.body);
-						if(data.errCode=="S"){
-							showMsg(data.errMsg,"W");
-							rRightGrid.load;
-						}else{
-							showMsg(data.errMsg,"W");
-							rRightGrid.load;
-						}
-					},
-					error : function(jqXHR, textStatus, errorThrown) {
-						console.log(jqXHR.responseText);
-					}
-				});
-	     }else {
-				return;
-		 }
-		 });
-
-	
-}
-
-
 function doSettle() {
 	var msg = checkSettleRow();
 	if (msg) {
@@ -935,13 +890,13 @@ function doSettle() {
         document.getElementById('settleGuestName').innerHTML="结算单位："+guestName;
         document.getElementById('settleBillCount').innerHTML="结算单据数："+s;
         document.getElementById('rRPAmt').innerHTML=rtn.rRPAmt;
-        document.getElementById('rTrueAmt').innerHTML=rtn.rTrueAmt;
-        document.getElementById('rVoidAmt').innerHTML=rtn.rVoidAmt;
+        document.getElementById('rTrueAmt').innerHTML=rtn.rNoCharOffAmt;
+        //document.getElementById('rVoidAmt').innerHTML=rtn.rVoidAmt;
         document.getElementById('rNoCharOffAmt').innerHTML=rtn.rNoCharOffAmt;
         document.getElementById('rCharOffAmt').innerHTML=rtn.rCharOffAmt;
         document.getElementById('pRPAmt').innerHTML=rtn.pRPAmt;
-        document.getElementById('pTrueAmt').innerHTML=rtn.pTrueAmt;
-        document.getElementById('pVoidAmt').innerHTML=rtn.pVoidAmt;
+        document.getElementById('pTrueAmt').innerHTML=rtn.pNoCharOffAmt;
+        //document.getElementById('pVoidAmt').innerHTML=rtn.pVoidAmt;
         document.getElementById('pNoCharOffAmt').innerHTML=rtn.pNoCharOffAmt;
         document.getElementById('pCharOffAmt').innerHTML=rtn.pCharOffAmt;
         document.getElementById('rpAmt').innerHTML=rtn.rpAmt;
@@ -964,10 +919,12 @@ function getSettleAmount(rows) {
 	var rTrueAmt = 0; // 实收应收
 	var rVoidAmt = 0; // 优惠金额
 	var rNoCharOffAmt = 0; // 未结金额
+	var rCharOffAmt = 0; // 已结金额
 	var pRPAmt = 0; // 应付金额
 	var pTrueAmt = 0; // 实付金额
 	var pVoidAmt = 0; // 免付金额
 	var pNoCharOffAmt = 0; // 未结金额
+	var pCharOffAmt = 0; // 已结金额
 	var rpAmt = 0; // 合计金额
 
 	var s = rows.length;
@@ -983,83 +940,45 @@ function getSettleAmount(rows) {
 		for (var i = 0; i < s; i++) {
 			var row = rows[i];
 			billServiceId = row.billServiceId;
+			var billDc = row.billDc;
+			var charOffAmt = row.charOffAmt || 0; // 已结金额
+			var rpAmt = row.rpAmt || 0; // 应结金额
+			var noCharOffAmt = row.noCharOffAmt || 0;
+			charOffAmt = parseFloat(charOffAmt);
+			rpAmt = parseFloat(rpAmt);
+			noCharOffAmt = parseFloat(noCharOffAmt);
+			if(noCharOffAmt == 0)  {
+				errCode = 'E';
+				errMsg = "业务单：" + billServiceId + "已结算";
+				break;
+			}
+			
 			if (name == "rpRightTab") {
-				var billDc = row.billDc;
-				var charOffAmt = row.charOffAmt || 0; // 已结金额
-				var rpAmt = row.rpAmt || 0; // 应结金额
-				var amt2 = row.amt2 || 0;
-				var amt3 = row.amt3 || 0;
-				var amt12 = row.amt12 || 0;
-				var amt13 = row.amt13 || 0;
-				var noCharOffAmt = rpAmt - charOffAmt;
-				amt2 = parseFloat(amt2);
-				amt3 = parseFloat(amt3);
-				amt12 = parseFloat(amt12);
-				amt13 = parseFloat(amt13);
 
-				if (billDc == 1) {
-					if ((amt2 + amt3) > noCharOffAmt) {
-						errCode = 'E';
-						errMsg = "业务单：" + billServiceId + "的结算金额超出未结金额";
-						break;
-					}
-
+				if (billDc == 2) {
 					rRPAmt += rpAmt;
-					rTrueAmt += amt2;
-					rVoidAmt += amt3;
+					rTrueAmt += charOffAmt;
 					rNoCharOffAmt += noCharOffAmt;
-					s1 += (amt2 + amt3);
-				} else if (billDc == -1) {
-					if ((amt12 + amt13) > noCharOffAmt) {
-						errCode = 'E';
-						errMsg = "业务单：" + billServiceId + "的结算金额超出未结金额";
-						break;
-					}
-
+					rCharOffAmt += charOffAmt;
+				} else if (billDc == -2) {
 					pRPAmt += rpAmt;
-					pTrueAmt += amt12;
-					pVoidAmt += amt13;
+					pTrueAmt += charOffAmt;
 					pNoCharOffAmt += noCharOffAmt;
-					s2 += (amt12 + amt13) * -1;
+					pCharOffAmt += charOffAmt;
 				}
+				s1 += noCharOffAmt;
 			} else if (name == "pRightTab") {
-				var noCharOffAmt = row.noCharOffAmt || 0; // 已结金额
-
-				if ((nowAmt + nowVoidAmt) > noCharOffAmt) {
-					errCode = 'E';
-					errMsg = "业务单：" + billServiceId + "的结算金额超出未结金额";
-					break;
-				}
-
-				var rpAmt = row.rpAmt || 0; // 应结金额
-				var nowAmt = row.nowAmt || 0;
-				var nowVoidAmt = row.nowVoidAmt || 0;
-				nowAmt = parseFloat(nowAmt);
-				nowVoidAmt = parseFloat(nowVoidAmt);
 				pRPAmt += rpAmt;
-				pTrueAmt += nowAmt;
-				pVoidAmt += nowVoidAmt;
+				pTrueAmt += charOffAmt;
 				pNoCharOffAmt += noCharOffAmt;
-				s1 += (nowAmt + nowVoidAmt);
+				pCharOffAmt += charOffAmt;
+				s1 += noCharOffAmt;
 			} else if (name == "rRightTab") {
-				var noCharOffAmt = row.noCharOffAmt || 0; // 已结金额
-
-				if ((nowAmt + nowVoidAmt) > noCharOffAmt) {
-					errCode = 'E';
-					errMsg = "业务单：" + billServiceId + "的结算金额超出未结金额";
-					break;
-				}
-
-				var rpAmt = row.rpAmt || 0; // 应结金额
-				var nowAmt = row.nowAmt || 0;
-				var nowVoidAmt = row.nowVoidAmt || 0;
-				nowAmt = parseFloat(nowAmt);
-				nowVoidAmt = parseFloat(nowVoidAmt);
 				rRPAmt += rpAmt;
-				rTrueAmt += nowAmt;
-				rVoidAmt += nowVoidAmt;
+				rTrueAmt += charOffAmt;
 				rNoCharOffAmt += noCharOffAmt;
-				s1 += (nowAmt + nowVoidAmt);
+				rCharOffAmt += charOffAmt;
+				s1 += noCharOffAmt;//(nowAmt + nowVoidAmt);
 			}
 		}
 
@@ -1068,12 +987,14 @@ function getSettleAmount(rows) {
 	var rtnMsg = {};
 	rtnMsg.rRPAmt = rRPAmt; // 应收金额
 	rtnMsg.rTrueAmt = rTrueAmt; // 实收应收
-	rtnMsg.rVoidAmt = rVoidAmt; // 优惠金额
+	//rtnMsg.rVoidAmt = rVoidAmt; // 优惠金额
 	rtnMsg.rNoCharOffAmt = rNoCharOffAmt; // 未结金额
+	rtnMsg.rCharOffAmt = rCharOffAmt; // 已结金额
 	rtnMsg.pRPAmt = pRPAmt; // 应付金额
 	rtnMsg.pTrueAmt = pTrueAmt; // 实付金额
-	rtnMsg.pVoidAmt = pVoidAmt; // 免付金额
+	//rtnMsg.pVoidAmt = pVoidAmt; // 免付金额
 	rtnMsg.pNoCharOffAmt = pNoCharOffAmt; // 未结金额
+	rtnMsg.pCharOffAmt = pCharOffAmt; // 已结金额
 	rtnMsg.rpAmt = s1; // 合计金额
 	rtnMsg.errCode = errCode;
 	rtnMsg.errMsg = errMsg;
@@ -1097,7 +1018,7 @@ function settleCancel() {
 	settleAccountGrid.setData([]);
 }
 var settleAuditUrl = baseUrl
-		+ "com.hsapi.frm.frmService.rpsettle.rpAccountSettle.biz.ext";
+		+ "com.hsapi.cloud.part.settle.rpsettle.rpAdvanceSettle.biz.ext";
 function settleOK() {
 	var msg = checkSettleRow();
 	if (msg) {
@@ -1194,7 +1115,7 @@ function settleOK() {
 				amt12 = parseFloat(amt12);
 				amt13 = parseFloat(amt13);
 				if (billDc == 1) {
-					accountDetail.rpDc = 2;
+					accountDetail.rpDc = 1;
 					rRPAmt += rpAmt;
 					rTrueAmt += amt2;
 					rVoidAmt += amt3;
@@ -1203,7 +1124,7 @@ function settleOK() {
 					accountDetail.charOffAmt = amt2;
 					accountDetail.voidAmt = amt3;
 				} else if (billDc == -1) {
-					accountDetail.rpDc = -2;
+					accountDetail.rpDc = -1;
 					pRPAmt += rpAmt;
 					pTrueAmt += amt12;
 					pVoidAmt += amt13;
@@ -1215,33 +1136,27 @@ function settleOK() {
 			} else if (name == "pRightTab") {
 				var noCharOffAmt = row.noCharOffAmt || 0; // 已结金额
 				var rpAmt = row.rpAmt || 0; // 应结金额
-				var nowAmt = row.nowAmt || 0;
-				var nowVoidAmt = row.nowVoidAmt || 0;
-				accountDetail.rpDc = -2;
+				var nowAmt = row.noCharOffAmt || 0;
+				accountDetail.rpDc = -1;
 				nowAmt = parseFloat(nowAmt);
-				nowVoidAmt = parseFloat(nowVoidAmt);
 				pRPAmt += rpAmt;
 				pTrueAmt += nowAmt;
-				pVoidAmt += nowVoidAmt;
 				pNoCharOffAmt += noCharOffAmt;
-				s1 += (nowAmt + nowVoidAmt);
+				s1 += (nowAmt);
 				accountDetail.charOffAmt = nowAmt;
-				accountDetail.voidAmt = nowVoidAmt;
+				accountDetail.voidAmt = 0;
 			} else if (name == "rRightTab") {
 				var noCharOffAmt = row.noCharOffAmt || 0; // 已结金额
 				var rpAmt = row.rpAmt || 0; // 应结金额
-				var nowAmt = row.nowAmt || 0;
-				var nowVoidAmt = row.nowVoidAmt || 0;
-				accountDetail.rpDc = 2;
+				var nowAmt = row.noCharOffAmt || 0;
+				accountDetail.rpDc = 1;
 				nowAmt = parseFloat(nowAmt);
-				nowVoidAmt = parseFloat(nowVoidAmt);
 				rRPAmt += rpAmt;
 				rTrueAmt += nowAmt;
-				rVoidAmt += nowVoidAmt;
 				rNoCharOffAmt += noCharOffAmt;
-				s1 += (nowAmt + nowVoidAmt);
+				s1 += (nowAmt);
 				accountDetail.charOffAmt = nowAmt;
-				accountDetail.voidAmt = nowVoidAmt;
+				accountDetail.voidAmt = 0;
 			}
 
 			accountDetailList.push(accountDetail);
@@ -1250,23 +1165,23 @@ function settleOK() {
 		if (name == "rpRightTab") {
 			s1 += s2;
 			if (s1 < 0) {
-				account.rpDc = -2;
+				account.rpDc = -1;
 			} else {
-				account.rpDc = 2;
+				account.rpDc = 1;
 			}
 			account.settleType = "综合";
-			account.voidAmt = Math.abs(rVoidAmt - pVoidAmt);
+			//account.voidAmt = Math.abs(rVoidAmt - pVoidAmt);
 			account.trueCharOffAmt = Math.abs(rTrueAmt - pTrueAmt);
-			account.charOffAmt = account.voidAmt + account.trueCharOffAmt;
+			account.charOffAmt = account.trueCharOffAmt;
 		} else if (name == "pRightTab") {
 			;
-			account.rpDc = -2;
+			account.rpDc = -1;
 			account.settleType = "应付";
 			account.voidAmt = pVoidAmt;
 			account.trueCharOffAmt = pTrueAmt;
 			account.charOffAmt = pVoidAmt + pTrueAmt;
 		} else if (name == "rRightTab") {
-			account.rpDc = 2;
+			account.rpDc = 1;
 			account.settleType = "应收";
 			account.voidAmt = rVoidAmt;
 			account.trueCharOffAmt = rTrueAmt;
@@ -1402,14 +1317,7 @@ function checkSettleAccountAmt(charOffAmt) {
 		showMsg("请选择结算账户!", "W");
 		return false;
 	}
-	var dk = nui.get("dk").getValue();
-	if(dk==""||dk==null){
-		
-	}else{
-		
-		dk= parseFloat(dk);
-		tAmt += dk;
-	}
+	
 	if (tAmt != charOffAmt) {
 		showMsg("请确定结算金额与合计金额一致!", "W");
 		return false;
@@ -1426,7 +1334,7 @@ function OnModelCellBeginEdit(e) {
 
 	if (column.field == "settAccountId") {
 		var url = baseUrl
-				+ "com.hsapi.frm.frmService.crud.queryFiSettleAccount.biz.ext?token="
+				+ "com.hsapi.cloud.part.settle.svr.queryFiSettleAccount.biz.ext?token="
 				+ token;
 		editor.setUrl(url);
 	}
@@ -1434,7 +1342,7 @@ function OnModelCellBeginEdit(e) {
 	if (column.field == "balaTypeCode") {
 		var str = "accountId=" + row.settAccountId + "&token=" + token;
 		var url = baseUrl
-				+ "com.hsapi.frm.setting.queryAccountSettleType.biz.ext?" + str;
+				+ "com.hsapi.cloud.part.baseDataCrud.crud.queryAccountSettleType.biz.ext?" + str;
 		editor.setUrl(url);
 	}
 
@@ -1504,14 +1412,12 @@ function setInitExportData(detail){
                          .replace("[rpAmt]", detail[i].rpAmt?detail[i].rpAmt:0)
                          .replace("[createDate]", detail[i].createDate?detail[i].createDate.Format("yyyy-MM-dd HH:mm:ss"):"")
                          .replace("[settleStatus]", settleStatus?settleStatus:"")
-                         .replace("[charOffAmt]", detail[i].charOffAmt?detail[i].charOffAmt:0)
-                         .replace("[saleMan]", detail[i].saleMan?detail[i].saleMan:"")
-                         .replace("[recordDate]", detail[i].recordDate?detail[i].recordDate.Format("yyyy-MM-dd HH:mm:ss"):""));
+                         .replace("[charOffAmt]", detail[i].charOffAmt?detail[i].charOffAmt:0));
             tableExportContent.append(tr);
         }
     }
 
-    method5('tableExcel',"预收收账款管理",'tableExportA');
+    method5('tableExcel',"预收账款管理",'tableExportA');
 }
 
 function openOrderDetail(){
@@ -1582,6 +1488,43 @@ function doAudit(){
 	});
 }
 
+function onDeduct() {
+	var rows = rRightGrid.getSelecteds();
+	if(rows && rows.length == 1) {
+		var row = rows[0];
+		if(row.charOffAmt > 0) {
+			nui.open({
+				url : webPath + contextPath
+						+ "/com.hsweb.cloud.part.settlement.deduct.flow?token=" + token,
+				title : "预收款冲减",
+				width : 700,
+				height : 600,
+				allowDrag : true,
+				allowResize : false,
+				onload : function() {
+					var iframe = this.getIFrameEl();
+					var data = {};
+					data.guestId = row.guestId;
+					data.isAdvance = 0;
+					data.billDc = 1;
+					data.guestName = row.guestName;
+					data.billMainId = row.billMainId;
+					data.rpDc = 1;
+					data.settleType = "应收";
+					iframe.contentWindow.setInitDate(data);
+				},
+				ondestroy : function(action) {
+						quickSearch(2);
+				}
+			});
+		}else {
+			showMsg("请选择已结的记录", "W");
+		}
+	}else {
+		showMsg("请选择一条记录", "W");
+	}
+}
+
 function print(){
 	var msg = checkSettleRow();
 	if (msg) {
@@ -1648,7 +1591,7 @@ function print(){
 }
 function addPrepaid(){
 	nui.open({
-		targetWindow : window,
+		//targetWindow : window,
 		url : webPath + contextPath
 				+ "/com.hsweb.cloud.part.settlement.addPrepaid.flow?token=" + token,
 		title : "新增预收账款",
@@ -1659,7 +1602,7 @@ function addPrepaid(){
 		onload : function() {
 			var iframe = this.getIFrameEl();
 			var data = {};
-			data.type=2//预收
+			data.type=2;//预收
 			iframe.contentWindow.setData(data);
 		},
 		ondestroy : function(action) {

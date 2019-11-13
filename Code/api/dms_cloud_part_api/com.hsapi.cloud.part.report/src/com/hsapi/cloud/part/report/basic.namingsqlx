@@ -58,7 +58,7 @@
                     (b.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCode">  
-                    (b.query_code like '%$partCode$%')
+                    (b.query_code like '%$partCode$%' or b.code like '%$partCode$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (b.code in ($partCodeList$))
@@ -118,7 +118,7 @@
                     (b.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCode">  
-                    (b.query_code like '%$partCode$%')
+                    (b.query_code like '%$partCode$%' or b.code like '%$partCode$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (b.code in ($partCodeList$))
@@ -178,7 +178,7 @@
                     (b.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCode">  
-                    (b.query_code like '%$partCode$%')
+                    (b.query_code like '%$partCode$%' or b.code like '%$partCode$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (b.code in ($partCodeList$))
@@ -235,7 +235,7 @@
                     (b.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCode">  
-                    (b.query_code like '%$partCode$%')
+                    (b.query_code like '%$partCode$%' or b.code like '%$partCode$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (b.code in ($partCodeList$))
@@ -293,7 +293,7 @@
                     (b.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCode">  
-                    (b.query_code like '%$partCode$%')
+                    (b.query_code like '%$partCode$%' or b.code like '%$partCode$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (b.code in ($partCodeList$))
@@ -353,7 +353,7 @@
                     (b.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCode">  
-                    (b.query_code like '%$partCode$%')
+                    (b.query_code like '%$partCode$%' or b.code like '%$partCode$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (b.code in ($partCodeList$))
@@ -413,7 +413,7 @@
                     (b.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCode">  
-                    (b.query_code like '%$partCode$%')
+                    (b.query_code like '%$partCode$%' or b.code like '%$partCode$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (b.code in ($partCodeList$))
@@ -470,7 +470,7 @@
                     (b.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCode">  
-                    (b.query_code like '%$partCode$%')
+                    (b.query_code like '%$partCode$%' or b.code like '%$partCode$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (b.code in ($partCodeList$))

@@ -17,6 +17,7 @@ var qualityHash = {};
 var partBrandIdHash = {};
 var partBrandIdList = [];
 var partNameIdEl = null;
+var partName = {};
 
 var abcTypeList = [
     {
@@ -175,7 +176,6 @@ function onCancel(e) {
 }
 
 var requiredField = {
-    qualityTypeId:"配件品质",
     partBrandId:"配件品牌",
     code:"编码",
     name:"名称",
@@ -200,7 +200,10 @@ function onOk()
             return;
         }
     }
-  //  return;
+    
+    if(typeof data.partNameId !== 'number' ){
+    	data.partNameId =0;
+    }
     if(partName)
     {
         data.carTypeIdF = partName.cartypef||"";
@@ -208,7 +211,7 @@ function onOk()
         data.carTypeIdT = partName.cartypet||"";
     }
   //  data.abcType = "";
-    data.code =data.code.replace(/\s+/g, "");
+    data.code =data.code.toUpperCase();
     
     data.fullName = data.name;
     if(data.spec)
@@ -334,6 +337,23 @@ var partBrandIdList = [];
 var partBrandIdHash = {};
 var qualityTypeIdList = [];
 var unitList = [];
+
+function applyPartBrand(qualityTypeIdList,partBrandIdList){
+	var parentId =0;
+	var result=[];
+	for(var i=0;i<qualityTypeIdList.length;i++){
+		if(qualityTypeIdList[i].name=='品牌件'){
+			parentId=qualityTypeIdList[i].id;
+		}
+	}
+	nui.get("qualityTypeId").setValue(parentId);
+	for(var i=0;i<partBrandIdList.length;i++){
+		if(partBrandIdList[i].parentId ==parentId){
+			result.push(partBrandIdList[i]);
+		}
+	}
+	return result;
+}
 function setData(data)
 {
     if(!applyCarModel)
@@ -343,6 +363,10 @@ function setData(data)
     
     if(data.applyCarModelList){
     applyCarModelList = data.applyCarModelList||[];
+    }
+    
+    if(data.partBrandIdList && data.qualityTypeIdList){
+    	data.partBrandIdList = applyPartBrand(data.qualityTypeIdList,data.partBrandIdList);
     }
     
     if(data.partBrandIdList){
@@ -381,10 +405,14 @@ function setData(data)
     });
     qualityTypeId.setData(qualityTypeIdList);
     //unit.setData(unitList);
-    var  customClassId =data.partData.customClassId|| "";
-    if(data.partData.customClassId){
-    	nui.get("customClassId").setText(data.partData.customClassName);
-        setHotWord(data.partData.customClassId);
+   
+    if(data.partData){
+    	if(data.partData.customClassId){
+        	var  customClassId =data.partData.customClassId|| "";
+        	nui.get("customClassId").setText(data.partData.customClassName);
+            setHotWord(data.partData.customClassId);
+        }
+        
     }
     
     
@@ -424,7 +452,7 @@ function setData(data)
     }
 }
 
-var partName = null;
+
 function onButtonEdit()
 {
     partName = null;
@@ -451,6 +479,24 @@ function onButtonEdit()
         }
     });
 }
+
+function onPartNameValueChanged(e) {
+	// 供应商中直接输入名称加载供应商信息
+//	var params = {};
+//	params.pny = e.value;
+//	params.isSupplier = 1;
+//	setGuestInfo(params);
+	var data = e.selected;
+	if (data) { 
+		var id = data.id;
+		var text = data.name;
+		partName.cartypef =data.cartypef;
+		partName.cartypes =data.cartypes;
+		partName.cartypet =data.cartypet;
+		
+    }
+}
+
 var customClassId ="";
 var customClassName = "";
 function onButtonEdit2()

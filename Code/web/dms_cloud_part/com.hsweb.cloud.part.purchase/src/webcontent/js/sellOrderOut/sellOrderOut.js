@@ -494,6 +494,11 @@ function addInsertRow(value, row) {
         return;
     }
 
+    var storeId = nui.get("storeId").getValue();
+    if(!storeId){
+    	showMsg("请选择仓库!","W");
+        return;
+    }
     //var type = judgeConditionType(value);//1代表编码，2代表名称，3代表拼音，-1输入信息有误
     value = value.replace(/\s+/g, "");
 
@@ -513,7 +518,7 @@ function addInsertRow(value, row) {
             orderQty : 1,
             orderPrice : price,
             orderAmt : price,
-            storeId : FStoreId,
+            storeId : nui.get("storeId").getValue(),
             comOemCode : part.oemCode,
             comSpec : part.spec,
             partCode : part.code,
@@ -1680,6 +1685,11 @@ function onCellEditEnter(e){
                 nui.get("guestId").focus();
                 return;
             }
+            var storeId = nui.get("storeId").getValue();
+            if(!storeId){
+            	showMsg("请选择仓库!","W");
+                return;
+            }
 
             if(!record.comPartCode){
                 showMsg("请输入编码!","W");
@@ -1972,7 +1982,7 @@ function addDetail(row,data,ck)
     enterDetail.orderPrice = data.price;
     enterDetail.orderAmt = data.amt;
     enterDetail.remark = data.remark;
-    enterDetail.storeId = data.storeId;
+    enterDetail.storeId = nui.get("storeId").getValue();
     enterDetail.storeShelf = data.storeShelf;
     enterDetail.comOemCode = data.oemCode;
     enterDetail.comSpec = data.spec;
@@ -2618,6 +2628,11 @@ function addSelectPart(){
         nui.get("guestId").focus();
         return;
     }
+    var storeId = nui.get("storeId").getValue();
+    if(!storeId){
+    	showMsg("请选择仓库!","W");
+        return;
+    }
     var row = morePartGrid.getSelected();
     if(row){
         var params = {partCode:row.code};
@@ -2635,7 +2650,7 @@ function addSelectPart(){
             orderQty : 1,
             orderPrice : price,
             orderAmt : price,
-            storeId : FStoreId,
+            storeId : nui.get("storeId").getValue(),
             comOemCode : row.oemCode,
             comSpec : row.spec,
             partCode : row.code,
@@ -2836,7 +2851,7 @@ function addRtnList(partList){
                 orderQty : orderQty,
                 orderPrice : orderPrice,
                 orderAmt : orderQty * orderPrice,
-                storeId : FStoreId,
+                storeId : nui.get("storeId").getValue(),
                 comOemCode : part.oemCode,
                 comSpec : part.spec,
                 partCode : part.partCode,
@@ -2977,6 +2992,11 @@ function addPchsEnter()
         return;
     }
 
+    var storeId = nui.get("storeId").getValue();
+    if(!storeId){
+    	showMsg("请选择仓库!","W");
+        return;
+    }
     var main = basicInfoForm.getData();
     if(!main.id){
         getSellOrderBillNO(function(data){ 
@@ -3014,15 +3034,19 @@ function showPchsEnter(mainId,serviceId,guestId){
                 guestId: guestId
             };
             iframe.contentWindow.setInitData(params,function(data){
+            	var rows = nui.clone(data);
+            	for(var i=0;i<rows.length;i++){
+            		rows[i].storeId =nui.get("storeId").getValue();
+            	}
             	var row=rightGrid.getData();
             	if(row.length==0){
-            		rightGrid.addRows(data);
+            		rightGrid.addRows(rows);
             		return;
             	}
             	if(!row[row.length-1].comPartCode){
             		rightGrid.removeRow(row[row.length-1]);
             	}
-            	rightGrid.addRows(data);
+            	rightGrid.addRows(rows);
             });
 
         },

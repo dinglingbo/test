@@ -46,6 +46,7 @@
 	        contextMenu="#gridMenu"
         >
          <div property="columns">
+         	
             <div type="indexcolumn">序号</div>
             <div field="id" name="id" width="100" headerAlign="center" header="id" visible="false"></div>
             <div field="mainId" width="100px" headerAlign="center" allowSort="true"  visible="false" header=""></div>

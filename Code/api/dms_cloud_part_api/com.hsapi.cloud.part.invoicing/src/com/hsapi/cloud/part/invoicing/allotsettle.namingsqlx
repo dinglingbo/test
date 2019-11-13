@@ -1454,6 +1454,7 @@
 		where b.service_id = #acceptServiceId# 
 	</update>
 	
+	
 	<!--
 		取入库信息及销售单价,用于生成直发的销售出库
 	-->
@@ -1496,6 +1497,8 @@
 			a.origin_id as originId,
 			a.origin_guest_id as originGuestId,
 			a.sell_price as sellPrice,
+			a.exp_enter_price as expEnterPrice,
+			a.exp_enter_amt as expEnterAmt,
 			d.id as guestOrderDetailid,
 			d.order_qty as orderQty,
 			d.order_price as orderPrice,
@@ -1517,6 +1520,74 @@
 			inner join pj_guest_order_detail d
 			on c.order_detail_id = d.accept_detail_id and c.order_main_id = d.accept_main_id
 		where b.id = #enterMainId# and b.enter_type_id = '050104'
+
+    </select>
+    
+    <!--
+		取入库信息及销售单价,用于生成直发的销售出库
+	-->
+	<select id="getEnterOutDetailByDirectOut" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+        SELECT
+			a.id as id,
+			a.main_id as mainId,
+			a.source_id as sourceId,
+			a.root_id as rootId,
+			a.store_id as storeId,
+			a.part_id as partId,
+			a.part_code as partCode,
+			a.part_name as partName,
+			a.full_name as fullName,
+			a.enter_unit_id as enterUnitId,
+			a.system_unit_id as systemUnitId,
+			a.enter_qty as enterQty,
+			a.enter_price as enterPrice,
+			a.enter_amt as enterAmt,
+			a.outable_qty as outableQty,
+			a.tax_sign as taxSign,
+			a.tax_rate as taxRate,
+			a.tax_price as taxPrice,
+			a.tax_amt as taxAmt,
+			a.no_tax_price as noTaxPrice,
+			a.no_tax_amt as noTaxAmt,
+			a.tax_diff as taxDiff,
+			a.rtn_price as rtnPrice,
+			a.rtn_amt as rtnAmt,
+			a.enter_date as enterDate,
+			a.prev_detail_id as prevDetailId,
+			a.order_detail_id as orderDetailId,
+			a.order_main_id as orderMainId,
+			a.branch_stock_age as branchStockAge,
+			a.chain_stock_age as chainStockAge,
+			a.guest_id as guestId,
+			a.guest_name as guestName,
+			a.store_shelf as storeShelf,
+			a.origin_id as originId,
+			a.origin_guest_id as originGuestId,
+			a.sell_price as sellPrice,
+			a.exp_enter_price as expEnterPrice,
+			a.exp_enter_amt as expEnterAmt,
+			d.id as guestOrderDetailid,
+			d.order_qty as orderQty,
+			d.order_price as orderPrice,
+			d.remark as remark,
+			d.show_part_id as showPartId,
+			d.show_part_code as showPartCode,
+			d.show_full_name as showFullName,
+			d.show_brand_name as showBrandName,
+			d.show_car_model as showCarModel,
+			d.show_oem_code as showOemCode,
+			d.show_spec as showSpec,
+			d.show_price as showPrice,
+			d.show_amt as showAmt
+		from pj_enter_detail_chk a
+			INNER JOIN pj_enter_main_chk b
+			on a.main_id = b.id
+			inner join pj_pchs_order_detail_chk c
+			on a.order_detail_id = c.id and a.order_main_id = c.main_id
+			inner join pj_guest_order_detail d
+			on c.source_detail_id = d.pchs_detail_id and c.source_main_id = d.pchs_main_id
+		where b.id = #enterMainId#
 
     </select>
     
@@ -1559,7 +1630,9 @@
 			a.guest_id as guestId,
 			a.guest_name as guestName,
 			a.origin_id as originId,
-			a.origin_guest_id as originGuestId
+			a.origin_guest_id as originGuestId,
+			a.exp_enter_price as expEnterPrice,
+			a.exp_enter_amt as expEnterAmt
 		from pj_out_detail_chk a
 			inner join pj_out_main_chk b
 			on a.main_id = b.id
@@ -1612,7 +1685,9 @@
 			a.guest_id as guestId,
 			a.guest_name as guestName,
 			a.origin_id as originId,
-			a.origin_guest_id as originGuestId
+			a.origin_guest_id as originGuestId,
+			a.exp_enter_price as expEnterPrice,
+			a.exp_enter_amt as expEnterAmt
 		from pj_out_detail_chk a
 			inner join pj_out_main_chk b
 			on a.main_id = b.id
@@ -1670,7 +1745,9 @@
 			a.guest_id as guestId,
 			a.guest_name as guestName,
 			a.origin_id as originId,
-			a.origin_guest_id as originGuestId
+			a.origin_guest_id as originGuestId,
+			a.exp_enter_price as expEnterPrice,
+			a.exp_enter_amt as expEnterAmt
 		from pj_out_detail_chk a
 			inner join pj_out_main_chk b
 			on a.main_id = b.id

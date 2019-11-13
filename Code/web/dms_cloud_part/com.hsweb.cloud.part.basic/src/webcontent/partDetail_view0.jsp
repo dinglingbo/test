@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件资料</title>
-<script src="<%=webPath + contextPath%>/basic/js/partDetail.js?v=1.0.5"></script>
+<script src="<%=webPath + contextPath%>/basic/js/partDetail.js?v=1.0.23"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -103,13 +103,7 @@
   			    <input class="nui-hidden" name="isEdit"/>
   			    <input class="nui-hidden" name="name"/>
   			    <input class="nui-hidden" name="cangPartId"/>
-            <input id="modifier" name="modifier" width="150px" class="nui-hidden" >
-            <input id="modifyDate" name="modifyDate" width="150px" class="nui-hidden" >
-            <table class="tmargin">
-                <tr class="htr">
-                    <td class=" right fwidtha required">配件品质:</td>
-                    <td >
-					<input name="qualityTypeId"
+  			    <input name="qualityTypeId"
                        id="qualityTypeId"
                        class="nui-combobox"
                        textField="name"
@@ -121,9 +115,14 @@
                        allowInput="true"
                        showNullItem="false"
                        popupHeight="100%"
+                       visible="false"
                        onvaluechanged="onQualityTypeIdChanged"
                        nullItemText="请选择..."/>
-		                </td>
+            <input id="modifier" name="modifier" width="150px" class="nui-hidden" >
+            <input id="modifyDate" name="modifyDate" width="150px" class="nui-hidden" >
+            <table class="tmargin">
+                <tr class="htr">
+                   
                     <td class=" right fwidtha required">配件品牌:</td>
                     <td >
                        <input name="partBrandId"
@@ -140,10 +139,10 @@
                        popupHeight="100%"
                        nullItemText="请选择..."/>
                     </td>
-                    </tr>
-                    <tr>
                     <td class=" right fwidthb required">编码:</td>
                     <td ><input name="code" class="nui-textbox" width="150px" id="code"/></td>
+                    </tr>
+                    <tr>
                     <td class=" right fwidthb required">名称:</td>
                     <td >
                  		<input id="partNameId"
@@ -158,17 +157,10 @@
                              popupEmptyText="未找到名称"
                              url=""  searchField="key"
                              width="150px"
+                             onvaluechanged="onPartNameValueChanged"
                              placeholder="请选择名称"
                              selectOnFocus="true" />
-                       <!-- <a class="nui-button" iconCls="" plain="false" onclick="onButtonEdit" id="selectNameBtn"><span class="fa fa-check fa-lg"></span></a>-->
-                    <!--    <input name="partNameId" id="partNameId"
-                        class="nui-buttonedit" emptyText=""
-                        allowInput="false" width="150px"
-                        onbuttonclick="onButtonEdit" selectOnFocus="true" />-->
-                    </td>
-                </tr>
-                <tr class="htr">
-                    <td class=" right fwidthb required">单位:</td>
+                             <td class=" right fwidthb required">单位:</td>
                     <td >
                         <input name="unit"
                         id="unit"
@@ -182,6 +174,16 @@
                         popupHeight="100%"
                         showNullItem="false"
                         nullItemText="请选择..."/>
+                   
+                       <!-- <a class="nui-button" iconCls="" plain="false" onclick="onButtonEdit" id="selectNameBtn"><span class="fa fa-check fa-lg"></span></a>-->
+                    <!--    <input name="partNameId" id="partNameId"
+                        class="nui-buttonedit" emptyText=""
+                        allowInput="false" width="150px"
+                        onbuttonclick="onButtonEdit" selectOnFocus="true" />-->
+                    </td>
+                </tr>
+                <tr class="htr">
+                    
                     </td><!-- 
                     <td class=" right fwidthb required">ABC分类:</td>
                     <td >
@@ -200,6 +202,8 @@
                     </td> -->
                     <td class=" right fwidthb">OE码:</td>
                     <td ><input name="oemCode" class="nui-textbox" width="150px"/></td>
+                     <td class=" right fwidthb">通用编码:</td>
+                    <td ><input name="commonCode" class="nui-textbox" width="150px"/></td>
                     </tr>
                     <tr>
                     <td class=" right fwidthb">规格:</td>
@@ -227,10 +231,7 @@
                       <input name="applyCarModel" id="applyCarModel" width="220px" class="nui-textbox"/>
                      </td>
                 </tr>
-                <tr class="htr">
-                    <td class=" right fwidthb">通用编码:</td>
-                    <td colspan="3"><input name="commonCode" class="nui-textbox" width="375px"/></td>
-                </tr>
+          
                 <tr class="htr">  
                     <td class=" right fwidthb">生产厂家:</td>
                     <td ><input name="produceFactory" class="nui-textbox" width="150px"/></td>

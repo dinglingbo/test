@@ -1724,7 +1724,7 @@ function addInsertRow(value, row) {
             comApplyCarModel : part.applyCarModel,
             comUnit : part.unit,
             orderQty : 1,
-            storeId : FStoreId,
+            storeId : nui.get("storeId").getValue(),
             comOemCode : part.oemCode,
             comSpec : part.spec,
             partCode : part.code,
@@ -1994,6 +1994,11 @@ function addSelectPart(){
         showMsg("请先选择供应商再添加配件!","W");
         return;
     }
+    var storeId =nui.get("storeId").getValue();
+    if(!storeId){
+    	showMsg("请先选择仓库再添加配件!","W");
+    	return;
+    }
     var row = morePartGrid.getSelected();
     if(row){
         var params = {partCode:row.code};
@@ -2011,7 +2016,7 @@ function addSelectPart(){
             orderQty : 1,
             orderPrice : price,
             orderAmt : price,
-            storeId : FStoreId,
+            storeId : nui.get("storeId").getValue(),
             comOemCode : row.oemCode,
             comSpec : row.spec,
             partCode : row.code,
@@ -2155,6 +2160,7 @@ function addNewKeyRow(){
 }
 function selectPart(callback,checkcallback)
 {
+	
     nui.open({
         // targetWindow: window,
         url: webPath + contextPath + "/com.hsweb.cloud.part.common.orderBillChoose.flow?token="+token,
@@ -2189,6 +2195,11 @@ function addPart() {
         return;
     }
 
+    var storeId = nui.get("storeId").getValue();
+    if(!storeId){
+    	showMsg("请选择仓库!","W");
+        return;
+    }
     rightGrid.findRow(function(row){
         var partId = row.partId;
         var partCode = row.comPartCode;
@@ -2238,7 +2249,7 @@ function addDetail(rows)
             orderQty : row.orderQty,
             orderPrice : row.orderPrice,
             orderAmt : row.orderAmt,
-            storeId : row.storeId,
+            storeId : nui.get("storeId").getValue(),
             comOemCode : row.comOemCode,
             comSpec : row.comSpec,
             partCode : row.comPartCode,

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%=webPath + contextPath%>/basic/js/customerAdd.js?v=1.0.6"></script>
+<script src="<%=webPath + contextPath%>/basic/js/customerAdd.js?v=1.0.7"></script>
 <script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
 <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
 <script src="<%= request.getContextPath() %>/common/qiniu/qiniu1.0.14.js" type="text/javascript"></script>
@@ -244,7 +244,7 @@
                                  nullItemText="请选择..."/>
                               </td>
                               <td class=" right fwidtha">信誉额度:</td>
-                              <td ><input id="creditLimit" name="creditLimit" width="100%" class="nui-textbox" ></td>
+                              <td ><input id="creditLimit" name="creditLimit" width="100%" vtype="int" class="nui-textbox" ></td>
                           </tr>
                           <tr class="htr">
                               <td class=" right fwidthb">电话:</td>
@@ -263,6 +263,8 @@
                               </td>
                           </tr>
                            <tr class="htr">
+                           	  <td class=" right fwidtha">返点比例:</td>
+                              <td ><input id="returnRate" name="returnRate" width="90%" vtype="float" class="nui-textbox" >%</td>
                               <td class=" right fwidtha"></td>
                               <td><input id="isNeedPack" name="isNeedPack" class="nui-checkbox" text="需要打包发货" onvaluechanged="onValueChanged" trueValue="1" falseValue="0"></td>
                           </tr>

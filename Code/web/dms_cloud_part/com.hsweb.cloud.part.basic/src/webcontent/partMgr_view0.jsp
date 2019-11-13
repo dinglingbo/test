@@ -92,7 +92,7 @@
                                             <div property="columns">
                                                 <div type="indexcolumn">序号</div>
                                                 <div allowSort="true" field="isDisabled" width="50" headerAlign="center">状态</div>
-                                                <div allowSort="true" field="qualityTypeId" width="60" headerAlign="center">品质</div>
+                                                <div allowSort="true" field="qualityTypeId" width="60" visible="false" headerAlign="center">品质</div>
                                                 <div allowSort="true" field="partBrandId" width="70" headerAlign="center">品牌</div>
                                                 <div allowSort="true" field="code" name="code" width="100" headerAlign="center" allowSort="true">编码</div>
                                                 <div allowSort="true" field="name" name="name" width="120" headerAlign="center" allowSort="true">名称</div>
@@ -150,7 +150,7 @@
                                             <div property="columns">
                                                 <div type="indexcolumn">序号</div>
                                                 <div allowSort="true" field="isDisabled" width="50" headerAlign="center">状态</div>
-                                                <div allowSort="true" field="qualityTypeId" width="60" headerAlign="center">品质</div>
+                                                <div allowSort="true" field="qualityTypeId" width="60" visible="false" headerAlign="center">品质</div>
                                                 <div allowSort="true" field="partBrandId" width="70" headerAlign="center">品牌</div>
                                                 <div allowSort="true" field="code" name="code" width="100" headerAlign="center" allowSort="true">编码</div>
                                                 <div allowSort="true" field="name" name="name" width="120" headerAlign="center" allowSort="true">名称</div>

@@ -52,7 +52,7 @@ $(document).ready(function(v)
     getStorehouse(function(data)
     {
         var storehouse = data.storehouse||[];
-     //   nui.get("storeId").setData(storehouse);
+        nui.get("storeId").setData(storehouse);
         storehouse.forEach(function(v)
         {
             if(v && v.id)
@@ -111,6 +111,7 @@ function getSearchParam(){
 	params.guestId = comSearchGuestId.getValue().replace(/\s+/g, "");
 	params.endDate = searchEndDate.getFormValue();
 	params.startDate = searchBeginDate.getFormValue();
+	params.storeId =nui.get("storeId").getValue();
     return params;
 }
 var currType = 2;

@@ -195,9 +195,9 @@
 		       end as grossProfitRate,
 		       sum(b.allowance_amt) as allowanceAmt
 		from rps_maintain a
-		left join rps_settlement b on a.id = b.service_id
+		inner join rps_settlement b on a.id = b.service_id
 		inner join rpb_car c on a.car_id = c.id
-		where  a.bill_type_id in (0,2,4,6) and a.is_disabled=0
+		where  a.bill_type_id in (0,2,4,6) and a.is_disabled=0 and a.is_settle = 1
 		
 		<dynamic>
 			<isNotEmpty prepend="and" property="billTypeId">  
@@ -310,7 +310,7 @@
 					where a.orgid = #orgid# and  a.return_sign = 0 GROUP BY a.main_id) a on a.main_id = b.id
 			inner join wb_repair.rps_maintain c on b.service_id = c.id 
 			where  c.orgid = #orgid#
-			and c.bill_type_id != 5 and b.is_disabled = 0 and c.is_disabled=0
+			and c.bill_type_id != 5 and b.is_disabled = 0 and c.is_disabled=0 and c.is_settle = 1
 			
 		
             <isNotEmpty prepend="and" property="startDate">  
@@ -362,7 +362,7 @@
 					where a.orgid = #orgid# and  a.return_sign = 0 GROUP BY a.main_id) a on a.main_id = b.id
 			inner join wb_repair.rps_maintain c on b.service_id = c.id 
 			where  c.orgid = #orgid#
-			and c.bill_type_id != 5 and b.is_disabled = 0
+			and c.bill_type_id != 5 and b.is_disabled = 0 and c.is_settle = 1
 			
 		
             <isNotEmpty prepend="and" property="startDate">  
@@ -407,12 +407,12 @@
  			SUM(b.amt) as amt
  			      		
        		FROM wb_repair.rps_part b 
-			INNER JOIN  (
+			left JOIN  (
 				select sum(a.true_cost) as true_cost ,a.main_id as main_id from wb_part.pj_repair_out a 
 					where a.orgid = #orgid# and  a.return_sign = 0 GROUP BY a.main_id) a on a.main_id = b.id
 			inner join wb_repair.rps_maintain c on b.service_id = c.id 
 			where  c.orgid = #orgid#
-			and c.bill_type_id != 5 and b.is_disabled = 0
+			and c.bill_type_id != 5 and b.is_disabled = 0 and c.is_settle = 1
 			
 		
             <isNotEmpty prepend="and" property="startDate">  
@@ -464,7 +464,7 @@
 					where a.orgid = #orgid# and  a.return_sign = 0 GROUP BY a.main_id) a on a.main_id = b.id
 			inner join wb_repair.rps_maintain c on b.service_id = c.id 
 			where  c.orgid = #orgid#
-			and c.bill_type_id != 5 and b.is_disabled = 0
+			and c.bill_type_id != 5 and b.is_disabled = 0 and c.is_settle = 1
 			
 		
             <isNotEmpty prepend="and" property="startDate">  
@@ -679,14 +679,14 @@
 	
 	<!--bill_type_id  0综合，1检查，2洗美，3销售，4理赔，5退货    
 		总收入：  综合开单收入 + 理赔开单收入 + 洗美开单收入 + 销售开单收入 + 保险开单收入
-		总毛利： and a.bill_type_id in (0, 2, 3, 4)
+		总毛利： and a.bill_type_id in (0, 2, 3, 4,6)
     -->
 	<select id="queryRepairIncome" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT sum(ifnull(b.netin_amt,0)) as netinAmt, sum(ifnull(b.gross_profit,0)) as grossProfit
 		from rps_maintain a
 		inner join rps_settlement b
 		on a.id = b.service_id
-		where a.is_settle = 1 and a.is_disabled=0 and a.bill_type_id in (0,2,4,6)
+		where a.is_settle = 1 and a.is_disabled=0 and a.bill_type_id in (0,2,3,4,6)
 		      
 		<dynamic>
 			<isNotEmpty prepend="and" property="orgid">

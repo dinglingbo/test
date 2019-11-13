@@ -2186,11 +2186,6 @@ function checkStockOutQty(){
     return msg;
 }
 
-function auditToOut(){
-	
-}
-
-
 //直接出库，生成isDifferOrder =1数据
 var auditToOutUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjPchsOrderRtnTp.biz.ext";
 function auditToOut()

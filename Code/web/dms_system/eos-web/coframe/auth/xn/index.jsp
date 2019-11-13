@@ -827,7 +827,7 @@
             //切换角色
             function changeOrgs(orgid) {
                 if (orgid != currOrgId) {
-                    $("#toggleRole")[0].action = "com.hsapi.system.auth.login.hs.flow";
+                    $("#toggleRole")[0].action = "com.hsapi.system.auth.login.xn.flow";
                     $("#operatorId").val(currUserId);
                     $("#orgid").val(orgid);
                     $("#toggleRole")[0].submit();

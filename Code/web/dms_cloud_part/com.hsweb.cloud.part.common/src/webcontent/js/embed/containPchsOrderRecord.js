@@ -85,6 +85,7 @@ function doSearch(params)
     }
     params.isFinished = 1;
     params.orderTypeId = 1;
+    params.isDiffOrder = 1;
     params.sortField = "a.audit_date";
     params.sortOrder = "desc";
     pchsOrderRecordGrid.load({

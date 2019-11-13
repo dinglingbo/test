@@ -1498,8 +1498,8 @@
     <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.cloud.part.settle.svr.updateInitRpBill</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="codeId" type="query" value="Int" valueType="Primitive" pattern="reference">main/codeId</process:inputVariable>
-        <process:inputVariable id="1" name="code" type="query" value="String" valueType="Primitive" pattern="reference">main/code</process:inputVariable>
+        <process:inputVariable id="0" name="codeId" type="query" value="Int" valueType="Primitive" pattern="reference">main/id</process:inputVariable>
+        <process:inputVariable id="1" name="code" type="query" value="String" valueType="Primitive" pattern="reference">main/serviceId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

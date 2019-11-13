@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购记录</title>
-<script src="<%=webPath + contextPath%>/common/js/embed/containPchsOrderRecord.js?v=1.0.12"></script>
+<script src="<%=webPath + contextPath%>/common/js/embed/containPchsOrderRecord.js?v=1.0.13"></script>
 <style type="text/css">
 .title {
   width: 90px;
@@ -51,6 +51,8 @@
             <div allowSort="true" datatype="float" width="60" field="orderQty" name="orderQty" headerAlign="center" header="采购数量"></div>
             <div field="orderPrice" width="55px" headerAlign="center" allowSort="true" header="采购单价"></div>
             <div field="orderAmt" width="55px" headerAlign="center" allowSort="true" header="采购金额"></div>
+            <div field="expEnterPrice" width="55px" headerAlign="center" allowSort="true" header="人进单价"></div>
+            <div field="expEnterAmt" width="55px" headerAlign="center" allowSort="true" header="人进金额"></div>
             <div field="billTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="票据类型"></div>
             <div field="settelTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="结算方式"></div>
             <div allowSort="true" type="checkboxcolumn" field="taxSign" width="40" headerAlign="center" header="是否含税" trueValue="1" falseValue="0"></div>

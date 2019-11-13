@@ -382,7 +382,35 @@ function setSubGroupData(data,json){
     });
     showRightGrid(subGroups);
 }
-
+function setSubGroupDataJaguar(data,json){
+	
+	//分组数据
+	subGroupData =data;
+    gridSubGroup.setData(data);
+    
+    //img
+    var len = data.length;
+    var imgSubGroup = $("#imgSubGroup");
+    imgSubGroup.children().remove();
+    for(var i=0;i<len;i++){
+        img = '<a class="sub-group" data=' + i + '>'
+            + '<div class="LazyLoad is-visible" style="height:140px; width:140px;">'
+            + '    <img src="' + data[i].imageLarge + '" alt="sub-group-img" class="sub-group-img"/>'
+            + '</div>'
+            + '<div class="label">' + data[i].subgroup + '</div>'
+            + '<div class="float-panel">' + data[i].name + '</div>'
+        + '</a>';
+        imgSubGroup.append(img);
+        
+    }
+    $(".sub-group").bind("click", function(obj){//.sub-group-img
+        var rowid = $(this).attr("data");
+        var row = gridSubGroup.getRow(parseInt(rowid));
+        gridSubGroup.select(row, true);
+        clickGdSubGroup(row);
+    });
+    showRightGrid(subGroups);
+}
 /*
 *主组事件
 */
@@ -422,7 +450,7 @@ function clickGdMainGroup(row){
     	//路虎、捷豹需要调两次
     	if(brand=="land_rover"||brand=="jaguar"){
     		var params = {
-    				url:"llq/parts/structureSub",
+    				url:"llq/vins/cars/subgroup/sub",
     				params:"&mcid="+mcid+"&brandCode="+brand+"&num="+groupnum+"&level="+1,
     				token:token
     		}

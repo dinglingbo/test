@@ -566,6 +566,10 @@
       <process:from type="query" pattern="reference">tmp/noMtType</process:from>
       <process:to type="query">updatePartTemp/noMtType</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/unit</process:from>
+      <process:to type="query">updatePartTemp/unit</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="510" y="178"/>

@@ -33,7 +33,8 @@ var prdtTypeHash = {
 	    "2":"项目",
 	    "3":"配件"
 	};
-
+var unit = null;
+var unitList = [];
 $(document).ready(function(){
 
 
@@ -50,6 +51,7 @@ $(document).ready(function(){
 	searchKeyEl = nui.get("search_key");
 	searchNameEl = nui.get("search_name");
 	showOut=nui.get("showOut");
+	 unit = nui.get("unit");
 /*	if(actionType == "ll"){
 		mainGrid.load({serviceId:mid});
 	}
@@ -72,7 +74,8 @@ $(document).ready(function(){
           servieTypeHash[v.id] = v;
       });
     });
-    
+    var dictDefs ={"unit":"DDT20130703000016"};
+    initDicts(dictDefs, null);
     getAllStorehouse(function(data) {
 		storehouse = data.storehouse || [];
 		if (storehouse && storehouse.length > 0) {
@@ -849,6 +852,8 @@ function delFromBillPart(data, callback){
     });
 }
 function editItemRpsPart(row_uid){
+	unitList = nui.get("unit").getData();
+	
     var main = billForm.getData();
     var isSettle = main.isSettle||0;
     if(!main.id){
@@ -905,6 +910,7 @@ function updateItemRpsPart(row_uid){
             if(cardDetailId > 0){ //预存的
                 var part = {};
                 part.id = row.id;
+                part.unit = row.unit;
                 part.serviceId = row.serviceId;
                 part.serviceTypeId = row.serviceTypeId;
                 updList.push(part);
@@ -918,6 +924,7 @@ function updateItemRpsPart(row_uid){
                 part.serviceTypeId = row.serviceTypeId;
                 part.unitPrice = row.unitPrice;
                 part.amt = row.amt;
+                part.unit = row.unit;
                 var rate = row.rate/100;
                 rate = rate.toFixed(4);
                 part.rate = rate;

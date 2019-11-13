@@ -203,6 +203,12 @@ var requiredField = {
 function save(action) {
 	var form = new nui.Form("#basicInfoForm");
     var data = form.getData();
+    if(data.birthday){  	
+    	data.birthday = format(data.birthday, 'yyyy-MM-dd HH:mm:ss');
+    }
+    if(data.recordDate){   	
+    	data.recordDate = format(data.recordDate, 'yyyy-MM-dd HH:mm:ss');
+    }
 	data.itemDiscountRate =data.itemDiscountRate/100;
 	data.partDiscountRate =data.partDiscountRate/100;
     for(var key in requiredField)

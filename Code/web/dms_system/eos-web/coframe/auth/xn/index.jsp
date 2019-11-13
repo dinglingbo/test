@@ -1005,7 +1005,7 @@
                     }
                 });
  	function cancellation(){
- 		window.location="<%=request.getContextPath()%>/coframe/auth/hs/logout.jsp";
+ 		window.location="<%=request.getContextPath()%>/coframe/auth/xn/logout.jsp";
  	}     
  	        var scriptList=[
             {src:defDomin + "/coframe/imjs/websocketconfig.js",id:"js1"},

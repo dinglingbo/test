@@ -324,6 +324,7 @@
     <location x="465" y="225"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="detail" iterableElement="detailTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">
@@ -429,6 +430,7 @@
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="link19" isDefault="true" type="transition">
       <sourceNode>loopend1</sourceNode>
       <targetNode>assign8</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
     <targetConnections>link14</targetConnections>
@@ -507,6 +509,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">entableTemp/noTaxPrice</process:from>
       <process:to type="query">noTaxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">entableTemp/expEnterPrice</process:from>
+      <process:to type="query">expEnterPrice</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
@@ -684,8 +690,20 @@
       <process:to type="query">dsumNoTaxAmt</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">expEnterPrice</process:from>
+      <process:to type="query">enterTemp/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">entableQty*expEnterPrice</process:from>
+      <process:to type="query">enterTemp/expEnterAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="expression" pattern="reference">qty-entableQty</process:from>
       <process:to type="query">qty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">dsumExpEnterAmt+entableQty*expEnterPrice</process:from>
+      <process:to type="query">dsumExpEnterAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
@@ -863,6 +881,14 @@
       <process:to type="query">dsumNoTaxAmt</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">expEnterPrice</process:from>
+      <process:to type="query">enterTemp/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">qty*expEnterPrice</process:from>
+      <process:to type="query">enterTemp/expEnterAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">qty</process:to>
     </process:copy>
@@ -1020,6 +1046,14 @@
       <process:to type="query">detailTemp/noTaxPrice</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">dsumExpEnterAmt</process:from>
+      <process:to type="query">detailTemp/expEnterAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">dsumExpEnterAmt/applyQty</process:from>
+      <process:to type="query">detailTemp/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">dsumOrderAmt</process:to>
     </process:copy>
@@ -1030,6 +1064,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">dsumNoTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">dsumExpEnterAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
@@ -1438,7 +1476,9 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="dsumTaxAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="dsumOrderAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="dsumNoTaxAmt" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="dsumExpEnterAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="applyQty" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="expEnterPrice" primitiveType="Float"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjAllotApplyMain" name="main"/>

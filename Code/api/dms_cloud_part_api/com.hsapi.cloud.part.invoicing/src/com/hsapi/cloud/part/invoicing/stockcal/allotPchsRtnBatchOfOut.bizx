@@ -624,6 +624,7 @@
     <location x="817" y="147"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart3label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="outableDetails" iterableElement="outableDetail"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart3label" name="label" nodeType="label">
@@ -869,6 +870,18 @@
     <process:copy>
       <process:from type="expression" pattern="reference">mEnterAmt+(enterPrice*outaleQty)</process:from>
       <process:to type="query">mEnterAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/expEnterPrice</process:from>
+      <process:to type="query">expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">expEnterPrice</process:from>
+      <process:to type="query">outdetail/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">expEnterPrice*outaleQty</process:from>
+      <process:to type="query">outdetail/expEnterAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign16label" name="label" nodeType="label">
@@ -1172,6 +1185,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="mEnterAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="mOutAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="mOutQty" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="expEnterPrice" primitiveType="Float"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderMainChk" name="mainenter"/>

@@ -1319,7 +1319,8 @@
 		inner join pj_allot_accept_main b
 		on a.main_id = b.id 
 		inner join (SELECT a.order_detail_id, a.order_main_id, b.code, 
-		       sum(a.tax_amt) as taxAmt, sum(a.no_tax_amt) as noTaxAmt, sum(a.enter_amt) as enterAmt
+					 sum(a.tax_amt) as taxAmt, sum(a.no_tax_amt) as noTaxAmt, 
+					 sum(a.enter_amt) as enterAmt, sum(a.exp_enter_amt) as expEnterAmt
 		from pj_out_detail_chk a
 		inner join pj_out_main_chk b
 		on a.main_id = b.id
@@ -1327,8 +1328,9 @@
 		group by a.order_detail_id, a.order_main_id, b.code) c
 		on a.id = c.order_detail_id and a.main_id = c.order_main_id and b.service_id = c.code
 		set a.order_amt = c.enterAmt, a.tax_amt = c.taxAmt, a.no_tax_amt = c.noTaxAmt,
-		    a.order_price = c.enterAmt/a.accept_qty, a.tax_price = c.taxAmt/a.accept_qty,
-		    a.no_tax_price = c.noTaxAmt/a.accept_qty
+				a.order_price = c.enterAmt/a.accept_qty, a.tax_price = c.taxAmt/a.accept_qty,
+				a.no_tax_price = c.noTaxAmt/a.accept_qty, a.exp_enter_amt = c.expEnterAmt, 
+		    a.exp_enter_price = c.expEnterAmt/a.accept_qty
 		where a.main_id = #acceptMainId#
 		
 	</update>

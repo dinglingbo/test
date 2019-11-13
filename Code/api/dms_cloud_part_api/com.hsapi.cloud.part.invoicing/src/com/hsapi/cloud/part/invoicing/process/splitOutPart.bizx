@@ -861,6 +861,10 @@
       <process:from type="expression" pattern="reference">mOutQty+outaleQty</process:from>
       <process:to type="query">mOutQty</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mExpEnterAmt+(outaleQty*expEnterPrice)</process:from>
+      <process:to type="query">mExpEnterAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
     <location x="637" y="251"/>
@@ -1067,6 +1071,10 @@
     <process:copy>
       <process:from type="expression" pattern="reference">mOutQty+billQty</process:from>
       <process:to type="query">mOutQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mExpEnterAmt+(billQty*expEnterPrice)</process:from>
+      <process:to type="query">mExpEnterAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
@@ -1814,6 +1822,14 @@
       <process:from type="expression" pattern="reference">mEnterAmt-mNoTaxAmt</process:from>
       <process:to type="query">processProduct/taxDiff</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mExpEnterAmt</process:from>
+      <process:to type="query">processProduct/expEnterAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mExpEnterAmt/billQty</process:from>
+      <process:to type="query">processProduct/expEnterPrice</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign25label" name="label" nodeType="label">
     <location x="1472" y="386"/>
@@ -2185,6 +2201,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="mEnterAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="mOutAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="mOutQty" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="mExpEnterAmt" primitiveType="Float"/>
     <process:variable description="是否指定了批次" historyStateLocation="client" isArray="false" name="isMarkBatch" primitiveType="Int"/>
     <process:variable description="批次的来源" historyStateLocation="client" isArray="false" name="batchSourceId" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjEnterDetailChk" name="enterChks"/>

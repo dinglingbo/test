@@ -461,8 +461,8 @@
         <process:inputVariable id="17" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">main/orgid</process:inputVariable>
         <process:inputVariable id="18" name="operator" type="query" value="String" valueType="Primitive" pattern="reference">main/auditor</process:inputVariable>
         <process:inputVariable id="19" name="operatorId" type="query" value="String" valueType="Primitive" pattern="reference">main/auditorId</process:inputVariable>
-        <process:inputVariable id="20" name="expPrice" type="query" value="Float" valueType="Primitive" pattern="reference"></process:inputVariable>
-        <process:inputVariable id="21" name="expAmt" type="query" value="Float" valueType="Primitive" pattern="reference"></process:inputVariable>
+        <process:inputVariable id="20" name="expPrice" type="query" value="Float" valueType="Primitive" pattern="reference">f/expEnterPrice</process:inputVariable>
+        <process:inputVariable id="21" name="expAmt" type="query" value="Float" valueType="Primitive" pattern="reference">f/expEnterAmt</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -521,10 +521,10 @@
         <process:inputVariable id="19" name="guestId" type="query" value="Int" valueType="Primitive" pattern="reference">sellOutMain/guestId</process:inputVariable>
         <process:inputVariable id="20" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">main/orgid</process:inputVariable>
         <process:inputVariable id="21" name="operator" type="query" value="String" valueType="Primitive" pattern="reference">main/auditor</process:inputVariable>
-        <process:inputVariable id="22" name="balaExpPrice" type="query" value="Float" valueType="Primitive" pattern="reference"></process:inputVariable>
-        <process:inputVariable id="23" name="balaExpAmt" type="query" value="Float" valueType="Primitive" pattern="reference"></process:inputVariable>
-        <process:inputVariable id="24" name="storeBalaExpPrice" type="query" value="Float" valueType="Primitive" pattern="reference"></process:inputVariable>
-        <process:inputVariable id="25" name="storeBalaExpAmt" type="query" value="Float" valueType="Primitive" pattern="reference"></process:inputVariable>
+        <process:inputVariable id="22" name="balaExpPrice" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaExpPrice</process:inputVariable>
+        <process:inputVariable id="23" name="balaExpAmt" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaExpAmt</process:inputVariable>
+        <process:inputVariable id="24" name="storeBalaExpPrice" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaExpPrice</process:inputVariable>
+        <process:inputVariable id="25" name="storeBalaExpAmt" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaAmt</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

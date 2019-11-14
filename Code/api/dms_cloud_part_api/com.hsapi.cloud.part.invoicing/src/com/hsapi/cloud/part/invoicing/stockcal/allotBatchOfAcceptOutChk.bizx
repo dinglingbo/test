@@ -413,6 +413,10 @@
       <process:from type="query" pattern="reference">outableDetail/outableQty</process:from>
       <process:to type="query">outaleQty</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/expEnterPrice</process:from>
+      <process:to type="query">expEnterPrice</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
     <location x="743" y="178"/>
@@ -632,6 +636,14 @@
       <process:to type="query">outdetail/suggSellPrice</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">expEnterPrice</process:from>
+      <process:to type="query">outdetail/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">expEnterPrice*billQty</process:from>
+      <process:to type="query">outdetail/expEnterAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="expression" pattern="reference">mNoTaxAmt+(noTaxPrice*billQty)</process:from>
       <process:to type="query">mNoTaxAmt</process:to>
     </process:copy>
@@ -838,6 +850,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">orderdetail/suggSellPrice</process:from>
       <process:to type="query">outdetail/suggSellPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">expEnterPrice</process:from>
+      <process:to type="query">outdetail/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">expEnterPrice*outaleQty</process:from>
+      <process:to type="query">outdetail/expEnterAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">mNoTaxAmt+(noTaxPrice*outaleQty)</process:from>
@@ -1724,6 +1744,7 @@
     <process:variable description="月结 020502" historyStateLocation="client" isArray="false" name="settleTypeId" primitiveType="String"/>
     <process:variable description="增票 010103" historyStateLocation="client" isArray="false" name="billTypeId" primitiveType="String"/>
     <process:variable description="调拨出库   DBC  050204;调入退货   DRC  050211" historyStateLocation="client" isArray="false" name="enterTypeId" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="expEnterPrice" primitiveType="Float"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjAllotAcceptMain" name="mainenter"/>

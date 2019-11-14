@@ -18,10 +18,10 @@
 		if(original_url.indexOf("login.jsp")==-1){
 			url=contextPath + original_url;
 		}else{
-			url=contextPath + "/coframe/auth/hs/index.jsp";
+			url=contextPath + "/coframe/auth/xn/index.jsp";
 		}
 	}else{
-		url=contextPath + "/coframe/auth/hs/index.jsp";
+		url=contextPath + "/coframe/auth/xn/index.jsp";
 	}
 	//协议跳转
 	HttpSecurityConfig securityConfig = new HttpSecurityConfig();

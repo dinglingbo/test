@@ -159,6 +159,7 @@
             </div>
             <div header="其他" headerAlign="center">
                 <div property="columns">
+                    <div field="returnAmt" width="80" headerAlign="center" summaryType="sum" header="返点金额"></div>
                 	<div allowSort="true" field="manualCode" width="150" headerAlign="center" header="订单号" allowSort="true" dataType="string"></div>
                     <div field="auditor" width="60" headerAlign="center" header="审核人" allowSort="true" dataType="string"></div>
                     <div allowSort="true" field="auditDate" width="120"headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" dataType="date"></div>

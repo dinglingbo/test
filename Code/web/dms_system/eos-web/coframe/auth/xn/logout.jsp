@@ -21,7 +21,7 @@
      String _url=StringUtil.htmlFilter(request.getParameter("_url"));
      
      if(_url==null){
-     	_url=request.getContextPath()+"/coframe/auth/hs/login.jsp";
+     	_url=request.getContextPath()+"/coframe/auth/xn/login.jsp";
      }
      
      response.sendRedirect(_url);

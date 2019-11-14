@@ -10,7 +10,7 @@ var mainListUrl = baseUrl+"com.hsapi.repair.repairService.insurance.QueryRpsInsu
 var detailGridUrl = baseUrl+"com.hsapi.repair.repairService.insurance.queryRpsInsuranceDetailList.biz.ext";
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
 var guestSaleInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactListSALE.biz.ext";//z整车销售客户
-var insuranceInfoUrl = baseUrl + "com.hsapi.repair.baseData.insurance.InsuranceQuery.biz.ext?params/orgid="+currOrgId+"&params/isDisabled=0";
+var insuranceInfoUrl = baseUrl + "com.hsapi.repair.baseData.insurance.insuranceQueryNopage.biz.ext?params/orgid="+currOrgId+"&params/isDisabled=0";
 var servieIdEl = null;
 var searchNameEl = null; 
 var searchKeyEl = null;

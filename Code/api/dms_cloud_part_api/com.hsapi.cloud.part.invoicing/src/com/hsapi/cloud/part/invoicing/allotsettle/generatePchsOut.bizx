@@ -59,6 +59,7 @@
         <process:inputVariable id="1" name="orderMain" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" valueType="DataObject" pattern="reference">orderMain</process:inputVariable>
         <process:inputVariable id="2" name="orderDetail" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk[]" valueType="DataObject" pattern="reference">orderDetail</process:inputVariable>
         <process:inputVariable id="3" name="enterSign" type="literal" value="Int" valueType="Primitive" pattern="reference">1</process:inputVariable>
+        <process:inputVariable id="4" name="expAmt" type="literal" value="Float" valueType="Primitive" pattern="reference">0</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="acceptMain" type="query" value="com.hsapi.cloud.part.data.pts.PjAllotAcceptMain" valueType="DataObject">acceptMain</process:outputVariable>
@@ -596,6 +597,7 @@
         <process:inputVariable id="1" name="orderMain" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" valueType="DataObject" pattern="reference">orderMain</process:inputVariable>
         <process:inputVariable id="2" name="orderDetail" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk[]" valueType="DataObject" pattern="reference">orderDetail</process:inputVariable>
         <process:inputVariable id="3" name="enterSign" type="literal" value="Int" valueType="Primitive" pattern="reference">1</process:inputVariable>
+        <process:inputVariable id="4" name="expAmt" type="literal" value="Float" valueType="Primitive" pattern="reference">0</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

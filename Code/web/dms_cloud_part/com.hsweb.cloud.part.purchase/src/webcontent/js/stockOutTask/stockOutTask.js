@@ -934,6 +934,9 @@ function onLeftGridDrawCell(e)
 			}else {
 				e.cellHtml = "";
 			}
+			if(e.record.billStatusId == 2) {
+            	e.cellHtml = '<a style="color:red;">' + storeHash[e.value].name + '</a>';
+            }
 			break;
     }
 }

@@ -28,8 +28,8 @@
    String url = null;
     String sweepCodeUrl = null;
    String loginUrl = "org.gocom.components.coframe.auth.login.hs.flow";
-   String sweepCodeFlow = "com.hsapi.system.auth.login.qrhs.flow";
-   loginUrl = "com.hsapi.system.auth.login.hs.flow";
+   String sweepCodeFlow = "com.hsapi.system.auth.login.qrxn.flow";
+   loginUrl = "com.hsapi.system.auth.login.xn.flow";
    String regUrl = "com.hsapi.system.auth.login.registerOfm.flow";
    
    HttpSecurityConfig securityConfig = new HttpSecurityConfig();
@@ -41,9 +41,9 @@
    if(isOpenSecurity){
    		boolean isAllInHttps = securityConfig.isAllInHttps();
    		if(!isAllInHttps){
-   			url = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/hs/" + loginUrl;
-   			sweepCodeUrl = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/hs/" + sweepCodeFlow;
-   			regUrl = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/hs/" + regUrl;
+   			url = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/xn/" + loginUrl;
+   			sweepCodeUrl = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/xn/" + sweepCodeFlow;
+   			regUrl = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/xn/" + regUrl;
 
    		}else{
    			url = loginUrl;

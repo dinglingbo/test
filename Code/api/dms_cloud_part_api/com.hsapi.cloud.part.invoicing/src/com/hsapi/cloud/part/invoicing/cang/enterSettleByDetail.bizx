@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="enterSettleByDetail" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="11.12添加人进价&#xD;&#xA;WSM回调时，需要获取当前入库费用&#xD;&#xA;需要确定费用获取规则&#xD;&#xA;目前WMS回调入库的人进价按含税价来" title="dlb&#x9;19-11-12 下午2:56">
+    <location x="720" y="-75"/>
+    <size height="196" width="376"/>
+  </nodes>
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据具体的明细入库&#xD;&#xA;根据已经提交的订单数据和当前应入库的数据生成 is_diff_order = 1 的数据，在循环处理的过程中判断是否超数&#xD;&#xA;&#xD;&#xA;判断主表是否完成，取版本号用于后面更新用，如果更新的数据条数为0，则失败&#xD;&#xA;明细数据生成后重新汇总主表的含税和不含税数据&#xD;&#xA;com.hsapi.cloud.part.invoicing.paramset.queryEnterDetailInfoByDetailId&#xD;&#xA;取入库明细，判断参数的记录数与查询出的记录数是否相等，如果不相等提示获取入库数据失败&#xD;&#xA;取主表的版本号，根据版本号更新订单主表数据，如果影响的行数不等于1，则返回失败，提示数据处理频繁请稍后再处理&#xD;&#xA;com.hsapi.cloud.part.invoicing.query.queryMainIsFinish（查询是否存在未完成的订单明细）&#xD;&#xA;是否需要根据outCode判断已经存在单据（暂不考虑）" title="Administrator&#x9;19-6-25 上午10:19">
-    <location x="26" y="-60"/>
+    <location x="-18" y="-75"/>
     <size height="196" width="694"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
@@ -709,6 +713,18 @@
     <process:copy>
       <process:from type="query" pattern="reference">listTemp/sourceDetailId</process:from>
       <process:to type="query">detailTemp/outDetailId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">detailTemp/expenseAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxPrice</process:from>
+      <process:to type="query">detailTemp/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">qty*taxPrice</process:from>
+      <process:to type="query">detailTemp/expEnterAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">sumQty+qty</process:from>

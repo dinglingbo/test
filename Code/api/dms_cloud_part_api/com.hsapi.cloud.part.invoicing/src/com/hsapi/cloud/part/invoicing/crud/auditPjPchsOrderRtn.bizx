@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="auditPjPchsOrderRtn.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="采购退货点退货按钮时&#xD;&#xA;生成isDiffOrder=1的数据&#xD;&#xA;销售订单直接出库调用逻辑" title="Administrator&#x9;19-7-2 下午3:21">
-    <location x="90" y="-30"/>
-    <size height="100" width="229"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="采购退货点退货按钮时&#xD;&#xA;生成isDiffOrder=1的数据&#xD;&#xA;销售订单直接出库调用逻辑&#xD;&#xA;&#xD;&#xA;11.13去掉main/isRtnSign != 1" title="Administrator&#x9;19-7-2 下午3:21">
+    <location x="-10" y="-51"/>
+    <size height="158" width="321"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="link2" isDefault="true" type="transition">
@@ -214,8 +214,8 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="2" name="main" type="query" value="com.hsapi.cloud.part.data.pts.PjOutMainChk" valueType="DataObject"></process:outputVariable>
-        <process:outputVariable id="3" name="details" type="query" value="com.hsapi.cloud.part.data.pts.PjOutDetailChk[]" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="2" name="main" type="query" value="com.hsapi.cloud.part.data.pts.PjOutMainChk" valueType="DataObject"/>
+        <process:outputVariable id="3" name="details" type="query" value="com.hsapi.cloud.part.data.pts.PjOutDetailChk[]" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -422,10 +422,9 @@
       <sourceNode>assign6</sourceNode>
       <targetNode>assign7</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NE">
-          <process:leftOperand type="query">main/isRtnSign</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
+        <process:complexCondition>
+          <process:code>1!=1</process:code>
+        </process:complexCondition>
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link12</targetConnections>

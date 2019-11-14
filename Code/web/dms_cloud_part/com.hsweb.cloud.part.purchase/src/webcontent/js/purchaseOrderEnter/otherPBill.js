@@ -77,7 +77,7 @@ function getInComeExpenses(callback) {
 function doSearch() {
     var params = {};
     params.billDc = -1;
-    params.auditSign = 0;
+    //params.auditSign = 0;
     params.rpTypeId = 2;
     params.codeId =codeId;
 //    params.guestId = comSearchGuestId.getValue();
@@ -205,7 +205,7 @@ function save(){
         return;
     }
     
-    var status = checkBillStatus(mainId);
+    var status = checkBillStatus(codeId);
     if(status) {
     	showMsg("此单已入库，不能修改费用!","W");
     	return;

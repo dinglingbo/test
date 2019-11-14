@@ -128,7 +128,7 @@ function sure() {
 			var partCodeList = [];    
             for(var j=1; j<columns.length; j++){
 				var fieldName = columns[j].field;
-                var partCode = (data[i][fieldName]||"").replace(/\s+/g, "");
+                var partCode = (data[i][fieldName]||"").replace(/(^\s*)|(\s*$)/g, "");
                 if(partCode){
 					partCode = "'"+partCode+"'";
                     partCodeList.push(partCode);

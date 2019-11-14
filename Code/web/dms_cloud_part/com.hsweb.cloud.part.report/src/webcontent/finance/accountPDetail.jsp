@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
     <title>付款明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/report/js/finance/accountPDetail.js?v=1.0.7"></script>
+    <script src="<%=webPath + contextPath%>/report/js/finance/accountPDetail.js?v=1.0.8"></script>
     <style type="text/css">
     body {
         margin: 0;

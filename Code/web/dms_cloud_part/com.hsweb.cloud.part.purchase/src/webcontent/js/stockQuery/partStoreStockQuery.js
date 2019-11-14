@@ -134,7 +134,7 @@ function getSearchParam(){
     }
     
     params.partNameAndPY = nui.get("comPartNameAndPY").getValue().replace(/\s+/g, "");
-	params.partCode = (nui.get("comPartCode").getValue()).replace(/\s+/g, "");
+	params.partCode = (nui.get("comPartCode").getValue()).replace(/(^\s*)|(\s*$)/g, "");
 	params.partBrandId = nui.get("partBrandId").getValue();
 	params.storeId = nui.get("storeId").getValue();
 	params.storeShelf = nui.get("storeShelf").getValue().replace(/\s+/g, "");
@@ -215,7 +215,7 @@ function onAdvancedSearchOk()
         var tmpList = searchData.partCodeList.split("\n");
         for(i=0;i<tmpList.length;i++)
         {
-            tmpList[i] = "'"+tmpList[i].replace(/\s+/g, "")+"'";
+            tmpList[i] = "'"+tmpList[i].replace(/(^\s*)|(\s*$)/g, "")+"'";
         }
         searchData.partCodeList = tmpList.join(",");
     }
@@ -225,7 +225,7 @@ function onAdvancedSearchOk()
     }*/
     for(var key in searchData){
     	if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){    		
-    		searchData[key]=searchData[key].replace(/\s+/g, "");
+    		searchData[key]=searchData[key].replace(/(^\s*)|(\s*$)/g, "");
     	}
     }
     advancedSearchWin.hide();

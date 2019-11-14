@@ -328,8 +328,8 @@ $(document).ready(function(v)
     $("#morePartCode").bind("keydown", function (e) {
 
         if (e.keyCode == 13) {
-            var value = morePartCodeEl.getValue().replace(/\s+/g, "");
-            value = value.replace(/\s+/g, "");
+            var value = morePartCodeEl.getValue().replace(/(^\s*)|(\s*$)/g, "");
+            value = value.replace(/(^\s*)|(\s*$)/g, "");
             if(value.length>=3){
                 morePartSearch();
             }
@@ -495,7 +495,7 @@ function setInitData(params, ck, cck){
     params.orgid=directOrgid;
     if(type == 1){
         morePartCodeEl.setValue(value);
-        params.partCode = value.replace(/\s+/g, "");
+        params.partCode = value.replace(/(^\s*)|(\s*$)/g, "");
     }else if(type == 2){
         morePartNameEl.setValue(value);
         params.partName = value;
@@ -540,7 +540,7 @@ function setInitData(params, ck, cck){
 //按Enter，编码后匹配
 function morePartSearch(){
     var params = {}; 
-    params.partCode = morePartCodeEl.getValue().replace(/\s+/g, "");
+    params.partCode = morePartCodeEl.getValue().replace(/(^\s*)|(\s*$)/g, "");
     params.partName = morePartNameEl.getValue().replace(/\s+/g, "");
     params.showStock = showStockEl.getValue().replace(/\s+/g, "");
     //仓先生且不显示库存
@@ -620,7 +620,7 @@ function morePartSearch(){
 //点击查询按钮,编码全匹配
 function morePartSearchAll(){
     var params = {}; 
-    params.partCodeAll = morePartCodeEl.getValue().replace(/\s+/g, "");
+    params.partCodeAll = morePartCodeEl.getValue().replace(/(^\s*)|(\s*$)/g, "");
     params.partName = morePartNameEl.getValue().replace(/\s+/g, "");
     params.showStock = showStockEl.getValue().replace(/\s+/g, "");
     //仓先生
@@ -862,7 +862,7 @@ function onMoreTabChanged(e){
     var name = tab.name;
      
     var params = {}; 
-    params.partCode = morePartCodeEl.getValue().replace(/\s+/g, "");
+    params.partCode = morePartCodeEl.getValue().replace(/(^\s*)|(\s*$)/g, "");
     params.partName = morePartNameEl.getValue().replace(/\s+/g, "");
     params.showStock = showStockEl.getValue().replace(/\s+/g, "");
     params.serviceId = moreServiceIdEl.getValue().replace(/\s+/g, "");

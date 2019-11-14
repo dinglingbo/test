@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售退货明细</title>
-<script src="<%=webPath + contextPath%>/purchase/js/sellOrderRtn/sellOrderRtnQuery.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/sellOrderRtn/sellOrderRtnQuery.js?v=1.0.2"></script>
 <style type="text/css">
 .title {
 	width: 90px;

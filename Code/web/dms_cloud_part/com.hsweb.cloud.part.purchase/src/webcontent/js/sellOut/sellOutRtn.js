@@ -416,7 +416,7 @@ function onAdvancedSearchOk()
         var tmpList = searchData.partCodeList.split("\n");
         for(i=0;i<tmpList.length;i++)
         {
-            tmpList[i] = "'"+tmpList[i].replace(/\s+/g, "")+"'";
+            tmpList[i] = "'"+tmpList[i].replace(/(^\s*)|(\s*$)/g, "")+"'";
         }
         searchData.partCodeList = tmpList.join(",");
     }

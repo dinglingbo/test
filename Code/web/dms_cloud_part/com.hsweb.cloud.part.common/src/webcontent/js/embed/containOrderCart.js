@@ -68,7 +68,7 @@ function getSearchParams()
 {
     var params = queryForm.getData();
     for(var key in params){
-    	params[key]=params[key].replace(/\s+/g, "");
+    	params[key]=params[key].replace(/(^\s*)|(\s*$)/g, "");
     }
     if(type == 'pchs'){
     	params.shopType=1;

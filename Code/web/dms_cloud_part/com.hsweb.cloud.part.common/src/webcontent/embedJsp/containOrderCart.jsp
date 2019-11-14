@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购车/销售车</title>
-<script src="<%=webPath + contextPath%>/common/js/embed/containOrderCart.js?v=1.0.7"></script>
+<script src="<%=webPath + contextPath%>/common/js/embed/containOrderCart.js?v=1.0.8"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

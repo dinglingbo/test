@@ -132,7 +132,7 @@ function reloadData()
 function getSearchParams()
 {
     var params = {};
-    params.searchKey = nui.get("searchKey").getValue().replace(/\s+/g, "");
+    params.searchKey = nui.get("searchKey").getValue().replace(/(^\s*)|(\s*$)/g, "");
     return params;
 }
 function onSearch()

@@ -12,7 +12,7 @@
 <head>
 <title>客户欠款明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/js/showDueDetail.js?v=1.0.62"></script>
+    <script src="<%=webPath + contextPath%>/common/js/showDueDetail.js?v=1.0.63"></script>
     
 </head>
 <body>

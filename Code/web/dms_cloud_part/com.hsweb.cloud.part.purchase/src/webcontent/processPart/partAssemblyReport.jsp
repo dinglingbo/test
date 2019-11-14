@@ -14,7 +14,7 @@
 <head>
 <title>配件组装明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-      <script src="<%=webPath + contextPath%>/purchase/js/processPart/partAssemblyReport.js?v=1.0.12"></script>
+      <script src="<%=webPath + contextPath%>/purchase/js/processPart/partAssemblyReport.js?v=1.0.13"></script>
 </head>
 <body>
 <div class="nui-fit">

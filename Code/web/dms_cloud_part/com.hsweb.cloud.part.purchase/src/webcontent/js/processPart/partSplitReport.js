@@ -61,7 +61,7 @@ function getSearchParam(){
         params.outableQtyGreaterThanZero = 1;
     }*/
     params.serviceId = comServiceId.getValue().replace(/\s+/g, "");
-	params.partCode = comPartCode.getValue().replace(/\s+/g, "");
+	params.partCode = comPartCode.getValue().replace(/(^\s*)|(\s*$)/g, "");
 	params.partNameAndPY = comPartNameAndPY.getValue().replace(/\s+/g, "");
 	params.endDate = searchEndDate.getFormValue();
 	params.startDate = searchBeginDate.getFormValue();

@@ -845,7 +845,7 @@ function onAdvancedSearchOk() {
 	if (searchData.partCodeList) {
 		var tmpList = searchData.partCodeList.split("\n");
 		for (i = 0; i < tmpList.length; i++) {
-			tmpList[i] = "'" + tmpList[i].replace(/\s+/g, "") + "'";
+			tmpList[i] = "'" + tmpList[i].replace(/(^\s*)|(\s*$)/g, "") + "'";
 		}
 		searchData.partCodeList = tmpList.join(",");
 	}
@@ -855,7 +855,7 @@ function onAdvancedSearchOk() {
 	//去除空格
 	for(var key in searchData){
     	if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){    		
-    		searchData[key]=searchData[key].replace(/\s+/g, "");
+    		searchData[key]=searchData[key].replace(/(^\s*)|(\s*$)/g, "");
     	}
     }
 	doSearch(searchData);
@@ -1664,7 +1664,7 @@ function addInsertRow(value,row) {
     rightGrid.beginEditCell(newRow, "comPartCode");*/
 
 
-    var params = {partCode:value.replace(/\s+/g, "")};
+    var params = {partCode:value.replace(/(^\s*)|(\s*$)/g, "")};
 	var part = getPartInfo(params);
 
 	if(part){
@@ -2510,7 +2510,7 @@ function onAdvancedAddOk(){
 				return;
 			}
 
-			partObj.partCode = partTmpList[0].replace(/\s+/g, "");
+			partObj.partCode = partTmpList[0].replace(/(^\s*)|(\s*$)/g, "");
 			partObj.orderQty = partTmpList[1];
 			partObj.orderPrice = partTmpList[2];
 			partList.push(partObj);

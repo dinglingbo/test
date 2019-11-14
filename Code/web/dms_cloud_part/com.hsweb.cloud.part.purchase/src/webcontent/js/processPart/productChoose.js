@@ -57,7 +57,7 @@ function doSearch(params){
 
 function getSearchParams(){
 	var params = {};  
-    params.partCode = nui.get('partCode').getValue().replace(/\s+/g, "");
+    params.partCode = nui.get('partCode').getValue().replace(/(^\s*)|(\s*$)/g, "");
     params.partName =  nui.get('partName').getValue().replace(/\s+/g, ""); 
     return params;
 }

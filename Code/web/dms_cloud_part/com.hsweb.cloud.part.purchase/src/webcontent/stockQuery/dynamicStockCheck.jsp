@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件库存动态盘点</title>
-<script src="<%=webPath + contextPath%>/purchase/js/stockQuery/dynamicStockCheck.js?v=1.0.4"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/stockQuery/dynamicStockCheck.js?v=1.0.5"></script>
 <style type="text/css">
 .title {
 	width: 90px;

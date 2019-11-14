@@ -263,7 +263,7 @@ function sure() {
 			//partid  partcode  partname  enterqty  enterunit  enterprice  enteramt
 			var taxSignStr = data[i].是否含税;
 			var taxSign = taxSignStr == "是" ? 1 : 0;
-			var partBrandId = (data[i].品牌||"").replace(/\s+/g, "");
+			var partBrandId = (data[i].品牌||"").replace(/(^\s*)|(\s*$)/g, "");
 
 			if(brandHash && brandHash[partBrandId]){
 				partBrandId = brandHash[partBrandId].id;

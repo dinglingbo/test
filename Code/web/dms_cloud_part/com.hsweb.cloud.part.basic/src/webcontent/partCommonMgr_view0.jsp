@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件替换</title>
-<script src="<%=webPath + contextPath%>/basic/js/partCommonMgr.js?v=1.0.3"></script>
+<script src="<%=webPath + contextPath%>/basic/js/partCommonMgr.js?v=1.0.4"></script>
 <style type="text/css">
 .title {
   width: 60px;

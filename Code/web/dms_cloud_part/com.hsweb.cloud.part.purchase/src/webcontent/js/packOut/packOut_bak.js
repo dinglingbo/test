@@ -518,7 +518,7 @@ function onAdvancedSearchOk()
     }
     for(var key in searchData){
     	if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){    		
-    		searchData[key]=searchData[key].replace(/\s+/g, "");
+    		searchData[key]=searchData[key].replace(/(^\s*)|(\s*$)/g, "");
     	}
     }
     advancedSearchFormData = advancedSearchForm.getData();

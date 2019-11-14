@@ -214,15 +214,15 @@ function msearch() {
         return;
     }
     if(qCon == 0){
-        params.code = qVal.replace(/\s+/g, "");;
+        params.code = qVal.replace(/(^\s*)|(\s*$)/g, "");
     }else if(qCon == 1){
-        params.name = qVal.replace(/\s+/g, "");;
+        params.name = qVal.replace(/\s+/g, "");
     }else if(qCon == 2){
-        params.rcode = qVal.replace(/\s+/g, "");;
+        params.rcode = qVal.replace(/\s+/g, "");
     }else if(qCon == 3){
-        params.namePy = qVal.replace(/\s+/g, "");;
+        params.namePy = qVal.replace(/\s+/g, "");
     }else{
-        params.code = qVal.replace(/\s+/g, "");;
+        params.code = qVal.replace(/\s+/g, "");
     }
 	doMSearch(params);
 }
@@ -454,15 +454,15 @@ function ssearch() {
         return;
     }
     if(qCon == 0){
-        params.code = qVal.replace(/\s+/g, "");;
+        params.code = qVal.replace(/(^\s*)|(\s*$)/g, "");
     }else if(qCon == 1){
-        params.name = qVal.replace(/\s+/g, "");;
+        params.name = qVal.replace(/\s+/g, "");
     }else if(qCon == 2){
-        params.rcode = qVal.replace(/\s+/g, "");;
+        params.rcode = qVal.replace(/\s+/g, "");
     }else if(qCon == 3){
-        params.namePy = qVal.replace(/\s+/g, "");;
+        params.namePy = qVal.replace(/\s+/g, "");
     }else{
-        params.code = qVal.replace(/\s+/g, "");;
+        params.code = qVal.replace(/\s+/g, "");
     }
 	doSSearch(params);
 }

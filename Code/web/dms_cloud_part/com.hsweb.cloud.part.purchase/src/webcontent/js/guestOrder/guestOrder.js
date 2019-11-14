@@ -913,7 +913,7 @@ function onAdvancedSearchOk()
         var tmpList = searchData.partCodeList.split("\n");
         for(i=0;i<tmpList.length;i++)
         {
-            tmpList[i] = "'"+tmpList[i].replace(/\s+/g, "")+"'";
+            tmpList[i] = "'"+tmpList[i].replace(/(^\s*)|(\s*$)/g, "")+"'";
         }
         searchData.partCodeList = tmpList.join(",");
     }
@@ -921,7 +921,7 @@ function onAdvancedSearchOk()
   //去除空格
     for(var key in searchData){
     	if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){    		
-    		searchData[key]=searchData[key].replace(/\s+/g, "");
+    		searchData[key]=searchData[key].replace(/(^\s*)|(\s*$)/g, "");
     	}
     }
     advancedSearchFormData = advancedSearchForm.getData();
@@ -1584,7 +1584,7 @@ function onCellEditEnter(e){
         }
         else if(column.field == "showPartCode"){
         	var partCode = record.showPartCode||"";
-            partCode = partCode.replace(/\s+/g, "");
+            partCode = partCode.replace(/(^\s*)|(\s*$)/g, "");
 			if(!partCode){
 				showMsg("请输入编码!","W");
 				return;
@@ -1813,7 +1813,7 @@ function getPartPrice(params){
     return price;
 }
 function addInsertRow(value, row) {    
-	value=value.replace(/\s+/g, "");
+	value=value.replace(/(^\s*)|(\s*$)/g, "");
     var guestId = nui.get("guestId").getValue();
     if(!guestId) {
         showMsg("请先选择客户再添加配件!","W");
@@ -1869,7 +1869,7 @@ function addInsertRow(value, row) {
 //给修改的配件用
 function addInsertRow2(value,row) {    
 
-    var params = {partCode:value.replace(/\s+/g, "")};
+    var params = {partCode:value.replace(/(^\s*)|(\s*$)/g, "")};
 	var part = getPartInfo2(params);
 
 	if(part){

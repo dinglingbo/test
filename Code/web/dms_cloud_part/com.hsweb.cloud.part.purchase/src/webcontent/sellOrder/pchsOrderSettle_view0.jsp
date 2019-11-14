@@ -9,7 +9,7 @@
 -->
 <head>
 <title>订单受理</title>
-<script src="<%=webPath + contextPath%>/purchase/js/sellOrder/pchsOrderSettle.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/sellOrder/pchsOrderSettle.js?v=1.0.2"></script>
 <style type="text/css">
 .body{
   white-space: nowrap;

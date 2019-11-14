@@ -216,7 +216,7 @@ function reloadData()
 }
 function checkConditions(){
     var data = queryForm.getData();
-    var partCode = (data.partCode||"").replace(/\s+/g, "");
+    var partCode = (data.partCode||"").replace(/(^\s*)|(\s*$)/g, "");
     var partName = (data.partName||"").replace(/\s+/g, "");
     var applyCarModel = (data.applyCarModel||"").replace(/\s+/g, "");
     var namePy = (data.namePy||"").replace(/\s+/g, "");

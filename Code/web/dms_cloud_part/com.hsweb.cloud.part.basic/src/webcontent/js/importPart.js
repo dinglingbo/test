@@ -129,10 +129,10 @@ function sure() {
 			newRow.commonCode = data[i].通用编码||"";
 			newRow.remark = data[i].备注||"";
 
-			newRow.code = newRow.code.replace(/\s+/g, "");
+			newRow.code = newRow.code.replace(/(^\s*)|(\s*$)/g, "");
 			newRow.name = newRow.name.replace(/\s+/g, "");
-			newRow.oemCode = newRow.oemCode.replace(/\s+/g, "");
-			newRow.commonCode = newRow.commonCode.replace(/\s+/g, "");
+			newRow.oemCode = newRow.oemCode.replace(/(^\s*)|(\s*$)/g, "");
+			newRow.commonCode = newRow.commonCode.replace(/(^\s*)|(\s*$)/g, "");
 
 			for ( var key in requiredField) {
 				if (!newRow[key] || $.trim(newRow[key]).length == 0) {

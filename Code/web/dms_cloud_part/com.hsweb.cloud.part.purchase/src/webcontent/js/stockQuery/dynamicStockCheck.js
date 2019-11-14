@@ -61,7 +61,7 @@ $(document).ready(function(v)
 function getSearchParam(){
     var params = {};
    
-	params.partCode = comPartCode.getValue().replace(/\s+/g, "");
+	params.partCode = comPartCode.getValue().replace(/(^\s*)|(\s*$)/g, "");
 	params.partNameAndPY = comPartNameAndPY.getValue().replace(/\s+/g, "");
 	params.storeId = nui.get("storeId").getValue();
 	

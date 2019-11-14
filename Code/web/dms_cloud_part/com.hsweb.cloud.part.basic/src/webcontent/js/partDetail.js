@@ -211,7 +211,7 @@ function onOk()
         data.carTypeIdT = partName.cartypet||"";
     }
   //  data.abcType = "";
-    data.code =data.code.toUpperCase();
+    data.code =data.code.toUpperCase().replace(/(^\s*)|(\s*$)/g, "");
     
     data.fullName = data.name;
     if(data.spec)
@@ -391,7 +391,7 @@ function setData(data)
     {
         var value = applyCarModel.getText();
         nui.get("applyCarModel").setValue(value);
-        var partCode= nui.get('code').getValue().replace(/\s+/g, "");
+        var partCode= nui.get('code').getValue().replace(/(^\s*)|(\s*$)/g, "");
         var firstCode=partCode.charCodeAt(0);
         if(value=='奔驰'){
         	//判断首字母是否为英文

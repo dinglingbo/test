@@ -109,7 +109,7 @@ function getSearchParam(){
         params.rtnableQty = 1;
     }
     params.serviceId = comServiceId.getValue().replace(/\s+/g, "");
-	params.partCode = comPartCode.getValue().replace(/\s+/g, "");
+	params.partCode = comPartCode.getValue().replace(/(^\s*)|(\s*$)/g, "");
 	params.partNameAndPY = comPartNameAndPY.getValue().replace(/\s+/g, "");
 	params.guestId = comSearchGuestId.getValue();
 	params.endDate = searchEndDate.getFormValue();
@@ -257,7 +257,7 @@ function onAdvancedSearchOk()
         var tmpList = searchData.partCodeList.split("\n");
         for(i=0;i<tmpList.length;i++)
         {
-            tmpList[i] = "'"+tmpList[i].replace(/\s+/g, "")+"'";
+            tmpList[i] = "'"+tmpList[i].replace(/(^\s*)|(\s*$)/g, "")+"'";
         }
         searchData.partCodeList = tmpList.join(",");
     }
@@ -268,7 +268,7 @@ function onAdvancedSearchOk()
   //去除空格
     for(var key in searchData){
     	if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){    		
-    		searchData[key]=searchData[key].replace(/\s+/g, "");
+    		searchData[key]=searchData[key].replace(/(^\s*)|(\s*$)/g, "");
     	}
     }
     advancedSearchWin.hide();

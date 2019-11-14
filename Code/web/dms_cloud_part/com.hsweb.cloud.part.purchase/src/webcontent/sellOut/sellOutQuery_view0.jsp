@@ -141,6 +141,7 @@
                     <div allowSort="true" datatype="float" field="sellQty" summaryType="sum" width="60" headerAlign="center" header="销售数量"></div>
                     <div allowSort="true" datatype="float" field="sellPrice" width="60" headerAlign="center" header="销售单价"></div>
                     <div allowSort="true" datatype="float" field="sellAmt" summaryType="sum" width="60" headerAlign="center" header="销售金额"></div>
+                    <div allowSort="true" datatype="float" field="detailReturnAmt" summaryType="sum" width="60" headerAlign="center" header="返点金额"></div>
                     <div allowSort="true" datatype="float" field="rtnableQty" summaryType="sum" width="60" headerAlign="center" header="可退货数量"></div>
                     <div allowSort="true" field="detailRemark" width="60" headerAlign="center" header="备注"></div>
                 </div>
@@ -159,6 +160,14 @@
                     <div field="maoLiRate" width="60" headerAlign="center" header="毛利率"></div>
                 </div>
             </div>
+            <div header="人进价利润信息" headerAlign="center">
+                <div property="columns">
+                    <div field="expLossPrice" width="60" headerAlign="center" header="损益"></div>
+                    <div field="expMaoLi" width="60" summaryType="sum" headerAlign="center" header="毛利"></div>
+                    <div field="expCostRate" width="60" headerAlign="center" header="成本率"></div>
+                    <div field="expMaoLiRate" width="60" headerAlign="center" header="毛利率"></div>
+                </div>
+            </div>
             <div header="含税信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" type="checkboxcolumn" field="taxSign" width="40" headerAlign="center" header="是否含税" trueValue="1" falseValue="0"></div>
@@ -173,8 +182,15 @@
                     <div field="noTaxAmt" width="80" headerAlign="center" summaryType="sum" header="不含税金额"></div>
                 </div>
             </div>
+            <div header="人进价信息" headerAlign="center">
+                <div property="columns">
+                    <div field="expEnterPrice" width="80" headerAlign="center" header="人进单价"></div>
+                    <div field="expEnterAmt" width="80" headerAlign="center" summaryType="sum" header="人进金额"></div>
+                </div>
+            </div>
             <div header="其他" headerAlign="center">
                 <div property="columns">
+                    <div field="returnAmt" width="80" headerAlign="center" summaryType="sum" header="返点金额"></div>
                 	<div allowSort="true" field="manualCode" width="170" headerAlign="center" header="订单号" allowSort="true" dataType="string"></div>
                     <div field="auditor" width="60" headerAlign="center" header="审核人" allowSort="true" dataType="string"></div>
                     <div allowSort="true"width="120" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"  allowSort="true" dataType="date"></div>

@@ -452,7 +452,7 @@
 		function addEmp(){
 			var row = moreOrgGrid.getSelected();
 			if(row){
-				if(row.userId == 0){
+				if(row.isDimission == 0){
 					nui.get("employeName").setValue(row.name);
 					nui.get("employePhone").setValue(row.tel);
 					nui.get("empname").setText(row.name);

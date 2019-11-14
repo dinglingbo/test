@@ -322,6 +322,7 @@
                     <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;"></td>
                     <td height="28" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">配件名称</td>
                     <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">数量</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">单位</td>
                     <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">单价</td>
                     <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">金额</td>
                     <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">优惠率</td>
@@ -329,6 +330,7 @@
                 </tr>
                 <tr>
                 	<td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
                     <td ><hr style="border:0.5px solid #000"></td>
                     <td ><hr style="border:0.5px solid #000"></td>
                     <td ><hr style="border:0.5px solid #000"></td>
@@ -807,6 +809,14 @@
 					    			"<td align='center'>[amt]</td>"+ 
 					    			"<td align='center'>[rate]</td>"+
 					    			"<td align='center'>[subtotal]</td>";
+	                var tdsPart = '<td align="center">[id]</td>' +
+					    			"<td>[prdtName]</td>"+
+					    			"<td align='center'>[qty]</td>"+
+					    			"<td align='center'>[unit]</td>"+
+					    			"<td align='center'>[unitPrice]</td>"+ 
+					    			"<td align='center'>[amt]</td>"+ 
+					    			"<td align='center'>[rate]</td>"+
+					    			"<td align='center'>[subtotal]</td>";
     				var partShow = null;
     				var num = 1;
     				for(var i = 0 , l = data.length ; i < l ; i++){
@@ -816,6 +826,7 @@
     					var rate = data[i].rate;
     					rate = rate + "%";
     					var tr = $("<tr></tr>");
+    					var trPart = $("<tr></tr>");
     					var itemTime = null;
     					var itemName = null;
     					if(params.type){
@@ -849,7 +860,21 @@
     					          partAmt = partAmt + data[i].amt;
     					          partSubtotal = partSubtotal + data[i].subtotal;
     					       }
-				    			tr.append(
+				    			if(data[i].billItemId != 0){
+				    			   var unit = data[i].unit || "--";
+				    			   trPart.append(
+				    				tdsPart.replace("[id]",index)
+				    				.replace("[prdtName]",itemName)
+				    				.replace("[qty]",itemTime)
+				    				.replace("[unit]",unit)
+				    				.replace("[unitPrice]",data[i].unitPrice)
+				    				.replace("[amt]",data[i].amt)
+				    				.replace("[rate]",rate)
+				    				.replace("[subtotal]",data[i].subtotal));
+				    			   tBody3.append(trPart);
+				    			   partShow = 1;
+				    			}else{
+				    			   tr.append(
 				    				tds.replace("[id]",index)
 				    				.replace("[prdtName]",itemName)
 				    				.replace("[qty]",itemTime)
@@ -857,10 +882,6 @@
 				    				.replace("[amt]",data[i].amt)
 				    				.replace("[rate]",rate)
 				    				.replace("[subtotal]",data[i].subtotal));
-				    			if(data[i].billItemId != 0){
-				    			   tBody3.append(tr);
-				    			   partShow = 1;
-				    			}else{
 				    			   tBody.append(tr);
 				    			}
 				    			

@@ -934,6 +934,9 @@ function onLeftGridDrawCell(e)
 			}else {
 				e.cellHtml = "";
 			}
+			if(e.record.billStatusId == 2) {
+            	e.cellHtml = '<a style="color:red;">' + storeHash[e.value].name + '</a>';
+            }
 			break;
     }
 }
@@ -2185,11 +2188,6 @@ function checkStockOutQty(){
     }
     return msg;
 }
-
-function auditToOut(){
-	
-}
-
 
 //直接出库，生成isDifferOrder =1数据
 var auditToOutUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjPchsOrderRtnTp.biz.ext";

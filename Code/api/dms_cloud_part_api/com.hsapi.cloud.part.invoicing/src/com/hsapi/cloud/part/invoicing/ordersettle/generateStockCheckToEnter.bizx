@@ -415,6 +415,10 @@
       <process:to type="query">enterTemp/originGuestId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">enterTemp/expenseAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">temp/exhibitQty</process:from>
       <process:to type="query">orderQty</process:to>
     </process:copy>
@@ -701,6 +705,8 @@
         <process:inputVariable id="17" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">enterMain/orgid</process:inputVariable>
         <process:inputVariable id="18" name="operator" type="query" value="String" valueType="Primitive" pattern="reference">enterMain/auditor</process:inputVariable>
         <process:inputVariable id="19" name="operatorId" type="query" value="String" valueType="Primitive" pattern="reference">enterMain/auditorId</process:inputVariable>
+        <process:inputVariable id="20" name="expPrice" type="query" value="Float" valueType="Primitive" pattern="reference">f/expEnterPrice</process:inputVariable>
+        <process:inputVariable id="21" name="expAmt" type="query" value="Float" valueType="Primitive" pattern="reference">f/expEnterAmt</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -760,6 +766,10 @@
         <process:inputVariable id="19" name="guestId" type="query" value="Int" valueType="Primitive" pattern="reference">enterMain/guestId</process:inputVariable>
         <process:inputVariable id="20" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">enterMain/orgid</process:inputVariable>
         <process:inputVariable id="21" name="operator" type="query" value="String" valueType="Primitive" pattern="reference">enterMain/auditor</process:inputVariable>
+        <process:inputVariable id="22" name="balaExpPrice" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaExpPrice</process:inputVariable>
+        <process:inputVariable id="23" name="balaExpAmt" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaExpAmt</process:inputVariable>
+        <process:inputVariable id="24" name="storeBalaExpPrice" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaExpPrice</process:inputVariable>
+        <process:inputVariable id="25" name="storeBalaExpAmt" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaExpAmt</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -1342,6 +1352,14 @@
       <process:to type="query">enterTemp/taxDiff</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">taxPrice</process:from>
+      <process:to type="query">enterTemp/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxAmt</process:from>
+      <process:to type="query">enterTemp/expEnterAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="expression" pattern="reference">mTaxAmt+taxAmt</process:from>
       <process:to type="query">mTaxAmt</process:to>
     </process:copy>
@@ -1357,6 +1375,14 @@
       <process:from type="expression" pattern="reference">mOrderQty+orderQty</process:from>
       <process:to type="query">mOrderQty</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxPrice</process:from>
+      <process:to type="query">enterTemp/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxAmt</process:from>
+      <process:to type="query">enterTemp/expEnterAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign18label" name="label" nodeType="label">
     <location x="501" y="116"/>
@@ -1367,6 +1393,7 @@
     <sourceConnections xsi:type="process:tLink" id="link58" name="link58" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign19</sourceNode>
       <targetNode>invokePojo2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link44</targetConnections>
     <location x="509" y="216"/>
@@ -1409,6 +1436,14 @@
       <process:to type="query">enterTemp/taxDiff</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">taxPrice</process:from>
+      <process:to type="query">enterTemp/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxAmt</process:from>
+      <process:to type="query">enterTemp/expEnterAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="expression" pattern="reference">mTaxAmt+taxAmt</process:from>
       <process:to type="query">mTaxAmt</process:to>
     </process:copy>
@@ -1423,6 +1458,14 @@
     <process:copy>
       <process:from type="expression" pattern="reference">mOrderQty+orderQty</process:from>
       <process:to type="query">mOrderQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxPrice</process:from>
+      <process:to type="query">enterTemp/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxAmt</process:from>
+      <process:to type="query">enterTemp/expEnterAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign19label" name="label" nodeType="label">

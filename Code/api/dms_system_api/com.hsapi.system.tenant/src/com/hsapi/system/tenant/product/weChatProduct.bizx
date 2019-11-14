@@ -234,7 +234,7 @@
         <process:inputVariable id="4" name="creatorId" type="query" value="Int" valueType="Primitive" pattern="reference">m:userObject/userId</process:inputVariable>
         <process:inputVariable id="5" name="creator" type="query" value="String" valueType="Primitive" pattern="reference">m:userObject/userName</process:inputVariable>
         <process:inputVariable id="6" name="callParams" type="expression" value="String" valueType="Primitive" pattern="reference">&quot;&quot;</process:inputVariable>
-        <process:inputVariable id="7" name="callStatus" type="expression" value="Int" valueType="Primitive" pattern="reference">&quot;&quot;</process:inputVariable>
+        <process:inputVariable id="7" name="callStatus" type="literal" value="Int" valueType="Primitive" pattern="reference">1</process:inputVariable>
         <process:inputVariable id="8" name="callResult" type="expression" value="Int" valueType="Primitive" pattern="reference">&quot;&quot;</process:inputVariable>
         <process:inputVariable id="9" name="costPrice" type="query" value="Float" valueType="Primitive" pattern="reference">comTenantOrder/productAmt</process:inputVariable>
         <process:inputVariable id="10" name="periodValidity" type="query" value="Int" valueType="Primitive" pattern="reference">comTenantOrder/periodValidity</process:inputVariable>
@@ -308,7 +308,7 @@
       <targetNode>invokePojo1</targetNode>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
-    <location x="465" y="150"/>
+    <location x="436" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
     <process:copy>
@@ -333,7 +333,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="463" y="186"/>
+    <location x="434" y="186"/>
     <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>

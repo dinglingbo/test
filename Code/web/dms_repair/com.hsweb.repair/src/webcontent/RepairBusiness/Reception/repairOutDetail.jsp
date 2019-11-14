@@ -2,6 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@include file="/common/commonRepair.jsp"%>
 
+
 <html>
 <!-- 
   - Author(s): Administrator
@@ -14,7 +15,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<script src="<%=request.getContextPath()%>/coframe/imjs/message.js"></script>
 	<script src="<%=request.getContextPath()%>/coframe/imjs/messagebody.js"></script>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.3.11"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.3.18"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -126,6 +127,7 @@
                  <a class="nui-button"  id="" onclick="auditPart" plain="true" style="align:right"><span class="fa fa-check fa-lg"></span><span id="audit">&nbsp;配件审核</span></a>
                 <label style="font-family:Verdana;">显示归库：</label>
                 <input class="nui-checkbox" id="showOut" trueValue="1" falseValue="0" onvaluechanged="onValueChangShowOut"/>
+                <input property="editor" selectOnFocus="true"  name="unit" id="unit" class="nui-combobox" textField="name" valueField="name" visible="false" allowInput="true"   showNullItem="false" />
             </td>     
             <td style="text-align:left;">
             <!-- 
@@ -311,6 +313,11 @@
                 <div field="qty" headerAlign="center" allowSort="false" visible="true" width="40" datatype="float" align="center" name="itemItemTime" summaryType="sum">工时/数量
                     <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedComQty" selectOnFocus="true"/>
                 </div>
+                <div field="unit" headerAlign="center" allowSort="false" visible="true"  header="单位">
+                	                     <input  property="editor" enabled="true" dataField="unitList" 
+                             class="nui-combobox" valueField="name" textField="name" data="unitList"
+                             url=""  emptyText=""  vtype="required" /> 
+                </div> 
                 <div field="pickQty" headerAlign="center" allowSort="false" visible="true" width="60px" align="center" header="已领数量"></div> 
                 <div field="restQty" headerAlign="center" allowSort="false" visible="true" width="60px" align="center" header="未领数量"></div>    
                 <div field="unitPrice" name="itemUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">单价

@@ -679,14 +679,14 @@
 	
 	<!--bill_type_id  0综合，1检查，2洗美，3销售，4理赔，5退货    
 		总收入：  综合开单收入 + 理赔开单收入 + 洗美开单收入 + 销售开单收入 + 保险开单收入
-		总毛利： and a.bill_type_id in (0, 2, 3, 4)
+		总毛利： and a.bill_type_id in (0, 2, 3, 4,6)
     -->
 	<select id="queryRepairIncome" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT sum(ifnull(b.netin_amt,0)) as netinAmt, sum(ifnull(b.gross_profit,0)) as grossProfit
 		from rps_maintain a
 		inner join rps_settlement b
 		on a.id = b.service_id
-		where a.is_settle = 1 and a.is_disabled=0 and a.bill_type_id in (0,2,4,6)
+		where a.is_settle = 1 and a.is_disabled=0 and a.bill_type_id in (0,2,3,4,6)
 		      
 		<dynamic>
 			<isNotEmpty prepend="and" property="orgid">

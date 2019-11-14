@@ -553,6 +553,10 @@
       <process:from type="query" pattern="reference">entableTemp/noTaxPrice</process:from>
       <process:to type="query">noTaxPrice</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">entableTemp/expEnterPrice</process:from>
+      <process:to type="query">expEnterPrice</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
     <location x="749" y="262"/>
@@ -732,6 +736,14 @@
     <process:copy>
       <process:from type="expression" pattern="reference">dsumNoTaxAmt+entableQty*noTaxPrice</process:from>
       <process:to type="query">dsumNoTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">expEnterPrice</process:from>
+      <process:to type="query">enterTemp/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">entableQty*expEnterPrice</process:from>
+      <process:to type="query">enterTemp/expEnterAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">qty-entableQty</process:from>
@@ -916,6 +928,14 @@
     <process:copy>
       <process:from type="expression" pattern="reference">dsumNoTaxAmt+qty*noTaxPrice</process:from>
       <process:to type="query">dsumNoTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">expEnterPrice</process:from>
+      <process:to type="query">enterTemp/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">qty*expEnterPrice</process:from>
+      <process:to type="query">enterTemp/expEnterAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
@@ -1519,6 +1539,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="applyDetailId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="outdetailId" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="applyQty" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="expEnterPrice" primitiveType="Float"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjAllotApplyMain" name="main"/>

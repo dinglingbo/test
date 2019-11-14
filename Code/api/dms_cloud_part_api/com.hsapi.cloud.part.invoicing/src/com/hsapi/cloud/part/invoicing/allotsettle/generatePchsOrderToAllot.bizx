@@ -336,11 +336,12 @@
     <location x="330" y="186"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.pchsOrderToPchs</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="orderMain" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" valueType="DataObject" pattern="reference">orderMain</process:inputVariable>
         <process:inputVariable id="1" name="orderDetail" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk[]" valueType="DataObject" pattern="reference">orderDetail</process:inputVariable>
+        <process:inputVariable id="2" name="expAmt" type="query" value="Float" valueType="Primitive" pattern="reference">expAmt</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="pchsMain" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" valueType="DataObject">pchsMain</process:outputVariable>
@@ -471,6 +472,7 @@
     <process:input description="采购订单主表数据" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" name="orderMain"/>
     <process:input description="采购订单明细表数据" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk" name="orderDetail"/>
     <process:input description="" isArray="false" name="enterSign" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="expAmt" primitiveType="Float"/>
   </process:inputs>
   <process:outputs>
     <process:output description="调拨出库主表数据" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjAllotAcceptMain" name="acceptMain"/>

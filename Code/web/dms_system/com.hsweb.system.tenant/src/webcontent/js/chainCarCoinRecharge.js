@@ -179,6 +179,7 @@ function validationPost(){
 				if(tradeState=="SUCCESS"){
 					//去掉定时器的方法 
 					window.clearInterval(t1);
+					//更新线上订单
 					var weChatBCoinUrl = apiPath + sysApi + "/com.hsapi.system.tenant.carCoin.weChatBCoin.biz.ext";
 					//充值成功后
 					nui.ajax({

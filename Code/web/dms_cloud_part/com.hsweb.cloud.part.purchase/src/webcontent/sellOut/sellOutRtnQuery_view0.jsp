@@ -138,6 +138,7 @@
                     <div allowSort="true" datatype="float" field="enterQty" summaryType="sum" width="60" headerAlign="center" header="退货数量"></div>
                     <div allowSort="true" datatype="float" field="rtnPrice" width="60" headerAlign="center" header="退货单价"></div>
                     <div allowSort="true" datatype="float" field="rtnAmt" summaryType="sum" width="60" headerAlign="center" header="退货金额"></div>
+                    <div allowSort="true" datatype="float" field="detailReturnAmt" summaryType="sum" width="60" headerAlign="center" header="返点金额"></div>
                     <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可出库数量"></div>
                     <div allowSort="true" field="detailRemark" width="60" headerAlign="center" header="备注"></div>
                 </div>
@@ -158,6 +159,7 @@
             </div>
             <div header="其他" headerAlign="center">
                 <div property="columns">
+                    <div field="returnAmt" width="80" headerAlign="center" summaryType="sum" header="返点金额"></div>
                 	<div allowSort="true" field="manualCode" width="150" headerAlign="center" header="订单号" allowSort="true" dataType="string"></div>
                     <div field="auditor" width="60" headerAlign="center" header="审核人" allowSort="true" dataType="string"></div>
                     <div allowSort="true" field="auditDate" width="120"headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" dataType="date"></div>

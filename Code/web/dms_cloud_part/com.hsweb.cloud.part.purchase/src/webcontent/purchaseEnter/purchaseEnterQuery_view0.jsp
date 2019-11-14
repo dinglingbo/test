@@ -154,6 +154,12 @@
                     <div field="noTaxAmt" width="80" headerAlign="center" summaryType="sum" header="不含税金额"></div>
                 </div>
             </div>
+            <div header="人进价信息" headerAlign="center">
+                <div property="columns">
+                    <div field="expEnterPrice" width="80" headerAlign="center" header="人进单价"></div>
+                    <div field="expEnterAmt" width="80" headerAlign="center" summaryType="sum" header="人进金额"></div>
+                </div>
+            </div>
             <div header="其他" headerAlign="center">
                 <div property="columns">
                 	<div allowSort="true" field="manualCode" width="170" headerAlign="center" header="订单号" allowSort="true" dataType="string"></div>
@@ -192,6 +198,8 @@
         	 <td colspan="1" align="center" >入库数量</td>
         	 <td colspan="1" align="center" >入库单价</td>
         	 <td colspan="1" align="center" >入库金额</td>
+        	 <td colspan="1" align="center" >入进单价</td>
+        	 <td colspan="1" align="center" >入进金额</td>
         	 <td colspan="1" align="center" >剩余库存</td>
         	 <td colspan="1" align="center" >备注</td>
         	 <td colspan="1" align="center" >建议售价</td>

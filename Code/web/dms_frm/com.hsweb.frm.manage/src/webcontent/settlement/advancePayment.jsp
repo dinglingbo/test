@@ -176,7 +176,7 @@
                          <div type="expandcolumn" width="20" >#</div> 
                         <div allowSort="true" field="guestName" name="guestName" width="150" headerAlign="center" header="结算单位"></div>
                         <div allowSort="true" field="carNo" name="carNo" width="80" headerAlign="center" header="车牌号"></div>
-                        <div allowSort="true" summaryType="count" field="billServiceId" name="billServiceId" width="130" summaryType="count" headerAlign="center" header="业务单号"></div>
+                        <div allowSort="true" summaryType="count" field="billServiceId" name="billServiceId" width="140" summaryType="count" headerAlign="center" header="业务单号"></div>
                         <div allowSort="true" field="billTypeId" name="billTypeId" width="100" headerAlign="center" header="收支项目"></div>
                         <div allowSort="true" field="remark" name="remark" width="145" headerAlign="center" header="业务备注"></div>
                         <div allowSort="true" field="rpAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" summaryType="sum" dataType="float"  header="应付金额"></div>

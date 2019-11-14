@@ -168,6 +168,10 @@
       <process:from type="query" pattern="reference">mainId</process:from>
       <process:to type="query">enterTmpl/mainId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">main/expenseAmt</process:from>
+      <process:to type="query">enterMain/expenseAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="278" y="186"/>
@@ -249,6 +253,7 @@
     <location x="420" y="151"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="detail" iterableElement="temp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -414,6 +419,18 @@
     <process:copy>
       <process:from type="query" pattern="reference">main/guestId</process:from>
       <process:to type="query">enterTemp/originGuestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/expEnterPrice</process:from>
+      <process:to type="query">enterTemp/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/expEnterAmt</process:from>
+      <process:to type="query">enterTemp/expEnterAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/expenseAmt</process:from>
+      <process:to type="query">enterTemp/expenseAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -800,6 +817,8 @@
         <process:inputVariable id="17" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">enterMain/orgid</process:inputVariable>
         <process:inputVariable id="18" name="operator" type="query" value="String" valueType="Primitive" pattern="reference">enterMain/auditor</process:inputVariable>
         <process:inputVariable id="19" name="operatorId" type="query" value="String" valueType="Primitive" pattern="reference">enterMain/auditorId</process:inputVariable>
+        <process:inputVariable id="20" name="expPrice" type="query" value="Float" valueType="Primitive" pattern="reference">f/expEnterPrice</process:inputVariable>
+        <process:inputVariable id="21" name="expAmt" type="query" value="Float" valueType="Primitive" pattern="reference">f/expEnterAmt</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -859,6 +878,10 @@
         <process:inputVariable id="19" name="guestId" type="query" value="Int" valueType="Primitive" pattern="reference">enterMain/guestId</process:inputVariable>
         <process:inputVariable id="20" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">enterMain/orgid</process:inputVariable>
         <process:inputVariable id="21" name="operator" type="query" value="String" valueType="Primitive" pattern="reference">enterMain/auditor</process:inputVariable>
+        <process:inputVariable id="22" name="balaExpPrice" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/expPrice</process:inputVariable>
+        <process:inputVariable id="23" name="balaExpAmt" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/expAmt</process:inputVariable>
+        <process:inputVariable id="24" name="storeBalaExpPrice" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/expPrice</process:inputVariable>
+        <process:inputVariable id="25" name="storeBalaExpAmt" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/expAmt</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -1664,8 +1687,8 @@
         <process:inputVariable id="1" name="type" type="literal" value="Int" valueType="Primitive" pattern="reference">2</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

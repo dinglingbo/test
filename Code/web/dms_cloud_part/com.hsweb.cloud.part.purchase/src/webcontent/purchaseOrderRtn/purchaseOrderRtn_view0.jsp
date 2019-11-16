@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购退货</title>
-<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.0.33"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.0.35"></script>
 <style type="text/css">
 .title {
 	width: 70px;
@@ -174,7 +174,8 @@ body .mini-grid-row-selected{
                                           <label>退货员：</label>
                                       </td>
                                       <td colspan="1">
-                                          <input class="nui-combobox" 
+                                      	  <input class="nui-textbox" id="orderMan" name="orderMan" width="100%">
+                                          <!-- <input class="nui-combobox" 
 		                                      id="orderMan" 
 		                                      name="orderMan" 
 		                                      textField="empName"
@@ -184,7 +185,7 @@ body .mini-grid-row-selected{
 				                              required="true"
 				                              allowInput="true"
 				                              valueFromSelect="false"
-		                                      width="100%">
+		                                      width="100%"> -->
                                       </td>
                                       <td class="title required">
                                           <label>退货日期：</label>

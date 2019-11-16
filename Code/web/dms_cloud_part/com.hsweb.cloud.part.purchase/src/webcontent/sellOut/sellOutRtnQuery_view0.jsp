@@ -114,7 +114,7 @@
                 <div property="columns">
                     <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="销退单号" allowSort="true" dataType="string"></div>
                     <div field="guestFullName" width="150" headerAlign="center" header="供应商" allowSort="true" dataType="string"></div>
-                    <div field="orderMan" width="60" headerAlign="center" header="采购员" allowSort="true" dataType="string"></div>
+                    <div field="orderMan" width="60" headerAlign="center" header="退货员" allowSort="true" dataType="string"></div>
                     <div allowSort="true"width="120" field="enterDate" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" dataType="date"></div>
                     <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div> 
                     <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>-->
@@ -123,7 +123,7 @@
                     <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库" allowSort="true" dataType="string"></div>
                 </div>
             </div>
-            <div header="采购信息" headerAlign="center">
+            <div header="退货信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="comPartCode" width="100" headerAlign="center" header="配件编码" allowSort="true" dataType="string"></div>
                     <div allowSort="true" field="comPartName" width="150"headerAlign="center" header="配件名称" allowSort="true" dataType="string"></div>

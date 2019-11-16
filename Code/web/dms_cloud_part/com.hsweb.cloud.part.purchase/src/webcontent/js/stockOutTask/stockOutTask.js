@@ -1120,6 +1120,7 @@ function doSearch(params)
     //目前没有区域销售订单，采退受理  params.enterTypeId = '050101';
 //    params.orderTypeId = 2;
 	params.isDiffOrder = 0;
+	params.approveSign = 1;
 	//是业务员且业务员禁止可见
 	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
 		params.creator= currUserName;

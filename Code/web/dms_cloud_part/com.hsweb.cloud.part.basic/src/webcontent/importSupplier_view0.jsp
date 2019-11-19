@@ -12,7 +12,7 @@
 <title>供应商导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-<script src="<%=webPath + contextPath%>/basic/js/importSupplier.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/basic/js/importSupplier.js?v=1.0.2"></script>
 <style type="text/css">
 /*.a-upload {
     padding: 4px 10px;

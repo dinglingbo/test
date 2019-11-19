@@ -121,6 +121,7 @@ function sure() {
 			newRow.provinceId = data[i].省份||"";
 			newRow.cityId = data[i].城市||"";
 			newRow.isSupplier = data[i].是否供应商 == "是" ? 1 : 0;
+			newRow.addr = data[i].地址||"";
 
 			for ( var key in requiredField) {
 				if (!newRow[key] || $.trim(newRow[key]).length == 0) {

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售订单审核</title>
-<script src="<%=webPath + contextPath%>/settlement/js/sellOrderApprove.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/sellOrderApprove.js?v=1.0.2"></script>
 <style type="text/css">
 .title {
   width: 60px;

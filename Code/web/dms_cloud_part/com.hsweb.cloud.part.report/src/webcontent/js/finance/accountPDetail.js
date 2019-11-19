@@ -140,6 +140,7 @@ function getSearchParam(){
     params.guestId = advanceGuestIdEl.getValue();
     params.isMain = isMainEl.getValue();
     params.rpDc = -1;
+    params.isAdvance = 0;
 
     return params;
 }

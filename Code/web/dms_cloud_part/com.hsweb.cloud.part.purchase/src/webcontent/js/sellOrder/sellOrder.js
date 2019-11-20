@@ -2401,6 +2401,7 @@ function checkStockOutQty(){
 var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjSellOrder.biz.ext";
 function audit()
 {
+	var settleTypeId = "";
     var data = basicInfoForm.getData();
     for ( var key in requiredField) {
         if (!data[key] || $.trim(data[key]).length == 0) {
@@ -2468,6 +2469,7 @@ function audit()
 
 	}
     data = getMainData();
+    settleTypeId = data.settleTypeId || "";
 
     var sellOrderDetailAdd = rightGrid.getChanges("added");
     var sellOrderDetailUpdate = rightGrid.getChanges("modified");
@@ -2506,7 +2508,12 @@ function audit()
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                showMsg("提交成功!","S");
+            	if(settleTypeId == "020501") {
+            		nui.alert("提交成功，请等待财务审核！");
+            	}else {
+            		showMsg("提交成功!","S");
+            	}
+                
                 //onLeftGridRowDblClick({});
                 var pjSellOrderMainList = data.pjSellOrderMainList;
                 if(pjSellOrderMainList && pjSellOrderMainList.length>0) {

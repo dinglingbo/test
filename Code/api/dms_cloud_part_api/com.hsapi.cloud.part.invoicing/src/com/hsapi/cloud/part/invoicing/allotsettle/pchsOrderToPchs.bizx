@@ -385,6 +385,14 @@
       <process:to type="query">detailTemp/taxDiff</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">taxPrice</process:from>
+      <process:to type="query">detailTemp/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">taxPrice*orderQty</process:from>
+      <process:to type="query">detailTemp/expEnterAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="expression" pattern="reference">mTaxAmt+taxPrice*orderQty</process:from>
       <process:to type="query">mTaxAmt</process:to>
     </process:copy>

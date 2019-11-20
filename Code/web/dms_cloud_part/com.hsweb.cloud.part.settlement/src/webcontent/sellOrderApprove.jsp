@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售订单审核</title>
-<script src="<%=webPath + contextPath%>/settlement/js/sellOrderApprove.js?v=1.0.2"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/sellOrderApprove.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -66,6 +66,9 @@
                   
                   <span class="separator"></span>
                   <a class="nui-button" iconCls="" plain="true" onclick="addStatement()"><span class="fa fa-check fa-lg"></span>&nbsp;审核通过</a>
+                  
+                  <span class="separator"></span>
+                  <a class="nui-button" iconCls="" plain="true" onclick="updStatement()"><span class="fa fa-check fa-lg"></span>&nbsp;修改为月结</a>
                   <!-- <a class="nui-button" iconCls="" plain="true" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;取消 </a> -->
 
                   <input class="nui-combobox" name="billTypeId" id="billTypeId"

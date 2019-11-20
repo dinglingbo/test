@@ -695,6 +695,14 @@
       <process:to type="query">tmp/taxDiff</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">taxPrice</process:from>
+      <process:to type="query">tmp/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxAmt</process:from>
+      <process:to type="query">tmp/expEnterAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="expression" pattern="reference">mTaxAmt+taxAmt</process:from>
       <process:to type="query">mTaxAmt</process:to>
     </process:copy>
@@ -768,6 +776,14 @@
     <process:copy>
       <process:from type="expression" pattern="reference">taxAmt-noTaxAmt</process:from>
       <process:to type="query">tmp/taxDiff</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxPrice</process:from>
+      <process:to type="query">tmp/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxAmt</process:from>
+      <process:to type="query">tmp/expEnterAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">mTaxAmt+taxAmt</process:from>
@@ -845,6 +861,14 @@
       <process:to type="query">tmp/taxDiff</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">taxPrice</process:from>
+      <process:to type="query">tmp/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxAmt</process:from>
+      <process:to type="query">tmp/expEnterAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="expression" pattern="reference">mTaxAmt+taxAmt</process:from>
       <process:to type="query">mTaxAmt</process:to>
     </process:copy>
@@ -918,6 +942,14 @@
     <process:copy>
       <process:from type="expression" pattern="reference">taxAmt-noTaxAmt</process:from>
       <process:to type="query">tmp/taxDiff</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxPrice</process:from>
+      <process:to type="query">tmp/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxAmt</process:from>
+      <process:to type="query">tmp/expEnterAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">mTaxAmt+taxAmt</process:from>

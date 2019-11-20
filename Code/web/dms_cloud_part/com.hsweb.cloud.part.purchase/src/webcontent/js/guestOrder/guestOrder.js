@@ -345,12 +345,20 @@ function loadRightGridData(mainId)
 function onLeftGridDrawCell(e)
 {
     var record = e.record;
+    if(e.record.status == 3 && e.field) {
+		if(e.value == null) {
+			e.value = "";
+		}
+    	e.cellHtml = '<a style="color:red;">' + e.value + '</a>';
+    }
     switch (e.field){
-
         case "status":
             if(StatusHash && StatusHash[e.value])
             {
                 e.cellHtml = StatusHash[e.value];
+            }
+            if(e.record.status == 3) {
+            	e.cellHtml = '<a style="color:red;">' + StatusHash[e.value] + '</a>';
             }
             break;
        

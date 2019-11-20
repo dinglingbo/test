@@ -357,6 +357,41 @@ function addStatement()
         CloseWindow("ok");
     }*/
 }
+function updStatement()
+{
+    var rows = notStatementGrid.getSelecteds();
+    
+    if(!rows){
+        return;
+    }else if(rows && rows.length<=0){
+        return;
+    }
+    
+    var partInfoUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.updateSellOrderSettleTypeId.biz.ext";
+    nui.ajax({
+        url : partInfoUrl,
+        type : "post",
+        async: false,
+        data : {
+        	list: rows,
+            token: token
+        },
+        success : function(text) {
+            var errCode = text.errCode || "";
+            if(errCode == "S"){
+            	showMsg("修改成功","S");
+                searchBill();
+            }else{
+                showMsg("修改失败","W");
+            }
+
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
+    });
+
+}
 function CloseWindow(action)
 {
     if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);

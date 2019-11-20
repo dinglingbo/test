@@ -186,7 +186,7 @@
 					 EXISTS (
 							select 1 from fis_rp_account_detail d 
 								inner join fis_rp_bill e on d.bill_rp_id = e.id 
-								where a.id = d.main_id and e.car_no = #carNo#)
+								where a.id = d.main_id and e.car_no = #carNo# and e.orgid = #orgid#)
 
                 </isNotEmpty>    
 				<isNotEmpty prepend="and" property="billServiceId">

@@ -79,7 +79,7 @@ pageEncoding="UTF-8" session="false" %>
 
 			<div size="65%" showCollapseButton="false">
 				<div class="nui-fit">
-					<div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" ondrawcell="onDrawCell" showPager="true" dataField="list"
+					<div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" ondrawcell="onDrawCell" showPager="true" dataField="list"
 					 url="" sortMode="client" pageSize="500" sizeList="[500,1000,2000]" showSummaryRow="true" multiSelect="true" onrowclick="queryFrm()">
 						<div property="columns">
 							<div type="indexcolumn" headeralign="center" width="40">序号</div>

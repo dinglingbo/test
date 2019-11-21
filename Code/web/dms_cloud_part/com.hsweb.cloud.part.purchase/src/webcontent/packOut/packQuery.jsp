@@ -9,7 +9,7 @@
 -->
 <head>
 <title>物流订单查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/packOut/packQuery.js?v=1.0.29"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/packOut/packQuery.js?v=1.0.30"></script>
    
 <style type="text/css">
 .title {

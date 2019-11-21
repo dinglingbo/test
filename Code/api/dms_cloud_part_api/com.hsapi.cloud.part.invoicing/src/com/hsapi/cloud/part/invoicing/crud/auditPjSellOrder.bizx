@@ -158,6 +158,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
+    <targetConnections>link40</targetConnections>
     <location x="691" y="287"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo4label</nodeLabel>
@@ -254,6 +255,16 @@
       <sourceNode>assign1</sourceNode>
       <targetNode>invokePojo4</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link35" name="月结" displayName="连接线" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>assign9</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">auditMain/settleTypeId</process:leftOperand>
+          <process:rightOperand type="literal">020502</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link4</targetConnections>
     <location x="629" y="287"/>
     <size height="28" width="28"/>
@@ -285,6 +296,10 @@
     <process:copy>
       <process:from type="expression" pattern="reference">isInner==0?1:0</process:from>
       <process:to type="query">auditMain/isRtnSign</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">auditMain/approveSign</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -898,6 +913,37 @@
     <location x="1269" y="261"/>
     <figSize height="20" width="40"/>
     <node>assign3</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign9" name="赋值9" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link40" name="link40" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign9</sourceNode>
+      <targetNode>invokePojo4</targetNode>
+    </sourceConnections>
+    <targetConnections>link35</targetConnections>
+    <location x="758" y="210"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign9label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">auditMain/approveSign</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">auditMain/approveDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">auditMain/approver</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userId</process:from>
+      <process:to type="query">auditMain/approverId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
+    <location x="752" y="246"/>
+    <figSize height="20" width="40"/>
+    <node>assign9</node>
   </nodes>
   <topRuler>
     <guides position="1041" horizontal="true"/>

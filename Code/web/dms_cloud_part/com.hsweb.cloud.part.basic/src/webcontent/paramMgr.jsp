@@ -10,7 +10,7 @@
 -->
 <head>
 <title>参数设置</title>
-    <script src="<%=webPath + contextPath%>/basic/js/paramMgr.js?v=1.1.0"></script>
+    <script src="<%=webPath + contextPath%>/basic/js/paramMgr.js?v=1.1.1"></script>
     
     <style type="text/css">
 

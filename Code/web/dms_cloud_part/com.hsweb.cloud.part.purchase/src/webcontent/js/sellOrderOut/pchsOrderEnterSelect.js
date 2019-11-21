@@ -174,7 +174,7 @@ $(document).ready(function(v)
 function getSearchParam(){
     var params = {};
 
-    params.code = searchServiceId.getValue().replace(/\s+/g, "");
+    params.code = searchServiceId.getValue().replace(/(^\s*)|(\s*$)/g, "");
     params.serviceMan = searchServiceMan.getValue().replace(/\s+/g, "");
     params.guestId = comSearchGuestId.getValue();
     

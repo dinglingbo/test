@@ -55,9 +55,10 @@
 <!--            <div type="checkcolumn" field="check" width="20" header="选择"></div> -->
                 <div field="productName" name="productName" width="80"  headeralign="center" summaryType="count" allowsort="true" >产品名称</div>
                 <div name="callStatus" field="callStatus"  width="60"  headeralign="center"  allowsort="true" >购买/调用结果  </div>         
-                <div field="costPrice" name="costPrice" width="60"  headeralign="center" summaryType="sum" allowsort="true" >支付金额</div>              
-                <div field="costCoin" name="costCoin" width="60" summaryType="sum" headeralign="center" allowsort="true" dataType="float">链车币数量</div>
+                <div field="costPrice" name="costPrice" width="60"  headeralign="center"  allowsort="true" >支付金额</div>              
+                <div field="costCoin" name="costCoin" width="60"  headeralign="center" allowsort="true" dataType="float">链车币数量</div>
                 <div field="balaCoin" name="balaCoin" width="60"  headeralign="center" allowsort="true" dataType="float">链车币剩余数量</div>
+                <div field="recorder" name="recorder" width="120" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" allowsort="true" >操作人</div>
                 <div field="recordDate" name="recordDate" width="120" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" allowsort="true" >时间</div>
             </div>
         </div>

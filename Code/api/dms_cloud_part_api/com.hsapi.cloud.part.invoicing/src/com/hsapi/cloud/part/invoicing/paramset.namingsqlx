@@ -405,6 +405,7 @@
 				 a.common_id as commonId,
 			     IFNULL(b.stock_qty,0) as stockQty,
 			     b.cost_price as costPrice,
+			     b.exp_enter_price as expEnterPrice,
                  IFNULL(b.outable_qty,0)as outableQty,
                  IFNULL(b.on_road_qty,0) as onRoadQty,
 			     IFNULL(b.order_qty,0) as orderQty
@@ -490,7 +491,7 @@
                 (a.id = #partId#)
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="partCode">  
-                (a.code like '%$partCode$' or a.oem_code like '%$partCode$')
+                (a.code like '$partCode$%' or a.oem_code like '$partCode$%')
             </isNotEmpty>
             <!-- 全匹配 -->
             <isNotEmpty prepend="and" property="partCodeAll">  

@@ -291,7 +291,7 @@ function getSearchParams()
     var qCon = queryConditionsEl.getValue();
     var qVal = conditoinsValueEl.getValue();
     if(qCon == 0){
-        params.code = qVal.replace(/\s+/g, "");
+        params.code = qVal.replace(/(^\s*)|(\s*$)/g, "");
     }else if(qCon == 1){
         params.name = qVal.replace(/\s+/g, "");
     }else if(qCon == 2){
@@ -299,7 +299,7 @@ function getSearchParams()
     }else if(qCon == 3){
         params.namePy = qVal.replace(/\s+/g, "");
     }else{
-        params.code = qVal.replace(/\s+/g, "");
+        params.code = qVal.replace(/(^\s*)|(\s*$)/g, "");
     }
 
     var partCodeList = partCodeListEl.getValue();
@@ -311,7 +311,7 @@ function getSearchParams()
         	if(tmpList[i].length==10 && /^\d+$/.test(tmpList[i])){
         		tmpList[i] = "A"+tmpList[i];
         	}
-            var partCode =  (tmpList[i]).replace(/\s+/g, "");
+            var partCode =  (tmpList[i]).replace(/(^\s*)|(\s*$)/g, "");
             if(!partHash[partCode]){
                 partCodeArr.push(partCode);
                 partHash[partCode] = partCode;

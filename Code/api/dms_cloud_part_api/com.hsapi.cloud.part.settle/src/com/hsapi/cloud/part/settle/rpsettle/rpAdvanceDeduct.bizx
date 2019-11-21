@@ -53,13 +53,14 @@
     <location x="657" y="255"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
-    <process:flow index="4" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.rpAccountSettleNT</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="account" type="query" value="com.hsapi.cloud.part.data.pts.FiRpAccount" valueType="DataObject" pattern="reference">account</process:inputVariable>
         <process:inputVariable id="1" name="accountDetailList" type="query" value="com.hsapi.cloud.part.data.pts.FiRpAccountDetail[]" valueType="DataObject" pattern="reference">accountDetailList</process:inputVariable>
         <process:inputVariable id="2" name="accountTypeList" type="query" value="com.hsapi.cloud.part.data.pts.FiRpAccountDType[]" valueType="DataObject" pattern="reference">accountTypeList</process:inputVariable>
         <process:inputVariable id="3" name="stateMentList" type="query" value="java.util.HashMap[]" valueType="Java" pattern="reference">stateMentList</process:inputVariable>
+        <process:inputVariable id="4" name="isDeductAdvance" type="literal" value="Int" valueType="Primitive" pattern="reference">1</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

@@ -263,7 +263,7 @@ function sure() {
 			//partid  partcode  partname  enterqty  enterunit  enterprice  enteramt
 			var taxSignStr = data[i].是否含税;
 			var taxSign = taxSignStr == "是" ? 1 : 0;
-			var partBrandId = (data[i].品牌||"").replace(/\s+/g, "");
+			var partBrandId = (data[i].品牌||"").replace(/(^\s*)|(\s*$)/g, "");
 
 			if(brandHash && brandHash[partBrandId]){
 				partBrandId = brandHash[partBrandId].id;
@@ -274,7 +274,8 @@ function sure() {
 
 			var newRow = {
 				partBrandId: partBrandId,
-				partCode : (data[i].配件编码||"").replace(/\s+/g, ""),
+				//partCode : (data[i].配件编码||"").replace(/\s+/g, ""),
+				partCode : (data[i].配件编码||""),
 				storeId : nstoreId||"",
 				enterQty : (data[i].数量||"").replace(/\s+/g, ""),
 				enterPrice : (data[i].单价||"").replace(/\s+/g, ""),

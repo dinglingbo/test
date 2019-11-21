@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售出库查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/sellOut/sellOutQuery.js?v=2.0.10"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/sellOut/sellOutQuery.js?v=2.0.11"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -160,14 +160,6 @@
                     <div field="maoLiRate" width="60" headerAlign="center" header="毛利率"></div>
                 </div>
             </div>
-            <div header="人进价利润信息" headerAlign="center">
-                <div property="columns">
-                    <div field="expLossPrice" width="60" headerAlign="center" header="损益"></div>
-                    <div field="expMaoLi" width="60" summaryType="sum" headerAlign="center" header="毛利"></div>
-                    <div field="expCostRate" width="60" headerAlign="center" header="成本率"></div>
-                    <div field="expMaoLiRate" width="60" headerAlign="center" header="毛利率"></div>
-                </div>
-            </div>
             <div header="含税信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" type="checkboxcolumn" field="taxSign" width="40" headerAlign="center" header="是否含税" trueValue="1" falseValue="0"></div>
@@ -186,6 +178,30 @@
                 <div property="columns">
                     <div field="expEnterPrice" width="80" headerAlign="center" header="人进单价"></div>
                     <div field="expEnterAmt" width="80" headerAlign="center" summaryType="sum" header="人进金额"></div>
+                </div>
+            </div>
+            <div header="人进价利润信息" headerAlign="center">
+                <div property="columns">
+                    <div field="expLossPrice" width="60" headerAlign="center" header="损益"></div>
+                    <div field="expMaoLi" width="60" summaryType="sum" headerAlign="center" header="毛利"></div>
+                    <div field="expCostRate" width="60" headerAlign="center" header="成本率"></div>
+                    <div field="expMaoLiRate" width="60" headerAlign="center" header="毛利率"></div>
+                </div>
+            </div>
+            <div header="不含税利润信息" headerAlign="center">
+                <div property="columns">
+                    <div field="noTaxLossPrice" width="60" headerAlign="center" header="损益"></div>
+                    <div field="noTaxMaoLi" width="60" summaryType="sum" headerAlign="center" header="毛利"></div>
+                    <div field="noTaxCostRate" width="60" headerAlign="center" header="成本率"></div>
+                    <div field="noTaxMaoLiRate" width="60" headerAlign="center" header="毛利率"></div>
+                </div>
+            </div>
+            <div header="含税利润信息" headerAlign="center">
+                <div property="columns">
+                    <div field="taxLossPrice" width="60" headerAlign="center" header="损益"></div>
+                    <div field="taxMaoLi" width="60" summaryType="sum" headerAlign="center" header="毛利"></div>
+                    <div field="taxCostRate" width="60" headerAlign="center" header="成本率"></div>
+                    <div field="taxMaoLiRate" width="60" headerAlign="center" header="毛利率"></div>
                 </div>
             </div>
             <div header="其他" headerAlign="center">

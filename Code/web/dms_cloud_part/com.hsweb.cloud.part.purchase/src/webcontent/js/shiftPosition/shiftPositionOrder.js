@@ -36,7 +36,7 @@ var partShow=0;
 var quickAddShow=0;
 var advancedSearchShow=0;
 var partIn=null;
-
+var storeHash ={};
 var AuditSignHash = {
   "0":"草稿",
   "1":"已审核"
@@ -72,6 +72,9 @@ $(document).ready(function(v)
         }else{
             isNeedSet = true;
         }
+        storehouse.forEach(function(v) {
+            storeHash[v.id] = v;
+        });
 
         storeIdEl.setData(storehouse);
         receiveStoreIdEl.setData(storehouse);
@@ -600,7 +603,7 @@ function onAdvancedSearchOk()
         var tmpList = searchData.partCodeList.split("\n");
         for(i=0;i<tmpList.length;i++)
         {
-            tmpList[i] = "'"+tmpList[i].replace(/\s+/g, "")+"'";
+            tmpList[i] = "'"+tmpList[i].replace(/(^\s*)|(\s*$)/g, "")+"'";
         }
         searchData.partCodeList = tmpList.join(",");
     }
@@ -1350,4 +1353,87 @@ function setInitExportData(main, detail){
 
     var serviceId = main.serviceId?main.serviceId:"";
     method5('tableExcel',"移仓单"+serviceId,'tableExportA');
+}
+
+function onPrint(){
+	var from = basicInfoForm.getData();
+	var params={
+			id : from.id,
+		auditSign:from.auditSign,
+		guestId :from.guestId,
+		currRepairSettorderPrintShow : currRepairSettorderPrintShow,
+		currOrgName : currOrgName,
+		currUserName : currUserName,
+		currCompAddress : currCompAddress,
+		currCompTel : currCompTel,
+		currCompLogoPath : currCompLogoPath,
+		currCloudSellOrderPrintContent :currCloudSellOrderPrintContent,
+		storeHash : storeHash,
+		brandHash: brandHash
+	};
+	var detailParams={
+			mainId :from.id,
+	};
+	var openUrl = webPath + contextPath+"/purchase/shiftPosition/shiftPositionInPrint.jsp";
+
+    nui.open({
+       url: openUrl,
+       width: "100%",
+       title : "移仓入库单打印",
+       height: "80%",
+       showMaxButton: false,
+       allowResize: false,
+       showHeader: true,
+       onload: function() {
+           var iframe = this.getIFrameEl();
+           iframe.contentWindow.SetData(params,detailParams);
+       },
+   });
+    if(checkNew() > 0){
+    	return;
+    }
+    rightGrid.setData([]);
+	add();
+}
+
+
+function onPrint1(){
+	
+	var from = basicInfoForm.getData();
+	var params={
+			id : from.id,
+		auditSign:from.auditSign,
+		guestId :from.guestId,
+		currRepairSettorderPrintShow : currRepairSettorderPrintShow,
+		currOrgName : currOrgName,
+		currUserName : currUserName,
+		currCompAddress : currCompAddress,
+		currCompTel : currCompTel,
+		currCompLogoPath : currCompLogoPath,
+		currCloudSellOrderPrintContent :currCloudSellOrderPrintContent,
+		storeHash : storeHash,
+		brandHash: brandHash
+	};
+	var detailParams={
+			mainId :from.id,
+	};
+	var openUrl = webPath + contextPath+"/purchase/shiftPosition/shiftPositionOutPrint.jsp";
+
+    nui.open({
+       url: openUrl,
+       width: "100%",
+       title : "移仓出库单打印",
+       height: "80%",
+       showMaxButton: false,
+       allowResize: false,
+       showHeader: true,
+       onload: function() {
+           var iframe = this.getIFrameEl();
+           iframe.contentWindow.SetData(params,detailParams);
+       },
+   });
+    if(checkNew() > 0){
+    	return;
+    }
+
 }

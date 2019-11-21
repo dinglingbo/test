@@ -14,7 +14,7 @@
 <head>
 <title>配件拆分明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-      <script src="<%=webPath + contextPath%>/purchase/js/processPart/partSplitReport.js?v=1.0.1"></script>
+      <script src="<%=webPath + contextPath%>/purchase/js/processPart/partSplitReport.js?v=1.0.2"></script>
 </head>
 <body>
 <div class="nui-fit">

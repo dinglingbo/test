@@ -190,7 +190,7 @@ function getBillSearchParam(){
     params.eAuditDate = addDate(eBillAuditDateEl.getValue(), 1);
     params.serviceId = billServiceIdEl.getValue().replace(/\s+/g, "");
     params.guestId = billSearchGuestIdEl.getValue();
-    params.partCode = nui.get('partCode').getValue().replace(/\s+/g, "");
+    params.partCode = nui.get('partCode').getValue().replace(/(^\s*)|(\s*$)/g, "");
     return params;
 }
 function searchBill()

@@ -643,7 +643,7 @@ function onAdvancedSearchOk() {
     searchData.auditSign = gsparams.auditSign;
   //去除空格
 	for(var key in searchData){
-		searchData[key]=searchData[key].replace(/\s+/g, "");
+		searchData[key]=searchData[key].replace(/(^\s*)|(\s*$)/g, "");
     }
     advancedSearchFormData = advancedSearchForm.getData();
     advancedSearchWin.hide();
@@ -2022,7 +2022,7 @@ function onAdvancedAddOk(){
                 return;
             }
 
-            partObj.partCode = partTmpList[0].replace(/\s+/g, "");
+            partObj.partCode = partTmpList[0].replace(/(^\s*)|(\s*$)/g, "");
             partObj.orderQty = partTmpList[1];
             partObj.orderPrice = partTmpList[2];
             partList.push(partObj);
@@ -2226,6 +2226,7 @@ function addDetail(rows)
 {
     //var iframe = this.getIFrameEl();
     //var data = iframe.contentWindow.getData();
+	var mainId = 0;
     for(var i=0; i<rows.length; i++){
         var row = rows[i];
         var newRow = {
@@ -2250,8 +2251,35 @@ function addDetail(rows)
 
 
         rightGrid.addRow(newRow);
+        mainId = row.mainId;
     }
+    
+    if(mainId) {
+    	getPchsMain(mainId);
+    }
+}
 
+var pchsMainUrl=baseUrl +"com.hsapi.cloud.part.invoicing.svr.getPjSellOrderMainChkById.biz.ext";
+function getPchsMain(mainId){
+  var params={};
+  nui.ajax({
+        url : pchsMainUrl,
+        type : "post",
+        async:false,
+        data : JSON.stringify({
+        	mainId : mainId,
+            token : token
+        }),
+        success : function(text) {
+            var main = text.main || {};
+            if(main && main.orderMan) {
+            	nui.get("orderMan").setValue(main.orderMan);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
+    });
 }
 
 function getCangHash(data,detailData){

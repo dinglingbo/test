@@ -75,6 +75,8 @@
 		            <div field="maoLiRate" width="60" headerAlign="center" header="毛利率"></div>
 		            <div allowSort="true" type="checkboxcolumn" field="taxSign" width="40" headerAlign="center" header="是否含税" trueValue="1" falseValue="0"></div>
 		            <div allowSort="true" field="taxRate" width="40" headerAlign="center" header="税点"></div>
+		            <div field="expEnterPrice" width="60" headerAlign="center" header="人进单价"></div>
+		            <div field="expEnterAmt" width="60" headerAlign="center" summaryType="sum" header="人进金额"></div>
 		            <div field="taxPrice" width="60" headerAlign="center" header="含税单价"></div>
 		            <div field="taxAmt" width="60" headerAlign="center" summaryType="sum" header="含税金额"></div>
 		            <div field="noTaxPrice" width="60" headerAlign="center" header="不含税单价"></div>

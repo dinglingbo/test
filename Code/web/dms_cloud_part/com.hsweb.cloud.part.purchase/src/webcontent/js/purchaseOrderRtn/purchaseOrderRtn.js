@@ -837,7 +837,7 @@ function onAdvancedSearchOk()
         var tmpList = searchData.partCodeList.split("\n");
         for(i=0;i<tmpList.length;i++)
         {
-            tmpList[i] = "'"+tmpList[i].replace(/\s+/g, "")+"'";
+            tmpList[i] = "'"+tmpList[i].replace(/(^\s*)|(\s*$)/g, "")+"'";
         }
         searchData.partCodeList = tmpList.join(",");
     }
@@ -845,7 +845,7 @@ function onAdvancedSearchOk()
   //去除空格
     for(var key in searchData){
     	if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){    		
-    		searchData[key]=searchData[key].replace(/\s+/g, "");
+    		searchData[key]=searchData[key].replace(/(^\s*)|(\s*$)/g, "");
     	}
     }
     advancedSearchFormData = advancedSearchForm.getData();
@@ -2237,6 +2237,7 @@ function addDetail(rows)
 {
     //var iframe = this.getIFrameEl();
     //var data = iframe.contentWindow.getData();
+	var mainId = 0;
     for(var i=0; i<rows.length; i++){
         var row = rows[i];
         var newRow = {
@@ -2270,9 +2271,38 @@ function addDetail(rows)
 
 
         rightGrid.addRow(newRow);
+        mainId = row.mainId;
+    }
+    
+    if(mainId) {
+    	getPchsMain(mainId);
     }
 
 }
+
+var pchsMainUrl=baseUrl +"com.hsapi.cloud.part.invoicing.svr.getPjPchsOrderMainChkById.biz.ext";
+function getPchsMain(mainId){
+  var params={};
+  nui.ajax({
+        url : pchsMainUrl,
+        type : "post",
+        async:false,
+        data : JSON.stringify({
+        	mainId : mainId,
+            token : token
+        }),
+        success : function(text) {
+            var main = text.main || {};
+            if(main && main.orderMan) {
+            	nui.get("orderMan").setValue(main.orderMan);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+
 var supplier = null;
 function selectSupplier(elId) {
     supplier = null;

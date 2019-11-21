@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购退货受理</title>
-<script src="<%=webPath + contextPath%>/purchase/js/sellOrderRtn/pchsRtnOrderSettle.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/sellOrderRtn/pchsRtnOrderSettle.js?v=1.0.2"></script>
 <style type="text/css">
 .body{
   white-space: nowrap;

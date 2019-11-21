@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售出库查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/sellOrderOut/sellOrdreOutQuery.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/sellOrderOut/sellOrdreOutQuery.js?v=1.0.1"></script>
 <style type="text/css">
 .title {
 	width: 90px;

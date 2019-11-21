@@ -9,7 +9,7 @@
 -->
 <head>
 <title>盘盈入库查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/stockCheckIn/stockCheckInQuery.js?v=2.0.0"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/stockCheckIn/stockCheckInQuery.js?v=2.0.1"></script>
 <style type="text/css">
 .title {
 	width: 90px;

@@ -20,6 +20,7 @@ var billTypeIdHash = {};
 var settTypeIdHash = {};
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
+var carBrandIdHash = {};
 var billStatusHash = {
     "0":"未审",
     "1":"已审",
@@ -48,6 +49,15 @@ $(document).ready(function(v)
         {
             partBrandIdHash[v.id] = v;
         });
+        
+        initCarBrand("applyCarBrandId",function(){
+            var carList = nui.get('applyCarBrandId').getData();
+            carList.forEach(function(v)
+            {
+                carBrandIdHash[v.id] = v;
+            });
+        });
+        
     });
     getStorehouse(function(data)
     {
@@ -134,11 +144,12 @@ function getSearchParam(){
     }
     
     params.partNameAndPY = nui.get("comPartNameAndPY").getValue().replace(/\s+/g, "");
-	params.partCode = (nui.get("comPartCode").getValue()).replace(/\s+/g, "");
+	params.partCode = (nui.get("comPartCode").getValue()).replace(/(^\s*)|(\s*$)/g, "");
 	params.partBrandId = nui.get("partBrandId").getValue();
 	params.storeId = nui.get("storeId").getValue();
 	params.storeShelf = nui.get("storeShelf").getValue().replace(/\s+/g, "");
 	params.partId = nui.get("partId").getValue();
+	params.applyCarBrandId = nui.get("applyCarBrandId").getValue();
     return params;
 }
 function onSearch(){
@@ -215,7 +226,7 @@ function onAdvancedSearchOk()
         var tmpList = searchData.partCodeList.split("\n");
         for(i=0;i<tmpList.length;i++)
         {
-            tmpList[i] = "'"+tmpList[i].replace(/\s+/g, "")+"'";
+            tmpList[i] = "'"+tmpList[i].replace(/(^\s*)|(\s*$)/g, "")+"'";
         }
         searchData.partCodeList = tmpList.join(",");
     }
@@ -225,7 +236,7 @@ function onAdvancedSearchOk()
     }*/
     for(var key in searchData){
     	if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){    		
-    		searchData[key]=searchData[key].replace(/\s+/g, "");
+    		searchData[key]=searchData[key].replace(/(^\s*)|(\s*$)/g, "");
     	}
     }
     advancedSearchWin.hide();
@@ -245,6 +256,15 @@ function onDrawCell(e)
 	        	}else{
 	        		e.cellHtml =partBrandIdHash[e.value].name||"";
 	        	}
+	        }
+	        else{
+	            e.cellHtml = "";
+	        }
+	        break;
+	    case "applyCarbrandId":
+	        if(carBrandIdHash[e.value])
+	        {
+	        	e.cellHtml =carBrandIdHash[e.value].nameCn||"";
 	        }
 	        else{
 	            e.cellHtml = "";
@@ -277,12 +297,16 @@ function setInitExportData(detail){
     var tds = '<td  colspan="1" align="left">[comPartCode]</td>' +
         "<td  colspan='1' align='left'>[comPartName]</td>" +
         "<td  colspan='1' align='left'>[comOemCode]</td>" +
+        "<td  colspan='1' align='left'>[applyCarbrandId]</td>" +
         "<td  colspan='1' align='left'>[partBrandId]</td>" +
         "<td  colspan='1' align='left'>[applyCarModel]</td>" +
         "<td  colspan='1' align='left'>[unit]</td>" +
         "<td  colspan='1' align='left'>[storeId]</td>" +
         "<td  colspan='1' align='left'>[shelf]</td>" +
         "<td  colspan='1' align='left'>[stockQty]</td>" +
+        "<td  colspan='1' align='left'>[expEnterPrice]</td>" +
+        "<td  colspan='1' align='left'>[expEnterAmt]</td>" +
+        "<td  colspan='1' align='left'>[costPrice]</td>" +
         "<td  colspan='1' align='left'>[stockAmt]</td>" +
         "<td  colspan='1' align='left'>[orderQty]</td>" +
         "<td  colspan='1' align='left'>[outableQty]</td>" +
@@ -300,8 +324,12 @@ function setInitExportData(detail){
         var row = detail[i];
         if(row.partId){
             var tr = $("<tr></tr>");
+            var carName = "";
             var brandName = "";
             var storeName = "";
+            if(detail[i].applyCarbrandId && carBrandIdHash[detail[i].applyCarbrandId]){
+            	carName = carBrandIdHash[detail[i].applyCarbrandId].nameCn;
+            }
             if(detail[i].partBrandId && partBrandIdHash[detail[i].partBrandId]){
                 brandName = partBrandIdHash[detail[i].partBrandId].name;
             }
@@ -319,12 +347,16 @@ function setInitExportData(detail){
             tr.append(tds.replace("[comPartCode]", detail[i].comPartCode?detail[i].comPartCode:"")
                          .replace("[comPartName]", detail[i].comPartName?detail[i].comPartName:"")
                          .replace("[comOemCode]", detail[i].comOemCode?detail[i].comOemCode:"")
+                         .replace("[applyCarbrandId]", carName)
                          .replace("[partBrandId]", brandName)
                          .replace("[applyCarModel]", detail[i].applyCarModel?detail[i].applyCarModel:"")
                          .replace("[unit]", detail[i].unit?detail[i].unit:"")
                          .replace("[storeId]", storeName)
                          .replace("[shelf]", detail[i].shelf?detail[i].shelf:"")
                          .replace("[stockQty]", detail[i].stockQty?detail[i].stockQty:"")
+                         .replace("[expEnterPrice]", detail[i].expEnterPrice?detail[i].expEnterPrice:"")
+                         .replace("[expEnterAmt]", detail[i].expEnterAmt?detail[i].expEnterAmt:"")
+                         .replace("[costPrice]", detail[i].costPrice?detail[i].costPrice:"")
                          .replace("[stockAmt]", detail[i].stockAmt?detail[i].stockAmt:"")
                          .replace("[orderQty]", detail[i].orderQty?detail[i].orderQty:"")
                          .replace("[outableQty]", detail[i].outableQty?detail[i].outableQty:"")

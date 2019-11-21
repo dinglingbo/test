@@ -1397,6 +1397,9 @@
                 <isNotEmpty prepend="and" property="isDiffOrder"> 
                     (a.is_diff_order = #isDiffOrder#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="approveSign"> 
+                    (a.approve_sign = #approveSign#)
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="orderTypeId"> 
                     (a.order_type_id = #orderTypeId#)
                 </isNotEmpty>

@@ -177,7 +177,10 @@
 							select 1 from fis_rp_account_detail d 
 								inner join fis_rp_bill e on d.bill_rp_id = e.id 
 								where a.id = d.main_id and e.bill_service_id = #billServiceId#)
-	            </isNotEmpty>                        
+	            </isNotEmpty>                       
+			    <isNotEmpty prepend="and" property="isAdvance">  
+                    (c.is_advance = #isAdvance#)
+                </isNotEmpty>                       
 			    <isNotEmpty prepend="and" property="settAccountId">  
                     (c.sett_account_id = #settAccountId#)
                 </isNotEmpty>

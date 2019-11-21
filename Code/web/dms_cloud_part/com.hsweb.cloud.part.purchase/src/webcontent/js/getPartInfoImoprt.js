@@ -100,7 +100,7 @@ function sure() {
 		//alert(data.length);
 		for (var i = 0; i < data.length; i++) {
 			var newRow = {
-				partCode : (data[i].配件编码||"").replace(/\s+/g, ""),
+				partCode : (data[i].配件编码||"").replace(/(^\s*)|(\s*$)/g, ""),
 				orderQty : (data[i].数量||"").replace(/\s+/g, ""),
 				orderPrice : (data[i].单价||"").replace(/\s+/g, ""),
 				shelf : (data[i].仓位||"").replace(/\s+/g, ""),

@@ -242,7 +242,7 @@ function search()
 function getSearchParam()
 {
     var params = {};
-    params.code = nui.get("code").getValue().replace(/\s+/g, "");
+    params.code = nui.get("code").getValue().replace(/(^\s*)|(\s*$)/g, "");
     params.name = nui.get("name").getValue().replace(/\s+/g, "");
     params.mobile = nui.get("phone").getValue().replace(/\s+/g, "");
     params.contactorTel = params.mobile;

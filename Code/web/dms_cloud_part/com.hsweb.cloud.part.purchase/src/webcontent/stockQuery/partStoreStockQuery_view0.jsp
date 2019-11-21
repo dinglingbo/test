@@ -9,7 +9,7 @@
 -->
 <head>
 <title>库存查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/stockQuery/partStoreStockQuery.js?v=2.2.8"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/stockQuery/partStoreStockQuery.js?v=2.2.30"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -78,6 +78,8 @@
                            allowInput="true"
                            showNullItem="true"
                            nullItemText="请选择..."/>
+                <input id="applyCarBrandId" name="applyCarBrandId" class="nui-combobox width1" textField="nameCn" valueField="id" emptyText="请选择..."
+                            url="" allowInput="true" showNullItem="false" nullItemText="厂牌"  />
                 <input id="partId" width="80px" visible="false" emptyText="配件ID" class="nui-textbox"/>
                 <span class="separator"></span>
                 <label style="font-family:Verdana;">显示零库存：</label>
@@ -114,6 +116,7 @@
                     <div allowSort="true" field="comPartCode" width="120" headerAlign="center" header="配件编码" allowSort="true" dataType="string"></div>
                     <div allowSort="true" field="comPartName" width="150"headerAlign="center" header="配件名称" allowSort="true" dataType="string"></div>
                     <div allowSort="true" field="comOemCode" width="100" headerAlign="center" header="OE码" allowSort="true" dataType="string"></div>
+                    <div allowSort="true" field="applyCarbrandId" width="60" headerAlign="center" header="厂牌" allowSort="true" dataType="string"></div>
                     <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌" allowSort="true" dataType="string"></div>
                     <div allowSort="true" field="applyCarModel" width="120" headerAlign="center" header="品牌车型" allowSort="true" dataType="string"></div>
                     <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位" allowSort="true" dataType="string"></div>
@@ -124,7 +127,7 @@
             <div header="数量金额" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
-                    <div allowSort="true" datatype="float" field=expEnterPrice width="60" headerAlign="center" header="人进单价"></div>
+                    <div allowSort="true" datatype="float" field="expEnterPrice" width="60" headerAlign="center" header="人进单价"></div>
                     <div allowSort="true" datatype="float" field="expEnterAmt" summaryType="sum" width="60" headerAlign="center" header="人进金额"></div>
                     <div allowSort="true" datatype="float" field="costPrice" width="60" headerAlign="center" header="库存单价"></div>
                     <div allowSort="true" datatype="float" field="stockAmt" summaryType="sum" width="60" headerAlign="center" header="库存金额"></div>
@@ -251,12 +254,16 @@
             <td colspan="1" align="center">配件编码</td>
             <td colspan="1" align="center">配件名称</td>
             <td colspan="1" align="center">OE码</td>
+            <td colspan="1" align="center">厂牌</td>
             <td colspan="1" align="center">品牌</td>
             <td colspan="1" align="center">品牌车型</td>
             <td colspan="1" align="center">单位</td>
             <td colspan="1" align="center">仓库</td>
             <td colspan="1" align="center">仓位</td>
             <td colspan="1" align="center">库存数量</td>
+            <td colspan="1" align="center">人进单价</td>
+            <td colspan="1" align="center">人进金额</td>
+            <td colspan="1" align="center">库存单价</td>
             <td colspan="1" align="center">库存金额</td>
             <td colspan="1" align="center">开单数量</td>
             <td colspan="1" align="center">可售数量</td>

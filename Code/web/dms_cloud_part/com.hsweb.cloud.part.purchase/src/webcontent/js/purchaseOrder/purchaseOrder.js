@@ -1081,7 +1081,7 @@ function onAdvancedSearchOk() {
 	if (searchData.partCodeList) {
 		var tmpList = searchData.partCodeList.split("\n");
 		for (i = 0; i < tmpList.length; i++) {
-			tmpList[i] = "'" + tmpList[i].replace(/\s+/g, "") + "'";
+			tmpList[i] = "'" + tmpList[i].replace(/(^\s*)|(\s*$)/g, "") + "'";
 		}
 		searchData.partCodeList = tmpList.join(",");
 	}
@@ -1090,7 +1090,7 @@ function onAdvancedSearchOk() {
 	//去除空格
 	 for(var key in searchData){
 	    	if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){    		
-	    		searchData[key]=searchData[key].replace(/\s+/g, "");
+	    		searchData[key]=searchData[key].replace(/(^\s*)|(\s*$)/g, "");
 	    	}
 	    }
 	advancedSearchFormData = advancedSearchForm.getData();
@@ -1559,7 +1559,7 @@ function onCellEditEnter(e){
 			addNewKeyRow();
 		}else if(column.field == "comPartCode"){
 			var partCode = record.comPartCode||"";
-            partCode = partCode.replace(/\s+/g, "");
+            partCode = partCode.replace(/(^\s*)|(\s*$)/g, "");
             var guestId = nui.get("guestId").getValue();
             if(!guestId) {
                 showMsg("请选择供应商!","W");
@@ -1710,6 +1710,7 @@ var partInfoUrl = baseUrl + "com.hsapi.cloud.part.invoicing.paramcrud.queryBillP
 		//+ "com.hsapi.cloud.part.invoicing.paramcrud.queryPartInfoByParam.biz.ext";
 function getPartInfo(params){
 	var part = null;
+	var partCode = params.partCode;
 	var page = {size:100,length:100};
 	params.sortField = "b.stock_qty";
     params.sortOrder = "desc";
@@ -1766,11 +1767,12 @@ function getPartInfo(params){
 				// 	}
 				// });
 				showMsg("没有搜索到配件信息!","W");
-				var row = rightGrid.getSelected();
+				var row = rightGrid.getSelected()||{};
 				
 				nui.confirm("是否添加配件?", "友情提示", function(action) {
 					
 					if (action == "ok") {
+						row.comPartCode = partCode;
 						addOrEditPart(row);
 					}
 					else{
@@ -1974,7 +1976,7 @@ function addInsertRow(value,row) {
     rightGrid.beginEditCell(newRow, "comPartCode");*/
 
 
-    var params = {partCode:value.replace(/\s+/g, "")};
+    var params = {partCode:value.replace(/(^\s*)|(\s*$)/g, "")};
 	var part = getPartInfo(params);
 
 	if(part){
@@ -3016,7 +3018,7 @@ function onAdvancedAddOk(){
 				return;
 			}
 
-			partObj.partCode = partTmpList[0].replace(/\s+/g, "");
+			partObj.partCode = partTmpList[0].replace(/(^\s*)|(\s*$)/g, "");
 			partObj.orderQty = partTmpList[1];
 			partObj.orderPrice = partTmpList[2];
 			partList.push(partObj);

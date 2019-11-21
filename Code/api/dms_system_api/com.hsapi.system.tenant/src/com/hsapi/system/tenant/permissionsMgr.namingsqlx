@@ -468,9 +468,6 @@
 		  <isNotEmpty prepend="and" property="id">
                 a.id =  #id#
           </isNotEmpty>
- 		  <isNotEmpty prepend="and" property="orgid">
-                a.orgid =  #orgid#
-          </isNotEmpty>  
           <isNotEmpty prepend="and" property="type">
                 a.type =  #type#
           </isNotEmpty>         

@@ -50,7 +50,8 @@
             <div allowSort="true" field="shelf" width="80" headerAlign="center" header="仓位"></div>
             <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
             <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
-            <div allowSort="true" datatype="float" field="stockAmt" summaryType="sum" width="60" headerAlign="center" header="库存金额"></div>
+            <div allowSort="true" datatype="float" field="costPrice" summaryType="sum" width="60" headerAlign="center" header="库存单价"></div>
+            <div allowSort="true" datatype="float" field="expEnterPrice" summaryType="sum" width="60" headerAlign="center" header="人进单价"></div>
             <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div><!-- 
             <div allowSort="true" datatype="float" field="occupyQty" summaryType="sum" width="60" headerAlign="center" header="占用数量"></div> -->
             <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>

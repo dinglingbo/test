@@ -9,7 +9,7 @@
 -->
 <head>
 <title>移仓管理</title>
-<script src="<%= request.getContextPath() %>/purchase/js/shiftPosition/shiftPosition.js?v=2.0.1"></script>
+<script src="<%= request.getContextPath() %>/purchase/js/shiftPosition/shiftPosition.js?v=2.0.2"></script>
 <style type="text/css">
 .title {
 	width: 60px;

@@ -108,7 +108,7 @@ function search()
 function getSearchParam()
 {
     var params = {};
-    params.code = nui.get("code").getValue().replace(/\s+/g, "");
+    params.code = nui.get("code").getValue().replace(/(^\s*)|(\s*$)/g, "");
     params.name = nui.get("name").getValue().replace(/\s+/g, "");
     params.mobile = nui.get("phone").getValue().replace(/\s+/g, "");
     params.contactorTel = params.mobile;
@@ -150,7 +150,7 @@ function onAdvancedSearchOk()
   //去除空格
     for(var key in searchData){
     	if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){    		
-    		searchData[key]=searchData[key].replace(/\s+/g, "");
+    		searchData[key]=searchData[key].replace(/(^\s*)|(\s*$)/g, "");
     	}
     }
     doSearch(searchData);

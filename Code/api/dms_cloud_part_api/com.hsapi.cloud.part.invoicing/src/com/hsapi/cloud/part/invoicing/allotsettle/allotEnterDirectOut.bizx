@@ -40,6 +40,7 @@
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>invokePojo1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
     <location x="90" y="225"/>
@@ -511,7 +512,6 @@
     <location x="344" y="227"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
-    <process:condition/>
     <process:iterate iterable="enterDetail" iterableElement="enterTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -1218,8 +1218,8 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="2" name="sdInvocingB" type="query" value="com.hsapi.cloud.part.data.pts.PjStoreInvocing" valueType="DataObject"/>
-        <process:outputVariable id="3" name="dInvocingB" type="query" value="com.hsapi.cloud.part.data.pts.PjInvocing" valueType="DataObject"/>
+        <process:outputVariable id="2" name="sdInvocingB" type="query" value="com.hsapi.cloud.part.data.pts.PjStoreInvocing" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="3" name="dInvocingB" type="query" value="com.hsapi.cloud.part.data.pts.PjInvocing" valueType="DataObject"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1261,6 +1261,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">E</process:from>
       <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">生成流水失败</process:from>
+      <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">

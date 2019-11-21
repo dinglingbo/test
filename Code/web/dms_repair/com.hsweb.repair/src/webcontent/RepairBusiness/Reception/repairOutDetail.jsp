@@ -275,7 +275,7 @@
                            优惠率%
                      <input property="editor"  width="60%" vtype="float"  class="nui-textbox"  onvaluechanged="onPkgRateValuechanged" selectOnFocus="true"/>
                 </div>
-                 <div field="subtotal" headerAlign="center" name="pkgSubtotal"
+                <div field="subtotal" headerAlign="center" name="pkgSubtotal"
                      allowSort="false" visible="true" width="60" header="套餐金额" align="center" summaryType="sum">
                      <input  property="editor" vtype="float" class="nui-textbox" selectOnFocus="true" onvaluechanged="onPkgSubtotalValuechanged"/>
                 </div>

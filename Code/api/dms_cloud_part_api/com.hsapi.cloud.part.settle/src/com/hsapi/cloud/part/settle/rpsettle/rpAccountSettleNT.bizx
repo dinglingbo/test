@@ -289,6 +289,7 @@
         <process:inputVariable id="1" name="mainId" type="query" value="Int" valueType="Primitive" pattern="reference">mainId</process:inputVariable>
         <process:inputVariable id="2" name="rpDc" type="query" value="Int" valueType="Primitive" pattern="reference">account/rpDc</process:inputVariable>
         <process:inputVariable id="3" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">account/orgid</process:inputVariable>
+        <process:inputVariable id="4" name="isDeductAdvance" type="query" value="Int" valueType="Primitive" pattern="reference">isDeductAdvance</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -468,6 +469,7 @@
     <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.FiRpAccountDetail" name="accountDetailList"/>
     <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.FiRpAccountDType" name="accountTypeList"/>
     <process:input anyType="java.util.HashMap" description="" isArray="true" name="stateMentList"/>
+    <process:input description="是否预收付冲减" isArray="false" name="isDeductAdvance" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

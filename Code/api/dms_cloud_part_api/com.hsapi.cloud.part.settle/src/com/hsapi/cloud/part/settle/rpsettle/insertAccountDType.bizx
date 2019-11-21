@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="insertAccountDType.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="isDeductAdvance  是否为预收/付冲减&#xD;&#xA;如果是冲减，则更新结算方式isAdvance = 1，不更新结算账户余额" title="dlb&#x9;19-11-18 上午12:13">
+    <location x="-75" y="-30"/>
+    <size height="100" width="550"/>
+  </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -60,6 +64,7 @@
     </sourceConnections>
     <targetConnections>link14</targetConnections>
     <targetConnections>link16</targetConnections>
+    <targetConnections>link1</targetConnections>
     <location x="591" y="153"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend0label</nodeLabel>
@@ -84,6 +89,16 @@
       <targetNode>subprocess0</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link1" name="冲减时不更新余额表" displayName="连接线" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>loopend0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">isDeductAdvance</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link4</targetConnections>
     <location x="341" y="151"/>
     <size height="28" width="28"/>
@@ -103,6 +118,10 @@
     <process:copy>
       <process:from type="expression" pattern="reference">charOffAmt+tAmt</process:from>
       <process:to type="query">charOffAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">isDeductAdvance</process:from>
+      <process:to type="query">temp/isAdvance</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -197,7 +216,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
-    <location x="417" y="151"/>
+    <location x="416" y="130"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -217,7 +236,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="352" y="186"/>
+    <location x="351" y="165"/>
     <figSize height="20" width="156"/>
     <node>subprocess0</node>
   </nodes>
@@ -323,6 +342,7 @@
     <process:input description="" isArray="false" name="mainId" primitiveType="Int"/>
     <process:input description="" isArray="false" name="rpDc" primitiveType="Int"/>
     <process:input description="" isArray="false" name="orgid" primitiveType="Int"/>
+    <process:input description="是否为预收/付冲减" isArray="false" name="isDeductAdvance" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

@@ -329,6 +329,7 @@
         <process:inputVariable id="1" name="mainId" type="query" value="Int" valueType="Primitive" pattern="reference">mainId</process:inputVariable>
         <process:inputVariable id="2" name="rpDc" type="query" value="Int" valueType="Primitive" pattern="reference">account/rpDc</process:inputVariable>
         <process:inputVariable id="3" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">account/orgid</process:inputVariable>
+        <process:inputVariable id="4" name="isDeductAdvance" type="literal" value="Int" valueType="Primitive" pattern="reference">0</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

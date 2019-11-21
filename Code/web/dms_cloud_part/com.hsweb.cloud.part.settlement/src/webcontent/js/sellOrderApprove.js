@@ -67,7 +67,7 @@ $(document).ready(function(v)
     settleTypeIdEl = nui.get("settleTypeId");
     sBillAuditDateEl = nui.get("sBillAuditDate");
     eBillAuditDateEl = nui.get("eBillAuditDate");
-    billSearchGuestIdEl = nui.get("searchBillGuestId");
+    //billSearchGuestIdEl = nui.get("searchBillGuestId");
     billServiceIdEl = nui.get("billServiceId");
     billServiceManEl = nui.get("billServiceMan");
 
@@ -113,7 +113,7 @@ $(document).ready(function(v)
 function setInitData(data,orderTypeIdList, ck, cck){
     callback = ck;
     checkcallback = cck;
-    billSearchGuestIdEl.setValue(data);
+    //billSearchGuestIdEl.setValue(data);
     nui.get('orderTypeIdList').setValue(orderTypeIdList);
     searchBill();
 }
@@ -194,11 +194,11 @@ function getBillSearchParam(){
     params.sAuditDate = sBillAuditDateEl.getFormValue();
     params.eAuditDate = addDate(eBillAuditDateEl.getValue(), 1);
     params.serviceId = billServiceIdEl.getValue().replace(/\s+/g, "");
-    var guestId = billSearchGuestIdEl.getValue();
-    params.guestIdList = getConnncetGuest(guestId);
-    if(params.guestIdList==""){
-    	params.guestId = guestId;
-    }
+    //var guestId = billSearchGuestIdEl.getValue();
+    //params.guestIdList = getConnncetGuest(guestId);
+    //if(params.guestIdList==""){
+    //	params.guestId = guestId;
+    //}
     params.orderTypeIdList = nui.get('orderTypeIdList').getValue();
     return params;
 }
@@ -323,7 +323,7 @@ function addStatement()
         success : function(text) {
             var errCode = text.errCode || "";
             if(errCode == "S"){
-            	showMsg("审核成功","W");
+            	showMsg("审核成功","S");
                 searchBill();
             }else{
                 showMsg("审核失败","W");
@@ -356,6 +356,41 @@ function addStatement()
 
         CloseWindow("ok");
     }*/
+}
+function updStatement()
+{
+    var rows = notStatementGrid.getSelecteds();
+    
+    if(!rows){
+        return;
+    }else if(rows && rows.length<=0){
+        return;
+    }
+    
+    var partInfoUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.updateSellOrderSettleTypeId.biz.ext";
+    nui.ajax({
+        url : partInfoUrl,
+        type : "post",
+        async: false,
+        data : {
+        	list: rows,
+            token: token
+        },
+        success : function(text) {
+            var errCode = text.errCode || "";
+            if(errCode == "S"){
+            	showMsg("修改成功","S");
+                searchBill();
+            }else{
+                showMsg("修改失败","W");
+            }
+
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
+    });
+
 }
 function CloseWindow(action)
 {

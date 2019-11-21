@@ -274,7 +274,8 @@ function sure() {
 
 			var newRow = {
 				partBrandId: partBrandId,
-				partCode : (data[i].配件编码||"").replace(/\s+/g, ""),
+				//partCode : (data[i].配件编码||"").replace(/\s+/g, ""),
+				partCode : (data[i].配件编码||""),
 				storeId : nstoreId||"",
 				enterQty : (data[i].数量||"").replace(/\s+/g, ""),
 				enterPrice : (data[i].单价||"").replace(/\s+/g, ""),

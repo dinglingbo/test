@@ -451,14 +451,14 @@ function clickGdMainGroup(row){
     	if(brand=="land_rover"||brand=="jaguar"){
     		var params = {
     				url:"llq/vins/cars/subgroup/sub",
-    				params:"&mcid="+mcid+"&brandCode="+brand+"&num="+groupnum+"&level="+1,
+    				params:"&mcid="+row.mcid+"&brandCode="+brand+"&num="+groupnum+"&level="+1,
     				token:token
     		}
     		callAjax(url, params, processAjax, setSubGroupData);
     	}else{  		
     		var params = {
     				url:"llq/vins/cars/subgroup",
-    				params:"&mcid="+mcid+"&brandCode="+brand+"&num="+groupnum,
+    				params:"&mcid="+row.mcid+"&brandCode="+brand+"&num="+groupnum,
     				token:token
     		}
     		callAjax(url, params, processAjax, setSubGroupData);
@@ -482,7 +482,7 @@ function clickGdSubGroup(row){
     	subMid=row.mid;
     var params = {
 			url:"llq/vins/cars/parts",
-			params:"&mcid="+mcid+"&brandCode="+brand+"&num="+row.num+"&mid="+subMid+"&subgroup="+row.subGroup,
+			params:"&mcid="+row.mcid+"&brandCode="+brand+"&num="+row.num+"&mid="+subMid+"&subgroup="+row.subGroup,
 			token:token
     }
         callAjax(url, params, processAjax, setGridPartsData);

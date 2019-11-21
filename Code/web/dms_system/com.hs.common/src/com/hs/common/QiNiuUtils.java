@@ -17,6 +17,9 @@ import java.util.UUID;
 
 import sun.misc.BASE64Decoder;
 
+import com.eos.data.datacontext.DataContextManager;
+import com.eos.data.datacontext.IMUODataContext;
+import com.eos.data.datacontext.IUserObject;
 import com.eos.system.annotation.Bizlet;
 import com.google.gson.Gson;
 import com.qiniu.common.QiniuException;
@@ -124,7 +127,26 @@ public class QiNiuUtils {
         String timestamp = df.format(new Date()).toString();// new Date()为获取当前系统时间，也可使用当前时间戳
 		System.out.println(timestamp);
 		String sign =  MD5(secret_key+timestamp);
-		String returnUrl = Url + "?timestamp="+timestamp+"&sign="+sign;
+		IMUODataContext muo = DataContextManager.current().getMUODataContext();
+		String wbUserId = "";//维保需要记录
+		String wbUserName = "";
+		if (muo != null) {
+			IUserObject userobject = muo.getUserObject();
+			if (userobject != null) {
+				Map attr = userobject.getAttributes();
+				try {
+	                if(attr.get("currUserId") != null){
+						wbUserId = attr.get("currUserId").toString();
+	                }
+	                if(attr.get("currUserName") != null){
+						wbUserName = attr.get("currUserName").toString();
+	                }
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		String returnUrl = Url + "?timestamp="+timestamp+"&sign="+sign+"&userId="+wbUserId+"&userName="+wbUserName;
 		retMap.put("MAINTENANCEAUTHORIZATION", MAINTENANCEAUTHORIZATION);
 		retMap.put("returnUrl", returnUrl);
 		return retMap;

@@ -11,7 +11,7 @@
 -->
 <head>
 	<title>客户档案</title>
-	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.5.37"></script>
+	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.5.40"></script>
 	<style type="text/css">
 		table {
 			font-size: 12px;
@@ -77,6 +77,12 @@
 							<a class="nui-button" iconCls="" id="carChangeBtn" onclick="carChange()" plain="true">
 								<span class="fa fa-edit fa-lg"></span>&nbsp;车辆变更</a>
 						</td>
+					<td width="60px" align="center">
+						<label>连锁客户:</label>
+					</td>
+					<td colspan="">
+						<input class="nui-checkbox" id="isChain"   value="0"  name="isChain"  trueValue="1" falseValue="0" />
+					</td>
 				</tr>
 			</table>
 		</div>
@@ -301,14 +307,20 @@
 					</td>
 				</tr>								
 				 <tr>
-					<!-- <td class="title">
-						<label>客户类型:</label>
+					<td class="title">
+						<label>车牌号:</label>
 					</td>
-					 <td colspan="1">
-						 <input class="nui-combobox" name="type" id="type" style="width: 100%;"  required="false" multiSelect="false"
-                        data="gType" textField="text" valueField="id" allowInput="true" valueFromSelect="true" />
-					</td> 
-					-->
+					<td colspan="">
+						 <input class="nui-textbox" name="carNo1" id="carNo1" style="width: 100%;"  />
+					</td>
+					<td width="60px" align="center">
+						<label>手机号:</label>
+					</td>
+					<td colspan="">
+					    <input class="nui-textbox" name="mobile1" id="mobile1" style="width: 100%;" />
+					</td>
+				</tr> 
+			    <tr>
 					<td class="title">
 						<label>客户等级:</label>
 					</td>
@@ -324,7 +336,7 @@
 						<!-- <input name="guestId" id="guestId1" class="nui-buttonedit" emptyText="请选择客户..." onbuttonclick="selectCustomer('guestId1')"
 						 width="100%" allowInput="false" selectOnFocus="true" /> -->
 					</td>
-				</tr> 
+				</tr>
 				<tr>
 					<td class="title">
 						<label>品牌:</label>
@@ -358,7 +370,7 @@
 						<label>连锁客户:</label>
 					</td>
 					<td colspan="">
-						<input class="nui-checkbox" id="isChain"   value="0" checked="checked" name="isChain"  trueValue="1" falseValue="0" />
+						<input class="nui-checkbox" id="isChain1"   value="0" checked="checked" name="isChain1"  trueValue="1" falseValue="0" />
 					</td>
 				</tr>
 				<tr>

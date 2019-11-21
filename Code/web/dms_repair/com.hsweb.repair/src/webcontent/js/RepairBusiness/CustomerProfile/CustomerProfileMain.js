@@ -120,6 +120,9 @@ function getSearchParams()
     }else{
     	params.isDisabled = null;
     }
+/*    if(nui.get("isChain").getValue()==0){
+    	params.lastOrgid=currOrgId;
+    }*/
     return params;
 }
 function onSearch()
@@ -266,13 +269,16 @@ function onAdvancedSearchOk()
     if(searchData.carModelId){
     	searchData.carModelId=document.getElementsByName('carModelId')[0].value;
     }
-    if(searchData.mobile){
-    	searchData.mobile=searchData.mobile;
+    if(searchData.mobile1){
+    	searchData.mobile=searchData.mobile1;
+    }
+    if(searchData.carNo1){
+    	searchData.carNo=searchData.carNo1;
     }
     if(searchData.guestId){
     	searchData.guestId=advancedSearchForm.gusetId;
     }
-    if(nui.get("isChain").getValue()==0){
+    if(nui.get("isChain1").getValue()==0){
     	searchData.lastOrgid=currOrgId;
     }
     advancedSearchWin.hide();

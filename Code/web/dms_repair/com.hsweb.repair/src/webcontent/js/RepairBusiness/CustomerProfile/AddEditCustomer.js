@@ -1290,11 +1290,11 @@ function setDataQuery(data)
                     contactList = data.contactList||[{}];
                     carList = data.carList||[{}];
                     var n;
-                    for(n=0;n<carListOld.length;++)
+                    for(n=0;n<carListOld.length;n++)
                     {
                     	var temp = carListOld[n];
                     	temp.guestId = guest.id;
-                    	contactList.push(temp);
+                    	carList.push(temp);
                     }
                     var i;
                     for(i=0;i<carList.length;i++)

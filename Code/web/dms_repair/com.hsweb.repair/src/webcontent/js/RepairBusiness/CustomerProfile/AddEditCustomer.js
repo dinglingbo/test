@@ -521,6 +521,7 @@ function init(callback)
     
 }
 var carList = [{}];
+var carListOld = [{}]
 var carHash = {};
 var currCarIdx = 0;
 function updateCarBtnState()
@@ -940,6 +941,7 @@ function setData(data)
                 	    }
                         contactList = data.contactList||[{}];
                         carList = data.carList||[{}];
+                        carListOld = data.carList||[{}];
                         var i;
                         for(i=0;i<carList.length;i++)
                         {
@@ -1287,6 +1289,13 @@ function setDataQuery(data)
             	    }
                     contactList = data.contactList||[{}];
                     carList = data.carList||[{}];
+                    var n;
+                    for(n=0;n<carListOld.length;n++)
+                    {
+                    	var temp = carListOld[n];
+                    	temp.guestId = guest.id;
+                    	carList.push(temp);
+                    }
                     var i;
                     for(i=0;i<carList.length;i++)
                     {

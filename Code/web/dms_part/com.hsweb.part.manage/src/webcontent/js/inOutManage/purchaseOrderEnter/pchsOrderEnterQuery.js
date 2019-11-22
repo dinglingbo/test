@@ -481,10 +481,26 @@ function onExport(){
        //exportNoMultistage(rightGrid.columns)
 	for(var i=0;i<detail.length;i++){
 		detail[i].id=1;
-		detail[i].settleTypeId=settTypeIdHash[detail[i].settleTypeId].name||"";
-		detail[i].billTypeId=billTypeIdHash[detail[i].billTypeId].name||"";
-		detail[i].storeId=storehouseHash[detail[i].storeId].name||"";
-		detail[i].partBrandId=partBrandIdHash[detail[i].partBrandId].name||"";
+		if(settTypeIdHash[detail[i].settleTypeId]){		
+			detail[i].settleTypeId=settTypeIdHash[detail[i].settleTypeId].name||"";
+		}else{
+			detail[i].settleTypeId="";
+		}
+		if(billTypeIdHash[detail[i].billTypeId]){			
+			detail[i].billTypeId=billTypeIdHash[detail[i].billTypeId].name||"";
+		}else{
+			detail[i].billTypeId="";
+		}
+		if(storehouseHash[detail[i].storeId]){			
+			detail[i].storeId=storehouseHash[detail[i].storeId].name||"";
+		}else{
+			detail[i].storeId="";
+		}
+		if(partBrandIdHash[detail[i].partBrandId]){			
+			detail[i].partBrandId=partBrandIdHash[detail[i].partBrandId].name||"";
+		}else{
+			detail[i].partBrandId="";
+		}
 		
 	}
 	if(detail && detail.length > 0){

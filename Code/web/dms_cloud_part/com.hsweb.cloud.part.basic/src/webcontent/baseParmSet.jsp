@@ -6,7 +6,7 @@
 
 <head>
     <title>自定义分类</title>
-    <script src="<%=webPath + contextPath%>/basic/js/baseParamSet.js?v=1.0.9"></script>
+    <script src="<%=webPath + contextPath%>/basic/js/baseParamSet.js?v=1.0.11"></script>
     <style>
 
         html,
@@ -54,6 +54,8 @@
                         plain="false" tabPosition="left" showBody="false">
                         <div title="产品线分类" id="productClass" name="productClass" url=""></div>
                         <div title="维修性质分类" id="maintainProClass" name="maintainProClass" url=""></div>
+                        <div title="采购退货原因" id="pchsRtnClass" name="pchsRtnClass" url=""></div>
+                        <div title="销售退货原因" id="sellRtnProClass" name="sellRtnProClass" url=""></div>
                  
                     </div>
                 </div>

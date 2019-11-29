@@ -1069,13 +1069,13 @@ function checkRightData() {
                 return true;
             }
             if (row.orderPrice) {
-                if (row.orderPrice <= 0)
+                if (row.orderPrice < 0)
                     return true;
             } else {
                 return true;
             }
             if (row.orderAmt) {
-                if (row.orderAmt <= 0)
+                if (row.orderAmt < 0)
                     return true;
             } else {
                 return true;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="initCarModelFullNameByVin.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.hsapi.system.service.query.queryCarVinByCarModelNull" title="Administrator&#x9;19-2-27 下午3:48">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="initCarBrandByCarModel" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.hsapi.system.service.query.queryCarBrandByCarModel" title="Administrator&#x9;19-2-27 下午3:48">
     <location x="-135" y="-15"/>
     <size height="100" width="436"/>
   </nodes>
@@ -50,7 +50,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
-      <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.system.service.query.queryCarVinByCarModelNull</process:inputVariable>
+      <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.system.service.query.queryCarBrandByCarModel</process:inputVariable>
       <process:inputVariable id="2" name="parameterObject" type="query" value="java.lang.Object" valueType="Java" pattern="reference">value</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -225,7 +225,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="data" type="query" value="java.util.HashMap" valueType="Java">dataModel</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCodeModel</process:outputVariable>
-        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售出库查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/sellOut/sellOutQuery.js?v=2.0.11"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/sellOut/sellOutQuery.js?v=2.0.12"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -117,7 +117,7 @@
                 <div property="columns">
                     <div allowSort="true" field="serviceId" width="170" summaryType="count" headerAlign="center" header="销售单号" allowSort="true" dataType="string"></div>
                     <div field="guestFullName" width="200" headerAlign="center" header="客户" allowSort="true" dataType="string"></div>
-                    <div field="auditor" width="60" headerAlign="center" header="销售员" allowSort="true" dataType="string"></div>
+                    <div field="orderMan" width="60" headerAlign="center" header="销售员" allowSort="true" dataType="string"></div>
                     <div allowSort="true" width="120"field="auditDate" headerAlign="center" header="出库日期" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" dataType="date"></div>
                     <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div> 
                     <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>-->

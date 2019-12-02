@@ -52,7 +52,7 @@ function doSearch()
 			sortField:"record_date",
 			sortOrder:"asc"
 		},
-		tenantId:currTenantId,
+		tenantIds:currTenantId,
 		dictid:DICTID,
 		fromDb:true,
 		token:token
@@ -169,6 +169,14 @@ function showTabInfo(){
         case "maintainProClass"://维修性质分类
             DICTID = '10442';
             tit = '维修性质分类';
+            break;
+        case "pchsRtnClass"://维修性质分类
+            DICTID = 'DDT20130703000072';
+            tit = '采购退货原因';
+            break;
+        case "sellRtnProClass"://维修性质分类
+            DICTID = 'DDT20130703000073';
+            tit = '销售退货原因';
             break;
         default:
             break;

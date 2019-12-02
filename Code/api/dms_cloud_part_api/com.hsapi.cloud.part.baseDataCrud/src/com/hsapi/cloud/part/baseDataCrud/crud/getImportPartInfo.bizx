@@ -546,6 +546,14 @@
       <process:from type="expression" pattern="reference">enterQty*enterPrice</process:from>
       <process:to type="query">enter/enterAmt</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxPrice</process:from>
+      <process:to type="query">enter/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">enterQty*taxPrice</process:from>
+      <process:to type="query">enter/expEnterAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
     <location x="568" y="209"/>

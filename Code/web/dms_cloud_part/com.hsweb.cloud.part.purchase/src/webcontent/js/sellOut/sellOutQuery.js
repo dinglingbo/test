@@ -424,6 +424,12 @@ function onExport(){
 		if(partBrandIdHash[detail[i].partBrandId]){
 			detail[i].partBrandId = partBrandIdHash[detail[i].partBrandId].name;
 		}
+		if(billTypeIdHash[detail[i].billTypeId]){
+			detail[i].billTypeId = billTypeIdHash[detail[i].billTypeId].name;
+		}
+		if(settTypeIdHash[detail[i].settleTypeId]){
+			detail[i].settleTypeId = settTypeIdHash[detail[i].settleTypeId].name;
+		}
 		
 		
 	}

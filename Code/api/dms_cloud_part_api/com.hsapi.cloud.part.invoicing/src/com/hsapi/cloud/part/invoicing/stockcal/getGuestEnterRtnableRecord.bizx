@@ -97,6 +97,7 @@
     <location x="165" y="172"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="guestEnterRecord" iterableElement="temp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">
@@ -480,12 +481,12 @@
     <location x="229" y="45"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
-    <process:pojo methodType="static" synchronization="true" transactionType="join">
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
       <process:partner type="literal">com.hsapi.cloud.part.common.ArrayUtils.checkStringValue</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="a" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">temp</process:inputVariable>
+      <process:inputVariable id="0" name="a" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="value">temp</process:inputVariable>
       <process:inputVariable id="1" name="b" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">rtnCheckRecord</process:inputVariable>
       <process:inputVariable id="2" name="columnField" type="literal" value="java.lang.String" valueType="Java" pattern="reference">sourceId</process:inputVariable>
     </process:inputVariables>

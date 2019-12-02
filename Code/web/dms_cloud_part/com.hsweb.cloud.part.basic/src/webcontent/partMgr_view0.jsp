@@ -33,7 +33,7 @@
 	                    <input class="nui-textbox" width="100" id="search-applyCarModel" name="applyCarModel"/>
 	                    <label style="font-family:Verdana;">拼音：</label>
 	                    <input class="nui-textbox" width="100" id="search-namePy" name="namePy"/> -->
-	                    <label style="font-family:Verdana;">品牌：</label>
+	                    <label style="font-family:Verdana;">厂牌：</label>
                         <input id="applyCarBrandId" name="applyCarBrandId" class="nui-combobox width1" textField="nameCn" valueField="id" emptyText="请选择..."
                             url="" allowInput="true" showNullItem="false" nullItemText="请选择..." />
                         <span class="separator"></span>

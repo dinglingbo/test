@@ -598,7 +598,7 @@
                 (a.car_type_id_t = #carTypeIdT#)
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="code">  
-                (a.code like '%$code$%')
+                (a.code like '%$code$%' or a.query_code like '%$code$%')
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="lcode">  
                 (a.code like '$code$%')

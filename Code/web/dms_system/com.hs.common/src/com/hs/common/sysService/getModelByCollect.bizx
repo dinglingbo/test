@@ -19,8 +19,8 @@
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" nodeType="label">
-    <location x="82" y="200"/>
-    <figSize height="17" width="25"/>
+    <location x="79" y="200"/>
+    <figSize height="20" width="31"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" collapsed="false" type="end">
@@ -36,8 +36,8 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
-    <location x="679" y="200"/>
-    <figSize height="17" width="25"/>
+    <location x="676" y="200"/>
+    <figSize height="20" width="31"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" collapsed="false" type="assign">
@@ -88,8 +88,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
-    <location x="223" y="200"/>
-    <figSize height="17" width="32"/>
+    <location x="219" y="200"/>
+    <figSize height="20" width="40"/>
     <node>assign8</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="sendPost" displayName="sendPost" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
@@ -115,8 +115,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="357" y="141"/>
-    <figSize height="17" width="54"/>
+    <location x="350" y="141"/>
+    <figSize height="20" width="68"/>
     <node>invokePojo1</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="str2Map" displayName="str2Map" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
@@ -151,8 +151,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="432" y="200"/>
-    <figSize height="17" width="50"/>
+    <location x="426" y="200"/>
+    <figSize height="20" width="62"/>
     <node>invokePojo2</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" collapsed="false" type="assign">
@@ -166,8 +166,8 @@
     <nodeLabel>assign3label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="553" y="200"/>
-    <figSize height="17" width="32"/>
+    <location x="549" y="200"/>
+    <figSize height="20" width="40"/>
     <node>assign3</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="doGet" displayName="doGet" collapsed="false" type="invoke" index="5" invokeType="invoke_pojo" varArgs="false">
@@ -196,8 +196,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="366" y="200"/>
-    <figSize height="17" width="37"/>
+    <location x="361" y="200"/>
+    <figSize height="20" width="47"/>
     <node>invokePojo3</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
@@ -215,8 +215,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="557" y="114"/>
-    <figSize height="17" width="25"/>
+    <location x="554" y="114"/>
+    <figSize height="20" width="31"/>
     <node>assign0</node>
   </nodes>
   <topRuler>

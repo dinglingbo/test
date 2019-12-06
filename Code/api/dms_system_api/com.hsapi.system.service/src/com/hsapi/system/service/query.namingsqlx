@@ -55,5 +55,14 @@
 		      limit 100
 					
 	</select>
+	
+	<!--获取车型ID数据为空，车辆品牌为空-->
+	<select id="queryCarBrandByCarModel" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT id as id, car_no as carNo, vin as vin
+		from wb_repair.rpb_car 
+		where (ifnull(car_model_id,'') = '' or ifnull(car_brand_id,'') = '') and ifnull(vin,'') != '' and LENGTH(vin) = 17
+		      limit 1000
+					
+	</select>
 
 </sqlMap>

@@ -1712,10 +1712,10 @@ function save() {
 			}
 			set.add(rightRow[i].partId+"-"+rightRow[i].storeId);
 		}
-		if(set.size <rightGrid.getData().length){
+		/*if(set.size <rightGrid.getData().length){
 			showMsg("订单明细不能出现相同配件同个仓库两次以上","W");
 			return;
-		}
+		}*/
 
 	}
 	
@@ -2462,10 +2462,10 @@ function audit()
 			}
 			set.add(rightRow[i].partId+"-"+rightRow[i].storeId);
 		}
-		if(set.size <rightGrid.getData().length){
+		/*if(set.size <rightGrid.getData().length){
 			showMsg("订单明细不能出现相同配件同个仓库两次以上","W");
 			return;
-		}
+		}*/
 
 	}
     data = getMainData();

@@ -308,6 +308,35 @@ function selectSupplier(elId)
     });
 }
 
+
+function onExport(){
+	var detail = nui.clone(rightGrid.getData());
+	//多级
+	exportMultistage(rightGrid.columns)
+	//单级
+	//exportNoMultistage(rightGrid.columns)
+	for(var i=0;i<detail.length;i++){
+		if(storehouseHash[detail[i].storeId]){
+			detail[i].storeId=storehouseHash[detail[i].storeId].name;
+		}
+		if(partBrandIdHash[detail[i].partBrandId]){
+			detail[i].partBrandId = partBrandIdHash[detail[i].partBrandId].name;
+		}
+		if(detail[i].taxSign == 1){
+			detail[i].taxSign = "是";
+		}else {
+			detail[i].taxSign = "否";
+		}
+		
+	}
+	if(detail && detail.length > 0){
+		//多级表头类型
+		setInitExportData( detail,rightGrid.columns,"销售退货明细表");
+		//单级表头类型 与上二选一
+		//setInitExportDataNoMultistage( detail,rightGrid.columns,"调拨受理明细表导出");
+	}
+}
+
 function onDrawCell(e)
 {
     switch (e.field)

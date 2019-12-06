@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购退货查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/purchaseEnter/purchaseRtnQuery.js?v=2.0.2"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/purchaseEnter/purchaseRtnQuery.js?v=2.0.4"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -90,6 +90,7 @@
                 <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->
 
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
                 <span class="separator"></span>
                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
             </td>
@@ -271,6 +272,51 @@
 </div>
 
 
+<div id="exportDiv" style="display:none">  
+    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
+        <tr>  
+        	<td colspan="1" align="center"  rowspan="2">序号</td>
+             <td colspan="5" align="center" ></td>
+            <td colspan="6" align="center" >退货信息</td>
+            <td colspan="4" align="center" >数量单价</td>
+            <td colspan="2" align="center" >成本信息</td>
+            <td colspan="4" align="center" >含税信息</td>
+            <td colspan="2" align="center" >不含税信息</td>
+             <td colspan="4" align="center" >其他</td>
+        </tr>
+        <tr>
+        	 <td colspan="1" align="center" >采退单号</td>
+        	 <td colspan="1" align="center" >供应商</td>
+        	 <td colspan="1" align="center" >退货员</td>
+        	 <td colspan="1" align="center" >退货日期</td>
+        	 <td colspan="1" align="center" >仓库</td>
+        	 <td colspan="1" align="center" >配件编码</td>
+        	 <td colspan="1" align="center" >配件名称</td>
+        	 <td colspan="1" align="center" >OE码</td>
+        	 <td colspan="1" align="center" >品牌</td>
+        	 <td colspan="1" align="center" >品牌车型</td>
+        	 <td colspan="1" align="center" >单位</td>
+        	 <td colspan="1" align="center" >退货数量</td>
+        	 <td colspan="1" align="center" >退货单价</td>
+        	 <td colspan="1" align="center" >退货金额</td>
+        	 <td colspan="1" align="center" >备注</td>
+        	 <td colspan="1" align="center" >成本单价</td>
+        	 <td colspan="1" align="center" >成本金额</td>
+        	 <td colspan="1" align="center" >是否含税</td>
+        	 <td colspan="1" align="center" >税点</td>
+        	 <td colspan="1" align="center" >含税单价</td>
+        	 <td colspan="1" align="center" >含税金额</td>
+        	 <td colspan="1" align="center" >不含税单价</td>
+        	 <td colspan="1" align="center" >不含税金额</td>
+        	 <td colspan="1" align="center" >订单号</td>
+        	 <td colspan="1" align="center" >审核人</td>
+        	 <td colspan="1" align="center" >审核日期</td>
+        </tr>
+        <tbody id="tableExportContent">
+        </tbody>
+    </table> 
+    <a href="" id="tableExportA"></a>
+</div>  
 
 </body>
 </html>

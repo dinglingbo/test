@@ -841,6 +841,7 @@ function addSelectPart(){
 
             resultData = rowc;
             //advancedAddWin.showAtEl(enterGrid._getCellEl(record,column), {xAlign:"outright",yAlign:"bottom"});
+            nui.get("qty").focus();
         }
     }else if(tab.name == "partInfoTab"){
         record = morePartGrid.getSelected();
@@ -875,6 +876,7 @@ function addSelectPart(){
 
             rowc.isMarkBatch = 0;
             resultData = rowc;
+            nui.get("qty").focus();
             //advancedAddWin.showAtEl(morePartGrid._getCellEl(record,column), {xAlign:"outright",yAlign:"bottom"});
         }
     }

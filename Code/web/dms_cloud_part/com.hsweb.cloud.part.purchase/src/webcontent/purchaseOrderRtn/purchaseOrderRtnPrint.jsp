@@ -512,6 +512,7 @@ hr {
 						$('#sumOrderQty').text("合计:"+parseFloat(sumOrderQty).toFixed(1));
 						$('#sumOrderAmt').text(""+parseFloat(sumOrderAmt).toFixed(1));
 						$('#sum').text("合计:"+sum);
+						$('#sumQty').text("数量合计:"+parseFloat(sumOrderQty).toFixed(1));
 						$('#sumAmt').html("商品总计(元):"+sum+"<span style='padding-left:300px'>"+parseFloat(sumOrderAmt).toFixed(2)+"</span>");
 						$('#sumAmt2').html("总计(元):"+sum+"<span style='padding-left:324px'>"+parseFloat(sumOrderAmt).toFixed(2)+"</span>");
 						setTimeout(function(){

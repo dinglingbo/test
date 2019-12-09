@@ -36,7 +36,7 @@ var saveUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.savePartBrand.bi
 function onOk()
 {
     var data = basicInfoForm.getData();
-    console.log(data);
+    
     for(var key in requiredField)
     {
         if(!data[key] || data[key].trim().length==0)
@@ -45,6 +45,7 @@ function onOk()
             return;
         }
     }
+    data.name = data.name.toLocaleUpperCase()add();
     nui.mask({
         html:'保存中...'
     });

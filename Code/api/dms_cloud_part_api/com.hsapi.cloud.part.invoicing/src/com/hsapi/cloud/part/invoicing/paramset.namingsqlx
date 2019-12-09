@@ -521,6 +521,139 @@
         
     </select>
     
+    <select id="querySellOrderStorePartChoose" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT 	 a.id id,
+				 a.orgid orgid,
+				 a.code code,
+				 a.name name,
+				 a.full_name fullName,
+				 a.brand_code brandCode,
+				 a.oem_code oemCode,
+				 a.part_brand_id partBrandId,
+				 a.unit unit,
+				 a.spec spec,
+				 a.is_disabled isDisabled,
+				 a.apply_car_model as applyCarModel,
+				 a.common_id as commonId,
+			     IFNULL(b.stock_qty,0) as stockQty,
+			     b.cost_price as costPrice,
+			     b.exp_enter_price as expEnterPrice,
+                 IFNULL(b.outable_qty,0)as outableQty,
+                 IFNULL(b.on_road_qty,0) as onRoadQty,
+			     IFNULL(b.order_qty,0) as orderQty,
+			     b.store_id as storeId
+		FROM wb_common.com_attribute a
+		
+			<isNotNull prepend = "" property = "showStock">
+				<!-- <isNotEqual prepend = "" property = "showStock" compareValue="1">
+					left join pj_part_stock b
+					on a.id = b.part_id and b.orgid = #orgid#
+				</isNotEqual> -->
+				<!-- 不显示库存-->
+				<isEqual prepend = "" property = "showStock" compareValue="0">
+					left join pj_part_store_stock b
+					on a.id = b.part_id and b.store_id = #storeId#
+				</isEqual>
+				<!-- 显示库存-->
+				<isEqual prepend = "" property = "showStock" compareValue="1">
+					inner join pj_part_store_stock b
+					on a.id = b.part_id and b.store_id = #storeId#
+				</isEqual>
+				
+				<!-- （不显示库存）仓先生目前不支持选择orgid=0）-->
+				<isEqual prepend = "" property = "showStock" compareValue="2">
+					left join pj_part_store_stock b
+					on a.id = b.part_id and b.store_id = #storeId#
+				</isEqual>
+				
+			</isNotNull>
+			
+			<isNull prepend = "" property = "showStock">
+					left join pj_part_store_stock b
+					on a.id = b.part_id and b.store_id = #storeId#
+			</isNull>
+			
+		where 1=1 and  a.is_disabled=0
+    	<dynamic>
+    		<isNotNull prepend = "" property = "showStock">
+    		
+    			<!-- 不显示库存-->
+				<isEqual prepend = "" property = "showStock" compareValue="0">
+					and (a.tenant_id = #tenantId# or a.orgid = 0) 
+				</isEqual>
+				<!-- 显示库存-->
+				<isEqual prepend = "" property = "showStock" compareValue="1">
+					and b.orgid = #orgid#
+				
+					and b.outable_qty > 0
+				</isEqual>
+				
+				<!-- （不显示库存）仓先生目前不支持选择orgid=0）-->
+				<isEqual prepend = "" property = "showStock" compareValue="2">
+					and (a.tenant_id = #tenantId# or a.orgid = 0) 
+				</isEqual>
+				
+				<!-- <isNotEqual prepend = "" property = "showStock" compareValue="1">
+					and (a.orgid = #orgid# or a.orgid = 0) 
+				</isNotEqual> -->
+				
+			</isNotNull>
+			
+			<isNull prepend = "" property = "showStock">
+    		
+				and (a.tenant_id = #tenantId# or a.orgid = 0) 
+				
+			</isNull>
+			
+    		<isNotEmpty prepend="and" property="isDisabled">  
+                (a.is_disabled = #isDisabled#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partBrandId">  
+                (a.PART_BRAND_ID = #partBrandId#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="carTypeIdF">  
+                (a.car_type_id_f = #carTypeIdF#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carTypeIdS">  
+                (a.car_type_id_s = #carTypeIdS#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carTypeIdT">  
+                (a.car_type_id_t = #carTypeIdT#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="partId">  
+                (a.id = #partId#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="partCode">  
+                (a.code like '$partCode$%' or a.oem_code like '$partCode$%')
+            </isNotEmpty>
+            <!-- 全匹配 -->
+            <isNotEmpty prepend="and" property="partCodeAll">  
+                (a.code like '%$partCodeAll$%' or a.oem_code like '%$partCodeAll$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">  
+                (a.full_name like '%$partName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCodeList">  
+                    (a.code in ($partCodeList$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="applyCarModel">  
+                (a.apply_car_model like '%$applyCarModel$' or apply_car_model like '$applyCarModel$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="namePy">  
+                (a.name_py like '%$namePy$%')
+            </isNotEmpty>  
+            <!--如果是全字母，可能是拼音，也可能是编码-->
+            <isNotEmpty prepend="and" property="codePy">  
+                (a.name_py like '%$codePy$%' or a.query_code like '$codePy$%' or a.code like '%$codePy$%')
+            </isNotEmpty>  
+            <!--一般按库存的可售数量由多到少排序-->
+            <isNotEmpty prepend="order by " property="sortField">  
+	 			 $sortField$ $sortOrder$
+            </isNotEmpty>  
+        </dynamic>  
+        
+    </select>
+    
     
     <!--
     	根据订单明细ID进行入库，需要更新订单来源ID，来源单据类型，外部来源ID

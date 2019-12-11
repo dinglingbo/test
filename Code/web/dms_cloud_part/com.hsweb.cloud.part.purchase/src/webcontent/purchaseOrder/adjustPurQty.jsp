@@ -119,10 +119,10 @@
 		                e.cancel = true;
 		            }
 					//a.order_qty - a.true_enter_qty - a.adjust_qty
-		            if(record.orderQty - record.trueEnterQty- record.adjustQty < value){
+		            /* if(record.orderQty - record.trueEnterQty- record.adjustQty < value){
 		                e.cancel = true;
 		                showMsg("调整数量超数！","W");
-		            } 
+		            }  */
 		        }
 		    });
 

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>库存查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/stockQuery/partStoreStockQuery.js?v=2.2.30"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/stockQuery/partStoreStockQuery.js?v=2.2.32"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -92,7 +92,7 @@
                 <ul id="popupMenuMore" class="nui-menu" style="display:none;">
                      <li name="enterBtn" iconCls="icon-add" onclick="onEnter">入库记录</li>
 	                 <li name="outBtn" iconCls="icon-edit" onclick="onOut">出库记录</li>
-	      <!--           <li name="outBtn" iconCls="icon-edit" onclick="sellRecord">库存占用记录</li>-->
+	                 <li name="outBtn" iconCls="icon-edit" onclick="sellRecord">库存占用记录</li>
                 </ul>
             </td>
         </tr>

@@ -194,7 +194,6 @@
                                                  selectOnFocus="true"
                                                  showNullItem="false"
                                                  width="100%"
-                                                 onvaluechanged=""
                                                  nullItemText="请选择..."/>
                                       </td>
                                       <td class="title required">
@@ -212,6 +211,7 @@
                                                  allowInput="true"
                                                  selectOnFocus="true"
                                                  showNullItem="false"
+                                                 onvaluechanged="onSettleTypeIdValueChanged"
                                                  width="100%"
                                                  nullItemText="请选择..."/>
                                       </td>

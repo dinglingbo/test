@@ -1533,9 +1533,9 @@ function onPrint(){
 
     nui.open({
        url: openUrl,
-       width: "100%",
+       width: "10%",
        title : "销售退货打印",
-       height: "80%",
+       height: "10%",
        showMaxButton: false,
        allowResize: false,
        showHeader: true,

@@ -2577,6 +2577,14 @@ function onGuestValueChanged(e)
     }
 }
 
+function onSettleTypeIdValueChanged(e) {
+	var data = e.selected;
+	if(data.customid == "020502") {//月结
+		showMsg("现结不可修改为月结","W");
+		nui.get("settleTypeId").setValue("020501");
+	}
+}
+
 
 
 function onStoreIdValueChange(e){

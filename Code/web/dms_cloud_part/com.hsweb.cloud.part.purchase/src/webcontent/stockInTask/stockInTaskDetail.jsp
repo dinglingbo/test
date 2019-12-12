@@ -76,6 +76,7 @@
            <!--     <a class="nui-button" iconCls="" plain="true" onclick="addMorePart()" id="fastEnterBtn"><span class="fa fa-hand-o-right fa-lg"></span>&nbsp;快速录入配件</a>-->
                 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onCost()" id="exportBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;费用登记</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="adjustOrderQty()" id="exportBtn"><span class="fa fa-adjust fa-lg"></span>&nbsp;订单数量调整</a>
                 <span id="status"></span>
             </td>
         </tr>
@@ -298,11 +299,11 @@
                                     <div field="orderQty" name="orderQty" summaryType="sum" numberFormat="0.00" width="30" headerAlign="center" header="数量">
                                       <input property="editor" enabled="false" vtype="float" class="nui-textbox"/>
                                     </div>
-                                    <div field="orderPrice" numberFormat="0.0000" width="50" headerAlign="center" header="单价" visible="false">
-                                      <input property="editor" vtype="float" class="nui-textbox"/>
+                                    <div field="orderPrice" numberFormat="0.0000" width="50" headerAlign="center" header="单价" visible="true">
+                                      <!-- <input property="editor" vtype="float" class="nui-textbox"/> -->
                                     </div>
-                                    <div field="orderAmt" summaryType="sum" numberFormat="0.0000" width="65" headerAlign="center" header="金额" visible="false">
-                                      <input property="editor" vtype="float" class="nui-textbox"/>
+                                    <div field="orderAmt" summaryType="sum" numberFormat="0.0000" width="65" headerAlign="center" header="金额" visible="true">
+                                     <!--  <input property="editor" vtype="float" class="nui-textbox"/> -->
                                     </div>
                                     <div field="remark" width="40" headerAlign="center" allowSort="true">
                         备注<input property="editor" enabled="false" class="nui-textbox"/>

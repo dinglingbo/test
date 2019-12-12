@@ -1789,16 +1789,11 @@ function checkRightData()
             }else{
                 return true;
             }
-            if(row.orderPrice){
-                if(row.orderPrice <= 0) return true;
-            }else{
-                return true;
-            }
-            if(row.orderAmt){
-                if(row.orderAmt <= 0) return true;
-            }else{
-                return true;
-            }
+            
+            if(row.orderPrice < 0) return true;
+            
+            if(row.orderAmt < 0) return true;
+            
             
             if(row.storeId){
             }else{

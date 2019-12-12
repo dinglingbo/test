@@ -1088,6 +1088,9 @@ function onLeftGridDrawCell(e)
             if(StatusHash && StatusHash[e.value])
             {
                 e.cellHtml = StatusHash[e.value];
+                if(e.record.billStatusId == 1 && e.record.approveSign == 0) {
+                	e.cellHtml = "";
+                }
             }
             
             if(e.value == 2) {

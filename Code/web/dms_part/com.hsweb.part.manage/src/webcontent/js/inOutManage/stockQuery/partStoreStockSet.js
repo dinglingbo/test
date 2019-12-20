@@ -78,7 +78,12 @@ $(document).ready(function(v)
             onSearch();
         }
     });
-
+    $("#comOemCode").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+    
     $("#comPartNameAndPY").bind("keydown", function (e) {
         if (e.keyCode == 13) {
             onSearch();
@@ -124,6 +129,7 @@ function getSearchParam(){
     }
     params.partNameAndPY = nui.get("comPartNameAndPY").getValue();
 	params.partCode = (nui.get("comPartCode").getValue()).replace(/\s+/g, "");
+	params.comOemCode = (nui.get("comOemCode").getValue()).replace(/\s+/g, "");
 	params.partBrandId = nui.get("partBrandId").getValue();
 	params.storeId = nui.get("storeId").getValue();
 	params.storeShelf = nui.get("storeShelf").getValue();

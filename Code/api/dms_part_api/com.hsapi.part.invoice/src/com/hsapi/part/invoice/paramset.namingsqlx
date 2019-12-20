@@ -65,7 +65,7 @@
 	                $sortField$ $sortOrder$
 	            </isNotEmpty> 
             </dynamic> 
-            
+            order by LENGTH(`code`)
             limit 100
 				
 	</select>

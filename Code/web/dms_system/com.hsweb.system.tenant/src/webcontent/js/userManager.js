@@ -517,3 +517,20 @@ function dataProcessing(){
         }
     });
 }
+
+function itemCopy(){
+    nui.open({
+        url: webPath + contextPath + "/com.hsweb.system.dataProcessing.itemCopy.flow?token="+token,
+        title: "项目复制", 
+        width: "400px", 
+        height: "300px",
+        onload: function () {
+
+        },
+        ondestroy: function (action) {  //弹出页面关闭前    
+        	  if(action=="ok"){
+        		  showMsg("项目复制成功！","S")
+        	  }          	             
+        }
+    });
+}

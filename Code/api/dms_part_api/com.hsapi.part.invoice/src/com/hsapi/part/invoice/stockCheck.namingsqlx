@@ -110,6 +110,7 @@
 				A.id as id,
 				A.main_id as mainId,
 				A.store_id as storeId,
+				A.receive_store_shelf as receiveStoreShelf,
 				A.part_id as partId,
 				A.part_code as partCode,
 				A.part_name as partName,

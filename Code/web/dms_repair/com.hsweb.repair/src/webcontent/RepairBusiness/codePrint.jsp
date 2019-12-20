@@ -182,33 +182,50 @@
 	function setData(codeList){
 	var str = "";
 	var str2 = ""
-		for(var i =0;i<codeList.length;i++){		
-			str =str + imageHtml(codeList[i].img,codeList[i].name,codeList[i].code);
-			str2 =str2 + imageHtml2(codeList[i].img,codeList[i].name,codeList[i].code);
+		for(var i =0;i<codeList.length;i++){
+			for(var j =0;j<codeList[i].codeNum;j++){			
+				str =str + imageHtml(codeList[i].img,codeList[i].name,codeList[i].code,codeList[i].store,codeList[i].storeShelf||"");
+				str2 =str2 + imageHtml2(codeList[i].img,codeList[i].name,codeList[i].code,codeList[i].store,codeList[i].storeShelf||"");
+			}		
 		}
 			document.getElementById('photos').innerHTML=str;
 			document.getElementById('printBody').innerHTML=str2;	    
 	}
 
-	function imageHtml(imageUrl,name,code){    
+	function imageHtml(imageUrl,name,code,store,storeShelf){    
 		var html="";
-		html+='		<div class="webPrint" style="width:250px;height: 270px;float: left;page-break-after:always;" >';
-		html+='			<img style="width:150px;height: 150px;    margin-left: 50px;" id=""  alt="" src="'+imageUrl+'"  >';
-		html+='			<p style="text-align: center;color: black;">'+code+'</p>'	
-		html+='			<p style="text-align: center;color: black;">'+name+'</p>'	
+		html+='		<div class="webPrint" style="width:250px;height: 220px;float: left;page-break-after:always;" >';
+		html+='			<img style="width:150px;height: 140px;margin-left: 50px;" id=""  alt="" src="'+imageUrl+'"  >';
+		html+='			<p style="text-align: center;color: black;height: 8px;margin-top: 0px;">'+code+'</p>'	
+		html+='			<p style="text-align: center;color: black;height: 6px;">'+name+'</p>'
+		html+='			<p style="text-align: center;color: black;height: 6px;">'+store+'</p>'				
+		html+='			<p style="text-align: center;color: black;height: 6px;">'+storeShelf+'</p>'		
 		html+='		</div>';
 	
 		return html;
 	};
-	function imageHtml2(imageUrl,name,code){    
+		function imageHtml2(imageUrl,name,code,store,storeShelf){    
+		var html="";
+		html+='		<div class="webPrint" style="width:150px;height: 200px;float: left;page-break-after:always;" >';
+		html+='			<img style="width:150px;height: 140px;margin-left: 0px;" id=""  alt="" src="'+imageUrl+'"  >';
+		html+='			<p style="text-align: center;color: black;height: 8px;margin-top: -20px;">'+code+'</p>'	
+		html+='			<p style="text-align: center;color: black;height: 6px;">'+name+'</p>'	
+		html+='			<p style="text-align: center;color: black;height: 6px;">'+store+'</p>'	
+		html+='			<p style="text-align: center;color: black;height: 6px;">'+storeShelf+'</p>'			
+		html+='		</div>';	
+		return html;
+	};
+	//全屏
+/* 	function imageHtml2(imageUrl,name,code,store){    
 		var html="";
 		html+='		<div class="webPrint" style="width:90%;height: 90%;float: left;page-break-after:always;" >';
 		html+='			<img style="width:90%;height: 88%;    margin-left: 50px;" id=""  alt="" src="'+imageUrl+'"  >';
 		html+='			<p style="text-align: center;color: black;">'+code+'</p>'				
 		html+='			<p style="text-align: center;color: black;">'+name+'</p>'
+		html+='			<p style="text-align: center;color: black;">'+store+'</p>'
 		html+='		</div>';
 	
 		return html;
-	};
+	}; */
     </script>
 </body>

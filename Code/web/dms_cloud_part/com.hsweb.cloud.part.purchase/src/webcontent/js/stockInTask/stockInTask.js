@@ -2254,8 +2254,8 @@ function onPrint(){
 
     nui.open({
        url: openUrl,
-       width: "100%",
-       height: "80%",
+       width: "10%",
+       height: "10%",
        showMaxButton: false,
        allowResize: false,
        showHeader: true,
@@ -2803,6 +2803,44 @@ function addOrderToEnter(data){
 
 
 }
+
+function adjustOrderQty(){
+	 var row = leftGrid.getSelected();
+	 if(!row){		 
+		 showMsg("请选择一条数据","W");
+		 return;
+	 }
+   if(row){
+       if(row.auditSign != 1) {
+           showMsg("此单未提交,不能调整!","W");
+           return;
+       } 
+   }
+   if(row.orderTypeId != 1) {
+       showMsg("只能调整采购单!","W");
+       return;
+   }
+      
+	nui.open({
+       // targetWindow: window,
+       url: webPath + contextPath + "/purchase/purchaseOrder/adjustPurQty.jsp",
+       title: "采购申请调整",
+       width: 900, height: 400,
+       allowDrag:true,
+       allowResize:false,
+       onload: function ()
+       {
+           var iframe = this.getIFrameEl();
+           iframe.contentWindow.setInitData(row.id);
+           loadMainAndDetailInfo(row);
+       },
+       ondestroy: function (action)
+       {
+         
+       }
+   });
+}
+
 var orderDetailUrl = baseUrl+"com.hsapi.cloud.part.invoicing.paramcrud.queryPjPchsOrderDetailChkList.biz.ext";
 function getOrderDetail(params)
 {

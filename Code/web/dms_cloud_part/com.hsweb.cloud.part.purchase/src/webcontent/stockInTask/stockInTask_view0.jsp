@@ -9,7 +9,7 @@
 -->
 <head>
 <title>入库任务</title>
-<script src="<%=webPath + contextPath%>/purchase/js/stockInTask/stockInTask.js?v=1.0.32"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/stockInTask/stockInTask.js?v=1.0.35"></script>
 <style type="text/css">
 .title {
   width: 70px;

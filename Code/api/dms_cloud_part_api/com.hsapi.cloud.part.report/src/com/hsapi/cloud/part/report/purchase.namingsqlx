@@ -1272,4 +1272,31 @@
         </isNotEmpty>
         order by b.out_date desc
     </select>
+    
+    <!-- 占用记录 -->
+    <select id="querySellRecord" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.part_id as partId,
+			a.service_id as serviceId,
+		    a.store_id as storeId,
+		    a.lock_stock_qty as lockStockQty,
+		    a.bill_qty as billQty,
+		    a.create_date as createDate,
+		    b.oem_code as partCode
+		FROM
+			pj_sell_qty_temp_record a
+			inner join wb_common.com_attribute b
+			on a.part_id = b.id
+		where 1 = 1 
+		
+		<isNotEmpty prepend="and" property="orgid"> 
+            (a.orgid = #orgid#)
+        </isNotEmpty>
+        
+        <isNotEmpty prepend="and" property="partId">  
+            (a.part_id = #partId#)
+        </isNotEmpty>
+        order by a.create_date
+    </select>
+    
 </sqlMap>

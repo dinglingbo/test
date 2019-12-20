@@ -1027,14 +1027,14 @@
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
     <targetConnections>link62</targetConnections>
-    <location x="278" y="168"/>
+    <location x="278" y="153"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
     <process:condition/>
     <process:iterate iterable="orderDetail" iterableElement="orderTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart1label" name="label" nodeType="label">
-    <location x="270" y="200"/>
+    <location x="270" y="185"/>
     <figSize height="20" width="40"/>
     <node>loopstart1</node>
   </nodes>
@@ -1044,28 +1044,40 @@
       <targetNode>invokePojo3</targetNode>
     </sourceConnections>
     <targetConnections>link64</targetConnections>
-    <location x="454" y="168"/>
+    <targetConnections>link15</targetConnections>
+    <location x="454" y="153"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend1label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend1label" name="label" nodeType="label">
-    <location x="431" y="200"/>
+    <location x="431" y="185"/>
     <figSize height="20" width="70"/>
     <node>loopend1</node>
   </nodes>
   <nodes xsi:type="model:GroupNode" id="group1" name="group1" grouped="true" gstart="loopstart1" gend="loopend1">
-    <location x="278" y="135"/>
-    <size height="106" width="201"/>
+    <location x="278" y="106"/>
+    <size height="135" width="201"/>
     <chidren>loopend1</chidren>
     <chidren>loopstart1</chidren>
     <chidren>invokePojo0</chidren>
     <chidren>assign0</chidren>
+    <chidren>assign22</chidren>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link64" name="link64" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>loopend1</targetNode>
       <process:transitionCondition/>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link14" name="link14" displayName="连接线" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>assign22</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="GT">
+          <process:leftOperand type="query">orderAmt</process:leftOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="396" y="167"/>
@@ -1098,18 +1110,6 @@
     <process:copy>
       <process:from type="query" pattern="reference">orderTemp/orderQty</process:from>
       <process:to type="query">qty</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">orderAmt*1.0/sumOrderAmt*expAmt</process:from>
-      <process:to type="query">orderTemp/expenseAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">orderAmt*1.0/sumOrderAmt*expAmt+taxAmt</process:from>
-      <process:to type="query">orderTemp/expEnterAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">(orderAmt*1.0/sumOrderAmt*expAmt+taxAmt)/qty</process:from>
-      <process:to type="query">orderTemp/expEnterPrice</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -1561,6 +1561,33 @@
     <location x="-130" y="62"/>
     <figSize height="20" width="49"/>
     <node>assign21</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign22" name="赋值22" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign22</sourceNode>
+      <targetNode>loopend1</targetNode>
+    </sourceConnections>
+    <targetConnections>link14</targetConnections>
+    <location x="397" y="120"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign22label</nodeLabel>
+    <process:copy>
+      <process:from type="expression" pattern="reference">orderAmt*1.0/sumOrderAmt*expAmt</process:from>
+      <process:to type="query">orderTemp/expenseAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">orderAmt*1.0/sumOrderAmt*expAmt+taxAmt</process:from>
+      <process:to type="query">orderTemp/expEnterAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(orderAmt*1.0/sumOrderAmt*expAmt+taxAmt)/qty</process:from>
+      <process:to type="query">orderTemp/expEnterPrice</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign22label" name="label" nodeType="label">
+    <location x="387" y="156"/>
+    <figSize height="20" width="49"/>
+    <node>assign22</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

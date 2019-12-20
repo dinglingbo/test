@@ -1246,8 +1246,8 @@ function onPrint(){
 
     nui.open({
        url: openUrl,
-       width: "100%",
-       height: "80%",
+       width: "10%",
+       height: "10%",
        showMaxButton: false,
        allowResize: false,
        showHeader: true,
@@ -1789,16 +1789,11 @@ function checkRightData()
             }else{
                 return true;
             }
-            if(row.orderPrice){
-                if(row.orderPrice <= 0) return true;
-            }else{
-                return true;
-            }
-            if(row.orderAmt){
-                if(row.orderAmt <= 0) return true;
-            }else{
-                return true;
-            }
+            
+            if(row.orderPrice < 0) return true;
+            
+            if(row.orderAmt < 0) return true;
+            
             
             if(row.storeId){
             }else{

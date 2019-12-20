@@ -37,7 +37,8 @@
 				main_id AS mainId,
 				sum(order_amt) AS orderAmt,
 				sum(tax_amt) AS taxAmt,
-				sum(no_tax_amt) AS noTaxAmt
+				sum(no_tax_amt) AS noTaxAmt,
+				sum(order_qty) as orderQty
 			FROM
 				pj_pchs_order_detail_chk
 			WHERE
@@ -49,7 +50,8 @@
 		 a.tax_amt = b.taxAmt,
 		 a.no_tax_amt = b.noTaxAmt,
 		 a.tax_diff =  b.taxAmt - b.noTaxAmt,
-		 a.no_state_amt =  b.noTaxAmt
+		 a.no_state_amt =  b.noTaxAmt,
+		 a.order_qty = b.orderQty
 		WHERE
 			a.id = #mainId#
 	</update>

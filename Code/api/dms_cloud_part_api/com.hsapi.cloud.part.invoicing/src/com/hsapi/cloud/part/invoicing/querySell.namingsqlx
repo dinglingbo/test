@@ -52,6 +52,7 @@
         <result column="versionNo" javaType="string" property="versionNo"/>
         <result column="rtnReasonId" javaType="string" property="rtnReasonId"/>
         <result column="isBilling" javaType="int" property="isBilling"/>
+        <result column="approveSign" javaType="int" property="approveSign"/>
         <result column="showAmt" javaType="double" property="showAmt"/>
         <result column="directOrgid" javaType="int" property="directOrgid"/>
         <result column="directGuestId" javaType="int" property="directGuestId"/>
@@ -104,7 +105,8 @@
             M.isBilling,
             M.showAmt,
 			M.directGuestId,
-			M.directOrgid
+			M.directOrgid,
+			m.approveSign
         FROM (
             SELECT DISTINCT
 				A.id as id,
@@ -150,6 +152,7 @@
 				A.show_amt as showAmt,
 				A.direct_guest_id AS directGuestId,
 				A.direct_orgid AS directOrgid,
+				a.approve_sign as approveSign,
 				B.FULL_NAME AS guestFullName,
 				B.SHORT_NAME AS guestShortName
 				FROM
@@ -284,6 +287,7 @@
 				A.show_amt as showAmt,
 				A.direct_guest_id AS directGuestId,
 				A.direct_orgid AS directOrgid,
+				a.approve_sign as approveSign,
 				B.FULL_NAME AS guestFullName,
 				B.SHORT_NAME AS guestShortName
 				FROM

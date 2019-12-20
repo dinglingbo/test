@@ -295,6 +295,7 @@ hr {
 					<tbody>
                         <tr>
                         	<td id="index">序号</td>
+                        	<td id="storehouse">仓库</td>
 							<td id="comPartCode">配件编码</td>
 							<td id="comOemCode" >OE码</td>
 							<td id="comPartName">配件名称</td>
@@ -303,7 +304,6 @@ hr {
 							<td id="comSpec">规格</td>
 							<td id="comUnit">单位</td>
 							<td id="orderQty">数量</td>
-							<td id="storehouse">仓库</td>
 							<td id="storeShelf">仓位</td>
 						</tr>
                         <tbody id="tbodyId">
@@ -320,18 +320,33 @@ hr {
 				    <td id="sumOrderAmt"></td>
 				  </tr>
 				</table>
+				<table id="ybk" width="100%">
+				  <tr>
+				    <td width="33.3%" id="">付款方式:</td>
+				    <td width="33.3%" id="sumQty">数量合计:</td>
+				    <td id="sumAmt">商品总计(元):</td>
+				  </tr>
+				  <tr>
+				    <td id="">服务费:</td>
+				    <td id="">包装费:</td>
+				    <td id="sumAmt2">总计(元):</td>
+				  </tr>
+				</table>
+				
 				<table>
-				  <tr><td  colspan="5"></td></tr>
+				  <tr><td  colspan="4"></td></tr>
 				  <tr id="border2">
-			<!--	  	<td id="dueAmt">客户欠款金额:</td>-->
-				    <td id="currUserName" >打印人：系统管理员</td>
-				    <td id="checkMan" >检货：</td>
-				    <td id="giveMan" >送货：</td>
-				    <td id="getMan" width="" align="center">收货：</td>
+				    <td id=""  width="25%">申请人:</td>
+				    <td id="" width="25%">发货:</td>
+				    <td id="" width="25%">审核:</td>
+				    <td id="" >客户确认签字:</td>	
+				  </tr>
+				  <tr id="border2">
+				  	<td id=""  colspan="2">地址:</td>
+				    <td id="" >电话:</td>		
+				    <td id="storeName" >入库仓：</td>	
 				  </tr>
 				   <hr id="se"/>
-				  <tr><td  colspan="5"><hr id="se"/></td></tr>
-				  <tr> <td id="orderRemark" >备注：</td></tr>
 				  <tr><td  colspan="5"><hr id="se"/></td></tr>
 				  <tr> <td id="currCloudSellOrderPrintContent" ></td></tr>
 				  
@@ -432,6 +447,8 @@ hr {
             else window.close();
         }
     	function SetData(params,detailParms){   	
+    		brandHash=params.brandHash;
+			storeHash=params.storeHash;
     		var pr ={
 				guestId : params.guestId,
 				orgid : currOrgId,
@@ -476,6 +493,9 @@ hr {
 		       		$('#guestFullName').text("客户:"+formParms.guestFullName);
 		       		$('#createDate').text("订单日期:"+format(formParms.createDate,"yyyy-MM-dd HH:mm"));
 		       		$('#serviceId').text(formParms.serviceId);
+		       		if(storeHash[formParms.storeId]){
+		    			$('#storeName').text(formParms.storeId?"出库仓:"+storeHash[formParms.storeId].name :"出库仓:");
+		    		}
 		       		if(formParms.remark != null){
 		       			$('#orderRemark').text("备注：" +formParms.remark);
 		       		}else{
@@ -512,6 +532,7 @@ hr {
 					var tBody = $("#tbodyId");
 					tBody.empty();
 					var tds='<td align="center">[index]</td>'+
+							'<td align="center">[storehouse]</td>'+
 							'<td align="center">[comPartCode]</td>'+
 							'<td align="center">[comOemCode]</td>'+
 							'<td align="center">[comPartName]</td>'+
@@ -520,7 +541,7 @@ hr {
 							'<td align="center">[comSpec]</td>'+		  			
 							'<td align="center">[comUnit]</td>'+
 							'<td align="center">[orderQty]</td>'+
-							'<td align="center">[storehouse]</td>'+
+							
 							'<td align="center">[storeShelf]</td>';
 						for(var i = 0; i < data.length; i++ ){ 
 							var tr=$("<tr></tr>");
@@ -542,7 +563,7 @@ hr {
 						}
 	
 						$('#sumOrderQty').text("合计:"+parseFloat(sumOrderQty).toFixed(1));
-
+						$('#sumQty').text("数量合计:"+parseFloat(sumOrderQty).toFixed(1));
 						setTimeout(function(){
 					    	$(".print_btn").hide();
 				            document.getElementById("query-table").style.overflow="hidden"

@@ -319,7 +319,39 @@ hr {
 				    <td id="sumOrderAmt"></td>
 				  </tr>
 				</table>
+				
+				<table id="ybk" width="100%">
+				  <tr>
+				    <td width="33.3%" id="">付款方式:</td>
+				    <td width="33.3%" id="sumQty">数量合计:</td>
+				    <td id="sumAmt">商品总计(元):</td>
+				  </tr>
+				  <tr>
+				    <td id="">服务费:</td>
+				    <td id="">包装费:</td>
+				    <td id="sumAmt2">总计(元):</td>
+				  </tr>
+				</table>
+				
 				<table>
+				  <tr><td  colspan="4"></td></tr>
+				  <tr id="border2">
+				    <td id=""  width="25%">申请人:</td>
+				    <td id="" width="25%">发货:</td>
+				    <td id="" width="25%">审核:</td>
+				    <td id="" >客户确认签字:</td>	
+				  </tr>
+				  <tr id="border2">
+				  	<td id=""  colspan="2">地址:</td>
+				    <td id="" >电话:</td>		
+				 
+				  </tr>
+				  <hr id="se"/>
+				  <tr><td  colspan="4"><hr id="se"/></td></tr>
+				  <tr> <td id="orderRemark" >备注：</td></tr>
+				</table>
+				
+				<!--<table>
 				  <tr><td  colspan="3"><hr id="se"/></td></tr>
 				  <tr id="border2">
 				    <td id="currUserName" >打印人：系统管理员</td>
@@ -328,7 +360,7 @@ hr {
 				  </tr>
 				  <tr><td  colspan="3"><hr id="se"/></td></tr>
 
-				</table>
+				</table>-->
             </div>
       
        </div>
@@ -411,7 +443,8 @@ hr {
 		       		$('#guestFullName').text("供应商:"+formParms.guestFullName);
 		       		$('#createDate').text("计划采购日期:"+format(formParms.createDate,"yyyy-MM-dd HH:mm"));
 		       		$('#serviceId').text(formParms.serviceId);
-		     		$('#mainRemark').text("备注:"+formParms.remark?null:"");
+		     		$('#mainRemark').text(formParms.remark?"备注:"+formParms.remark:"备注:");
+		     		$('#orderRemark').text(formParms.remark?"备注:"+formParms.remark:"备注:");
 	    		});
     		}
     		if(params.guestId){
@@ -462,10 +495,13 @@ hr {
 							sumOrderQty +=parseFloat(data[i].orderQty);
 							sumOrderAmt +=parseFloat(data[i].orderAmt);
 						}
-						var sum=transform(parseFloat(sumOrderAmt).toFixed(1)+"");
+						var sum=transform(parseFloat(sumOrderAmt).toFixed(2)+"");
 						$('#sumOrderQty').text("合计:"+parseFloat(sumOrderQty).toFixed(1));
-						$('#sumOrderAmt').text(""+parseFloat(sumOrderAmt).toFixed(1));
+						$('#sumOrderAmt').text(""+parseFloat(sumOrderAmt).toFixed(2));
+						$('#sumQty').text("数量合计:"+parseFloat(sumOrderQty).toFixed(1));
 						$('#sum').text("合计:"+sum);
+						$('#sumAmt').html("商品总计(元):"+sum+"<span style='padding-left:300px'>"+parseFloat(sumOrderAmt).toFixed(2)+"</span>");
+						$('#sumAmt2').html("总计(元):"+sum+"<span style='padding-left:324px'>"+parseFloat(sumOrderAmt).toFixed(2)+"</span>");
 						setTimeout(function(){
 					    	$(".print_btn").hide();
 				            document.getElementById("query-table").style.overflow="hidden"

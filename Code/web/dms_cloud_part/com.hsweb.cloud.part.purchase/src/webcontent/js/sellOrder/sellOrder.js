@@ -923,6 +923,10 @@ function addSelectPart2(){
 }
 
 function showPartInfo(row, value, mainId){
+	if(!nui.get("storeId").getValue()) {
+		showMsg("请先选择仓库","W");
+		return;
+	}
 	partShow=1;
     nui.open({
         // targetWindow: window,
@@ -1084,6 +1088,9 @@ function onLeftGridDrawCell(e)
             if(StatusHash && StatusHash[e.value])
             {
                 e.cellHtml = StatusHash[e.value];
+                if(e.record.billStatusId == 1 && e.record.approveSign == 0) {
+                	e.cellHtml = "";
+                }
             }
             
             if(e.value == 2) {
@@ -1712,10 +1719,10 @@ function save() {
 			}
 			set.add(rightRow[i].partId+"-"+rightRow[i].storeId);
 		}
-		if(set.size <rightGrid.getData().length){
+		/*if(set.size <rightGrid.getData().length){
 			showMsg("订单明细不能出现相同配件同个仓库两次以上","W");
 			return;
-		}
+		}*/
 
 	}
 	
@@ -2462,10 +2469,10 @@ function audit()
 			}
 			set.add(rightRow[i].partId+"-"+rightRow[i].storeId);
 		}
-		if(set.size <rightGrid.getData().length){
+		/*if(set.size <rightGrid.getData().length){
 			showMsg("订单明细不能出现相同配件同个仓库两次以上","W");
 			return;
-		}
+		}*/
 
 	}
     data = getMainData();
@@ -2571,6 +2578,14 @@ function onGuestValueChanged(e)
 
 		addNewRow(true);
     }
+}
+
+function onSettleTypeIdValueChanged(e) {
+	var data = e.selected;
+	if(data.customid == "020502") {//月结
+		showMsg("现结不可修改为月结","W");
+		nui.get("settleTypeId").setValue("020501");
+	}
 }
 
 
@@ -2787,9 +2802,9 @@ function onPrint(){
 
     nui.open({
        url: openUrl,
-       width: "100%",
+       width: "10%",
        title : "销售订单打印",
-       height: "80%",
+       height: "10%",
        showMaxButton: false,
        allowResize: false,
        showHeader: true,

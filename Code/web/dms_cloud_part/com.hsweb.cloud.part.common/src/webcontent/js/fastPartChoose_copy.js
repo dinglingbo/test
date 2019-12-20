@@ -1,4 +1,4 @@
-var partInfoUrl = cloudPartApiUrl + "com.hsapi.cloud.part.invoicing.paramcrud.queryBillPartStoreChoose.biz.ext";
+var partInfoUrl = cloudPartApiUrl + "com.hsapi.cloud.part.invoicing.paramcrud.queryBillPartChoose.biz.ext";
 var enterUrl = cloudPartApiUrl + "com.hsapi.cloud.part.invoicing.stockcal.queryOutableEnterGridWithPage.biz.ext";
 var priceGridUrl = cloudPartApiUrl+"com.hsapi.cloud.part.invoicing.pricemanage.getPartPriceInfo.biz.ext";
 var partCommonUrl = cloudPartApiUrl + "com.hsapi.cloud.part.invoicing.query.queryQuickPartCommonWithStock.biz.ext";
@@ -208,12 +208,6 @@ $(document).ready(function(v)
     morePartGrid.on("drawcell",function(e){
         switch (e.field)
         {
-	        case "storeId":
-	            if(storeHash && storeHash[e.value])
-	            {
-	                e.cellHtml = storeHash[e.value].name;
-	            }
-	            break;
 	        case "partBrandId":
 	            if(brandHash[e.value])
 	            {
@@ -532,7 +526,6 @@ function setInitData(params, ck, cck){
 
     var type = judgeConditionType(value);//1代表编码，2代表名称，3代表拼音，-1输入信息有误
     var params = {};
-    params.storeId = StoreId;
     //params.showStock = 1;
     //showStockEl.setValue(1);
     if(type == 1){
@@ -585,7 +578,6 @@ function morePartSearch(){
     params.partCode = morePartCodeEl.getValue().replace(/(^\s*)|(\s*$)/g, "");
     params.partName = morePartNameEl.getValue().replace(/\s+/g, "");
     params.showStock = showStockEl.getValue().replace(/\s+/g, "");
-    params.storeId = StoreId||-1;
     //仓先生且不显示库存
     if(currIsOpenApp ==1 &&  params.showStock ==0){
     	params.showStock=2;

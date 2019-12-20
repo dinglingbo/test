@@ -345,7 +345,7 @@ hr {
 				  </tr>
 				  <tr id="border2">
 				  	<td id=""  colspan="2">地址:</td>
-				    <td id="" >电话</td>		
+				    <td id="" >电话:</td>		
 				    <td id="storeName" >入库仓：</td>	
 				  </tr>
 				  <hr id="se"/>

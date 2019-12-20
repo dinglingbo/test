@@ -447,3 +447,34 @@ function onOutRecord(partId){
 	});
 }
 
+
+
+//查看出库记录
+function sellRecord(){
+	var row ={};
+	row = rightGrid.getSelected();
+	if(!row){
+		showMsg("请选择一条记录","W");
+		return;
+	}
+	var partId = row.partId;
+	nui.open({
+		url : webPath+contextPath+"/com.hsweb.cloud.part.purchase.partSellRecord.flow?token="+token,
+		title : "占用记录",
+		width : 780,
+		height : 500,
+		allowDrag : true,
+		allowResize : true,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+			var params = {
+				partId: partId,
+              token :token
+          };
+          iframe.contentWindow.SetData(params);
+		},
+		ondestroy : function(action) {
+			
+		}
+	});
+}

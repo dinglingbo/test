@@ -285,6 +285,7 @@ hr {
 					<tbody>
                         <tr>
                         	<td id="index">序号</td>
+                        	<td id="storehouse">仓库</td>
 							<td id="comPartCode">配件编码</td>
 							<td id="comPartName">配件名称</td>
 							<td id="comPartBrandId">品牌</td>
@@ -306,15 +307,33 @@ hr {
 				    <td id="sumApplyQty" >合计</td>
 				  </tr>
 				</table>
-				<table>
-				  <tr><td  colspan="3"><hr id="se"/></td></tr>
-				  <tr id="border2">
-				    <td id="currUserName" >打印人：系统管理员</td>
-				    <td id="giveMan" >送货：</td>
-				    <td id="getMan" width="" align="center">收货：</td>
+				<table id="ybk" width="100%">
+				  <tr>
+				    <td width="33.3%" id="">付款方式:</td>
+				    <td width="33.3%" id="sumQty">数量合计:</td>
+				    <td id="sumAmt">商品总计(元):</td>
 				  </tr>
-				  <tr><td  colspan="3"><hr id="se"/></td></tr>
-
+				  <tr>
+				    <td id="">服务费:</td>
+				    <td id="">包装费:</td>
+				    <td id="sumAmt2">总计(元):</td>
+				  </tr>
+				</table>
+				
+				<table>
+				  <tr><td  colspan="4"></td></tr>
+				  <tr id="border2">
+				    <td id=""  width="25%">申请人:</td>
+				    <td id="" width="25%">发货:</td>
+				    <td id="" width="25%">审核:</td>
+				    <td id="" >客户确认签字:</td>	
+				  </tr>
+				  <tr id="border2">
+				  	<td id=""  colspan="2">地址:</td>
+				    <td id="" >电话:</td>		
+				    <td id="storeName" >入库仓：</td>	
+				  </tr>
+				   
 				</table>
             </div>
       
@@ -396,6 +415,7 @@ hr {
 		       		$('#mainRemark').text("备注:"+formParms.remark?null:"");
 		       		if(storeHash[formParms.storeId]){
 		       			$('#storeId').text("调入仓库:"+storeHash[formParms.storeId].name);
+		       			$('#storeName').text(formParms.storeId?"入库仓:"+storeHash[formParms.storeId].name :"入库仓:");
 		       		}
 		       		
 		       		
@@ -424,6 +444,7 @@ hr {
 					var tBody = $("#tbodyId");
 					tBody.empty();
 					var tds='<td align="center">[index]</td>'+
+							'<td align="center">[storehouse]</td>'+
 							'<td align="center">[comPartCode]</td>'+
 							'<td align="center">[comPartName]</td>'+
 							'<td align="center">[comPartBrindId]</td>'+
@@ -436,6 +457,7 @@ hr {
 							var tr=$("<tr></tr>");
 							tr.append(
 								tds.replace("[index]",i+1 ||"")
+									.replace("[storehouse]",data[i].storeId?storeHash[data[i].storeId].name :"")
 									.replace("[comPartCode]",data[i].comPartCode ||"")
 									.replace("[comPartName]",data[i].comPartName ||"")
 									.replace("[comPartBrindId]",data[i].comPartBrandId?brandHash[data[i].comPartBrandId].name :"")
@@ -449,6 +471,7 @@ hr {
 						}
 
 						$('#sumApplyQty').text("合计:"+parseFloat(sumApplyQty).toFixed(1));
+						$('#sumQty').text("数量合计:"+parseFloat(sumApplyQty).toFixed(1));
 						setTimeout(function(){
 					    	$(".print_btn").hide();
 				            document.getElementById("query-table").style.overflow="hidden"

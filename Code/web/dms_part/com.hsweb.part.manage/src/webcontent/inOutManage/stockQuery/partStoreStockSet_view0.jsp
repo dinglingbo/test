@@ -8,7 +8,7 @@
 -->
 <head>
 <title>安全库存设置</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockQuery/partStoreStockSet.js?v=1.0.17"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockQuery/partStoreStockSet.js?v=1.0.19"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -38,6 +38,7 @@
             <td style="white-space:nowrap;">
 				<!-- <label style="font-family:Verdana;">配件名称/拼音：</label> -->
               <input id="comPartCode" width="120px" emptyText="配件编码" class="nui-textbox"/>
+              <input id="comOemCode" width="120px" emptyText="配件OE码" class="nui-textbox"/>             
 	            <input id="comPartNameAndPY" width="120px" emptyText="配件名称/拼音" class="nui-textbox"/>
 	            <!-- <label style="font-family:Verdana;">配件ID：</label> -->
 	            
@@ -121,6 +122,7 @@
                     <div allowSort="true" field="applyCarModel" width="200" headerAlign="center" header="品牌车型"></div>
                     <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="65" headerAlign="center" header="库存数量"></div>
                     <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
+                    <div allowSort="true" field="spec" width="100" headerAlign="center" header="规格"></div>
                     <div allowSort="true" field="storeId" width="100" headerAlign="center" header="仓库"></div>
                     
                 </div>
@@ -140,6 +142,7 @@
             <div header="其他" headerAlign="center">
                 <div property="columns">
                 	<div allowSort="true" field="wain" width="40" headerAlign="center" header="警戒"></div>
+                	<div allowSort="true" field="fullName" width="150" headerAlign="center" header="配件全称"></div>
                     <div allowSort="true" datatype="float" field="enterQty" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div>
                     <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
                     <div allowSort="true" datatype="float" field="onRoadQty" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div>

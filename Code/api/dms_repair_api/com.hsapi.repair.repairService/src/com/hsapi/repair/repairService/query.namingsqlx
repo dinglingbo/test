@@ -718,7 +718,7 @@
 		from (
 			(SELECT count(1) as newCarQty from rps_guest_file where comp_come_times = 1 and orgid = #orgid# and record_date &gt;= #startDate# and record_date &lt; #endDate#) newCarQty,
 			(select count(1) as recordBillQty from rps_maintain where is_disabled = 0 and orgid = #orgid# and bill_type_id in (0,2,4,6)  and record_date &gt;= #startDate# and record_date &lt; #endDate# ) recordBillQty,
-			(select count(1) as settleQty from rps_maintain where is_settle = 1 and orgid = #orgid# and record_date &gt;= #startDate# and record_date &lt; #endDate#) settleQty,
+			(select count(1) as settleQty from rps_maintain where is_settle = 1 and orgid = #orgid# and out_date &gt;= #startDate# and out_date &lt; #endDate#) settleQty,
 			(select count(1) as serviceBillQty from rps_maintain where is_settle = 0 and orgid = #orgid# and is_disabled = 0 and bill_type_id in (0,2,4,6) ) serviceBillQty,
 			(SELECT count(1) as bookingBillQty from rps_prebook where orgid = #orgid# and record_date &gt;= #startDate# and record_date &lt; #endDate# and ifnull(status,0) != 2) bookingBillQty,
 			(

@@ -918,6 +918,7 @@
             <isNotEmpty prepend="and" property="applyCarModel">(b.apply_car_model like '%$applyCarModel$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNamePY">(b.name_py like '%$partNamePY$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partCode">(b.code like '%$partCode$%' or b.query_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="comOemCode">(b.oem_code like '%$comOemCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partBrandId">(b.part_brand_id = #partBrandId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(b.code in ($partCodeList$))</isNotEmpty>
             <!--业务界面的库存详情限制50 -->

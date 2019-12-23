@@ -34,7 +34,7 @@ var moreSearchShow=0;
 
 var storeIdEl = null;
 var memList=[];
-
+var storeShelfList=[];
 var AuditSignHash = {
   "0":"草稿",
   "1":"已审核"
@@ -1309,6 +1309,16 @@ function OnrpMainGridCellBeginEdit(e){
         //    morePartGrid.select(row,true);
         //}
 	}
+	if (field == "receiveStoreShelf") {
+		var value = nui.get("storeId").getValue();
+        getLocationListByStoreId(value,function(data) {
+			storeShelfList = data.locationList || [];
+			nui.get('storeShelf').setData(storeShelfList);
+
+		});
+    }else if(field == "storeId") {
+    	
+    }
 }
 function addMorePart(){
 	

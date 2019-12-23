@@ -8,7 +8,7 @@
 -->
 <head>
     <title>移仓单</title>
-    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/shiftPosition/shiftPositionOrder.js?v=1.0.27"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/shiftPosition/shiftPositionOrder.js?v=1.0.30"></script>
     <style type="text/css">
     .title {
         width: 60px;
@@ -140,6 +140,9 @@
                                     header="品牌车型"></div>
                                     <div field="comUnit" name="comUnit" width="40"
                                     headerAlign="center" header="单位"></div>
+                                 <div field="receiveStoreShelf" width="60" headerAlign="center" allowSort="false">
+							                             仓位<input id="storeShelf" name="storeShelf"  property="editor" class="nui-combobox" textField="name" valueField="name" dataField="storeShelfList" data="storeShelfList" onvaluechanged="" allowInput="true"/>
+							     </div> 
                                  <div field="orderQty" name="orderQty" summaryType="sum"
                                     numberFormat="0.00" width="50" headerAlign="center"
                                     header="数量">

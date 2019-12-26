@@ -39,6 +39,7 @@
             <td style="white-space:nowrap;">
 				<!-- <label style="font-family:Verdana;">配件名称/拼音：</label> -->
               <input id="comPartCode" width="120px" emptyText="配件编码" class="nui-textbox"/>
+              <input id="comOECode" width="120px" emptyText="OE码" class="nui-textbox"/>
 	            <input id="comPartNameAndPY" width="120px" emptyText="配件名称/拼音" class="nui-textbox"/>
 	            <!-- <label style="font-family:Verdana;">配件ID：</label> -->
 	            
@@ -49,11 +50,15 @@
                            textField="name"
                            valueField="id"
                            emptyText="品牌"
+                           width="80px"
                            valueFromSelect="true"
                            url=""
                            allowInput="true"
                            showNullItem="false"
                            nullItemText="请选择..."/>
+                <input id="applyCarBrandId" name="applyCarBrandId" class="nui-combobox width1" textField="nameCn" valueField="id" emptyText="厂牌"
+                            url="" allowInput="true" showNullItem="false" nullItemText="厂牌" 
+                           width="80px" />
                  <input id="storeId"
                            name="storeId"
                            class="nui-combobox width1"
@@ -72,14 +77,13 @@
                            textField="name"
                            valueField="id"
                            emptyText="库存上下限"
+                           width="100px"
                            url=""
                            data="UpOrDownList"
                            valueFromSelect="true"
                            allowInput="true"
                            showNullItem="true"
                            nullItemText="请选择..."/>
-                <input id="applyCarBrandId" name="applyCarBrandId" class="nui-combobox width1" textField="nameCn" valueField="id" emptyText="请选择..."
-                            url="" allowInput="true" showNullItem="false" nullItemText="厂牌"  />
                 <input id="partId" width="80px" visible="false" emptyText="配件ID" class="nui-textbox"/>
                 <span class="separator"></span>
                 <label style="font-family:Verdana;">显示零库存：</label>

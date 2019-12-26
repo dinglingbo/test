@@ -295,6 +295,18 @@
       <process:from type="query" pattern="reference">de</process:from>
       <process:to type="query">ten/endDate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">reg/name</process:from>
+      <process:to type="query">name</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">name.trim()</process:from>
+      <process:to type="query">name</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">name</process:from>
+      <process:to type="query">reg/name</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
     <location x="294" y="231"/>
@@ -465,12 +477,12 @@
       <targetNode>transactionrollback0</targetNode>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
-    <location x="75" y="322"/>
+    <location x="59" y="317"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
-    <location x="69" y="358"/>
+    <location x="53" y="353"/>
     <figSize height="20" width="40"/>
     <node>assign4</node>
   </nodes>
@@ -1298,6 +1310,7 @@
     <process:variable description="电商同步接口返回状态" historyStateLocation="client" isArray="false" name="code" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="str" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="de" primitiveType="Date"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="name" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.system.data.sys.ComTrialRegister" name="reg"/>

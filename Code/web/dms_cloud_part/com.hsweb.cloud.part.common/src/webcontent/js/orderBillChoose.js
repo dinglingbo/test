@@ -19,6 +19,7 @@ var orderTypeId = 1;
 var brandHash = {};
 var brandList = [];
 var storehouse = null;
+var storeHash  ={};
 var billTypeIdEl = null;
 var settleTypeIdEl = null;
 var billTypeIdHash = {};
@@ -83,6 +84,11 @@ $(document).ready(function(v)
     getStorehouse(function(data)
     {
         storehouse = data.storehouse||[];
+        if(storehouse && storehouse.length>0){
+            storehouse.forEach(function(v){
+        		storeHash[v.id]=v;
+        	});
+        }
     });
 
     getAllPartBrand(function(data) {
@@ -162,9 +168,9 @@ function onDrawCell(e)
             }
             break;
         case "storeId":
-            if(storehouse && storehouse[e.value])
+            if(storeHash && storeHash[e.value])
             {
-                e.cellHtml = storehouse[e.value].name;
+                e.cellHtml = storeHash[e.value].name;
             }
             break;
         case "accountSign":
@@ -265,6 +271,7 @@ var checkcallback = null;
 function addStatement()
 {
     var rows = notStatementGrid.getSelecteds();
+   
     //var nodec = nui.clone(node);
     
     if(!rows){
@@ -272,7 +279,7 @@ function addStatement()
     }else if(rows && rows.length<=0){
         return;
     }
-
+    var settleTypeId = rows[0].settleTypeId;
 
     if(!callback)
     {
@@ -311,12 +318,16 @@ function addStatement()
                 			pjSellOrderDetailList.splice(i--, 1);
         				}
                 	}
-                	for(var i=0;i<innerPchsRtnGridRow.length;i++){			
+                	for(var i=0;i<innerPchsRtnGridRow.length;i++){	
+                		innerPchsRtnGridRow[i].settleTypeId =settleTypeId;
                 		pjSellOrderDetailList.push(innerPchsRtnGridRow[i]);
         			}
             	}
             	
             }
+            for(var i=0;i<pjSellOrderDetailList.length;i++){	
+            	pjSellOrderDetailList[i].settleTypeId =settleTypeId;
+			}
             callback(pjSellOrderDetailList);
             CloseWindow("ok");
         }

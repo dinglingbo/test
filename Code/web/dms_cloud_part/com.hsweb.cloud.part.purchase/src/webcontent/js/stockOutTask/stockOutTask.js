@@ -1394,6 +1394,11 @@ function getMainData()
 	}else{
 		data.isBilling=0;
 	}
+	if(data.isNeedPack=="1"){
+		data.isNeedPack =1;
+	}else{
+		data.isNeedPack =0;
+	}
 	var showAmt =0;
 	var rows =rightGrid.getData();
 	for (var i = 0; i < rows.length; i++) {

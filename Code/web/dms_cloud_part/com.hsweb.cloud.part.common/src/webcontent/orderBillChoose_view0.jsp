@@ -9,7 +9,7 @@
 -->
 <head>
 <title>业务单选择</title>
-<script src="<%=webPath + contextPath%>/common/js/orderBillChoose.js?v=1.0.37"></script>
+<script src="<%=webPath + contextPath%>/common/js/orderBillChoose.js?v=1.0.43"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -94,6 +94,7 @@
               <div field="guestFullName" width="150" headerAlign="center" header="往来单位名称"></div>
               <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
               <div field="orderTypeId" width="80" headerAlign="center" header="业务类型"></div>
+              <div allowSort="true" field="storeId" width="120" headerAlign="center" header="仓库"></div>
               <div field="orderAmt" width="60" headerAlign="center" summaryType="sum" header="金额"></div>
               <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
               <div field="remark" width="120" headerAlign="center" header="备注"></div>

@@ -113,10 +113,17 @@
                       <div class="fieldset-body">
                           <div id="basicInfoForm" class="form" contenteditable="false">
                               <input class="nui-hidden" name="id" id="id"/>
+                              <input class="nui-hidden" name="orgid" id="orgid"/>
+                              <input class="nui-hidden" name="storeId" id="storeId"/>
+                              <input class="nui-hidden" name="codeId" id="codeId"/>
+                              <input class="nui-hidden" name="code" id="code"/>
                               <input class="nui-hidden" name="operateDate"/>
                               <input class="nui-hidden" name="auditSign"/>
                               <input class="nui-hidden" name="orderAmt"/>
                               <input class="nui-hidden" name="createDate"/>
+                              <input class="nui-hidden" name="orderQty"/>
+                              <input class="nui-hidden" name="orderAmt"/>
+                              <input class="nui-hidden" name="orderPrice"/>
                               <input class="nui-hidden" name="orderTypeId" id="orderTypeId"/>
                               <input class="nui-textbox" visible="false" id="codeId" name="codeId" width="100%">
                               <table style="width: 100%;">
@@ -223,7 +230,7 @@
                                           <input class="nui-textbox" selectOnFocus="true" width="100%" id="remark" name="remark"/>
                                       </td>
                                       <td colspan="1" class="required">
-                                          <input id="isNeedPack" name="isNeedPack" class="nui-checkbox" text="需要打包发货" onvaluechanged="onValueChanged" trueValue="1" falseValue="0">
+                                          <input id="isNeedPack" name="isNeedPack" class="nui-checkbox" text="需要打包发货"  trueValue=1 falseValue=0>
                                       </td>
                                       <td class="title">
                                           <label>出库单号：</label>

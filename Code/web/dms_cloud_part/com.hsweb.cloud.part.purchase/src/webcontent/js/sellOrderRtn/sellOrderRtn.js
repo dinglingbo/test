@@ -2186,10 +2186,10 @@ function addPart() {
     }
 
     var storeId = nui.get("storeId").getValue();
-    if(!storeId){
-    	showMsg("请选择仓库!","W");
-        return;
-    }
+//    if(!storeId){
+//    	showMsg("请选择仓库!","W");
+//        return;
+//    }
     
     selectPart(function(data) {
         addDetail(data);
@@ -2220,6 +2220,13 @@ function addDetail(rows)
 {
     //var iframe = this.getIFrameEl();
     //var data = iframe.contentWindow.getData();
+	if(rows.length<0){
+		return;
+	}
+	var storeId= rows[0].storeId;
+	var settleTypeId = rows[0].settleTypeId;
+	nui.get("storeId").setValue(storeId);
+	nui.get("settleTypeId").setValue(settleTypeId);
 	var mainId = 0;
     for(var i=0; i<rows.length; i++){
         var row = rows[i];
@@ -2234,6 +2241,7 @@ function addDetail(rows)
             orderPrice : row.showPrice,
             orderAmt : row.showAmt,
             storeId : nui.get("storeId").getValue(),
+            storeShelf : row.storeShelf,
             comOemCode : row.comOemCode,
             comSpec : row.comSpec,
             partCode : row.comPartCode,

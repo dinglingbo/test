@@ -123,6 +123,10 @@
       <process:from type="literal" pattern="reference">S</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">main/isNeedPack</process:from>
+      <process:to type="query">isNeedPack</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="-181" y="206"/>
@@ -253,6 +257,10 @@
       <process:to type="query">main/isOut</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">isNeedPack</process:from>
+      <process:to type="query">main/isNeedPack</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">2</process:from>
       <process:to type="query">main/billStatusId</process:to>
     </process:copy>
@@ -301,7 +309,7 @@
       <process:to type="query">auditMain/returnAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">main/isNeedPack</process:from>
+      <process:from type="query" pattern="reference">isNeedPack</process:from>
       <process:to type="query">auditMain/isNeedPack</process:to>
     </process:copy>
   </nodes>
@@ -1085,6 +1093,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.com.ComGuest" name="guest"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="returnRate" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="orderAmt" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="isNeedPack" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="mainId" primitiveType="Int"/>

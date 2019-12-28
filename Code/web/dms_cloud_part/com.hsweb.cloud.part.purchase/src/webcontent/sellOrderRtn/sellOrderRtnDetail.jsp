@@ -267,6 +267,7 @@
                          oncelleditenter="onCellEditEnter"
                          ondrawsummarycell=""
                          showModified="false"
+                         sortMode="client"
                          oncellbeginedit="OnrpMainGridCellBeginEdit"
                          showColumnsMenu="true"
                          onselectionchanged=""

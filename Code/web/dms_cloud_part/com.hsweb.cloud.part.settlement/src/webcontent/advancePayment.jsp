@@ -10,7 +10,7 @@
 
 <head>
 	<title>预付账款管理</title>
-	<script src="<%=webPath + contextPath%>/settlement/js/advancePayment.js?v=1.0.10"></script>
+	<script src="<%=webPath + contextPath%>/settlement/js/advancePayment.js?v=1.0.14"></script>
 	    <link href="<%=webPath + contextPath%>/settlement/js/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/settlement/js/HeaderFilter.js" type="text/javascript"></script>
 	<style type="text/css">
@@ -120,7 +120,7 @@
 							<li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
 						</ul>
 						<input class="nui-combobox"
-						data="[{value:'0',text:'未收款',},{value:'1',text:'部分收款'},{value:'2',text:'已收款'},{value:'3',text:'全部'}]"
+						data="[{value:'0',text:'未付款',},{value:'1',text:'部分付款'},{value:'2',text:'已付款'},{value:'3',text:'全部'}]"
 						textField="text" valueField="value" name="settleStatus" id="settleStatus" width="80px"
 						value="0" onvalidation="onSearch()"  />
 						<input class="nui-combobox"
@@ -147,7 +147,7 @@
 						<a class="nui-button" iconCls="" plain="true" onclick="addPrepaid()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a> 
 						<a class="nui-button" iconCls="" visible="false" plain="true" onclick="doBalance()">
 							<span class="fa fa-check fa-lg"></span>&nbsp;确认对账</a>
-						<a class="nui-button" iconCls="" plain="true" onclick="doAudit()"><span
+						<a class="nui-button" iconCls="" visible="false" plain="true" onclick="doAudit()"><span
 							class="fa fa-check fa-lg"></span>&nbsp;审核</a>
 						<a class="nui-button" iconCls="" plain="true" onclick="doSettle()">
 							<span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>

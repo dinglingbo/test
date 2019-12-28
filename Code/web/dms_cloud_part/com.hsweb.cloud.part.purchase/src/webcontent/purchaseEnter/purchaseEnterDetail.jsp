@@ -227,6 +227,7 @@
                                ondrawsummarycell="onDrawSummaryCell"
                                oncellbeginedit="OnrpMainGridCellBeginEdit"
                                showModified="false"
+                               sortMode="client"
                                editNextOnEnterKey="true"
                                url="">
                               <div property="columns">

@@ -256,7 +256,7 @@ body .mini-grid-row-selected{
                            showPager="false"
                            dataField="pjAllotAcceptDetailList"
                            idField="id"
-                   
+                           sortMode="client"
                            showSummaryRow="true"
                            ondrawcell="onRightGridDraw"
                            allowCellSelect="true"

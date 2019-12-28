@@ -250,7 +250,7 @@
                            dataField="pjSellOrderDetailList"
                            idField="id"
                            showSummaryRow="true"
-                         
+                           sortMode="client"
                            ondrawcell="onRightGridDraw"
                            allowCellSelect="true"
                            allowCellEdit="true"

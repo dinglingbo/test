@@ -9,7 +9,7 @@
 -->
 <head>
 <title>新增预收预付</title>
-    <script src="<%=webPath + contextPath%>/settlement/js/addPrepaid.js?v=1.0.0"></script>
+    <script src="<%=webPath + contextPath%>/settlement/js/addPrepaid.js?v=1.0.14"></script>
     <style type="text/css">
 .title {
   width: 90px;
@@ -72,7 +72,7 @@ body .mini-grid-row-selected{
                           <label>往来单位：</label>
                       </td>
                       <td colspan="3" style="width:38%">
-                          <input id="guestId"
+                          <!--<input id="guestId"
                                  name="guestId"
                                  class="nui-buttonedit"
                                  emptyText="请选择往来单位..."
@@ -80,6 +80,22 @@ body .mini-grid-row-selected{
                                  onvaluechanged="onGuestValueChanged"
                                  width="100%"
                                  placeholder="请选择往来单位"
+                                 selectOnFocus="true" />-->
+                             <input id="guestId"
+                                 name="guestId"
+                                
+                                 dataField="suppliers"
+                                 textField="fullName"
+                                 loadingText="查询中"
+                                 valueField="id"
+                                 class="nui-autocomplete"
+                                 emptyText="请选择往来单位..."
+                                 allowInput="true"
+                                 onvaluechanged="onGuestValueChanged"
+                                 popupEmptyText="未找到往来单位"
+                                 url=""  searchField="key"
+                                 width="100%"
+                                 placeholder="请选择往来单位..."
                                  selectOnFocus="true" />
                       </td>
 				</tr>

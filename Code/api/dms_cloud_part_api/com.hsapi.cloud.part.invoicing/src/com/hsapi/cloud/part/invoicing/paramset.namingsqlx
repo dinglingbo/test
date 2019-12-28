@@ -77,10 +77,12 @@
 	<select id="queryPartJoinStockList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT a.id id,
     		   a.orgid orgid,
+    		   a.code partCode,
 		       a.code code,
 		       a.name name,
+		       a.name partName,
 		       a.full_name fullName,
-		       a.brand_code brandCode,
+		       a.brand_code brandCode,		       
 		       a.oem_code oemCode,
 		       a.common_code commonCode,
 		       a.query_code queryCode,
@@ -89,6 +91,7 @@
 		       a.name_py namePy,
 		       a.name_en nameEn,
 		       a.part_brand_id partBrandId,
+		       d.name partBrandName,
 		       a.apply_carbrand_id applyCarBrandId,
 		       a.apply_car_model applyCarModel,
 		       a.part_type_id partTypeId,
@@ -127,6 +130,7 @@
 					on a.id = b.part_id and b.orgid = #orgid#
         		left join pj_part_price c
 					on a.id = c.part_id and c.orgid = #orgid#
+				left join wb_common.com_part_brand d on a.part_brand_id =d.id
         where 1=1 and a.is_disabled = 0
     	<dynamic>
     		<isNotEmpty prepend="and" property="orgid"> 

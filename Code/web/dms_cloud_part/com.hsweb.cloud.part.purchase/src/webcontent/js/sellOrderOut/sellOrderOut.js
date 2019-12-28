@@ -2938,6 +2938,8 @@ function setInitExportData(main, detail){
         "<td  colspan='1' align='left'>[orderQty]</td>" +
         "<td  colspan='1' align='left'>[showPrice]</td>" +
         "<td  colspan='1' align='left'>[showAmt]</td>" +
+        "<td  colspan='1' align='left'>[orderPrice]</td>" +
+        "<td  colspan='1' align='left'>[orderAmt]</td>" +
         "<td  colspan='1' align='left'>[remark]</td>";
     var tableExportContent = $("#tableExportContent");
     tableExportContent.empty();
@@ -2950,6 +2952,8 @@ function setInitExportData(main, detail){
                          .replace("[showCarModel]", detail[i].comApplyCarModel?detail[i].comApplyCarModel:"")
                          .replace("[comUnit]", detail[i].comUnit?detail[i].comUnit:"")
                          .replace("[orderQty]", detail[i].orderQty?detail[i].orderQty:"")
+                         .replace("[showPrice]", detail[i].orderPrice?detail[i].showPrice:"")
+                         .replace("[showAmt]", detail[i].orderAmt?detail[i].showAmt:"")
                          .replace("[showPrice]", detail[i].orderPrice?detail[i].orderPrice:"")
                          .replace("[showAmt]", detail[i].orderAmt?detail[i].orderAmt:"")
                          .replace("[remark]", detail[i].remark?detail[i].remark:""));
@@ -3284,3 +3288,10 @@ function chooseMember(){
 	    }
 }
 
+function onSettleTypeIdValueChanged(e) {
+	var data = e.selected;
+	if(data.customid == "020502") {//月结
+		showMsg("现结不可修改为月结","W");
+		nui.get("settleTypeId").setValue("020501");
+	}
+}

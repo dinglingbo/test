@@ -236,6 +236,7 @@
                      oncellcommitedit="onCellCommitEdit"
                      ondrawsummarycell="onDrawSummaryCell"
                      showModified="false"
+                     sortMode="client"
                      url="">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>

@@ -214,6 +214,9 @@ $(document).ready(function(v)
         });
     });
 
+    mainTabs.on("activechanged",function(e){
+    	onSearch();
+    });
     getItemType(function(data) {
         enterTypeIdList = data.list || [];
         enterTypeIdList.filter(function(v){

@@ -263,6 +263,7 @@ body .mini-grid-row-selected{
                            onselectionchanged=""
                            oncellbeginedit="OnrpMainGridCellBeginEdit"
                            showModified="false"
+                           sortMode="client"
                            editNextOnEnterKey="true"
                            allowCellWrap = "true"
                            url="">

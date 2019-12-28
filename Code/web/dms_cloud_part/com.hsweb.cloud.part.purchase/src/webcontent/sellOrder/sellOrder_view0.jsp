@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售订单</title>
-<script src="<%=webPath + contextPath%>/purchase/js/sellOrder/sellOrder.js?v=1.0.26"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/sellOrder/sellOrder.js?v=1.0.29"></script>
 <style type="text/css">
 .title {
 	width: 70px;
@@ -413,6 +413,8 @@ body .mini-grid-row-selected{
             <td colspan="1" align="center">数量</td>
             <td colspan="1" align="center">单价</td>
             <td colspan="1" align="center">金额</td>
+            <td colspan="1" align="center">实际售价</td>
+            <td colspan="1" align="center">实际金额</td>
             <td colspan="1" align="center">备注</td>
         </tr>
         <tbody id="tableExportContent">

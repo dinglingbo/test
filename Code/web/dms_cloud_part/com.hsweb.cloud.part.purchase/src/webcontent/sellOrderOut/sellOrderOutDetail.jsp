@@ -205,6 +205,7 @@
                                                  allowInput="true"
                                                  selectOnFocus="true"
                                                  showNullItem="false"
+                                                 onvaluechanged="onSettleTypeIdValueChanged"
                                                  width="100%"
                                                  nullItemText="请选择..."/>
                                       </td>
@@ -249,7 +250,7 @@
                            dataField="pjSellOrderDetailList"
                            idField="id"
                            showSummaryRow="true"
-                         
+                            sortMode="client"
                            ondrawcell="onRightGridDraw"
                            allowCellSelect="true"
                            allowCellEdit="true"

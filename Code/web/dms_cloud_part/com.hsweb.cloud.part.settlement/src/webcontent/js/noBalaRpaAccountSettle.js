@@ -665,7 +665,7 @@ function setInitExportData(detail){
         if(row.partId){
             var tr = $("<tr></tr>");
             
-            if(row.orderTypeId== 4){
+            if(row.orderTypeId== 4 || row.orderTypeId == 3){
             	tr.append(tds.replace("[guestFullName]", detail[i].guestFullName?detail[i].guestFullName:"")
                         .replace("[orgName]", detail[i].orgName?detail[i].orgName:"")
                         .replace("[carBrandName]", detail[i].carBrandName?detail[i].carBrandName:"")
@@ -674,8 +674,8 @@ function setInitExportData(detail){
                         .replace("[partCode]", detail[i].partCode?detail[i].partCode:"")
                         .replace("[fullName]", detail[i].fullName?detail[i].fullName:"")
                         .replace("[orderQty]", detail[i].orderQty?detail[i].orderQty:"")
-                        .replace("[orderPrice]", detail[i].orderPrice?detail[i].orderPrice:"")
-                        .replace("[orderAmt]", detail[i].orderAmt?-detail[i].orderAmt:""));
+                        .replace("[orderPrice]", (detail[i].orderPrice!=null|| detail[i].orderPrice!=undefined)?detail[i].orderPrice:"")
+                        .replace("[orderAmt]", (detail[i].orderAmt!=null|| detail[i].orderAmt!=undefined)?-detail[i].orderAmt:""));
             }else{
             	tr.append(tds.replace("[guestFullName]", detail[i].guestFullName?detail[i].guestFullName:"")
                         .replace("[orgName]", detail[i].orgName?detail[i].orgName:"")
@@ -685,8 +685,8 @@ function setInitExportData(detail){
                         .replace("[partCode]", detail[i].partCode?detail[i].partCode:"")
                         .replace("[fullName]", detail[i].fullName?detail[i].fullName:"")
                         .replace("[orderQty]", detail[i].orderQty?detail[i].orderQty:"")
-                        .replace("[orderPrice]", detail[i].orderPrice?detail[i].orderPrice:"")
-                        .replace("[orderAmt]", detail[i].orderAmt?detail[i].orderAmt:""));
+                        .replace("[orderPrice]", (detail[i].orderPrice!=null|| detail[i].orderPrice!=undefined)?detail[i].orderPrice:"")
+                        .replace("[orderAmt]",(detail[i].orderAmt!=null|| detail[i].orderAmt!=undefined)?detail[i].orderAmt:""));
             }
             tableExportContent.append(tr);
         }

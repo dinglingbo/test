@@ -147,7 +147,7 @@
 						<a class="nui-button" iconCls="" plain="true" onclick="addPrepaid()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a> 
 						<a class="nui-button" iconCls="" visible="false" plain="true" onclick="doBalance()">
 							<span class="fa fa-check fa-lg"></span>&nbsp;确认对账</a>
-						<a class="nui-button" iconCls="" plain="true" onclick="doAudit()"><span
+						<a class="nui-button" iconCls="" visible="false" plain="true" onclick="doAudit()"><span
 							class="fa fa-check fa-lg"></span>&nbsp;审核</a>
 						<a class="nui-button" iconCls="" plain="true" onclick="doSettle()">
 							<span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>

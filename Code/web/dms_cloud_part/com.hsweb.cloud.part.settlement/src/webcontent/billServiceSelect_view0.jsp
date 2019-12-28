@@ -9,7 +9,7 @@
 -->
 <head>
 <title>业务单选择</title>
-<script src="<%=webPath + contextPath%>/settlement/js/billServiceSelect.js?v=1.0.47"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/billServiceSelect.js?v=1.0.57"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -88,7 +88,10 @@
            pageSize="10000"
            sizeList="[1000,5000,10000]"
            onshowrowdetail="onShowRowDetail"
-           showSummaryRow="true">
+            showSummaryRow="true"
+<!--           onselectionchanged="onNotStatementGridSelectionChanged"-->
+    <!--       ondrawsummarycell="onDrawSummaryCell"-->
+          >
           <div property="columns">
               <div type="indexcolumn">序号</div>
               <div type="checkcolumn" width="30"></div>

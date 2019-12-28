@@ -274,6 +274,7 @@
                          showColumnsMenu="true"
                          onselectionchanged=""
                          editNextOnEnterKey="true"
+                         sortMode="client"
                          url="">
                         <div property="columns">
                             <div type="indexcolumn">序号</div>

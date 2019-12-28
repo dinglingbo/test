@@ -9,7 +9,7 @@
 -->
 <head>
 <title>预售单</title>
-<script src="<%=webPath + contextPath%>/purchase/js/guestOrder/guestOrder.js?v=1.0.50"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/guestOrder/guestOrder.js?v=1.0.61"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -63,6 +63,7 @@ body .mini-grid-row-selected{
                 	<li iconCls="" onclick="quickSearch(10)" id="type10">所有</li>
                     <li iconCls="" onclick="quickSearch(6)" id="type6">草稿</li>
                     <li iconCls="" onclick="quickSearch(7)" id="type7">已提交</li>
+                    <li iconCls="" onclick="quickSearch(11)" id="type11">已作废</li>
                     <li iconCls="" onclick="quickSearch(8)" id="type8">已受理</li>
                     <li iconCls="" onclick="quickSearch(9)" id="type9">已完成</li>
         
@@ -82,6 +83,7 @@ body .mini-grid-row-selected{
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="audit()" visible=""  id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="del()" visible="true" id="delBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
                 <a class="nui-button" plain="true" iconCls="" onclick="importPart()" id="importPartBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
@@ -255,6 +257,7 @@ body .mini-grid-row-selected{
                                                  selectOnFocus="true"
                                                  showNullItem="false"
                                                  width="100%"
+                                                 onvaluechanged="onSettleTypeIdValueChanged"
                                                  nullItemText="请选择..."/>
                                       </td>
                                       
@@ -332,7 +335,7 @@ body .mini-grid-row-selected{
                            dataField="guestOrderDetailList"
                            idField="id"
                            showSummaryRow="true"
-                        
+                            sortMode="client"
                            ondrawcell="onRightGridDraw"
                            allowCellSelect="true"
                            allowCellEdit="true"
@@ -560,8 +563,8 @@ body .mini-grid-row-selected{
         <table style="width:100%;">
             <tr>
                 <td style="width:100%;">
-                    <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart2" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="onPartClose2" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart2" id="saveBtn2"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onPartClose2" id="auditBtn2"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
                 </td>
             </tr>
         </table>
@@ -659,6 +662,8 @@ body .mini-grid-row-selected{
             <td colspan="1" align="center">数量</td>
             <td colspan="1" align="center">单价</td>
             <td colspan="1" align="center">金额</td>
+            <td colspan="1" align="center">实际售价</td>
+            <td colspan="1" align="center">实际金额</td>
             <td colspan="1" align="center">备注</td>
         </tr>
         <tbody id="tableExportContent">

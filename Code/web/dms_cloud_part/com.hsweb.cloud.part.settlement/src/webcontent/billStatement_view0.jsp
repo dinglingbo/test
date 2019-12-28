@@ -131,7 +131,7 @@
         </div>
         <div showCollapseButton="false">
              <div class="nui-fit">
-                  <fieldset id="fd1" style="width:99.5%;height:120px;">
+                  <fieldset id="fd1" style="width:99.5%;height:150px;">
                       <legend><span>对账单信息</span></legend>
                       <div class="fieldset-body">
                           <div id="basicInfoForm" class="form" contenteditable="false">
@@ -273,12 +273,12 @@
                                           <input class="nui-textbox" id="invoiceRegister" name="invoiceRegister" width="100%">
                                       </td>
                                       
-                                      <td cl
+                               
                                       <td class="title">
-                                          <label>备注：</label>
+                                          <label>对账财务：</label>
                                       </td>
                                       <td colspan="1">
-                                          <input class="nui-textbox" id="remark" name="remark" width="100%">
+                                          <input class="nui-textbox" id="stateFinancer" name="stateFinancer" width="100%">
                                       </td>
                                       <td class="title">
                                           <label>历史欠收：</label>
@@ -291,6 +291,14 @@
                                       </td>
                                       <td colspan="1">
                                           <input class="nui-textbox" id="debtPAmt" name="debtPAmt" width="100%" enabled="false">
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                  	<td class="title">
+                                          <label>备注：</label>
+                                      </td>
+                                      <td colspan="9">
+                                          <input class="nui-textbox" id="remark" name="remark" width="100%">
                                       </td>
                                   </tr>
                               </table>

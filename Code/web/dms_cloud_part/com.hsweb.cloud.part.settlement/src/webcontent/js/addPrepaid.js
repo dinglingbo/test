@@ -3,6 +3,8 @@ var advancedSearchForm = null;
 var plist = [];
 var rlist = [];
 var prepaid = {};//主页面传过来
+var guestIdEl =null;
+var getGuestInfo = bearUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
 $(document).ready(function(v){
 	advancedSearchForm = new nui.Form("#advancedSearchForm");
 	var params = {isMain:0};
@@ -19,6 +21,31 @@ $(document).ready(function(v){
 		nui.get("payBillTypeList").setData(plist);
 		nui.get("closedBillTypeList").setData(rlist);
     }); 
+	
+	guestIdEl=nui.get('guestId');
+    guestIdEl.setUrl(getGuestInfo);
+	guestIdEl.on("beforeload",function(e){
+	      
+        var data = {};
+        var params = {};
+        var value = e.data.key;
+        value = value.replace(/\s+/g, "");
+        if(value.length<2){
+            e.cancel = true;
+            return;
+        }
+        var params = {};
+    	params.pny = e.data.key.replace(/\s+/g, "");
+//    	params.isClient = 1;
+
+        data.params = params;
+        e.data =data;
+        return;
+            
+       
+        
+    });
+
 });
 
 var inComeExpensesUrl = bearUrl + "com.hsapi.cloud.part.settle.svr.queryFibInComeExpenses.biz.ext";
@@ -161,4 +188,18 @@ function selectSupplier(elId) {
 			}
 		}
 	});
+}
+
+function onGuestValueChanged(e)
+{
+
+	var data = e.selected;
+	if (data) { 
+		var id = data.id;
+		var text = data.fullName;
+		var el = nui.get('guestId');
+        el.setValue(id);
+        el.setText(text);
+
+    }
 }

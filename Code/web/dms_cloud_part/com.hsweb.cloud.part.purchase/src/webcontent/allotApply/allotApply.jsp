@@ -260,6 +260,7 @@ body .mini-grid-row-selected{
                            showModified="false"
                            editNextOnEnterKey="true"
                            allowCellWrap = "true"
+                           sortMode="client"
                            url="">
                           <div property="columns">
                               <div type="indexcolumn">序号</div>

@@ -143,6 +143,10 @@ $(document).ready(function(v)
     searchBeginDate.setValue(getNowStartDate());
     searchEndDate.setValue(addDate(getNowEndDate(), 1));
 
+    mainTabs.on("activechanged",function(e){
+    	onSearch();
+    });
+    
     getAllPartBrand(function(data)
     {
         var partBrandList = data.brand;

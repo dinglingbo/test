@@ -46,7 +46,8 @@ var StatusHash={
 		"0"	:"草稿",
 		"1"	:"已提交",
 		"2"	:"已受理",
-		"3" :"已完成"
+		"3" :"已完成",
+		"4" :"已作废"
 	};
 var storeLimitMap={};
 var partHash={};
@@ -266,7 +267,13 @@ function loadMainAndDetailInfo(row)
        nui.get("isBilling").setValue(row.isBilling);
 	   billingChange();
 	   
-       if(row.auditSign == 1) {
+	   if(currIsSalesman ==1 && currIsCanSubmitOtherBill ==1 && row.creator !=currUserName ){
+			nui.get("auditBtn").disable();
+		}else {
+			nui.get("auditBtn").enable();
+		}
+	   
+       if(row.auditSign == 1 || row.status==4) {
             setBtnable(false);
             document.getElementById("basicInfoForm").disabled=true;
             setEditable(false);
@@ -282,11 +289,7 @@ function loadMainAndDetailInfo(row)
     	   nui.get('finishSellBtn').disable();
        }
        
-       if(currIsSalesman ==1 && currIsCanSubmitOtherBill ==1 && row.creator !=currUserName ){
-				nui.get("auditBtn").disable();
-  		}else {
-  			nui.get("auditBtn").enable();
-  		}
+      
         
        //序列化入库主表信息，保存时判断主表信息有没有修改，没有修改则不需要保存
        formJson = nui.encode(basicInfoForm.getData());
@@ -457,6 +460,13 @@ function quickSearch(type){
             querysign = 2;
 
             break;
+        case 11:
+        	gsparams.status = 4;
+        	gsparams.auditSign = null;
+            querytypename = "已作废";
+            querysign = 2;
+
+            break;
         default:
             params.today = 1;
             params.startDate = getNowStartDate();
@@ -477,6 +487,67 @@ function quickSearch(type){
     }
     doSearch(gsparams);
 }
+
+var delUrl = baseUrl+"com.hsapi.cloud.part.invoicing.guestOrder.updateGuestOrderDisabled.biz.ext";
+function del()
+{
+    var data = basicInfoForm.getData();
+    if(data.status==4){
+    	showMsg("订单已作废","W");
+    	return;
+    }
+    if(data.status!=0){
+    	showMsg("草稿状态才能作废","W");
+    	return;
+    }
+    if(data.auditSign ==1){
+    	showMsg("订单已审核","W");
+    	return;
+    }
+   
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '处理中...'
+    });
+
+    nui.ajax({
+        url : delUrl,
+        type : "post",
+        data : JSON.stringify({
+            mainId : data.id,
+            token : token
+        }),
+        success : function(data) {
+            nui.unmask(document.body);
+            data = data || {};
+            if (data.errCode == "S") {
+                showMsg("操作成功!","S");
+                var row = leftGrid.getSelected();
+                var newRow =nui.clone(row);
+                newRow.status = 4;
+                leftGrid.updateRow(row,newRow);
+                basicInfoForm.setData(newRow);
+
+              
+                    //document.getElementById("delBtn").childNodes[0].innerHTML = '<span class="fa fa-reply fa-lg"></span>&nbsp;反作废';
+//                    nui.get("delBtn").setVisible(false);
+//                    nui.get("undelBtn").setVisible(true);
+                setBtnable(false);
+                setEditable(false);
+                document.getElementById("basicInfoForm").disabled=false;
+                
+
+            } else {
+                showMsg(data.errMsg || "操作失败!","W");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+
 function onSearch(){
     search();
 }
@@ -581,11 +652,16 @@ function save() {
     }
 
     var row = leftGrid.getSelected();
+    
     if(row){
         if(row.auditSign == 1) {
             showMsg("此单已提交!","W");
             return;
         } 
+        if(row.status ==4){
+        	 showMsg("此单已作废!","W");
+             return;
+        }
     }else{
         return;
     }
@@ -833,7 +909,12 @@ function doSearch(params)
             
         }else {
             var row = leftGrid.getSelected();
-            if(row.auditSign == 1) {
+            if(currIsSalesman ==1 &&currIsCanSubmitOtherBill ==1 && row.creator !=currUserName ){
+				nui.get("auditBtn").disable();
+			}else {
+				nui.get("auditBtn").enable();
+			}
+            if(row.auditSign == 1 || row.status==4) {
                 setBtnable(false);
                 setEditable(false);
                 document.getElementById("basicInfoForm").disabled=true;
@@ -842,11 +923,7 @@ function doSearch(params)
                 setEditable(true);
                 document.getElementById("basicInfoForm").disabled=false;
             }
-            if(currIsSalesman ==1 &&currIsCanSubmitOtherBill ==1 && row.creator !=currUserName ){
-				nui.get("auditBtn").disable();
-			}else {
-				nui.get("auditBtn").enable();
-			}
+           
         }
     });
 }
@@ -2781,6 +2858,8 @@ function setInitExportData(main, detail){
         "<td  colspan='1' align='left'>[orderQty]</td>" +
         "<td  colspan='1' align='left'>[showPrice]</td>" +
         "<td  colspan='1' align='left'>[showAmt]</td>" +
+        "<td  colspan='1' align='left'>[orderPrice]</td>" +
+        "<td  colspan='1' align='left'>[orderAmt]</td>" +
         "<td  colspan='1' align='left'>[remark]</td>";
     var tableExportContent = $("#tableExportContent");
     tableExportContent.empty();
@@ -2795,6 +2874,8 @@ function setInitExportData(main, detail){
                          .replace("[orderQty]", detail[i].orderQty?detail[i].orderQty:"")
                          .replace("[showPrice]", detail[i].showPrice?detail[i].showPrice:"")
                          .replace("[showAmt]", detail[i].showAmt?detail[i].showAmt:"")
+                         .replace("[orderPrice]", detail[i].orderPrice?detail[i].orderPrice:"")
+                         .replace("[orderAmt]", detail[i].orderAmt?detail[i].orderAmt:"")
                          .replace("[remark]", detail[i].remark?detail[i].remark:""));
             tableExportContent.append(tr);
         }
@@ -2951,6 +3032,14 @@ function partChange(){
 	    });
 	}
 	
+}
+
+function onSettleTypeIdValueChanged(e) {
+	var data = e.selected;
+	if(data.customid == "020502") {//月结
+		showMsg("现结不可修改为月结","W");
+		nui.get("settleTypeId").setValue("020501");
+	}
 }
 
 

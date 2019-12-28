@@ -135,7 +135,14 @@ function initGridData(data) {
 				unit : unit,
 				orderQty : orderQty,
 				orderPrice : orderPrice,
-				prevDetailId : prevDetailId
+				showPartId : partId,
+        		showPartCode : partCode,
+                showFullName : fullName,
+                showBrandName :part.partBrandName || "",
+                showCarModel : part.applyCarModel  || "",
+                showOemCode : part.oemCode  || "",
+                showSpec : part.spec  || "",
+                showPrice :orderPrice
 			};
 			rows.push(row);
 		}

@@ -307,6 +307,18 @@
       <process:from type="query" pattern="reference">name</process:from>
       <process:to type="query">reg/name</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">reg/mobile</process:from>
+      <process:to type="query">name</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">name.trim()</process:from>
+      <process:to type="query">name</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">name</process:from>
+      <process:to type="query">reg/mobile</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
     <location x="294" y="231"/>

@@ -58,6 +58,7 @@ var AuditSignHash = {
 var StatusHash={
 	"0"	:"草稿",
 	"1"	:"已提交",
+	"7"	:"已作废",
 	"2"	:"已出库",
 	"6" :"部分出库"
 };
@@ -552,7 +553,14 @@ function loadMainAndDetailInfo(row)
        }else{
            nui.get("guestId").enable();
            nui.get("code").enable();
-           if(row.auditSign == 1) {
+           
+           if(currIsSalesman ==1 && currIsCanSubmitOtherBill ==1 && row.creator !=currUserName ){
+  				nui.get("auditBtn").disable();
+	   		}else {
+	   			nui.get("auditBtn").enable();
+	   		}
+           
+           if(row.auditSign == 1 || row.billStatusId ==7) {
                 document.getElementById("basicInfoForm").disabled=true;
                 setBtnable(false);
                 setEditable(false);
@@ -561,11 +569,7 @@ function loadMainAndDetailInfo(row)
                 setBtnable(true);
                 setEditable(true);
            }
-           if(currIsSalesman ==1 && currIsCanSubmitOtherBill ==1 && row.creator !=currUserName ){
-   				nui.get("auditBtn").disable();
-	   		}else {
-	   			nui.get("auditBtn").enable();
-	   		}
+           
            
        }
         
@@ -1209,6 +1213,12 @@ function quickSearch(type){
             querysign = 2;
             gsparams.auditSign = -1;
             break;
+        case 11:
+            querytypename = "已作废";
+            gsparams.billStatusId = 7;
+            querysign = 2;
+            gsparams.auditSign = 0;
+            break;
         default:
         	params.today = 1;
             params.startDate = getNowStartDate();
@@ -1261,6 +1271,7 @@ function setBtnable(flag)
         //nui.get("deletePartBtn").enable();
         nui.get("saveBtn").enable();
         nui.get("auditBtn").enable();
+        nui.get("auditToOutBtn").enable();
         nui.get("selectSupplierBtn").enable();
         //nui.get("printBtn").enable();
     }
@@ -1271,6 +1282,7 @@ function setBtnable(flag)
         //nui.get("deletePartBtn").disable();
         nui.get("saveBtn").disable();
         nui.get("auditBtn").disable();
+        nui.get("auditToOutBtn").disable();
         nui.get("selectSupplierBtn").disable();
         //nui.get("printBtn").disable();
     }
@@ -1314,7 +1326,13 @@ function doSearch(params)
             
         }else {
             var row = leftGrid.getSelected();
-            if(row.auditSign == 1) {
+            
+            if(currIsSalesman ==1 && currIsCanSubmitOtherBill ==1 && row.creator !=currUserName ){
+				nui.get("auditBtn").disable();
+			}else {
+				nui.get("auditBtn").enable();
+			}
+            if(row.auditSign == 1 || row.billStatusId ==7) {
                 document.getElementById("basicInfoForm").disabled=true;
                 setBtnable(false);
                 setEditable(false);
@@ -1323,11 +1341,7 @@ function doSearch(params)
                 setBtnable(true);
                 setEditable(true);
             }
-            if(currIsSalesman ==1 && currIsCanSubmitOtherBill ==1 && row.creator !=currUserName ){
-				nui.get("auditBtn").disable();
-			}else {
-				nui.get("auditBtn").enable();
-			}
+            
         }
 	});
 }
@@ -1606,7 +1620,7 @@ function getSellOrderBillNO(callback){
             data = data || {};
             if (data.errCode == "S") {
                 var main = data.main;
-                leftGrid.reload();
+//                leftGrid.reload();
                 callback && callback(main)
             } else {
                 showMsg(data.errMsg || "请先保存单据添加配件","W");
@@ -1679,6 +1693,10 @@ function save() {
 
     var row = leftGrid.getSelected();
     if(row){
+    	  if(row.billStatusId == 7) {
+              showMsg("此单已作废!","W");
+              return;
+          } 
         if(row.auditSign == 1) {
             showMsg("此单已提交!","W");
             return;
@@ -3716,3 +3734,65 @@ function partChange(){
 	}
 	
 }
+
+
+var delUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.updatePjSellOrderDisabled.biz.ext";
+function del(){
+	 var data = basicInfoForm.getData();
+	    if(data.billStatusId==7){
+	    	showMsg("订单已作废","W");
+	    	return;
+	    }
+	    if(data.billStatusId!=0){
+	    	showMsg("草稿状态才能作废","W");
+	    	return;
+	    }
+	    if(data.auditSign ==1){
+	    	showMsg("订单已审核","W");
+	    	return;
+	    }
+	   
+	    nui.mask({
+	        el: document.body,
+	        cls: 'mini-mask-loading',
+	        html: '处理中...'
+	    });
+
+	    nui.ajax({
+	        url : delUrl,
+	        type : "post",
+	        data : JSON.stringify({
+	            mainId : data.id,
+	            token : token
+	        }),
+	        success : function(data) {
+	            nui.unmask(document.body);
+	            data = data || {};
+	            if (data.errCode == "S") {
+	                showMsg("操作成功!","S");
+	                var row = leftGrid.getSelected();
+	                var newRow =nui.clone(row);
+	                newRow.billStatusId = 7;
+	                leftGrid.updateRow(row,newRow);
+	                basicInfoForm.setData(newRow);
+
+	              
+	                    //document.getElementById("delBtn").childNodes[0].innerHTML = '<span class="fa fa-reply fa-lg"></span>&nbsp;反作废';
+//	                    nui.get("delBtn").setVisible(false);
+//	                    nui.get("undelBtn").setVisible(true);
+	                setBtnable(false);
+	                setEditable(false);
+	                document.getElementById("basicInfoForm").disabled=false;
+	                
+
+	            } else {
+	                showMsg(data.errMsg || "操作失败!","W");
+	            }
+	        },
+	        error : function(jqXHR, textStatus, errorThrown) {
+	            console.log(jqXHR.responseText);
+	        }
+	    });
+	}
+
+

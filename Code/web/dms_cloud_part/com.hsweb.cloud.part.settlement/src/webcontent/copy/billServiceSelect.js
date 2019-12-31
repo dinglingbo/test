@@ -385,24 +385,28 @@ function getConnncetGuest(guestId){
 	return guestIdList;
 }
 
-function onDrawSummaryCell(e)
-{
-    var rows = notStatementGrid.getSelecteds();//rightGrid.getData();
-    if(rows.length<=0){
-    	return;
-    }
-    if (e.field == "billAmt") { 
-        var billAmt = 0;
-        for (var i = 0; i < rows.length; i++) {
-        	billAmt += parseFloat(rows[i].billAmt);
-        }
-//        nui.get("billAmt").setValue(billAmt);
-    }
-    if (e.field == "noStateAmt") { 
-        var noStateAmt = 0;
-        for (var i = 0; i < rows.length; i++) {
-        	noStateAmt += parseFloat(rows[i].noStateAmt);
-        }
-//        nui.get("billAmt").setValue(billAmt);
-    }
+//function onDrawSummaryCell(e)
+//{
+//    var rows = notStatementGrid.getSelecteds();//rightGrid.getData();
+//    if(rows.length<=0){
+//    	return;
+//    }
+//    if (e.field == "billAmt") { 
+//        var billAmt = 0;
+//        for (var i = 0; i < rows.length; i++) {
+//        	billAmt += parseFloat(rows[i].billAmt);
+//        }
+////        nui.get("billAmt").setValue(billAmt);
+//    }
+//    if (e.field == "noStateAmt") { 
+//        var noStateAmt = 0;
+//        for (var i = 0; i < rows.length; i++) {
+//        	noStateAmt += parseFloat(rows[i].noStateAmt);
+//        }
+////        nui.get("billAmt").setValue(billAmt);
+//    }
+//}
+
+function onNotStatementGridSelectionChanged(e){
+	var rows = notStatementGrid.getSelecteds(); 
 }

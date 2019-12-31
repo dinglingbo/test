@@ -355,26 +355,23 @@ function onCancel(e) {
 }
 
 
-//function onNotStatementGridSelectionChanged(e){
-//	var rows = notStatementGrid.getSelecteds();
-//	if(rows.length<=0){
-//    	return;
-//    }
-//    if (e.field == "billAmt") { 
-//        var billAmt = 0;
-//        for (var i = 0; i < rows.length; i++) {
-//        	billAmt += parseFloat(rows[i].billAmt);
-//        }
-////        nui.get("billAmt").setValue(billAmt);
-//    }
-//    if (e.field == "noStateAmt") { 
-//        var noStateAmt = 0;
-//        for (var i = 0; i < rows.length; i++) {
-//        	noStateAmt += parseFloat(rows[i].noStateAmt);
-//        }
-////        nui.get("billAmt").setValue(billAmt);
-//    }
-//}
+function onNotStatementGridSelectionChanged(e){
+	var rows = notStatementGrid.getSelecteds();
+	if(rows.length<=0){
+		$('#sumAmt').html("汇总金额:"+0);
+		$('#sumNoStateAmt').html("汇总未对账金额:"+0);
+    	return;
+    }
+	var sumAmt =0;
+	var sumNoStateAmt = 0;
+	for(var i =0;i<rows.length;i++){
+		sumAmt+=rows[i].billAmt;
+		sumNoStateAmt +=rows[i].noStateAmt;
+	}
+	$('#sumAmt').html("选中汇总金额:"+sumAmt);
+	$('#sumNoStateAmt').html("选中汇总未对账金额:"+sumNoStateAmt);
+    
+}
 //function onDrawSummaryCell(e)
 //{
 //    var rows = notStatementGrid.getSelecteds();//rightGrid.getData();

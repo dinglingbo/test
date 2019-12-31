@@ -27,6 +27,7 @@
                 	<li iconCls="" onclick="quickSearch(10)" id="type10">所有</li>
                     <li iconCls="" onclick="quickSearch(6)" id="type6">草稿</li>
                     <li iconCls="" onclick="quickSearch(7)" id="type7">已提交</li>
+                    <li iconCls="" onclick="quickSearch(11)" id="type11">已作废</li>
                     <li iconCls="" onclick="quickSearch(8)" id="type8">部分出库</li>
                     <li iconCls="" onclick="quickSearch(9)" id="type9">已出库</li>
                 </ul>
@@ -46,6 +47,7 @@
                 <a class="nui-button" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button"  plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>
+                <a class="nui-button"  plain="true" onclick="del()" id="delBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
                 <a class="nui-button" visible="false" plain="true" onclick="auditToOut()" id="auditToOutBtn"><span class="fa fa-check fa-lg"></span>&nbsp;出库</a>
                 <a class="nui-button" visible="false" plain="true" onclick="packOut()" id="packOutBtn"><span class="fa fa-truck fa-lg"></span>&nbsp;发货</a>
                 <a class="nui-button" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
@@ -117,6 +119,7 @@
                               <input class="nui-hidden" name="createDate"/>
                               <input class="nui-hidden" name="auditSign"/>
                               <input class="nui-hidden" name="orderAmt"/>
+                              <input class="nui-hidden" name="billStatusId"/>
                               <input class="nui-textbox" visible="false" id="codeId" name="codeId" width="100%">
                               <table style="width: 100%;">
                                   <tr>

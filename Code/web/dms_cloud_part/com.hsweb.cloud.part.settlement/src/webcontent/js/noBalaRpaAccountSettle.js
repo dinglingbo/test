@@ -726,6 +726,149 @@ function selectSupplier(elId)
     });
 }
 
+function onPurEnterGridClick(e){
+	 var main ={};
+	 var partList =[];
+	 var  record =e.record;
+	 partList.push(record);
+	 main.guestFullName =record.guestFullName;
+	 main.serviceId =record.serviceId;
+	 main.billTypeId = record.billTypeId;
+	 main.settleTypeId = record.settleTypeId;
+	 main.auditDate = record.auditDate;
+	 main.remark = record.remark;
+	 nui.open({
+//       // targetWindow: window,,
+       url : webPath+contextPath+"/settlement/enterMainDetail.jsp?token="+token,
+       title : "采购入库明细",
+       width : 750,
+       height : 400,
+       allowDrag : true,
+       allowResize : true,
+       onload : function() {
+           var iframe = this.getIFrameEl();
+           var params = {
+               main: main,
+               partList: partList
+           };
+           iframe.contentWindow.setInitData(params);
+       },
+       ondestroy : function(action) {
+           if (action == 'ok') {
+               var iframe = this.getIFrameEl();
+               //var data = iframe.contentWindow.getData();
+           }
+       }
+   });
+}
+
+function onSellRtnGridClick(e){
+	 var main ={};
+	 var partList =[];
+	 var  record =e.record;
+	 partList.push(record);
+	 main.guestFullName =record.guestFullName;
+	 main.serviceId =record.serviceId;
+	 main.billTypeId = record.billTypeId;
+	 main.settleTypeId = record.settleTypeId;
+	 main.auditDate = record.auditDate;
+	 main.remark = record.remark;
+	 nui.open({
+//      // targetWindow: window,,
+      url : webPath+contextPath+"/settlement/enterMainDetail.jsp?token="+token,
+      title : "销售退货明细",
+      width : 650,
+      height : 400,
+      allowDrag : true,
+      allowResize : true,
+      onload : function() {
+          var iframe = this.getIFrameEl();
+          var params = {
+              main: main,
+              partList: partList
+          };
+          iframe.contentWindow.setInitData(params);
+      },
+      ondestroy : function(action) {
+          if (action == 'ok') {
+              var iframe = this.getIFrameEl();
+              //var data = iframe.contentWindow.getData();
+          }
+      }
+  });
+}
+
+function onSellOutGridClick(e){
+	 var main ={};
+	 var partList =[];
+	 var  record =e.record;
+	 partList.push(record);
+	 main.guestFullName =record.guestFullName;
+	 main.serviceId =record.serviceId;
+	 main.billTypeId = record.billTypeId;
+	 main.settleTypeId = record.settleTypeId;
+	 main.auditDate = record.auditDate;
+	 main.remark = record.remark;
+	 nui.open({
+//     // targetWindow: window,,
+     url : webPath+contextPath+"/settlement/outMainDetail.jsp?token="+token,
+     title : "销售出库明细",
+     width : 750,
+     height : 400,
+     allowDrag : true,
+     allowResize : true,
+     onload : function() {
+         var iframe = this.getIFrameEl();
+         var params = {
+             main: main,
+             partList: partList
+         };
+         iframe.contentWindow.setInitData(params);
+     },
+     ondestroy : function(action) {
+         if (action == 'ok') {
+             var iframe = this.getIFrameEl();
+             var data = iframe.contentWindow.getData();
+         }
+     }
+ });
+}
+
+function onPurRtnGridClick(e){
+	 var main ={};
+	 var partList =[];
+	 var  record =e.record;
+	 partList.push(record);
+	 main.guestFullName =record.guestFullName;
+	 main.serviceId =record.serviceId;
+	 main.billTypeId = record.billTypeId;
+	 main.settleTypeId = record.settleTypeId;
+	 main.auditDate = record.auditDate;
+	 main.remark = record.remark;
+	 nui.open({
+//	     // targetWindow: window,,
+	     url : webPath+contextPath+"/settlement/outMainDetail.jsp?token="+token,
+	     title : "采购退货明细",
+	     width : 650,
+	     height : 400,
+	     allowDrag : true,
+	     allowResize : true,
+	     onload : function() {
+	         var iframe = this.getIFrameEl();
+	         var params = {
+	                 main: main,
+	                 partList: partList
+             };
+	         iframe.contentWindow.setInitData(params);
+	     },
+	     ondestroy : function(action) {
+	         if (action == 'ok') {
+	             var iframe = this.getIFrameEl();
+	             //var data = iframe.contentWindow.getData();
+	         }
+	     }
+	 });
+}
 //重写toFixed方法,解决精度问题
 Number.prototype.toFixed = function (n) {
     if (n != undefined && (isNaN(n) || Number(n) > 17 || Number(n) < 0)) {

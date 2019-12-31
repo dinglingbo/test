@@ -26,6 +26,7 @@
                 <ul id="popupMenuType" class="nui-menu" style="display:none;">
                 	<li iconCls="" onclick="quickSearch(10)" id="type10">所有</li>
                     <li iconCls="" onclick="quickSearch(6)" id="type6">草稿</li>
+                    <li iconCls="" onclick="quickSearch(11)" id="type11">已作废</li>
                     <li iconCls="" onclick="quickSearch(9)" id="type9">已出库</li>
                 </ul>
                 <input id="searchGuestId" class="nui-buttonedit"
@@ -42,6 +43,7 @@
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                <a class="nui-button"  plain="true" onclick="del()" id="delBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;出库</a>
                 <a class="nui-button" plain="true" style="display:none;" onclick="packOut()" id="auditBtn"><span class="fa fa-truck fa-lg"></span>&nbsp;发货</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
@@ -85,7 +87,8 @@
                      url="">
                     <div property="columns">
                       <div type="indexcolumn">序号</div>
-                      	<div field="auditSign" width="55" headerAlign="center" header="状态"></div>
+                      	<div field="auditSign" width="55" visible="false" headerAlign="center" header="状态"></div>
+                      	  <div field="billStatusId" width="55" headerAlign="center" header="状态" allowSort="true" dataType="string"></div>
                         <div field="guestFullName" width="140" headerAlign="center" header="客户"></div>
                         <div field="orderDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="订单日期"></div>
                         <div field="orderMan" width="60" headerAlign="center" header="销售员"></div>
@@ -110,6 +113,7 @@
                               <input class="nui-hidden" name="auditSign"/>
                               <input class="nui-hidden" name="orderAmt"/>
                               <input class="nui-hidden" name="createDate"/>
+                              <input class="nui-hidden" name="billStatusId"/>
                               <input class="nui-textbox" visible="false" id="codeId" name="codeId" width="100%">
                               <table style="width: 100%;">
                                   <tr>

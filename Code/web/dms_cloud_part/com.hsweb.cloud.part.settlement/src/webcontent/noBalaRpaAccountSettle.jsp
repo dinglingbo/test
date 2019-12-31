@@ -13,7 +13,7 @@
 <head>
 <title>未对账业务单</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/settlement/js/noBalaRpaAccountSettle.js?v=1.0.80"></script>
+    <script src="<%=webPath + contextPath%>/settlement/js/noBalaRpaAccountSettle.js?v=1.0.12"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -130,6 +130,7 @@
 				         ondrawcell="onDrawCell"
 				         sortMode="client"
 				         url=""
+				         onrowdblclick="onPurEnterGridClick"
 				         totalField="page.count"
 						 pageSize="100"
 						 sizeList=[100,200,500,1000]
@@ -175,6 +176,7 @@
 				         ondrawcell="onDrawCell"
 				         sortMode="client"
 				         url=""
+				         onrowdblclick="onPurRtnGridClick"
 				         totalField="page.count"
 						 pageSize="100"
 						 multiSelect="true"
@@ -216,6 +218,7 @@
 				         ondrawcell="onDrawCell"
 				         sortMode="client"
 				         url=""
+				         onrowdblclick="onSellOutGridClick"
 				         totalField="page.count"
 						 pageSize="100"
 						 sizeList=[100,200,500,1000]
@@ -255,6 +258,7 @@
 				         ondrawcell="onDrawCell"
 				         sortMode="client"
 				         url=""
+				         onrowdblclick="onSellRtnGridClick"
 				         totalField="page.count"
 						 pageSize="100"
 						 sizeList=[100,200,500,1000]

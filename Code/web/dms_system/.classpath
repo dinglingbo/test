@@ -48,5 +48,6 @@
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/core-3.3.0.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/javase-3.2.1.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/commons-codec-1.11.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/k3cloud-webapi-sdk.7.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

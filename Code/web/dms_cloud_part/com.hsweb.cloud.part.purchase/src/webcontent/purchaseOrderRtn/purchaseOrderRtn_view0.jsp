@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购退货</title>
-<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.0.38"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.0.43"></script>
 <style type="text/css">
 .title {
 	width: 70px;
@@ -63,6 +63,7 @@ body .mini-grid-row-selected{
                 	<li iconCls="" onclick="quickSearch(10)" id="type10">所有</li>
                     <li iconCls="" onclick="quickSearch(6)" id="type6">草稿</li>
                     <li iconCls="" onclick="quickSearch(7)" id="type7">已提交</li>
+                    <li iconCls="" onclick="quickSearch(11)" id="type11">已作废</li>
                     <li iconCls="" onclick="quickSearch(8)" id="type8">部分出库</li>
                     <li iconCls="" onclick="quickSearch(9)" id="type9">已出库</li>
                 </ul>
@@ -80,6 +81,7 @@ body .mini-grid-row-selected{
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                <a class="nui-button"  plain="true" onclick="del()" id="delBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="submit()" visible="false"  id="submitBtn"><span class="fa fa-check fa-lg""></span>&nbsp;提交</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="audit()" visible="false" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;退货</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
@@ -142,6 +144,8 @@ body .mini-grid-row-selected{
                               <input class="nui-hidden" name="id"/>
                               <input class="nui-hidden" name="operateDate"/>
                      <!--         <input class="nui-hidden" name="storeId" id="storeId"/>-->
+                     		  <input class="nui-hidden" name="billStatusId"/>
+                     
                               <input class="nui-hidden" name="auditSign"/>
                               <input class="nui-hidden" name="createDate"/>
                               <table style="width: 100%;">
@@ -481,7 +485,7 @@ body .mini-grid-row-selected{
         <table style="width:100%;">
             <tr>
                 <td style="width:100%;">
-                    <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart" id="saveBtn2"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="closeBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
                 </td>
             </tr>

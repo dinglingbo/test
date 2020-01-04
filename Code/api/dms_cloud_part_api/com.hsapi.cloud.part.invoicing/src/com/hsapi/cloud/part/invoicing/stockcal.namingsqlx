@@ -246,7 +246,7 @@
 			
 			
 			<isNotNull prepend = "" property = "code">
-				AND (D.QUERY_CODE like '%$code$%' or d.code like '%$partCode$%')
+				AND (D.QUERY_CODE like '%$code$%' or d.code like '%$code$%')
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "name">
@@ -657,7 +657,7 @@
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "code">
-				AND (g.QUERY_CODE like '%$code$%' or g.code like '%$partCode$%')
+				AND (g.QUERY_CODE like '%$code$%' or g.code like '%$code$%')
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "name">

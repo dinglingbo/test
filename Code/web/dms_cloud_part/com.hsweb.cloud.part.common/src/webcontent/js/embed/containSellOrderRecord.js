@@ -169,6 +169,7 @@ function doSearch(params)
     params.tenantId =currTenantId;
     params.isOut = 1;
     params.orderTypeId = 2;
+    params.isDiffOrder =1;
     params.sortField = "a.audit_date";
     params.sortOrder = "desc";
     sellOrderRecordGrid.load({

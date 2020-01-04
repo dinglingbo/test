@@ -47,8 +47,8 @@
                 <a class="nui-button" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button"  plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>
-                <a class="nui-button"  plain="true" onclick="del()" id="delBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
                 <a class="nui-button" visible="false" plain="true" onclick="auditToOut()" id="auditToOutBtn"><span class="fa fa-check fa-lg"></span>&nbsp;出库</a>
+                <a class="nui-button"  plain="true" onclick="del()" id="delBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
                 <a class="nui-button" visible="false" plain="true" onclick="packOut()" id="packOutBtn"><span class="fa fa-truck fa-lg"></span>&nbsp;发货</a>
                 <a class="nui-button" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
                 <span class="separator"></span>

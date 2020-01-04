@@ -376,7 +376,7 @@ $(document).ready(function(v)
     }
 	//开启APP
     if(currIsOpenApp ==1){
-  	  nui.get('unAuditBtn').setVisible(false);
+//  	  nui.get('unAuditBtn').setVisible(false);
   	  getStoreLocation();
 //  	  getPart();
     }
@@ -1427,6 +1427,7 @@ function onAdvancedSearchOk()
     }
     advancedSearchFormData = advancedSearchForm.getData();
     advancedSearchWin.hide();
+    searchData.auditSign=-1;
     doSearch(searchData);
 }
 function onAdvancedSearchCancel()
@@ -3370,7 +3371,7 @@ function unAudit()
             data = data || {};
             if (data.errCode == "S") {
                 showMsg("返单成功!","S");
-                leftGrid.updateRow(row, {auditSign:0});
+                leftGrid.updateRow(row, {auditSign:0,billStatusId:0});
                 row = leftGrid.getSelected();
                 //loadMainAndDetailInfo(row);
                 rightGrid.setData([]);

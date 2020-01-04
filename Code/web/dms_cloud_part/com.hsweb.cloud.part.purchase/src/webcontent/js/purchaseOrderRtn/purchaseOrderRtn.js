@@ -546,6 +546,64 @@ var requiredField = {
     settleTypeId : "结算方式",
     storeId:"仓库"
 };
+
+
+var unAuditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.unAuditSellOrderToOut.biz.ext";
+function unAudit()
+{
+
+    var row = leftGrid.getSelected();
+    if(row){
+        if(row.auditSign != 1){
+            showMsg("此单未提交，不需要返单!","W");
+            return;
+        }
+        if(row.isOut == 1) {
+            showMsg("此单已出库!","W");
+            return;
+        } 
+    }else{
+        return;
+    }
+
+    var data = basicInfoForm.getData();
+    var mainId = data.id;
+
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '返单中...'
+    });
+
+    nui.ajax({
+        url : unAuditUrl,
+        type : "post",
+        data : JSON.stringify({
+            mainId : mainId,
+            token : token
+        }),
+        success : function(data) {
+            nui.unmask(document.body);
+            data = data || {};
+            if (data.errCode == "S") {
+                showMsg("返单成功!","S");
+                leftGrid.updateRow(row, {auditSign:0,billStatusId:0});
+                row = leftGrid.getSelected();
+                //loadMainAndDetailInfo(row);
+                rightGrid.setData([]);
+                add();
+                
+            } else {
+                showMsg(data.errMsg || "审核失败!","W");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+
 var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.savePjSellOrder.biz.ext";
 function save() {
     var data = basicInfoForm.getData();
@@ -863,6 +921,7 @@ function onAdvancedSearchOk()
     }
     advancedSearchFormData = advancedSearchForm.getData();
     advancedSearchWin.hide();
+    searchData.auditSign=-1;
     doSearch(searchData);
 }
 function onAdvancedSearchCancel()

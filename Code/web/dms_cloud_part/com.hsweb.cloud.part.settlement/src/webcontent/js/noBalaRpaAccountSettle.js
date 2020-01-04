@@ -67,10 +67,10 @@ $(document).ready(function(v) {
     mainTabs =nui.get("mainTabs");
     mainTabs.on("activechanged",function(e){
     	var guestId = nui.get('searchGuestId').getValue();
-    	if(!guestId){
-    		showMsg("请先选择客户查询","W");
-    		return;
-    	}
+//    	if(!guestId){
+//    		showMsg("请先选择客户查询","W");
+//    		return;
+//    	}
     	var tab = mainTabs.getActiveTab();
     	var name = tab.name;
         var url = tab.url;
@@ -165,7 +165,7 @@ $(document).ready(function(v) {
             }
         });
     });
-//    quickSearch(2);
+    quickSearch(2);
 });
 
 function getCompany(){
@@ -295,10 +295,10 @@ function onSearch(){
 function doSearch(params)
 { 
 	var guestId = nui.get('searchGuestId').getValue();
-	if(!guestId){
-		showMsg("请先选择客户查询","W");
-		return;
-	}
+//	if(!guestId){
+//		showMsg("请先选择客户查询","W");
+//		return;
+//	}
 	mainGrid.load({
         params:params,
         token: token

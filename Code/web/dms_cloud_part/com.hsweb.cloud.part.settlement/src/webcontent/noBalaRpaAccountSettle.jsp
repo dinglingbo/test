@@ -77,7 +77,7 @@
 			</div>
 			
 			 <div id="mainGrid" class="nui-datagrid" style="width:100%;height:90%;"
-		         showPager="false"
+		         showPager="true"
 		         dataField="detailList"
 		         sortMode="client"
 		         ondrawcell="onMainDrawCell"

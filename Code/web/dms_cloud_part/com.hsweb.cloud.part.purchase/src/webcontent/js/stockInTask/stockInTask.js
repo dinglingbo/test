@@ -3,7 +3,7 @@
  */
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var leftGridUrl = baseUrl
-		+ "com.hsapi.cloud.part.invoicing.svr.iceryPjPchsOrderMainList.biz.ext";
+		+ "com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderMainList.biz.ext";
 var rightGridUrl = baseUrl
 		+ "com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
 //替换件

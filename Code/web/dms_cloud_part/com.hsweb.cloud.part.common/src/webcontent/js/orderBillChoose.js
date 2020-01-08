@@ -303,7 +303,9 @@ function addStatement()
         			}
             	}
             }
-            
+            for(var i=0;i<pjPchsOrderDetailList.length;i++){	
+            	pjPchsOrderDetailList[i].settleTypeId =settleTypeId;
+			}
             callback(pjPchsOrderDetailList);
             CloseWindow("ok");
             

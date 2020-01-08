@@ -133,6 +133,7 @@ function initGridData(data) {
 				partName : partName,
 				fullName : fullName,
 				unit : unit,
+				prevDetailId: prevDetailId,
 				orderQty : orderQty,
 				orderPrice : orderPrice,
 				showPartId : partId,

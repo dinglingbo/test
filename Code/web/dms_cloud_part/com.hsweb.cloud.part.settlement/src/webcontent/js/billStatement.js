@@ -1305,7 +1305,7 @@ function selectPart(guestId,orderTypeIdList,callback,checkcallback)
     nui.open({
         // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.cloud.part.settlement.billServiceSelect.flow?token="+token,
-        title: "业务单选择", width: 930, height: 560,
+        title: "业务单选择", width: 1000, height: 560,
         allowDrag:true,
         allowResize:true,
         onload: function ()

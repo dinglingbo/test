@@ -117,8 +117,8 @@ $(document).ready(function(v)
         
     });
 
-    gsparams.startDate = getNowStartDate();
-    gsparams.endDate = addDate(getNowEndDate(), 1);
+    gsparams.sAuditDate = getNowStartDate();
+    gsparams.eAuditDate = addDate(getNowEndDate(), 1);
     gsparams.auditSign = 0;
 
     sCreateDate = nui.get("sCreateDate");
@@ -950,57 +950,57 @@ function quickSearch(type){
     {
         case 0:
             params.today = 1;
-            params.startDate = getNowStartDate();
-            params.endDate = addDate(getNowEndDate(), 1);
+            params.sAuditDate = getNowStartDate();
+            params.eAuditDate = addDate(getNowEndDate(), 1);
             queryname = "本日";
             querysign = 1;
-            gsparams.startDate = getNowStartDate();
-            gsparams.endDate = addDate(getNowEndDate(), 1);
+            gsparams.sAuditDate = getNowStartDate();
+            gsparams.eAuditDate = addDate(getNowEndDate(), 1);
             break;
         case 1:
             params.yesterday = 1;
-            params.startDate = getPrevStartDate();
-            params.endDate = addDate(getPrevEndDate(), 1);
+            params.sAuditDate = getPrevStartDate();
+            params.eAuditDate = addDate(getPrevEndDate(), 1);
             queryname = "昨日";
             querysign = 1;
-            gsparams.startDate = getPrevStartDate();
-            gsparams.endDate = addDate(getPrevEndDate(), 1);
+            gsparams.sAuditDate = getPrevStartDate();
+            gsparams.eAuditDate = addDate(getPrevEndDate(), 1);
             break;
         case 2:
             params.thisWeek = 1;
-            params.startDate = getWeekStartDate();
-            params.endDate = addDate(getWeekEndDate(), 1);
+            params.sAuditDate = getWeekStartDate();
+            params.eAuditDate = addDate(getWeekEndDate(), 1);
             queryname = "本周";
             querysign = 1;
-            gsparams.startDate = getWeekStartDate();
-            gsparams.endDate = addDate(getWeekEndDate(), 1);
+            gsparams.sAuditDate = getWeekStartDate();
+            gsparams.eAuditDate = addDate(getWeekEndDate(), 1);
             break;
         case 3:
             params.lastWeek = 1;
-            params.startDate = getLastWeekStartDate();
-            params.endDate = addDate(getLastWeekEndDate(), 1);
+            params.sAuditDate = getLastWeekStartDate();
+            params.eAuditDate = addDate(getLastWeekEndDate(), 1);
             queryname = "上周";
             querysign = 1;
-            gsparams.startDate = getLastWeekStartDate();
-            gsparams.endDate = addDate(getLastWeekEndDate(), 1);
+            gsparams.sAuditDate = getLastWeekStartDate();
+            gsparams.eAuditDate = addDate(getLastWeekEndDate(), 1);
             break;
         case 4:
             params.thisMonth = 1;
-            params.startDate = getMonthStartDate();
-            params.endDate = addDate(getMonthEndDate(), 1);
+            params.sAuditDate = getMonthStartDate();
+            params.eAuditDate = addDate(getMonthEndDate(), 1);
             queryname = "本月";
             querysign = 1;
-            gsparams.startDate = getMonthStartDate();
-            gsparams.endDate = addDate(getMonthEndDate(), 1);
+            gsparams.sAuditDate = getMonthStartDate();
+            gsparams.eAuditDate = addDate(getMonthEndDate(), 1);
             break;
         case 5:
             params.lastMonth = 1;
-            params.startDate = getLastMonthStartDate();
-            params.endDate = addDate(getLastMonthEndDate(), 1);
+            params.sAuditDate = getLastMonthStartDate();
+            params.eAuditDate = addDate(getLastMonthEndDate(), 1);
             queryname = "上月";
             querysign = 1;
-            gsparams.startDate = getLastMonthStartDate();
-            gsparams.endDate = addDate(getLastMonthEndDate(), 1);
+            gsparams.sAuditDate = getLastMonthStartDate();
+            gsparams.eAuditDate = addDate(getLastMonthEndDate(), 1);
             break;
         case 6:
             params.auditSign = 0;
@@ -1043,12 +1043,12 @@ function quickSearch(type){
             break;
         default:
         	params.today = 1;
-            params.startDate = getNowStartDate();
-            params.endDate = addDate(getNowEndDate(), 1);
+            params.sAuditDate = getNowStartDate();
+            params.eAuditDate = addDate(getNowEndDate(), 1);
             querytypename = "已提交";
             params.billStatusId = 1;
-            gsparams.startDate = getNowStartDate();
-            gsparams.endDate = addDate(getNowEndDate(), 1);
+            gsparams.sAuditDate = getNowStartDate();
+            gsparams.eAuditDate = addDate(getNowEndDate(), 1);
             gsparams.auditSign = 1;
             break;
     }

@@ -829,6 +829,8 @@
 			THEN b.show_amt
 			ELSE b.order_amt
 			END as sellAmt,
+			b.order_price as trueSellPrice,
+			b.order_amt as trueSellAmt,
 			c.`code` as comPartCode,
 			c.`name` as comPartName,
 			c.full_name as comPartFullName,

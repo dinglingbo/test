@@ -9,7 +9,7 @@
 -->
 <head>
 <title>业务单选择</title>
-<script src="<%=webPath + contextPath%>/settlement/js/billServiceSelect.js?v=1.0.57"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/billServiceSelect.js?v=1.0.70"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -67,7 +67,10 @@
                   <span class="separator"></span>
                   <a class="nui-button" iconCls="" plain="true" onclick="addStatement()"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
                   <a class="nui-button" iconCls="" plain="true" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;取消 </a>
-
+				 
+				  <span id ="sumAmt"></span>
+				  &nbsp;
+				  <span  id ="sumNoStateAmt"></span>
                   <input class="nui-combobox" name="billTypeId" id="billTypeId"
                        emptyText="票据类型" data="" width="60px" visible="false" />
                   <input class="nui-combobox" name="settleTypeId" id="settleTypeId" 
@@ -89,8 +92,7 @@
            sizeList="[1000,5000,10000]"
            onshowrowdetail="onShowRowDetail"
             showSummaryRow="true"
-<!--           onselectionchanged="onNotStatementGridSelectionChanged"-->
-    <!--       ondrawsummarycell="onDrawSummaryCell"-->
+           onselectionchanged="onNotStatementGridSelectionChanged"
           >
           <div property="columns">
               <div type="indexcolumn">序号</div>

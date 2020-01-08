@@ -545,7 +545,8 @@
                  IFNULL(b.outable_qty,0)as outableQty,
                  IFNULL(b.on_road_qty,0) as onRoadQty,
 			     IFNULL(b.order_qty,0) as orderQty,
-			     b.store_id as storeId
+			     b.store_id as storeId,
+			     b.shelf as storeShelf
 		FROM wb_common.com_attribute a
 		
 			<isNotNull prepend = "" property = "showStock">

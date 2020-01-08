@@ -1297,7 +1297,7 @@
                     (C.PART_ID = #partId#)
                 </isNotEmpty>
                  <isNotEmpty prepend="and" property="partCode">  
-                    (D.CODE like '%$partCode$%')
+                    (D.QUERY_CODE like '%$partCode$%' or D.CODE like '%$partCode$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
                     (A.guest_id = #guestId#)

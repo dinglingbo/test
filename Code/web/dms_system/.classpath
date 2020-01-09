@@ -13,7 +13,6 @@
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/commons-pool2-2.4.2.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/ezmorph-1.0.3.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/fastjson-1.1.32.jar"/>
-	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/gson-2.7.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/httpcore-4.3.2.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/iText-2.1.7.js2.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/iTextAsian.jar"/>
@@ -49,5 +48,6 @@
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/javase-3.2.1.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/commons-codec-1.11.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/k3cloud-webapi-sdk.7.0.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/gson-2.8.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -235,8 +235,8 @@
       <sourceNode>assign3</sourceNode>
       <targetNode>end1</targetNode>
     </sourceConnections>
-    <targetConnections>link8</targetConnections>
     <targetConnections>link10</targetConnections>
+    <targetConnections>link8</targetConnections>
     <location x="287" y="270"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>

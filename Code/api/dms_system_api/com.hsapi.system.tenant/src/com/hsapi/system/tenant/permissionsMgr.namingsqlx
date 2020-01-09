@@ -119,6 +119,8 @@
 			a.im_disabled as imDisabled,
 			a.is_can_below_cost as isCanBelowCost,
 			a.is_pchs_stock as isPchsStock,
+			a.is_limit_credit as isLimitCredit,
+			a.credit_money as creditMoney,
 			b.`code` as compCode,
 			b.`name` as compName,
 			b.short_name as compShortName

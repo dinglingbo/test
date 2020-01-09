@@ -12,7 +12,7 @@
 <head>
     <title>员工管理</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />	
-    <script src="<%=webPath + contextPath%>/common/js/employeeQueryPart.js?v=1.0.0" type="text/javascript"></script>    
+    <script src="<%=webPath + contextPath%>/common/js/employeeQueryPart.js?v=1.0.3" type="text/javascript"></script>    
         <style type="text/css">
 
         #wechatTag1{

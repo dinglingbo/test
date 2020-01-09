@@ -217,7 +217,7 @@ function edit(action) {
 //    var height = 550;
 //    if(currCompType == 'PART'){
         url = webPath + contextPath + "/com.hs.common.partEmployeeEdit.flow?token="+token;
-        height = 330;
+        height = 350;
 //    }
 
     nui.open({

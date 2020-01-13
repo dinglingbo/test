@@ -11,14 +11,14 @@
 <head> 
     <title>添加员工</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/js/partEmployeeEdit.js?v=1.0.5" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/common/js/partEmployeeEdit.js?v=1.0.9" type="text/javascript"></script>
 </head>
 <body>
     <div class="nui-fit"> 
         <div class="form" style="width:90%;height:90%;left:0;right:0;margin: 0 auto;" id="basicInfoForm">
             <input class="mini-hidden" id="empid" name="empid" />
             <input class="mini-hidden" id="systemAccount" name="systemAccount" />
-            <fieldset id="fd1" style="width:600px;">
+            <fieldset id="fd1" style="width:620px;">
                 <legend><span>基本信息</span></legend>
                 <table >
                     <tr>
@@ -66,6 +66,16 @@
                 <td >是否业务员：<span></span></td>
                 <td>
                 	<input class="nui-combobox"  required="false" id="isSalesman" name="isSalesman" textField="name"  value="1" valueField="id" />
+                </td>
+            </tr>
+             <tr>
+            	<td align="right" >是否限制开单额度：</td>
+                <td >
+               		 <input class="nui-combobox"  required="false"  vtype="int" id="isLimitCredit" name="isLimitCredit" textField="name"  value="0" valueField="id" />
+                </td>
+                <td >开单额度：<span></span></td>
+                <td>
+                	<input class="nui-textbox"  required="false" vtype="int" id="creditMoney" name="creditMoney" onvalidation="onCredValidation" />
                 </td>
             </tr>
         </table>

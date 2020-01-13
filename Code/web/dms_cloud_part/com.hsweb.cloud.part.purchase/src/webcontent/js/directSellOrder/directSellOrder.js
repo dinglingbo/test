@@ -1612,6 +1612,48 @@ function beforeSave(){
 	});
 	return flag;
 }
+
+var updateMemCreditUrl= baseUrl +"com.hsapi.cloud.part.invoicing.settle.updateMemberCredit.biz.ext";
+function beforeSave2(){
+	var flag = false;
+	var row =rightGrid.getData();
+	var amt =0;
+	for(var i=0;i<row.length;i++){
+		if(row[i].orderAmt){
+			amt = parseFloat(row[i].orderAmt)+parseFloat(amt);
+		}
+		
+	}
+	var data = basicInfoForm.getData();
+	var empId = currEmpId;
+	nui.ajax({
+		url : updateMemCreditUrl,
+		type : "post",
+		async : false,
+		data : JSON.stringify({
+			empId : empId,
+			mainId : data.id,
+			amt : amt,
+            token : token
+		}),
+		success : function(data) {
+            nui.unmask(document.body);
+			data = data || {};
+			if (data.errCode == "S") {
+				flag =true;
+			} else {
+                showMsg(data.errMsg || "保存失败!","E");
+                flag = false;
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+		
+	});
+	return flag;
+}
 var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.savePjSellOrder.biz.ext";
 function save() {
 	var data = basicInfoForm.getData();
@@ -1640,6 +1682,11 @@ function save() {
     	    }
     }
    
+    //员工额度校验
+    var flag =beforeSave2();
+    if(flag ==false){
+    	return;
+    }
     var rightRow =rightGrid.getData();
 	var orderMan =nui.get('orderMan').value;
 //	if(orderMan !=currUserName){
@@ -2385,6 +2432,12 @@ function audit()
     	    if(flag ==false){
     	    	return;
     	    }
+    }
+    
+    //员工额度校验
+    var flag =beforeSave2();
+    if(flag ==false){
+    	return;
     }
     
     getStoreLimit();

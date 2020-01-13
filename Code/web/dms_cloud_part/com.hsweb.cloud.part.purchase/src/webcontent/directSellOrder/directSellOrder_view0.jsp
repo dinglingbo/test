@@ -9,7 +9,7 @@
 -->
 <head>
 <title>直发销售订单</title>
-<script src="<%=webPath + contextPath%>/purchase/js/directSellOrder/directSellOrder.js?v=1.0.60"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/directSellOrder/directSellOrder.js?v=1.0.61"></script>
 <style type="text/css">
 .title {
 	width: 70px;

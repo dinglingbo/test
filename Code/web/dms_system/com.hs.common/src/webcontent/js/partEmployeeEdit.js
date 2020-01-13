@@ -13,14 +13,16 @@ var dimissionlist = [{id:0, name:"在职"}, {id:1, name:"离职"}];
 var basicInfoForm = null;
 var isCanBelowCost;
 var isSalesman;
-
+var isLimitCredit;
 $(document).ready(function(v) {
 	sex=nui.get("sex");
 	isCanBelowCost =nui.get("isCanBelowCost");
 	isSalesman =nui.get("isSalesman");
+	isLimitCredit =nui.get("isLimitCredit");
 	sex.setData(sexlist);
 	isCanBelowCost.setData(isservicelist);
 	isSalesman.setData(isservicelist);
+	isLimitCredit.setData(isservicelist);
     basicInfoForm = new nui.Form('#basicInfoForm');
 });
 
@@ -138,10 +140,24 @@ function onIDCardsValidation(e)
 function onMobileValidation(e)
 {
     if (e.isValid) {
-        var pattern = /^\d{11}$/;;
+        var pattern = /^\d{11}$/;
         if (e.value.length != 11 || pattern.test(e.value) == false) {
             e.errorText = "必须输入正确的手机号码";
             e.isValid = false;
         }
     }
+}
+
+function onCredValidation(e){
+	var pattern =/^(0|[1-9][0-9]*)(\.\d+)?$/;
+	if(e.isValid){
+		if(isLimitCredit.getValue()==0 && e.value>0){
+			e.errorText = "没有限制开单额度的权限，不能设置额度";
+            e.isValid = false;
+		}
+		if(isLimitCredit.getValue() ==1 &&  pattern.test(e.value) == false ){
+			e.errorText = "必须输入正数";
+            e.isValid = false;
+		}
+	}
 }

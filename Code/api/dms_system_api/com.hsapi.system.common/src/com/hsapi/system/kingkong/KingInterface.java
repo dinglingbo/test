@@ -25,9 +25,22 @@ public class KingInterface {
 	public static void testAdd() throws Exception {
 		K3CloudApi api=new K3CloudApi();
 		Customer c = new Customer();
+		
+		CommonFNumber orgid = new CommonFNumber();
+		orgid.setFNumber("KY001");
+		c.setFCreateOrgId(orgid);
+		
 		c.setFNumber(SeqHelper.genNumber("BC"));
+
 		c.setFName("aimin_客户名称-A" + UUID.randomUUID().toString());
 		c.setFShortName("aimin_客户简称-A" + UUID.randomUUID().toString());
+		
+		CommonFNumber currency = new CommonFNumber();
+		currency.setFNumber("PRE001");
+		c.setFTRADINGCURRID(currency);
+		
+		c.setFPriority("1");
+		
 		SaveResult sRet = api.save("BD_Customer", new SaveParam<Customer>(c));
 		if (sRet.isSuccessfully()) {
 			Gson gson = new Gson();

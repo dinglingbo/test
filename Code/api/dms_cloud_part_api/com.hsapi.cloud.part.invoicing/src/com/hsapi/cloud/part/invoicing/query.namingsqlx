@@ -969,8 +969,18 @@
 			b.full_name AS fullName,
 			c.apply_car_model as carModel,
 			b.order_qty AS orderQty,
-			b.order_price AS orderPrice,
-			b.order_amt AS orderAmt,
+			(CASE WHEN (a.order_type_id = 4) THEN
+				g.rtn_price
+			ELSE
+				b.order_price
+			END
+			) AS orderPrice,
+			 (CASE WHEN (a.order_type_id = 4) THEN
+				g.rtn_amt
+			ELSE
+				b.order_amt
+			END
+			) AS orderAmt,
 			d.full_name AS guestFullName,
 			d.short_name AS guestShortName,
 			e.car_brand_zh as carBrandName,
@@ -982,6 +992,7 @@
 		INNER JOIN wb_common.com_guest d ON a.guest_id = d.id
 		LEFT JOIN wb_common.com_car_brand e on e.id =c.apply_carbrand_id
 		LEFT JOIN wb_common.com_company f on f.orgid =a.orgid
+		LEFT JOIN pj_enter_detail_chk g ON g.order_main_id = a.id AND g.order_detail_id = b.id
 		WHERE
 			a.audit_sign = 1
 		AND a.is_diff_order = 1

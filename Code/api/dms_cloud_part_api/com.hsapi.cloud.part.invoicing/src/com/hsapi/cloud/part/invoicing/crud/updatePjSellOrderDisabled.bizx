@@ -166,7 +166,7 @@
       <targetNode>invokePojo3</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -344,6 +344,7 @@
     <location x="432" y="153"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="detailList" iterableElement="tmp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">
@@ -393,7 +394,7 @@
         <process:inputVariable id="6" name="partCode" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
         <process:inputVariable id="7" name="partName" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
         <process:inputVariable id="8" name="fullName" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
-        <process:inputVariable id="9" name="lockStockQty" type="query" value="Float" valueType="Primitive" pattern="reference">tmp/lockStockQty</process:inputVariable>
+        <process:inputVariable id="9" name="lockStockQty" type="query" value="Float" valueType="Primitive" pattern="reference">tmp/occupyQty</process:inputVariable>
         <process:inputVariable id="10" name="serviceId" type="query" value="String" valueType="Primitive" pattern="reference">main/serviceId</process:inputVariable>
         <process:inputVariable id="11" name="operateDate" type="expression" value="Date" valueType="Primitive" pattern="reference">new Date()</process:inputVariable>
       </process:inputVariables>

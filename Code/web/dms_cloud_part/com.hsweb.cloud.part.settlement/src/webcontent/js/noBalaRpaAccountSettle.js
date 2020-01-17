@@ -676,7 +676,8 @@ function setInitExportData(detail){
                         .replace("[orderQty]", detail[i].orderQty?detail[i].orderQty:"")
                         .replace("[orderPrice]", (detail[i].orderPrice!=null|| detail[i].orderPrice!=undefined)?detail[i].orderPrice:"")
                         .replace("[orderAmt]", (detail[i].orderAmt!=null|| detail[i].orderAmt!=undefined)?-detail[i].orderAmt:""));
-            }else{
+            }
+            else{
             	tr.append(tds.replace("[guestFullName]", detail[i].guestFullName?detail[i].guestFullName:"")
                         .replace("[orgName]", detail[i].orgName?detail[i].orgName:"")
                         .replace("[carBrandName]", detail[i].carBrandName?detail[i].carBrandName:"")

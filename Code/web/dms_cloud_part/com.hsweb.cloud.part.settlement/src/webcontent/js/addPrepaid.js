@@ -200,6 +200,6 @@ function onGuestValueChanged(e)
 		var el = nui.get('guestId');
         el.setValue(id);
         el.setText(text);
-
+        nui.get("guestName").setValue(text);
     }
 }

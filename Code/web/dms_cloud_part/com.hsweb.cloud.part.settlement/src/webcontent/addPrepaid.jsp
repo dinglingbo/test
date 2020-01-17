@@ -9,7 +9,7 @@
 -->
 <head>
 <title>新增预收预付</title>
-    <script src="<%=webPath + contextPath%>/settlement/js/addPrepaid.js?v=1.0.14"></script>
+    <script src="<%=webPath + contextPath%>/settlement/js/addPrepaid.js?v=1.0.17"></script>
     <style type="text/css">
 .title {
   width: 90px;

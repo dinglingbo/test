@@ -13,7 +13,7 @@
 <head>
 <title>未对账业务单</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/settlement/js/noBalaRpaAccountSettle.js?v=1.0.19"></script>
+    <script src="<%=webPath + contextPath%>/settlement/js/noBalaRpaAccountSettle.js?v=1.0.20"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -275,8 +275,8 @@
 				            <div allowSort="true" field="storeId" width="120" headerAlign="center" header="仓库"></div>
 				            <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
 				            <div allowSort="true" datatype="float" field="enterQty" summaryType="sum" width="60" headerAlign="center" header="数量"></div>
-				            <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="单价"></div>
-				            <div allowSort="true" datatype="float" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="金额"></div>
+				            <div allowSort="true" datatype="float" field="rtnPrice" width="60" headerAlign="center" header="单价"></div>
+				            <div allowSort="true" datatype="float" field="rtnAmt" summaryType="sum" width="60" headerAlign="center" header="金额"></div>
 				            <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可出库数量"></div>
 				            <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
 				            <div allowSort="true" field="detailRemark" width="60" headerAlign="center" header="备注"></div>

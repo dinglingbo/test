@@ -643,7 +643,10 @@ function onAdvancedSearchOk() {
     searchData.auditSign = gsparams.auditSign;
   //去除空格
 	for(var key in searchData){
-		searchData[key]=searchData[key].replace(/(^\s*)|(\s*$)/g, "");
+		
+		if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){    		
+    		searchData[key]=searchData[key].replace(/(^\s*)|(\s*$)/g, "");
+    	}
     }
     advancedSearchFormData = advancedSearchForm.getData();
     advancedSearchWin.hide();

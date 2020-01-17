@@ -3,6 +3,12 @@ package com.hsapi.system.kingkong;
 public class Customer {
 	long CustID;
 	String FNumber;
+	String FName;
+	String FShortName;
+	CommonFNumber FCreateOrgId;
+	CommonFNumber FTRADINGCURRID;
+	String FPriority;
+	
 	public long getCustID() {
 		return CustID;
 	}
@@ -21,14 +27,34 @@ public class Customer {
 	public void setFName(String fName) {
 		FName = fName;
 	}
-	String FName;
-	
-	String FShortName;
 	public String getFShortName() {
 		return FShortName;
 	}
 	public void setFShortName(String fShortName) {
 		FShortName = fShortName;
+	}
+	
+
+	public String getFPriority() {
+		return FPriority;
+	}
+	public void setFPriority(String fName) {
+		FPriority = fName;
+	}
+
+	public CommonFNumber getFCreateOrgId() {
+		return FCreateOrgId;
+	}
+	public void setFCreateOrgId(CommonFNumber fCreateOrgId) {
+		FCreateOrgId = fCreateOrgId;
+	}
+	
+
+	public String getFTRADINGCURRID() {
+		return FShortName;
+	}
+	public void setFTRADINGCURRID(CommonFNumber ftradingcurrid) {
+		FTRADINGCURRID = ftradingcurrid;
 	}
 
 }

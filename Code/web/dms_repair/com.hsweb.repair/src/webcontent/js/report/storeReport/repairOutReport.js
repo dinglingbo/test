@@ -238,8 +238,10 @@ $(document).ready(function(v)
     	nui.get("storeId").setShowNullItem(false);
     }
 });
-function getSearchParams(){
-    var params = {};
+function getSearchParams(params){
+	if(params == null) {
+		params = {};
+	}
     if((nui.get("sdDate").getValue())==0){
     	params.sPickDate=nui.get("sDate").getFormValue();	
         params.ePickDate=addDate(eDateEl.getValue(),1);
@@ -269,7 +271,7 @@ function getSearchParams(){
 }
 var currType = 2;
 function quickSearch(type){
-	var params = getSearchParams();
+	var params = getSearchParams(null);
     var queryname = "本日";
     switch (type)
     {
@@ -334,7 +336,7 @@ function quickSearch(type){
 }
 
 function onSearch(){
-	var params=getSearchParams();
+	var params=getSearchParams(null);
 	doSearch(params);
 }
 function doSearch(params)
@@ -344,6 +346,9 @@ function doSearch(params)
 //	params.isSettle=1; //已结算
 //	params.status=2; //状态已完工
 	params.storeId = nui.get("storeId").value;
+	if(mini.get("delSign").checked) {
+		params.delSign = 1;
+	}
 	if(!setReturnSign.checked){	
 		params.returnSign = 0;
 	}
@@ -402,7 +407,7 @@ function editSell(){
 }
 
 function changed(){
-	var params=getSearchParams();
+	var params=getSearchParams(null);
 	params.orgid = currOrgId;
 	if(!setReturnSign.checked){	
 		params.returnSign = 0;
@@ -464,6 +469,7 @@ function advancedSearch()
 function onAdvancedSearchOk()
 {
     var searchData = advancedSearchForm.getData(true);
+    searchData = getSearchParams(searchData);
     searchData.pjBillTypeId="050206";
     advancedSearchFormData = {};
     var workTeamId = workTeamIdEl.getValue();

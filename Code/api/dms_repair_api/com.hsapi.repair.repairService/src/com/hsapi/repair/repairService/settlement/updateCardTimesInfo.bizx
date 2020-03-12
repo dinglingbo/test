@@ -1070,7 +1070,7 @@
         <process:inputVariable id="1" name="billMainId" type="query" value="Long" valueType="Primitive" pattern="reference">cardTimesDetailTemp/mainId</process:inputVariable>
         <process:inputVariable id="2" name="billServiceId" type="query" value="String" valueType="Primitive" pattern="reference">maintain/serviceCode</process:inputVariable>
         <process:inputVariable id="3" name="billTypeId" type="query" value="String" valueType="Primitive" pattern="reference">billTypeId</process:inputVariable>
-        <process:inputVariable id="4" name="amt" type="query" value="Float" valueType="Primitive" pattern="reference">cardTimesDetailTemp/sellAmt</process:inputVariable>
+        <process:inputVariable id="4" name="amt" type="query" value="Float" valueType="Primitive" pattern="reference">pkgTemp/amt</process:inputVariable>
         <process:inputVariable id="5" name="guestId" type="query" value="String" valueType="Primitive" pattern="reference">rpsCardTimes/guestId</process:inputVariable>
         <process:inputVariable id="6" name="guestName" type="query" value="String" valueType="Primitive" pattern="reference">rpsCardTimes/guestName</process:inputVariable>
         <process:inputVariable id="7" name="carId" type="query" value="Int" valueType="Primitive" pattern="reference">rpsCardTimes/carId</process:inputVariable>
@@ -1319,7 +1319,7 @@
         <process:inputVariable id="1" name="billMainId" type="query" value="Long" valueType="Primitive" pattern="reference">cardTimesDetailTemp/mainId</process:inputVariable>
         <process:inputVariable id="2" name="billServiceId" type="query" value="String" valueType="Primitive" pattern="reference">maintain/serviceCode</process:inputVariable>
         <process:inputVariable id="3" name="billTypeId" type="query" value="String" valueType="Primitive" pattern="reference">billTypeId</process:inputVariable>
-        <process:inputVariable id="4" name="amt" type="query" value="Float" valueType="Primitive" pattern="reference">cardTimesDetailTemp/sellAmt</process:inputVariable>
+        <process:inputVariable id="4" name="amt" type="query" value="Float" valueType="Primitive" pattern="reference">itemTemp/amt</process:inputVariable>
         <process:inputVariable id="5" name="guestId" type="query" value="String" valueType="Primitive" pattern="reference">rpsCardTimes/guestId</process:inputVariable>
         <process:inputVariable id="6" name="guestName" type="query" value="String" valueType="Primitive" pattern="reference">rpsCardTimes/guestName</process:inputVariable>
         <process:inputVariable id="7" name="carId" type="query" value="Int" valueType="Primitive" pattern="reference">rpsCardTimes/carId</process:inputVariable>
@@ -1468,7 +1468,7 @@
         <process:inputVariable id="1" name="billMainId" type="query" value="Long" valueType="Primitive" pattern="reference">cardTimesDetailTemp/mainId</process:inputVariable>
         <process:inputVariable id="2" name="billServiceId" type="query" value="String" valueType="Primitive" pattern="reference">maintain/serviceCode</process:inputVariable>
         <process:inputVariable id="3" name="billTypeId" type="query" value="String" valueType="Primitive" pattern="reference">billTypeId</process:inputVariable>
-        <process:inputVariable id="4" name="amt" type="query" value="Float" valueType="Primitive" pattern="reference">cardTimesDetailTemp/sellAmt</process:inputVariable>
+        <process:inputVariable id="4" name="amt" type="query" value="Float" valueType="Primitive" pattern="reference">partTemp/amt</process:inputVariable>
         <process:inputVariable id="5" name="guestId" type="query" value="String" valueType="Primitive" pattern="reference">rpsCardTimes/guestId</process:inputVariable>
         <process:inputVariable id="6" name="guestName" type="query" value="String" valueType="Primitive" pattern="reference">rpsCardTimes/guestName</process:inputVariable>
         <process:inputVariable id="7" name="carId" type="query" value="Int" valueType="Primitive" pattern="reference">rpsCardTimes/carId</process:inputVariable>

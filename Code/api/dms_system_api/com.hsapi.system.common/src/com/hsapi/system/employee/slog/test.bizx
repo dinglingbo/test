@@ -10,7 +10,7 @@
       <targetNode>invokePojo0</targetNode>
       <process:transitionCondition>
         <process:complexCondition>
-          <process:code>1==1</process:code>
+          <process:code>1!=1</process:code>
         </process:complexCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -26,13 +26,13 @@
     <process:returns/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="44" y="186"/>
-    <figSize height="20" width="31"/>
+    <location x="47" y="186"/>
+    <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="399" y="186"/>
-    <figSize height="20" width="31"/>
+    <location x="402" y="186"/>
+    <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="test" displayName="test" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
@@ -53,8 +53,8 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="227" y="186"/>
-    <figSize height="20" width="29"/>
+    <location x="230" y="186"/>
+    <figSize height="17" width="22"/>
     <node>invokePojo0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" id="invokePojo1" name="testAdd" displayName="testAdd" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
@@ -74,8 +74,8 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="122" y="126"/>
-    <figSize height="20" width="60"/>
+    <location x="129" y="126"/>
+    <figSize height="17" width="46"/>
     <node>invokePojo1</node>
   </nodes>
   <topRuler/>

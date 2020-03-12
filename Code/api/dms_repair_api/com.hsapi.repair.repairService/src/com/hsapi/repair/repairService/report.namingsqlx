@@ -2253,6 +2253,11 @@
            <isNotEmpty prepend="and" property="returnSign">  
                 (a.return_sign = #returnSign#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="delSign">  
+                exists(select 1 from wb_repair.rps_part f 
+                where f.service_id = b.id and a.main_id = f.id 
+                and f.is_disabled = 1)
+            </isNotEmpty>
             
             <isNotEmpty prepend="and" property="storeId">  
                 (a.store_id = #storeId#)

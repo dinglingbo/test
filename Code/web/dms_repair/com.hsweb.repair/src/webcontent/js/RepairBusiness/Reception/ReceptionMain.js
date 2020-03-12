@@ -146,9 +146,9 @@ $(document).ready(function ()
             }
         }else if (e.field == "serviceTypeName") {
                 e.cellHtml = retSerTypeStyle(e.cellHtml);
-        }else if(e.field == "balaAuditSign"){
+        }else if(e.field == "isSettle"){
             if(e.value == 1){
-                e.cellHtml = "预结算";
+                e.cellHtml = "已结算";
             }else{
                 e.cellHtml = "未结算";
             }

@@ -10,7 +10,7 @@
 -->
 <head>
 <title>综合开单</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.4.25"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.4.26"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -120,7 +120,7 @@
                   <div field="contactMobile" name="contactMobile" width="100px" headerAlign="center" header="联系人手机"></div>
                   <div field="guestFullName" name="guestFullName" width="70px" headerAlign="center" header="客户姓名"></div>
                   <div field="mtAdvisor" name="mtAdvisor" width="90px" headerAlign="center" header="服务顾问"></div>
-                  <div field="balaAuditSign" name="balaAuditSign" width="85px" headerAlign="center" header="结算状态"></div>
+                  <div field="isSettle" name="isSettle" width="85px" headerAlign="center" header="结算状态"></div>
                   <div field="planFinishDate" name="planFinishDate" width="115px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="预计交车时间"></div>
               </div>
           </div>

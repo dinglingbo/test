@@ -71,7 +71,7 @@
 
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="unAudit()" id="uAuditBtn" visible="true"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返单</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="unAudit()" id="unAuditBtn" visible="true"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返单</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="delOrder()" id="delBtn" visible="true"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="addMorePart()" id="fastEnterBtn"><span class="fa fa-hand-o-right fa-lg"></span>&nbsp;快速录入配件</a>

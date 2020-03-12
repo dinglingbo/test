@@ -584,6 +584,21 @@ function audit()
         return;
     }
 
+    var fYear =nui.get("fYear").getValue();
+    var fMonth = nui.get("fMonth").getValue();
+    //年份正则
+    var reqYear =/^([2-3]\d{3})$/;
+    var reqMonth =/^[1-9]$|1[0-2]$/;
+    
+    if (!reqYear.test(fYear)){
+ 	   showMsg("请输入正确年份","W");
+ 	   return;
+     }
+
+    if (!reqMonth.test(fMonth)){
+  	   showMsg("请输入正确月份","W");
+  	   return;
+      }
     var p =checkRightData();
     if (p && p.billServiceId) {
 		var billServiceId = p.billServiceId;
@@ -907,6 +922,22 @@ function save() {
     	showMsg("请输入数字！","W");
         return;
     }
+
+    var fYear =nui.get("fYear").getValue();
+    var fMonth = nui.get("fMonth").getValue();
+    //年份正则
+    var reqYear =/^([2-3]\d{3})$/;
+    var reqMonth =/^[1-9]$|1[0-2]$/;
+    
+    if (!reqYear.test(fYear)){
+  	   showMsg("请输入正确年份","W");
+  	   return;
+      }
+
+     if (!reqMonth.test(fMonth)){
+   	   showMsg("请输入正确月份","W");
+   	   return;
+       }
 
     var data = basicInfoForm.getData();
     for ( var key in requiredField) {

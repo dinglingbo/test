@@ -10,7 +10,7 @@
 -->
 <head>
     <title>维修出库明细</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.0.7"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.1.9"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -169,7 +169,7 @@
     </div>
 </div>
 </div>
-<div id="advancedSearchWin" class="nui-window" title="高级查询" style="width: 450px; height: 230px;" showModal="true" allowResize="false"
+<div id="advancedSearchWin" class="nui-window" title="高级查询" style="width: 450px; height: 300px;" showModal="true" allowResize="false"
 	 allowDrag="false">
 		<div id="advancedSearchForm" class="form">
 			<table style="width: 100%;">	       							
@@ -261,6 +261,14 @@
 				          width="100%" />
 					</td>
 				</tr>
+				<tr>
+					<td align="center">
+						<label>仅显示删除的销售数据：</label>
+					</td>
+					<td colspan="">
+					    <input type="checkbox" id="delSign" class="mini-checkbox"  onclick="" width="100%">
+					</td>
+				</tr>	
 			</table>
 			<div style="text-align: center; padding: 10px;padding-top : 50px;">
 				<a class="nui-button" onclick="onAdvancedSearchOk" style="width: 60px; margin-right: 20px;">确定</a>

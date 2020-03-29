@@ -1,11 +1,11 @@
 Manifest-Version: 1.0
 Require-Bundle: com.hsapi.cloud.part.data,com.hsapi.cloud.part.common,
- com.hs.common,com.eos.foundation,com.hsapi.system.llq
-Bundle-Vendor: Administrator
+ com.hs.common,com.hsapi.system.common,com.eos.foundation,com.hsapi.sy
+ stem.llq
 eos-webCtxPath: baseDataCrud
+Bundle-Vendor: Administrator
 Bundle-Version: 1.0.0
 Bundle-Name: com.hsapi.cloud.part.baseDataCrud
 Bundle-Description: 
 Bundle-SymbolicName: com.hsapi.cloud.part.baseDataCrud
-
 

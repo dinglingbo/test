@@ -18,7 +18,5 @@
 	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.hsapi.system.service/bin" path="com.hsapi.system.service/src"/>
 	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.hsapi.system.tenant/bin" path="com.hsapi.system.tenant/src"/>
 	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.hsapi.system.dataProcessing/bin" path="com.hsapi.system.dataProcessing/src"/>
-	<classpathentry kind="lib" path="/dms_system/eos-web/WEB-INF/lib/gson-2.8.0.jar"/>
-	<classpathentry kind="lib" path="/dms_system/eos-web/WEB-INF/lib/k3cloud-webapi-sdk.7.3.12.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

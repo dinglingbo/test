@@ -121,7 +121,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -244,6 +244,8 @@
         <process:inputVariable id="7" name="remark" type="query" value="String" valueType="Primitive" pattern="reference">main/remark</process:inputVariable>
         <process:inputVariable id="8" name="BillTypeCode" type="query" value="String" valueType="Primitive" pattern="reference">billTypeCode</process:inputVariable>
         <process:inputVariable id="9" name="orgid" type="query" value="String" valueType="Primitive" pattern="reference">main/orgid</process:inputVariable>
+        <process:inputVariable id="10" name="fYear" type="query" value="Int" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="11" name="fMonth" type="query" value="Int" valueType="Primitive" pattern="reference">value</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

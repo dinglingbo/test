@@ -159,6 +159,8 @@
         <process:inputVariable id="8" name="remark" type="query" value="String" valueType="Primitive" pattern="reference">remark</process:inputVariable>
         <process:inputVariable id="9" name="BillTypeCode" type="query" value="String" valueType="Primitive" pattern="reference">BillTypeCode</process:inputVariable>
         <process:inputVariable id="10" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">orgid</process:inputVariable>
+        <process:inputVariable id="11" name="fYear" type="query" value="Int" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="12" name="fMonth" type="query" value="Int" valueType="Primitive" pattern="reference">value</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

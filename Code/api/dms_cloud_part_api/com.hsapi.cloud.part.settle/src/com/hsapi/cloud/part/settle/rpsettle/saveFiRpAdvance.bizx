@@ -333,7 +333,7 @@
     <location x="690" y="131"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="11" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.rpSettle</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="GuestId" type="query" value="Long" valueType="Primitive" pattern="reference">fisRpAdvance/guestId</process:inputVariable>
@@ -347,6 +347,8 @@
         <process:inputVariable id="8" name="remark" type="query" value="String" valueType="Primitive" pattern="reference">fisRpAdvance/remark</process:inputVariable>
         <process:inputVariable id="9" name="BillTypeCode" type="query" value="String" valueType="Primitive" pattern="reference">fisRpAdvance/billTypeCode</process:inputVariable>
         <process:inputVariable id="10" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">fisRpAdvance/orgid</process:inputVariable>
+        <process:inputVariable id="11" name="fYear" type="query" value="Int" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="12" name="fMonth" type="query" value="Int" valueType="Primitive" pattern="reference">value</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

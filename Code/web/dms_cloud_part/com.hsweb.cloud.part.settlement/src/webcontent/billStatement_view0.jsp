@@ -9,7 +9,7 @@
 -->
 <head>
 <title>月结对账</title>
-<script src="<%=webPath + contextPath%>/settlement/js/billStatement.js?v=1.0.55"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/billStatement.js?v=1.0.59"></script>
 <style type="text/css">
 .title {
   width: 85px;
@@ -166,7 +166,7 @@
                                       <td class="title required">
                                           <label>往来单位：</label>
                                       </td>
-                                      <td colspan="1">
+                                      <td colspan="3">
                                           <input id="guestId"
                                              name="guestId"
                                             
@@ -180,7 +180,7 @@
                                              onvaluechanged="onGuestValueChanged"
                                              popupEmptyText="未找到往来单位"
                                              url=""  searchField="key"
-                                             width="72%"
+                                             width="80%"
                                              placeholder="请选择往来单位"
                                              selectOnFocus="true" />
                                           <a class="nui-button" iconCls="" plain="false" onclick="selectSupplier('guestId')" id="selectSupplierBtn"><span class="fa fa-check fa-lg"></span></a>
@@ -209,12 +209,7 @@
                                       <td colspan="1">
                                           <input class="nui-textbox" id="serviceId" name="serviceId" width="100%" enabled="false">
                                       </td>
-                                       <td class="title">
-                                          <label>账单月份：</label>
-                                      </td>
-                                      <td colspan="1">
-                                          <input class="nui-textbox" id="fMonth" name="fMonth" width="100%" enabled="false">
-                                      </td>
+                                     
                                   </tr>
                                   <tr>
                                       <td class="title required">
@@ -294,10 +289,22 @@
                                       </td>
                                   </tr>
                                   <tr>
+                              		 <td class="title">
+                                          <label>账单年份：</label>
+                                      </td>
+                                      <td colspan="1">
+                                          <input class="nui-textbox" id="fYear" name="fYear" width="100%" enabled="true">
+                                      </td>
+                                  	 <td class="title">
+                                          <label>账单月份：</label>
+                                      </td>
+                                      <td colspan="1">
+                                          <input class="nui-textbox" id="fMonth" name="fMonth" width="100%" enabled="true">
+                                      </td>
                                   	<td class="title">
                                           <label>备注：</label>
                                       </td>
-                                      <td colspan="9">
+                                      <td colspan="5">
                                           <input class="nui-textbox" id="remark" name="remark" width="100%">
                                       </td>
                                   </tr>

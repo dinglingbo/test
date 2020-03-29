@@ -150,6 +150,7 @@
     <sourceConnections xsi:type="process:tLink" id="link54" name="link54" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>assign4</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link15" name="link15" displayName="连接线" type="transition">
       <sourceNode>subprocess0</sourceNode>
@@ -178,6 +179,8 @@
         <process:inputVariable id="7" name="remark" type="query" value="String" valueType="Primitive" pattern="reference">stateMain/remark</process:inputVariable>
         <process:inputVariable id="8" name="BillTypeCode" type="query" value="String" valueType="Primitive" pattern="reference">billTypeCode</process:inputVariable>
         <process:inputVariable id="9" name="orgid" type="query" value="String" valueType="Primitive" pattern="reference">stateMain/orgid</process:inputVariable>
+        <process:inputVariable id="10" name="fYear" type="query" value="Int" valueType="Primitive" pattern="reference">stateMain/fYear</process:inputVariable>
+        <process:inputVariable id="11" name="fMonth" type="query" value="Int" valueType="Primitive" pattern="reference">stateMain/fMonth</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

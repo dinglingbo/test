@@ -408,7 +408,7 @@ $(document).ready(function(v) {
 	});
 	//开启APP
   if(currIsOpenApp ==1){
-	  nui.get('uAuditBtn').setVisible(false);
+//	  nui.get('uAuditBtn').setVisible(false);
 	  getStoreLocation();
 //	  getPart();
   }
@@ -2294,7 +2294,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 				var pchsOrderDetailUpdate = getModifyData(detailData, pchsOrderDetailAdd, pchsOrderDetailDelete);
 				var cangHash ="";
 				if(currIsOpenApp ==1){
-					cangHash=getCangHash(data,detailData);
+//					cangHash=getCangHash(data,detailData);
 				}
 				
 				
@@ -2368,7 +2368,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 	
 				var cangHash ="";
 				if(currIsOpenApp ==1){
-					cangHash=getCangHash(data,detailData);
+//					cangHash=getCangHash(data,detailData);
 				}
 				nui.mask({
 					el : document.body,

@@ -9,6 +9,16 @@
       <sourceNode>start0</sourceNode>
       <targetNode>invokePojo2</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link5" name="link5" displayName="连接线" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign7</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">fMonth</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <location x="-131" y="270"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
@@ -620,6 +630,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link20</targetConnections>
+    <targetConnections>link11</targetConnections>
     <location x="84" y="270"/>
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
@@ -1130,6 +1141,29 @@
     <figSize height="20" width="92"/>
     <node>invokePojo7</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值7" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign7</sourceNode>
+      <targetNode>assign6</targetNode>
+    </sourceConnections>
+    <targetConnections>link5</targetConnections>
+    <location x="-45" y="378"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign7label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">fYear</process:from>
+      <process:to type="query">y</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">fMonth</process:from>
+      <process:to type="query">m</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
+    <location x="-51" y="414"/>
+    <figSize height="20" width="40"/>
+    <node>assign7</node>
+  </nodes>
   <topRuler>
     <guides position="944" horizontal="true"/>
   </topRuler>
@@ -1155,6 +1189,8 @@
     <process:input description="" isArray="false" name="remark" primitiveType="String"/>
     <process:input description="" isArray="false" name="BillTypeCode" primitiveType="String"/>
     <process:input description="" isArray="false" name="orgid" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="fYear" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="fMonth" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

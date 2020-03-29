@@ -230,16 +230,40 @@ function onOk()
    
     if(!data.id)
     {
-        var matches = data.code.match(/([\w\u4e00-\u9fa5]*)/ig);
-        data.queryCode = "";
-        for(var i=0;i<matches.length;i++)
-        {
-            data.queryCode+=matches[i];
-        }
+//        var matches = data.code.match(/([\w\u4e00-\u9fa5]*)/ig);
+//        data.queryCode = "";
+//        for(var i=0;i<matches.length;i++)
+//        {
+//            data.queryCode+=matches[i];
+//        }
         //没有OEM码。OEM码=配件编码，有则以输入为准
         if(!data.oemCode ){    	
         	data.oemCode = data.code;
         }
+    }
+    
+    var disCode = data.code.replace(/\s+/g,"");
+    var disOemCode = "";
+    var disCommonCod="";
+  
+    if(data.oemCode){	 
+    	disOemCode = data.oemCode.toUpperCase().replace(/(^\s*)|(\s*$)/g, "")
+    }
+    if(data.commonCode){
+    	disCommonCod =data.commonCode.toUpperCase().replace(/(^\s*)|(\s*$)/g, "")
+    }
+    //配件编码 = oem码 = 通用编码
+    if(disCode == disOemCode && disCode == disCommonCod && disCode==disCommonCod){
+    	data.queryCode = disCode;
+    }
+    if(disCode != disOemCode && disCode == disCommonCod && disCode==disCommonCod){
+    	data.queryCode = disCode+disOemCode;
+    }
+    if(disCode == disOemCode && disCode != disCommonCod && disCode!=disCommonCod){
+    	data.queryCode = disCode+disCommonCod;
+    }
+    if(disCode != disOemCode && disCode != disCommonCod && disCode!=disCommonCod){
+    	data.queryCode = disCode+disOemCode+disCommonCod;
     }
     if(oldData && oldData.isUniform == 0 && data.isUniform == 1)
     {

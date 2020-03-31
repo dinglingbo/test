@@ -48,6 +48,6 @@
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/javase-3.2.1.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/commons-codec-1.11.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/gson-2.8.0.jar"/>
-	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/k3cloud-webapi-sdk.7.3.12.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/k3cloud-webapi-sdk.8.310.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1061,7 +1061,7 @@
             </isNotEmpty>
 
 			<isNotEmpty prepend="and" property="partCodeOrName">  
-				a.part_code like '%$partCodeOrName$%'or a.part_name like '%$partCodeOrName$%'
+				(a.part_code like '%$partCodeOrName$%'or a.part_name like '%$partCodeOrName$%')
 			</isNotEmpty>
 			<isNotEmpty prepend="and" property="partId">  
 				a.part_id like '%$partId$%'

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 本normal.xml用于分配机构级管理员角色 -->
+<roles>
+	<mpRolesList>
+		<mpRoles>
+			<!-- 可修改字段 -->
+			<roleName>机构管理员</roleName><roleCode>ORG_ADMIN</roleCode>
+			<!-- 固定字段 -->
+			<isSystem>N</isSystem><roleStatus>A</roleStatus><createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+		</mpRoles>
+	</mpRolesList>
+</roles>

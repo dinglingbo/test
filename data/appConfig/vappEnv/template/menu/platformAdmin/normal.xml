@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 本normal.xml用于分配平台级管理员菜单 -->
+<menus>
+	<mpMenusList>
+		<mpMenus>
+			<!-- 可修改字段 -->
+			<menuName>机构管理</menuName><menuCode>机构管理</menuCode><menuURL></menuURL><seqNo>1</seqNo><menuIcon></menuIcon>
+			<!-- 固定字段 -->
+			<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+			<children>
+				<mpMenusList>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>用户管理</menuName><menuCode>用户管理</menuCode><menuURL>com.vplus.orgmgr.userMgr.flow</menuURL><seqNo>3</seqNo><menuIcon>icon-ICON--xinzengyonghu</menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>机构入驻审核</menuName><menuCode>机构入驻审核</menuCode><menuURL>com.vplus.cregister.pendingOrgAuthorList.flow</menuURL><seqNo>4</seqNo><menuIcon>icon-ICON--jigouruzhushenhe</menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>已入驻机构管理</menuName><menuCode>已入驻机构管理</menuCode><menuURL>com.vplus.cregister.orgMgr.flow</menuURL><seqNo>5</seqNo><menuIcon>icon-ICON--yijingruzhujigouguanli</menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+				</mpMenusList>
+			</children>
+		</mpMenus>
+		<mpMenus>
+			<!-- 可修改字段 -->
+			<menuName>系统管理</menuName><menuCode>系统管理</menuCode><menuURL></menuURL><seqNo>6</seqNo><menuIcon></menuIcon>
+			<!-- 固定字段 -->
+			<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+			<children>
+				<mpMenusList>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>角色管理</menuName><menuCode>角色管理</menuCode><menuURL>com.vplus.sysmgr.roleManagement.flow</menuURL><seqNo>8</seqNo><menuIcon>icon-ICON--yonghu</menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>菜单管理</menuName><menuCode>菜单管理</menuCode><menuURL>com.vplus.sysmgr.menuManagement.flow</menuURL><seqNo>9</seqNo><menuIcon>icon-ICON--caidanguanli</menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>授权管理</menuName><menuCode>授权管理</menuCode><menuURL>com.vplus.sysmgr.authorityManagement.flow</menuURL><seqNo>10</seqNo><menuIcon>icon-ICON--shouquanguanli</menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>意见反馈</menuName><menuCode>意见反馈</menuCode><menuURL>com.vplus.appmgr.mpSysIssueReports.flow</menuURL><seqNo>11</seqNo><menuIcon>icon-ICON--tiaochawenjuan</menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>标签管理</menuName><menuCode>标签管理</menuCode><menuURL>com.vplus.orgmgr.tagMgr.flow</menuURL><seqNo>12</seqNo><menuIcon>icon-ICON--fangwenyemian</menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>数据字典</menuName><menuCode>数据字典</menuCode><menuURL>com.vplus.dictMgr.businessDictionary.flow</menuURL><seqNo>13</seqNo><menuIcon>icon-ICON--jiaoseguanli</menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>设备管理</menuName><menuCode>设备管理</menuCode><menuURL>com.vplus.sysmgr.devicesMgr.flow</menuURL><seqNo>14</seqNo><menuIcon>icon-ICON--gangweiguanli</menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>					
+				</mpMenusList>
+			</children>
+		</mpMenus>
+		<mpMenus>
+			<!-- 可修改字段 -->
+			<menuName>应用管理</menuName><menuCode>应用管理</menuCode><menuURL></menuURL><seqNo>7</seqNo><menuIcon></menuIcon>
+			<!-- 固定字段 -->
+			<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+			<children>
+				<mpMenusList>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>应用管理</menuName><menuCode>应用管理</menuCode><menuURL>com.vplus.appmgr.appList.flow</menuURL><seqNo>8</seqNo><menuIcon>icon-ICON--yingyongguanli</menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>应用推广</menuName><menuCode>应用推广</menuCode><menuURL>com.vplus.appmgr.appCover.flow</menuURL><seqNo>9</seqNo><menuIcon>icon-ICON--yingyongtuiguang</menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>栏目设置</menuName><menuCode>栏目设置</menuCode><menuURL>com.vplus.appmgr.appTags.flow</menuURL><seqNo>10</seqNo><menuIcon>icon-ICON--meigeyingyong</menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>公众号运维</menuName><menuCode>公众号运维</menuCode><menuURL>com.vplus.appmgr.svrnoMgrList.flow</menuURL><seqNo>11</seqNo><menuIcon>icon-ICON--yonghu</menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+				</mpMenusList>
+			</children>
+		</mpMenus>
+		<mpMenus>
+			<!-- 可修改字段 -->
+			<menuName>开发者菜单</menuName><menuCode>开发者菜单</menuCode><menuURL></menuURL><seqNo>9</seqNo><menuIcon></menuIcon>
+			<!-- 固定字段 -->
+			<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+			<children>
+				<mpMenusList>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>缓存监控</menuName><menuCode>缓存监控</menuCode><menuURL>com.vplus.cachemgr.cacheviewr.flow</menuURL><seqNo>1</seqNo><menuIcon>icon-ICON--gangweiguanli</menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>接口清单</menuName><menuCode>接口清单</menuCode><menuURL>com.ybt.develope.classBrowser.flow</menuURL><seqNo>2</seqNo><menuIcon>icon-ICON--jiaoseguanli</menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>数据实体清单</menuName><menuCode>数据实体清单</menuCode><menuURL>com.ybt.develope.pojobuilder.flow</menuURL><seqNo>3</seqNo><menuIcon>icon-ICON--jiaoseguanli</menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+				</mpMenusList>
+			</children>
+		</mpMenus>
+		<mpMenus>
+			<!-- 可修改字段 -->
+			<menuName>报表</menuName><menuCode>报表</menuCode><menuURL></menuURL><seqNo>12</seqNo><menuIcon></menuIcon>
+			<!-- 固定字段 -->
+			<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+			<children>
+				<mpMenusList>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>实时统计</menuName><menuCode>实时统计</menuCode><menuURL>com.vplus.report.realReport.flow</menuURL><seqNo>13</seqNo><menuIcon></menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>整体趋势</menuName><menuCode>整体趋势</menuCode><menuURL>com.vplus.report.overallTrend.flow</menuURL><seqNo>14</seqNo><menuIcon></menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>新增用户</menuName><menuCode>新增用户</menuCode><menuURL>com.vplus.report.newUsers.flow</menuURL><seqNo>15</seqNo><menuIcon></menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>活跃用户</menuName><menuCode>活跃用户</menuCode><menuURL>com.vplus.report.activeUsers.flow</menuURL><seqNo>16</seqNo><menuIcon></menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>沉默用户</menuName><menuCode>沉默用户</menuCode><menuURL>com.vplus.report.silentUser.flow</menuURL><seqNo>17</seqNo><menuIcon></menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>启动次数</menuName><menuCode>启动次数</menuCode><menuURL>com.vplus.report.startTimes.flow</menuURL><seqNo>18</seqNo><menuIcon></menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>版本分布</menuName><menuCode>版本分布</menuCode><menuURL>com.vplus.report.reportVersion.flow</menuURL><seqNo>19</seqNo><menuIcon></menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>周用户构成</menuName><menuCode>周用户构成</menuCode><menuURL>com.vplus.report.weekUserStructure.flow</menuURL><seqNo>20</seqNo><menuIcon></menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>用户成分转化</menuName><menuCode>用户成分转化</menuCode><menuURL>com.vplus.report.userTransformation.flow</menuURL><seqNo>21</seqNo><menuIcon></menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>变化系数趋势</menuName><menuCode>变化系数趋势</menuCode><menuURL>com.vplus.report.trendVariation.flow</menuURL><seqNo>22</seqNo><menuIcon></menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>留存用户</menuName><menuCode>留存用户</menuCode><menuURL>com.vplus.report.retainedUsers.flow</menuURL><seqNo>23</seqNo><menuIcon></menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>用户新鲜度</menuName><menuCode>用户新鲜度</menuCode><menuURL>com.vplus.report.userFreshness.flow</menuURL><seqNo>24</seqNo><menuIcon></menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>用户活跃度</menuName><menuCode>用户活跃度</menuCode><menuURL>com.vplus.report.userActivity.flow</menuURL><seqNo>25</seqNo><menuIcon></menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>使用时长</menuName><menuCode>使用时长</menuCode><menuURL>com.vplus.report.useTime.flow</menuURL><seqNo>26</seqNo><menuIcon></menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>使用频率</menuName><menuCode>使用频率</menuCode><menuURL>com.vplus.report.useFrequency.flow</menuURL><seqNo>27</seqNo><menuIcon></menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>访问页面</menuName><menuCode>访问页面</menuCode><menuURL>com.vplus.report.accessPage.flow</menuURL><seqNo>28</seqNo><menuIcon></menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>页面访问路径</menuName><menuCode>页面访问路径</menuCode><menuURL>com.vplus.report.pagePath.flow</menuURL><seqNo>29</seqNo><menuIcon></menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>设备终端</menuName><menuCode>设备终端</menuCode><menuURL>com.vplus.report.equipmentTerminal.flow</menuURL><seqNo>30</seqNo><menuIcon></menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>日下载量</menuName><menuCode>日下载量</menuCode><menuURL>com.vplus.report.reportDownDay.flow</menuURL><seqNo>31</seqNo><menuIcon></menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>总下载量</menuName><menuCode>总下载量</menuCode><menuURL>com.vplus.report.reportTotalDown.flow</menuURL><seqNo>32</seqNo><menuIcon></menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+					<mpMenus>
+						<!-- 可修改字段 -->
+						<menuName>每个应用</menuName><menuCode>每个应用</menuCode><menuURL>com.vplus.report.eachApplication.flow</menuURL><seqNo>33</seqNo><menuIcon></menuIcon>
+						<!-- 固定字段 -->
+						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+					</mpMenus>
+				</mpMenusList>
+			</children>
+		</mpMenus>							
+	</mpMenusList>
+</menus>

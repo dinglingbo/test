@@ -1,0 +1,154 @@
+<map>
+  <entry>
+    <string>com.hs.common.Utils.str2Map(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap&lt;String,Object&gt; com.hs.common.Utils.str2Map(String param)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.appendArray2Array(java.lang.Object[], java.lang.Object[])</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Object[] com.hs.common.Utils.appendArray2Array(Object[] arrTo, Object[] arr)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.getImageStr(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.Utils.getImageStr(String imgFile)&lt;/b&gt;&lt;br/&gt;&lt;p&gt;getImageStr&lt;dl&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;dt&gt;@Description&lt;/dt&gt;&lt;dd&gt;根据图片地址转换为base64编码字符串&lt;/dd&gt;&lt;dt&gt;@Author&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;dt&gt;@CreateTime&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.appendObjectToList(java.util.List, java.lang.Object)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;void com.hs.common.Utils.appendObjectToList(List list, Object object)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.licenseRecog(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Map com.hs.common.Utils.licenseRecog(String imgPath)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &#x0D;
+ &lt;dl&gt;&lt;dt&gt;@功能&lt;/dt&gt;&lt;dd&gt;营业执照识别&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.idCardRecog(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Map com.hs.common.Utils.idCardRecog(String imgPath)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &#x0D;
+ &lt;dl&gt;&lt;dt&gt;@功能&lt;/dt&gt;&lt;dd&gt;身份证识别&lt;/dd&gt;&lt;dt&gt;@日期&lt;/dt&gt;&lt;dd&gt;2018年5月20日&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.getSessionInfo()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.Utils.getSessionInfo()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.strArry(commonj.sdo.DataObject[], java.lang.String, java.lang.String, java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.Utils.strArry(DataObject[] obj, String property1, String property2, String property3, String property4)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.obj2json(java.lang.Object)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.Utils.obj2json(Object obj)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 对象转Json&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;obj&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.gzipStr2Obj(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Object com.hs.common.Utils.gzipStr2Obj(String str)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.row2Column(java.util.HashMap&lt;java.lang.String,java.lang.Object&gt;[], java.lang.String, java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap&lt;String,Object&gt;[] com.hs.common.Utils.row2Column(HashMap&lt;String,Object&gt;[] p, String byCols, String sumCols, String groupBy)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.hashCode(java.lang.Object)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Integer com.hs.common.Utils.hashCode(Object obj)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.map2Str(java.util.Map&lt;java.lang.String,java.lang.Object&gt;)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.Utils.map2Str(Map&lt;String,Object&gt; params)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.putMapProperty(java.util.HashMap&lt;java.lang.String,java.lang.Object&gt;, java.lang.String, java.lang.Object)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap&lt;String,Object&gt; com.hs.common.Utils.putMapProperty(HashMap&lt;String,Object&gt; map, String propertyName, Object propertyValue)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.parseArray(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap&lt;String,Object&gt;[] com.hs.common.Utils.parseArray(String param, String index)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.vehicleLicense(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Map com.hs.common.Utils.vehicleLicense(String imgPath)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &#x0D;
+ &lt;dl&gt;&lt;dt&gt;@功能&lt;/dt&gt;&lt;dd&gt;行驶证识别&lt;/dd&gt;&lt;dt&gt;@日期&lt;/dt&gt;&lt;dd&gt;2018年5月20日&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.str3Map(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap&lt;String,Object&gt; com.hs.common.Utils.str3Map(String param, String index)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.obj2Map(java.lang.Object)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Map com.hs.common.Utils.obj2Map(Object obj)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.listToArray(java.util.List)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Object[] com.hs.common.Utils.listToArray(List list)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>Utils</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.hs.common.Utils&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &lt;dl&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;chenyy&lt;/dd&gt;&lt;dt&gt;@date&lt;/dt&gt;&lt;dd&gt;2016-04-04 15:18:39&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.obj2ByteStr(java.lang.Object)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.Utils.obj2ByteStr(Object obj)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.createList()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;List&lt;DataObject&gt; com.hs.common.Utils.createList()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.getMd5SessionId(javax.servlet.http.HttpServletRequest)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.Utils.getMd5SessionId(HttpServletRequest request)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.getIpAddr(javax.servlet.http.HttpServletRequest)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.Utils.getIpAddr(HttpServletRequest request)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 获取用户真实IP地址，不使用request.getRemoteAddr()的原因是有可能用户使用了代理软件方式避免真实IP地址,&#x0D;
+ 可是，如果通过了多级反向代理的话，X-Forwarded-For的值并不止一个，而是一串IP值&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;ip&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.emptyCheck(commonj.sdo.DataObject, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.Utils.emptyCheck(DataObject checkObject, String propertys)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 必填校验&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;checkObject&lt;/b&gt;&#x0D;
+            要校验的DynamicObject&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;keys&lt;/b&gt;&#x0D;
+            要校验的DynamicObject的key字符串数组&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;如果DynamicObject的key都有值（不为null和&quot;&quot;，则返回&quot;0&quot;，否则返回该key）&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.createObjectList()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;List com.hs.common.Utils.createObjectList()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.appendObjectToArray(java.lang.Object[], java.lang.Object)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Object[] com.hs.common.Utils.appendObjectToArray(Object[] list, Object object)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.decode(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.Utils.decode(String str)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.createSessionId()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.Utils.createSessionId()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.encode(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.Utils.encode(String str)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.getCarVerificationDate(java.util.Date)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hs.common.Utils.getCarVerificationDate(Date regDate)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.obj2GzipStr(java.lang.Object)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.Utils.obj2GzipStr(Object obj)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.strArry2(commonj.sdo.DataObject[], java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.Utils.strArry2(DataObject[] obj, String property1, String property2)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.bmpPartsInfoProcess(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Map&lt;String,String&gt; com.hs.common.Utils.bmpPartsInfoProcess(String param)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.Utils.generateImage(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;boolean com.hs.common.Utils.generateImage(String imgStr, String path)&lt;/b&gt;&lt;br/&gt;&lt;p&gt;generateImage&lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;imgStr&lt;/b&gt; base64编码字符串&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;path&lt;/b&gt; 图片路径-具体到文件&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;dt&gt;@Description&lt;/dt&gt;&lt;dd&gt;将base64编码字符串转换为图片&lt;/dd&gt;&lt;dt&gt;@Author&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;dt&gt;@CreateTime&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

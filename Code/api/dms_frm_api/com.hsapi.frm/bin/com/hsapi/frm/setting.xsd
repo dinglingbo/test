@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns="com.hsapi.frm.setting" xmlns:sdo="commonj.sdo" xmlns:sdoJava="commonj.sdo/java" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="com.hsapi.frm.setting">
+    <xs:complexType name="FibIncomeExpenses">
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+            <xs:element minOccurs="0" name="id" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="orgid" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="code" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="itemTypeId" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="isPrimaryBusiness" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="parentId" nillable="true" type="xs:int"/>
+            <xs:element default="0" minOccurs="0" name="isEnd" nillable="true" type="xs:short"/>
+            <xs:element default="0" minOccurs="0" name="levelNum" nillable="true" type="xs:short"/>
+            <xs:element default="0" minOccurs="0" name="isDisabled" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="recorder" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="recordDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="modifier" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="modifyDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FibSettAccount">
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+            <xs:element minOccurs="0" name="id" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="orgid" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="code" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="accountTypeId" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="isPrimaryBusiness" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="parentId" nillable="true" type="xs:int"/>
+            <xs:element default="0" minOccurs="0" name="isEnd" nillable="true" type="xs:short"/>
+            <xs:element default="0" minOccurs="0" name="levelNum" nillable="true" type="xs:short"/>
+            <xs:element default="0" minOccurs="0" name="isDisabled" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="recorder" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="recordDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="modifier" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="modifyDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

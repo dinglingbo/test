@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.cloud.part.invoicing.expense">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="checkExpenseAudit" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+		    id
+		FROM
+			pj_bill_expense_record
+		WHERE
+			audit_sign = 1
+		<dynamic>
+            <isNotEmpty prepend="and" property="ids">(id in ($ids$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceId">(bill_service_id = #serviceId#)</isNotEmpty>
+        </dynamic>
+    </select>
+    <select id="queryBillExpense" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id,
+			a.orgid,
+			a.guest_id as guestId,
+			a.logistics_guest_id as logisticsGuestId,
+			a.bill_main_id as billMainId,
+			a.bill_service_id as billServiceId,
+			a.bill_type_id as billTypeId,
+			a.bill_type_code as billTypeCode,
+			a.bill_code as billCode,
+			a.settle_type_id as settleTypeId,
+			a.expense_type_id as expenseTypeId,
+			a.expense_type_code as expenseTypeCode,
+			a.expense_amt as expenseAmt,
+			a.is_state as isState,
+			a.no_state_amt as noStateAmt,
+			a.have_state_amt as haveStateAmt,
+			a.state_man_id as stateManId,
+			a.state_man as stateMan,
+			a.state_sign as stateSign,
+			a.state_date as stateDate,
+			a.remark as remark,
+			a.creator_id as creatorId,
+			a.creator,
+			a.create_date as createDate,
+			a.operator_id as operatorId,
+			a.operator,
+			a.operate_date as operateDate,
+			a.audit_sign as auditSign,
+			a.auditor_id as auditorId,
+			a.auditor,
+			a.audit_date as auditDate,
+			a.logistics_no as logisticsNo,
+			b.full_name as fullName,
+			b.short_name as shortName
+		FROM pj_bill_expense_record AS a
+		inner join wb_common.com_guest b
+		on a.logistics_guest_id = b.id
+
+		Where 1=1 
+		
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isState">(a.is_state = #isState#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="auditSign">(a.audit_sign = #auditSign#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="stateSign">(a.state_sign = #stateSign#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="settleTypeId">(a.settle_type_id = #settleTypeId#)</isNotEmpty>
+            <!--本日 昨日 本周 上周 本月 下月 -->
+            <isNotEmpty prepend="and" property="startDate">(a.create_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(a.create_date &lt; #endDate#)</isNotEmpty>
+            <!--创建日期 -->
+            <isNotEmpty prepend="and" property="sCreateDate">(a.create_date &gt;= #sCreateDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eCreateDate">(a.create_date &lt; #eCreateDate#)</isNotEmpty>
+            <!--审核日期 -->
+            <isNotEmpty prepend="and" property="sAuditDate">(a.audit_date &gt;= #sAuditDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eAuditDate">(a.audit_date &lt; #eAuditDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(a.logistics_guest_id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestIdList">(a.logistics_guest_id  in ($guestIdList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="expenseTypeCode">(a.expense_type_code = #expenseTypeCode#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceId">(a.bill_service_id = #serviceId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceIdList">(a.bill_service_id in ($serviceIdList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="billServiceId">(a.bill_service_id = #billServiceId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="logisticsNo">(a.logistics_no like '%$logisticsNo$%')</isNotEmpty>
+            <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
+        </dynamic>
+    </select>
+</sqlMap>

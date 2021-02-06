@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.sales.svr.base">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <!-- PDI检测模板明细 -->
+    <select id="getTemplateDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        SELECT
+            b.`code`,
+            b.py_code pyCode,
+            b.`name`,
+            b.pdi_type_id pdiTypeId,
+            b.order_no orderNo,
+            b.remark,
+            b.is_enable_check isEnableCheck,
+            b.is_disabled isDisabled,
+            a.template_id templateId,
+            a.pdi_id pdiId,
+            a.recorder,
+            a.record_date recordDate,
+            a.modifier,
+            a.modify_date modifyDate,
+            a.id
+        FROM
+            csb_pdi_car_template_detail AS a
+        INNER JOIN csb_pdi AS b ON  b.id = a.pdi_id
+        WHERE 1=1
+            <isNotEmpty prepend="and" property="templateId">a.template_id = #templateId#</isNotEmpty>
+    </select>
+    <!-- 厂家返利 -->
+    <select id="getFactoryRebate" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        SELECT
+            a.id,
+            a.tenant_id tenantId,
+            a.orgid,
+            a.service_code serviceCode,
+            a.guest_id guestId,
+            a.guest_full_name guestFullName,
+            a.rebate_id rebateId,
+            a.operator,
+            a.rebate_date rebateDate,
+            a.rebate_total_amt rebateTotalAmt,
+            a.remark,
+            a.`status`,
+            a.recorder,
+            a.record_date recordDate,
+            a.modifier,
+            a.modify_date modifyDate,
+            b.`name`,
+            b.rebate_amt rebateAmt,
+            b.remark csbRebateRemark
+        FROM
+            css_factory_rebate_main AS a
+        INNER JOIN csb_rebate AS b ON a.rebate_id = b.id
+        WHERE 1=1
+        <isNotNull prepend="" property="orgid">AND  a.orgid = #orgid#</isNotNull>
+        <isNotNull prepend="" property="orgids">AND  a.orgid in ($orgids$)</isNotNull>
+        <isNotNull prepend="" property="guestId">AND  (a.guest_id = #guestId#  or  a.guest_full_name like '%$guestId$%')</isNotNull>
+        <isNotNull prepend="" property="guestFullName">AND  a.guest_full_name like '%$guestFullName$%'</isNotNull>
+        <isNotNull prepend="" property="rebateId">AND  (a.rebate_id = #rebateId#	AND  b.name like '%$rebateId$%' 	)</isNotNull>
+        <isNotNull prepend="" property="name">AND  b.name like '%$name$%'</isNotNull>
+        <isNotNull prepend="" property="startDate">AND  a.record_date &gt;= #startDate#</isNotNull>
+        <isNotNull prepend="" property="endDate">AND  a.record_date &lt;= #endDate#</isNotNull>
+    </select>
+</sqlMap>

@@ -1,0 +1,10 @@
+<map>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.init.getImportGuest(com.hsapi.cloud.part.data.com.ComGuest[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getImportGuest&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getImportPartInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.init.getImportGuest&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.cloud.part.data.com.ComGuest[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>init</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;init.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;init&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.init&lt;/html&gt;</string>
+  </entry>
+</map>

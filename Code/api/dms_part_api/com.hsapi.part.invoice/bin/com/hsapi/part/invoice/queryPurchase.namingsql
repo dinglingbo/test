@@ -1,0 +1,1490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.part.invoice.queryPurchase">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
+    <resultMap class="commonj.sdo.DataObject" id="pjPchsOrderMainList">
+        <result column="id" javaType="int" property="id"/>
+        <result column="serviceId" javaType="string" property="serviceId"/>
+        <result column="orgid" javaType="int" property="orgid"/>
+        <result column="guestId" javaType="int" property="guestId"/>
+        <result column="storeId" javaType="int" property="storeId"/>
+        <result column="code" javaType="string" property="code"/>
+        <result column="orderDate" javaType="java.sql.Timestamp" property="orderDate"/>
+        <result column="planArriveDate" javaType="java.sql.Timestamp" property="planArriveDate"/>
+        <result column="orderManId" javaType="string" property="orderManId"/>
+        <result column="orderMan" javaType="string" property="orderMan"/>
+        <result column="billTypeId" javaType="string" property="billTypeId"/>
+        <!--  <result column="payModeId" javaType="int" property="payModeId"/>-->
+        <result column="taxSign" javaType="int" property="taxSign"/>
+        <result column="taxRate" javaType="double" property="taxRate"/>
+        <result column="taxAmt" javaType="double" property="taxAmt"/>
+        <result column="noTaxAmt" javaType="double" property="noTaxAmt"/>
+        <result column="taxDiff" javaType="double" property="taxDiff"/>
+        <result column="orderQty" javaType="double" property="orderQty"/>
+        <result column="orderItem" javaType="double" property="orderItem"/>
+        <result column="orderAmt" javaType="double" property="orderAmt"/>
+        <result column="orderPrice" javaType="double" property="orderPrice"/>
+        <result column="trueEnterQty" javaType="double" property="trueEnterQty"/>
+        <result column="trueEnterAmt" javaType="double" property="trueEnterAmt"/>
+        <result column="notEnterQty" javaType="double" property="notEnterQty"/>
+        <result column="notEnterAmt" javaType="double" property="notEnterAmt"/>
+        <result column="adjustQty" javaType="double" property="adjustQty"/>
+        <result column="isFinished" javaType="int" property="isFinished"/>
+        <result column="finishDate" javaType="java.sql.Timestamp" property="finishDate"/>
+        <!--   <result column="sendTypeId" javaType="int" property="sendTypeId"/>-->
+        <result column="printTimes" javaType="int" property="printTimes"/>
+        <result column="printManId" javaType="string" property="printManId"/>
+        <result column="printMan" javaType="string" property="printMan"/>
+        <result column="printDate" javaType="java.sql.Timestamp" property="printDate"/>
+        <result column="auditSign" javaType="int" property="auditSign"/>
+        <result column="auditorId" javaType="string" property="auditorId"/>
+        <result column="auditor" javaType="string" property="auditor"/>
+        <result column="auditDate" javaType="java.sql.Timestamp" property="auditDate"/>
+        <result column="remark" javaType="string" property="remark"/>
+        <result column="creatorId" javaType="string" property="creatorId"/>
+        <result column="creator" javaType="string" property="creator"/>
+        <result column="createDate" javaType="java.sql.Timestamp" property="createDate"/>
+        <result column="operatorId" javaType="string" property="operatorId"/>
+        <result column="operator" javaType="string" property="operator"/>
+        <result column="operateDate" javaType="java.sql.Timestamp" property="operateDate"/>
+        <result column="settleTypeId" javaType="string" property="settleTypeId"/>
+        <result column="billStatusId" javaType="string" property="billStatusId"/>
+        <result column="guestFullName" javaType="string" property="guestFullName"/>
+        <result column="guestShortName" javaType="string" property="guestShortName"/>
+        <result column="srmGuestId" javaType="string" property="srmGuestId"/>
+        <result column="versionNo" javaType="java.sql.Timestamp" property="versionNo"/>
+        <result column="orderCode" javaType="string" property="orderCode"/>
+    </resultMap>
+    <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->
+    <select id="queryPjPchsOrderMainList" parameterClass="java.util.HashMap" resultMap="pjPchsOrderMainList">
+
+        SELECT 
+            M.id,
+            M.serviceId,
+            M.orgid,
+            M.guestId,
+            M.storeId,
+            M.code,
+            M.orderDate,
+            M.planArriveDate,
+            M.orderManId,
+            M.orderMan,
+            M.billTypeId,
+         <!--   M.payModeId,-->
+            M.taxSign,
+            M.taxRate,
+            M.taxAmt,
+            M.noTaxAmt,
+            M.taxDiff,
+            M.orderQty,
+            M.orderItem,
+            M.orderAmt,
+            M.orderPrice,
+            M.trueEnterQty,
+            M.trueEnterAmt,
+            M.notEnterQty,
+            M.notEnterAmt,
+            M.adjustQty,
+            M.isFinished,
+            M.finishDate,
+          <!--  M.sendTypeId,-->
+            M.printTimes,
+            M.printManId,
+            M.printMan,
+            M.printDate,
+            M.auditSign,
+            M.auditorId,
+            M.auditor,
+            M.auditDate,
+            M.remark,
+            M.creatorId,
+            M.creator,
+            M.createDate,
+            M.operatorId,
+            M.operator,
+            M.operateDate,
+            M.settleTypeId,
+            M.billStatusId,
+            M.guestFullName,
+            M.guestShortName,
+            M.srmGuestId,
+            M.versionNo,
+            M.orderCode
+        FROM (
+            SELECT DISTINCT
+                A.ID as id,
+                A.SERVICE_ID as serviceId,
+                A.ORGID as orgid,
+                A.GUEST_ID as guestId,
+                c.STORE_ID as storeId,
+                A.CODE as code,
+                A.ORDER_DATE as orderDate,
+                A.PLAN_ARRIVE_DATE as planArriveDate,
+                A.ORDER_MAN_ID as orderManId,
+                A.ORDER_MAN as orderMan,
+                A.BILL_TYPE_ID as billTypeId,
+               <!-- A.PAY_MODE_ID as payModeId,-->
+                A.TAX_SIGN as taxSign,
+                A.TAX_RATE as taxRate,
+                A.TAX_AMT as taxAmt,
+                A.NO_TAX_AMT as noTaxAmt,
+                A.TAX_DIFF as taxDiff,
+                A.ORDER_QTY as orderQty,
+                A.ORDER_ITEM as orderItem,
+                A.ORDER_AMT as orderAmt,
+                C.TRUE_ENTER_QTY as trueEnterQty,
+                C.TRUE_ENTER_AMT as trueEnterAmt,
+                C.NOT_ENTER_QTY as notEnterQty,
+                C.NOT_ENTER_AMT as notEnterAmt,
+                C.ADJUST_QTY as adjustQty,
+                A.IS_FINISHED as isFinished,
+                A.FINISH_DATE as finishDate,
+               <!-- A.SEND_TYPE_ID as sendTypeId,-->
+                A.PRINT_TIMES as printTimes,
+                A.PRINT_MAN_ID as printManId,
+                A.PRINT_MAN as printMan,
+                A.PRINT_DATE as printDate,
+                A.AUDIT_SIGN as auditSign,
+                A.AUDITOR_ID as auditorId,
+                A.AUDITOR as auditor,
+                A.AUDIT_DATE as auditDate,
+                A.REMARK as remark,
+                A.CREATOR_ID as creatorId,
+                A.CREATOR as creator,
+                A.CREATE_DATE as createDate,
+                A.OPERATOR_ID as operatorId,
+                A.OPERATOR as operator,
+                A.OPERATE_DATE as operateDate,
+                A.SETTLE_TYPE_ID as settleTypeId,
+                A.BILL_STATUS_ID as billStatusId,
+                B.FULL_NAME AS guestFullName,
+                B.SHORT_NAME AS guestShortName,
+                b.srm_guest_id as srmGuestId,
+                a.version_no as versionNo,
+                c.order_price as orderPrice,
+                A.order_code as orderCode
+                FROM
+                Wb_PART.PJ_PCHS_ORDER_MAIN A
+                INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
+                LEFT JOIN Wb_PART.PJ_PCHS_ORDER_DETAIL C ON A.ID = C.MAIN_ID
+                LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID 
+                where 1=1
+            <dynamic>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orderTypeId">(a.order_type_id = #orderTypeId#)</isNotEmpty>
+            <!--订货日期 -->
+            <isNotEmpty prepend="and" property="sOrderDate">A.ORDER_DATE &gt;= #sOrderDate#</isNotEmpty>
+            <isNotEmpty prepend="and" property="eOrderDate">(A.ORDER_DATE &lt; #eOrderDate#)</isNotEmpty>
+            <!--创建日期 -->
+            <isNotEmpty prepend="and" property="sCreateDate">(A.CREATE_DATE &gt;= #sCreateDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eCreateDate">(A.CREATE_DATE &lt; #eCreateDate#)</isNotEmpty>
+            <!--审核日期 -->
+            <isNotEmpty prepend="and" property="sAuditDate">(A.AUDIT_DATE &gt;= #sAuditDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eAuditDate">(A.AUDIT_DATE &lt; #eAuditDate#)</isNotEmpty>
+            <!--本日 昨日 本周 上周 本月 下月 -->
+            <isNotEmpty prepend="and" property="startDate">(A.CREATE_DATE &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(A.CREATE_DATE &lt; #endDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partId">(C.PART_ID = #partId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="storeId">(C.store_ID = #storeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(A.guest_id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestName">(B.FULL_NAME like '%$guestName$%' or B.SHORT_NAME like '%$guestName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">(D.FULL_NAME like '%$partName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="auditSign">
+                <!--审核状态-->
+                <!--(A.AUDIT_SIGN = #auditSign#)-->
+                    (A.AUDIT_SIGN is not null)
+                </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceIdList">(A.service_id in ($serviceIdList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceId">(a.service_id like '%$serviceId$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCodeList">(D.CODE in ($partCodeList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="isDiffOrder">(a.is_diff_order = #isDiffOrder#)</isNotEmpty>
+        </dynamic>  
+            
+            union all
+            
+            SELECT DISTINCT
+                A.ID as id,
+                A.SERVICE_ID as serviceId,
+                A.ORGID as orgid,
+                A.GUEST_ID as guestId,
+                c.STORE_ID as storeId,
+                A.CODE as code,
+                A.ORDER_DATE as orderDate,
+                A.PLAN_ARRIVE_DATE as planArriveDate,
+                A.ORDER_MAN_ID as orderManId,
+                A.ORDER_MAN as orderMan,
+                A.BILL_TYPE_ID as billTypeId,
+             <!--   A.PAY_MODE_ID as payModeId,-->
+                A.TAX_SIGN as taxSign,
+                A.TAX_RATE as taxRate,
+                A.TAX_AMT as taxAmt,
+                A.NO_TAX_AMT as noTaxAmt,
+                A.TAX_DIFF as taxDiff,
+                A.ORDER_QTY as orderQty,
+                A.ORDER_ITEM as orderItem,
+                A.ORDER_AMT as orderAmt,
+                C.TRUE_ENTER_QTY as trueEnterQty,
+                C.TRUE_ENTER_AMT as trueEnterAmt,
+                C.NOT_ENTER_QTY as notEnterQty,
+                C.NOT_ENTER_AMT as notEnterAmt,
+                C.ADJUST_QTY as adjustQty,
+                A.IS_FINISHED as isFinished,
+                A.FINISH_DATE as finishDate,
+            <!--    A.SEND_TYPE_ID as sendTypeId,-->
+                A.PRINT_TIMES as printTimes,
+                A.PRINT_MAN_ID as printManId,
+                A.PRINT_MAN as printMan,
+                A.PRINT_DATE as printDate,
+                A.AUDIT_SIGN as auditSign,
+                A.AUDITOR_ID as auditorId,
+                A.AUDITOR as auditor,
+                A.AUDIT_DATE as auditDate,
+                A.REMARK as remark,
+                A.CREATOR_ID as creatorId,
+                A.CREATOR as creator,
+                A.CREATE_DATE as createDate,
+                A.OPERATOR_ID as operatorId,
+                A.OPERATOR as operator,
+                A.OPERATE_DATE as operateDate,
+                A.SETTLE_TYPE_ID as settleTypeId,
+                A.BILL_STATUS_ID as billStatusId,
+                B.FULL_NAME AS guestFullName,
+                B.SHORT_NAME AS guestShortName,
+                b.srm_guest_id as srmGuestId,
+                a.version_no as versionNo,
+                c.order_price as orderPrice,
+                A.order_code as orderCode
+                FROM
+                Wb_PART.PJ_PCHS_ORDER_MAIN_CHK A
+                INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
+                LEFT JOIN Wb_PART.PJ_PCHS_ORDER_DETAIL_CHK C ON A.ID = C.MAIN_ID
+                LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID 
+                where 1=1
+            <dynamic>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orderTypeId">(a.order_type_id = #orderTypeId#)</isNotEmpty>
+            <!--订货日期 -->
+            <isNotEmpty prepend="and" property="sOrderDate">(A.ORDER_DATE &gt;= #sOrderDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eOrderDate">(A.ORDER_DATE &lt; #eOrderDate#)</isNotEmpty>
+            <!--创建日期 -->
+            <isNotEmpty prepend="and" property="sCreateDate">(A.CREATE_DATE &gt;= #sCreateDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eCreateDate">(A.CREATE_DATE &lt; #eCreateDate#)</isNotEmpty>
+            <!--审核日期 -->
+            <isNotEmpty prepend="and" property="sAuditDate">(A.AUDIT_DATE &gt;= #sAuditDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eAuditDate">(A.AUDIT_DATE &lt; #eAuditDate#)</isNotEmpty>
+            <!--本日 昨日 本周 上周 本月 下月 -->
+            <isNotEmpty prepend="and" property="startDate">(A.CREATE_DATE &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(A.CREATE_DATE &lt; #endDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partId">(C.PART_ID = #partId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="storeId">(C.store_ID = #storeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(A.guest_id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestName">(B.FULL_NAME like '%$guestName$%' or B.SHORT_NAME like '%$guestName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">(D.FULL_NAME like '%$partName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="auditSign">
+                <!--审核状态-->
+                <!-- (A.AUDIT_SIGN = #auditSign#)-->
+                   (A.AUDIT_SIGN is not null)
+                </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceIdList">(A.service_id in ($serviceIdList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceId">(a.service_id like '%$serviceId$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCodeList">(D.CODE in ($partCodeList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="isDiffOrder">(a.is_diff_order = #isDiffOrder#)</isNotEmpty>
+        </dynamic>  
+        )M
+        group by M.id
+        ORDER BY M.operateDate DESC
+       
+    </select>
+    <resultMap class="commonj.sdo.DataObject" id="pjPchsOrderDetailList">
+        <result column="id" javaType="int" property="id"/>
+        <result column="mainId" javaType="int" property="mainId"/>
+        <result column="storeId" javaType="int" property="storeId"/>
+        <result column="partId" javaType="int" property="partId"/>
+        <result column="partCode" javaType="string" property="partCode"/>
+        <result column="partName" javaType="string" property="partName"/>
+        <result column="fullName" javaType="string" property="fullName"/>
+        <result column="enterUnitId" javaType="string" property="enterUnitId"/>
+        <result column="systemUnitId" javaType="string" property="systemUnitId"/>
+        <result column="orderQty" javaType="double" property="orderQty"/>
+        <result column="orderPrice" javaType="double" property="orderPrice"/>
+        <result column="orderAmt" javaType="double" property="orderAmt"/>
+        <result column="taxSign" javaType="int" property="taxSign"/>
+        <result column="taxRate" javaType="double" property="taxRate"/>
+        <result column="taxPrice" javaType="double" property="taxPrice"/>
+        <result column="taxAmt" javaType="double" property="taxAmt"/>
+        <result column="noTaxPrice" javaType="double" property="noTaxPrice"/>
+        <result column="noTaxAmt" javaType="double" property="noTaxAmt"/>
+        <result column="taxDiff" javaType="double" property="taxDiff"/>
+        <result column="trueEnterQty" javaType="double" property="trueEnterQty"/>
+        <result column="trueEnterAmt" javaType="double" property="trueEnterAmt"/>
+        <result column="notEnterQty" javaType="double" property="notEnterQty"/>
+        <result column="notEnterAmt" javaType="double" property="notEnterAmt"/>
+        <result column="adjustQty" javaType="double" property="adjustQty"/>
+        <result column="isFinished" javaType="int" property="isFinished"/>
+        <result column="finishDate" javaType="java.sql.Timestamp" property="finishDate"/>
+        <result column="prevDetailId" javaType="int" property="prevDetailId"/>
+        <result column="sourceDetailId" javaType="int" property="sourceDetailId"/>
+        <result column="sourceMainId" javaType="int" property="sourceMainId"/>
+        <result column="sourceBillTypeId" javaType="int" property="sourceBillTypeId"/>
+        <result column="remark" javaType="string" property="remark"/>
+        <result column="comPartCode" javaType="string" property="comPartCode"/>
+        <result column="comPartName" javaType="string" property="comPartName"/>
+        <result column="comFullName" javaType="string" property="comFullName"/>
+        <result column="comBrandCode" javaType="string" property="comBrandCode"/>
+        <result column="comOemCode" javaType="string" property="comOemCode"/>
+        <result column="comQualityTypeId" javaType="int" property="comQualityTypeId"/>
+        <result column="comPartBrandId" javaType="string" property="comPartBrandId"/>
+        <result column="comApplyCarModel" javaType="string" property="comApplyCarModel"/>
+        <result column="comUnit" javaType="string" property="comUnit"/>
+        <result column="comSpec" javaType="string" property="comSpec"/>
+        <result column="comDirection" javaType="string" property="comDirection"/>
+    </resultMap>
+    <!-- 根据主表ID查询 -->
+    <select id="queryPjPchsOrderDetailList" parameterClass="java.util.HashMap" resultMap="pjPchsOrderDetailList">
+    	
+        SELECT
+            M.id,
+            M.mainId,
+            M.storeId,
+            M.partId,
+            M.partCode,
+            M.partName,
+            M.fullName,
+            M.enterUnitId,
+            M.systemUnitId,
+            M.orderQty,
+            M.orderPrice,
+            M.orderAmt,
+            M.taxSign,
+            M.taxRate,
+            M.taxPrice,
+            M.taxAmt,
+            M.noTaxPrice,
+            M.noTaxAmt,
+            M.taxDiff,
+            M.trueEnterQty,
+            M.trueEnterAmt,
+            M.notEnterQty,
+            M.notEnterAmt,
+            M.adjustQty,
+            M.isFinished,
+            M.finishDate,
+            M.prevDetailId,
+            M.sourceDetailId,
+            M.sourceMainId,
+            M.sourceBillTypeId,
+            M.remark,
+            M.comPartCode,
+            M.comPartName,
+            M.comFullName,
+            M.comBrandCode,
+            M.comOemCode,
+            M.comQualityTypeId,
+            M.comPartBrandId,
+            M.comApplyCarModel,
+            M.comUnit,
+            M.comSpec,
+            M.comDirection
+        FROM (
+            SELECT
+                A.ID AS id,
+                A.MAIN_ID AS mainId,
+                A.STORE_ID AS storeId,
+                A.PART_ID AS partId,
+                A.PART_CODE AS partCode,
+                A.PART_NAME AS partName,
+                A.FULL_NAME AS fullName,
+                A.ENTER_UNIT_ID AS enterUnitId,
+                A.SYSTEM_UNIT_ID AS systemUnitId,
+                A.ORDER_QTY AS orderQty,
+                A.ORDER_PRICE AS orderPrice,
+                A.ORDER_AMT AS orderAmt,
+                A.TAX_SIGN AS taxSign,
+                A.TAX_RATE AS taxRate,
+                A.TAX_PRICE AS taxPrice,
+                A.TAX_AMT AS taxAmt,
+                A.NO_TAX_PRICE AS noTaxPrice,
+                A.NO_TAX_AMT AS noTaxAmt,
+                A.TAX_DIFF AS taxDiff,
+                A.TRUE_ENTER_QTY AS trueEnterQty,
+                A.TRUE_ENTER_AMT AS trueEnterAmt,
+                A.NOT_ENTER_QTY AS notEnterQty,
+                A.NOT_ENTER_AMT AS notEnterAmt,
+                A.ADJUST_QTY AS adjustQty,
+                A.IS_FINISHED AS isFinished,
+                A.FINISH_DATE AS finishDate,
+                A.PREV_DETAIL_ID AS prevDetailId,
+                A.SOURCE_DETAIL_ID AS sourceDetailId,
+                A.SOURCE_MAIN_ID AS sourceMainId,
+                A.SOURCE_BILL_TYPE_ID AS sourceBillTypeId,
+                A.REMARK AS remark,
+                B.CODE AS comPartCode,
+                B.NAME AS comPartName,
+                B.FULL_NAME AS comFullName,
+                B.BRAND_CODE AS comBrandCode,
+                B.OEM_CODE AS comOemCode,
+                B.QUALITY_TYPE_ID AS comQualityTypeId,
+                B.PART_BRAND_ID AS comPartBrandId,
+                B.APPLY_CAR_MODEL AS comApplyCarModel,
+                B.UNIT AS comUnit,
+                B.SPEC AS comSpec,
+                B.DIRECTION AS comDirection
+            FROM
+            Wb_PART.PJ_PCHS_ORDER_DETAIL A
+            INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
+                where 1=1
+            <dynamic>
+            <isNotEmpty prepend="and" property="mainId">(A.MAIN_ID = #mainId#)</isNotEmpty>
+        </dynamic>  
+            
+            UNION ALL
+            
+            SELECT
+                A.ID AS id,
+                A.MAIN_ID AS mainId,
+                A.STORE_ID AS storeId,
+                A.PART_ID AS partId,
+                A.PART_CODE AS partCode,
+                A.PART_NAME AS partName,
+                A.FULL_NAME AS fullName,
+                A.ENTER_UNIT_ID AS enterUnitId,
+                A.SYSTEM_UNIT_ID AS systemUnitId,
+                A.ORDER_QTY AS orderQty,
+                A.ORDER_PRICE AS orderPrice,
+                A.ORDER_AMT AS orderAmt,
+                A.TAX_SIGN AS taxSign,
+                A.TAX_RATE AS taxRate,
+                A.TAX_PRICE AS taxPrice,
+                A.TAX_AMT AS taxAmt,
+                A.NO_TAX_PRICE AS noTaxPrice,
+                A.NO_TAX_AMT AS noTaxAmt,
+                A.TAX_DIFF AS taxDiff,
+                A.TRUE_ENTER_QTY AS trueEnterQty,
+                A.TRUE_ENTER_AMT AS trueEnterAmt,
+                A.NOT_ENTER_QTY AS notEnterQty,
+                A.NOT_ENTER_AMT AS notEnterAmt,
+                A.ADJUST_QTY AS adjustQty,
+                A.IS_FINISHED AS isFinished,
+                A.FINISH_DATE AS finishDate,
+                A.PREV_DETAIL_ID AS prevDetailId,
+                A.SOURCE_DETAIL_ID AS sourceDetailId,
+                A.SOURCE_MAIN_ID AS sourceMainId,
+                A.SOURCE_BILL_TYPE_ID AS sourceBillTypeId,
+                A.REMARK AS remark,
+                B.CODE AS comPartCode,
+                B.NAME AS comPartName,
+                B.FULL_NAME AS comFullName,
+                B.BRAND_CODE AS comBrandCode,
+                B.OEM_CODE AS comOemCode,
+                B.QUALITY_TYPE_ID AS comQualityTypeId,
+                B.PART_BRAND_ID AS comPartBrandId,
+                B.APPLY_CAR_MODEL AS comApplyCarModel,
+                B.UNIT AS comUnit,
+                B.SPEC AS comSpec,
+                B.DIRECTION AS comDirection
+            FROM
+            Wb_PART.PJ_PCHS_ORDER_DETAIL_CHK A
+            INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
+                where 1=1
+            <dynamic>
+            <isNotEmpty prepend="and" property="mainId">(A.MAIN_ID = #mainId#)</isNotEmpty>
+        </dynamic>
+        )M
+        
+        ORDER BY M.id asc
+    </select>
+    <resultMap class="commonj.sdo.DataObject" id="pjEnterMainList">
+        <result column="id" javaType="int" property="id"/>
+        <result column="serviceId" javaType="string" property="serviceId"/>
+        <result column="orgid" javaType="int" property="orgid"/>
+        <result column="guestId" javaType="int" property="guestId"/>
+        <result column="storeId" javaType="int" property="storeId"/>
+        <result column="enterTypeId" javaType="string" property="enterTypeId"/>
+        <result column="codeId" javaType="int" property="codeId"/>
+        <result column="code" javaType="string" property="code"/>
+        <result column="billStatusId" javaType="string" property="billStatusId"/>
+        <result column="enterDate" javaType="java.sql.Timestamp" property="enterDate"/>
+        <result column="orderManId" javaType="string" property="orderManId"/>
+        <result column="orderMan" javaType="string" property="orderMan"/>
+        <result column="billTypeId" javaType="string" property="billTypeId"/>
+        <result column="taxSign" javaType="int" property="taxSign"/>
+        <result column="taxRate" javaType="double" property="taxRate"/>
+        <result column="taxAmt" javaType="double" property="taxAmt"/>
+        <result column="noTaxAmt" javaType="double" property="noTaxAmt"/>
+        <result column="taxDiff" javaType="double" property="taxDiff"/>
+        <result column="enterQty" javaType="double" property="enterQty"/>
+        <result column="enterItem" javaType="double" property="enterItem"/>
+        <result column="enterAmt" javaType="double" property="enterAmt"/>
+        <result column="auditSign" javaType="int" property="auditSign"/>
+        <result column="auditorId" javaType="string" property="auditorId"/>
+        <result column="auditor" javaType="string" property="auditor"/>
+        <result column="auditDate" javaType="java.sql.Timestamp" property="auditDate"/>
+        <result column="remark" javaType="string" property="remark"/>
+        <result column="creatorId" javaType="string" property="creatorId"/>
+        <result column="creator" javaType="string" property="creator"/>
+        <result column="createDate" javaType="java.sql.Timestamp" property="createDate"/>
+        <result column="operatorId" javaType="string" property="operatorId"/>
+        <result column="operator" javaType="string" property="operator"/>
+        <result column="operateDate" javaType="java.sql.Timestamp" property="operateDate"/>
+        <result column="sellRtnAmt" javaType="double" property="sellRtnAmt"/>
+        <result column="settleTypeId" javaType="string" property="settleTypeId"/>
+        <result column="guestFullName" javaType="string" property="guestFullName"/>
+        <result column="guestShortName" javaType="string" property="guestShortName"/>
+        <result column="versionNo" javaType="java.sql.Timestamp" property="versionNo"/>
+    </resultMap>
+    <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->
+    <select id="queryPjEnterMainList" parameterClass="java.util.HashMap" resultMap="pjEnterMainList">
+
+        SELECT 
+            M.id,
+			M.serviceId,
+			M.orgid,
+			M.guestId,
+			M.storeId,
+			M.enterTypeId,
+			M.codeId,
+			M.code,
+			M.billStatusId,
+			M.enterDate,
+			M.orderManId,
+			M.orderMan,
+			M.billTypeId,
+			M.taxSign,
+			M.taxRate,
+			M.taxAmt,
+			M.noTaxAmt,
+			M.taxDiff,
+			M.enterQty,
+			M.enterItem,
+			M.enterAmt,
+			M.auditSign,
+			M.auditorId,
+			M.auditor,
+			M.auditDate,
+			M.remark,
+			M.creatorId,
+			M.creator,
+			M.createDate,
+			M.operatorId,
+			M.operator,
+			M.operateDate,
+			M.sellRtnAmt,
+			M.settleTypeId,
+			M.guestFullName,
+			M.guestShortName,
+			M.versionNo
+        FROM (
+            SELECT DISTINCT
+			A.ID AS id,
+			A.SERVICE_ID AS serviceId,
+			A.ORGID AS orgid,
+			A.GUEST_ID AS guestId,
+			A.STORE_ID AS storeId,
+			A.ENTER_TYPE_ID AS enterTypeId,
+			A.code_id as codeId,
+			A.CODE AS code,
+			A.BILL_STATUS_ID AS billStatusId,
+			A.ENTER_DATE AS enterDate,
+			A.ORDER_MAN_ID AS orderManId,
+			A.ORDER_MAN AS orderMan,
+			A.BILL_TYPE_ID AS billTypeId,
+			A.TAX_SIGN AS taxSign,
+			A.TAX_RATE AS taxRate,
+			A.TAX_AMT AS taxAmt,
+			A.NO_TAX_AMT AS noTaxAmt,
+			A.TAX_DIFF AS taxDiff,
+			A.ENTER_QTY AS enterQty,
+			A.ENTER_ITEM AS enterItem,
+			A.ENTER_AMT AS enterAmt,
+			A.AUDIT_SIGN AS auditSign,
+			A.AUDITOR_ID AS auditorId,
+			A.AUDITOR AS auditor,
+			A.AUDIT_DATE AS auditDate,
+			A.REMARK AS remark,
+			A.CREATOR_ID AS creatorId,
+			A.CREATOR AS creator,
+			A.CREATE_DATE AS createDate,
+			A.OPERATOR_ID AS operatorId,
+			A.OPERATOR AS operator,
+			A.OPERATE_DATE AS operateDate,
+			A.SELL_RTN_AMT AS sellRtnAmt,
+			A.SETTLE_TYPE_ID AS settleTypeId,
+			B.FULL_NAME AS guestFullName,
+			B.SHORT_NAME AS guestShortName,
+			a.version_no as versionNo
+			FROM
+			Wb_PART.PJ_ENTER_MAIN A
+			INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
+			LEFT JOIN Wb_PART.PJ_PCHS_ORDER_DETAIL C ON A.ID = C.MAIN_ID
+			LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
+			where 1=1
+            <dynamic>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="enterTypeId">(A.ENTER_TYPE_ID = #enterTypeId#)</isNotEmpty>
+            <!--订货日期 -->
+            <isNotEmpty prepend="and" property="sEnterDate">(A.ENTER_DATE &gt;= #sEnterDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eEnterDate">(A.Enter_DATE &lt; #eEnterDate#)</isNotEmpty>
+            <!--创建日期 -->
+            <isNotEmpty prepend="and" property="sCreateDate">(A.CREATE_DATE &gt;= #sCreateDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eCreateDate">(A.CREATE_DATE &lt; #eCreateDate#)</isNotEmpty>
+            <!--审核日期 -->
+            <isNotEmpty prepend="and" property="sAuditDate">(A.AUDIT_DATE &gt;= #sAuditDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eAuditDate">(A.AUDIT_DATE &lt; #eAuditDate#)</isNotEmpty>
+            <!--本日 昨日 本周 上周 本月 下月 -->
+            <isNotEmpty prepend="and" property="startDate">(A.CREATE_DATE &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(A.CREATE_DATE &lt; #endDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partId">(C.PART_ID = #partId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(A.guest_id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">(D.FULL_NAME like '%$partName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="auditSign">
+                <!--审核状态-->
+                    (A.AUDIT_SIGN = #auditSign#)
+                </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceIdList">(A.service_id in ($serviceIdList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCodeList">(D.CODE in ($partCodeList$))</isNotEmpty>
+        </dynamic>  
+			
+			UNION ALL
+			
+			SELECT DISTINCT
+			A.ID AS id,
+			A.SERVICE_ID AS serviceId,
+			A.ORGID AS orgid,
+			A.GUEST_ID AS guestId,
+			A.STORE_ID AS storeId,
+			A.ENTER_TYPE_ID AS enterTypeId,
+			A.code_id as codeId,
+			A.CODE AS code,
+			A.BILL_STATUS_ID AS billStatusId,
+			A.ENTER_DATE AS enterDate,
+			A.ORDER_MAN_ID AS orderManId,
+			A.ORDER_MAN AS orderMan,
+			A.BILL_TYPE_ID AS billTypeId,
+			A.TAX_SIGN AS taxSign,
+			A.TAX_RATE AS taxRate,
+			A.TAX_AMT AS taxAmt,
+			A.NO_TAX_AMT AS noTaxAmt,
+			A.TAX_DIFF AS taxDiff,
+			A.ENTER_QTY AS enterQty,
+			A.ENTER_ITEM AS enterItem,
+			A.ENTER_AMT AS enterAmt,
+			A.AUDIT_SIGN AS auditSign,
+			A.AUDITOR_ID AS auditorId,
+			A.AUDITOR AS auditor,
+			A.AUDIT_DATE AS auditDate,
+			A.REMARK AS remark,
+			A.CREATOR_ID AS creatorId,
+			A.CREATOR AS creator,
+			A.CREATE_DATE AS createDate,
+			A.OPERATOR_ID AS operatorId,
+			A.OPERATOR AS operator,
+			A.OPERATE_DATE AS operateDate,
+			A.SELL_RTN_AMT AS sellRtnAmt,
+			A.SETTLE_TYPE_ID AS settleTypeId,
+			B.FULL_NAME AS guestFullName,
+			B.SHORT_NAME AS guestShortName,
+			a.version_no as versionNo
+			FROM
+			Wb_PART.PJ_ENTER_MAIN_CHK A
+			INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
+			LEFT JOIN Wb_PART.PJ_PCHS_ORDER_DETAIL_CHK C ON A.ID = C.MAIN_ID
+			LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
+			where 1=1
+            <dynamic>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="enterTypeId">(A.ENTER_TYPE_ID = #enterTypeId#)</isNotEmpty>
+            <!--订货日期 -->
+            <isNotEmpty prepend="and" property="sEnterDate">(A.ENTER_DATE &gt;= #sEnterDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eEnterDate">(A.Enter_DATE &lt; #eEnterDate#)</isNotEmpty>
+            <!--创建日期 -->
+            <isNotEmpty prepend="and" property="sCreateDate">(A.CREATE_DATE &gt;= #sCreateDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eCreateDate">(A.CREATE_DATE &lt; #eCreateDate#)</isNotEmpty>
+            <!--审核日期 -->
+            <isNotEmpty prepend="and" property="sAuditDate">(A.AUDIT_DATE &gt;= #sAuditDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eAuditDate">(A.AUDIT_DATE &lt; #eAuditDate#)</isNotEmpty>
+            <!--本日 昨日 本周 上周 本月 下月 -->
+            <isNotEmpty prepend="and" property="startDate">(A.CREATE_DATE &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(A.CREATE_DATE &lt; #endDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partId">(C.PART_ID = #partId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(A.guest_id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">(D.FULL_NAME like '%$partName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="auditSign">
+                <!--审核状态-->
+                    (A.AUDIT_SIGN = #auditSign#)
+                </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceIdList">(A.service_id in ($serviceIdList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCodeList">(D.CODE in ($partCodeList$))</isNotEmpty>
+        </dynamic>
+        )M
+    	
+        
+        ORDER BY M.operateDate DESC
+    </select>
+    <resultMap class="commonj.sdo.DataObject" id="pjEnterDetailList">
+        <result column="id" javaType="int" property="id"/>
+        <result column="mainId" javaType="int" property="mainId"/>
+        <result column="sourceId" javaType="int" property="sourceId"/>
+        <result column="rootId" javaType="int" property="rootId"/>
+        <result column="storeId" javaType="int" property="storeId"/>
+        <result column="partId" javaType="int" property="partId"/>
+        <result column="partCode" javaType="string" property="partCode"/>
+        <result column="partName" javaType="string" property="partName"/>
+        <result column="fullName" javaType="string" property="fullName"/>
+        <result column="enterUnitId" javaType="string" property="enterUnitId"/>
+        <result column="systemUnitId" javaType="string" property="systemUnitId"/>
+        <result column="enterQty" javaType="double" property="enterQty"/>
+        <result column="enterPrice" javaType="double" property="enterPrice"/>
+        <result column="enterAmt" javaType="double" property="enterAmt"/>
+        <result column="outableQty" javaType="double" property="outableQty"/>
+        <result column="taxSign" javaType="int" property="taxSign"/>
+        <result column="taxRate" javaType="double" property="taxRate"/>
+        <result column="taxPrice" javaType="double" property="taxPrice"/>
+        <result column="taxAmt" javaType="double" property="taxAmt"/>
+        <result column="noTaxPrice" javaType="double" property="noTaxPrice"/>
+        <result column="noTaxAmt" javaType="double" property="noTaxAmt"/>
+        <result column="taxDiff" javaType="double" property="taxDiff"/>
+        <result column="rtnPrice" javaType="double" property="rtnPrice"/>
+        <result column="rtnAmt" javaType="double" property="rtnAmt"/>
+        <result column="enterDate" javaType="java.sql.Timestamp" property="enterDate"/>
+        <result column="prevDetailId" javaType="int" property="prevDetailId"/>
+        <result column="orderDetailId" javaType="int" property="orderDetailId"/>
+        <result column="orderMainId" javaType="int" property="orderMainId"/>
+        <result column="branchStockAge" javaType="double" property="branchStockAge"/>
+        <result column="chainStockAge" javaType="double" property="chainStockAge"/>
+        <result column="guestId" javaType="int" property="guestId"/>
+        <result column="guestName" javaType="string" property="guestName"/>
+        <result column="remark" javaType="string" property="remark"/>
+        <result column="packAmt" javaType="double" property="packAmt"/>
+        <result column="scrapQty" javaType="double" property="scrapQty"/>
+        <result column="storeShelf" javaType="string" property="storeShelf"/>
+        <result column="originId" javaType="int" property="originId"/>
+        <result column="originGuestId" javaType="int" property="originGuestId"/>
+        <result column="sellPrice" javaType="double" property="sellPrice"/>
+        <result column="comPartCode" javaType="string" property="comPartCode"/>
+        <result column="comPartName" javaType="string" property="comPartName"/>
+        <result column="comFullName" javaType="string" property="comFullName"/>
+        <result column="comBrandCode" javaType="string" property="comBrandCode"/>
+        <result column="comOemCode" javaType="string" property="comOemCode"/>
+        <result column="comQualityTypeId" javaType="int" property="comQualityTypeId"/>
+        <result column="comPartBrandId" javaType="string" property="comPartBrandId"/>
+        <result column="comApplyCarModel" javaType="string" property="comApplyCarModel"/>
+        <result column="comUnit" javaType="string" property="comUnit"/>
+        <result column="comSpec" javaType="string" property="comSpec"/>
+        <result column="comDirection" javaType="string" property="comDirection"/>
+    </resultMap>
+    <!-- 根据主表ID查询 -->
+    <select id="queryPjEnterDetailList" parameterClass="java.util.HashMap" resultMap="pjEnterDetailList">
+    	
+        SELECT
+            M.id,
+			M.mainId,
+			M.sourceId,
+			M.rootId,
+			M.storeId,
+			M.partId,
+			M.partCode,
+			M.partName,
+			M.fullName,
+			M.enterUnitId,
+			M.systemUnitId,
+			M.enterQty,
+			M.enterPrice,
+			M.enterAmt,
+			M.outableQty,
+			M.taxSign,
+			M.taxRate,
+			M.taxPrice,
+			M.taxAmt,
+			M.noTaxPrice,
+			M.noTaxAmt,
+			M.taxDiff,
+			M.rtnPrice,
+			M.rtnAmt,
+			M.enterDate,
+			M.prevDetailId,
+			M.orderDetailId,
+			M.orderMainId,
+			M.branchStockAge,
+			M.chainStockAge,
+			M.guestId,
+			M.guestName,
+			M.remark,
+			M.packAmt,
+			M.scrapQty,
+			M.storeShelf,
+			M.originId,
+			M.originGuestId,
+			M.sellPrice,
+			M.comPartCode,
+			M.comPartName,
+			M.comFullName,
+			M.comBrandCode,
+			M.comOemCode,
+			M.comQualityTypeId,
+			M.comPartBrandId,
+			M.comApplyCarModel,
+			M.comUnit,
+			M.comSpec,
+			M.comDirection
+        FROM (
+            SELECT
+			A.ID AS id,
+			A.MAIN_ID AS mainId,
+			A.SOURCE_ID AS sourceId,
+			A.ROOT_ID AS rootId,
+			A.STORE_ID AS storeId,
+			A.PART_ID AS partId,
+			A.PART_CODE AS partCode,
+			A.PART_NAME AS partName,
+			A.FULL_NAME AS fullName,
+			A.ENTER_UNIT_ID AS enterUnitId,
+			A.SYSTEM_UNIT_ID AS systemUnitId,
+			A.ENTER_QTY AS enterQty,
+			A.ENTER_PRICE AS enterPrice,
+			A.ENTER_AMT AS enterAmt,
+			A.OUTABLE_QTY AS outableQty,
+			A.TAX_SIGN AS taxSign,
+			A.TAX_RATE AS taxRate,
+			A.TAX_PRICE AS taxPrice,
+			A.TAX_AMT AS taxAmt,
+			A.NO_TAX_PRICE AS noTaxPrice,
+			A.NO_TAX_AMT AS noTaxAmt,
+			A.TAX_DIFF AS taxDiff,
+			A.RTN_PRICE AS rtnPrice,
+			A.RTN_AMT AS rtnAmt,
+			A.ENTER_DATE AS enterDate,
+			A.PREV_DETAIL_ID AS prevDetailId,
+			A.ORDER_DETAIL_ID AS orderDetailId,
+			A.ORDER_MAIN_ID AS orderMainId,
+			A.BRANCH_STOCK_AGE AS branchStockAge,
+			A.CHAIN_STOCK_AGE AS chainStockAge,
+			A.GUEST_ID AS guestId,
+			A.GUEST_NAME AS guestName,
+			A.REMARK AS remark,
+			a.pack_amt as packAmt,
+			a.scrap_qty as scrapQty,
+			a.store_shelf as storeShelf,
+			a.origin_id as originId,
+			a.origin_guest_id as originGuestId,
+			a.sell_price as sellPrice,
+			B.CODE AS comPartCode,
+			B.NAME AS comPartName,
+			B.FULL_NAME AS comFullName,
+			B.BRAND_CODE AS comBrandCode,
+			B.OEM_CODE AS comOemCode,
+			B.QUALITY_TYPE_ID AS comQualityTypeId,
+			B.PART_BRAND_ID AS comPartBrandId,
+			B.APPLY_CAR_MODEL AS comApplyCarModel,
+			B.UNIT AS comUnit,
+			B.SPEC AS comSpec,
+			B.DIRECTION AS comDirection
+			FROM
+			Wb_PART.PJ_ENTER_DETAIL A
+			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
+			where 1=1
+            <dynamic>
+            <isNotEmpty prepend="and" property="mainId">(A.MAIN_ID = #mainId#)</isNotEmpty>
+        </dynamic>  
+            
+			UNION ALL
+			
+			SELECT
+			A.ID AS id,
+			A.MAIN_ID AS mainId,
+			A.SOURCE_ID AS sourceId,
+			A.ROOT_ID AS rootId,
+			A.STORE_ID AS storeId,
+			A.PART_ID AS partId,
+			A.PART_CODE AS partCode,
+			A.PART_NAME AS partName,
+			A.FULL_NAME AS fullName,
+			A.ENTER_UNIT_ID AS enterUnitId,
+			A.SYSTEM_UNIT_ID AS systemUnitId,
+			A.ENTER_QTY AS enterQty,
+			A.ENTER_PRICE AS enterPrice,
+			A.ENTER_AMT AS enterAmt,
+			A.OUTABLE_QTY AS outableQty,
+			A.TAX_SIGN AS taxSign,
+			A.TAX_RATE AS taxRate,
+			A.TAX_PRICE AS taxPrice,
+			A.TAX_AMT AS taxAmt,
+			A.NO_TAX_PRICE AS noTaxPrice,
+			A.NO_TAX_AMT AS noTaxAmt,
+			A.TAX_DIFF AS taxDiff,
+			A.RTN_PRICE AS rtnPrice,
+			A.RTN_AMT AS rtnAmt,
+			A.ENTER_DATE AS enterDate,
+			A.PREV_DETAIL_ID AS prevDetailId,
+			A.ORDER_DETAIL_ID AS orderDetailId,
+			A.ORDER_MAIN_ID AS orderMainId,
+			A.BRANCH_STOCK_AGE AS branchStockAge,
+			A.CHAIN_STOCK_AGE AS chainStockAge,
+			A.GUEST_ID AS guestId,
+			A.GUEST_NAME AS guestName,
+			A.REMARK AS remark,
+			a.pack_amt as packAmt,
+			a.scrap_qty as scrapQty,
+			a.store_shelf as storeShelf,
+			a.origin_id as originId,
+			a.origin_guest_id as originGuestId,
+			a.sell_price as sellPrice,
+			B.CODE AS comPartCode,
+			B.NAME AS comPartName,
+			B.FULL_NAME AS comFullName,
+			B.BRAND_CODE AS comBrandCode,
+			B.OEM_CODE AS comOemCode,
+			B.QUALITY_TYPE_ID AS comQualityTypeId,
+			B.PART_BRAND_ID AS comPartBrandId,
+			B.APPLY_CAR_MODEL AS comApplyCarModel,
+			B.UNIT AS comUnit,
+			B.SPEC AS comSpec,
+			B.DIRECTION AS comDirection
+			FROM
+			Wb_PART.PJ_ENTER_DETAIL_CHK A
+			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
+			where 1=1
+            <dynamic>
+            <isNotEmpty prepend="and" property="mainId">(A.MAIN_ID = #mainId#)</isNotEmpty>
+        </dynamic>  
+
+        )M
+        
+        ORDER BY M.id asc
+    </select>
+    <select id="queryPjPchsOrderDetailChkList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT
+                A.ID AS id,
+                A.MAIN_ID AS mainId,
+                A.STORE_ID AS storeId,
+                A.PART_ID AS partId,
+                A.PART_CODE AS partCode,
+                A.PART_NAME AS partName,
+                A.FULL_NAME AS fullName,
+                A.ENTER_UNIT_ID AS enterUnitId,
+                A.SYSTEM_UNIT_ID AS systemUnitId,
+                A.ORDER_QTY AS orderQty,
+                A.ORDER_PRICE AS orderPrice,
+                A.ORDER_AMT AS orderAmt,
+                A.TAX_SIGN AS taxSign,
+                A.TAX_RATE AS taxRate,
+                A.TAX_PRICE AS taxPrice,
+                A.TAX_AMT AS taxAmt,
+                A.NO_TAX_PRICE AS noTaxPrice,
+                A.NO_TAX_AMT AS noTaxAmt,
+                A.TAX_DIFF AS taxDiff,
+                A.TRUE_ENTER_QTY AS trueEnterQty,
+                A.TRUE_ENTER_AMT AS trueEnterAmt,
+                A.NOT_ENTER_QTY AS notEnterQty,
+                A.NOT_ENTER_AMT AS notEnterAmt,
+                A.ADJUST_QTY AS adjustQty,
+                A.IS_FINISHED AS isFinished,
+                A.FINISH_DATE AS finishDate,
+                A.PREV_DETAIL_ID AS prevDetailId,
+                A.SOURCE_DETAIL_ID AS sourceDetailId,
+                A.SOURCE_MAIN_ID AS sourceMainId,
+                A.SOURCE_BILL_TYPE_ID AS sourceBillTypeId,
+                A.REMARK AS remark,
+				c.shelf as shelf,
+                B.CODE AS comPartCode,
+                B.NAME AS comPartName,
+                B.FULL_NAME AS comFullName,
+                B.BRAND_CODE AS comBrandCode,
+                B.OEM_CODE AS comOemCode,
+                B.QUALITY_TYPE_ID AS comQualityTypeId,
+                B.PART_BRAND_ID AS comPartBrandId,
+                B.APPLY_CAR_MODEL AS comApplyCarModel,
+                B.UNIT AS comUnit,
+                B.SPEC AS comSpec,
+                B.DIRECTION AS comDirection
+            FROM
+            Wb_PART.PJ_PCHS_ORDER_DETAIL_CHK A
+            INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
+			left join pj_part_store_stock c on a.store_id = c.store_id and a.part_id = c.part_id
+                where 1=1
+            <dynamic>
+            <isNotEmpty prepend="and" property="mainId">(A.MAIN_ID = #mainId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="notFinished">(A.IS_FINISHED = #notFinished#)</isNotEmpty>
+        </dynamic>
+        
+           ORDER BY a.id asc
+    </select>
+    <!-- 根据主表ID查询 -->
+    <select id="queryPjEnterDetailByMainId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+			
+			SELECT
+			A.ID AS id,
+			A.MAIN_ID AS mainId,
+			A.SOURCE_ID AS sourceId,
+			A.ROOT_ID AS rootId,
+			A.STORE_ID AS storeId,
+			A.PART_ID AS partId,
+			A.PART_CODE AS partCode,
+			A.PART_NAME AS partName,
+			A.FULL_NAME AS fullName,
+			A.ENTER_UNIT_ID AS enterUnitId,
+			A.SYSTEM_UNIT_ID AS systemUnitId,
+			A.ENTER_QTY AS enterQty,
+			A.ENTER_PRICE AS enterPrice,
+			A.ENTER_AMT AS enterAmt,
+			A.OUTABLE_QTY AS outableQty,
+			A.TAX_SIGN AS taxSign,
+			A.TAX_RATE AS taxRate,
+			A.TAX_PRICE AS taxPrice,
+			A.TAX_AMT AS taxAmt,
+			A.NO_TAX_PRICE AS noTaxPrice,
+			A.NO_TAX_AMT AS noTaxAmt,
+			A.TAX_DIFF AS taxDiff,
+			A.RTN_PRICE AS rtnPrice,
+			A.RTN_AMT AS rtnAmt,
+			A.ENTER_DATE AS enterDate,
+			A.PREV_DETAIL_ID AS prevDetailId,
+			A.ORDER_DETAIL_ID AS orderDetailId,
+			A.ORDER_MAIN_ID AS orderMainId,
+			A.BRANCH_STOCK_AGE AS branchStockAge,
+			A.CHAIN_STOCK_AGE AS chainStockAge,
+			A.GUEST_ID AS guestId,
+			A.GUEST_NAME AS guestName,
+			A.REMARK AS remark,
+			a.pack_amt as packAmt,
+			a.scrap_qty as scrapQty,
+			a.store_shelf as storeShelf,
+			a.origin_id as originId,
+			a.origin_guest_id as originGuestId,
+			B.CODE AS comPartCode,
+			B.NAME AS comPartName,
+			B.FULL_NAME AS comFullName,
+			B.BRAND_CODE AS comBrandCode,
+			B.OEM_CODE AS comOemCode,
+			B.QUALITY_TYPE_ID AS comQualityTypeId,
+			B.PART_BRAND_ID AS comPartBrandId,
+			B.APPLY_CAR_MODEL AS comApplyCarModel,
+			B.UNIT AS comUnit,
+			B.SPEC AS comSpec,
+			B.DIRECTION AS comDirection
+			FROM
+			Wb_PART.PJ_ENTER_DETAIL_CHK A
+			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
+			where 1=1
+            <dynamic>
+            <isNotEmpty prepend="and" property="mainId">(A.MAIN_ID = #mainId#)</isNotEmpty>
+        </dynamic>  
+
+        
+        ORDER BY a.id asc
+    </select>
+    <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->
+    <select id="queryNotSettlePchsOrderMainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+
+            SELECT DISTINCT
+                A.ID as id,
+                A.SERVICE_ID as serviceId,
+                A.ORGID as orgid,
+                A.GUEST_ID as guestId,
+                A.STORE_ID as storeId,
+                A.CODE as code,
+                A.ORDER_DATE as orderDate,
+                A.PLAN_ARRIVE_DATE as planArriveDate,
+                A.ORDER_MAN_ID as orderManId,
+                A.ORDER_MAN as orderMan,
+                A.BILL_TYPE_ID as billTypeId,
+                A.TAX_SIGN as taxSign,
+                A.TAX_RATE as taxRate,
+                A.TAX_AMT as taxAmt,
+                A.NO_TAX_AMT as noTaxAmt,
+                A.TAX_DIFF as taxDiff,
+                A.ORDER_QTY as orderQty,
+                A.ORDER_ITEM as orderItem,
+                A.ORDER_AMT as orderAmt,
+                A.IS_FINISHED as isFinished,
+                A.FINISH_DATE as finishDate,
+                A.PRINT_TIMES as printTimes,
+                A.PRINT_MAN_ID as printManId,
+                A.PRINT_MAN as printMan,
+                A.PRINT_DATE as printDate,
+                A.AUDIT_SIGN as auditSign,
+                A.AUDITOR_ID as auditorId,
+                A.AUDITOR as auditor,
+                A.AUDIT_DATE as auditDate,
+                A.REMARK as remark,
+                A.CREATOR_ID as creatorId,
+                A.CREATOR as creator,
+                A.CREATE_DATE as createDate,
+                A.OPERATOR_ID as operatorId,
+                A.OPERATOR as operator,
+                A.OPERATE_DATE as operateDate,
+                A.SETTLE_TYPE_ID as settleTypeId,
+                A.BILL_STATUS_ID as billStatusId,
+                a.is_inner as isInner,
+                c.FULL_NAME AS guestFullName,
+                c.SHORT_NAME AS guestShortName
+                FROM
+                Wb_PART.PJ_PCHS_ORDER_MAIN_CHK A
+                INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
+                inner join wb_common.COM_GUEST c on a.orgid = c.is_internal_id
+                where 1=1 and a.is_inner = 1 and b.is_disabled = 0 and c.is_disabled = 0
+                		  and a.order_type_id = 1
+            <dynamic>
+            <isNotEmpty prepend="and" property="orgid">(b.is_internal_id = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orderMan">(A.ORDER_MAN like '%$orderMan$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceId">(A.SERVICE_ID like '%$serviceId$%')</isNotEmpty>
+            <!--采购订单状态  0草稿，1待发货，2待收货，3部分入库，4全部入库，5已退回，6已关闭-->
+            <isNotEmpty prepend="and" property="billStatusId">(A.BILL_STATUS_ID = #billStatusId#)</isNotEmpty>
+            <!--订货日期 -->
+            <isNotEmpty prepend="and" property="sOrderDate">(A.ORDER_DATE &gt;= #sOrderDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eOrderDate">(A.ORDER_DATE &lt; #eOrderDate#)</isNotEmpty>
+            <!--创建日期 -->
+            <isNotEmpty prepend="and" property="sCreateDate">(A.CREATE_DATE &gt;= #sCreateDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eCreateDate">(A.CREATE_DATE &lt; #eCreateDate#)</isNotEmpty>
+            <!--审核日期 -->
+            <isNotEmpty prepend="and" property="sAuditDate">(A.AUDIT_DATE &gt;= #sAuditDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eAuditDate">(A.AUDIT_DATE &lt; #eAuditDate#)</isNotEmpty>
+            <!--本日 昨日 本周 上周 本月 下月 -->
+            <isNotEmpty prepend="and" property="startDate">(A.CREATE_DATE &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(A.CREATE_DATE &lt; #endDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(c.id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="auditSign">
+                <!--审核状态-->
+                    (A.AUDIT_SIGN = #auditSign#)
+                </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceIdList">(A.service_id in ($serviceIdList$))</isNotEmpty>
+        </dynamic>  
+        
+        
+        ORDER BY a.audit_date DESC
+    </select>
+    <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->
+    <select id="queryPjPchsOrderMainNotCheckList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+            SELECT DISTINCT
+                A.ID as id,
+                A.SERVICE_ID as serviceId,
+                A.ORGID as orgid,
+                A.GUEST_ID as guestId,
+                a.order_type_id as orderTypeId,
+                c.STORE_ID as storeId,
+                A.CODE_ID AS codeId,
+                A.CODE as code,
+                A.ORDER_DATE as orderDate,
+                A.PLAN_ARRIVE_DATE as planArriveDate,
+                A.ORDER_MAN_ID as orderManId,
+                A.ORDER_MAN as orderMan,
+                A.BILL_TYPE_ID as billTypeId,
+                A.TAX_SIGN as taxSign,
+                A.TAX_RATE as taxRate,
+                A.TAX_AMT as taxAmt,
+                A.NO_TAX_AMT as noTaxAmt,
+                A.TAX_DIFF as taxDiff,
+                A.ORDER_QTY as orderQty,
+                A.ORDER_ITEM as orderItem,
+                A.ORDER_AMT as orderAmt,
+                A.IS_FINISHED as isFinished,
+                A.FINISH_DATE as finishDate,
+                A.PRINT_TIMES as printTimes,
+                A.PRINT_MAN_ID as printManId,
+                A.PRINT_MAN as printMan,
+                A.PRINT_DATE as printDate,
+                A.AUDIT_SIGN as auditSign,
+                A.AUDITOR_ID as auditorId,
+                A.AUDITOR as auditor,
+                A.AUDIT_DATE as auditDate,
+                A.REMARK as remark,
+                A.CREATOR_ID as creatorId,
+                A.CREATOR as creator,
+                A.CREATE_DATE as createDate,
+                A.OPERATOR_ID as operatorId,
+                A.OPERATOR as operator,
+                A.OPERATE_DATE as operateDate,
+                A.SETTLE_TYPE_ID as settleTypeId,
+                A.BILL_STATUS_ID as billStatusId,
+                a.is_inner as isInner,
+                a.is_state as isState,
+                a.state_man_id as stateManId,
+                a.state_man as stateMan,
+                a.state_sign as stateSign,
+                a.state_date as stateDate,
+                a.rtn_reason_id as rtnReasonId,
+                B.FULL_NAME AS guestFullName,
+                B.SHORT_NAME AS guestShortName,
+                b.srm_guest_id as srmGuestId,
+                a.version_no as versionNo,
+                a.is_diff_order as isDiffOrder
+               <!-- c.store_id as storeId,
+                c.order_price as orderPrice,
+                c.store_shelf as storeShelf,
+                a.order_code as orderCode -->
+                FROM
+                Wb_PART.PJ_PCHS_ORDER_MAIN A
+                INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
+                LEFT JOIN Wb_PART.PJ_PCHS_ORDER_DETAIL C ON A.ID = C.MAIN_ID
+                LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID 
+                where 1=1
+            <dynamic>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isDiffOrder">(a.is_diff_order = #isDiffOrder#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isFinished">(A.IS_FINISHED = #isFinished#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orderTypeId">(a.order_type_id = #orderTypeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="billStatusId">(A.BILL_STATUS_ID = #billStatusId#)</isNotEmpty>
+            <!--订货日期 -->
+            <isNotEmpty prepend="and" property="sOrderDate">A.ORDER_DATE &gt;= #sOrderDate#</isNotEmpty>
+            <isNotEmpty prepend="and" property="eOrderDate">(A.ORDER_DATE &lt; #eOrderDate#)</isNotEmpty>
+            <!--创建日期 -->
+            <isNotEmpty prepend="and" property="sCreateDate">(A.CREATE_DATE &gt;= #sCreateDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eCreateDate">(A.CREATE_DATE &lt; #eCreateDate#)</isNotEmpty>
+            <!--审核日期 -->
+            <isNotEmpty prepend="and" property="sAuditDate">(A.AUDIT_DATE &gt;= #sAuditDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eAuditDate">(A.AUDIT_DATE &lt; #eAuditDate#)</isNotEmpty>
+            <!--本日 昨日 本周 上周 本月 下月 -->
+            <isNotEmpty prepend="and" property="startDate">(A.CREATE_DATE &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(A.CREATE_DATE &lt; #endDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partId">(C.PART_ID = #partId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="storeId">(C.store_ID = #storeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(A.guest_id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestName">(B.FULL_NAME like '%$guestName$%' or B.SHORT_NAME like '%$guestName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">(D.FULL_NAME like '%$partName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="auditSign">
+                <!--审核状态-->
+                    (A.AUDIT_SIGN = #auditSign#)
+                </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceId">(a.service_id like '%$serviceId$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceIdList">(A.service_id in ($serviceIdList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCodeList">(D.CODE in ($partCodeList$))</isNotEmpty>
+        </dynamic>  
+		
+        ORDER BY A.OPERATE_DATE DESC
+        
+    </select>
+    <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->
+    <select id="queryPjPchsOrderMainCheckList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+            SELECT DISTINCT
+                A.ID as id,
+                A.SERVICE_ID as serviceId,
+                A.ORGID as orgid,
+                A.GUEST_ID as guestId,
+                a.order_type_id as orderTypeId,
+                c.STORE_ID as storeId,
+                A.CODE_ID AS codeId,
+                A.CODE as code,
+                A.ORDER_DATE as orderDate,
+                A.PLAN_ARRIVE_DATE as planArriveDate,
+                A.ORDER_MAN_ID as orderManId,
+                A.ORDER_MAN as orderMan,
+                A.BILL_TYPE_ID as billTypeId,
+                A.TAX_SIGN as taxSign,
+                A.TAX_RATE as taxRate,
+                A.TAX_AMT as taxAmt,
+                A.NO_TAX_AMT as noTaxAmt,
+                A.TAX_DIFF as taxDiff,
+                A.ORDER_QTY as orderQty,
+                A.ORDER_ITEM as orderItem,
+                A.ORDER_AMT as orderAmt,
+                A.IS_FINISHED as isFinished,
+                A.FINISH_DATE as finishDate,
+                A.PRINT_TIMES as printTimes,
+                A.PRINT_MAN_ID as printManId,
+                A.PRINT_MAN as printMan,
+                A.PRINT_DATE as printDate,
+                A.AUDIT_SIGN as auditSign,
+                A.AUDITOR_ID as auditorId,
+                A.AUDITOR as auditor,
+                A.AUDIT_DATE as auditDate,
+                A.REMARK as remark,
+                A.CREATOR_ID as creatorId,
+                A.CREATOR as creator,
+                A.CREATE_DATE as createDate,
+                A.OPERATOR_ID as operatorId,
+                A.OPERATOR as operator,
+                A.OPERATE_DATE as operateDate,
+                A.SETTLE_TYPE_ID as settleTypeId,
+                A.BILL_STATUS_ID as billStatusId,
+                a.is_inner as isInner,
+                a.is_state as isState,
+                a.state_man_id as stateManId,
+                a.state_man as stateMan,
+                a.state_sign as stateSign,
+                a.state_date as stateDate,
+                a.rtn_reason_id as rtnReasonId,
+                B.FULL_NAME AS guestFullName,
+                B.SHORT_NAME AS guestShortName,
+                B.srm_guest_id as srmGuestId,
+                a.version_no as versionNo,
+                a.is_diff_order as isDiffOrder,
+               <!-- c.store_id as storeId,-->
+ 				c.order_price as orderPrice,
+ 				c.store_shelf as storeShelf,
+ 				a.order_code as orderCode
+                FROM
+                Wb_PART.PJ_PCHS_ORDER_MAIN_chk A
+                INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
+                LEFT JOIN Wb_PART.PJ_PCHS_ORDER_DETAIL_chk C ON A.ID = C.MAIN_ID
+                LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID 
+                where 1=1
+            <dynamic>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isFinished">(a.is_finished = #isFinished#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isDiffOrder">(a.is_diff_order = #isDiffOrder#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orderTypeId">(a.order_type_id = #orderTypeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="billStatusId">(A.BILL_STATUS_ID = #billStatusId#)</isNotEmpty>
+            <!--订货日期 -->
+            <isNotEmpty prepend="and" property="sOrderDate">A.ORDER_DATE &gt;= #sOrderDate#</isNotEmpty>
+            <isNotEmpty prepend="and" property="eOrderDate">(A.ORDER_DATE &lt; #eOrderDate#)</isNotEmpty>
+            <!--创建日期 -->
+            <isNotEmpty prepend="and" property="sCreateDate">(A.CREATE_DATE &gt;= #sCreateDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eCreateDate">(A.CREATE_DATE &lt; #eCreateDate#)</isNotEmpty>
+            <!--审核日期 -->
+            <isNotEmpty prepend="and" property="sAuditDate">(A.AUDIT_DATE &gt;= #sAuditDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eAuditDate">(A.AUDIT_DATE &lt; #eAuditDate#)</isNotEmpty>
+            <!--本日 昨日 本周 上周 本月 下月 -->
+            <isNotEmpty prepend="and" property="startDate">(A.CREATE_DATE &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(A.CREATE_DATE &lt; #endDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partId">(C.PART_ID = #partId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="storeId">(C.store_ID = #storeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(A.guest_id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestName">(B.FULL_NAME like '%$guestName$%' or B.SHORT_NAME like '%$guestName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceId">(a.service_id like '%$serviceId$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">(D.FULL_NAME like '%$partName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="auditSign">
+                <!--审核状态-->
+                    (A.AUDIT_SIGN = #auditSign#)
+                </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceIdList">(A.service_id in ($serviceIdList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCodeList">(D.CODE in ($partCodeList$))</isNotEmpty>
+        </dynamic>  
+        
+        group by a.id
+        ORDER BY A.OPERATE_DATE DESC
+        
+        
+    </select>
+    <!-- 根据主表ID查询 -->
+    <select id="queryPjPchsOrderDetailNotCheckList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT
+                A.ID AS id,
+                A.MAIN_ID AS mainId,
+                A.STORE_ID AS storeId,
+                A.PART_ID AS partId,
+                A.PART_CODE AS partCode,
+                A.PART_NAME AS partName,
+                A.FULL_NAME AS fullName,
+                A.ENTER_UNIT_ID AS enterUnitId,
+                A.SYSTEM_UNIT_ID AS systemUnitId,
+                A.ORDER_QTY AS orderQty,
+                A.ORDER_PRICE AS orderPrice,
+                A.ORDER_AMT AS orderAmt,
+                A.TAX_SIGN AS taxSign,
+                A.TAX_RATE AS taxRate,
+                A.TAX_PRICE AS taxPrice,
+                A.TAX_AMT AS taxAmt,
+                A.NO_TAX_PRICE AS noTaxPrice,
+                A.NO_TAX_AMT AS noTaxAmt,
+                A.TAX_DIFF AS taxDiff,
+                A.TRUE_ENTER_QTY AS trueEnterQty,
+                A.TRUE_ENTER_AMT AS trueEnterAmt,
+                A.NOT_ENTER_QTY AS notEnterQty,
+                A.NOT_ENTER_AMT AS notEnterAmt,
+                A.ADJUST_QTY AS adjustQty,
+                A.IS_FINISHED AS isFinished,
+                A.FINISH_DATE AS finishDate,
+                A.PREV_DETAIL_ID AS prevDetailId,
+                A.SOURCE_DETAIL_ID AS sourceDetailId,
+                A.SOURCE_MAIN_ID AS sourceMainId,
+                A.SOURCE_BILL_TYPE_ID AS sourceBillTypeId,
+                A.REMARK AS remark,
+                a.sell_price as sellPrice,
+                a.store_shelf as storeShelf,
+                B.CODE AS comPartCode,
+                B.NAME AS comPartName,
+                B.FULL_NAME AS comFullName,
+                B.BRAND_CODE AS comBrandCode,
+                B.OEM_CODE AS comOemCode,
+                B.QUALITY_TYPE_ID AS comQualityTypeId,
+                B.PART_BRAND_ID AS comPartBrandId,
+                B.APPLY_CAR_MODEL AS comApplyCarModel,
+                B.UNIT AS comUnit,
+                B.SPEC AS comSpec,
+                B.DIRECTION AS comDirection
+            FROM
+            Wb_PART.PJ_PCHS_ORDER_DETAIL A
+            INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
+                where 1=1
+            <dynamic>
+            <isNotEmpty prepend="and" property="mainId">(A.MAIN_ID = #mainId#)</isNotEmpty>
+        </dynamic>  
+        
+        ORDER BY a.id asc
+    </select>
+    <!-- 根据主表ID查询 -->
+    <select id="queryPjPchsOrderDetailCheckList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT
+                A.ID AS id,
+                A.MAIN_ID AS mainId,
+                A.STORE_ID AS storeId,
+                A.PART_ID AS partId,
+                A.PART_CODE AS partCode,
+                A.PART_NAME AS partName,
+                A.FULL_NAME AS fullName,
+                A.ENTER_UNIT_ID AS enterUnitId,
+                A.SYSTEM_UNIT_ID AS systemUnitId,
+                A.ORDER_QTY AS orderQty,
+                A.ORDER_PRICE AS orderPrice,
+                A.ORDER_AMT AS orderAmt,
+                A.TAX_SIGN AS taxSign,
+                A.TAX_RATE AS taxRate,
+                A.TAX_PRICE AS taxPrice,
+                A.TAX_AMT AS taxAmt,
+                A.NO_TAX_PRICE AS noTaxPrice,
+                A.NO_TAX_AMT AS noTaxAmt,
+                A.TAX_DIFF AS taxDiff,
+                A.TRUE_ENTER_QTY AS trueEnterQty,
+                A.TRUE_ENTER_AMT AS trueEnterAmt,
+                A.NOT_ENTER_QTY AS notEnterQty,
+                A.NOT_ENTER_AMT AS notEnterAmt,
+                A.ADJUST_QTY AS adjustQty,
+                A.IS_FINISHED AS isFinished,
+                A.FINISH_DATE AS finishDate,
+                A.PREV_DETAIL_ID AS prevDetailId,
+                A.SOURCE_DETAIL_ID AS sourceDetailId,
+                A.SOURCE_MAIN_ID AS sourceMainId,
+                A.SOURCE_BILL_TYPE_ID AS sourceBillTypeId,
+                A.REMARK AS remark,
+                a.sell_price as sellPrice,
+                a.store_shelf as storeShelf,
+                B.CODE AS comPartCode,
+                B.NAME AS comPartName,
+                B.FULL_NAME AS comFullName,
+                B.BRAND_CODE AS comBrandCode,
+                B.OEM_CODE AS comOemCode,
+                B.QUALITY_TYPE_ID AS comQualityTypeId,
+                B.PART_BRAND_ID AS comPartBrandId,
+                B.APPLY_CAR_MODEL AS comApplyCarModel,
+                B.UNIT AS comUnit,
+                B.SPEC AS comSpec,
+                B.DIRECTION AS comDirection
+            FROM
+            Wb_PART.PJ_PCHS_ORDER_DETAIL_chk A
+            INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
+                where 1=1
+            <dynamic>
+            <isNotEmpty prepend="and" property="mainId">(A.MAIN_ID = #mainId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mainIds">(A.MAIN_ID in ($mainIds$))</isNotEmpty>
+        </dynamic>  
+           
+        
+        ORDER BY a.id asc
+    </select>
+</sqlMap>

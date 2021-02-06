@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process:tPageFlow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="productMgr" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0" state="stateless">
+  <nodes xsi:type="process:tStart" id="start0" name="开始" type="start">
+    <sourceConnections xsi:type="process:tActionLink" id="link0" name="link0" lineType="reference" isDefault="true" type="action" actionName="action0">
+      <sourceNode>start0</sourceNode>
+      <targetNode>view0</targetNode>
+    </sourceConnections>
+    <nodeLabel>start0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end0" name="结束" type="end">
+    <targetConnections>link1</targetConnections>
+    <targetConnections>link3</targetConnections>
+    <nodeLabel>end0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" nodeType="label">
+    <figSize height="17" width="25"/>
+    <node>start0</node>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
+    <figSize height="17" width="25"/>
+    <node>end0</node>
+  </nodes>
+  <nodes xsi:type="process:tView" id="view0" name="视图" type="view" contextPath="" method="forward" uri="/tenant/productManagerment.jsp">
+    <sourceConnections xsi:type="process:tActionLink" id="link1" name="link1" lineType="reference" isDefault="true" type="action" actionName="action1">
+      <sourceNode>view0</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tActionLink" id="link2" name="link2" lineType="reference" type="action" actionName="action2">
+      <sourceNode>view0</sourceNode>
+      <targetNode>view1</targetNode>
+    </sourceConnections>
+    <targetConnections>link0</targetConnections>
+    <nodeLabel>view0label</nodeLabel>
+    <process:inputParameters/>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="view0label" name="label" nodeType="label">
+    <figSize height="17" width="25"/>
+    <node>view0</node>
+  </nodes>
+  <nodes xsi:type="process:tView" id="view1" name="视图1" type="view" contextPath="" method="forward" uri="/tenant/productManagerment_view.jsp">
+    <sourceConnections xsi:type="process:tActionLink" id="link3" name="link3" lineType="reference" isDefault="true" type="action" actionName="action3">
+      <sourceNode>view1</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <nodeLabel>view1label</nodeLabel>
+    <process:inputParameters/>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="view1label" name="label" nodeType="label">
+    <figSize height="17" width="32"/>
+    <node>view1</node>
+  </nodes>
+  <topRuler/>
+  <leftRuler/>
+  <process:info version="7.0.0.0"/>
+</process:tPageFlow>

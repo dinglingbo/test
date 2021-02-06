@@ -1,0 +1,22 @@
+<map>
+  <entry>
+    <string>com.hsapi.frm.QCRPBill.saveInitRpBill(com.hsapi.frm.fib.FisRpAccount[], com.hsapi.frm.fib.FisRpAccount[], com.hsapi.frm.fib.FisRpAccount[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveInitRpBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveInitRpBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.QCRPBill.saveInitRpBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpAdd(com.hsapi.frm.fib.FisRpAccount[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rpUpdate(com.hsapi.frm.fib.FisRpAccount[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rpDelete(com.hsapi.frm.fib.FisRpAccount[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.QCRPBill.getImportRPBill(commonj.sdo.DataObject[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getImportRPBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getImportPartInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.QCRPBill.getImportRPBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpBill(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.QCRPBill.queryQCRPBill(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryQCRPBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryQCRPBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.QCRPBill.queryQCRPBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.frm.fib.FisRpAccount[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.QCRPBill.auditInitRpBill(com.hsapi.frm.fib.FisRpAccount[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;auditInitRpBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;auditInitRpBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.QCRPBill.auditInitRpBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpBill(com.hsapi.frm.fib.FisRpAccount[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>QCRPBill</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;QCRPBill.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;QCRPBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.QCRPBill&lt;/html&gt;</string>
+  </entry>
+</map>

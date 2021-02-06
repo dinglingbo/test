@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="uniqLogin.bizx" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="process:tStart" id="start0" name="开始" collapsed="false" type="start">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" isDefault="true" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign5</targetNode>
+    </sourceConnections>
+    <nodeLabel>start0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" nodeType="label">
+    <figSize height="17" width="25"/>
+    <node>start0</node>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end1" name="结束1" collapsed="false" type="end">
+    <targetConnections>link12</targetConnections>
+    <targetConnections>link16</targetConnections>
+    <targetConnections>link17</targetConnections>
+    <nodeLabel>end1label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="java.util.HashMap" name="list" type="query" valueType="Java">list</process:return>
+      <process:return id="1" language="String" name="errcode" type="query" valueType="Primitive">errcode</process:return>
+      <process:return id="2" language="String" name="errmsg" type="query" valueType="Primitive">errmsg</process:return>
+      <process:return id="3" language="com.alibaba.fastjson.JSONObject" name="json" type="query" valueType="Java">json</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
+    <figSize height="17" width="32"/>
+    <node>end1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign2" name="员工编码" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link11" name="link11" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>assign4</targetNode>
+    </sourceConnections>
+    <targetConnections>link1</targetConnections>
+    <nodeLabel>assign2label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">http://14.23.35.20:6280/bpsform/com.harson.bpmapi.operateutils.erpSubmitProcess.biz.ext</process:from>
+      <process:to type="query">urlHead</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">processDefId=8835&amp;createby=9884&amp;isDirect=Y&amp;processinstInfo/processdefid=8835&amp;processinstInfo/processInstDesc=工程招标</process:from>
+      <process:to type="query">paramo</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">&amp;businessInfo/businessType=5&amp;businessInfo/businessID=5493&amp;businessInfo/formValueType=reladata&amp;userId=9884</process:from>
+      <process:to type="query">paramt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">urlHead+paramo+paramt</process:from>
+      <process:to type="query">url</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <figSize height="17" width="49"/>
+    <node>assign2</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" id="invokePojo2" name="checkSign" type="invoke" index="4" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link15" name="link15" isDefault="true" type="transition">
+      <sourceNode>invokePojo2</sourceNode>
+      <targetNode>assign3</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link17" name="link17" type="transition">
+      <sourceNode>invokePojo2</sourceNode>
+      <targetNode>end1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">userType</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link14</targetConnections>
+    <nodeLabel>invokePojo2label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.MD5.checkSign</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="sign" type="literal" value="java.lang.String" valueType="Java" pattern="reference"/>
+      <process:inputVariable id="1" name="userCode" type="literal" value="java.lang.String" valueType="Java" pattern="reference"/>
+      <process:inputVariable id="2" name="key" type="literal" value="java.lang.String" valueType="Java" pattern="reference"/>
+      <process:inputVariable id="3" name="timestamp" type="literal" value="java.lang.String" valueType="Java" pattern="reference"/>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.util.Map" valueType="Java"/>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
+    <figSize height="17" width="59"/>
+    <node>invokePojo2</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign0" name="用户登录名" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" isDefault="true" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>assign4</targetNode>
+    </sourceConnections>
+    <targetConnections>link8</targetConnections>
+    <nodeLabel>assign0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
+    <figSize height="17" width="61"/>
+    <node>assign0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign1" name="用户ID" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" isDefault="true" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>assign4</targetNode>
+    </sourceConnections>
+    <targetConnections>link9</targetConnections>
+    <nodeLabel>assign1label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
+    <figSize height="17" width="38"/>
+    <node>assign1</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" id="subprocess1" name="getEnv" collapsed="false" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link14" name="link14" isDefault="true" type="transition">
+      <sourceNode>subprocess1</sourceNode>
+      <targetNode>invokePojo2</targetNode>
+    </sourceConnections>
+    <targetConnections>link13</targetConnections>
+    <nodeLabel>subprocess1label</nodeLabel>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.getEnv</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="group" type="literal" value="String" valueType="Primitive" pattern="reference">UNIQLogin</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="value" type="query" value="String" valueType="Primitive">key</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
+    <figSize height="17" width="40"/>
+    <node>subprocess1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign3" name="赋值3" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link16" name="link16" isDefault="true" type="transition">
+      <sourceNode>assign3</sourceNode>
+      <targetNode>end1</targetNode>
+    </sourceConnections>
+    <targetConnections>link15</targetConnections>
+    <nodeLabel>assign3label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
+    <figSize height="17" width="32"/>
+    <node>assign3</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign4" name="查用户" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link13" name="link13" isDefault="false" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>subprocess1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">userType</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link12" name="link12" isDefault="true" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>end1</targetNode>
+    </sourceConnections>
+    <targetConnections>link0</targetConnections>
+    <targetConnections>link10</targetConnections>
+    <targetConnections>link11</targetConnections>
+    <nodeLabel>assign4label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
+    <figSize height="17" width="37"/>
+    <node>assign4</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign5" name="实体赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link9" name="" isDefault="false" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>assign1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">userType</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>assign0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">userType</process:leftOperand>
+          <process:rightOperand type="literal">2</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" isDefault="true" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>assign2</targetNode>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <nodeLabel>assign5label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">ct/_entity</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
+    <figSize height="17" width="49"/>
+    <node>assign5</node>
+  </nodes>
+  <topRuler/>
+  <leftRuler/>
+  <process:info version="7.0.0.0"/>
+  <process:variables>
+    <process:variable anyType="com.alibaba.fastjson.JSONObject" historyStateLocation="client" isArray="false" name="exception"/>
+    <process:variable historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="ct"/>
+  </process:variables>
+  <process:inputs varArgs="false">
+    <process:input isArray="false" name="userId" primitiveType="Int"/>
+    <process:input isArray="false" name="userType" primitiveType="String"/>
+  </process:inputs>
+  <process:outputs>
+    <process:output anyType="java.util.HashMap" description="" isArray="false" name="list"/>
+    <process:output description="" isArray="false" name="errcode" primitiveType="String"/>
+    <process:output description="" isArray="false" name="errmsg" primitiveType="String"/>
+    <process:output anyType="com.alibaba.fastjson.JSONObject" description="" isArray="false" name="json"/>
+  </process:outputs>
+  <process:extAttribute1>public</process:extAttribute1>
+  <process:transactionType>true</process:transactionType>
+</process:tBusinessLogic>

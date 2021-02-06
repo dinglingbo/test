@@ -21,6 +21,7 @@
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="Int" name="mainId" type="query" valueType="Primitive">mainId</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -179,21 +180,6 @@
     <figSize height="20" width="40"/>
     <node>assign2</node>
   </nodes>
-  <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
-    <targetConnections>link16</targetConnections>
-    <location x="642" y="370"/>
-    <size height="28" width="28"/>
-    <nodeLabel>end1label</nodeLabel>
-    <process:returns>
-      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
-      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-    </process:returns>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="636" y="406"/>
-    <figSize height="20" width="40"/>
-    <node>end1</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link17" name="link17" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
@@ -294,7 +280,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="2" name="charOffAmt" type="query" value="Float" valueType="Primitive">charOffAmt</process:outputVariable>
+        <process:outputVariable id="2" name="charOffAmt" type="query" value="Double" valueType="Primitive">charOffAmt</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -437,7 +423,7 @@
   <nodes xsi:type="process:tAssign" id="assign3" name="赋值3" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>end2</targetNode>
     </sourceConnections>
     <targetConnections>link21</targetConnections>
     <targetConnections>link10</targetConnections>
@@ -454,13 +440,28 @@
     <figSize height="20" width="40"/>
     <node>assign3</node>
   </nodes>
+  <nodes xsi:type="process:tEnd" id="end2" name="结束2" displayName="结束" type="end">
+    <targetConnections>link16</targetConnections>
+    <location x="645" y="370"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end2label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="Int" name="mainId" type="query" valueType="Primitive">mainId</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end2label" name="label" nodeType="label">
+    <location x="639" y="406"/>
+    <figSize height="20" width="40"/>
+    <node>end2</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-03-22 01:18:40" date="2018-03-21Z" description="应收应付结算" name="rpAccountSettle" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="mainId" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="charOffAmt" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="rpAmt" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="charOffAmt" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="rpAmt" primitiveType="Double"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="stateHash"/>
   </process:variables>
@@ -474,6 +475,7 @@
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
+    <process:output description="收款单ID" isArray="false" name="mainId" primitiveType="Int"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

@@ -1,0 +1,94 @@
+<map>
+  <entry>
+    <string>com.hs.common.sysService.getIdCardRecog(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getIdCardRecog&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getIdCardRecog&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.sysService.getIdCardRecog&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;imgPath(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.sysService.getTenantCoin(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getTenantCoin&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getTenantCoin&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.sysService.getTenantCoin&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;tenantId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;tenantCoin(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.sysService.getVehicleLicense(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getVehicleLicense&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getIdCardRecog&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.sysService.getVehicleLicense&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;imgPath(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.sysService.getBrandByModel(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getBrandByModel&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getModelByCollect&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.sysService.getBrandByModel&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;carModelId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hs.common.com.ComCarModel):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.sysService.getModelByCollect(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getModelByCollect&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getModelByCollect&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.sysService.getModelByCollect&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;vin(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.sysService.getModelByOpenApiVin(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getModelByOpenApiVin&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getModelByOpenApiVin&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.sysService.getModelByOpenApiVin&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;vin(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.alibaba.fastjson.JSON):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.sysService.srmAuthPro(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;srmAuthPro&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;erpAuth&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.sysService.srmAuthPro&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;loginName(String):&lt;/b&gt;SRM用户名&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pw(String):&lt;/b&gt;SRM密码&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;systoken(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;ERP登录验证接口&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.sysService.saveSignIn(String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveSignIn&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveSignIn&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.sysService.saveSignIn&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;companyId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;company(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mobile(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;account(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;password(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.sysService.getMaintenance()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getMaintenance&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getMaintenance&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.sysService.getMaintenance&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;maintenanceUrl(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.sysService.srmAuth(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;srmAuth&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;erpAuth&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.sysService.srmAuth&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;loginName(String):&lt;/b&gt;SRM用户名&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;systoken(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;ERP登录验证接口&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.sysService.judgeTenantCoin(Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;judgeTenantCoin&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;judgeTenantCoin&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.sysService.judgeTenantCoin&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;tenantId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;proUrl(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;callNeedCoin(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;productId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;productName(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;判断租户链车币是否足够&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.sysService.apiAuth(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;apiAuth&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;erpAuth&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.sysService.apiAuth&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;loginName(String):&lt;/b&gt;VAPP用户名&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pw(String):&lt;/b&gt;VAPP密码&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;systoken(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;ERP登录验证接口&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.sysService.signInDs(String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;signInDs&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;signInDs&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.sysService.signInDs&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;companyId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;company(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mobile(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;account(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;password(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;srmCompanyId(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;注册电商接口&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.sysService.x_GetModelByOpenApiVin(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;x_GetModelByOpenApiVin&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getModelByOpenApiVin&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.sysService.x_GetModelByOpenApiVin&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;vin(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.alibaba.fastjson.JSON):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>sysService</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sysService.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sysService&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.sysService&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.sysService.callRecord(String, String, String, String, String, Int, Int, Float, String, Int, Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;callRecord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;callRecord&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.sysService.callRecord&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;tenantId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;productId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;productName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;callParams(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;callStatus(Int):&lt;/b&gt;0失败；1成功&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;callResult(Int):&lt;/b&gt;0未返回有效值；1返回有效值&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;costCoin(Float):&lt;/b&gt;增加/减少多少链车币&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;creator(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dc(Int):&lt;/b&gt;1增加链车币 -1减少链车币&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;creatorId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;callUrl(String):&lt;/b&gt;接口地址&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;nrecord(com.hsapi.system.data.sys.ComSysCoinRecord):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.sysService.getCityCode(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCityCode&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getCityCode&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.sysService.getCityCode&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;carNo(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cityCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.sysService.handleCarInfo(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;handleCarInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;serviceVinModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.sysService.handleCarInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;carNo(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;carVin(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carBrandId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carModelId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carModelIdLy(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carModel(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carModelFullName(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.sysService.getMaintenanceAuthorization(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getMaintenanceAuthorization&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getMaintenance&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.sysService.getMaintenanceAuthorization&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;Url(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;maintenanceMap(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.sysService.syncTenantCoin(String, Float, Float, Float, Float, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;syncTenantCoin&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;syncTenantCoin&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.sysService.syncTenantCoin&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;tenantId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;costPrice(Float):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rechargeCoin(Float):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;giveCoin(Float):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;remainCoin(Float):&lt;/b&gt;剩余链车币&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;type(Int):&lt;/b&gt;0充值；1扣减&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;更新租户剩余链车币&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.sysService.getQuoteParam(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getQuoteParam&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getQuoteParam&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.sysService.getQuoteParam&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;carNo(String):&lt;/b&gt;车牌号&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.alibaba.fastjson.JSONObject):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.sysService.getLicenseRecog(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getLicenseRecog&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getLicenseRecog&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.sysService.getLicenseRecog&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;imgPath(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.sysService.getCarVinByCarNo(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCarVinByCarNo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getCarVinByCarNo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.sysService.getCarVinByCarNo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;carNo(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.alibaba.fastjson.JSONObject):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Require-Bundle: com.eos.foundation
+Bundle-Vendor: Guine
+eos-webCtxPath: test
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsapi.system.test
+Bundle-Description: 
+Bundle-SymbolicName: com.hsapi.system.dataProcessing
+

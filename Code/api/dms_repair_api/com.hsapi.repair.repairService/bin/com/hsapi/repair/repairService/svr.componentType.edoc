@@ -1,0 +1,378 @@
+<map>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getContactListByGuestId(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getContactListByGuestId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getContactListByGuestId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getContactListByGuestId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;contactList(com.hsapi.repair.data.rpbse.RpbContactor[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpsPackagePItemPPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRpsMaintainDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getRpsPackagePItemPPartBill(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpsPackagePItemPPartBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRpsMaintainDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getRpsPackagePItemPPartBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.queryAccount(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryAccount&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryAccount&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.queryAccount&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;account(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.queryInsurAndCar(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryInsurAndCar&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryInsurAndCar&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.queryInsurAndCar&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;car(com.hsapi.repair.data.rpbse.RpbCar):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carExtend(com.hsapi.repair.data.rpbse.RpbCarExtend):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.RpsInsuranceMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;contactor(com.hsapi.repair.data.rpbse.RpbContactor):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getRpsPackagePItemPPartModel(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpsPackagePItemPPartModel&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRpsMaintainDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getRpsPackagePItemPPartModel&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;modelId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getStandardPkgDetail(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getStandardPkgDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStandardPkg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getStandardPkgDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;result(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getStandardItemListByCarModelId(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getStandardItemListByCarModelId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStandardPkg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getStandardItemListByCarModelId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;result(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;zhuanResult(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getRpsMainAllPart(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpsMainAllPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getRpsMainPart&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getRpsMainAllPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.RpsPart[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.newbiz()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;newbiz&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;newbiz&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.newbiz&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.rpbse.RpbContactor[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.billgetRpsPackagePItemPPart(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;billgetRpsPackagePItemPPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRpsMaintainDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.billgetRpsPackagePItemPPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.qyeryMaintainListBX(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;qyeryMaintainListBX&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;qyeryMaintainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.qyeryMaintainListBX&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.infoRemind(String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;infoRemind&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;infoRemind&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.infoRemind&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;remindType(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;phones(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;message(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getRpsItemPPartModel(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpsItemPPartModel&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRpsMaintainDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getRpsItemPPartModel&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;modelId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.serviceVinModel_copy(com.hsapi.repair.data.rpbse.RpbCar, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;serviceVinModel_copy&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;serviceVinModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.serviceVinModel_copy&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;car(com.hsapi.repair.data.rpbse.RpbCar):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carNo(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carVin(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCodeVin(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCodeModel(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCodeModelLy(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;car(com.hsapi.repair.data.rpbse.RpbCar):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.queryFrmAccount(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryFrmAccount&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryFrmAccount&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.queryFrmAccount&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;account(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.qyeryMaintainPartList(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;qyeryMaintainPartList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;qyeryMaintainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.qyeryMaintainPartList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.queryWorkShop(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryWorkShop&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;qyeryMaintainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.queryWorkShop&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.wechatQueryCarByMobile(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;wechatQueryCarByMobile&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;wechatQueryCarByMobile&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.wechatQueryCarByMobile&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.queryCustomerWithContactListSALE(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCustomerWithContactListSALE&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCustomerList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.queryCustomerWithContactListSALE&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getGuestCarContactInfoById(String, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getGuestCarContactInfoById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getGuestCarContactInfoById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getGuestCarContactInfoById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guestId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;根据工单ID查询客户信息&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guest(com.hsapi.repair.data.common.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carList(com.hsapi.repair.data.rpbse.RpbCar[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;contactList(com.hsapi.repair.data.rpbse.RpbContactor[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getRpbItemById(Int, Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpbItemById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPackageDeduct&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getRpbItemById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;showDeduct(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceTypeId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rpbse.RpbItem):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getMainBillAmt(Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getMainBillAmt&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getMainBillAmt&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getMainBillAmt&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billTypeId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;amt(Float):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getMaintainById(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getMaintainById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getMaintainById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getMaintainById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;maintain(commonj.sdo.DataObject):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getGuestById(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getGuestById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getRpsMaintainById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getGuestById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guest(com.hsapi.repair.data.common.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.x_getRpbPartById(Int, Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;x_getRpbPartById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPackageDeduct&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.x_getRpbPartById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;配件ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;showDeduct(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceTypeId(Int):&lt;/b&gt;业务类型&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rpbse.RpbPart):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getStandardPkg(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getStandardPkg&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStandardPkg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getStandardPkg&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;result(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.dispatchQyeryMaintainList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;dispatchQyeryMaintainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;qyeryMaintainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.dispatchQyeryMaintainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getRpsMainItem(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpsMainItem&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getRpsMainItem&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getRpsMainItem&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.RpsItem[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getRpsMainPart(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpsMainPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getRpsMainPart&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getRpsMainPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.RpsPart[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.qyeryMaintainList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;qyeryMaintainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;qyeryMaintainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.qyeryMaintainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpsItemQuoteByServiceId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getRpsItemByServiceId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.updateRemindStatus(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateRemindStatus&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateRemindStatus&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.updateRemindStatus&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;remindType(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.searchInsuranceMsg(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchInsuranceMsg&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchInsuranceMsg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.searchInsuranceMsg&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.rps.RpsInsuranceDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.RpsInsuranceMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;grossProfit(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.queryMainReturnPartList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryMainReturnPartList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;qyeryMaintainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.queryMainReturnPartList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.queryCustomerList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCustomerList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCustomerList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.queryCustomerList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.x_getRpbItemById(Int, Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;x_getRpbItemById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPackageDeduct&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.x_getRpbItemById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;showDeduct(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceTypeId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rpbse.RpbItem):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getGuestContactorCar(Int, Int, Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getGuestContactorCar&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getGuestContactorCar&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getGuestContactorCar&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guestId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;contactorId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carExtendId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guest(com.hsapi.repair.data.common.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;contactor(com.hsapi.repair.data.rpbse.RpbContactor):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;car(com.hsapi.repair.data.rpbse.RpbCar):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carExtend(com.hsapi.repair.data.rpbse.RpbCarExtend):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.qyeryMaintainListNopege(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;qyeryMaintainListNopege&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;qyeryMaintainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.qyeryMaintainListNopege&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.billgetRpsMainPart(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;billgetRpsMainPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getRpsMainPart&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.billgetRpsMainPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.RpsPartBill[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.queryRpsPackageByServiceId(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRpsPackageByServiceId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRpsPackageList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.queryRpsPackageByServiceId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getViolation(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getViolation&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStandardPkg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getViolation&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;result(com.alibaba.fastjson.JSONObject):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getAppTypeItem(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getAppTypeItem&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getAppTypeItem&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getAppTypeItem&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;result(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;zhuanResult(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.queryCustomerListByMobile(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCustomerListByMobile&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCustomerList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.queryCustomerListByMobile&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.common.ComGuest[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.querySellCustomerList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;querySellCustomerList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCustomerList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.querySellCustomerList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getStandardItemList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getStandardItemList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStandardPkg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getStandardItemList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;result(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;zhuanResult(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getRpbPackageById(Int, Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpbPackageById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPackageDeduct&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getRpbPackageById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;showDeduct(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceTypeId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rpbse.RpbPackage):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getMaintenanceAuthorization(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getMaintenanceAuthorization&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getMaintenance&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getMaintenanceAuthorization&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;Url(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;maintenanceMap(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.delRpsPkgQuoteByPkgId(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;delRpsPkgQuoteByPkgId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;delRpsPkgQuoteByPkgId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.delRpsPkgQuoteByPkgId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pkgId(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.queryCustomerWithContactList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCustomerWithContactList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCustomerList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.queryCustomerWithContactList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getRpsItemPPartBill(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpsItemPPartBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRpsMaintainDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getRpsItemPPartBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.queryGuestListWithCar(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryGuestListWithCar&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryGuestListWithCar&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.queryGuestListWithCar&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guest(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.billqyeryMaintainList(Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;billqyeryMaintainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;qyeryMaintainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.billqyeryMaintainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rid(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sourceServiceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.rps.RpsMaintainBill[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;car(com.hsapi.repair.data.rpbse.RpbCar):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.deleteRpsPackage(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;deleteRpsPackage&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;deleteRpsPackage&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.deleteRpsPackage&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getRpsExpense(Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpsExpense&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getRpsExpense&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getRpsExpense&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dc(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.RpsExpense[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.queryCarExtend(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCarExtend&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCarExtend&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.queryCarExtend&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;carId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rpbRead.RpbCarExtend):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getMetalSprayItem(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getMetalSprayItem&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getMetalSprayItem&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getMetalSprayItem&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.billgetRpsMainItem(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;billgetRpsMainItem&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getRpsMainItem&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.billgetRpsMainItem&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.RpsItemBill[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.delRpsPkgByPkgId(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;delRpsPkgByPkgId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;delRpsPkgQuoteByPkgId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.delRpsPkgByPkgId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pkgId(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getRpsItemByServiceId(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpsItemByServiceId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getRpsItemByServiceId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getRpsItemByServiceId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getRpsPackageById(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpsPackageById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getRpsPackageById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getRpsPackageById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pkg(com.hsapi.repair.data.rps.RpsPackage):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;itemList(com.hsapi.repair.data.rps.RpsPartQuote[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partList(com.hsapi.repair.data.rps.RpsItemQuote[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.saveNature(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveNature&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveNature&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.saveNature&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;contcator(com.hsapi.repair.data.rpbse.RpbContactor):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.qyeryGrossProfitTotal(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;qyeryGrossProfitTotal&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;qyeryMaintainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.qyeryGrossProfitTotal&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getRpsMaintainByParams(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpsMaintainByParams&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getRpsMaintainByParams&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getRpsMaintainByParams&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.RpsMaintain[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getStandardCarmodelByVIN(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getStandardCarmodelByVIN&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStandardPkg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getStandardCarmodelByVIN&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;result(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;zhuanResult(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.queryRpbBillModelList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRpbBillModelList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRpbBillModelList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.queryRpbBillModelList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getRpsPackageDetail(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpsPackageDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getRpsPackageDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getRpsPackageDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getRpsPartBillByServiceId(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpsPartBillByServiceId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getRpsItemByServiceId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getRpsPartBillByServiceId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.serviceVinModel(com.hsapi.repair.data.rpbse.RpbCar, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;serviceVinModel&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;serviceVinModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.serviceVinModel&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;car(com.hsapi.repair.data.rpbse.RpbCar):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carNo(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carVin(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCodeVin(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCodeModel(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCodeModelLy(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;car(com.hsapi.repair.data.rpbse.RpbCar):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.queryRpsGuestInfo(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRpsGuestInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRpsGuestInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.queryRpsGuestInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.queryMyCustomerList(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryMyCustomerList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCustomerList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.queryMyCustomerList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getRpsPartByServiceId(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpsPartByServiceId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getRpsItemByServiceId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getRpsPartByServiceId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.queryGrossProfit(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryGrossProfit&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryGrossProfit&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.queryGrossProfit&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.RpsInsuranceMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getMaintenance()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getMaintenance&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getMaintenance&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getMaintenance&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;maintenanceUrl(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.billgetRpsPackagePItemPParts(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;billgetRpsPackagePItemPParts&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRpsMaintainDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.billgetRpsPackagePItemPParts&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.RpsMaintainBill[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.saveWechatOpenId(String, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveWechatOpenId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveWechatOpenId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.saveWechatOpenId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;carNo(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;wechatUser(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;re(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getBusinessDeduct(Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getBusinessDeduct&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getBusinessDeduct&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getBusinessDeduct&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;type(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceTypeId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rpbse.RpbBusinessDeduct):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.qyeryComprehensive(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;qyeryComprehensive&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;qyeryMaintainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.qyeryComprehensive&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getStandardItem(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getStandardItem&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStandardPkg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getStandardItem&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;result(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;zhuanResult(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getRpbItemByCode(String, Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpbItemByCode&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPackageDeduct&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getRpbItemByCode&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;code(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;showDeduct(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceTypeId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rpbse.RpbItem):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getRpsItemBillByServiceId(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpsItemBillByServiceId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getRpsItemByServiceId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getRpsItemBillByServiceId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getRpsItemPPart(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpsItemPPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRpsMaintainDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getRpsItemPPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.qyeryMaintainPartListBX(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;qyeryMaintainPartListBX&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;qyeryMaintainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.qyeryMaintainPartListBX&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>svr</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;svr.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;svr&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getRpsPartQuoteByServiceId(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpsPartQuoteByServiceId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getRpsItemByServiceId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getRpsPartQuoteByServiceId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.qyeryComprehensiveNopage(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;qyeryComprehensiveNopage&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;qyeryMaintainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.qyeryComprehensiveNopage&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.queryCustomerWithContactListBX(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCustomerWithContactListBX&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCustomerList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.queryCustomerWithContactListBX&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.x_getStandardItemList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;x_getStandardItemList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStandardPkg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.x_getStandardItemList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;result(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;zhuanResult(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.queryMainPartList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryMainPartList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;qyeryMaintainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.queryMainPartList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getPrebookById(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPrebookById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPrebookById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getPrebookById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;prebook(com.hsapi.repair.data.rps.RpsPrebook):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getScoutByBookId(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getScoutByBookId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getScoutByBookId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getScoutByBookId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;bookId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getRpbPartById(Int, Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpbPartById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPackageDeduct&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getRpbPartById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;配件ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;showDeduct(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceTypeId(Int):&lt;/b&gt;业务类型&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rpbse.RpbPart):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.qyerySellMaintainList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;qyerySellMaintainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;qyeryMaintainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.qyerySellMaintainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.svr.getHotWords(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getHotWords&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStandardPkg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.svr.getHotWords&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;result(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

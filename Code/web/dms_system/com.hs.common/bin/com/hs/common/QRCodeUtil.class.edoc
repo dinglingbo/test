@@ -1,0 +1,24 @@
+<map>
+  <entry>
+    <string>QRCodeUtil [二维码生成和解析]</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.hs.common.QRCodeUtil&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &lt;dl&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;Administrator&lt;/dd&gt;&lt;dt&gt;@date&lt;/dt&gt;&lt;dd&gt;2019-07-08 14:12:59&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.QRCodeUtil.getImageStream(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;InputStream com.hs.common.QRCodeUtil.getImageStream(String url)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.QRCodeUtil.zxingCodeCreate(java.lang.String, int, int)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.QRCodeUtil.zxingCodeCreate(String text, int width, int height)&lt;/b&gt;&lt;br/&gt;&lt;p&gt;生成七牛二维码&#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;text&lt;/b&gt;    二维码内容&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;width&lt;/b&gt;    二维码宽&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;height&lt;/b&gt;    二维码高&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;outPutPath&lt;/b&gt;    二维码生成保存路径&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;imageType&lt;/b&gt;     二维码生成格式&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.QRCodeUtil.createQRCodeWithLogo(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.QRCodeUtil.createQRCodeWithLogo(String logoPath, String text)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.QRCodeUtil.zxingCodeAnalyze(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.QRCodeUtil.zxingCodeAnalyze(String analyzePath)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 解析二维码&#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;analyzePath&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;dt&gt;抛出：&lt;/dt&gt;&lt;dd&gt;Exception&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

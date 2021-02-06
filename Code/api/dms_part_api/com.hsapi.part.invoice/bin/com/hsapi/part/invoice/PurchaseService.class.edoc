@@ -1,0 +1,50 @@
+<map>
+  <entry>
+    <string>com.hsapi.part.invoice.PurchaseService.upadateOrderStatus(java.lang.String, java.lang.String, java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hsapi.part.invoice.PurchaseService.upadateOrderStatus(String access_token, String orderCode, String orderStatus, String remark)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.PurchaseService.querySRMSKUDetailStockList(java.lang.String, java.lang.String, int, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, int, java.lang.String, java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hsapi.part.invoice.PurchaseService.querySRMSKUDetailStockList(String access_token, String guestId, int count, int currpage, String id, String isGP, String isHS, String isJP, int isMaterial, String isSRM, String sort, String sortOrder)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.PurchaseService.queryCarplate(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hsapi.part.invoice.PurchaseService.queryCarplate(String access_token)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>PurchaseService</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.hsapi.part.invoice.PurchaseService&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &lt;dl&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;Administrator&lt;/dd&gt;&lt;dt&gt;@date&lt;/dt&gt;&lt;dd&gt;2019-01-08 21:46:24&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.PurchaseService.queryGuestAndSKU(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, int, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Map com.hsapi.part.invoice.PurchaseService.queryGuestAndSKU(String access_token, String guestId, String guestName, String partId, String partCode, String partName, String brandId, String brandName, String qualityId, String qualityName, int orgid, String userName)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.PurchaseService.queryPartType(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hsapi.part.invoice.PurchaseService.queryPartType(String access_token)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.PurchaseService.queryPartBrand(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hsapi.part.invoice.PurchaseService.queryPartBrand(String access_token)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.PurchaseService.getDsUserMoney(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hsapi.part.invoice.PurchaseService.getDsUserMoney(String access_token, String account)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.PurchaseService.pushPchsOrderToSRM(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, int, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hsapi.part.invoice.PurchaseService.pushPchsOrderToSRM(String province, String city, String area, String address, String mobile, String receiver, String account, String storeCode, String orderCode, String remark, int mainId, String access_token)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.PurchaseService.queryPartQuality(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hsapi.part.invoice.PurchaseService.queryPartQuality(String access_token)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.PurchaseService.querySRMStockByCode(java.lang.String, java.lang.String, java.lang.String, int, int)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hsapi.part.invoice.PurchaseService.querySRMStockByCode(String access_token, String code, String partsCode, int count, int currpage)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.PurchaseService.querySRMSKUList(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, int, int)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hsapi.part.invoice.PurchaseService.querySRMSKUList(String access_token, String classesId, String brandCode, String carCode, String partsCode, String partsName, int count, int currpage)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.repair.baseData.rpbPackage">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryRpbPackageList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id as id,
+			a.tenant_id as tenantId,
+			a.orgid as orgid,
+			a.`name` as name,
+			a.service_type_id as serviceTypeId,
+			a.car_brand_id as carBrandId,
+			a.car_series_id as carSeriesId,
+			a.car_model_id as carModelId,
+			a.is_share as isShare,
+			a.total as total,
+			a.amount as amount,
+			a.description as description,
+			a.is_disabled as isDisabled,
+			a.sales_deduct_type as salesDeductType,
+			a.sales_deduct_value as salesDeductValue,
+			a.tech_deduct_type as techDeductType,
+			a.tech_deduct_value as techDeductValue,
+			a.advisor_deduct_type as advisorDeductType,
+			a.advisor_deduct_value as advisorDeductValue,
+			a.recorder as recorder,
+			a.recorde_date as recordeDate,
+			a.modifier as modifier,
+			a.modify_date as modifyDate,
+			a.is_can_rate as isCanRate
+		FROM
+			rpb_package a
+		WHERE ((a.tenant_id = #tenantId# and a.is_share = 1) or a.orgid = #orgid#)
+		<dynamic>
+            <isNotEmpty prepend="and" property="carBrandId">(a.car_brand_id = #carBrandId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isDisabled">(a.is_disabled = #isDisabled#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeIds">(a.service_type_id in ($serviceTypeIds$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeId">(a.service_type_id = #serviceTypeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="name">(a.name like '%$name$%')</isNotEmpty>
+        </dynamic>
+        order by a.modify_date desc
+	</select>
+    <select id="queryRpbPackageItemList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			a.package_id packageId,
+			a.item_id itemId,
+			a.item_time itemTime,
+			a.item_name itemName,
+			a.item_code itemCode,
+			a.item_kind itemKind,
+			e.name itemKindName,
+			a.unit_price unitPrice,
+			a.amt amt
+		FROM
+			rpb_package_item a
+			left join wb_common.com_datadictionaries e on (a.item_kind = e.customid)
+		WHERE a.package_id = #packageId#</select>
+</sqlMap>

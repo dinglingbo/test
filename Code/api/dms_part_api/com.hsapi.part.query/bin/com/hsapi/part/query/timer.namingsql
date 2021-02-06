@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.part.query.timer">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <!--1未入库采购订单(进货单) 2未出库销售订单(销售单) 3未付款对账单(应收应付结算) 4未收款对账单(应收应付结算) 5本月月结未对账(月结对账) 6待受理采购订单(销售订单) 7待受理客户退单(销售退货)-->
+    <update id="updateNoFinishedPchsOrder" parameterClass="java.util.HashMap">update pj_business_remind a
+		inner join (
+		SELECT orgid, count(1) as remindQty 
+		from pj_pchs_order_main_chk where is_finished = 0
+		group by orgid) b
+		on a.orgid = b.orgid
+		set a.remind_value = b.remindQty, a.operate_date = SYSDATE()
+		where a.code = 1</update>
+    <update id="updateNoOutSellOrder" parameterClass="java.util.HashMap">update pj_business_remind a
+		inner join (
+		SELECT orgid, count(1) as remindQty 
+		from pj_sell_order_main_chk where is_out = 0
+		group by orgid) b
+		on a.orgid = b.orgid
+		set a.remind_value = b.remindQty, a.operate_date = SYSDATE()
+		where a.code = 2</update>
+    <update id="updateNoPayState" parameterClass="java.util.HashMap">update pj_business_remind a
+		inner join (
+		SELECT orgid, count(1) as remindQty 
+		from fi_rp_bill where settle_status != 2 and bill_dc = -1 and audit_sign = 1
+		group by orgid) b
+		on a.orgid = b.orgid
+		set a.remind_value = b.remindQty, a.operate_date = SYSDATE()
+		where a.code = 3</update>
+    <update id="updateNoReceiveState" parameterClass="java.util.HashMap">update pj_business_remind a
+		inner join (
+		SELECT orgid, count(1) as remindQty 
+		from fi_rp_bill where settle_status != 2 and bill_dc = 1  and audit_sign = 1
+		group by orgid) b
+		on a.orgid = b.orgid
+		set a.remind_value = b.remindQty, a.operate_date = SYSDATE()
+		where a.code = 4</update>
+    <update id="updateNoStateSell" parameterClass="java.util.HashMap">update pj_business_remind a
+		inner join (
+		SELECT orgid, count(1) as remindQty 
+		from pj_sell_order_main_chk where state_sign = 0 
+		group by orgid) b
+		on a.orgid = b.orgid
+		set a.remind_value = a.remind_value + b.remindQty, a.operate_date = SYSDATE()
+		where a.code = 5</update>
+    <update id="updateNoStatePchs" parameterClass="java.util.HashMap">update pj_business_remind a
+		inner join (
+		SELECT orgid, count(1) as remindQty 
+		from pj_pchs_order_main_chk where state_sign = 0 
+		group by orgid) b
+		on a.orgid = b.orgid
+		set a.remind_value = a.remind_value + b.remindQty, a.operate_date = SYSDATE()
+		where a.code = 5</update>
+    <update id="updateNoSettlePchsOrder" parameterClass="java.util.HashMap">update pj_business_remind a
+		inner join (
+		SELECT b.is_internal_id orgid, count(1) as remindQty 
+		from pj_pchs_order_main_chk a
+		inner join wb_common.com_guest b 
+		on a.guest_id = b.id
+		where a.is_inner = 1 and a.bill_status_id = 1
+		group by orgid) b
+		on a.orgid = b.orgid
+		set a.remind_value = a.remind_value + b.remindQty, a.operate_date = SYSDATE()
+		where a.code = 6</update>
+    <update id="updateNoSettlePchsRtnOrder" parameterClass="java.util.HashMap">update pj_business_remind a
+		inner join (
+		SELECT b.is_internal_id orgid, count(1) as remindQty 
+		from pj_sell_order_main_chk a
+		inner join wb_common.com_guest b 
+		on a.guest_id = b.id
+		where a.is_inner = 1 and a.is_rtn_sign = 0 and bill_status_id = 1
+		group by orgid) b
+		on a.orgid = b.orgid
+		set a.remind_value = b.remindQty, a.operate_date = SYSDATE()
+		where a.code = 7</update>
+    <!--1今日收入 2今日支出  3库存总成本 4库存SKU部类 5客户欠款 6供应商欠款-->
+    <update id="updateTodayReceive" parameterClass="java.util.HashMap">update pj_data_remind a
+		inner join (
+		SELECT orgid, sum(char_off_amt) as remindQty 
+		from fi_rp_account 
+		where audit_sign = 1 and rp_dc = 1 and to_days(audit_date) = to_days(now()) 
+		group by orgid) b
+		on a.orgid = b.orgid
+		set a.remind_value = b.remindQty, a.operate_date = SYSDATE()
+		where a.code = 1</update>
+    <update id="updateTodayPay" parameterClass="java.util.HashMap">update pj_data_remind a
+		inner join (
+		SELECT orgid, sum(char_off_amt) as remindQty 
+		from fi_rp_account 
+		where audit_sign = 1 and rp_dc = -1 and to_days(audit_date) = to_days(now()) 
+		group by orgid) b
+		on a.orgid = b.orgid
+		set a.remind_value = b.remindQty, a.operate_date = SYSDATE()
+		where a.code = 2</update>
+    <update id="updateStockAmt" parameterClass="java.util.HashMap">update pj_data_remind a
+		inner join (
+		SELECT orgid, sum(stock_amt) as remindQty 
+		from pj_part_stock 
+		group by orgid) b
+		on a.orgid = b.orgid
+		set a.remind_value = b.remindQty, a.operate_date = SYSDATE()
+		where a.code = 3</update>
+    <update id="updateStockPartItem" parameterClass="java.util.HashMap">update pj_data_remind a
+		inner join (
+		SELECT orgid, count(DISTINCT part_id) as remindQty 
+		from pj_part_stock 
+		group by orgid) b
+		on a.orgid = b.orgid
+		set a.remind_value = b.remindQty, a.operate_date = SYSDATE()
+		where a.code = 4</update>
+    <update id="updateClientNeedReceive" parameterClass="java.util.HashMap">update pj_data_remind a
+		inner join (
+		SELECT orgid, sum(no_char_off_amt) as remindQty 
+		from fi_rp_bill where audit_sign = 1 and bill_dc = 1
+		group by orgid) b
+		on a.orgid = b.orgid
+		set a.remind_value = b.remindQty, a.operate_date = SYSDATE()
+		where a.code = 5</update>
+    <update id="updateSupplierNeedPay" parameterClass="java.util.HashMap">update pj_data_remind a
+		inner join (
+		SELECT orgid, sum(no_char_off_amt) as remindQty 
+		from fi_rp_bill where audit_sign = 1 and bill_dc = -1
+		group by orgid) b
+		on a.orgid = b.orgid
+		set a.remind_value = b.remindQty, a.operate_date = SYSDATE()
+		where a.code = 6</update>
+    <!--今日工作看板-->
+    <select id="queryTodayBill" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT
+				a.orgid as orgid,
+				a.orderTypeId as orderTypeId,
+				a.billStatusId as billStatusId,
+				a.guestId as guestId,
+				a.creator as creator,
+				a.auditor as auditor,
+				a.auditDate as auditDate,
+				a.remark as remark,
+				a.fullName as fullName,
+				a.shortName as shortName,
+				a.addr as addr
+			FROM
+			vw_order_main AS a
+			WHERE to_days(auditDate) = to_days(now())
+			<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+			
+			order by a.auditDate desc
+				
+    </select>
+    <!--查询业务员-->
+    <select id="queryStaff" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT DISTINCT order_man as orderMan 
+			from pj_sell_order_main_chk 
+			where order_type_id = 2 and is_out= 1
+					<isNotEmpty prepend="and" property="orgid">(orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="startDate">(audit_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(audit_date &lt; #endDate#)</isNotEmpty>
+			
+			order by order_man
+			
+    </select>
+    <!--查询业务员业绩-->
+    <select id="queryStaffAchievement" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT order_man as orderMan, sum(order_amt) as orderAmt
+			from pj_sell_order_main_chk 
+			where order_type_id = 2 and is_out= 1
+					<isNotEmpty prepend="and" property="startDate">(audit_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(audit_date &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="orgid">(orgid = #orgid#)</isNotEmpty>
+			
+			group by order_man
+			order by sum(order_amt) desc
+			
+    </select>
+</sqlMap>

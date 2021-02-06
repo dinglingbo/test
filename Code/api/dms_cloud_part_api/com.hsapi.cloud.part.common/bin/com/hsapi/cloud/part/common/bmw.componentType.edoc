@@ -1,0 +1,14 @@
+<map>
+  <entry>
+    <string>com.hsapi.cloud.part.common.bmw.bmwPartsProcess(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;bmwPartsProcess&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;bmwPartsProcess&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.common.bmw.bmwPartsProcess&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.cloud.part.data.pts.PjBmwOfficialStock):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>bmwParts</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;bmw.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;bmwParts&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.common.bmw&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.bmw.bmwParts(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;bmwParts&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;bmwParts&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.common.bmw.bmwParts&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partId(String):&lt;/b&gt;配件编码&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.cloud.part.data.pts.PjBmwOfficialStock):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

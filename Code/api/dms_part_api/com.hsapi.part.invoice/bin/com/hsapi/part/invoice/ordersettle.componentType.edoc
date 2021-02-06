@@ -1,0 +1,82 @@
+<map>
+  <entry>
+    <string>com.hsapi.part.invoice.ordersettle.updateSellOrderFinishNT(Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateSellOrderFinishNT&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateSellOrderFinish&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.ordersettle.updateSellOrderFinishNT&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isFinished(Int):&lt;/b&gt;0未导入采购；1导入采购&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.ordersettle.generatePchsOrderToEnter(com.hsapi.part.data.pts.PjPchsOrderMainChk, com.hsapi.part.data.pts.PjPchsOrderDetailChk[], Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generatePchsOrderToEnter&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generatePchsOrderToEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.ordersettle.generatePchsOrderToEnter&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.pts.PjPchsOrderMainChk):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detail(com.hsapi.part.data.pts.PjPchsOrderDetailChk[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orderMainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.ordersettle.generateSellRtnToEnter(com.hsapi.part.data.pts.PjPchsOrderMainChk, com.hsapi.part.data.pts.PjPchsOrderDetailChk[], Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateSellRtnToEnter&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generatePchsOrderToEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.ordersettle.generateSellRtnToEnter&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.pts.PjPchsOrderMainChk):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detail(com.hsapi.part.data.pts.PjPchsOrderDetailChk[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orderMainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.ordersettle.queryNotSettlePchsRtnOrderMainList(com.eos.foundation.PageCond, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryNotSettlePchsRtnOrderMainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.ordersettle.queryNotSettlePchsRtnOrderMainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjPchsOrderMainList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.ordersettle.auditSellOut(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;auditSellOut&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;auditPjPchsOrder&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.ordersettle.auditSellOut&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.ordersettle.generateNewPchsOrderEnter(com.hsapi.part.data.pts.PjPchsOrderMainChk, com.hsapi.part.data.pts.PjPchsOrderDetailChk[], Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateNewPchsOrderEnter&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generateNewPchsOrderEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.ordersettle.generateNewPchsOrderEnter&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.pts.PjPchsOrderMainChk):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detail(com.hsapi.part.data.pts.PjPchsOrderDetailChk[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orderMainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orderMainAudit(com.hsapi.part.data.pts.PjPchsOrderMainChk):&lt;/b&gt;采购订单已审表&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orderDetailAudit(com.hsapi.part.data.pts.PjPchsOrderDetailChk[]):&lt;/b&gt;采购订单已审表&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.ordersettle.generateProductToEnterNT(com.hsapi.part.data.pts.PjProductEnterMain, com.hsapi.part.data.pts.PjProductEnterDetail[], Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateProductToEnterNT&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generatePchsOrderToEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.ordersettle.generateProductToEnterNT&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.pts.PjProductEnterMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detail(com.hsapi.part.data.pts.PjProductEnterDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orderMainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.ordersettle.generateSellRtnOrder(Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateSellRtnOrder&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getImportPartInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.ordersettle.generateSellRtnOrder&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;sellMainId(Int):&lt;/b&gt;采购退货主表ID，出&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dStoreId(Int):&lt;/b&gt;默认仓库ID&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;销售退货单号&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.ordersettle.judgePchsOrder(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;judgePchsOrder&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;judgePchsOrder&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.ordersettle.judgePchsOrder&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pchsMainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;sell(com.hsapi.part.data.pts.PjSellOrderMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.ordersettle.updatePchsOrderStatus(Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updatePchsOrderStatus&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updatePchsOrderStatus&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.ordersettle.updatePchsOrderStatus&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billStatusId(Int):&lt;/b&gt;4全部入库；已入库&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.ordersettle.testOrder(String, String, String, String, String, String, Int, Int, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;testOrder&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;testOrder&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.ordersettle.testOrder&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;key(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;brandId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;categoryF(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;categoryS(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;categoryT(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;count(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;currpage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sortOrder(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;protoken(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.ordersettle.generateSellOrder(Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateSellOrder&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getImportPartInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.ordersettle.generateSellOrder&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pchsMainId(Int):&lt;/b&gt;采购订单主表ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dStoreId(Int):&lt;/b&gt;默认仓库ID&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;销售订单单号&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.ordersettle.generatePchsOrderToEnterNT(com.hsapi.part.data.pts.PjPchsOrderMainChk, com.hsapi.part.data.pts.PjPchsOrderDetailChk[], Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generatePchsOrderToEnterNT&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generatePchsOrderToEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.ordersettle.generatePchsOrderToEnterNT&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.pts.PjPchsOrderMainChk):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detail(com.hsapi.part.data.pts.PjPchsOrderDetailChk[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orderMainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.ordersettle.judgePchsRtnOrder(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;judgePchsRtnOrder&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;judgePchsOrder&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.ordersettle.judgePchsRtnOrder&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;sellMainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pchs(com.hsapi.part.data.pts.PjPchsOrderMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.ordersettle.updateSellOrderFinish(Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateSellOrderFinish&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateSellOrderFinish&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.ordersettle.updateSellOrderFinish&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isFinished(Int):&lt;/b&gt;0未导入采购；1导入采购&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>ordersettle</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;ordersettle.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;ordersettle&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.ordersettle&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.ordersettle.pushSupplierOrder(String, String, String, String, String, String, String, String, String, String, String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;pushSupplierOrder&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;testOrder&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.ordersettle.pushSupplierOrder&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;companyId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;address(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isInsurance(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isDeposit(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isScene(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isTax(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;payType(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;receiver(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;remark(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mobile(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;warehouseto(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guestId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.ordersettle.updatePchsOrderStatusNT(Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updatePchsOrderStatusNT&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updatePchsOrderStatus&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.ordersettle.updatePchsOrderStatusNT&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billStatusId(Int):&lt;/b&gt;4全部入库；已入库&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.ordersettle.queryNotSettlePchsOrderMainList(com.eos.foundation.PageCond, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryNotSettlePchsOrderMainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.ordersettle.queryNotSettlePchsOrderMainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjPchsOrderMainList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.ordersettle.generateStockCheckToEnter(com.hsapi.part.data.pts.PjStockCheckMain, com.hsapi.part.data.pts.PjStockCheckDetail[], Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateStockCheckToEnter&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generatePchsOrderToEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.ordersettle.generateStockCheckToEnter&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.pts.PjStockCheckMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detail(com.hsapi.part.data.pts.PjStockCheckDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orderMainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

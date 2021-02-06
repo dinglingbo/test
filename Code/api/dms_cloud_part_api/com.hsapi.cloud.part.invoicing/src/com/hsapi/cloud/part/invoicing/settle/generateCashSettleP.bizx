@@ -52,7 +52,7 @@
       <process:to type="query">stateMain/debtRAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">main/guestId</process:from>
+      <process:from type="query" pattern="reference">main/settleGuestId</process:from>
       <process:to type="query">stateMain/guestId</process:to>
     </process:copy>
     <process:copy>
@@ -84,7 +84,7 @@
       <process:to type="query">stateMain/operateDate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">main/orderAmt</process:from>
+      <process:from type="query" pattern="reference">main/showAmt</process:from>
       <process:to type="query">stateMain/pAmt</process:to>
     </process:copy>
     <process:copy>
@@ -100,7 +100,7 @@
       <process:to type="query">stateMain/rpDc</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">main/orderAmt</process:from>
+      <process:from type="query" pattern="reference">main/showAmt</process:from>
       <process:to type="query">stateMain/rpAmt</process:to>
     </process:copy>
     <process:copy>
@@ -108,7 +108,7 @@
       <process:to type="query">stateMain/voidAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">main/orderAmt</process:from>
+      <process:from type="query" pattern="reference">main/showAmt</process:from>
       <process:to type="query">stateMain/trueRpAmt</process:to>
     </process:copy>
     <process:copy>
@@ -124,7 +124,7 @@
       <process:to type="query">stateMain/remark</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">main/orderAmt</process:from>
+      <process:from type="query" pattern="reference">main/showAmt</process:from>
       <process:to type="query">stateDetail/billAmt</process:to>
     </process:copy>
     <process:copy>
@@ -164,7 +164,7 @@
       <process:to type="query">stateDetail/rpDc</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">main/orderAmt</process:from>
+      <process:from type="query" pattern="reference">main/showAmt</process:from>
       <process:to type="query">stateDetail/rpAmt</process:to>
     </process:copy>
     <process:copy>

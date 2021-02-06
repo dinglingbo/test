@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.system.data.dictMgr">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <!--字典定义-->
+    <select id="queryDictType" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT A.id, A.parentid, A.customid, A.name, A.description, B.num from COM_DATADICTIONARIES A
+		LEFT JOIN(
+			select A.ID, CASE WHEN COUNT(B.id)&gt;0 then 1 ELSE 0 END NUM 
+			from COM_DATADICTIONARIES A 
+			LEFT JOIN COM_DATADICTIONARIES B ON B.PARENTID=A.ID
+			GROUP BY A.ID
+		)B ON A.ID=B.ID
+		WHERE 
+		<isNull property="parentid">LENGTH(IFNULL(A.PARENTID,''))=0</isNull>
+        <isNotNull property="parentid">A.PARENTID = #parentid#</isNotNull>
+        <isNotNull property="customid">AND A.CUSTOMID like '%$customid$%'</isNotNull>
+        <isNotNull property="queryId">AND A.ID like '%$queryId$%'</isNotNull>
+        <isNotNull property="name">AND A.name like '%$name$%'</isNotNull>
+    </select>
+    <select id="queryDictTree" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT A.id, A.parentid, A.customid, A.name, A.description, a.root_id as rootId 
+    	from COM_DATADICTIONARIES A
+		WHERE 1 = 1 and (orgid = 0 or orgid = #orgid#)
+		      and a.is_disabled = 0
+		<isNull property="parentid">and LENGTH(IFNULL(A.PARENTID,''))=0</isNull>
+        <isNotNull property="parentid">and ifnull(A.PARENTID,'') = #parentid#</isNotNull>
+        <isNotNull property="customid">and ifnull(A.customid,'') = #customid#</isNotNull>
+    </select>
+    <!--字典项-->
+    <select id="queryDictItem" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT id, dictid, customid, name, tenant_id as tenantId, orgid, property1, property2, property3, description, is_Disabled isDisabled
+    	from COM_DATAITEMS A		
+		WHERE 1=1 
+		<isNotNull property="dictid">AND A.DICTID = #dictid#</isNotNull>
+        <isNotNull property="customid">AND A.customid = #customid#</isNotNull>
+        <isNull property="dictid">AND A.DICTID in($dictids$)</isNull>
+        <isNotNull property="tenantId">AND a.tenant_id = #tenantId#</isNotNull>
+        <isNotNull property="tenantIds">AND (a.tenant_id = #tenantIds# or a.tenant_id = 0)</isNotNull>
+        <isNotNull property="orgid">AND a.orgid = #orgid#</isNotNull>
+        <isNotNull property="orgids">AND (a.orgid = #orgids# or a.orgid = 0)</isNotNull>
+        <isNotNull property="isDisabled">AND A.is_Disabled = #isDisabled#</isNotNull>
+
+		order by a.record_date asc
+		
+    </select>
+    <!--根据 customid like '0415%' 加载所有字典类型-->
+    <select id="queryDictTypeChilds" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT A.id as id, A.parentid as parentid, A.customid as customid, 
+    	       A.name as name
+    	from COM_DATADICTIONARIES A
+		WHERE 1 = 1
+		<isNotNull property="customid">AND a.customid like '$customid$%'</isNotNull>
+        <!--例：维修项目类型DDT20130703000063-->
+        <isNotNull property="rootId">AND a.root_id = #rootId#</isNotNull>
+        <isNotNull property="isDisabled">AND a.is_disabled = #isDisabled#</isNotNull>
+    </select>
+    <!-- 字典类型 + 子项  输出的树结构   dict + item-->
+    <select id="queryDictItemTree" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT id as id, parentid as dictid, tenant_id as tenantId, orgid as orgid, customid as customid, 
+			   name as name, root_id as rootId, is_disabled as isDisabled, 'dict' as type 
+		from com_datadictionaries
+		where  1 = 1 and (orgid = 0 or orgid = #orgid#)
+		<!--例：维修项目类型DDT20130703000063--><isNotNull property="rootId">AND root_id = #rootId#</isNotNull>
+		union 
+		select id as id, dictid as dictid, tenant_id as tenantId, orgid as orgid, customid as customid, 
+		       `name` as name, root_id as rootId, is_disabled as isDisabled, 'item' as type 
+		from com_dataitems
+		where 1 = 1 and (orgid = 0 or orgid = #orgid#)
+		<!--例：维修项目类型DDT20130703000063--><isNotNull property="rootId">AND root_id = #rootId#</isNotNull>
+    </select>
+    <!--角色成员010815/营销员，DDT20130703000015-->
+    <select id="queryRoleMember" parameterClass="HashMap" resultClass="HashMap">SELECT orgId, empId, empName empName, role_id roleId
+    	FROM com_role_member
+		WHERE role_id = #roleId#
+			AND orgId = #orgId#</select>
+    <!--组织列表查询(集团、公司)-->
+    <select id="queryOrgs" parameterClass="HashMap" resultClass="HashMap">SELECT orgid, orgcode, orgname 
+    	FROM ORG_ORGANIZATION
+		WHERE orgtype in('h', 'b') AND status = 'running'</select>
+    <!--车辆品牌-->
+    <select id="getCarBrand" parameterClass="HashMap" resultClass="HashMap">SELECT DISTINCT id, car_brand_zh nameCn, car_brand_zh name, first_code as firstCode, image_url as imageUrl
+    	FROM com_car_brand 
+		WHERE  is_disabled=0</select>
+    <!--车系-->
+    <select id="getCarSeries" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT DISTINCT a.id, a.name, a.id carSeriesId, a.name carSeriesName, a.car_brand_id carBrandId, a.car_brand_name carBrandName,
+		                a.car_factory_id as carFactoryId, a.car_factory_name as carFactoryName
+		FROM com_car_series a 
+		WHERE a.is_disabled=0
+        <isNotNull property="carBrandId">AND A.car_brand_id = #carBrandId#</isNotNull>
+        <isNull property="carBrandId">AND 1=2</isNull>
+    </select>
+    <!--车型-->
+    <select id="getCarModel" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT DISTINCT a.id carModelId, a.car_model carModel, a.car_brand_id carBrandId, a.car_brand_name carBrandName
+		FROM com_car_model a 
+		WHERE 1=1
+        <isNull property="carBrandId">
+            <isNull property="carSeriesId">AND 1=2</isNull>
+        </isNull>
+        <isNotNull property="carBrandId">AND A.car_brand_id = #carBrandId#</isNotNull>
+        <isNotNull property="carSeriesId">AND A.car_series_id = #carSeriesId#</isNotNull>
+		And a.is_disabled=0
+    </select>
+    <!--省份-->
+    <select id="getProvince" parameterClass="HashMap" resultClass="HashMap">select id, parentid, name, shortname, pycode, code, areacode, postalcode
+    	from com_area where `level` = 1 and isdisabled = 0</select>
+    <!--城市-->
+    <select id="getCity" parameterClass="HashMap" resultClass="HashMap">select id, parentid, name, shortname, pycode, code, areacode, postalcode 
+    	from com_area where `level` = 2 and isdisabled = 0</select>
+    <!--配件品质   parent_id is null and is_disabled = 0 and orgid = 0   用于缓存配件品质-->
+    <select id="getPartQuality" parameterClass="HashMap" resultClass="HashMap">SELECT id as id, 0 as orgid, code as code, name as name, parent_id as parentId,cang_brand_id as cangBrandId
+		from com_part_brand 
+		where parent_id = 0 and is_disabled = 0</select>
+    <!--配件品牌   parent_id is not null and is_disabled = 0 and orgid = 0  用于缓存配件品牌-->
+    <select id="getPartBrand" parameterClass="HashMap" resultClass="HashMap">SELECT id as id, 0 as orgid, code as code, name as name, parent_id as parentId, image_url as imageUrl
+		from com_part_brand 
+		where parent_id &gt; 0 and is_disabled = 0</select>
+    <!--配件分类    is_disabled = 0 and orgid = 0  用于缓存配件分类-->
+    <select id="getPartType" parameterClass="HashMap" resultClass="HashMap">SELECT id as id, orgid as orgid, code as code, name as name, parent_id as parentId,
+			   typelevel as typelevel, carbrandid as carbrandid 
+		from com_part_type 
+		where isdisabled = 0 and (orgid = 0 or orgid = #orgid#)
+		order by code</select>
+    <!--本机构配件品质   parent_id is null and is_disabled = 0 -->
+    <select id="getOwnPartQuality" parameterClass="HashMap" resultClass="HashMap">SELECT id as id, 0 as orgid, code as code, name as name, parent_id as parentId,cang_brand_id as cangBrandId
+		from com_part_brand 
+		where parent_id = 0 and is_disabled = 0</select>
+    <!--本机构配件品牌   parent_id is not null and is_disabled = 0 -->
+    <select id="getOwnPartBrand" parameterClass="HashMap" resultClass="HashMap">SELECT id as id, 0 as orgid, code as code, name as name, parent_id as parentId
+		from com_part_brand 
+		where parent_id &gt; 0 and is_disabled = 0</select>
+    <!--查询品牌，可传参数 -->
+    <select id="getPartBrandParams" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT 
+    		a.id as id, 
+    		a.parent_id as parentId,   		
+    		a.code as code, 
+    		a.name as name, 
+    		a.first_code_ch as firstCodeCh,
+    		a.manufacture as manufacture,
+    		a.image_url as imageUrl,
+    		a.remark as remark,
+    		a.is_disabled as isDisabled,
+    		a.old_id as oldId,
+    		a.cang_brand_id as cangBrandId
+
+		from com_part_brand a
+		where parent_id &gt; 0 and is_disabled = 0 
+		<isNotNull property="firstCodeCh">AND a.first_code_ch = #firstCodeCh#</isNotNull>
+        <isNotNull property="parentId">AND a.parent_id = #parentId#</isNotNull>
+        <isNotNull property="name">AND a.name like '%$name$%'</isNotNull>
+    </select>
+    <!--本机构配件分类   is_disabled = 0 -->
+    <select id="getOwnPartType" parameterClass="HashMap" resultClass="HashMap">SELECT id as id, orgid as orgid, code as code, name as name, parent_id as parentId,
+			   typelevel as typelevel, carbrandid as carbrandid
+		from com_part_type 
+		where isdisabled = 0 and orgid = #orgid#
+		order by code</select>
+    <!--公司员工-->
+    <select id="queryComMember" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT
+			a.empid as empId,
+			a.`name` as empName,
+			a.user_id as userId,
+			a.open_id as openId,
+			a.wechat as wechat,
+			a.tel as tel,
+			a.system_account as systemAccount,
+			a.im_code as imCode,
+			a.dept_id as deptId,
+			a.king_code as kingCode 
+		FROM
+		com_member AS a
+		WHERE 1=1 and a.is_dimission = 0
+		<isNotNull property="orgid">AND a.orgid = #orgid#</isNotNull>
+        <isNull property="orgid">AND a.orgid in($orgids$)</isNull>
+        <isNotNull property="memberGroupId">AND a.member_group_id = #memberGroupId#</isNotNull>
+        <isNotNull property="memberLevelId">AND a.member_level_id = #memberLevelId#</isNotNull>
+        <isNotNull property="isMtadvisor">AND a.is_mtadvisor = #isMtadvisor#</isNotNull>
+        <isNotNull property="isArtificer">AND a.is_artificer = #isArtificer#</isNotNull>
+        <isNotNull property="isStockman">AND a.is_stockman = #isStockman#</isNotNull>
+        <isNotNull property="isSalesman">AND a.is_salesman = #isSalesman#</isNotNull>
+        <isNotNull property="isPchsStock">AND a.is_pchs_stock = #isPchsStock#</isNotNull>
+    </select>
+    <!--根据empId查询员工信息-->
+    <select id="queryComMemberByEmpId" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT
+			a.empid as empId,
+			a.tenant_id as tenantId,
+			a.orgid as orgid,
+			a.`name` as name,
+			a.sex as sex,
+			a.idcardno as idcardno,
+			a.birthday as birthday,
+			a.tel as tel,
+			a.user_id as userId,
+			a.is_dimission as isDimission,
+			a.is_open_account as isOpenAccount,
+			a.is_mtadvisor as isMtadvisor,
+			a.is_artificer as isArtificer,
+			a.is_stockman as isStockman,
+			a.is_salesman as isSalesman,
+			a.member_group_id as memberGroupId,
+			a.member_level_id as memberLevelId,
+			a.integral_discount_max as integralDiscountMax,
+			a.item_discount_rate as itemDiscountRate,
+			a.part_discount_rate as partDiscountRate,
+			a.free_discount_max as freeDiscountMax,
+			a.cash_discount_max as cashDiscountMax,
+			a.display_remind_tag as displayRemindTag,
+			a.display_business_tag as displayBusinessTag,
+			a.display_bill_tag as displayBillTag,
+			a.system_account as systemAccount,
+			a.login_pwd as loginPwd,
+			a.authorize_pwd as authorizePwd,
+			a.wechat as wechat, 
+			a.open_id as openId,
+			a.urgency_person as urgencyPerson,
+			a.urgency_person_phone as urgencyPersonPhone,
+			a.is_allow_remind as isAllowRemind,
+			a.is_show_own_bill as isShowOwnBill,
+			a.is_can_settle as isCanSettle,
+			a.is_can_below_cost as isCanBelowCost,
+			a.is_canfree_carnovin as isCanfreeCarnovin,
+			a.is_pchs_stock as isPchsStock,
+			a.head_portrait as headPortrait,
+			a.background_color as backgroundColor,
+			a.im_code as imCode,
+			a.im_disabled as imDisabled,
+			a.is_read_sysmsg as isReadSysmsg,
+			a.recorder as recorder,
+			a.record_date as recordDate,
+			a.modifier as modifier,
+			a.modify_date as modifyDate,
+			a.is_open_app as isOpenApp,
+			a.is_limit_credit as isLimitCredit,
+			a.credit_money as creditMoney,
+			a.dept_id as deptId,
+			a.king_code as kingCode 
+		FROM
+			com_member AS a
+		where 1 = 1
+		<isNotNull property="empId">AND a.empid = #empId#</isNotNull>
+        <isNotNull property="systemAccount">AND a.system_account = #systemAccount#</isNotNull>
+    </select>
+    <!--根据empId查询员工信息-->
+    <select id="queryComCompany" parameterClass="HashMap" resultClass="HashMap">SELECT
+			a.orgid as orgid,
+			a.tenant_id as tenantId,
+			a.`code` as code,
+			a.`name` as name,
+			a.short_name as shortName,
+			a.province_id as provinceId,
+			a.city_id as cityId,
+			a.county_id as countyId,
+			a.street_address as streetAddress,
+			a.address as address,
+			a.longitude as longitude,
+			a.latitude as latitude,
+			a.tel as tel,
+			a.fax as fax,
+			a.bank_name as bankName,
+			a.bank_account_number as bankAccountNumber,
+			a.main_brand_id AS mainBrandId,
+			a.webaddress as webaddress,
+			a.wechat_img as wechatImg,
+			a.logo_img as logoImg,
+			a.soft_open_date as softOpenDate,
+			a.part_expire_date as partExpireDate,
+			a.is_open_system as isOpenSystem,
+			a.is_open_process as isOpenProcess,
+			a.is_unify_financial as isUnifyFinancial,
+			a.is_account as isAccount,
+			a.sett_comp_code as settCompCode,
+			a.unsalable_days as unsalableDays,
+			a.widen_tax_rate as widenTaxRate,
+			a.part_manage_rate as partManageRate,
+			a.complain_tel as complainTel,
+			a.rescue_tel as rescueTel,
+			a.user_qty as userQty,
+			a.report_title as reportTitle,
+			a.slogan1 as slogan1,
+			a.slogan2 as slogan2,
+			a.is_data_share as isDataShare,
+			a.e_record_province as eRecordProvince,
+			a.e_record_repair_no as eRecordRepairNo,
+			a.e_record_user as eRecordUser,
+			a.e_record_pwd as eRecordPwd,
+			a.e_token_url as eTokenUrl,
+			a.e_push_url as ePushUrl,
+			a.is_master as isMaster,
+			a.remark as remark,
+			a.property_name as propertyName,
+			a.srm_company_id as srmCompanyId,
+			a.srm_guest_id as srmGuestId,
+			a.srm_user_id as srmUserId,
+			a.srm_user_pd as srmUserPd,
+			a.srm_modifier as srmModifier,
+			a.srm_modify_date as srmModifyDate,
+			a.agency_id as agencyId,
+			a.recorder as recorder,
+			a.record_date as recordDate,
+			a.modifier as modifier,
+			a.modify_date as modifyDate,
+			a.king_id as kingId,
+			a.book_id as bookId
+		FROM
+			com_company AS a
+		WHERE a.orgid = #orgid#</select>
+    <!--业务分类   is_disabled = 0 -->
+    <select id="getServiceType" parameterClass="HashMap" resultClass="HashMap">SELECT id as id, name as name 
+        FROM rpb_business_type 
+        where is_disabled = 0 and (orgid = #orgid# or orgid = 0 )
+        order by id</select>
+    <!--业务分类   is_disabled = 0 -->
+    <select id="getRpbGuestType" parameterClass="HashMap" resultClass="HashMap">
+        SELECT
+			a.id as id,
+			a.tenant_id as tenantId,
+			a.orgid as orgid,
+			a.`name` as name,
+			a.discount_range_bill as discountRangeBill,
+			a.discount_range_wash as discountRangeWash,
+			a.discount_range_retail as discountRangeRetail,
+			a.discount_range_claims as discountRangeClaims,
+			a.integral_disabled as integralDisabled,
+			a.integral_add as integralAdd,
+			a.integral_bill_add as integralBillAdd,
+			a.integral_wash_add as integralWashAdd,
+			a.integral_retail_add as integralRetailAdd,
+			a.integral_claims_add as integralClaimsAdd,
+			a.integral_reduce as integralReduce,
+			a.integral_bill_reduce as integralBillReduce,
+			a.integral_wash_reduce as integralWashReduce,
+			a.integral_retail_reduce as integralRetailReduce,
+			a.integral_claims_reduce as integralClaimsReduce,
+			a.is_disabled as isDisabled,
+			a.recorder as recorder,
+			a.record_date as recordDate,
+			a.modifier as modifier,
+			a.modify_date as modifyDate
+		FROM
+			rpb_guest_type AS a
+		where 1 = 1 and a.is_disabled = 0
+		    <isNotEmpty prepend="and" property="tenantId">(a.tenant_id = #tenantId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+    </select>
+    <!--查询本店系统参数 设置-->
+    <select id="queryBillParams" parameterClass="HashMap" resultClass="HashMap">
+        SELECT a.orgid, a.keyid_id as keyidId, a.keyid_value as keyidValue,
+               a.keyid_name as keyidName
+        FROM com_params AS a
+        where 1 = 1
+        
+            <isNotEmpty prepend="and" property="keyidIds">(a.keyid_id in ($keyidIds$))</isNotEmpty>
+        <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="keyidId">(a.keyid_id = #keyidId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="type">(a.type = #type#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="isDisabled">(a.is_disabled = #isDisabled#)</isNotEmpty>
+    </select>
+</sqlMap>

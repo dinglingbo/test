@@ -1,0 +1,130 @@
+<map>
+  <entry>
+    <string>com.hsapi.sales.svr.base.searchCsbCarModel(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchCsbCarModel&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchCsbCarModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.searchCsbCarModel&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.addCsbCarModel(com.hsapi.sales.data.csb.CsbCarModel)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;addCsbCarModel&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;addCsbCarModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.addCsbCarModel&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.sales.data.csb.CsbCarModel):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.searchCsbRebate(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchCsbRebate&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchCsbCarModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.searchCsbRebate&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.searchCssFactoryRebate(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchCssFactoryRebate&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchCsbCarModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.searchCssFactoryRebate&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.addCssGiftOutMain(com.hsapi.sales.data.css.CssSaleGiftOutMain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;addCssGiftOutMain&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;addCsbCarModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.addCssGiftOutMain&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.sales.data.css.CssSaleGiftOutMain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;res(com.hsapi.sales.data.css.CssSaleGiftOutMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.addCssFactoryRebate(com.hsapi.sales.data.css.CssFactoryRebateMain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;addCssFactoryRebate&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;addCsbCarModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.addCssFactoryRebate&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.sales.data.css.CssFactoryRebateMain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;res(com.hsapi.sales.data.css.CssFactoryRebateMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.addCsbRebate(com.hsapi.sales.data.csb.CsbRebate[], com.hsapi.sales.data.csb.CsbRebate[], com.hsapi.sales.data.csb.CsbRebate[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;addCsbRebate&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;addCsbCarModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.addCsbRebate&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addList(com.hsapi.sales.data.csb.CsbRebate[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updateList(com.hsapi.sales.data.csb.CsbRebate[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;removeList(com.hsapi.sales.data.csb.CsbRebate[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.addCsbPDICarDetail(com.hsapi.sales.data.csb.CsbPdi[], com.hsapi.sales.data.csb.CsbPdiCarTemplateDetail[], String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;addCsbPDICarDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;addCsbCarModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.addCsbPDICarDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addArr(com.hsapi.sales.data.csb.CsbPdi[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;delArr(com.hsapi.sales.data.csb.CsbPdiCarTemplateDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(String):&lt;/b&gt;主表id&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.saveCssFRebate(com.hsapi.sales.data.css.CssFactoryRebateMain, com.hsapi.sales.data.css.CssFactoryRebateDetail[], com.hsapi.sales.data.css.CssFactoryRebateDetail[], com.hsapi.sales.data.css.CssFactoryRebateDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveCssFRebate&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveCsbCarTemplate&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.saveCssFRebate&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.sales.data.css.CssFactoryRebateMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;addArr(com.hsapi.sales.data.css.CssFactoryRebateDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;delArr(com.hsapi.sales.data.css.CssFactoryRebateDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;upArr(com.hsapi.sales.data.css.CssFactoryRebateDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;res(com.hsapi.sales.data.css.CssFactoryRebateMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.searchCsbPDICarDetail(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchCsbPDICarDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchCsbCarModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.searchCsbPDICarDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.searchCsbPDI(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchCsbPDI&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchCsbCarModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.searchCsbPDI&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.searchCssFRebateDet(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchCssFRebateDet&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchCsbCarModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.searchCssFRebateDet&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.addCsbPDI(com.hsapi.sales.data.csb.CsbPdi)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;addCsbPDI&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;addCsbCarModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.addCsbPDI&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.sales.data.csb.CsbPdi):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.searchCssGiftOutItem(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchCssGiftOutItem&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchCsbCarModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.searchCssGiftOutItem&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.generateReceivable(com.hsapi.sales.data.css.CssFactoryRebateMain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateReceivable&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generateReceivable&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.generateReceivable&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.sales.data.css.CssFactoryRebateMain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.updateCssFRebate(com.hsapi.sales.data.css.CssFactoryRebateMain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateCssFRebate&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateCssFRebate&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.updateCssFRebate&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.sales.data.css.CssFactoryRebateMain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.updateCssGiftOutMainAmt(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateCssGiftOutMainAmt&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateCssFRebateAMT&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.updateCssGiftOutMainAmt&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.sales.data.css.CssFactoryRebateDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.updateCssGiftOutMain(com.hsapi.sales.data.css.CssSaleGiftOutMain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateCssGiftOutMain&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateCsbCarModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.updateCssGiftOutMain&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.sales.data.css.CssSaleGiftOutMain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.addCssGiftOutItem(com.hsapi.sales.data.css.CssSaleGiftOutItem[], com.hsapi.sales.data.css.CssSaleGiftOutItem[], com.hsapi.sales.data.css.CssSaleGiftOutItem[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;addCssGiftOutItem&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;addCsbCarModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.addCssGiftOutItem&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addList(com.hsapi.sales.data.css.CssSaleGiftOutItem[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updateList(com.hsapi.sales.data.css.CssSaleGiftOutItem[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;removeList(com.hsapi.sales.data.css.CssSaleGiftOutItem[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.addCsbPDICarTemplate(com.hsapi.sales.data.csb.CsbPdiCarTemplate)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;addCsbPDICarTemplate&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;addCsbCarModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.addCsbPDICarTemplate&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.sales.data.csb.CsbPdiCarTemplate):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;res(com.hsapi.sales.data.csb.CsbPdiCarTemplate):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.searchCssGiftOutMain(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchCssGiftOutMain&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchCsbCarModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.searchCssGiftOutMain&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.updateCsbCarModel(com.hsapi.sales.data.csb.CsbCarModel)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateCsbCarModel&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateCsbCarModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.updateCsbCarModel&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.sales.data.csb.CsbCarModel):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.addCssFRebate(com.hsapi.sales.data.css.CssFactoryRebateDetail[], com.hsapi.sales.data.css.CssFactoryRebateDetail[], com.hsapi.sales.data.css.CssFactoryRebateDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;addCssFRebate&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;addCsbCarModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.addCssFRebate&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addList(com.hsapi.sales.data.css.CssFactoryRebateDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updateList(com.hsapi.sales.data.css.CssFactoryRebateDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;removeList(com.hsapi.sales.data.css.CssFactoryRebateDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.searchCsbGift(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchCsbGift&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchCsbCarModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.searchCsbGift&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.updateCssFRebateAMT(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateCssFRebateAMT&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateCssFRebateAMT&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.updateCssFRebateAMT&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.sales.data.css.CssFactoryRebateDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>base</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;base.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;base&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.getIndex()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getIndex&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getIndex&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.getIndex&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;str(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.searchCsbPDICarTemplate(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchCsbPDICarTemplate&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchCsbCarModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.searchCsbPDICarTemplate&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.addCsbGift(com.hsapi.sales.data.csb.CsbGift[], com.hsapi.sales.data.csb.CsbGift[], com.hsapi.sales.data.csb.CsbGift[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;addCsbGift&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;addCsbCarModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.addCsbGift&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addList(com.hsapi.sales.data.csb.CsbGift[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updateList(com.hsapi.sales.data.csb.CsbGift[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;removeList(com.hsapi.sales.data.csb.CsbGift[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.saveCsbCarTemplate(com.hsapi.sales.data.csb.CsbPdiCarTemplate, com.hsapi.sales.data.csb.CsbPdi[], com.hsapi.sales.data.csb.CsbPdiCarTemplateDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveCsbCarTemplate&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveCsbCarTemplate&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.saveCsbCarTemplate&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.sales.data.csb.CsbPdiCarTemplate):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;addArr(com.hsapi.sales.data.csb.CsbPdi[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;delArr(com.hsapi.sales.data.csb.CsbPdiCarTemplateDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.updateCsbPDICarTemplate(com.hsapi.sales.data.csb.CsbPdiCarTemplate)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateCsbPDICarTemplate&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateCsbCarModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.updateCsbPDICarTemplate&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.sales.data.csb.CsbPdiCarTemplate):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.base.getGiftAmt(String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getGiftAmt&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generateReceivable&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.base.getGiftAmt&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billTypeId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;returnSign(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

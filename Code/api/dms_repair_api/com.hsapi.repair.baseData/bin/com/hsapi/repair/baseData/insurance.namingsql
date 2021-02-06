@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.repair.baseData.insurance">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryInsuranceList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        <!-- 保险公司 -->
+    	SELECT 
+			a.id id,
+			a.orgid orgid,
+			a.code code,
+			a.py_name pyName,
+			a.full_name fullName,
+			a.short_name shortName,
+			a.contactor contactor,
+			a.contactor_tel contactorTel,
+			a.order_index orderIndex,
+			a.is_disabled isDisabled,
+			b.id rid,
+			b.rebate_agent_to_company_1 rebateAgentToCompany1,
+			b.rebate_agent_to_company_2 rebateAgentToCompany2,
+			b.rebate_agent_to_company_3 rebateAgentToCompany3,
+			b.rebate_company_to_guest1 rebateCompanyToGuest1, 
+			b.rebate_company_to_guest2 rebateCompanyToGuest2, 
+			b.rebate_company_to_guest3 rebateCompanyToGuest3, 
+			b.deduct_type_1 deductType1,
+			b.deduct_type_2 deductType2,
+			b.deduct_type_3 deductType3,
+			b.deduct_rate_1 deductRate1,
+			b.deduct_rate_2 deductRate2,
+			b.deduct_rate_3 deductRate3
+		FROM
+			wb_common.com_guest a , wb_repair.rpb_guest_agent_extend b
+			
+		WHERE
+			a.orgid = #orgid#
+			and a.guest_type = '01020104'
+			and a.id = b.guest_id
+		<dynamic>
+            <isNotEmpty prepend="and" property="isDisabled">(a.is_disabled = #isDisabled#)</isNotEmpty>
+        </dynamic>
+		order by a.order_index asc
+	</select>
+    <select id="queryInsuranceMainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        <!-- 保险公司 -->
+    	SELECT 
+			a.id id,
+			a.orgid orgid,
+			a.code code,
+			a.py_name pyName,
+			a.full_name fullName,
+			a.short_name shortName,
+			a.contactor contactor,
+			a.contactor_tel contactorTel,
+			a.order_index orderIndex,
+			a.is_disabled isDisabled
+		FROM
+			wb_common.com_guest a 
+			
+		WHERE
+			(a.orgid = 0 or a.orgid = #orgid#)
+			and a.guest_type = '01020104'
+		<dynamic>
+            <isNotEmpty prepend="and" property="isDisabled">(a.is_disabled = #isDisabled#)</isNotEmpty>
+        </dynamic>
+		order by a.order_index asc
+	</select>
+    <select id="queryInsuranceRebateList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        <!-- 保险公司 -->
+    	SELECT 
+			id rid,
+		    guest_id as guestId,
+			orgid as orgid,
+			rebate_agent_to_company_1 rebateAgentToCompany1,
+			rebate_agent_to_company_2 rebateAgentToCompany2,
+			rebate_agent_to_company_3 rebateAgentToCompany3,
+			rebate_company_to_guest1 rebateCompanyToGuest1, 
+			rebate_company_to_guest2 rebateCompanyToGuest2, 
+			rebate_company_to_guest3 rebateCompanyToGuest3, 
+			deduct_type_1 deductType1,
+			deduct_type_2 deductType2,
+			deduct_type_3 deductType3,
+			deduct_rate_1 deductRate1,
+			deduct_rate_2 deductRate2,
+			deduct_rate_3 deductRate3 
+		from rpb_guest_agent_extend
+			
+		WHERE
+			guest_id = #guestId# and orgid = #orgid#
+	</select>
+</sqlMap>

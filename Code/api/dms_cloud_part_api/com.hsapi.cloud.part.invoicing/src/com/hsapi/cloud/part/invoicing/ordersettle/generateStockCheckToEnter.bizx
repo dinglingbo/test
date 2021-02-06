@@ -33,6 +33,8 @@
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="Int" name="mainId" type="query" valueType="Primitive">mainId</process:return>
+      <process:return id="3" language="Double" name="sumNoTaxCostAmt" type="query" valueType="Primitive">sumNoTaxCostAmt</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -49,6 +51,16 @@
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>loopstart0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link2" name="link2" displayName="连接线" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>assign20</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">enterMain/settleGuestId</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
     <location x="331" y="150"/>
@@ -155,6 +167,10 @@
       <process:to type="query">enterMain/remark</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">main/storeId</process:from>
+      <process:to type="query">enterMain/storeId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">enterMain/id</process:from>
       <process:to type="query">mainId</process:to>
     </process:copy>
@@ -245,6 +261,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
+    <targetConnections>link17</targetConnections>
     <location x="390" y="151"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
@@ -323,6 +340,14 @@
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
+      <process:from type="query" pattern="reference">temp/exhibitQty</process:from>
+      <process:to type="query">orderQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/exhibitPrice</process:from>
+      <process:to type="query">orderPrice</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">detailId</process:from>
       <process:to type="query">enterTemp/id</process:to>
     </process:copy>
@@ -375,7 +400,7 @@
       <process:to type="query">enterTemp/enterPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">temp/exhibitAmt</process:from>
+      <process:from type="expression" pattern="reference">orderQty*orderPrice</process:from>
       <process:to type="query">enterTemp/enterAmt</process:to>
     </process:copy>
     <process:copy>
@@ -417,14 +442,6 @@
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">enterTemp/expenseAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">temp/exhibitQty</process:from>
-      <process:to type="query">orderQty</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">temp/exhibitPrice</process:from>
-      <process:to type="query">orderPrice</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -491,7 +508,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>end3</targetNode>
     </sourceConnections>
     <targetConnections>link11</targetConnections>
     <location x="148" y="255"/>
@@ -510,7 +527,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>end3</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
@@ -534,7 +551,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>end3</targetNode>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
     <targetConnections>link50</targetConnections>
@@ -554,23 +571,6 @@
     <location x="732" y="302"/>
     <figSize height="20" width="40"/>
     <node>assign4</node>
-  </nodes>
-  <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
-    <targetConnections>link16</targetConnections>
-    <targetConnections>link15</targetConnections>
-    <targetConnections>link14</targetConnections>
-    <location x="257" y="334"/>
-    <size height="28" width="28"/>
-    <nodeLabel>end1label</nodeLabel>
-    <process:returns>
-      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
-      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-    </process:returns>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="251" y="370"/>
-    <figSize height="20" width="40"/>
-    <node>end1</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo4" name="insertEntityBatch" displayName="insertEntityBatch" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
@@ -707,6 +707,13 @@
         <process:inputVariable id="19" name="operatorId" type="query" value="String" valueType="Primitive" pattern="reference">enterMain/auditorId</process:inputVariable>
         <process:inputVariable id="20" name="expPrice" type="query" value="Float" valueType="Primitive" pattern="reference">f/expEnterPrice</process:inputVariable>
         <process:inputVariable id="21" name="expAmt" type="query" value="Float" valueType="Primitive" pattern="reference">f/expEnterAmt</process:inputVariable>
+        <process:inputVariable id="22" name="taxCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">f/taxCostPrice</process:inputVariable>
+        <process:inputVariable id="23" name="taxCostAmt" type="query" value="Float" valueType="Primitive" pattern="reference">f/taxCostAmt</process:inputVariable>
+        <process:inputVariable id="24" name="setCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">f/setCostPrice</process:inputVariable>
+        <process:inputVariable id="25" name="setCostAmt" type="query" value="Float" valueType="Primitive" pattern="reference">f/setCostAmt</process:inputVariable>
+        <process:inputVariable id="26" name="noTaxCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">f/noTaxCostPrice</process:inputVariable>
+        <process:inputVariable id="27" name="noTaxCostAmt" type="query" value="Float" valueType="Primitive" pattern="reference">f/noTaxCostAmt</process:inputVariable>
+        <process:inputVariable id="28" name="remark" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -770,6 +777,18 @@
         <process:inputVariable id="23" name="balaExpAmt" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaExpAmt</process:inputVariable>
         <process:inputVariable id="24" name="storeBalaExpPrice" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaExpPrice</process:inputVariable>
         <process:inputVariable id="25" name="storeBalaExpAmt" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaExpAmt</process:inputVariable>
+        <process:inputVariable id="26" name="balaTaxCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaTaxCostPrice</process:inputVariable>
+        <process:inputVariable id="27" name="balaTaxCostAmt" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaTaxCostAmt</process:inputVariable>
+        <process:inputVariable id="28" name="storeBalaTaxCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaTaxCostPrice</process:inputVariable>
+        <process:inputVariable id="29" name="storeBalaTaxCostAmt" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaTaxCostAmt</process:inputVariable>
+        <process:inputVariable id="30" name="balaSetCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaSetCostPrice</process:inputVariable>
+        <process:inputVariable id="31" name="balaSetCostAmt" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaSetCostAmt</process:inputVariable>
+        <process:inputVariable id="32" name="storeBalaSetCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaSetCostPrice</process:inputVariable>
+        <process:inputVariable id="33" name="storeBalaSetCostAmt" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaSetCostAmt</process:inputVariable>
+        <process:inputVariable id="34" name="balaNoTaxCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaNoTaxCostPrice</process:inputVariable>
+        <process:inputVariable id="35" name="balaNoTaxCostAmt" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaNoTaxCostAmt</process:inputVariable>
+        <process:inputVariable id="36" name="storeBalaNoTaxCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaNoTaxCostPrice</process:inputVariable>
+        <process:inputVariable id="37" name="storeBalaNoTaxCostAmt" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaNoTaxCostAmt</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -964,7 +983,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link36" name="link36" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
-      <targetNode>end2</targetNode>
+      <targetNode>end1</targetNode>
     </sourceConnections>
     <targetConnections>link35</targetConnections>
     <targetConnections>link34</targetConnections>
@@ -984,22 +1003,6 @@
     <location x="-333" y="-25"/>
     <figSize height="20" width="40"/>
     <node>assign6</node>
-  </nodes>
-  <nodes xsi:type="process:tEnd" id="end2" name="结束2" displayName="结束" type="end">
-    <targetConnections>link24</targetConnections>
-    <targetConnections>link36</targetConnections>
-    <location x="-173" y="-60"/>
-    <size height="28" width="28"/>
-    <nodeLabel>end2label</nodeLabel>
-    <process:returns>
-      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
-      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-    </process:returns>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="end2label" name="label" nodeType="label">
-    <location x="-179" y="-24"/>
-    <figSize height="20" width="40"/>
-    <node>end2</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="订明" displayName="getPjStockCheckDetailByIdAndDc" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link33" name="link33" displayName="连接线" isDefault="true" type="transition">
@@ -1134,7 +1137,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign12" name="赋值12" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link24" name="link24" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign12</sourceNode>
-      <targetNode>end2</targetNode>
+      <targetNode>end1</targetNode>
     </sourceConnections>
     <targetConnections>link23</targetConnections>
     <location x="-174" y="29"/>
@@ -1383,6 +1386,38 @@
       <process:from type="query" pattern="reference">taxAmt</process:from>
       <process:to type="query">enterTemp/expEnterAmt</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxPrice</process:from>
+      <process:to type="query">enterTemp/taxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxAmt</process:from>
+      <process:to type="query">enterTemp/taxCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">noTaxPrice</process:from>
+      <process:to type="query">enterTemp/noTaxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">noTaxAmt</process:from>
+      <process:to type="query">enterTemp/noTaxCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">taxPrice*1.02</process:from>
+      <process:to type="query">enterTemp/setCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">orderQty*taxPrice*1.02</process:from>
+      <process:to type="query">enterTemp/setCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enterTemp/noTaxCostAmt</process:from>
+      <process:to type="query">noTaxCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">sumNoTaxCostAmt+noTaxCostAmt</process:from>
+      <process:to type="query">sumNoTaxCostAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign18label" name="label" nodeType="label">
     <location x="501" y="116"/>
@@ -1467,6 +1502,38 @@
       <process:from type="query" pattern="reference">taxAmt</process:from>
       <process:to type="query">enterTemp/expEnterAmt</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxPrice</process:from>
+      <process:to type="query">enterTemp/taxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxAmt</process:from>
+      <process:to type="query">enterTemp/taxCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">noTaxPrice</process:from>
+      <process:to type="query">enterTemp/noTaxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">noTaxAmt</process:from>
+      <process:to type="query">enterTemp/noTaxCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">taxPrice*1.02</process:from>
+      <process:to type="query">enterTemp/setCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">orderQty*taxPrice*1.02</process:from>
+      <process:to type="query">enterTemp/setCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enterTemp/noTaxCostAmt</process:from>
+      <process:to type="query">noTaxCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">sumNoTaxCostAmt+noTaxCostAmt</process:from>
+      <process:to type="query">sumNoTaxCostAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign19label" name="label" nodeType="label">
     <location x="499" y="252"/>
@@ -1528,6 +1595,62 @@
     <figSize height="20" width="142"/>
     <node>invokePojo0</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign20" name="赋值19" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign20</sourceNode>
+      <targetNode>loopstart0</targetNode>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="329" y="68"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign20label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">enterMain/guestId</process:from>
+      <process:to type="query">enterMain/settleGuestId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign20label" name="label" nodeType="label">
+    <location x="319" y="104"/>
+    <figSize height="20" width="49"/>
+    <node>assign20</node>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end3" name="结束3" displayName="结束" type="end">
+    <targetConnections>link14</targetConnections>
+    <targetConnections>link15</targetConnections>
+    <targetConnections>link16</targetConnections>
+    <location x="258" y="362"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end3label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="Int" name="mainId" type="query" valueType="Primitive">mainId</process:return>
+      <process:return id="3" language="Double" name="sumNoTaxCostAmt" type="query" valueType="Primitive">sumNoTaxCostAmt</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end3label" name="label" nodeType="label">
+    <location x="252" y="398"/>
+    <figSize height="20" width="40"/>
+    <node>end3</node>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
+    <targetConnections>link36</targetConnections>
+    <targetConnections>link24</targetConnections>
+    <location x="-174" y="-61"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end1label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="Int" name="mainId" type="query" valueType="Primitive">mainId</process:return>
+      <process:return id="3" language="Double" name="sumNoTaxCostAmt" type="query" valueType="Primitive">sumNoTaxCostAmt</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
+    <location x="-180" y="-25"/>
+    <figSize height="20" width="40"/>
+    <node>end1</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-05-25 10:33:54" date="2018-05-25Z" description="" name="generatePchsOrderToEnter" version="7.0.0.0"/>
@@ -1535,7 +1658,6 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjEnterMainChk" name="enterMain"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjEnterDetailChk" name="enterTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjEnterDetailChk" name="enterDetail"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="mainId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="serviceId" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjStockCheckDetail" name="temp"/>
@@ -1564,6 +1686,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="mOrderAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="mOrderQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="detailId" primitiveType="Long"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="noTaxCostAmt" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjStockCheckMain" name="main"/>
@@ -1573,6 +1696,8 @@
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
+    <process:output description="" isArray="false" name="mainId" primitiveType="Int"/>
+    <process:output description="" isArray="false" name="sumNoTaxCostAmt" primitiveType="Double"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

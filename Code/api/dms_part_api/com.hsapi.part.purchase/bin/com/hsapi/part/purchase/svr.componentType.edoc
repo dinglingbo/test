@@ -1,0 +1,78 @@
+<map>
+  <entry>
+    <string>com.hsapi.part.purchase.svr.queryInventoryStoreDetailList(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryInventoryStoreDetailList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryInventoryDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.svr.queryInventoryStoreDetailList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;beginList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;endList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;currList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.svr.queryPtsEnterDetailByOutId(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPtsEnterDetailByOutId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPtsEnterDetailByEnterId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.svr.queryPtsEnterDetailByOutId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;outId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;outDetailList(com.hsapi.part.data.query.PtsOutDetailV[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.svr.queryPtsOutMainList(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPtsOutMainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPtsEnterMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.svr.queryPtsOutMainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;ptsOutMainList(com.hsapi.part.data.pts.PjOutMain[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.svr.queryInventoryDetailList(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryInventoryDetailList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryInventoryDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.svr.queryInventoryDetailList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;beginList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;endList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;currList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.svr.queryPtsStockCycVList(java.util.HashMap, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPtsStockCycVList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPtsStockCycVList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.svr.queryPtsStockCycVList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sortField(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sortOrder(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;ptsStockCycList(com.hsapi.part.data.query.PtsStockCycV[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.svr.queryPtsEnterMainDetail(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPtsEnterMainDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPtsEnterMainDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.svr.queryPtsEnterMainDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;ptsEnterMainDetailList(com.hsapi.part.data.query.PtsEnterMainDetailV[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.svr.queryPurEnterAnalysis(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPurEnterAnalysis&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPurEnterAnalysis&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.svr.queryPurEnterAnalysis&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;analysisList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;入库分析&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.svr.queryPtsOutDetailByOutId(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPtsOutDetailByOutId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPtsEnterDetailByEnterId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.svr.queryPtsOutDetailByOutId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;outId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;outDetailList(com.hsapi.part.data.query.PtsOutDetailV[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>svr</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;svr.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;svr&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.svr&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.svr.queryPtsEnterDetailByEnterId(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPtsEnterDetailByEnterId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPtsEnterDetailByEnterId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.svr.queryPtsEnterDetailByEnterId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;enterId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;enterDetailList(com.hsapi.part.data.query.PtsEnterDetailV[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.svr.getSellPriceList(Long, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getSellPriceList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getSellPriceList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.svr.getSellPriceList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;CarPlate(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;keywords(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;sellPriceList(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.svr.queryPtsEnterMainList(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPtsEnterMainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPtsEnterMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.svr.queryPtsEnterMainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;ptsEnterMainList(com.hsapi.part.data.x_pts.PtsEnterMain[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.svr.queryEnterStockList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryEnterStockList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryEnterStockList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.svr.queryEnterStockList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.svr.queryPtsOutMainDetail(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPtsOutMainDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPtsEnterMainDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.svr.queryPtsOutMainDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;ptsOutMainDetailList(com.hsapi.part.data.query.PtsOutMainDetailV[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.svr.getGoodsPriceList(Long, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getGoodsPriceList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getSellPriceList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.svr.getGoodsPriceList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;CarPlate(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;keywords(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;priceList(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.svr.queryPtsStockCycVListWithPage(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPtsStockCycVListWithPage&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPtsStockCycVList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.svr.queryPtsStockCycVListWithPage&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;ptsStockCycList(com.hsapi.part.data.query.PtsStockCycV[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.svr.queryRepairOutList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRepairOutList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRepairOutList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.svr.queryRepairOutList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.svr.queryPurOutAnalysis(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPurOutAnalysis&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPurEnterAnalysis&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.svr.queryPurOutAnalysis&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;analysisList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;入库分析&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.svr.queryPtsEnterMainDetailWithPage(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPtsEnterMainDetailWithPage&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPtsEnterMainDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.svr.queryPtsEnterMainDetailWithPage&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;ptsEnterMainDetailList(com.hsapi.part.data.query.PtsEnterMainDetailV[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

@@ -1,0 +1,10 @@
+<map>
+  <entry>
+    <string>roleMgr</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;roleMgr.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;roleMgr&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.roleMgr&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.roleMgr.queryRoleMember(String[], String, Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRoleMember&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;查询业务字典项&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.roleMgr.queryRoleMember&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;roleId(String[]):&lt;/b&gt;多角色ID列表&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;强制从数据库查询&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

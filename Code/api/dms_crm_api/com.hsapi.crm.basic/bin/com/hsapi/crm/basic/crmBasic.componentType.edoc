@@ -1,0 +1,38 @@
+<map>
+  <entry>
+    <string>com.hsapi.crm.basic.crmBasic.saveSell(com.hsapi.crm.data.crm.CrmSellChanceDetail)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveSell&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveSell&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.basic.crmBasic.saveSell&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;sell(com.hsapi.crm.data.crm.CrmSellChanceDetail):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.basic.crmBasic.saveTalkArt(com.hsapi.crm.data.crmBasic.CrmTalkArt)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveTalkArt&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveTalkArt&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.basic.crmBasic.saveTalkArt&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.crm.data.crmBasic.CrmTalkArt):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.basic.crmBasic.saveSms(com.hsapi.crm.data.crmBasic.CrmTemplateMsg)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveSms&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveTalkArt&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.basic.crmBasic.saveSms&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.crm.data.crmBasic.CrmTemplateMsg):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.basic.crmBasic.getTalkArtList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getTalkArtList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getTalkArtList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.basic.crmBasic.getTalkArtList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;p(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.basic.crmBasic.querySellListNoPage(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;querySellListNoPage&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getTalkArtList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.basic.crmBasic.querySellListNoPage&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.basic.crmBasic.querySellList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;querySellList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getTalkArtList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.basic.crmBasic.querySellList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.basic.crmBasic.getSmsList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getSmsList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getTalkArtList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.basic.crmBasic.getSmsList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;p(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>crmBasic</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;crmBasic.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;crmBasic&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.basic.crmBasic&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.basic.crmBasic.saveSellList(com.hsapi.crm.data.crm.CrmSellChanceDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveSellList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveSell&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.basic.crmBasic.saveSellList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;sell(com.hsapi.crm.data.crm.CrmSellChanceDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

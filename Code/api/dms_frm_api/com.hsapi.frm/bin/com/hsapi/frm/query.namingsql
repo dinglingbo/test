@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.frm.query">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryRPAccountList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id as id,
+			a.rp_code as rpCode,
+			a.orgid as orgid,
+			a.guest_id as guestId,
+			a.guest_full_name as guestFullName,
+			a.service_id as serviceId,
+			a.service_code as serviceCode,
+			a.service_type_id as serviceTypeId,
+			a.rp_type as rptype,
+			a.rp_amt as rpAmt,
+			a.rp_amt_yes as rpAmtYes,
+			a.rp_amt_no as rpAmtNo,
+			a.recorder as recorder,
+			a.record_date as recordDate,
+			a.remark as remark,
+			a.operator as operator,
+			a.operate_date as operateDate,
+			a.f_year as fYear,
+			a.f_month as fMonth,
+			a.auditor as auditor,
+			a.audit_date as auditDate,
+			b.short_name as guestShortName,
+			b.code as code,
+			c.car_no as carNo,
+			case when a.rp_type = 1 then a.rp_amt else 0 end as ramt,
+			case when a.rp_type = -1 then a.rp_amt else 0 end as pamt
+		from fis_rp_account a
+		inner join wb_common.com_guest b on a.guest_id = b.id
+		inner join wb_repair.rpb_car c on b. = c.guest_id
+		where 1 = 1
+
+				
+			<dynamic>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+            <!--本日 昨日 本周 上周 本月 下月 -->
+            <isNotEmpty prepend="and" property="startDate">(a.record_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(a.record_date &lt; #endDate#)</isNotEmpty>
+            <!--创建日期 -->
+            <isNotEmpty prepend="and" property="sCreateDate">(a.record_date &gt;= #sCreateDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eCreateDate">(a.record_date &lt; #eCreateDate#)</isNotEmpty>
+            <!--审核日期 -->
+            <isNotEmpty prepend="and" property="sAuditDate">(a.audit_date &gt;= #sAuditDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eAuditDate">(a.audit_date &lt; #eAuditDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceId">(b.bill_service_id = #serviceId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceIdList">(b.bill_service_id in ($serviceIdList$))</isNotEmpty>
+        </dynamic>
+    </select>
+</sqlMap>

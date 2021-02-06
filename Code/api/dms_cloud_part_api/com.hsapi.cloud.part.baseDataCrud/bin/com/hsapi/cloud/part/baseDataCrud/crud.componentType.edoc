@@ -1,0 +1,382 @@
+<map>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.saveStrategyGuest(com.hsapi.cloud.part.data.pts.PjSellPriceGuest[], com.hsapi.cloud.part.data.pts.PjSellPriceGuest[], Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveStrategyGuest&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveStrategyGuest&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.saveStrategyGuest&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addList(com.hsapi.cloud.part.data.pts.PjSellPriceGuest[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;deleteList(com.hsapi.cloud.part.data.pts.PjSellPriceGuest[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stragegyId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.saveStockLevelPart(com.hsapi.cloud.part.data.pts.PjStockLevelPart[], com.hsapi.cloud.part.data.pts.PjStockLevelPart[], com.hsapi.cloud.part.data.pts.PjStockLevelPart[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveStockLevelPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveStockLevelPart&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.saveStockLevelPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addList(com.hsapi.cloud.part.data.pts.PjStockLevelPart[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updateList(com.hsapi.cloud.part.data.pts.PjStockLevelPart[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;deleteList(com.hsapi.cloud.part.data.pts.PjStockLevelPart[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryPartCode(String, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPartCode&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartCode&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryPartCode&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;conIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;1表示本地；2表示EPC；3表示没有查到信息&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;localPartList(com.hsapi.cloud.part.data.com.ComAttribute[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;epcPartList(com.hsapi.cloud.part.data.com.QuickPartWithStock[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryStoreHouse(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryStoreHouse&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryStoreHouse&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryStoreHouse&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orgid(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;storehouse(com.hsapi.cloud.part.data.com.ComStore[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryDeductParams(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryDeductParams&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;querySellStrategy&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryDeductParams&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.cloud.part.data.pts.PjDeductParams[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryDeductRole(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryDeductRole&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;querySellStrategy&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryDeductRole&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.cloud.part.data.pts.PjDeductRole[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryGuestList(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryGuestList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryGuestList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guest(com.hsapi.cloud.part.data.com.ComGuest[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.checkGuestExists(String, String, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;checkGuestExists&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;checkPartExists&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.checkGuestExists&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;fullName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;type(String):&lt;/b&gt;add,edit&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;往来单位ID&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.checkPartBrandExists(String, String, Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;checkPartBrandExists&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;checkPartExists&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.checkPartBrandExists&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;name(String):&lt;/b&gt;配件品牌名称&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;type(String):&lt;/b&gt;add,edit&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;配件ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;code(String):&lt;/b&gt;品牌编码&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryEPCPartByPartCode(String, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryEPCPartByPartCode&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryEPCPartByPartCode&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryEPCPartByPartCode&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;conIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;parts(com.hsapi.cloud.part.data.com.QuickPartWithStock[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.saveGuestLogistics(Int, com.hsapi.cloud.part.data.com.ComGuestLogistics[], com.hsapi.cloud.part.data.com.ComGuestLogistics[], com.hsapi.cloud.part.data.com.ComGuestLogistics[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveGuestLogistics&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePartBrand&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.saveGuestLogistics&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guestId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;logisticsAdd(com.hsapi.cloud.part.data.com.ComGuestLogistics[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;logisticsUpdate(com.hsapi.cloud.part.data.com.ComGuestLogistics[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;logisticsDelete(com.hsapi.cloud.part.data.com.ComGuestLogistics[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;S/E&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryStoreLocation(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryStoreLocation&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryStoreLocation&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryStoreLocation&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;locations(com.hsapi.cloud.part.data.com.ComStoreLocation[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryStrategyPrice(com.eos.foundation.PageCond, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryStrategyPrice&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryStrategyPrice&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryStrategyPrice&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.checkGuestExist(String, String, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;checkGuestExist&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;checkGuestExist&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.checkGuestExist&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;fullName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;type(String):&lt;/b&gt;add,edit&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;往来单位ID&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryGuestCon(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryGuestCon&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryGuestCon&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryGuestCon&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guestId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.cloud.part.data.com.ComGuestConnect[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryPartBrandList(Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPartBrandList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartBrandList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryPartBrandList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;parentId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isDisabled(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;brands(com.hsapi.cloud.part.data.com.ComPartBrand[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryEPCPartCommon(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryEPCPartCommon&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryEPCPartCommon&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryEPCPartCommon&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;brand(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partCommon(com.hsapi.cloud.part.data.com.QuickPartWithStock[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.saveImportUnifyPart(commonj.sdo.DataObject[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveImportUnifyPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getImportPartInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.saveImportUnifyPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addList(commonj.sdo.DataObject[]):&lt;/b&gt;partCode,sellPrice,wholeOnePrice,wholeTwoPrice,wholeThreePrice,wholeFourPrice,remark&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryStrategyStock(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryStrategyStock&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryStrateStock&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryStrategyStock&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryQuickPartCommonList(Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryQuickPartCommonList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryQuickPartCommonList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;parts(com.hsapi.cloud.part.data.com.QuickPartWithStock[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.saveOrgPartBrand(com.hsapi.cloud.part.data.com.ComPartBrandOrg[], com.hsapi.cloud.part.data.com.ComPartBrandOrg[], com.hsapi.cloud.part.data.com.ComPartBrandOrg[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveOrgPartBrand&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveOrgPartBrand&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.saveOrgPartBrand&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addList(com.hsapi.cloud.part.data.com.ComPartBrandOrg[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;deleteList(com.hsapi.cloud.part.data.com.ComPartBrandOrg[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updateList(com.hsapi.cloud.part.data.com.ComPartBrandOrg[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.saveGuestConnect(Int, com.hsapi.cloud.part.data.com.ComGuestConnect[], com.hsapi.cloud.part.data.com.ComGuestConnect[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveGuestConnect&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveGuestConnect&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.saveGuestConnect&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guestId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guestConAdd(com.hsapi.cloud.part.data.com.ComGuestConnect[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guestConDelete(com.hsapi.cloud.part.data.com.ComGuestConnect[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;S/E&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.checkPartTypeExists(String, String, String, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;checkPartTypeExists&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;checkPartExists&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.checkPartTypeExists&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;name(String):&lt;/b&gt;分类名称&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;code(String):&lt;/b&gt;分类编码&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;editType(String):&lt;/b&gt;add,edit&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;分类ID&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.getImportStockSet(com.hsapi.cloud.part.data.pts.PjPartStoreStock[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getImportStockSet&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getImportStockSet&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.getImportStockSet&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.cloud.part.data.pts.PjPartStoreStock[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.Copy_getImportPartInfo(com.hsapi.cloud.part.data.pts.PjEnterMain, com.hsapi.cloud.part.data.pts.PjEnterDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;Copy_getImportPartInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getImportPartInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.Copy_getImportPartInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;enterMain(com.hsapi.cloud.part.data.pts.PjEnterMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;enterDetail(com.hsapi.cloud.part.data.pts.PjEnterDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pjEnterMainList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryCustomList(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCustomList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryCustomList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;customers(com.hsapi.cloud.part.data.com.ComGuest[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.x_getBillDeductParams(String, com.hsapi.cloud.part.data.pts.PjSellOrderMainChk)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;x_getBillDeductParams&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getBillDeductParams&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.x_getBillDeductParams&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;如果不为空，则按id查询主表信息&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orderMain(com.hsapi.cloud.part.data.pts.PjSellOrderMainChk):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.getStorehouse()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getStorehouse&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStorehouse&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.getStorehouse&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;storehouse(com.hsapi.cloud.part.data.com.ComStore[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.getDeductMembers(String, Int, Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getDeductMembers&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getDeductMembers&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.getDeductMembers&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;deductMemId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;containOwn(Boolean):&lt;/b&gt;true包含自己；false不包含自己&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;memList(com.hsapi.cloud.part.data.pts.PjDeductMember[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.deleteComPartTypeById(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;deleteComPartTypeById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;deleteComPartTypeById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.deleteComPartTypeById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.getImportPart(com.hsapi.cloud.part.data.com.ComAttribute[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getImportPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getImportPartInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.getImportPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.cloud.part.data.com.ComAttribute[]):&lt;/b&gt;partCode,orderQty,orderPrice&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.getPartName(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPartName&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPartName&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.getPartName&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;name(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partName(com.hsapi.cloud.part.data.com.ComPartName[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.getLogisticsByGuestId(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getLogisticsByGuestId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getLogisticsByGuestId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.getLogisticsByGuestId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guestId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.cloud.part.data.com.ComGuestLogistics[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryGuestConnect(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryGuestConnect&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryGuestConnect&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryGuestConnect&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guestId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.cloud.part.data.com.ComGuestConnect[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryLogistics(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryLogistics&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;InsuranceQuery&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryLogistics&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.savePartBrand(com.hsapi.cloud.part.data.com.ComPartBrand, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;savePartBrand&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePartBrand&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.savePartBrand&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;brand(com.hsapi.cloud.part.data.com.ComPartBrand):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;S/E&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryStrategyGuest(com.eos.foundation.PageCond, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryStrategyGuest&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryStrategyGuest&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryStrategyGuest&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.getImportPartInfo(com.hsapi.cloud.part.data.pts.PjEnterMain, com.hsapi.cloud.part.data.pts.PjEnterDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getImportPartInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getImportPartInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.getImportPartInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;enterMain(com.hsapi.cloud.part.data.pts.PjEnterMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;enterDetail(com.hsapi.cloud.part.data.pts.PjEnterDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pjEnterMainList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList(com.eos.foundation.PageCond, String, String, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;querySupplierList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;querySupplierList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sortField(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sortOrder(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;suppliers(com.hsapi.cloud.part.data.com.ComGuest[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.saveStorehouse(com.hsapi.cloud.part.data.com.ComStore, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveStorehouse&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePartBrand&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.saveStorehouse&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;storehouse(com.hsapi.cloud.part.data.com.ComStore):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;S/E&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.deleteStockLevel(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;deleteStockLevel&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;deleteStockLevel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.deleteStockLevel&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.updateGuestDisable(com.hsapi.cloud.part.data.com.ComGuest)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateGuestDisable&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateGuestDisable&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.updateGuestDisable&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guest(com.hsapi.cloud.part.data.com.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryComPartType()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryComPartType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryComPartType&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryComPartType&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;type(com.hsapi.cloud.part.data.com.ComPartType[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryPjPartPrice(Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjPartPrice&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPartPrice&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryPjPartPrice&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orgid(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.cloud.part.data.pts.PjPartPrice[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.saveBillDeductMem(com.hsapi.cloud.part.data.pts.PjBillDeductMem[], Int, Int, Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveBillDeductMem&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveBillDeductMem&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.saveBillDeductMem&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.cloud.part.data.pts.PjBillDeductMem[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;roleId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceType(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMSg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryPartListByOrgid(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPartListByOrgid&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryPartListByOrgid&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;parts(com.hsapi.cloud.part.data.com.ComAttribute[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.fitPartInfo(commonj.sdo.DataObject[], String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;fitPartInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;fitPartInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.fitPartInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partInfo(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partBrandId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partInfo(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.saveStoreStockSet(com.hsapi.cloud.part.data.pts.PjPartStoreStock[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveStoreStockSet&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveStoreStockSet&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.saveStoreStockSet&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partStoreStock(com.hsapi.cloud.part.data.pts.PjPartStoreStock[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.saveDeductParams(com.hsapi.cloud.part.data.pts.PjDeductParams[], com.hsapi.cloud.part.data.pts.PjDeductParams[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveDeductParams&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;querySellStrategy&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.saveDeductParams&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addList(com.hsapi.cloud.part.data.pts.PjDeductParams[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updateList(com.hsapi.cloud.part.data.pts.PjDeductParams[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.saveComPartType(com.hsapi.cloud.part.data.com.ComPartType)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveComPartType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryComCompany&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.saveComPartType&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;comPartType(com.hsapi.cloud.part.data.com.ComPartType):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;comPartType(com.hsapi.cloud.part.data.com.ComPartType):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.saveComCompany(com.hsapi.cloud.part.data.com.ComCompany)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveComCompany&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryComCompany&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.saveComCompany&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;comCompany(com.hsapi.cloud.part.data.com.ComCompany):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;comCompany(com.hsapi.cloud.part.data.com.ComCompany):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>crud</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;crud.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;crud&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryAndSavePartCommon(String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryAndSavePartCommon&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryAndSavePartCommon&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryAndSavePartCommon&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;commonCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;用于新增配件时设置替换关系&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.updateComPartTypeDisabled(Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateComPartTypeDisabled&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateComPartTypeDisabled&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.updateComPartTypeDisabled&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;isDisabled(Int):&lt;/b&gt;0,启用；1,禁用&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.querySellStrategyWithUnity(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;querySellStrategyWithUnity&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;querySellStrategy&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.querySellStrategyWithUnity&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.getSellPriceGuest(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getSellPriceGuest&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;checkSellPriceGuest&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.getSellPriceGuest&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guestId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;strategyId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guest(com.hsapi.cloud.part.data.pts.PjSellPriceGuest[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.saveImportPartCommon_copy(java.util.HashMap[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveImportPartCommon_copy&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveImportPartCommon&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.saveImportPartCommon_copy&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.settleEPCPart(com.hsapi.part.data.com.ComAttribute[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;settleEPCPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getImportPartInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.settleEPCPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.part.data.com.ComAttribute[]):&lt;/b&gt;partCode,orderQty,orderPrice&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.updatePartCommon(java.util.HashMap, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updatePartCommon&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updatePartCommon&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.updatePartCommon&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pp(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pc(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.addPartInfo(String, String, String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;addPartInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;addPartInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.addPartInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;qualityTypeId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partBrandId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;unit(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fullName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;part(com.hsapi.cloud.part.data.com.ComAttribute):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.updateStorehouseLocation(com.hsapi.cloud.part.data.com.ComStoreLocation[], String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateStorehouseLocation&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateStorehouseLocation&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.updateStorehouseLocation&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;locations(com.hsapi.cloud.part.data.com.ComStoreLocation[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;wid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;cid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;status(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;literainfos(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.savePjdeductPart(com.hsapi.cloud.part.data.pts.PjDeductPart[], com.hsapi.cloud.part.data.pts.PjDeductPart[], com.hsapi.cloud.part.data.pts.PjDeductPart[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;savePjdeductPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePjdeductPart&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.savePjdeductPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addList(com.hsapi.cloud.part.data.pts.PjDeductPart[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updateList(com.hsapi.cloud.part.data.pts.PjDeductPart[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;deleteList(com.hsapi.cloud.part.data.pts.PjDeductPart[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryUnifyPrice(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryUnifyPrice&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryStrategyPrice&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryUnifyPrice&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.querySellStrategy()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;querySellStrategy&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;querySellStrategy&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.querySellStrategy&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.cloud.part.data.pts.PjSellPriceStrategy[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.addStorehouseLocations(com.hsapi.cloud.part.data.com.ComStoreLocation[], String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;addStorehouseLocations&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;addStorehousePos&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.addStorehouseLocations&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;storeLocations(com.hsapi.cloud.part.data.com.ComStoreLocation[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;wid(String):&lt;/b&gt;仓先生仓库ID&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;新增仓位&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.saveUpdatePrice(java.util.HashMap[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveUpdatePrice&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveUpdatePrice&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.saveUpdatePrice&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.savePartCommon(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;savePartCommon&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePartCommon&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.savePartCommon&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partIds(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;commonIds(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;commonId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.saveDeductRole(com.hsapi.cloud.part.data.pts.PjDeductRole[], com.hsapi.cloud.part.data.pts.PjDeductRole[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveDeductRole&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;querySellStrategy&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.saveDeductRole&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addList(com.hsapi.cloud.part.data.pts.PjDeductRole[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updateList(com.hsapi.cloud.part.data.pts.PjDeductRole[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryDeductMember(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryDeductMember&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;querySellStrategy&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryDeductMember&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.cloud.part.data.pts.PjDeductMember[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.x_setBillDeductMembers(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;x_setBillDeductMembers&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getBillDeductMembers&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.x_setBillDeductMembers&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;订单ID&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.x_QueryEPCPartByPartCode(String, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;x_QueryEPCPartByPartCode&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryEPCPartByPartCode&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.x_QueryEPCPartByPartCode&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;conIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;parts(com.hsapi.cloud.part.data.com.QuickPartWithStock[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;brandResult(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.savePartMatchIngDetail(com.hsapi.cloud.part.data.pts.PjPartMatchingDetail[], com.hsapi.cloud.part.data.pts.PjPartMatchingDetail[], com.hsapi.cloud.part.data.pts.PjPartMatchingDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;savePartMatchIngDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePartMatchIngDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.savePartMatchIngDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addList(com.hsapi.cloud.part.data.pts.PjPartMatchingDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updateList(com.hsapi.cloud.part.data.pts.PjPartMatchingDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;deleteList(com.hsapi.cloud.part.data.pts.PjPartMatchingDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.checkPart(String, String, String, Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;checkPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;checkPart&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.checkPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partBrandId(String):&lt;/b&gt;配件品牌&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partCode(String):&lt;/b&gt;配件编码&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;type(String):&lt;/b&gt;add,edit&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;配件ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgBrandId(String):&lt;/b&gt;公司厂牌&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.cancelPartCommon(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;cancelPartCommon&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;cancelPartCommon&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.cancelPartCommon&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partIds(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryAccountSettleType(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryAccountSettleType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryAccountSettleType&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryAccountSettleType&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;accountId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.cloud.part.data.pts.FibAccountTypeRela[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.getSellPricePart(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getSellPricePart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;checkSellPriceGuest&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.getSellPricePart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;strategyId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;part(com.hsapi.cloud.part.data.pts.PjSellPricePart[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryQuickPartList(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryQuickPartList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryQuickPartList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;parts(com.hsapi.cloud.part.data.com.ComAttribute[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.savePart(com.hsapi.cloud.part.data.com.ComAttribute, String, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;savePart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePart&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.savePart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;part(com.hsapi.cloud.part.data.com.ComAttribute):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;cangHash(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;S/E&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;保存配件&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.saveImportPartCommon(commonj.sdo.DataObject[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveImportPartCommon&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveImportPartCommon&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.saveImportPartCommon&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.getPartById(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPartById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPartById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.getPartById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;part(com.hsapi.cloud.part.data.com.ComAttribute):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.savePartMatching(com.hsapi.cloud.part.data.pts.PjPartMatching[], com.hsapi.cloud.part.data.pts.PjPartMatching[], com.hsapi.cloud.part.data.pts.PjPartMatching[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;savePartMatching&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePartMatching&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.savePartMatching&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addList(com.hsapi.cloud.part.data.pts.PjPartMatching[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updateList(com.hsapi.cloud.part.data.pts.PjPartMatching[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;deleteList(com.hsapi.cloud.part.data.pts.PjPartMatching[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryPartCommon(Int, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPartCommon&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartCommon&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryPartCommon&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;type(String):&lt;/b&gt;LOCAL; EPC;ALL;NALL&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;brand(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;parts(com.hsapi.cloud.part.data.com.QuickPartWithStock[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.savePartPrice(com.hsapi.cloud.part.data.pts.PjPartPrice[], com.hsapi.cloud.part.data.pts.PjPartPrice[], com.hsapi.cloud.part.data.pts.PjPartPrice[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;savePartPrice&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveSellStrategy&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.savePartPrice&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addList(com.hsapi.cloud.part.data.pts.PjPartPrice[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updateList(com.hsapi.cloud.part.data.pts.PjPartPrice[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;deleteList(com.hsapi.cloud.part.data.pts.PjPartPrice[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryPartList(com.eos.foundation.PageCond, String, String, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPartList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryPartList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sortField(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sortOrder(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;parts(com.hsapi.cloud.part.data.com.ComAttribute[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryDeductMem(Int, Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryDeductMem&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryDeductMem&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryDeductMem&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceType(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.cloud.part.data.pts.PjBillDeductMem[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.test(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;test&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;test&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.test&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;name(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.checkPartExists(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;checkPartExists&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;checkPartExists&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.checkPartExists&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partBrandId(String):&lt;/b&gt;配件品牌&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partCode(String):&lt;/b&gt;配件编码&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;S存在；E不存在&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;part(com.hsapi.cloud.part.data.com.ComAttribute):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.saveStrategyPart(com.hsapi.cloud.part.data.pts.PjSellPricePart[], com.hsapi.cloud.part.data.pts.PjSellPricePart[], com.hsapi.cloud.part.data.pts.PjSellPricePart[], Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveStrategyPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveStrategyGuest&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.saveStrategyPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addList(com.hsapi.cloud.part.data.pts.PjSellPricePart[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;deleteList(com.hsapi.cloud.part.data.pts.PjSellPricePart[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updateList(com.hsapi.cloud.part.data.pts.PjSellPricePart[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stragegyId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.saveSupplier(com.hsapi.cloud.part.data.com.ComGuest, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveSupplier&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveSupplier&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.saveSupplier&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;supplier(com.hsapi.cloud.part.data.com.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;S/E&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guestId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;supplier(com.hsapi.cloud.part.data.com.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.saveSellStrategy(com.hsapi.cloud.part.data.pts.PjSellPriceStrategy[], com.hsapi.cloud.part.data.pts.PjSellPriceStrategy[], com.hsapi.cloud.part.data.pts.PjSellPriceStrategy[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveSellStrategy&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveSellStrategy&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.saveSellStrategy&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addList(com.hsapi.cloud.part.data.pts.PjSellPriceStrategy[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updateList(com.hsapi.cloud.part.data.pts.PjSellPriceStrategy[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;deleteList(com.hsapi.cloud.part.data.pts.PjSellPriceStrategy[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.getSorehouseLocation(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getSorehouseLocation&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getSorehouseLocation&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.getSorehouseLocation&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;storeId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;locations(com.hsapi.cloud.part.data.com.ComStoreLocation[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.saveImportStrategyPart(Int, commonj.sdo.DataObject[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveImportStrategyPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getImportPartInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.saveImportStrategyPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;stragegyId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;addList(commonj.sdo.DataObject[]):&lt;/b&gt;partCode,sellPrice,wholeOnePrice,wholeTwoPrice,wholeThreePrice,wholeFourPrice,remark&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.queryOrgPartBrandList(String, Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryOrgPartBrandList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartBrandList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.queryOrgPartBrandList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;parentId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isDisabled(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;brands(com.hsapi.cloud.part.data.com.ComPartBrandOrg[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.saveDeductMember(com.hsapi.cloud.part.data.pts.PjDeductMember)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveDeductMember&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;querySellStrategy&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.saveDeductMember&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.cloud.part.data.pts.PjDeductMember):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.crud.deleteSellStratefy(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;deleteSellStratefy&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;deleteSellStratefy&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.crud.deleteSellStratefy&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

@@ -1,0 +1,50 @@
+<map>
+  <entry>
+    <string>com.hsapi.system.dataProcessing.wbPart.wbRepair(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;wbRepair&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;wbPart&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dataProcessing.wbPart.wbRepair&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dataProcessing.wbPart.dataProcessing(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;dataProcessing&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;dataProcessing&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dataProcessing.wbPart.dataProcessing&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dataProcessing.wbPart.rpsCard(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;rpsCard&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;rpsCard&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dataProcessing.wbPart.rpsCard&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dataProcessing.wbPart.wbPart(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;wbPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;wbPart&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dataProcessing.wbPart.wbPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dataProcessing.wbPart.wbFrm(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;wbFrm&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;wbFrm&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dataProcessing.wbPart.wbFrm&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dataProcessing.wbPart.guestProcessing(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;guestProcessing&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;guestProcessing&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dataProcessing.wbPart.guestProcessing&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dataProcessing.wbPart.employeesProcessing(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;employeesProcessing&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;employeesProcessing&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dataProcessing.wbPart.employeesProcessing&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dataProcessing.wbPart.basisProcessing(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;basisProcessing&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;basisProcessing&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dataProcessing.wbPart.basisProcessing&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>wbPart</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;wbPart.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;wbPart&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dataProcessing.wbPart&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dataProcessing.wbPart.rpsMaintain(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;rpsMaintain&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;rpsMaintain&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dataProcessing.wbPart.rpsMaintain&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dataProcessing.wbPart.supplierProcessing(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;supplierProcessing&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;supplierProcessing&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dataProcessing.wbPart.supplierProcessing&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dataProcessing.wbPart.wbSales(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;wbSales&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;wbSales&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dataProcessing.wbPart.wbSales&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

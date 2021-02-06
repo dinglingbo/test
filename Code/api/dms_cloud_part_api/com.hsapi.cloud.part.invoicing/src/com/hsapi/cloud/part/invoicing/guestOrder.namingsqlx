@@ -48,6 +48,8 @@
 			B.SHORT_NAME AS guestShortName,
 			A.is_billing as isBilling,
 			A.show_amt as showAmt,
+            a.business_type_id as businessTypeId,
+			a.settle_guest_id as settleGuestId,
 			E.name as orgName
 		FROM
 			DMS_CLOUD_PART.pj_guest_order_main A
@@ -178,7 +180,8 @@
 				B.apply_car_model AS comApplyCarModel,
 				B.unit AS comUnit,
 				B.spec AS comSpec,
-				B.direction AS comDirection
+				B.direction AS comDirection,
+				b.org_car_brand_id as orgCarBrandId
 			FROM
 				DMS_CLOUD_PART.pj_guest_order_detail A
 			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID

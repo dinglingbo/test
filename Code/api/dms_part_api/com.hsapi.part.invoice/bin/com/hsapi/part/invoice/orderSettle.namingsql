@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.part.invoice.orderSettle">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <!--根据中文的品牌 + 配件编码 查询配件信息存不存在-->
+    <select id="queryPartByPartBrand" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			a.id, a.orgid, a.`code`, a.`name`, a.full_name as fullName, a.full_name as full_name,
+			a.brand_code as brandCode, a.oem_code as oemCode,
+			a.common_code as commonCode, a.query_code as queryCode, 
+			a.quality_type_id as qualityTypeId, a.part_name_id as partNameId,
+			a.name_py as namePy, a.name_en as nameEn, a.goods_code as goodsCode, 
+			a.tax_rate as taxRate, a.part_brand_id as partBrandId,
+			a.apply_carbrand_id as applyCarBrandId, a.apply_car_model as applyCarModel, 
+			a.car_type_id_f as carTypeIdF,
+			a.car_type_id_s as carTypeIdS, a.car_type_id_t as carTypeIdT, 
+			a.spec, a.direction, a.model,
+			a.unit, a.retail_price, a.whole_sale_price, a.usage_qty, a.picture,
+			a.source_id as sourceId, a.common_id as commonId, 
+			a.srm_brand_id as srmBrandId, a.srm_quality_id as srmQualityId,
+			a.srm_part_id as srmPartId, a.remark
+		from com_attribute a
+			inner join com_part_brand b
+			on a.part_brand_id = b.id
+			where a.code = #partCode# and b.name = #brandName# and a.is_disabled = 0</select>
+    <!--更新 com_attribute 的 srm_brand_id   srm_quality_id  srm_part_id-->
+    <update id="updatePartInfo" parameterClass="java.util.HashMap">update com_attribute set srm_brand_id = #brandId#, srm_part_id = #partId#, srm_quality_id = #qualityId#
+		where id = #id#</update>
+    <!--更新 com_guest 的 srm_guest_id-->
+    <update id="updateGuestInfo" parameterClass="java.util.HashMap">update com_guest set srm_guest_id = #guestId#
+		where id = #id#</update>
+    <select id="queryPchsOrderDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">SELECT b.srm_brand_id as srmBrandId, a.part_code as partCode, b.name as partName, 
+		       b.oem_code as oemCode, a.order_qty as orderQty, b.srm_quality_id as srmQualityId, 
+		       a.remark as remark, a.order_price as orderPrice, a.enter_unit_id as enterUnitId,
+		       a.order_amt as orderAmt,a.goods_code as goodsCode
+		from pj_pchs_order_detail a
+		inner join wb_common.com_attribute b
+		on a.part_id = b.id
+		where a.main_id = #mainId#
+		order by a.id</select>
+    <update id="updatePchsOrderAllIn" parameterClass="java.util.HashMap">
+		update pj_pchs_order_detail_chk 
+			set true_enter_qty = order_qty, 
+				true_enter_amt = order_amt,
+				not_enter_amt = 0, 
+				not_enter_qty = 0, 
+				is_finished = 1, 
+				finish_date = SYSDATE()
+			where 1 = 1
+			<isNotNull prepend="and" property="mainId">main_id = #mainId#</isNotNull>
+    </update>
+    <!-- 如果入库记录的仓位为空，则按库存的仓位更新入库记录的仓位 -->
+    <update id="updatePchsEnterOriginId" parameterClass="java.util.HashMap">
+		update pj_enter_detail_chk a
+		inner join pj_part_store_stock b
+		on a.part_id = b.part_id and a.store_id = b.store_id
+		set a.store_shelf = ifnull(a.store_shelf, b.shelf),
+		    a.origin_id = a.id
+		where 1 = 1 
+			<isNotNull prepend="and" property="mainId">a.main_id = #mainId#</isNotNull>
+    </update>
+    <update id="updatePchsOrderShelf" parameterClass="java.util.HashMap">
+		update pj_enter_detail_chk 
+			set store_shelf = #shelf#
+			where outable_qty &gt; 0 
+		<isNotNull prepend="and" property="partId">part_id = #partId#</isNotNull>
+        <isNotNull prepend="and" property="storeId">store_id = #storeId#</isNotNull>
+    </update>
+    <update id="updatePjPartStoreStockShelf" parameterClass="java.util.HashMap">
+		update pj_part_store_stock 
+			set shelf = #shelf#
+			where outable_qty &gt; 0 
+		<isNotNull prepend="and" property="partId">part_id = #partId#</isNotNull>
+        <isNotNull prepend="and" property="storeId">store_id = #storeId#</isNotNull>
+    </update>
+    <update id="updateSellRtnOriginId" parameterClass="java.util.HashMap">
+		update pj_enter_detail_chk set origin_id = id 
+		where IFNULL(origin_id,0) = 0
+			<isNotNull prepend="and" property="mainId">main_id = #mainId#</isNotNull>
+    </update>
+    <update id="updatePchsOrderRtn" parameterClass="java.util.HashMap">
+		update pj_sell_order_detail_chk 
+			set true_out_qty = order_qty, 
+				true_out_amt = order_amt,
+				not_out_amt = 0, 
+				not_out_qty = 0
+			where 1 = 1
+			<isNotNull prepend="and" property="mainId">main_id = #mainId#</isNotNull>
+    </update>
+</sqlMap>

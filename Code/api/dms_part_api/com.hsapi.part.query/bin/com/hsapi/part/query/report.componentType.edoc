@@ -1,0 +1,106 @@
+<map>
+  <entry>
+    <string>com.hsapi.part.query.report.queryStoreTotal(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryStoreTotal&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryStoreTotal&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report.queryStoreTotal&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.report.queryPchsPartForMonth(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPchsPartForMonth&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartBrandAnalysis&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report.queryPchsPartForMonth&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;enterList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rtnList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.report.queryPchsPartBrandForMonth(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPchsPartBrandForMonth&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPchsPartBrandForMonth&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report.queryPchsPartBrandForMonth&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;brandList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;enterList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rtnList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.report.querySellClientForMonth(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;querySellClientForMonth&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartBrandAnalysis&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report.querySellClientForMonth&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;clientList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sellList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rtnList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>msmSend</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;report.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;msmSend&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.report.queryPchsPart(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPchsPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartBrandAnalysis&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report.queryPchsPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;enterList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rtnList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.report.queryDataRemind(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryDataRemind&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryBusinessRemind&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report.queryDataRemind&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.part.data.pts.PjDataRemind[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.report.queryEnterRecord(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryEnterRecord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryEnterRecord&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report.queryEnterRecord&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.report.queryPchsPartType(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPchsPartType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartBrandAnalysis&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report.queryPchsPartType&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;typeList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;enterList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rtnList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.report.queryPchsSupplierForMonth(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPchsSupplierForMonth&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartBrandAnalysis&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report.queryPchsSupplierForMonth&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;supplierList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;enterList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rtnList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.report.queryPickManName(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPickManName&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPickName&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report.queryPickManName&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.report.queryPchsPartTypeForMonth(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPchsPartTypeForMonth&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartBrandAnalysis&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report.queryPchsPartTypeForMonth&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;typeList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;enterList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rtnList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.report.queryRepairOutPartNameColumn(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRepairOutPartNameColumn&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRepairOutPartNameColumn&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report.queryRepairOutPartNameColumn&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.report.querySellRecord(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;querySellRecord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryEnterRecord&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report.querySellRecord&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.report.queryPchsPartBrand(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPchsPartBrand&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartBrandAnalysis&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report.queryPchsPartBrand&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;brandList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;enterList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rtnList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.report.querySellPartForMonth(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;querySellPartForMonth&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartBrandAnalysis&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report.querySellPartForMonth&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sellList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rtnList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.report.querySellPartBrandForMonth(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;querySellPartBrandForMonth&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartBrandAnalysis&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report.querySellPartBrandForMonth&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;brandList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sellList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rtnList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.report.querySellPart(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;querySellPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartBrandAnalysis&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report.querySellPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sellList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rtnList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.report.querySellPartTypeForMonth(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;querySellPartTypeForMonth&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartBrandAnalysis&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report.querySellPartTypeForMonth&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;typeList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sellList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rtnList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.report.queryRepairOutForPartName(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRepairOutForPartName&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartBrandAnalysis&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report.queryRepairOutForPartName&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;manList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;outList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.report.querySellClient(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;querySellClient&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartBrandAnalysis&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report.querySellClient&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;clientList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sellList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rtnList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.report.querySellPartType(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;querySellPartType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartBrandAnalysis&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report.querySellPartType&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;typeList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sellList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rtnList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.report.queryOutRecord(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryOutRecord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryOutRecord&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report.queryOutRecord&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.report.queryBusinessRemind(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryBusinessRemind&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryBusinessRemind&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report.queryBusinessRemind&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.part.data.pts.PjBusinessRemind[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.report.querySellPartBrand(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;querySellPartBrand&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartBrandAnalysis&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report.querySellPartBrand&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;brandList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sellList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rtnList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.report.queryPchsSupplier(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPchsSupplier&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartBrandAnalysis&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.report.queryPchsSupplier&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;supplierList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;enterList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rtnList(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

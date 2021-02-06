@@ -160,6 +160,10 @@
       <process:to type="query">outmain/operatorId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">mainenter/guestId</process:from>
+      <process:to type="query">outmain/settleGuestId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">outmain/id</process:from>
       <process:to type="query">mainId</process:to>
     </process:copy>
@@ -417,6 +421,14 @@
       <process:from type="query" pattern="reference">outableDetail/expEnterPrice</process:from>
       <process:to type="query">expEnterPrice</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/taxCostPrice</process:from>
+      <process:to type="query">taxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/noTaxCostPrice</process:from>
+      <process:to type="query">noTaxCostPrice</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
     <location x="743" y="178"/>
@@ -644,6 +656,22 @@
       <process:to type="query">outdetail/expEnterAmt</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">taxCostPrice</process:from>
+      <process:to type="query">outdetail/taxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">taxCostPrice*billQty</process:from>
+      <process:to type="query">outdetail/taxCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">noTaxCostPrice</process:from>
+      <process:to type="query">outdetail/noTaxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">noTaxCostPrice*billQty</process:from>
+      <process:to type="query">outdetail/noTaxCostAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="expression" pattern="reference">mNoTaxAmt+(noTaxPrice*billQty)</process:from>
       <process:to type="query">mNoTaxAmt</process:to>
     </process:copy>
@@ -858,6 +886,22 @@
     <process:copy>
       <process:from type="expression" pattern="reference">expEnterPrice*outaleQty</process:from>
       <process:to type="query">outdetail/expEnterAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxCostPrice</process:from>
+      <process:to type="query">outdetail/taxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">taxCostPrice*outaleQty</process:from>
+      <process:to type="query">outdetail/taxCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">noTaxCostPrice</process:from>
+      <process:to type="query">outdetail/noTaxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">noTaxCostPrice*outaleQty</process:from>
+      <process:to type="query">outdetail/noTaxCostAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">mNoTaxAmt+(noTaxPrice*outaleQty)</process:from>
@@ -1745,6 +1789,8 @@
     <process:variable description="增票 010103" historyStateLocation="client" isArray="false" name="billTypeId" primitiveType="String"/>
     <process:variable description="调拨出库   DBC  050204;调入退货   DRC  050211" historyStateLocation="client" isArray="false" name="enterTypeId" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="expEnterPrice" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="taxCostPrice" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="noTaxCostPrice" primitiveType="Float"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjAllotAcceptMain" name="mainenter"/>

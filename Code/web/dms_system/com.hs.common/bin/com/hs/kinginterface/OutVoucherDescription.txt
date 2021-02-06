@@ -1,0 +1,45 @@
+/*
+	 借：库存商品-保时捷-4426.81
+    库存商品-大众  -3317.88
+    应交税费-应交增值税-进项税额-保时捷-571.77
+    应交税费-应交增值税-进项税额-大众-428.54
+    销售费用-采购运费-保时捷28.58
+    销售运费-采购运费-大众21.42
+   贷：应付账款- 广州市万德汽车配件有限公司-保时捷-4970
+    应付账款- 广州市万德汽车配件有限公司-大众-3725"	
+
+*/
+SELECT * from pj_sell_order_main_chk where service_id = 'CGD10060120082600001'
+
+SELECT * from pj_sell_order_detail_chk where main_id = 10007
+
+
+
+SELECT * from pj_sell_order_main_chk where code = 'CGD10060120082600001'
+
+SELECT * from pj_sell_order_detail_chk where main_id = 10008
+
+
+
+SELECT * from pj_out_main_chk where code = 'CGD10060120082600002'
+
+SELECT * from pj_out_detail_chk where main_id = 7522
+
+/*
+	库存商品-保时捷4426.81
+  应交税费-应交增值税-进项税额-保时捷
+  销售费用-采购运费-保时捷
+	应付账款- 广州市万德汽车配件有限公司-保时捷
+*/
+SELECT c.king_dept_code as kingDeptCode, 
+				 sum(a.no_tax_cost_amt - a.no_tax_amt) as expenseAmt, 
+				 sum(a.no_tax_cost_amt) * -1.0 as noTaxCostAmt, 
+				 sum(a.tax_diff) * -1.0 as taxDiff,
+				 sum(a.sell_amt) * -1.0 as sellAmt 
+from pj_out_detail_chk a
+inner join wb_common.com_attribute b
+on a.part_id = b.id
+inner join pj_store_king_dept c
+on a.store_id = c.store_id and b.org_car_brand_id = c.org_car_brand_id
+where main_id = 1
+group by c.king_dept_code

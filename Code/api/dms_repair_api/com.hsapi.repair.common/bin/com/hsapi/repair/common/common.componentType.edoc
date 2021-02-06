@@ -1,0 +1,54 @@
+<map>
+  <entry>
+    <string>com.hsapi.repair.common.common.repairHttpSend(java.util.HashMap, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;repairHttpSend&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;repairHttpSend&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.common.common.repairHttpSend&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;apiName(String):&lt;/b&gt;com.hsapi.frm.arap.test.biz.ext&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.common.common.getDatadictionaries(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getDatadictionaries&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getDatadictionaries&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.common.common.getDatadictionaries&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;parentId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.common.ComDatadictionaries[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.common.common.errorId()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;errorId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;errorId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.common.common.errorId&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;item(com.hsapi.repair.data.rpbse.RpbItem):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>common</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;common.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;common&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.common.common&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.common.common.getBusinessType(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getBusinessType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getBusinessType&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.common.common.getBusinessType&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.rpbse.RpbBusinessType[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.common.common.getDictItems(String[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getDictItems&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getDictItems&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.common.common.getDictItems&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;dictIdList(String[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;dataItems(com.hsapi.repair.data.common.ComDataitems[]):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;数据字典&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.common.common.getCarSeriesByBrandId(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCarSeriesByBrandId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getCarSeriesByBrandId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.common.common.getCarSeriesByBrandId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;brandId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.common.ComCarSeries[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.common.common.getCarModelByBrandId(String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCarModelByBrandId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getCarModelByBrandId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.common.common.getCarModelByBrandId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;brandId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;seriesId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carModelId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carModel(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.common.ComCarModel[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.common.common.getCarVerificationDate(Date)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCarVerificationDate&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getCarVerificationDate&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.common.common.getCarVerificationDate&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;regDate(Date):&lt;/b&gt;车辆注册日期&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;dueDate(Date):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.common.common.queryOrgTree(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryOrgTree&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryOrgTree&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.common.common.queryOrgTree&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;nodeId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;nodeType(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;treeNodes(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.common.common.getWorkerWeight(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getWorkerWeight&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getWorkerWeight&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.common.common.getWorkerWeight&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;empid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;weight(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.common.common.generateDetailID()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateDetailID&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generateDetailID&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.common.common.generateDetailID&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.common.common.getProvinceAndCity()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getProvinceAndCity&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getProvinceAndCity&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.common.common.getProvinceAndCity&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;province(com.hsapi.repair.data.common.ComProvince[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;city(com.hsapi.repair.data.common.ComCity[]):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;省份和城市&lt;/html&gt;</string>
+  </entry>
+</map>

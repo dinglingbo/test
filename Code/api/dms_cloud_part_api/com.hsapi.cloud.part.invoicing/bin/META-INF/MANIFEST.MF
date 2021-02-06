@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Require-Bundle: com.hsapi.cloud.part.report,com.hsapi.cloud.part.settl
+ e,com.hsapi.cloud.part.common,com.hsapi.cloud.part.baseDataCrud,com.h
+ sapi.cloud.part.data,com.eos.foundation,com.hs.common
+eos-webCtxPath: invoicing
+Bundle-Vendor: Administrator
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsapi.cloud.part.invoicing
+Bundle-Description: 
+Bundle-SymbolicName: com.hsapi.cloud.part.invoicing
+

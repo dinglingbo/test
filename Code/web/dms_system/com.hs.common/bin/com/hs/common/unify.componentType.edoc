@@ -1,0 +1,22 @@
+<map>
+  <entry>
+    <string>com.hs.common.unify.testEmp(com.hs.common.com.ComCompany)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;testEmp&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;testEmp&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.unify.testEmp&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hs.common.com.ComCompany):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>Unify</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;unify.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;Unify&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.unify&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.unify.updateEntityBatch(String, commonj.sdo.DataObject[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateEntityBatch&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateGuest&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.unify.updateEntityBatch&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;dsName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;datas(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.unify.saveEntity(String, commonj.sdo.DataObject, Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveEntity&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveTalkArt&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.unify.saveEntity&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;dsName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;forceInsert(Boolean):&lt;/b&gt;强制插入true&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.unify.intfc(java.util.HashMap, String, String, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;intfc&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;intfc&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.unify.intfc&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;p(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;row2Cols(String):&lt;/b&gt;行转列转置列参数，多个用逗号隔开&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sumCols(String):&lt;/b&gt;行转列汇总列参数，多个用逗号隔开&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;result(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

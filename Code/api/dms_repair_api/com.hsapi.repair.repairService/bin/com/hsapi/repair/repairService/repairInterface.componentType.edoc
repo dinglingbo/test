@@ -1,0 +1,126 @@
+<map>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.queryRpsPickMainList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRpsPickMainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRpsPickMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.queryRpsPickMainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.settleRpsStoredRecord(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;settleRpsStoredRecord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;settleRpsStoredRecord&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.settleRpsStoredRecord&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>repairInterface</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;repairInterface.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;repairInterface&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.QueryCheckMainList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;QueryCheckMainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCheckMainbyServiceId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.QueryCheckMainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.rps.RpsCheckMain[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.settleRepairInfo(Int, Int, Double)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;settleRepairInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;settleRepairInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.settleRepairInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;billMainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billTypeId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;cardPayAmt(Double):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.QueryLastCheckMain(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;QueryLastCheckMain&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCheckMainbyServiceId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.QueryLastCheckMain&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.rps.RpsCheckMain[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isRecord(String):&lt;/b&gt;0表示没有记录 1表示有记录&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.expenseSettle(java.util.HashMap[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;expenseSettle&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;rpAccountSettle&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.expenseSettle&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpAdd(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.updateComMsg(com.hsapi.repair.data.common.ComMessage[], String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateComMsg&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateComMsg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.updateComMsg&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rows(com.hsapi.repair.data.common.ComMessage[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isRead(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.updateRpsCardTimes(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateRpsCardTimes&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateRpsCardTimes&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.updateRpsCardTimes&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;billMainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.queryStandardItem(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryStandardItem&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryStdItem&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.queryStandardItem&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.alibaba.fastjson.JSONObject):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.updateRepairInfo(Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateRepairInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateRepairInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.updateRepairInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;billMainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billTypeId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.queryCheckMainbyServiceId(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCheckMainbyServiceId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCheckMainbyServiceId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.queryCheckMainbyServiceId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.rps.RpsCheckMain[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isRecord(String):&lt;/b&gt;0表示没有记录 1表示有记录&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;car(com.hsapi.repair.data.rpbse.RpbCar):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.saveCheckMain(com.hsapi.repair.data.rps.RpsCheckMain, com.hsapi.repair.data.rps.RpsMaintain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveCheckMain&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveCheckMain&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.saveCheckMain&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.RpsCheckMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rpsMain(com.hsapi.repair.data.rps.RpsMaintain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainData(com.hsapi.repair.data.rps.RpsCheckMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.setVisitMaintainList(Int, Int, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;setVisitMaintainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;setVisitMaintainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.setVisitMaintainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;tday(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;visitType(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billTypeId(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.testTransaction1(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;testTransaction1&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;testTransaction&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.testTransaction1&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;type(String):&lt;/b&gt;commit;rollback&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.queryCheckMainDetailList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCheckMainDetailList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCheckMainbyServiceId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.queryCheckMainDetailList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.rps.RpsCheckMain[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.testTransaction(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;testTransaction&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;testTransaction&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.testTransaction&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;type(String):&lt;/b&gt;commit;rollback;tranCommit;tranRollback&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;type1(String):&lt;/b&gt;commit;rollback;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.couponDeduct(String, String, com.hsapi.repair.data.rps.RpsCouponRecord[], String, String, String, String, String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;couponDeduct&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;rpAccountSettle&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.couponDeduct&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;couponCodes(String):&lt;/b&gt;优惠券抵扣编码&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;openId(String):&lt;/b&gt;微信号&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;couponList(com.hsapi.repair.data.rps.RpsCouponRecord[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;tenantId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;工单ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billTypeId(String):&lt;/b&gt;工单类型&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guestId(String):&lt;/b&gt;客户ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;contactorId(String):&lt;/b&gt;联系人ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carId(String):&lt;/b&gt;车辆ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carNo(String):&lt;/b&gt;车牌号&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.updateRpsStoredRecord(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateRpsStoredRecord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateRpsStoredRecord&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.updateRpsStoredRecord&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;billMainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.queryStdPart(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryStdPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryStdPart&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.queryStdPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.settleRpsMaintain(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;settleRpsMaintain&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;settleRpsMaintain&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.settleRpsMaintain&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.genrateLostVisit(Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;genrateLostVisit&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;setVisitMaintainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.genrateLostVisit&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;tday(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.queryStdItem(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryStdItem&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryStdItem&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.queryStdItem&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.partOutRtnInterface(com.hsapi.repair.data.common.PjRepairOut[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;partOutRtnInterface&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;rpAccountSettle&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.partOutRtnInterface&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.common.PjRepairOut[]):&lt;/b&gt;维修出库&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.queryStdPackage(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryStdPackage&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryStdPackage&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.queryStdPackage&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.partToOutInterface(com.hsapi.repair.data.common.PjRepairOut[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;partToOutInterface&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;rpAccountSettle&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.partToOutInterface&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.common.PjRepairOut[]):&lt;/b&gt;维修出库&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.updateCheckMainStatus(com.hsapi.repair.data.rps.RpsCheckMain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateCheckMainStatus&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveCheckDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.updateCheckMainStatus&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpsMain(com.hsapi.repair.data.rps.RpsCheckMain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.saveCheckMainA(com.hsapi.repair.data.rps.RpsCheckMain, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveCheckMainA&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveCheckMain&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.saveCheckMainA&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.RpsCheckMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isFinish(Int):&lt;/b&gt;是否完成&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainData(com.hsapi.repair.data.rps.RpsCheckMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.settleRpsCardTimes(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;settleRpsCardTimes&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;settleRpsCardTimes&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.settleRpsCardTimes&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.partSettleRtnInterface(com.hsapi.repair.data.common.PjRepairOut[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;partSettleRtnInterface&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;rpAccountSettle&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.partSettleRtnInterface&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.common.PjRepairOut[]):&lt;/b&gt;维修出库&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.repairInterface.updateRpsMaintain(Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateRpsMaintain&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateRpsMaintain&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.repairInterface.updateRpsMaintain&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;billMainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billTypeId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

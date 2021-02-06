@@ -240,6 +240,22 @@
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[3]/_op</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/qualityTypeId</process:from>
+      <process:to type="query">cond/_expr[4]/qualityTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[4]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/orgCarBrandId</process:from>
+      <process:to type="query">cond/_expr[5]/orgCarBrandId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[5]/_op</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
     <location x="264" y="209"/>
@@ -500,12 +516,12 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
-    <location x="899" y="174"/>
+    <location x="900" y="174"/>
     <size height="28" width="28"/>
     <nodeLabel>assign10label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
-    <location x="889" y="210"/>
+    <location x="890" y="210"/>
     <figSize height="20" width="49"/>
     <node>assign10</node>
   </nodes>

@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:dlb -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    
+    <!--采购入库-->
+    <!--库存商品-保时捷4426.81-->
+    <!--销售费用-采购运费-保时捷8-->
+    <!--应交税费-应交增值税-进项税额-保时捷571.77-->
+    <!--应付账款- 广州市万德汽车配件有限公司-保时捷4970-->
+    <select id="queryPchsAmt" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+	    SELECT c.king_dept_code as kingDeptCode, 
+	           sum(a.no_tax_cost_amt) as noTaxCostAmt, 
+	           sum(a.expense_amt) as expenseAmt,
+	           sum(a.tax_diff) as taxDiff,
+	           sum(a.enter_amt) as enterAmt 
+		from dms_cloud_part.pj_enter_detail_chk a
+		inner join wb_common.com_attribute b
+		on a.part_id = b.id
+		inner join dms_cloud_part.pj_store_king_dept c
+		on a.store_id = c.store_id and b.org_car_brand_id = c.org_car_brand_id
+		where a.main_id = #pchsEnterMainId#
+		group by c.king_dept_code
+    </select>
+    
+    <!--采购入库-费用-->
+    <!--其他应付款-捷捷物流-保时捷     28.58-->
+    <select id="queryPchsExpenseRecordAmt" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT logistics_guest_id as logisticsGuestId, sum(expense_amt) as expenseAmt 
+		from pj_bill_expense_record 
+		where bill_service_id = #orderServiceNo#
+		group by logistics_guest_id
+    </select>
+    
+    <!--采购退货-->
+    <!--库存商品-保时捷4426.81-->
+    <!--应交税费-应交增值税-进项税额-保时捷-->
+    <!--销售费用-采购运费-保时捷-->
+    <!--应付账款- 广州市万德汽车配件有限公司-保时捷-->
+    <select id="queryPchsRtnAmt" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+	    SELECT c.king_dept_code as kingDeptCode, 
+				 sum(a.no_tax_cost_amt) * -1.0 as noTaxCostAmt, 
+				 sum(a.tax_diff) * -1.0 as taxDiff,
+				 sum(a.no_tax_cost_amt - a.no_tax_amt) as expenseAmt, 
+				 sum(a.enter_amt) * -1.0 as enterAmt, 
+				 sum(a.sell_amt) * -1.0 as sellAmt , 
+				 sum(a.sell_amt - a.enter_amt) * -1.0 as diffAmt
+		from pj_out_detail_chk a
+		inner join wb_common.com_attribute b
+		on a.part_id = b.id
+		inner join pj_store_king_dept c
+		on a.store_id = c.store_id and b.org_car_brand_id = c.org_car_brand_id
+		inner join pj_out_main_chk d
+		on a.main_id = d.id
+		where a.main_id = #pchsRtnMainId#
+		group by c.king_dept_code
+    </select>
+    
+    
+    <select id="queryPchsRtnTaxAmt" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+	    SELECT c.king_dept_code as kingDeptCode, 
+				 sum(a.no_tax_cost_amt) * -1.0 as noTaxCostAmt, 
+				 sum(a.tax_diff) * -1.0 as taxDiff,
+				 sum(a.no_tax_cost_amt - a.no_tax_amt) as expenseAmt, 
+				 sum(a.sell_amt) * -1.0 as sellAmt 
+		from pj_out_detail_chk a
+		inner join wb_common.com_attribute b
+		on a.part_id = b.id
+		inner join pj_store_king_dept c
+		on a.store_id = c.store_id and b.org_car_brand_id = c.org_car_brand_id
+		where a.main_id = #pchsRtnMainId# and a.tax_sign = 1
+		group by c.king_dept_code
+    </select>
+    
+    <!--销售出库-->
+    <!--应收账款-->
+    <!--销售费用-销售优惠-开单差异额-->
+    <!--销售费用-销售优惠-结算单位返点-->
+    <!--销售费用-销售优惠-销售类型返点-->
+    <select id="querySellOrderAmt" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+	    SELECT c.king_dept_code as kingDeptCode, 
+				 sum(a.show_amt) as showAmt, 
+				 sum(a.show_amt - a.order_amt) as showDiffAmt, 
+				 sum(a.settle_guest_rebate_amt) as settleGuestRebateAmt,
+				 sum(a.business_type_rebate_amt) as businessTypeRebateAmt 
+		from pj_sell_order_detail_chk a
+		inner join wb_common.com_attribute b
+		on a.part_id = b.id
+		inner join pj_store_king_dept c
+		on a.store_id = c.store_id and b.org_car_brand_id = c.org_car_brand_id
+		where main_id = #orderMainId#
+		group by c.king_dept_code
+    </select>
+    
+    <!--销售出库-->
+    <!--主营业务成本-->
+    <!--库存商品-->
+    <select id="querySellOutAmt" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+	    SELECT c.king_dept_code as kingDeptCode, 
+				 sum(a.no_tax_cost_amt) as noTaxCostAmt
+		from dms_cloud_part.pj_out_detail_chk a
+		inner join wb_common.com_attribute b
+		on a.part_id = b.id
+		inner join dms_cloud_part.pj_store_king_dept c
+		on a.store_id = c.store_id and b.org_car_brand_id = c.org_car_brand_id
+		where a.main_id = #outMainId#
+		group by c.king_dept_code
+    </select>
+    
+    <!--销售退货-->
+    <!--应收账款-->
+    <!--销售费用-销售优惠-开单差异额-->
+    <!--销售费用-销售优惠-结算单位返点-->
+    <!--销售费用-销售优惠-销售类型返点-->
+    <select id="querySellRtnOrderAmt" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+	    SELECT c.king_dept_code as kingDeptCode, 
+				 sum(a.show_amt) * -1.0 as showAmt, 
+				 sum(a.show_amt - a.order_amt) * -1.0 as showDiffAmt, 
+				 sum(a.settle_guest_rebate_amt) * -1.0 as settleGuestRebateAmt,
+				 sum(a.business_type_rebate_amt) * -1.0 as businessTypeRebateAmt 
+		from pj_pchs_order_detail_chk a
+		inner join wb_common.com_attribute b
+		on a.part_id = b.id
+		inner join pj_store_king_dept c
+		on a.store_id = c.store_id and b.org_car_brand_id = c.org_car_brand_id
+		where main_id = #orderMainId#
+		group by c.king_dept_code
+    </select>
+    
+    <!--销售出库-->
+    <!--主营业务成本-->
+    <!--库存商品-->
+    <select id="querySellRtnOutAmt" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+	    SELECT c.king_dept_code as kingDeptCode, 
+				 sum(a.no_tax_cost_amt) * -1.0 as noTaxCostAmt
+		from pj_enter_detail_chk a
+		inner join wb_common.com_attribute b
+		on a.part_id = b.id
+		inner join pj_store_king_dept c
+		on a.store_id = c.store_id and b.org_car_brand_id = c.org_car_brand_id
+		where main_id = #outMainId#
+		group by c.king_dept_code
+    </select>
+    
+    
+    
+    
+    
+    <!--库存商品-保时捷4426.81-->
+    <select id="queryPchsStockAmt" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+	    SELECT c.king_dept_code as kingDeptCode, sum(a.no_tax_cost_amt) as noTaxCostAmt 
+		from pj_enter_detail_chk a
+		inner join wb_common.com_attribute b
+		on a.part_id = b.id
+		inner join pj_store_king_dept c
+		on a.store_id = c.store_id and b.org_car_brand_id = c.org_car_brand_id
+		where main_id = #pchsEnterMainId#
+		group by c.king_dept_code
+    </select>
+    
+    <!--销售费用-采购运费-保时捷8-->
+    <select id="queryPchsExpenseAmt" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+	    SELECT c.king_dept_code as kingDeptCode, sum(a.expense_amt) as expenseAmt 
+		from pj_enter_detail_chk a
+		inner join wb_common.com_attribute b
+		on a.part_id = b.id
+		inner join pj_store_king_dept c
+		on a.store_id = c.store_id and b.org_car_brand_id = c.org_car_brand_id
+		where main_id = #pchsEnterMainId#
+		group by c.king_dept_code
+    </select>
+    
+    <!--应交税费-应交增值税-进项税额-保时捷571.77-->
+    <select id="queryPchsTaxDiffAmt" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+	    SELECT c.king_dept_code as kingDeptCode, sum(a.tax_diff) as taxDiff 
+		from pj_enter_detail_chk a
+		inner join wb_common.com_attribute b
+		on a.part_id = b.id
+		inner join pj_store_king_dept c
+		on a.store_id = c.store_id and b.org_car_brand_id = c.org_car_brand_id
+		where main_id = #pchsEnterMainId#
+		group by c.king_dept_code
+    </select>
+    
+    <!--应付账款- 广州市万德汽车配件有限公司-保时捷4970-->
+    <select id="queryPchsEnterAmt" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT c.king_dept_code as kingDeptCode, sum(a.enter_amt) as enterAmt 
+		from pj_enter_detail_chk a
+		inner join wb_common.com_attribute b
+		on a.part_id = b.id
+		inner join pj_store_king_dept c
+		on a.store_id = c.store_id and b.org_car_brand_id = c.org_car_brand_id
+		where main_id = #pchsEnterMainId#
+		group by c.king_dept_code
+    </select>
+    
+    <!--打包发货的费用登记     销售出库，采购退货分配的费用    -->
+    <select id="querySellPackAmt" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT e.king_dept_code as kingDeptCode, 
+	            sum(c.share_expense_amt) as expenseAmt
+		from pj_pack_main a
+		inner join pj_pack_detail b
+		on a.id = b.main_id
+		inner join pj_sell_order_detail_chk c
+		on b.bill_main_id = c.main_id
+		inner join wb_common.com_attribute d
+		on c.part_id = d.id
+		inner join pj_store_king_dept e
+		on c.store_id = e.store_id and d.org_car_brand_id = e.org_car_brand_id
+		where a.id = #packMainId# and a.pack_type = #packType#
+		group by e.king_dept_code
+    </select>
+    
+    <!--打包发货的费用登记     移仓出库，盘亏出库分配的费用    -->
+    <select id="queryOutPackAmt" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT e.king_dept_code as kingDeptCode, 
+	            sum(c.share_expense_amt) as expenseAmt
+		from pj_pack_main a
+		inner join pj_pack_detail b
+		on a.id = b.main_id
+		inner join pj_out_detail_chk c
+		on b.bill_main_id = c.main_id
+		inner join wb_common.com_attribute d
+		on c.part_id = d.id
+		inner join pj_store_king_dept e
+		on c.store_id = e.store_id and d.org_car_brand_id = e.org_car_brand_id
+		where a.id = #packMainId# and a.pack_type = #packType#
+		group by e.king_dept_code
+    </select>
+    
+    <!--打包发货的费用登记     移仓出库，盘亏出库分配的费用    -->
+    <select id="queryShiftOutPackAmt" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT e.king_dept_code as kingDeptCode, 
+	            sum(c.share_expense_amt) as expenseAmt
+		from pj_pack_main a
+		inner join pj_pack_detail b
+		on a.id = b.main_id
+		inner join pj_out_detail_chk c
+		on b.bill_main_id = c.main_id
+		inner join pj_out_main_chk g
+		on c.main_id = g.id
+		inner join pj_enter_main_chk f
+		on g.service_id = f.code
+		inner join wb_common.com_attribute d
+		on c.part_id = d.id
+		inner join pj_store_king_dept e
+		on f.store_id = e.store_id and d.org_car_brand_id = e.org_car_brand_id
+		where a.id = #packMainId# and a.pack_type = #packType# and f.enter_type_id = '050107'
+		group by e.king_dept_code
+    </select>
+    
+    <!--打包发货的费用登记    盘盈入库分配的费用    -->
+    <select id="queryEnterPackAmt" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT e.king_dept_code as kingDeptCode, 
+	           sum(c.expense_amt) as expenseAmt
+		from pj_pack_main a
+		inner join pj_pack_detail b
+		on a.id = b.main_id
+		inner join pj_enter_detail_chk c
+		on b.bill_main_id = c.main_id
+		inner join wb_common.com_attribute d
+		on c.part_id = d.id
+		inner join pj_store_king_dept e
+		on c.store_id = e.store_id and d.org_car_brand_id = e.org_car_brand_id
+		where a.id = #packMainId# and a.pack_type = #packType#
+		group by e.king_dept_code
+    </select>
+    
+    
+</sqlMap>

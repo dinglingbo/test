@@ -1,0 +1,150 @@
+<map>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getEndMonthDate(int, int)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hsapi.cloud.part.common.DateUtils.getEndMonthDate(int year, int month)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getNowMonth()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;int com.hsapi.cloud.part.common.DateUtils.getNowMonth()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getNextDay(java.util.Date, int)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hsapi.cloud.part.common.DateUtils.getNextDay(Date date, int i)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getEndDayOfPrevMonth()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hsapi.cloud.part.common.DateUtils.getEndDayOfPrevMonth()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getDayStartTimeString(java.util.Date)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hsapi.cloud.part.common.DateUtils.getDayStartTimeString(Date d)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getBeginDayOfPrevWeek()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hsapi.cloud.part.common.DateUtils.getBeginDayOfPrevWeek()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getBeginDayOfYesterday()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hsapi.cloud.part.common.DateUtils.getBeginDayOfYesterday()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getBeginDayOfMonth()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hsapi.cloud.part.common.DateUtils.getBeginDayOfMonth()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getDayStartDate(java.util.Date)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hsapi.cloud.part.common.DateUtils.getDayStartDate(Date d)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getTimeList(int, int, int, int, int)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;List com.hsapi.cloud.part.common.DateUtils.getTimeList(int beginYear, int beginMonth, int endYear, int endMonth, int k)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getEndDayOfPrevWeek()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hsapi.cloud.part.common.DateUtils.getEndDayOfPrevWeek()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getFrontDay(java.util.Date, int)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hsapi.cloud.part.common.DateUtils.getFrontDay(Date date, int i)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getDayEndDate(java.util.Date)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hsapi.cloud.part.common.DateUtils.getDayEndDate(Date d)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>DateUtils</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.hsapi.cloud.part.common.DateUtils&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &lt;dl&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;Administrator&lt;/dd&gt;&lt;dt&gt;@date&lt;/dt&gt;&lt;dd&gt;2017-07-11 10:25:38&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getDayStartTime(java.util.Date)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Timestamp com.hsapi.cloud.part.common.DateUtils.getDayStartTime(Date d)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.min(java.util.Date, java.util.Date)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hsapi.cloud.part.common.DateUtils.min(Date beginDate, Date endDate)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getDayEnd()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hsapi.cloud.part.common.DateUtils.getDayEnd()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getBeginDayOfYear()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hsapi.cloud.part.common.DateUtils.getBeginDayOfYear()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getBeginDayOfTomorrow()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hsapi.cloud.part.common.DateUtils.getBeginDayOfTomorrow()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.dateDiff(java.util.Date, java.util.Date)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;long com.hsapi.cloud.part.common.DateUtils.dateDiff(Date beginDate, Date endDate)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getEndDayOfWeek()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hsapi.cloud.part.common.DateUtils.getEndDayOfWeek()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getFirstSeasonDate(java.util.Date)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hsapi.cloud.part.common.DateUtils.getFirstSeasonDate(Date date)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getDiffDays(java.util.Date, java.util.Date)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;int com.hsapi.cloud.part.common.DateUtils.getDiffDays(Date beginDate, Date endDate)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getEndDayOfMonth()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hsapi.cloud.part.common.DateUtils.getEndDayOfMonth()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getBeginDayOfWeek()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hsapi.cloud.part.common.DateUtils.getBeginDayOfWeek()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getDayEndTimeString(java.util.Date)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hsapi.cloud.part.common.DateUtils.getDayEndTimeString(Date d)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getEndDayOfYesterDay()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hsapi.cloud.part.common.DateUtils.getEndDayOfYesterDay()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getDayBegin()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hsapi.cloud.part.common.DateUtils.getDayBegin()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getBeginDayOfPrevMonth()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hsapi.cloud.part.common.DateUtils.getBeginDayOfPrevMonth()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getNowYear()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Integer com.hsapi.cloud.part.common.DateUtils.getNowYear()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getNowDay()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;int com.hsapi.cloud.part.common.DateUtils.getNowDay()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.max(java.util.Date, java.util.Date)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hsapi.cloud.part.common.DateUtils.max(Date beginDate, Date endDate)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getStartMonthDate(int, int)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hsapi.cloud.part.common.DateUtils.getStartMonthDate(int year, int month)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getTimeList(int, int, int)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;List com.hsapi.cloud.part.common.DateUtils.getTimeList(int beginYear, int beginMonth, int k)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getEndDayOfTomorrow()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hsapi.cloud.part.common.DateUtils.getEndDayOfTomorrow()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getEndDayOfYear()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Date com.hsapi.cloud.part.common.DateUtils.getEndDayOfYear()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.DateUtils.getDayEndTime(java.util.Date)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Timestamp com.hsapi.cloud.part.common.DateUtils.getDayEndTime(Date d)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

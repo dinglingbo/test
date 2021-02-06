@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.system.employee.employee">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <!--密码-->
+    <update id="updateAccountById" parameterClass="HashMap">update account 
+     set money=#money#
+     where user_id=#userId#</update>
+    <select id="queryHomePage" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT
+			a.id as id,
+			a.tenant_id as tenantId,
+			a.orgid as orgid,
+			a.emp_id as empId,
+			a.user_id as userId,
+			a.user_name as userName,
+			a.type as type,
+			a.icon_id as iconId,
+			a.name as name,
+			a.icon_icon as iconIcon,
+			a.address as address,
+			a.address_code as addressCode,
+			a.icon_order as iconOrder,		
+			a.recorder as recorder,
+			a.record_date as recordDate,
+			a.modifier as modifier,
+			a.modify_date as modifyDate
+		FROM
+			wb_common.com_home_page a 
+			where 1=1
+
+		<dynamic>
+            <isNotEmpty prepend="and" property="tenantId">(a.tenant_id = #tenantId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="userId">(a.user_id = #userId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="type">(a.type = #type#)</isNotEmpty>
+        </dynamic>
+        order by a.icon_order desc
+	</select>
+</sqlMap>

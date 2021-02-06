@@ -1,0 +1,22 @@
+<map>
+  <entry>
+    <string>com.hsapi.cloud.part.common.BillNOUtils.getColumnMaxDateValue(java.lang.String, java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hsapi.cloud.part.common.BillNOUtils.getColumnMaxDateValue(String entityName, String maxColumn, String dataSource)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>BillNOUtils</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.hsapi.cloud.part.common.BillNOUtils&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &lt;dl&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;Administrator&lt;/dd&gt;&lt;dt&gt;@date&lt;/dt&gt;&lt;dd&gt;2018-02-25 16:45:32&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.BillNOUtils.getColumnMaxStringValue(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Integer, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hsapi.cloud.part.common.BillNOUtils.getColumnMaxStringValue(String entityName, String maxColumn, String column, String columnValue, Integer n, String dataSource)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.BillNOUtils.getColumnValue(java.lang.String, java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Long com.hsapi.cloud.part.common.BillNOUtils.getColumnValue(String entityName, String column, String dataSource)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.BillNOUtils.getMaxNOToStr(int, int)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hsapi.cloud.part.common.BillNOUtils.getMaxNOToStr(int length, int maxno)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

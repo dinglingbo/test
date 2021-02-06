@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Require-Bundle: com.hs.common,com.eos.foundation,com.hsapi.system.data
+Bundle-Vendor: steven
+eos-webCtxPath: employee
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsapi.system.employee
+Bundle-Description: 
+Bundle-SymbolicName: com.hsapi.system.common
+

@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<viewModelSet author="Administrator" displayName="com" id="com.hsapi.frm.data.com">
+    <viewModel author="Administrator" displayName="ComGuest" entityName="com.hsapi.frm.data.com.ComGuest" id="ComGuest">
+        <field dataType="Int" dict="false" id="id" label="id">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Int" dict="false" id="tenantId" label="tenantId">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Int" dict="false" id="orgid" label="orgid">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="code" label="code">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="fullName" label="fullName">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="shortName" label="shortName">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="cardNo" label="cardNo">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="pyName" label="pyName">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="guestType" label="guestType">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Short" dict="false" id="isSupplier" label="isSupplier">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Short" dict="false" id="isClient" label="isClient">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="contactor" label="contactor">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="contactorTel" label="contactorTel">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="manager" label="manager">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="managerDuty" label="managerDuty">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="provinceId" label="provinceId">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="areaId" label="areaId">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="cityId" label="cityId">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="addr" label="addr">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="postalCode" label="postalCode">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="website" label="website">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="tel" label="tel">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="mobile" label="mobile">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="fax" label="fax">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="email" label="email">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="supplierType" label="supplierType">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="advantageCarbrandId" label="advantageCarbrandId">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="instantMsg" label="instantMsg">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="memCarNo" label="memCarNo">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Int" dict="false" id="memLevelId" label="memLevelId">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="taxpayerCode" label="taxpayerCode">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="taxpayerName" label="taxpayerName">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="manageAddr" label="manageAddr">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="taxpayerTel" label="taxpayerTel">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="accountBank" label="accountBank">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="accountBankNo" label="accountBankNo">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="billTypeId" label="billTypeId">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="settTypeId" label="settTypeId">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="tgrade" label="tgrade">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Decimal" dict="false" id="creditLimit" label="creditLimit">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Short" dict="false" id="isDisabled" label="isDisabled">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="remark" label="remark">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Short" dict="false" id="isInternal" label="isInternal">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="isInternalId" label="isInternalId">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Int" dict="false" id="isNeedPack" label="isNeedPack">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Int" dict="false" id="orderIndex" label="orderIndex">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="recorder" label="recorder">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Date" dict="false" id="recordDate" label="recordDate">
+            <view type="write"/>
+            <edit name="" type="date">
+                <attr name="class">nui-datepicker</attr>
+                <attr name="popupWidth">100%</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="modifier" label="modifier">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Date" dict="false" id="modifyDate" label="modifyDate">
+            <view type="write"/>
+            <edit name="" type="date">
+                <attr name="class">nui-datepicker</attr>
+                <attr name="popupWidth">100%</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Int" dict="false" id="defaultLogisticsId" label="defaultLogisticsId">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="defaultLogistics" label="defaultLogistics">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+    </viewModel>
+</viewModelSet>

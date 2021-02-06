@@ -248,6 +248,18 @@
       <process:to type="query">rtnTemp/expEnterPrice</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">temp/taxCostPrice</process:from>
+      <process:to type="query">rtnTemp/taxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/noTaxCostPrice</process:from>
+      <process:to type="query">rtnTemp/noTaxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/setCostPrice</process:from>
+      <process:to type="query">rtnTemp/setCostPrice</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="expression" pattern="reference">remainQty-tempQty</process:from>
       <process:to type="query">remainQty</process:to>
     </process:copy>
@@ -345,6 +357,18 @@
     <process:copy>
       <process:from type="query" pattern="reference">temp/expEnterPrice</process:from>
       <process:to type="query">rtnTemp/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/taxCostPrice</process:from>
+      <process:to type="query">rtnTemp/taxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/noTaxCostPrice</process:from>
+      <process:to type="query">rtnTemp/noTaxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/setCostPrice</process:from>
+      <process:to type="query">rtnTemp/setCostPrice</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>

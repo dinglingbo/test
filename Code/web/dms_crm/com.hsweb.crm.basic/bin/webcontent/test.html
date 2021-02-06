@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue | Test</title>
+    <script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--<input type="text" v-model="msg" placeholder="请输入">
+    <p>{{msg}}</p>-->
+    {{data | formatDate }}
+</div>
+
+<script>
+    var padDate = function (value) {
+        return value < 10 ? '0' + value :value;
+    }
+    // 实例Vue
+    var vm = New Vue({
+        el: '#app',
+        data: {
+            msg: 'hello vue',
+            date: new Date()
+        },
+        filters: {
+            formatDate: function () {
+                var date = new Date(value);
+            }
+        },
+        moubted: {
+            
+        },
+        ...
+    })
+</script>
+</body>
+</html>

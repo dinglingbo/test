@@ -1,0 +1,54 @@
+<map>
+  <entry>
+    <string>com.hsapi.sales.svr.search.initSaleExtend(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;initSaleExtend&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;initSaleExtend&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.search.initSaleExtend&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.search.searchSaleCalc(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchSaleCalc&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchSaleCalc&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.search.searchSaleCalc&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.sales.data.css.CssSaleCalc[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.search.searchSaleGiftApply(Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchSaleGiftApply&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchSaleCalc&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.search.searchSaleGiftApply&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;billType(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.sales.data.css.CssSaleGiftApply[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.search.searchCsbGiftMsg()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchCsbGiftMsg&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchCsbGiftMsg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.search.searchCsbGiftMsg&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.search.searchSaleCostList(Int, String, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchSaleCostList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchSaleCostList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.search.searchSaleCostList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;type(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.sales.data.css.CssSaleCostList[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.search.searchGuest(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchGuest&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchGuest&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.search.searchGuest&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.search.searchSalesMainSelect(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchSalesMainSelect&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchSalesMainMsg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.search.searchSalesMainSelect&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.search.queryFisRpAdvance(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryFisRpAdvance&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryFisRpAdvance&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.search.queryFisRpAdvance&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;codeId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.search.queryGrossProfit(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryGrossProfit&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryGrossProfit&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.search.queryGrossProfit&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guestId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.search.searchSalesMain(java.util.HashMap, com.eos.foundation.PageCond, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchSalesMain&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchSalesMainMsg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.search.searchSalesMain&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;type(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>newcomponent</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;search.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;newcomponent&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.search&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.search.searchInsuranceMsg(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchInsuranceMsg&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchInsuranceMsg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.search.searchInsuranceMsg&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;grossProfit(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.search.searchSaleExtend(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchSaleExtend&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchSaleCostList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.search.searchSaleExtend&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.sales.data.css.CssSaleExtend[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

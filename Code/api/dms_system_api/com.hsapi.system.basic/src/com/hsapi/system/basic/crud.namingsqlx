@@ -761,6 +761,9 @@
             <isNotEmpty prepend="and" property="name">  
                 (a.full_name like '%$name$%' or a.short_name like '%$name$%')
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="pyName">  
+                (a.py_name like '%$pyName$%')
+            </isNotEmpty>
       		<isNotEmpty prepend="and" property="pny">  
                 (full_name like '%$pny$%' or short_name like '%$pny$%' or code like '%$pny$%' or a.py_name like '%$pny$%')
             </isNotEmpty>

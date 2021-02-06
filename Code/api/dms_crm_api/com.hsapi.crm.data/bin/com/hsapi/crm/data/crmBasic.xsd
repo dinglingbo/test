@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns="com.hsapi.crm.data.crmBasic" xmlns:sdo="commonj.sdo" xmlns:sdoJava="commonj.sdo/java" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="com.hsapi.crm.data.crmBasic">
+    <xs:complexType name="CrmTalkArt">
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+            <xs:element minOccurs="0" name="id" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="orgcode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="typeId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="topic" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="source" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="content" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="recorder" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="recordDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="modifier" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="modifyDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="orgid" nillable="true" type="xs:decimal"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="CrmTemplateMsg">
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+            <xs:element minOccurs="0" name="id" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="orgcode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="typeId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="charCount" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="source" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="content" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="recorder" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="recordDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="modifier" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="modifyDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="orgid" nillable="true" type="xs:decimal"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="RpbCardTimesDetail">
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+            <xs:element minOccurs="0" name="id" nillable="true" type="xs:int"/>
+            <xs:element default="0" minOccurs="0" name="cardId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="prdtId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="prdtName" nillable="true" type="xs:string"/>
+            <xs:element default="0" minOccurs="0" name="prdtType" nillable="true" type="xs:short"/>
+            <xs:element default="1" minOccurs="0" name="times" nillable="true" type="xs:short"/>
+            <xs:element default="1.00" minOccurs="0" name="qty" nillable="true" type="xs:decimal"/>
+            <xs:element default="0.00" minOccurs="0" name="oldPrice" nillable="true" type="xs:decimal"/>
+            <xs:element default="0.00" minOccurs="0" name="sellPrice" nillable="true" type="xs:decimal"/>
+            <xs:element default="0.00" minOccurs="0" name="oldAmt" nillable="true" type="xs:decimal"/>
+            <xs:element default="0.00" minOccurs="0" name="sellAmt" nillable="true" type="xs:decimal"/>
+            <xs:element default="0" minOccurs="0" name="status" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="recorder" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="recordDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="modifier" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="modifyDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="RpbCardTimes">
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+            <xs:element minOccurs="0" name="id" nillable="true" type="xs:int"/>
+            <xs:element default="0" minOccurs="0" name="tenantId" nillable="true" type="xs:int"/>
+            <xs:element default="0" minOccurs="0" name="orgid" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+            <xs:element default="-1" minOccurs="0" name="periodValidity" nillable="true" type="xs:short"/>
+            <xs:element default="0.00" minOccurs="0" name="sellAmt" nillable="true" type="xs:decimal"/>
+            <xs:element default="0.00" minOccurs="0" name="totalAmt" nillable="true" type="xs:decimal"/>
+            <xs:element default="0" minOccurs="0" name="salesDeductType" nillable="true" type="xs:short"/>
+            <xs:element default="0.00" minOccurs="0" name="salesDeductValue" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="useRemark" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string"/>
+            <xs:element default="0" minOccurs="0" name="status" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="recorder" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="recordDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="modifier" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="modifyDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="RpbCardStored">
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+            <xs:element minOccurs="0" name="id" nillable="true" type="xs:int"/>
+            <xs:element default="0" minOccurs="0" name="tenantId" nillable="true" type="xs:int"/>
+            <xs:element default="0" minOccurs="0" name="orgid" nillable="true" type="xs:int"/>
+            <xs:element default="0" minOccurs="0" name="useRange" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+            <xs:element default="-1" minOccurs="0" name="periodValidity" nillable="true" type="xs:short"/>
+            <xs:element default="0.00" minOccurs="0" name="rechargeAmt" nillable="true" type="xs:decimal"/>
+            <xs:element default="0.00" minOccurs="0" name="giveAmt" nillable="true" type="xs:decimal"/>
+            <xs:element default="1" minOccurs="0" name="canModify" nillable="true" type="xs:short"/>
+            <xs:element default="0.00" minOccurs="0" name="totalAmt" nillable="true" type="xs:decimal"/>
+            <xs:element default="0" minOccurs="0" name="packageRate" nillable="true" type="xs:short"/>
+            <xs:element default="0" minOccurs="0" name="itemRate" nillable="true" type="xs:short"/>
+            <xs:element default="0" minOccurs="0" name="partRate" nillable="true" type="xs:short"/>
+            <xs:element default="0" minOccurs="0" name="salesDeductType" nillable="true" type="xs:short"/>
+            <xs:element default="0.00" minOccurs="0" name="salesDeductValue" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="useRemark" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string"/>
+            <xs:element default="0" minOccurs="0" name="status" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="recorder" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="recordDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="modifier" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="modifyDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

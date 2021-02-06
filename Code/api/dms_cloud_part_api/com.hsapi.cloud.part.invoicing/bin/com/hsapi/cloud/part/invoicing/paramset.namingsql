@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.cloud.part.invoicing.paramset">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryPartInfoByParam" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id as id,
+			a.orgid as orgid,
+			a.`code` as code,
+			a.`name` as name,
+			a.full_name as fullName,
+			a.brand_code as brandCode,
+			a.oem_code as oemCode,
+			a.common_code as commonCode,
+			a.query_code as queryCode,
+			a.quality_type_id as qualityType,
+			a.part_name_id as partNameId,
+			a.name_py as namePy,
+			a.name_en as nameEn,
+			a.goods_code as goodsCode,
+			a.tax_rate as taxRate,
+			a.part_brand_id as partBrandId,
+			a.apply_carbrand_id as applyCarbrandId,
+			a.apply_car_model as applyCarModel,
+			a.org_car_brand_id as orgCarBrandId,
+			a.car_type_id_f as carTypeIdf,
+			a.car_type_id_s as carTypeIds,
+			a.car_type_id_t as carTypeIdt,
+			a.spec as spec,
+			a.direction as direction,
+			a.unit as unit
+		FROM com_attribute AS a
+
+		WHERE
+			1 = 1 and a.is_disabled=0
+				
+			<dynamic>
+            <isNotEmpty prepend="and" property="tenantId">(a.tenant_id = #tenantId# or a.orgid = 0)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid# or a.orgid = 0)</isNotEmpty>
+            <!-- 仓先生只有当前机构-->
+            <isNotEmpty prepend="and" property="onlyOrgid">(a.orgid = #onlyOrgid# )</isNotEmpty>
+            <isNotEmpty prepend="and" property="partId">(a.id = #partId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">(a.FULL_NAME like '%$partName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partNameAndPY">(a.FULL_NAME like '%$partNameAndPY$%' or a.name_py like '%$partNameAndPY$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(a.query_code like '%$partCode$%' or a.code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCodeList">(a.code in ($partCodeList$))</isNotEmpty>
+            <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
+        </dynamic> 
+            
+            limit 100
+				
+	</select>
+    <select id="queryPartJoinStockList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT a.id id,
+    		   a.orgid orgid,
+    		   a.code partCode,
+		       a.code code,
+		       a.name name,
+		       a.name partName,
+		       a.full_name fullName,
+		       a.brand_code brandCode,		       
+		       a.oem_code oemCode,
+		       a.common_code commonCode,
+		       a.query_code queryCode,
+		       a.quality_type_id qualityTypeId,
+		       a.part_name_id partNameId,
+		       a.name_py namePy,
+		       a.name_en nameEn,
+		       a.part_brand_id partBrandId,
+		       d.name partBrandName,
+		       a.apply_carbrand_id applyCarBrandId,
+		       a.apply_car_model applyCarModel,
+		       a.part_type_id partTypeId,
+		       a.car_type_id_f carTypeIdF,
+		       a.car_type_id_s carTypeIdS,
+		       a.car_type_id_t carTypeIdT,
+		       a.produce_type_id produceTypeId,
+		       a.abc_type abcType,
+		       a.produce_factory produceFactory,
+		       a.unit unit,
+		       a.liquidity liquidity,
+		       a.newest_quote newestQuote,
+		       a.newest_quote_date newestQuoteDate,
+		       a.uniform_sell_price uniformSellPrice,
+		       a.is_uniform isUniform,
+		       a.uniform_date uniformDate,
+		       a.uniform_man uniformMan,
+		       a.retail_price retailPrice,
+		       a.whole_sale_price wholeSalePrice,
+		       a.spec spec,
+		       a.is_disabled isDisabled,
+		       a.is_host isHost,
+           	   b.stock_qty as stockQty,
+               b.last_enter_price as lastEnterPrice,
+			   b.last_out_price as lastOutPrice,
+               c.pchs_price as pchsPrice,
+               c.pchs_one_price as pchsOnePrice,
+			   c.pchs_two_price as pchsTwoPrice,
+           	   c.pchs_s_price as pchsSPrice,
+               c.sell_price as sellPrice,
+               c.sell_one_price as sellOnePrice,
+			   c.sell_two_price as sellTwoPrice,
+               c.sell_s_price as sellSPrice
+        FROM wb_common.com_attribute a
+				left join pj_part_stock b
+					on a.id = b.part_id and b.orgid = #orgid#
+        		left join pj_part_price c
+					on a.id = c.part_id and c.orgid = #orgid#
+				left join wb_common.com_part_brand d on a.part_brand_id =d.id
+        where 1=1 and a.is_disabled = 0
+    	<dynamic>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid# or a.orgid = 0)</isNotEmpty>
+            <isNotEmpty prepend="and" property="onlyOrgid">(a.orgid = #onlyOrgid# )</isNotEmpty>
+            <isNotEmpty prepend="and" property="isDisabled">(a.is_disabled = #isDisabled#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partBrandId">(a.PART_BRAND_ID = #partBrandId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carTypeIdF">(a.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carTypeIdS">(a.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carTypeIdT">(a.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partId">(a.id = #partId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(a.query_code like '%$partCode$%' or a.code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">(a.full_name like '%$partName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCodeList">(a.code in ($partCodeList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="applyCarModel">(a.apply_car_model like '%$applyCarModel$' or apply_car_model like '$applyCarModel$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="namePy">(a.name_py like '%$namePy$' or name_py like '$namePy$%')</isNotEmpty>
+            <isNotEmpty prepend="order by " property="sortField">$sortField$ $sortOrder$</isNotEmpty>
+        </dynamic>
+    </select>
+    <select id="querySellOrderByGuestId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT 
+			a.id as id,
+			a.service_id as serviceId,
+			a.settle_type_id as settleTypeId,
+			a.order_man as orderMan,
+		  	a.audit_date as auditDate,
+			a.order_amt as orderAmt,
+			a.remark as remark,
+		    b.full_name as fullName  
+		from pj_sell_order_main_chk a
+		inner join wb_common.com_guest b
+		on a.guest_id = b.id
+		where 1 = 1 and a.is_out = 1
+				
+			<dynamic>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orderTypeId">(a.order_type_id = #orderTypeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="sourceType">(a.source_type = #sourceType#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isNeedPack">(a.is_need_pack = #isNeedPack#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isCheckSend">(a.is_check_send = #isCheckSend#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isSend">(a.is_send = #isCheckSend#)</isNotEmpty>
+            <!--本日 昨日 本周 上周 本月 下月 -->
+            <isNotEmpty prepend="and" property="startDate">(a.create_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(a.create_date &lt; #endDate#)</isNotEmpty>
+            <!--创建日期 -->
+            <isNotEmpty prepend="and" property="sCreateDate">(a.create_date &gt;= #sCreateDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eCreateDate">(a.create_date &lt; #eCreateDate#)</isNotEmpty>
+            <!--审核日期 -->
+            <isNotEmpty prepend="and" property="sAuditDate">(a.audit_date &gt;= #sAuditDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eAuditDate">(a.audit_date &lt; #eAuditDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orderMan">(a.order_man = #orderMan#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceId">(a.serviceId = #serviceId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceIdList">(a.serviceId in ($serviceIdList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="isSend">(a.is_send = #isSend#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="packSign">(a.pack_sign = #packSign#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isDiffOrder">(a.is_diff_order = #isDiffOrder#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="storeId">(a.store_id = #storeId#)</isNotEmpty>
+            <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
+        </dynamic>
+    </select>
+    <select id="queryPJPackMainList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id as id,
+			a.service_id as serviceId,
+			a.orgid as orgid,
+			a.logistics_guest_id as logisticsGuestId,
+			a.logistics_name as logisticsName,
+			a.logistics_no as logisticsNo,
+			a.guest_id as guestId,
+			a.guest_name as guestName,
+			a.receive_comp_name as receiveCompName,
+			a.receive_man as receiveMan,
+			a.receive_man_tel as receiveManTel,
+			a.settle_type_id as settleTypeId,
+			a.pack_man as packMan,
+			a.pack_pay_amt as packPayAmt,
+			a.arrive_pay_amt as arrivePayAmt,
+			a.true_pay_amt as truePayAmt,
+			a.pack_item as packItem,
+			a.audit_sign as auditSign,
+			a.auditor_id as auditorId,
+			a.auditor as auditor,
+			a.audit_date as auditDate,
+			a.remark as remark,
+			a.creator_id as creatorId,
+			a.creator as creator,
+			a.create_date as createDate,
+			a.operator_id as operatorId,
+			a.operator as operator,
+			a.operate_date as operateDate,
+			a.f_year as fYear,
+			a.f_month as fMonth,
+			a.province_id as provinceId,
+			a.city_id as cityId,
+			a.county_id as countyId,
+			a.street_address as streetAddress,
+			a.address as address,
+			a.destination_station as destinationStation,
+			a.transfer_station as transferStation,
+			a.transit_logistics_id as transitLogisticsId,
+			a.transit_logistics_name as transitLogisticsName,
+			a.pay_type as payType,
+			a.is_wooden as isWooden,
+			a.collect_money as collectMoney,
+			a.valuation_statement as valuationStatement,
+			a.sender_city as senderCity,
+			a.id_no as idNo,
+			a.sender_phone as senderPhone,
+			a.sender_address as senderAddress,
+			a.arrive_date as arriveDate,
+			a.bill_status_id as billStatusId,
+			b.bill_service_id as billServiceId
+		FROM
+			pj_pack_main AS a
+			INNER JOIN pj_pack_detail b on b.main_id =a.id
+		WHERE
+			1 = 1
+				
+			<dynamic>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="billServiceId">(b.bill_service_id = #billServiceId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="logisticsNo">(a.logistics_no like '%$logisticsNo$%')</isNotEmpty>
+            <!--本日 昨日 本周 上周 本月 下月 -->
+            <isNotEmpty prepend="and" property="startDate">(a.create_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(a.create_date &lt; #endDate#)</isNotEmpty>
+            <!--创建日期 -->
+            <isNotEmpty prepend="and" property="sCreateDate">(a.create_date &gt;= #sCreateDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eCreateDate">(a.create_date &lt; #eCreateDate#)</isNotEmpty>
+            <!--审核日期 -->
+            <isNotEmpty prepend="and" property="sAuditDate">(a.audit_date &gt;= #sAuditDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eAuditDate">(a.audit_date &lt; #eAuditDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestName">(a.guest_name like '%$guestName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="logisticsName">(a.logistics_name like '%$logisticsName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="packMan">(a.pack_man = #packMan#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceId">(a.service_id = #serviceId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="auditSign">(a.audit_sign = #auditSign#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="billStatusId">(a.bill_status_id = #billStatusId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="billStatusIdList">(a.bill_status_id in ($billStatusIdList$))</isNotEmpty>
+            <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
+        </dynamic>
+    </select>
+    <select id="querySellOrderPartChoose" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT 	 a.id id,
+				 a.orgid orgid,
+				 a.code code,
+				 a.name name,
+				 a.full_name fullName,
+				 a.brand_code brandCode,
+				 a.oem_code oemCode,
+				 a.part_brand_id partBrandId,
+				 a.unit unit,
+				 a.spec spec,
+				 a.is_disabled isDisabled,
+				 a.apply_car_model as applyCarModel,
+				 a.common_id as commonId,
+				 a.org_car_brand_id as orgCarBrandId,
+			     IFNULL(b.stock_qty,0) as stockQty,
+			     b.cost_price as costPrice,
+			     b.exp_enter_price as expEnterPrice,
+			     b.tax_cost_price as taxCostPrice,
+                 IFNULL(b.outable_qty,0)as outableQty,
+                 IFNULL(b.on_road_qty,0) as onRoadQty,
+			     IFNULL(b.order_qty,0) as orderQty
+		FROM wb_common.com_attribute a
+		
+			<isNotNull prepend="" property="showStock">
+            <!-- <isNotEqual prepend = "" property = "showStock" compareValue="1">
+					left join pj_part_stock b
+					on a.id = b.part_id and b.orgid = #orgid#
+				</isNotEqual> -->
+            <!-- 不显示库存-->
+            <isEqual compareValue="0" prepend="" property="showStock">left join pj_part_stock b
+					on a.id = b.part_id and b.orgid = #orgid#</isEqual>
+            <!-- 显示库存-->
+            <isEqual compareValue="1" prepend="" property="showStock">inner join pj_part_stock b
+					on a.id = b.part_id</isEqual>
+            <!-- （不显示库存）仓先生目前不支持选择orgid=0）-->
+            <isEqual compareValue="2" prepend="" property="showStock">left join pj_part_stock b
+					on a.id = b.part_id and b.orgid = #orgid#</isEqual>
+        </isNotNull>
+        <isNull prepend="" property="showStock">left join pj_part_stock b
+					on a.id = b.part_id and b.orgid = #orgid#</isNull>
+			
+		where 1=1 and  a.is_disabled=0
+    	<dynamic>
+            <isNotNull prepend="" property="showStock">
+                <!-- 不显示库存-->
+                <isEqual compareValue="0" prepend="" property="showStock">and (a.tenant_id = #tenantId# or a.orgid = 0)</isEqual>
+                <!-- 显示库存-->
+                <isEqual compareValue="1" prepend="" property="showStock">and b.orgid = #orgid#
+				
+					and b.outable_qty &gt; 0</isEqual>
+                <!-- （不显示库存）仓先生目前不支持选择orgid=0）-->
+                <isEqual compareValue="2" prepend="" property="showStock">and (a.tenant_id = #tenantId# or a.orgid = 0)</isEqual>
+                <!-- <isNotEqual prepend = "" property = "showStock" compareValue="1">
+					and (a.orgid = #orgid# or a.orgid = 0) 
+				</isNotEqual> -->
+            </isNotNull>
+            <isNull prepend="" property="showStock">and (a.tenant_id = #tenantId# or a.orgid = 0)</isNull>
+            <isNotEmpty prepend="and" property="isDisabled">(a.is_disabled = #isDisabled#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partBrandId">(a.PART_BRAND_ID = #partBrandId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carTypeIdF">(a.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carTypeIdS">(a.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carTypeIdT">(a.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partId">(a.id = #partId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(a.code like '$partCode$%' or a.oem_code like '$partCode$%')</isNotEmpty>
+            <!-- 全匹配 -->
+            <isNotEmpty prepend="and" property="partCodeAll">(a.code like '%$partCodeAll$%' or a.oem_code like '%$partCodeAll$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">(a.full_name like '%$partName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCodeList">(a.code in ($partCodeList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="applyCarModel">(a.apply_car_model like '%$applyCarModel$' or apply_car_model like '$applyCarModel$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="namePy">(a.name_py like '%$namePy$%')</isNotEmpty>
+            <!--如果是全字母，可能是拼音，也可能是编码-->
+            <isNotEmpty prepend="and" property="codePy">(a.name_py like '%$codePy$%' or a.query_code like '$codePy$%' or a.code like '%$codePy$%')</isNotEmpty>
+            <!--一般按库存的可售数量由多到少排序-->
+            <isNotEmpty prepend="order by " property="sortField">$sortField$ $sortOrder$</isNotEmpty>
+        </dynamic>
+    </select>
+    <select id="querySellOrderStorePartChoose" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT 	 a.id id,
+				 a.orgid orgid,
+				 a.code code,
+				 a.name name,
+				 a.full_name fullName,
+				 a.brand_code brandCode,
+				 a.oem_code oemCode,
+				 a.part_brand_id partBrandId,
+				 a.unit unit,
+				 a.spec spec,
+				 a.is_disabled isDisabled,
+				 a.apply_car_model as applyCarModel,
+				 a.common_id as commonId,
+				 a.org_car_brand_id as orgCarBrandId,
+			     IFNULL(b.stock_qty,0) as stockQty,
+			     b.cost_price as costPrice,
+			     b.exp_enter_price as expEnterPrice,
+			     b.tax_cost_price as taxCostPrice,
+			     b.set_cost_price as setCostPrice,
+                 IFNULL(b.outable_qty,0)as outableQty,
+                 IFNULL(b.on_road_qty,0) as onRoadQty,
+			     IFNULL(b.order_qty,0) as orderQty,
+			     b.store_id as storeId,
+			     b.shelf as storeShelf
+		FROM wb_common.com_attribute a
+		
+			<isNotNull prepend="" property="showStock">
+            <!-- <isNotEqual prepend = "" property = "showStock" compareValue="1">
+					left join pj_part_stock b
+					on a.id = b.part_id and b.orgid = #orgid#
+				</isNotEqual> -->
+            <!-- 不显示库存-->
+            <isEqual compareValue="0" prepend="" property="showStock">left join pj_part_store_stock b
+					on a.id = b.part_id and b.store_id = #storeId#</isEqual>
+            <!-- 显示库存-->
+            <isEqual compareValue="1" prepend="" property="showStock">inner join pj_part_store_stock b
+					on a.id = b.part_id and b.store_id = #storeId#</isEqual>
+            <!-- （不显示库存）仓先生目前不支持选择orgid=0）-->
+            <isEqual compareValue="2" prepend="" property="showStock">left join pj_part_store_stock b
+					on a.id = b.part_id and b.store_id = #storeId#</isEqual>
+        </isNotNull>
+        <isNull prepend="" property="showStock">left join pj_part_store_stock b
+					on a.id = b.part_id and b.store_id = #storeId#</isNull>
+			
+		where 1=1 and  a.is_disabled=0
+    	<dynamic>
+            <isNotNull prepend="" property="showStock">
+                <!-- 不显示库存-->
+                <isEqual compareValue="0" prepend="" property="showStock">and (a.tenant_id = #tenantId# or a.orgid = 0)</isEqual>
+                <!-- 显示库存-->
+                <isEqual compareValue="1" prepend="" property="showStock">and b.orgid = #orgid#
+				
+					and b.outable_qty &gt; 0</isEqual>
+                <!-- （不显示库存）仓先生目前不支持选择orgid=0）-->
+                <isEqual compareValue="2" prepend="" property="showStock">and (a.tenant_id = #tenantId# or a.orgid = 0)</isEqual>
+                <!-- <isNotEqual prepend = "" property = "showStock" compareValue="1">
+					and (a.orgid = #orgid# or a.orgid = 0) 
+				</isNotEqual> -->
+            </isNotNull>
+            <isNull prepend="" property="showStock">and (a.tenant_id = #tenantId# or a.orgid = 0)</isNull>
+            <isNotEmpty prepend="and" property="isDisabled">(a.is_disabled = #isDisabled#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partBrandId">(a.PART_BRAND_ID = #partBrandId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carTypeIdF">(a.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carTypeIdS">(a.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carTypeIdT">(a.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partId">(a.id = #partId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(a.code like '%$partCode$%' or a.oem_code like '%$partCode$%')</isNotEmpty>
+            <!-- 全匹配 -->
+            <isNotEmpty prepend="and" property="partCodeAll">(a.code like '%$partCodeAll$%' or a.oem_code like '%$partCodeAll$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">(a.full_name like '%$partName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCodeList">(a.code in ($partCodeList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="applyCarModel">(a.apply_car_model like '%$applyCarModel$' or apply_car_model like '$applyCarModel$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="namePy">(a.name_py like '%$namePy$%')</isNotEmpty>
+            <!--如果是全字母，可能是拼音，也可能是编码-->
+            <isNotEmpty prepend="and" property="codePy">(a.name_py like '%$codePy$%' or a.query_code like '$codePy$%' or a.code like '%$codePy$%')</isNotEmpty>
+            <!--一般按库存的可售数量由多到少排序-->
+            <isNotEmpty prepend="order by " property="sortField">$sortField$ $sortOrder$</isNotEmpty>
+        </dynamic>
+    </select>
+    <!--
+    	根据订单明细ID进行入库，需要更新订单来源ID，来源单据类型，外部来源ID
+    -->
+    <select id="queryEnterDetailInfoByDetailId" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">SELECT a.id, a.main_id as mainId, a.store_id as storeId, a.part_id as partId, 
+		       a.part_code as partCode, a.part_name as partName, a.full_name as fullName, 
+		       a.enter_unit_id as enterUnitId, a.system_unit_id as systemUnitId, a.order_qty as orderQty, 
+		       a.order_price as orderPrice, a.tax_sign as taxSign, a.tax_rate as taxRate, 
+		       a.tax_price as taxPrice, a.no_tax_price as noTaxPrice,
+			   a.true_enter_qty as trueEnterQty, a.true_enter_amt as trueEnterAmt, a.not_enter_qty as notEnterQty,
+			   a.not_enter_amt as notEnterAmt,
+			   a.adjust_qty as adjustQty, a.is_finished as isFinished, a.prev_detail_id as prevDetailId,
+			   a.remark as remark, a.store_shelf as storeShelf, b.source_detail_id as sourceDetailId, b.qty as qty
+		from dms_cloud_part.pj_pchs_order_detail_chk a
+		inner join dms_cloud_part.pj_wms_params_detail b
+		on a.id = b.erp_detail_id and a.main_id = b.erp_main_id
+		inner join wb_common.com_attribute c
+		on b.part_id = c.cang_part_id and a.part_id = c.id
+		inner join pj_wms_params_main d
+		on b.main_id = d.id 
+		where a.main_id = #erpId# and b.main_id = #mainId# 
+		      and d.bill_type_id = #billTypeId#</select>
+    <!--
+               直发销售订单
+    	根据订单明细ID进行出库，需要更新订单来源ID，来源单据类型，外部来源ID
+    -->
+    <select id="getAcceptDetailInfoByOrderMainId" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">SELECT a.id, a.main_id as mainId, a.store_id as storeId, a.part_id as partId, 
+			   a.part_code as partCode, a.part_name as partName, a.full_name as fullName, 
+			   a.out_unit_id as outUnitId, a.system_unit_id as systemUnitId, a.order_qty as orderQty, 
+			   a.order_price as orderPrice, a.true_out_qty as trueOutQty, a.true_out_amt as trueOutAmt,
+			   a.not_out_qty as notOutQty, a.not_out_amt as notOutAmt,
+			   a.adjust_qty as adjustQty, a.is_finished as isFinished, a.prev_detail_id as prevDetailId, 
+		       a.is_mark_batch as isMarkBatch, a.batch_source_id as batchSourceId, a.direct_store_id as directStoreId,
+			   a.remark as remark, a.store_shelf as storeShelf, a.id as sourceDetailId, a.order_qty as qty,
+			   a.show_part_id as showPartId, a.show_part_code as showPartCode, a.show_full_name as showFullName,
+			   a.show_brand_name as showBrandName, a.show_car_model as showCarModel, a.show_oem_code as showOemCode,
+			   a.show_spec as showSpec, a.show_price as showPrice, a.show_Amt as show_amt
+		from dms_cloud_part.pj_sell_order_detail_chk a
+		where a.main_id = #erpId#</select>
+    <!--
+    	根据订单明细ID进行出库，需要更新订单来源ID，来源单据类型，外部来源ID
+    -->
+    <select id="queryOutDetailInfoByDetailId" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">SELECT a.id, a.main_id as mainId, a.store_id as storeId, a.part_id as partId, 
+			   a.part_code as partCode, a.part_name as partName, a.full_name as fullName, 
+			   a.out_unit_id as outUnitId, a.system_unit_id as systemUnitId, a.order_qty as orderQty, 
+			   a.order_price as orderPrice, a.true_out_qty as trueOutQty, a.true_out_amt as trueOutAmt,
+			   a.not_out_qty as notOutQty, a.not_out_amt as notOutAmt,
+			   a.adjust_qty as adjustQty, a.is_finished as isFinished, a.prev_detail_id as prevDetailId, 
+		       a.is_mark_batch as isMarkBatch, a.batch_source_id as batchSourceId, a.direct_store_id as directStoreId,
+			   a.remark as remark, a.store_shelf as storeShelf, b.source_detail_id as sourceDetailId, b.qty as qty,
+			   a.show_part_id as showPartId, a.show_part_code as showPartCode, a.show_full_name as showFullName,
+			   a.show_brand_name as showBrandName, a.show_car_model as showCarModel, a.show_oem_code as showOemCode,
+			   a.show_spec as showSpec, a.show_price as showPrice, a.show_Amt as show_amt
+		from dms_cloud_part.pj_sell_order_detail_chk a
+		inner join dms_cloud_part.pj_wms_params_detail b
+		on a.id = b.erp_detail_id and a.main_id = b.erp_main_id
+		inner join wb_common.com_attribute c
+		on b.part_id = c.cang_part_id and a.part_id = c.id
+		inner join pj_wms_params_main d
+		on b.main_id = d.id 
+		where a.main_id = #erpId# and b.main_id = #mainId# 
+		      and d.bill_type_id = #billTypeId#</select>
+    <!--
+                    调拨申请入库
+    	根据订单明细ID进行入库，需要更新订单来源ID，来源单据类型，外部来源ID    
+    	一张调拨申请单可能对应多张受理单，只能保证调拨入库对应调拨受理
+    -->
+    <select id="queryApplyDetailInfoByDetailId" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">SELECT a.id, a.main_id as mainId, a.store_id as storeId, a.part_id as partId, 
+		       a.part_code as partCode, a.part_name as partName, a.full_name as fullName, 
+		       a.enter_unit_id as enterUnitId, a.system_unit_id as systemUnitId, a.apply_qty as orderQty, 
+		       a.order_price as orderPrice, a.tax_sign as taxSign, a.tax_rate as taxRate, 
+		       a.tax_price as taxPrice, a.no_tax_price as noTaxPrice,
+			   a.has_in_qty as trueEnterQty, a.has_in_qty * a.order_price as trueEnterAmt, a.apply_qty - a.has_in_qty as notEnterQty,
+			   (a.apply_qty - a.has_in_qty)*a.order_price as notEnterAmt,
+			   a.has_cancel_qty as adjustQty, a.is_finished as isFinished, a.prev_detail_id as prevDetailId,
+			   a.remark as remark, a.store_shelf as storeShelf, b.source_detail_id as sourceDetailId, b.qty as qty
+		from pj_allot_apply_detail a
+		inner join pj_wms_params_detail b
+		on a.id = b.erp_detail_id and a.main_id = b.erp_main_id
+		inner join wb_common.com_attribute c
+		on b.part_id = c.cang_part_id and a.part_id = c.id
+		inner join pj_wms_params_main d
+		on b.main_id = d.id 
+		where a.main_id = #erpId# and b.main_id = #mainId# 
+		      and d.bill_type_id = #billTypeId#</select>
+    <!--
+                    调出退回入库
+    -->
+    <select id="getApplyDetailInfoByDetailId" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">SELECT a.id, a.main_id as mainId, a.store_id as storeId, a.part_id as partId, 
+		       a.part_code as partCode, a.part_name as partName, a.full_name as fullName, 
+		       a.enter_unit_id as enterUnitId, a.system_unit_id as systemUnitId, a.apply_qty as orderQty, 
+		       a.order_price as orderPrice, a.tax_sign as taxSign, a.tax_rate as taxRate, 
+		       a.tax_price as taxPrice, a.no_tax_price as noTaxPrice,
+			   a.has_in_qty as trueEnterQty, a.has_in_qty * a.order_price as trueEnterAmt, a.apply_qty - a.has_in_qty as notEnterQty,
+			   (a.apply_qty - a.has_in_qty)*a.order_price as notEnterAmt,
+			   a.has_cancel_qty as adjustQty, a.is_finished as isFinished, a.prev_detail_id as prevDetailId,
+			   a.remark as remark, a.store_shelf as storeShelf, a.id as sourceDetailId, a.apply_qty as qty
+		from pj_allot_apply_detail  a
+		where a.main_id = #erpId#</select>
+    <!--
+                    调拨受理出库
+    	根据订单明细ID进行出库，需要更新订单来源ID，来源单据类型，外部来源ID
+    -->
+    <select id="queryAcceptDetailInfoByDetailId" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">SELECT a.id, a.main_id as mainId, a.store_id as storeId, a.part_id as partId, 
+			   a.part_code as partCode, a.part_name as partName, a.full_name as fullName, 
+			   a.out_unit_id as outUnitId, a.system_unit_id as systemUnitId, a.accept_qty as orderQty, 
+			   a.order_price as orderPrice, a.has_out_qty as hasOutQty,
+			   a.has_cancel_qty as hasCancelQty, a.is_finished as isFinished, a.prev_detail_id as prevDetailId, 
+		     a.remark as remark, a.store_shelf as storeShelf, b.source_detail_id as sourceDetailId, b.qty as qty
+		from dms_cloud_part.pj_allot_accept_detail a
+		inner join dms_cloud_part.pj_wms_params_detail b
+		on a.id = b.erp_detail_id and a.main_id = b.erp_main_id
+		inner join wb_common.com_attribute c
+		on b.part_id = c.cang_part_id and a.part_id = c.id
+		inner join pj_wms_params_main d
+		on b.main_id = d.id 
+		where a.main_id = #erpId# and b.main_id = #mainId# 
+		      and d.bill_type_id = #billTypeId#</select>
+    <!--
+                    调拨受理出库
+    	根据订单明细ID进行出库，需要更新订单来源ID，来源单据类型，外部来源ID
+    -->
+    <select id="getAcceptDetailInfoByDetailId" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">SELECT a.id, a.main_id as mainId, a.store_id as storeId, a.part_id as partId, 
+			   a.part_code as partCode, a.part_name as partName, a.full_name as fullName, 
+			   a.out_unit_id as outUnitId, a.system_unit_id as systemUnitId, a.accept_qty as orderQty, 
+			   a.order_price as orderPrice, a.has_out_qty as hasOutQty,
+			   a.has_cancel_qty as hasCancelQty, a.is_finished as isFinished, a.prev_detail_id as prevDetailId, 
+		       a.remark as remark, a.store_shelf as storeShelf, 
+		       a.id as sourceDetailId, a.accept_qty as qty
+		from dms_cloud_part.pj_allot_accept_detail a
+		where a.main_id = #erpId#</select>
+    <!--
+    	根据盘点明细ID查询盘点数据
+    -->
+    <select id="queryStockCheckDetailByDetailId" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">SELECT a.id, a.main_id as mainId, a.store_id as storeId, a.part_id as partId, 
+			   a.sys_qty as sysQty,  b.source_detail_id as sourceDetailId, b.qty as qty
+		from dms_cloud_part.pj_stock_check_detail a
+		inner join dms_cloud_part.pj_wms_params_detail b
+		on a.id = b.erp_detail_id and a.main_id = b.erp_main_id
+		inner join wb_common.com_attribute c
+		on b.part_id = c.cang_part_id and a.part_id = c.id
+		inner join pj_wms_params_main d
+		on b.main_id = d.id 
+		where a.main_id = #erpId# and b.main_id = #mainId# 
+		      and d.bill_type_id = #billTypeId#</select>
+</sqlMap>

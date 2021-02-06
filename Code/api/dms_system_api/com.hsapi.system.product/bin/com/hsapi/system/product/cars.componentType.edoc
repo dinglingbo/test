@@ -1,0 +1,18 @@
+<map>
+  <entry>
+    <string>com.hsapi.system.product.cars.carBrand()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;carBrand&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;carBrand&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.product.cars.carBrand&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>cars</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;cars.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;cars&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.product.cars&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.product.cars.carVinModel(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;carVinModel&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;carModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.product.cars.carVinModel&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;vin(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.product.cars.carModel(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;carModel&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;carModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.product.cars.carModel&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;carBrandId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

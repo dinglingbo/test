@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="calcDetail" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" nodeType="note" type="note" title="Administrator&#x9;18-8-22 下午8:05"/>
+  <nodes xsi:type="process:tStart" id="start0" name="开始" type="start">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" isDefault="true" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <nodeLabel>start0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end0" name="结束" type="end">
+    <targetConnections>link44</targetConnections>
+    <nodeLabel>end0label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="com.hsapi.repair.data.rps.RpsInsuranceDetail" name="detail" type="query" valueType="DataObject">detail</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" nodeType="label">
+    <figSize height="17" width="25"/>
+    <node>start0</node>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
+    <figSize height="17" width="25"/>
+    <node>end0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign9" name="赋值9" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link44" name="link44" isDefault="true" type="transition">
+      <sourceNode>assign9</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link45</targetConnections>
+    <targetConnections>link46</targetConnections>
+    <targetConnections>link47</targetConnections>
+    <nodeLabel>assign9label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
+    <figSize height="17" width="32"/>
+    <node>assign9</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign8" name="赋值8" grouped="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link47" name="link47" isDefault="true" type="transition">
+      <sourceNode>assign8</sourceNode>
+      <targetNode>assign9</targetNode>
+    </sourceConnections>
+    <targetConnections>link41</targetConnections>
+    <nodeLabel>assign8label</nodeLabel>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(temp_amt*deductRate)/100</process:from>
+      <process:to type="query">deductAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">deductAmt</process:from>
+      <process:to type="query">detail/deductValue</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
+    <figSize height="17" width="32"/>
+    <node>assign8</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign7" name="赋值7" grouped="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link46" name="link46" isDefault="true" type="transition">
+      <sourceNode>assign7</sourceNode>
+      <targetNode>assign9</targetNode>
+    </sourceConnections>
+    <targetConnections>link40</targetConnections>
+    <nodeLabel>assign7label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">deductRate</process:from>
+      <process:to type="query">detail/deductValue</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
+    <figSize height="17" width="32"/>
+    <node>assign7</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign5" name="赋值5" grouped="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link40" name="link40" isDefault="true" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>assign7</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link41" name="比例" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>assign8</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">deductType</process:leftOperand>
+          <process:rightOperand type="literal">2</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link39</targetConnections>
+    <targetConnections>link38</targetConnections>
+    <targetConnections>link37</targetConnections>
+    <nodeLabel>assign5label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">deductType</process:from>
+      <process:to type="query">detail/deductType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">deductRate</process:from>
+      <process:to type="query">detail/deductOriginValue</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
+    <figSize height="17" width="32"/>
+    <node>assign5</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign4" name="赋值4" grouped="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link39" name="link39" isDefault="true" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>assign5</targetNode>
+    </sourceConnections>
+    <targetConnections>link35</targetConnections>
+    <nodeLabel>assign4label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">extendGuest/deductType3</process:from>
+      <process:to type="query">deductType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">extendGuest/deductRate3</process:from>
+      <process:to type="query">deductRate</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
+    <figSize height="17" width="32"/>
+    <node>assign4</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign3" name="赋值3" grouped="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link38" name="link38" isDefault="true" type="transition">
+      <sourceNode>assign3</sourceNode>
+      <targetNode>assign5</targetNode>
+    </sourceConnections>
+    <targetConnections>link36</targetConnections>
+    <nodeLabel>assign3label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">extendGuest/deductType1</process:from>
+      <process:to type="query">deductType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">extendGuest/deductRate1</process:from>
+      <process:to type="query">deductRate</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
+    <figSize height="17" width="32"/>
+    <node>assign3</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign2" name="赋值2" grouped="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link37" name="link37" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>assign5</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link34</targetConnections>
+    <nodeLabel>assign2label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">extendGuest/deductType2</process:from>
+      <process:to type="query">deductType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">extendGuest/deductRate2</process:from>
+      <process:to type="query">deductRate</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <figSize height="17" width="32"/>
+    <node>assign2</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign0" name="赋值" grouped="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link34" name="1交强险" isDefault="false" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>assign2</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">insureTypeId</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link35" name="3车船税" isDefault="false" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>assign4</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">insureTypeId</process:leftOperand>
+          <process:rightOperand type="literal">3</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link36" name="2商业险" isDefault="false" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>assign3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">insureTypeId</process:leftOperand>
+          <process:rightOperand type="literal">2</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link45" name="link45" isDefault="true" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>assign9</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <nodeLabel>assign0label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">S</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">detail/amt</process:from>
+      <process:to type="query">temp_amt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">detail/rtnCompRate</process:from>
+      <process:to type="query">temp_rtnCompRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">detail/rtnGuestRate</process:from>
+      <process:to type="query">temp_rtnGuestRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(temp_amt*temp_rtnCompRate)/100</process:from>
+      <process:to type="query">detail/rtnCompAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(temp_amt*temp_rtnGuestRate)/100</process:from>
+      <process:to type="query">detail/rtnGuestAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(temp_amt*temp_rtnCompRate)/100+total_rtnCompAmt</process:from>
+      <process:to type="query">total_rtnCompAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(temp_amt*temp_rtnGuestRate)/100+total_rtnGuestAmt</process:from>
+      <process:to type="query">total_rtnGuestAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">temp_amt+total_amt</process:from>
+      <process:to type="query">total_amt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">detail/insureTypeId</process:from>
+      <process:to type="query">insureTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">detail/deductType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">detail/deductOriginValue</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">detail/deductValue</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
+    <figSize height="17" width="25"/>
+    <node>assign0</node>
+  </nodes>
+  <topRuler>
+    <guides position="253" horizontal="true"/>
+  </topRuler>
+  <leftRuler/>
+  <process:info version="7.0.0.0"/>
+  <process:variables>
+    <process:variable historyStateLocation="client" isArray="false" name="deductType" primitiveType="Float"/>
+    <process:variable historyStateLocation="client" isArray="false" name="deductRate" primitiveType="Float"/>
+    <process:variable historyStateLocation="client" isArray="false" name="deductAmt" primitiveType="Float"/>
+    <process:variable historyStateLocation="client" isArray="false" name="temp_amt" primitiveType="Float"/>
+    <process:variable historyStateLocation="client" isArray="false" name="temp_rtnCompRate" primitiveType="Float"/>
+    <process:variable historyStateLocation="client" isArray="false" name="temp_rtnGuestRate" primitiveType="Float"/>
+    <process:variable historyStateLocation="client" isArray="false" name="total_rtnCompAmt" primitiveType="Float"/>
+    <process:variable historyStateLocation="client" isArray="false" name="total_rtnGuestAmt" primitiveType="Float"/>
+    <process:variable historyStateLocation="client" isArray="false" name="total_amt" primitiveType="Float"/>
+    <process:variable historyStateLocation="client" isArray="false" name="insureTypeId" primitiveType="Int"/>
+  </process:variables>
+  <process:inputs varArgs="false">
+    <process:input isArray="false" modelType="com.hsapi.repair.data.rps.RpsInsuranceDetail" name="detail"/>
+    <process:input isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbGuestAgentExtend" name="extendGuest"/>
+  </process:inputs>
+  <process:outputs>
+    <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
+    <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsInsuranceDetail" name="detail"/>
+  </process:outputs>
+  <process:extAttribute1>public</process:extAttribute1>
+  <process:transactionType>true</process:transactionType>
+</process:tBusinessLogic>

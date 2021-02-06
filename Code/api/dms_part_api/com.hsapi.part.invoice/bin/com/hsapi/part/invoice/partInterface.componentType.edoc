@@ -1,0 +1,58 @@
+<map>
+  <entry>
+    <string>com.hsapi.part.invoice.partInterface.queryPartQuality(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPartQuality&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartBrand&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partInterface.queryPartQuality&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;protoken(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.partInterface.queryEnbleRtnPart(Int, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryEnbleRtnPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryEnbleRtnPart&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partInterface.queryEnbleRtnPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billTypeId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;returnSign(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.part.data.pts.PjRepairOut[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.partInterface.queryGuestAndSKU(String, String, String, String, String, String, String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryGuestAndSKU&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryGuestAndSKU&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partInterface.queryGuestAndSKU&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guestId(String):&lt;/b&gt;往来单位ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guestName(String):&lt;/b&gt;往来单位名称&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partId(String):&lt;/b&gt;配件内码&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partCode(String):&lt;/b&gt;配件编码&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;brandId(String):&lt;/b&gt;品牌ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;brandName(String):&lt;/b&gt;品牌名称&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;qualityId(String):&lt;/b&gt;品质ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;qualityName(String):&lt;/b&gt;品质名称&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;protoken(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.partInterface.queryJoinStock(String, String, String, String, String, String, Int, Int, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryJoinStock&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;rpAccount&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partInterface.queryJoinStock&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;key(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;brandId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;categoryF(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;categoryS(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;categoryT(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;count(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;currpage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sortOrder(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;protoken(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.partInterface.queryStockByCode(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryStockByCode&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;rpAccount&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partInterface.queryStockByCode&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;code(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;protoken(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.partInterface.queryDetailStock(Int, Int, String, String, String, String, String, String, String, Int, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryDetailStock&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryDetailStock&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partInterface.queryDetailStock&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;count(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;currpage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sortOrder(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;protoken(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sort(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guestId(String):&lt;/b&gt;往来单位ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isGP(String):&lt;/b&gt;查询佳配库存  0 不查 1查 默认1可不传&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isHS(String):&lt;/b&gt;查询华胜连锁库存  0 不查 1查 默认1 可不传&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isJP(String):&lt;/b&gt;查询广州极配库存   0 不查 1查 默认1 可不传&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isMaterial(Int):&lt;/b&gt;是否标准SKU内码  1 是 0 否&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isSRM(String):&lt;/b&gt;查询配件商库存  0 不查 1查 默认1 可不传&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;key(String):&lt;/b&gt;配件内码&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.partInterface.partSettleRtn(com.hsapi.part.data.pts.PjRepairOut[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;partSettleRtn&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;partOutRtn&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partInterface.partSettleRtn&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.part.data.pts.PjRepairOut[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.partInterface.queryPartBrand(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPartBrand&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartBrand&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partInterface.queryPartBrand&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;protoken(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;msg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>partInterface</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;partInterface.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;partInterface&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partInterface&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.partInterface.partToOut(com.hsapi.part.data.pts.PjRepairOut[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;partToOut&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;partToOut&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partInterface.partToOut&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.part.data.pts.PjRepairOut[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.partInterface.queryCarplate(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCarplate&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartBrand&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partInterface.queryCarplate&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;protoken(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.partInterface.queryPartType(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPartType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartBrand&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partInterface.queryPartType&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;protoken(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;parentId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;msg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.partInterface.partOutRtn(com.hsapi.part.data.pts.PjRepairOut[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;partOutRtn&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;partOutRtn&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partInterface.partOutRtn&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.part.data.pts.PjRepairOut[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.partInterface.rpAccount(Long, String, String, Long, Int, Float, Int, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;rpAccount&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;rpAccount&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partInterface.rpAccount&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;GuestId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;GuestName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;ServiceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;BillMainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;BillTypeId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;BillAmt(Float):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dc(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;remark(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;BillTypeCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

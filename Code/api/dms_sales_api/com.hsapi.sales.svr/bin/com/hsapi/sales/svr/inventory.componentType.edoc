@@ -1,0 +1,98 @@
+<map>
+  <entry>
+    <string>com.hsapi.sales.svr.inventory.saveFisRpAdvance(com.hsapi.sales.data.frm.FisRpAdvance)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveFisRpAdvance&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.inventory.saveFisRpAdvance&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;fisRpAdvance(com.hsapi.sales.data.frm.FisRpAdvance):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.inventory.saveCost(com.hsapi.sales.data.css.CssCheckEnter)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveCost&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.inventory.saveCost&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cssCheckEnter(com.hsapi.sales.data.css.CssCheckEnter):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.inventory.savePchsOrder(com.hsapi.sales.data.css.CssFactoryOrderMain, com.hsapi.sales.data.css.CssFactoryOrderDetail[], com.hsapi.sales.data.css.CssFactoryOrderDetail[], com.hsapi.sales.data.css.CssFactoryOrderDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;savePchsOrder&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePstEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.inventory.savePchsOrder&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pchsOrderMain(com.hsapi.sales.data.css.CssFactoryOrderMain):&lt;/b&gt;主表信息&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pchsOrderDetailAdd(com.hsapi.sales.data.css.CssFactoryOrderDetail[]):&lt;/b&gt;新增&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pchsOrderDetailUpdate(com.hsapi.sales.data.css.CssFactoryOrderDetail[]):&lt;/b&gt;修改&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pchsOrderDetailDelete(com.hsapi.sales.data.css.CssFactoryOrderDetail[]):&lt;/b&gt;删除&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pjPchsOrderMainList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.inventory.queryCheckEnter(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCheckEnter&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.inventory.queryCheckEnter&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cssCheckEnter(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.inventory.returnOrder(com.hsapi.sales.data.css.CssFactoryReturnMain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;returnOrder&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;salesSubmitFinancial&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.inventory.returnOrder&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;returnOrder(com.hsapi.sales.data.css.CssFactoryReturnMain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.inventory.saveCssCheckPdiMain(com.hsapi.sales.data.css.CssCheckPdiMain, com.hsapi.sales.data.css.CssCheckPdiDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveCssCheckPdiMain&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePstEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.inventory.saveCssCheckPdiMain&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cssCheckPdiMain(com.hsapi.sales.data.css.CssCheckPdiMain):&lt;/b&gt;主表信息&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;cssCheckPdiDetail(com.hsapi.sales.data.css.CssCheckPdiDetail[]):&lt;/b&gt;明细&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.inventory.queryPchsOrderDetailList(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPchsOrderDetailList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.inventory.queryPchsOrderDetailList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjPchsOrderDetailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.inventory.queryPchsOrderMainList(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPchsOrderMainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.inventory.queryPchsOrderMainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjPchsOrderMainList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.inventory.saveReturnOrder(com.hsapi.sales.data.css.CssFactoryReturnMain, com.hsapi.sales.data.css.CssFactoryReturnDetail[], com.hsapi.sales.data.css.CssFactoryReturnDetail[], com.hsapi.sales.data.css.CssFactoryReturnDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveReturnOrder&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePstEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.inventory.saveReturnOrder&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;returnOrderMain(com.hsapi.sales.data.css.CssFactoryReturnMain):&lt;/b&gt;主表信息&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;returnOrderDetailAdd(com.hsapi.sales.data.css.CssFactoryReturnDetail[]):&lt;/b&gt;新增&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;returnOrderDetailUpdate(com.hsapi.sales.data.css.CssFactoryReturnDetail[]):&lt;/b&gt;修改&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;returnOrderDetailDelete(com.hsapi.sales.data.css.CssFactoryReturnDetail[]):&lt;/b&gt;删除&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pjPchsOrderMainList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.inventory.salesSubmitFinancial(com.hsapi.sales.data.css.CssFactoryOrderMain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;salesSubmitFinancial&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;salesSubmitFinancial&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.inventory.salesSubmitFinancial&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orderMain(com.hsapi.sales.data.css.CssFactoryOrderMain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.inventory.salesCheckCar(com.hsapi.sales.data.css.CssCheckEnter)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;salesCheckCar&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;salesSubmitFinancial&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.inventory.salesCheckCar&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cssCheckEnter(com.hsapi.sales.data.css.CssCheckEnter):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;cssCheckEnter(com.hsapi.sales.data.css.CssCheckEnter):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.inventory.insertPchsOrder(com.hsapi.sales.data.css.CssFactoryOrderMain, com.hsapi.sales.data.css.CssFactoryOrderDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;insertPchsOrder&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;newbiz&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.inventory.insertPchsOrder&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pchsOrderMain(com.hsapi.sales.data.css.CssFactoryOrderMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pchsOrderDetail(com.hsapi.sales.data.css.CssFactoryOrderDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.inventory.saveCarLock(com.hsapi.sales.data.css.CssCheckEnter)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveCarLock&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.inventory.saveCarLock&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cssCheckEnter(com.hsapi.sales.data.css.CssCheckEnter):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.inventory.savePchsOrderAddOrUpdate(com.hsapi.sales.data.css.CssFactoryOrderMain, com.hsapi.sales.data.css.CssFactoryOrderDetail[], com.hsapi.sales.data.css.CssFactoryOrderDetail[], com.hsapi.sales.data.css.CssFactoryOrderDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;savePchsOrderAddOrUpdate&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePstEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.inventory.savePchsOrderAddOrUpdate&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pchsOrderMain(com.hsapi.sales.data.css.CssFactoryOrderMain):&lt;/b&gt;主表信息&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pchsOrderDetailAdd(com.hsapi.sales.data.css.CssFactoryOrderDetail[]):&lt;/b&gt;新增&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pchsOrderDetailUpdate(com.hsapi.sales.data.css.CssFactoryOrderDetail[]):&lt;/b&gt;修改&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pchsOrderDetailDelete(com.hsapi.sales.data.css.CssFactoryOrderDetail[]):&lt;/b&gt;删除&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.inventory.carPutInStorage(com.hsapi.sales.data.css.CssCheckEnter)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;carPutInStorage&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;salesSubmitFinancial&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.inventory.carPutInStorage&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cssCheckEnter(com.hsapi.sales.data.css.CssCheckEnter):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;cssCheckEnter(com.hsapi.sales.data.css.CssCheckEnter):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.inventory.saveCssCheckEnter(com.hsapi.sales.data.css.CssFactoryOrderMain, com.hsapi.sales.data.css.CssFactoryOrderDetail[], com.hsapi.sales.data.css.CssFactoryOrderDetail[], com.hsapi.sales.data.css.CssFactoryOrderDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveCssCheckEnter&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePstEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.inventory.saveCssCheckEnter&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pchsOrderMain(com.hsapi.sales.data.css.CssFactoryOrderMain):&lt;/b&gt;主表信息&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pchsOrderDetailAdd(com.hsapi.sales.data.css.CssFactoryOrderDetail[]):&lt;/b&gt;新增&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pchsOrderDetailUpdate(com.hsapi.sales.data.css.CssFactoryOrderDetail[]):&lt;/b&gt;修改&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pchsOrderDetailDelete(com.hsapi.sales.data.css.CssFactoryOrderDetail[]):&lt;/b&gt;删除&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pjPchsOrderMainList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.inventory.queryPDI(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPDI&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.inventory.queryPDI&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pdi(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pdiD(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>inventory</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;inventory.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;inventory&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.inventory&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.inventory.updatePchsOrder(com.hsapi.sales.data.css.CssFactoryOrderMain, com.hsapi.sales.data.css.CssFactoryOrderDetail[], com.hsapi.sales.data.css.CssFactoryOrderDetail[], com.hsapi.sales.data.css.CssFactoryOrderDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updatePchsOrder&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;insertPtsEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.inventory.updatePchsOrder&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pchsOrderMain(com.hsapi.sales.data.css.CssFactoryOrderMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pchsOrderDetailAdd(com.hsapi.sales.data.css.CssFactoryOrderDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pchsOrderDetailUpdate(com.hsapi.sales.data.css.CssFactoryOrderDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pchsOrderDetailDelete(com.hsapi.sales.data.css.CssFactoryOrderDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.inventory.queryFactoryReturnList(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryFactoryReturnList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.inventory.queryFactoryReturnList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cssFactoryReturn(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.inventory.applyCheckCar(com.hsapi.sales.data.css.CssFactoryOrderMain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;applyCheckCar&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;salesSubmitFinancial&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.inventory.applyCheckCar&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orderMain(com.hsapi.sales.data.css.CssFactoryOrderMain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.inventory.queryCheckOrderDetailList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCheckOrderDetailList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.inventory.queryCheckOrderDetailList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;checkOrderDetailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.inventory.queryFactoryReturnDetailList(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryFactoryReturnDetailList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.inventory.queryFactoryReturnDetailList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cssFactoryReturnDetail(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.inventory.queryBillPartChoose(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryBillPartChoose&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.inventory.queryBillPartChoose&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;cars(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

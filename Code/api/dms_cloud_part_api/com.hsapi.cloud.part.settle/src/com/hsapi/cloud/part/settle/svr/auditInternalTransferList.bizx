@@ -394,7 +394,7 @@
         <process:inputVariable id="1" name="FYear" type="query" value="Int" valueType="Primitive" pattern="reference">f/fYear</process:inputVariable>
         <process:inputVariable id="2" name="FMonth" type="query" value="Int" valueType="Primitive" pattern="reference">f/fMonth</process:inputVariable>
         <process:inputVariable id="3" name="dc" type="literal" value="Int" valueType="Primitive" pattern="reference">-1</process:inputVariable>
-        <process:inputVariable id="4" name="BillAmt" type="query" value="Float" valueType="Primitive" pattern="reference">f/rpAmt</process:inputVariable>
+        <process:inputVariable id="4" name="BillAmt" type="query" value="Double" valueType="Primitive" pattern="reference">f/rpAmt</process:inputVariable>
         <process:inputVariable id="5" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
@@ -434,7 +434,7 @@
         <process:inputVariable id="1" name="FYear" type="query" value="Int" valueType="Primitive" pattern="reference">f/fYear</process:inputVariable>
         <process:inputVariable id="2" name="FMonth" type="query" value="Int" valueType="Primitive" pattern="reference">f/fMonth</process:inputVariable>
         <process:inputVariable id="3" name="dc" type="literal" value="Int" valueType="Primitive" pattern="reference">1</process:inputVariable>
-        <process:inputVariable id="4" name="BillAmt" type="query" value="Float" valueType="Primitive" pattern="reference">f/rpAmt</process:inputVariable>
+        <process:inputVariable id="4" name="BillAmt" type="query" value="Double" valueType="Primitive" pattern="reference">f/rpAmt</process:inputVariable>
         <process:inputVariable id="5" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
@@ -483,7 +483,7 @@
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.FiRpInternalTransfer" name="f"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="rpAmt" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="rpAmt" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.FiRpInternalTransfer" name="tranBill"/>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.cloud.part.common.stockquery">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryHSStock" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject"> 
+		 SELECT c.shortName, a.PartID as partId, a.StockQty as stockQty, d.address as address,
+				b.code AS partCode, b.fullname AS fullName, b.oemcode AS oemCode, 'H' as type
+		 FROM PJ_CycDef a
+		 	INNER JOIN WBSCM..st_part b
+		 		ON a.PartID = b.id
+		 	inner join wbsystem..wb_companies c
+				on a.compcode = c.id
+			inner join WBSystem..WB_Company d
+				on c.id = d.id
+		 WHERE  1 = 1 and isnull(a.StockQty, 0) &gt; 0 and c.companyid != 'COM00000000000001'
+		 	<isNotNull prepend="" property="compCode">AND a.CompCode = #compCode#</isNotNull>
+        <isNotNull prepend="" property="partID">AND a.PartID = #partID#</isNotNull>
+        <isNotNull prepend="" property="partCode">AND b.code = #partCode#</isNotNull>
+        <isNotNull prepend="" property="codeType">
+            <isEqual compareValue="0" prepend="" property="codeType">
+                <isNotNull prepend="" property="partCodeS">AND a.partID  IN ($partCodeS$)</isNotNull>
+            </isEqual>
+            <isEqual compareValue="1" prepend="" property="codeType">
+                <isNotNull prepend="" property="partCodeS">AND b.code IN ($partCodeS$)</isNotNull>
+            </isEqual>
+        </isNotNull>
+    </select>
+    <select id="queryLBStock" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject"> 
+		 SELECT  d.shortName, a.PartID AS partId, sum(isnull(a.StockQty,0)) AS stockQty, e.address as address,
+				 b.code AS partCode, b.fullname AS fullName, b.oemcode AS oemCode, 'L' as type
+			FROM PJ_Comp_qty_Stock a
+			INNER JOIN WBSCM..st_part b
+				ON a.PartID = b.id
+			INNER JOIN PJ_Store c
+				ON a.Stockid = c.ID
+			inner join wbsystem..wb_companies d
+				on a.compcode = d.id
+			inner join WBSystem..WB_Company e
+				on d.id = e.id
+			WHERE  1 = 1 and isnull(a.StockQty,0) &gt; 0
+		 	 <isNotNull prepend="" property="compCode">AND a.CompCode = #compCode#</isNotNull>
+        <isNotNull prepend="" property="storeID">AND a.Stockid = #storeID#</isNotNull>
+        <isNotNull prepend="" property="SellSign">AND c.SellSign = #SellSign#</isNotNull>
+        <isNotNull prepend="" property="partID">AND a.PartID = #partID#</isNotNull>
+        <isNotNull prepend="" property="partCode">AND b.code = #partCode#</isNotNull>
+        <isNotNull prepend="" property="codeType">
+            <isEqual compareValue="0" prepend="" property="codeType">
+                <isNotNull prepend="" property="partCodeS">AND a.partID  IN ($partCodeS$)</isNotNull>
+            </isEqual>
+            <isEqual compareValue="1" prepend="" property="codeType">
+                <isNotNull prepend="" property="partCodeS">AND b.code IN ($partCodeS$)</isNotNull>
+            </isEqual>
+        </isNotNull>
+
+			group by d.shortName, a.PartID, b.code, b.fullname, b.oemcode, e.address
+    </select>
+    <select id="queryJPStock" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject"> 
+		 SELECT  d.shortName, a.PartID AS partId, sum(isnull(a.StockQty,0)) AS stockQty, e.address as address,
+				 b.code AS partCode, b.fullname AS fullName, b.oemcode AS oemCode, 'J' as type
+			FROM PJ_Comp_qty_Stock a
+			INNER JOIN st_part b
+				ON a.PartID = b.id
+			INNER JOIN PJ_Store c
+				ON a.Stockid = c.ID
+			inner join jpsystem..wb_companies d
+				on a.compcode = d.id
+			inner join WBSystem..WB_Company e
+				on d.id = e.id
+			WHERE  1 = 1 and isnull(a.StockQty,0) &gt; 0
+		 	<isNotNull prepend="" property="compCode">AND a.CompCode = #compCode#</isNotNull>
+        <isNotNull prepend="" property="storeID">AND a.Stockid = #storeID#</isNotNull>
+        <isNotNull prepend="" property="SellSign">AND c.SellSign = #SellSign#</isNotNull>
+        <isNotNull prepend="" property="partID">AND a.PartID = #partID#</isNotNull>
+        <isNotNull prepend="" property="partCode">AND b.code = #partCode#</isNotNull>
+        <isNotNull prepend="" property="codeType">
+            <isEqual compareValue="0" prepend="" property="codeType">
+                <isNotNull prepend="" property="partCodeS">AND a.partID  IN ($partCodeS$)</isNotNull>
+            </isEqual>
+            <isEqual compareValue="1" prepend="" property="codeType">
+                <isNotNull prepend="" property="partCodeS">AND b.code IN ($partCodeS$)</isNotNull>
+            </isEqual>
+        </isNotNull>
+			 
+			 group by d.shortName, a.PartID, b.code, b.fullname, b.oemcode, e.address
+
+    </select>
+    <select id="queryStoreLocation" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject"> 
+		 SELECT
+			a.id as id,
+			a.orgid as orgid,
+			a.store_id as storeId,
+			a.first_char as firstChar,
+			a.num_id as numId,
+			a.`name` as name,
+			a.is_disabled as isDisabled,
+			a.recorder as recorder,
+			a.record_date as recordDate,
+			a.modifier as modifier,
+			a.modify_date as modifyDate,
+			a.cang_shelf_id as cangShelfId
+		FROM
+			com_store_location AS a
+		where a.is_disabled = 0
+		 	<isNotNull prepend="" property="storeId">AND a.store_id = #storeId#</isNotNull>
+    </select>
+</sqlMap>

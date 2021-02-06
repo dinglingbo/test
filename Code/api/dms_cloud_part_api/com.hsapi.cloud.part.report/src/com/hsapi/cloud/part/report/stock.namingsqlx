@@ -148,7 +148,55 @@
                 (a.part_id = #partId#)
             </isNotEmpty>
 					
-	    </select>
+	</select>
+	    
+	<!--根据仓库ID获取和金蝶部门的对应关系-->
+	<select id="queryStoreKingDept" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT a.store_id as storeId, sum(a.stock_qty) as stockQty
+			from pj_part_store_stock a
+			inner join wb_common.com_store b
+			on a.store_id = b.id
+			where 1 = 1
+				<isNotEmpty prepend="and" property="orgid"> 
+                    (b.orgid = #orgid#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isDisabled"> 
+                    (b.is_disabled = #isDisabled#)
+                </isNotEmpty>
+			
+			group by a.store_id
+			order by b.id asc
+				
+    </select>
+    
+    
+    <!--库存同步 每天中午1点，凌晨6点执行-->
+	<select id="querySyncStock" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            select a.part_id as partId, 
+			  		a.part_code as partCode, a.part_name as partName,
+			  		e.`name` as brandName, d.`name` as typeName,
+			  		a.stock_qty as stockQty, f.sell_price as sellPrice,
+					a.shelf, b.name as storeName
+			from pj_part_store_stock a 
+			inner join wb_common.com_store b
+			on a.store_id = b.id
+			inner join wb_common.com_attribute c
+			on a.part_id = c.id
+			left join wb_common.com_part_brand d
+			on c.quality_type_id = d.id
+			left join wb_common.com_part_brand e
+			on c.part_brand_id = e.id
+			left join pj_part_price f
+			on  a.orgid = f.orgid and a.part_id = f.part_id
+			WHERE 1 = 1 
+				<isNotEmpty prepend="and" property="startDate"> 
+                    (a.operate_date &gt; #startDate#)
+                </isNotEmpty>
+			
+				
+    </select>
     
     
 </sqlMap>

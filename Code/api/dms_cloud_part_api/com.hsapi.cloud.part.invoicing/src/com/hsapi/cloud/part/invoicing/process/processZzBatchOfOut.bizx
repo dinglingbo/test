@@ -69,6 +69,16 @@
       <sourceNode>assign2</sourceNode>
       <targetNode>invokePojo11</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link1" name="link1" displayName="连接线" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>assign15</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">outmain/settleGuestId</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link52</targetConnections>
     <location x="380" y="170"/>
     <size height="28" width="28"/>
@@ -414,6 +424,18 @@
       <process:from type="query" pattern="reference">outableDetail/outableQty</process:from>
       <process:to type="query">outaleQty</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/expEnterPrice</process:from>
+      <process:to type="query">expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/taxCostPrice</process:from>
+      <process:to type="query">taxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/noTaxCostPrice</process:from>
+      <process:to type="query">noTaxCostPrice</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
     <location x="720" y="172"/>
@@ -612,6 +634,30 @@
     <process:copy>
       <process:from type="expression" pattern="reference">mOutQty+billQty</process:from>
       <process:to type="query">mOutQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">expEnterPrice</process:from>
+      <process:to type="query">outdetail/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">expEnterPrice*billQty</process:from>
+      <process:to type="query">outdetail/expEnterAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxCostPrice</process:from>
+      <process:to type="query">outdetail/taxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">taxCostPrice*billQty</process:from>
+      <process:to type="query">outdetail/taxCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">noTaxCostPrice</process:from>
+      <process:to type="query">outdetail/noTaxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">noTaxCostPrice*billQty</process:from>
+      <process:to type="query">outdetail/noTaxCostAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
@@ -812,6 +858,30 @@
     <process:copy>
       <process:from type="expression" pattern="reference">mOutQty+outaleQty</process:from>
       <process:to type="query">mOutQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">expEnterPrice</process:from>
+      <process:to type="query">outdetail/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">expEnterPrice*outaleQty</process:from>
+      <process:to type="query">outdetail/expEnterAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxCostPrice</process:from>
+      <process:to type="query">outdetail/taxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">taxCostPrice*outaleQty</process:from>
+      <process:to type="query">outdetail/taxCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">noTaxCostPrice</process:from>
+      <process:to type="query">outdetail/noTaxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">noTaxCostPrice*outaleQty</process:from>
+      <process:to type="query">outdetail/noTaxCostAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
@@ -1246,6 +1316,7 @@
       <targetNode>loopstart0</targetNode>
     </sourceConnections>
     <targetConnections>link55</targetConnections>
+    <targetConnections>link2</targetConnections>
     <location x="383" y="260"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo11label</nodeLabel>
@@ -1593,6 +1664,25 @@
     <figSize height="20" width="154"/>
     <node>subprocess3</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign15" name="赋值9" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign15</sourceNode>
+      <targetNode>invokePojo11</targetNode>
+    </sourceConnections>
+    <targetConnections>link1</targetConnections>
+    <location x="302" y="260"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign15label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">outmain/guestId</process:from>
+      <process:to type="query">outmain/settleGuestId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign15label" name="label" nodeType="label">
+    <location x="296" y="296"/>
+    <figSize height="20" width="40"/>
+    <node>assign15</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-08-28 17:18:15" date="2019-08-28Z" description="" name="processZzBatchOfOut" version="7.0.0.0"/>
@@ -1633,6 +1723,9 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="billTypeId" primitiveType="String"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="p"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.com.ComGuest" name="guest"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="expEnterPrice" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="taxCostPrice" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="noTaxCostPrice" primitiveType="Float"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjProcessMain" name="mainenter"/>

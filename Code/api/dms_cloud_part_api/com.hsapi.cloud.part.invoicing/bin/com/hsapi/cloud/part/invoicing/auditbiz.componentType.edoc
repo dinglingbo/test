@@ -1,0 +1,10 @@
+<map>
+  <entry>
+    <string>auditbiz</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;auditbiz.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;auditbiz&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.auditbiz&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.auditbiz.queryPjSellOrderMainList(com.eos.foundation.PageCond, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjSellOrderMainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.auditbiz.queryPjSellOrderMainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjSellOrderMainList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

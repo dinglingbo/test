@@ -1,0 +1,18 @@
+<map>
+  <entry>
+    <string>com.hsapi.crm.page.newcomponent.CardCfgJC(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;CardCfgJC&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;InsuranceQuery&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.page.newcomponent.CardCfgJC&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.page.newcomponent.cardCfgCZ(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;cardCfgCZ&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;InsuranceQuery&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.page.newcomponent.cardCfgCZ&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>newcomponent</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;newcomponent.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;newcomponent&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.page.newcomponent&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.page.newcomponent.saveInsurance(com.hsapi.crm.data.crmBasic.RpbCardStored, String, String, com.hsapi.crm.data.crmBasic.RpbCardTimes)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveInsurance&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveTeamMember&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.page.newcomponent.saveInsurance&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;comguest(com.hsapi.crm.data.crmBasic.RpbCardStored):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;RpbCardTimes(com.hsapi.crm.data.crmBasic.RpbCardTimes):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;S/E&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;保存班组成员&lt;br&gt;&lt;br&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

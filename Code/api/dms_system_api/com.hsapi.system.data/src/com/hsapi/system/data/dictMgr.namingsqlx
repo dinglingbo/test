@@ -257,7 +257,9 @@
 			a.wechat as wechat,
 			a.tel as tel,
 			a.system_account as systemAccount,
-			a.im_code as imCode
+			a.im_code as imCode,
+			a.dept_id as deptId,
+			a.king_code as kingCode 
 		FROM
 		com_member AS a
 		WHERE 1=1 and a.is_dimission = 0
@@ -339,7 +341,11 @@
 			a.record_date as recordDate,
 			a.modifier as modifier,
 			a.modify_date as modifyDate,
-			a.is_open_app as isOpenApp
+			a.is_open_app as isOpenApp,
+			a.is_limit_credit as isLimitCredit,
+			a.credit_money as creditMoney,
+			a.dept_id as deptId,
+			a.king_code as kingCode 
 		FROM
 			com_member AS a
 		where 1 = 1
@@ -412,7 +418,9 @@
 			a.recorder as recorder,
 			a.record_date as recordDate,
 			a.modifier as modifier,
-			a.modify_date as modifyDate
+			a.modify_date as modifyDate,
+			a.king_id as kingId,
+			a.book_id as bookId
 		FROM
 			com_company AS a
 		WHERE a.orgid = #orgid#

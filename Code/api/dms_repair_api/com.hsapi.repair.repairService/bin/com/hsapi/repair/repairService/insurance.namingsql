@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.repair.repairService.insurance">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryRpsInsuranceMainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+   	 	SELECT
+			a.id,
+			a.orgid,
+			a.service_code serviceCode,
+			a.guest_id guestId,
+			a.contactor_id contactorId,
+			a.car_id carId,
+			a.car_no carNo,
+			a.mt_advisor mtAdvisor,
+			a.mt_advisor_id mtAdvisorId,
+			a.enter_kilometers enterKilometers,
+			a.insure_comp_id insureCompId,
+			a.insure_comp_name insureCompName,
+			a.sale_man_ids saleManIds,
+			a.sale_mans saleMans,
+			a. status  status ,
+			a.begin_date beginDate,
+			a.end_date endDate,
+			a.settle_type_id settleTypeId,
+			a.amt,
+			a.rtn_comp_amt rtnCompAmt,
+			a.rtn_guest_amt rtnGuestAmt,
+			a.record_date recordDate,
+			SUBSTRING_INDEX(b.car_model,' ',2) as carModel,
+			b.vin carVin,
+			c.name guestName,
+			c.mobile,
+			b.engine_no engineNo,
+			b.car_brand_id carBrandId,
+			c.wechat_open_id as openId,
+			a.out_date outDate,
+			a.cost_amt costAmt,
+			a.cost_remark costRemark
+		FROM
+			rps_insurance_main a
+		INNER JOIN rpb_car b ON (a.car_id = b.id)
+		INNER JOIN rpb_contactor c ON (a.contactor_id = c.id)
+		where a.orgid = #orgid#
+		<dynamic>
+            <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="status">(a.status  = #status#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestFullName">(c.full_name like '%$guestFullName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceCode">(a.service_code like '%$serviceCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">(b.car_no like '%$carNo$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="carVin">(b.vin like '%$carVin$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNoList">(b.car_no in ($carNoList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="isSettle">(a.is_settle = #isSettle#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="startDate">(a.record_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(a.record_date &lt;= #endDate#)</isNotEmpty>
+	        	order by recordDate desc
+	    </dynamic>
+    </select>
+    <select id="queryRpsInsuranceList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+   	 	SELECT
+			a.id as id,
+			a.orgid as orgid,
+			a.service_code serviceCode,
+			a.guest_id guestId,
+			a.contactor_id contactorId,
+			a.car_id carId,
+			a.car_no carNo,
+			a.mt_advisor mtAdvisor,
+			a.mt_advisor_id mtAdvisorId,
+			a.enter_kilometers enterKilometers,
+			a.insure_comp_id insureCompId,
+			a.insure_comp_name insureCompName,
+			a.sale_man_ids saleManIds,
+			a.sale_mans saleMans,
+			a. status  status ,
+			a.begin_date beginDate,
+			a.end_date endDate,
+			a.settle_type_id settleTypeId,
+			a.modifier  modifier,
+			a.modify_date  modifyDate,
+			a.amt amt,
+			d.amt damt,
+			a.rtn_comp_amt rtnCompAmt,
+			a.rtn_guest_amt rtnGuestAmt,
+			a.record_date recordDate,
+			SUBSTRING_INDEX(b.car_model,' ',2) as carModel,
+			b.vin carVin,
+			c.name guestName,
+			c.mobile mobile,
+			b.engine_no engineNo,
+			b.car_brand_id carBrandId,
+			c.wechat_open_id as openId,
+			a.out_date outDate,
+			d.rtn_comp_amt drtnCompAmt,
+			d.rtn_comp_rate drtnCompRate,
+			d.rtn_guest_rate drtnGuestRate,
+			d.rtn_guest_amt drtnGuestAmt,
+			d.insure_type_Name  insureTypeName,
+			d.insure_no insureNo,
+			a.bala_amt balaAmt,
+			a.gross_profit_rate grossProfitRate,
+			a.gross_profit grossProfit
+		FROM
+			rps_insurance_main a
+		INNER JOIN rpb_car b ON (a.car_id = b.id)
+		INNER JOIN rpb_contactor c ON (a.contactor_id = c.id)
+		INNER JOIN rps_insurance_detail d ON (d.service_id = a.id)
+		where d.amt &gt; 0
+		<dynamic>
+            <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="status">(a.status  = #status#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestFullName">(c.full_name like '%$guestFullName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="name">(c.name like '%$name$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceCode">(a.service_code like '%$serviceCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">(b.car_no like '%$carNo$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">(c.mobile like '%$mobile$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="carVin">(b.vin like '%$carVin$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNoList">(b.car_no in ($carNoList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="isSettle">(a.is_settle = #isSettle#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="startDate">(a.record_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(a.record_date &lt;= #endDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="soutDate">(a.out_date &gt;= #soutDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eoutDate">(a.out_date &lt;= #eoutDate#)</isNotEmpty>
+	        	order by recordDate desc
+	    </dynamic>
+    </select>
+    <select id="getRpsInsuranceMainById" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			a.id id,
+			a.status status,
+			a.car_id carId,
+			a.insurance_amt insuranceAmt,
+			a.insurance_sali_amt insuranceSaliAmt,
+			a.insurance_biz_amt insuranceBizAmt,
+			a.car_boart_tax carBoartTax,
+			a.insurance_sali_rate insuranceSaliRate,
+			a.insurance_biz_rate insuranceBizRate,
+			a.commission_amt commissionAmt,
+			a.order_type orderType,
+			a.mobile mobile,
+			a.remark remark,
+			b.car_no carNo,
+			a.insurance_man insuranceMan,
+			b.car_brand_id carBrandId,
+			b.car_model carModel,
+
+			b.engine_no engineNo,
+			a.insurance_sali_date insuranceSaliDate,
+			a.insurance_sali_due insuranceSaliDue,
+			a.insurance_biz_date insuranceBizDate,
+			a.insurance_biz_due insuranceBizDue,
+			a.service_code serviceCode,
+			a.buy_date buyDate,
+			a.insurance_commissioner insuranceCommissioner,
+			a.recorder recorder,
+			a.insurance_type insuranceType,
+			a.insurance_sali_no insuranceSaliNo,
+			a.insurance_sali_comany insuranceSaliComany,
+			a.insurance_sali_content insuranceSaliContent,
+			a.insurance_biz_no insuranceBizNo,
+			a.insurance_biz_comany insuranceBizComany,
+			a.insurance_biz_content insuranceBizContent,
+			c.full_name guestFullName,
+			a.gross_profit grossProfit,
+			a.othet_expense othetExpense,
+			a.discount discount,
+			a.guest_id guestId
+		FROM
+			rps_insurance_main a
+			inner join rpb_car b on (a.car_id = b.id)
+			inner join wb_common.com_guest c on (a.guest_id = c.id)
+    	where a.id = #id#</select>
+</sqlMap>

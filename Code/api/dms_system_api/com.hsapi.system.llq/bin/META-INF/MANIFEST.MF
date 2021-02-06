@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Require-Bundle: com.hsapi.repair.repairService,com.hs.common,com.eos.f
+ oundation
+eos-webCtxPath: llq
+Bundle-Vendor: Guine
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsweb.system.llq
+Bundle-Description: llq
+Bundle-SymbolicName: com.hsapi.system.llq
+

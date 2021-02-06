@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.frm.frmSetting">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <!--字典定义-->
+    <select id="queryIncomeExpenItem" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT A.id, orgid, code, A.name, item_type_id itemTypeId, is_primary_business isPrimaryBusiness, parent_id parentId, 
+        B.name parentName, level_num levelNum, is_disabled isDisabled, modifier, modify_date modifyDate, B.num
+        FROM fib_income_expenses A
+		LEFT JOIN(
+			select A.ID, P.name, CASE WHEN COUNT(B.id)&gt;0 then 1 ELSE 0 END NUM 
+			from fib_income_expenses A 
+			LEFT JOIN fib_income_expenses B ON B.parent_id=A.ID AND B.is_disabled=0
+            LEFT JOIN fib_income_expenses P ON A.parent_id = P.id
+			GROUP BY A.ID, P.name
+		)B ON A.ID=B.ID
+		WHERE is_disabled = 0
+		
+        <isNull property="parentId">
+            <isNull property="code">
+                <isNull property="name">And LENGTH(IFNULL(A.parent_id,''))=0</isNull>
+            </isNull>
+        </isNull>
+        <isNotNull property="parentId">And A.parent_id = #parentId#</isNotNull>
+        <isNotNull property="code">AND A.code like '%$code$%'</isNotNull>
+        <isNotNull property="name">AND A.name like '%$name$%'</isNotNull>
+    </select>
+    <select id="queryInit" parameterClass="HashMap" resultClass="HashMap">
+     	SELECT a.rp_code rpCode,a.id, a.orgid, a.guest_id guestId, a.guest_full_name guestFullName, c.full_name fullName, a.rp_type rpType, a.service_code serviceCode, a.service_type_id serviceTypeId, 
+         a.rp_amt rpAmt, a.rp_amt_yes rpAmtYes, a.rp_amt_no rpAmtNo, a.bill_amt billAmt, a.bill_status billStatus, a.auditor, a.audit_date auditDate, a.on_account_date onAccountDate, 
+         b.pay_sum paySum, a.on_account_surety onAccountSurety, a.on_account_type onAccountType, a.remark, a.recorder, a.record_date recordDate, datediff( CURDATE(),a.audit_date) OwnDay
+ 		 FROM fis_rp_account a LEFT JOIN ( 
+         SELECT service_code,   SUM(rp_amt) pay_sum
+         FROM fis_rp_account b 
+         WHERE rp_type = -1 
+         GROUP BY service_code 
+ 		) b on a.service_code = b.service_code  
+		LEFT JOIN wb_common.com_guest c on a.guest_id = c.id 
+		
+		WHERE a.rp_amt &gt;0 and a.orgid = #userOrgId# and a.rp_type = 1 
+		and a.service_type_id not in ('1', '-1') 
+		and (a.rp_amt_no &lt;&gt; 0 OR (a.rp_amt_no = 0 
+		and not exists   (select 1 from fis_rp_check_off b where a.id = b.rp_id)))
+		<isNotNull property="guestId">AND a.guest_id = #guestId#</isNotNull>
+        <isNotNull property="gd">AND a.service_code like '%$gd$%'</isNotNull>
+        <isNotNull property="assignStatus">AND a.bill_status = #assignStatus#</isNotNull>
+        <isEqual compareValue="today" property="timeStatus">AND date(a.record_date) = date(NOW())</isEqual>
+        <isEqual compareValue="yesterday" property="timeStatus">
+            <!--AND SELECT PERIOD_DIFF( date_format( now( ) , '%Y%m%d' ) , date_format(a.record_date, '%Y%m%d' ) )=1-->
+			AND TO_DAYS(NOW()) - TO_DAYS(a.record_date) = 1
+		</isEqual>
+        <isEqual compareValue="week" property="timeStatus">And YEARWEEK(a.record_date) = YEARWEEK(now())</isEqual>
+        <isEqual compareValue="month" property="timeStatus">And MONTH(a.record_date) = MONTH(now())</isEqual>
+        <isEqual compareValue="smounth" property="timeStatus">And PERIOD_DIFF( date_format( now( ) , '%Y%m' ) , date_format( a.record_date , '%Y%m' ) ) =1</isEqual>
+        <isEqual compareValue="year" property="timeStatus">And YEAR(a.record_date) = YEAR(now())</isEqual>
+    </select>
+    <select id="queryreciveInit" parameterClass="HashMap" resultClass="HashMap">
+     	SELECT
+			id,orgid,guest_id guestId,guest_full_name guestFullName,rp_type rpType,service_code serviceCode,
+			service_type_id serviceTypeId,rp_amt rpAmt,rp_amt_yes rpAmtYes,rp_amt_no rpAmtNo,bill_amt billAmt,
+			bill_status billStatus,auditor,audit_date auditDate,on_account_date onAccountDate,on_account_surety onAccountSurety,
+			on_account_type onAccountType,remark,recorder,record_date recordDate,
+			DATEDIFF(CURDATE(), a.audit_date) OwnDay
+		FROM
+			fis_rp_account a
+		WHERE
+			1 = 1
+		AND orgid = #userOrgId#
+		AND rp_type = -1
+		AND service_type_id NOT IN ('1', '-1')
+		AND rp_amt &gt;= 0
+	
+		AND (
+			rp_amt_no &lt;&gt; 0
+			OR (
+				rp_amt_no = 0
+				AND NOT EXISTS (
+					SELECT
+						1
+					FROM
+						fis_rp_check_off b
+					WHERE
+						a.id = b.rp_id
+				)
+			)
+		)	
+	
+		AND EXISTS (
+			SELECT
+				1
+			FROM
+				wb_common.com_dataitems
+			WHERE
+				DictID IN (
+					'DDT20130706000015',
+					'DDT20130706000016'
+			)
+		
+		and CustomID = a.service_type_id	
+		AND Property1 = '0') 
+			
+		<isNotNull property="guestId">AND a.guest_id = #guestId#</isNotNull>
+        <isNotNull property="gd">AND a.service_code like '%$gd$%'</isNotNull>
+        <isNotNull property="assignStatus">AND a.bill_status = #assignStatus#</isNotNull>
+        <isEqual compareValue="today" property="timeStatus">AND date(a.record_date) = date(NOW())</isEqual>
+        <isEqual compareValue="yesterday" property="timeStatus">AND TO_DAYS(NOW()) - TO_DAYS(a.record_date) = 1</isEqual>
+        <isEqual compareValue="week" property="timeStatus">And YEARWEEK(a.record_date) = YEARWEEK(now())</isEqual>
+        <isEqual compareValue="month" property="timeStatus">And MONTH(a.record_date) = MONTH(now())</isEqual>
+        <isEqual compareValue="smounth" property="timeStatus">And PERIOD_DIFF( date_format( now( ) , '%Y%m' ) , date_format( a.record_date , '%Y%m' ) ) =1</isEqual>
+        <isEqual compareValue="year" property="timeStatus">And YEAR(a.record_date) = YEAR(now())</isEqual>
+    </select>
+    <update id="updateInit" parameterClass="HashMap">update fis_rp_account
+    	set bill_status = 0
+    	where service_code=#serviceCode#</update>
+    <select id="getrevenueAndExpenditure" parameterClass="HashMap" resultClass="HashMap">select a.id,a.orgid,a.rp_bill_id rpBillId,a.rp_id rpId,a.guest_id guestId,a.rp_mode_type rpModeType,a.check_off_amt checkOffAmt,a.check_off_man checkOffMan,a.check_off_date checkOffDate,a.bill_status billStatus,a.remark,b.service_code serviceCode from fis_rp_check_off a left join fis_rp_account b on a.rp_id = b.id 
+ 	where a.orgid = 'COM20171009000001' 
+ 	AND a.rp_bill_id IN (
+	SELECT id FROM fis_rp_bill_list WHERE orgid = 'COM20171009000001' AND rp_date gt;= '2018-05-01'
+	AND rp_date &lt;= '2018-05-31 23:59:59'
+	and rp_type_id = 1
+	) ORDER BY a.rp_bill_id</select>
+    <select id="dayMoneyReporttwo" parameterClass="HashMap" resultClass="HashMap">
+   
+      	SELECT   
+        	a.id tid, b.id AS checkid, b.rp_bill_id rpBillId, a.guest_full_name guestFullName, 
+			c.service_code ServiceCode, ABS(b.check_off_amt) AS Famount ,
+			b.check_off_man checkOffMan, b.check_off_date checkOffDate, b.remark remark
+			FROM 
+			fis_rp_bill_list AS a INNER JOIN  fis_rp_check_off AS b ON a.id = b.rp_bill_id 
+			LEFT OUTER JOIN   fis_rp_account AS c ON b.rp_id = c.id 
+			<!--WHERE (a.id IN (SELECT  id FROM  fis_rp_bill_list 
+			WHERE (orgid = 'COM20171009000001') AND (rp_purpose_id = '02020108'))) --><isEqual compareValue="today" property="timeStatus">AND date(a.record_date) = date(NOW())</isEqual>
+        <isEqual compareValue="tomorrow" property="timeStatus">AND date(a.record_date) = date(NOW())-1</isEqual>
+        <isEqual compareValue="week" property="timeStatus">And YEARWEEK(a.record_date) = YEARWEEK(now())</isEqual>
+        <isEqual compareValue="month" property="timeStatus">And MONTH(a.record_date) = MONTH(now())</isEqual>
+        <isEqual compareValue="smounth" property="timeStatus">And MONTH(a.record_date) = MONTH(now())-1</isEqual>
+        <isEqual compareValue="year" property="timeStatus">And YEAR(a.record_date) = YEAR(now())</isEqual>
+    </select>
+    <select id="dayMoneyReportone" parameterClass="HashMap" resultClass="HashMap">
+           SELECT a.id, a.code, a.orgid, a.guest_id guestId, a.guest_full_name guestFullName , a.rp_type_id rpTypeId,
+				a.rp_mode_id rpModeId, a.rp_purpose_id rpPurposeId , a.rp_amt rpAmt, a.offset_amt offsetAmt, a.offset_amt_no offsetAmtNo,
+				a.service_ids serviceIds, a.remark remark, a.rp_man rpMan, a.record_date recordDate<!--, 
+				CASE WHEN rp_mode_id = '020101' 
+				THEN rp_amt END XJ,   CASE WHEN rp_mode_id = '020102' THEN rp_amt END SK, CASE WHEN 
+				rp_mode_id = '020103' THEN rp_amt END  HK, CASE WHEN rp_mode_id = '020104' THEN rp_amt END  ZP, 
+				 CASE WHEN rp_mode_id = '020105' THEN rp_amt END  ZZ,  CASE WHEN rp_mode_id = '020107' 
+				THEN rp_amt END DK,   
+				CASE WHEN rp_mode_id = '020107' THEN rp_amt END memberAmt, 
+				CASE WHEN rp_mode_id not in ('020101', '020102', '020105','020106','020107') THEN rp_amt END QT,  
+				 CASE WHEN rp_mode_id = '020106' THEN rp_amt END  HZ -->  
+				 FROM fis_rp_bill_list a LEFT JOIN (                    
+				SELECT rp_bill_id,  SUM(check_off_amt) SSum FROM  fis_rp_check_off C INNER JOIN 
+				fis_rp_account R ON C.rp_id = R.id  <!--WHERE rp_amt &lt; 0  -->GROUP BY rp_bill_id  ) 
+				b ON a.id = b.rp_bill_id LEFT JOIN (   SELECT  rp_bill_id, SUM(check_off_amt) FSum   
+				FROM  fis_rp_check_off C INNER JOIN fis_rp_account R ON C.rp_id = R.id  <!--WHERE  rp_amt &gt; 0  -->
+				GROUP BY rp_bill_id  ) c ON a.id = c.rp_bill_id  
+				<!--WHERE   a.orgid = 'COM20171009000001'--><isEqual compareValue="today" property="timeStatus">AND date(a.record_date) = date(NOW())</isEqual>
+        <isEqual compareValue="tomorrow" property="timeStatus">AND date(a.record_date) = date(NOW())-1</isEqual>
+        <isEqual compareValue="week" property="timeStatus">And YEARWEEK(a.record_date) = YEARWEEK(now())</isEqual>
+        <isEqual compareValue="month" property="timeStatus">And MONTH(a.record_date) = MONTH(now())</isEqual>
+        <isEqual compareValue="smounth" property="timeStatus">And MONTH(a.record_date) = MONTH(now())-1</isEqual>
+        <isEqual compareValue="year" property="timeStatus">And YEAR(a.record_date) = YEAR(now())</isEqual>
+				
+				ORDER BY a.id , a.service_ids 
+	</select>
+    <select id="querySettlementrAmt" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT
+				a.bala_type_code as code,
+				sum(a.char_off_amt) as rAmt
+			FROM
+				fis_rp_account_d_type a
+				 INNER JOIN fis_rp_account as b on(a.main_id=b.id)
+			
+			WHERE 
+				a.rp_dc=1
+			<isNotEmpty prepend="and" property="orgid">(b.orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="orgids">(b.orgid in ($orgids$))</isNotEmpty>
+        <isNotEmpty prepend="and" property="startDate">(b.create_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(b.create_date &lt; #endDate#)</isNotEmpty>
+            			GROUP BY
+				a.bala_type_code
+    </select>
+    <select id="querySettlementcAmt" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT
+				a.bala_type_code as code,
+				sum(a.char_off_amt) as cAmt
+			FROM
+				fis_rp_account_d_type a
+				 INNER JOIN fis_rp_account as b on(a.main_id=b.id)
+			
+			WHERE 
+				a.rp_dc=-1
+			<isNotEmpty prepend="and" property="orgid">(b.orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="orgids">(b.orgid in ($orgids$))</isNotEmpty>
+        <isNotEmpty prepend="and" property="startDate">(b.create_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(b.create_date &lt; #endDate#)</isNotEmpty>
+            			GROUP BY
+				a.bala_type_code
+    </select>
+    <select id="queryOtherIncomeAndExpenditure" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT
+				a.bill_service_id as billServiceId,
+				a.car_no as carNo,
+				a.guest_name AS guestName,
+				a.orgid as orgid,
+				b.name    AS billTypeId,
+				a.bill_dc AS billDc,
+				a.rp_amt AS rpAmt,
+				a.char_off_amt AS charOffAmt,
+				a.auditor,
+				a.audit_sign AS auditSign,
+				a.audit_date AS auditDate,
+				a.settle_status AS settleStatus,
+				a.remark AS remark,
+				a.rp_bill_id AS rpBillId,
+				a.create_date AS createDate
+			FROM
+				wb_frm.fis_rp_bill a
+				LEFT JOIN wb_frm.fib_income_expenses b on (b.id=a.bill_type_id)
+			WHERE
+				rp_type_id = 2
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestName">(a.guest_name  like '%$guestName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="settleStatus">(a.settle_status = #settleStatus#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="auditSign">(a.audit_sign = #auditSign#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="screateDate">(a.create_date &gt;= #screateDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="ecreateDate">(a.create_date &lt; #ecreateDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="sauditDate">(a.audit_date  &gt;= #sauditDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eauditDate">(a.audit_date  &lt; #eauditDate#)</isNotEmpty>
+        </dynamic>  
+        order by a.create_date desc
+	</select>
+    <!--结算账户余额表-->
+    <select id="querySummaryAccountBalances" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT
+			    a.id as id,
+	            a.main_id as mainId,
+	            a.sett_account_id as settAccountId,
+	            a.sett_account_name as settAccountName,
+	            a.bala_type_code as balaTypeCode,
+	            a.bala_type_name as balaTypeName,
+	            a.sett_account_code as settAccountCode,
+	            a.rp_dc  as rpDc,
+	            a.char_off_amt as charOffAmt,
+	            a.remark as remark,
+				b.create_date as createDate,
+				b.guest_name as guestName,
+				b.orgid as orgid,
+				b.rp_account_id as rpAccountId,
+				b.guest_id as guestId
+			FROM
+				fis_rp_account_d_type a
+				 INNER JOIN fis_rp_account  b on(a.main_id=b.id)
+			
+			WHERE 
+				a.sett_account_id=#settAccountId#
+			<isNotEmpty prepend="and" property="orgid">(b.orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="orgids">(b.orgid in ($orgids$))</isNotEmpty>
+        <isNotEmpty prepend="and" property="startDate">(b.create_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(b.create_date &lt; #endDate#)</isNotEmpty>
+            order by b.create_date desc
+    </select>
+    <update id="updateDefault" parameterClass="HashMap">update fib_settle_account
+    	set is_default = 0
+    	where is_default = 1 and orgid=#orgid#</update>
+    <!--其他收支汇总表-->
+    <select id="queryTechnicianSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT  
+    <isEqual compareValue="0" prepend="" property="groupByType">DATE_FORMAT(b.out_date,'%Y-%m-%d')  as groupName,</isEqual>
+        <isEqual compareValue="1" prepend="" property="groupByType">b.service_type_id as groupName,</isEqual>
+        <isEqual compareValue="2" prepend="" property="groupByType">a.worker as groupName,</isEqual> 
+	      	       
+    	
+    	  	sum(a.sales_deduct_value) as salesDeductValue,
+    	  	sum(a.tech_deduct_value) as techDeductValue,
+       		sum(a.advisor_deduct_value) as advisorDeductValue, 
+       		sum(a.annual_inspection_deduct_value) as annualInspectionDeductValue, 
+       		sum(a.insure_due_deduct_value) as insureDueDeductValue,
+       		sum(a.vessel_tax_deduct_value) as vesselTaxDeductValue,
+       		sum(a.total_deduct_amt) as totalDeductAmt
+		from wb_repair.rps_deduct_detail a
+		inner join wb_repair.rps_maintain b on a.service_id = b.id 
+		inner join rps_settlement c on (b.id =  c.service_id)
+		where b.is_settle = 1 and b.orgid = #orgid#
+		and b.bill_type_id in (0,2,4)
+		
+            <isNotEmpty prepend="and" property="startDate">(b.out_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(b.out_date &lt; #endDate#)</isNotEmpty>
+        <isEqual compareValue="0" prepend="" property="groupByType">GROUP BY DATE_FORMAT(b.out_date,'%Y-%m-%d')</isEqual>
+        <isEqual compareValue="1" prepend="" property="groupByType">group by b.service_type_id</isEqual>
+        <isEqual compareValue="2" prepend="" property="groupByType">group by a.worker</isEqual>
+    </select>
+    <!--其他收支汇总表-->
+    <select id="queryOtherIncomeAndExpenditureSummaryshou" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT  
+    <isEqual compareValue="0" prepend="" property="groupByType">DATE_FORMAT(a.create_date,'%Y-%m-%d')  as groupName,</isEqual>
+        <isEqual compareValue="1" prepend="" property="groupByType">b.name as groupName,</isEqual>
+        <isEqual compareValue="2" prepend="" property="groupByType">a.guest_name as groupName,</isEqual> 
+	      	       
+    	
+    	  	sum(a.rp_amt) as rpAmt
+
+		from 
+			wb_frm.fis_rp_bill a
+			LEFT JOIN wb_frm.fib_income_expenses b on (b.id=a.bill_type_id)
+			
+		WHERE
+			a.rp_type_id = 2 and a.bill_dc=1 
+			
+			<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
+        <isNotEmpty prepend="and" property="startDate">(a.create_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(a.create_date &lt; #endDate#)</isNotEmpty>
+        <isEqual compareValue="0" prepend="" property="groupByType">GROUP BY DATE_FORMAT(a.create_date,'%Y-%m-%d')</isEqual>
+        <isEqual compareValue="1" prepend="" property="groupByType">group by a.bill_type_id</isEqual>
+        <isEqual compareValue="2" prepend="" property="groupByType">group by a.guest_name</isEqual>
+    </select>
+    <!--其他收支汇总表-->
+    <select id="queryOtherIncomeAndExpenditureSummaryzhi" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT  
+    <isEqual compareValue="0" prepend="" property="groupByType">DATE_FORMAT(a.create_date,'%Y-%m-%d')  as groupName,</isEqual>
+        <isEqual compareValue="1" prepend="" property="groupByType">b.name as groupName,</isEqual>
+        <isEqual compareValue="2" prepend="" property="groupByType">a.guest_name as groupName,</isEqual> 
+	      	       
+    	
+    	  	sum(a.rp_amt) as rpAmt
+
+		from 
+			wb_frm.fis_rp_bill a
+			LEFT JOIN wb_frm.fib_income_expenses b on (b.id=a.bill_type_id)
+		WHERE
+			a.rp_type_id = 2 and a.bill_dc=-1 
+
+			<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
+        <isNotEmpty prepend="and" property="startDate">(a.create_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(a.create_date &lt; #endDate#)</isNotEmpty>
+        <isEqual compareValue="0" prepend="" property="groupByType">GROUP BY DATE_FORMAT(a.create_date,'%Y-%m-%d')</isEqual>
+        <isEqual compareValue="1" prepend="" property="groupByType">group by a.bill_type_id</isEqual>
+        <isEqual compareValue="2" prepend="" property="groupByType">group by a.guest_name</isEqual>
+    </select>
+    <!--查询结算账户，用于缓存-->
+    <select id="queryFibSettleAccount" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT
+			a.id as id,
+			a.orgid as orgid,
+			a.`code` as code,
+			a.`name` as name,
+			a.account_type_id as accountTypeId,
+			a.parent_id as parentId,
+			a.is_end as isEnd,
+			a.level_num as levelNum,
+			a.is_disabled as isDisabled,
+			a.is_init as isInit,
+			a.init_balance as initBalance,
+			a.cur_balance as curBalance,
+			a.is_default as isDefault,
+			a.is_system as isSystem,
+			a.bank_name as bankName,
+			a.bank_account_number as bankAccountNumber,
+			a.fee_rate as feeRate,
+			a.fee_max as feeMax,
+			a.recorder as recorder,
+			a.record_date as recordDate,
+			a.modifier as modifier,
+			a.modify_date as modifyDate,
+			a.remark as remark
+		FROM
+			wb_frm.fib_settle_account AS a
+		where a.is_disabled = 0 and a.orgid = #orgid#
+		
+        <isNotNull property="accountTypeId">and a.account_type_id = #accountTypeId#</isNotNull>
+        <isNotNull property="isDefault">and a.is_default = #isDefault#</isNotNull>
+    </select>
+    <!--查询结算账户对应的结算方式，用于缓存-->
+    <select id="queryFibSettleAccountRela" parameterClass="HashMap" resultClass="HashMap">SELECT
+			a.id as id,
+			a.custom_id as customId,
+			a.`code` as code,
+			a.`name` as name,
+			a.custom_name as customName,
+			a.creator_id as creatorId,
+			a.creator as creator,
+			a.create_date as createDate
+		FROM
+			wb_frm.fib_settle_account_rela AS a
+		where a.id = #accountId#</select>
+    <!--查询收支项目，用于缓存-->
+    <select id="queryFibIncomeExpenses" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT
+			a.id as id,
+			a.orgid as orgid,
+			a.`code` as code,
+			a.`name` as name,
+			a.item_type_id as itemTypeId,
+			a.is_primary_business as isPrimaryBusiness,
+			a.parent_id as parentId,
+			a.is_end as isEnd,
+			a.level_num as levelNum,
+			a.is_disabled as isDisabled,
+			a.is_sale as isSale,
+			a.creator_id as creatorId,
+			a.creator as creator,
+			a.create_date as createDate,
+			a.operator_id as operatorId,
+			a.operator as operator,
+			a.operate_date as operateDate,
+			a.remark as remark
+		FROM
+			wb_frm.fib_income_expenses AS a
+		where (a.orgid = 0 or a.orgid = #orgid#)
+		
+		<isNotNull property="itemTypeId">and a.item_type_id = #itemTypeId#</isNotNull>
+        <isNotNull property="isMain">and a.is_primary_business = #isMain#</isNotNull>
+        <isNotNull property="isSale">and a.is_sale = #isSale#</isNotNull>
+    </select>
+    <!--
+    	更新已结算
+    -->
+    <update id="updateAccountType" parameterClass="java.util.HashMap">update fis_rp_account_d_type set char_off_amt = char_off_amt - #charOffAmt#, fee_service = fee_service - #feeService#
+		where id = #id#</update>
+</sqlMap>

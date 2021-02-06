@@ -8,14 +8,6 @@ import java.util.List;
 import java.util.UUID;
 
 import com.eos.system.annotation.Bizlet;
-import com.google.gson.Gson;
-import com.kingdee.bos.webapi.sdk.K3CloudApi;
-import com.kingdee.bos.webapi.sdk.OperateParam;
-import com.kingdee.bos.webapi.sdk.OperatorResult;
-import com.kingdee.bos.webapi.sdk.QueryParam;
-import com.kingdee.bos.webapi.sdk.SaveParam;
-import com.kingdee.bos.webapi.sdk.SaveResult;
-import com.kingdee.bos.webapi.sdk.SuccessEntity;
 
 /**
  * @author dlb
@@ -30,7 +22,7 @@ public class KingInterface {
 	 */
 	@Bizlet("")
 	public static HashMap addCutom(String fullName, String shortName, String orgNum) throws Exception {
-		K3CloudApi api=new K3CloudApi();
+		/*K3CloudApi api=new K3CloudApi();
 		Supplier s = new Supplier();
 		
 		CommonFNumber orgid = new CommonFNumber();
@@ -68,7 +60,8 @@ public class KingInterface {
 			auditSupplier(successEntity.getId());
 		} 
 
-		return hm;
+		return hm;*/
+		return null;
 		
 	}
 	
@@ -76,7 +69,7 @@ public class KingInterface {
 	 * 提交供应商资料
 	 * */
 	private static boolean submitSupplier(String id) throws Exception{
-		K3CloudApi api=new K3CloudApi();
+		/*K3CloudApi api=new K3CloudApi();
 		
 		OperateParam param = new OperateParam();
 		param.setIds(id.toString());
@@ -84,7 +77,7 @@ public class KingInterface {
 		OperatorResult sRet = api.submit("BD_Supplier", param);
 		if (sRet.isSuccessfully()) {
 			return true;
-		} 
+		} */
 		
 		return false;
 	}
@@ -93,7 +86,7 @@ public class KingInterface {
 	 * 审核供应商资料
 	 * */
 	private static boolean auditSupplier(String id) throws Exception{
-		K3CloudApi api=new K3CloudApi();
+		/*K3CloudApi api=new K3CloudApi();
 	
 		OperateParam param = new OperateParam();
 		param.setIds(id.toString());
@@ -101,7 +94,7 @@ public class KingInterface {
 		OperatorResult sRet = api.aduit("BD_Supplier", param);
 		if (sRet.isSuccessfully()) {
 			return true;
-		} 
+		} */
 		
 		return false;
 	}
@@ -111,7 +104,7 @@ public class KingInterface {
 	 */
 	@Bizlet("")
 	public static HashMap addSupplier(String fullName, String shortName, String orgNum) throws Exception {
-		K3CloudApi api=new K3CloudApi();
+		/*K3CloudApi api=new K3CloudApi();
 		Customer c = new Customer();
 		
 		CommonFNumber orgid = new CommonFNumber();
@@ -148,7 +141,8 @@ public class KingInterface {
 			auditCustom(successEntity.getId());
 		} 
 
-		return hm;
+		return hm;*/
+		return null;
 		
 	}
 	
@@ -156,7 +150,7 @@ public class KingInterface {
 	 * 提交客户资料
 	 * */
 	private static boolean submitCustom(String id) throws Exception{
-		K3CloudApi api=new K3CloudApi();
+		/*K3CloudApi api=new K3CloudApi();
 		
 		OperateParam param = new OperateParam();
 		param.setIds(id.toString());
@@ -164,7 +158,7 @@ public class KingInterface {
 		OperatorResult sRet = api.submit("BD_Customer", param);
 		if (sRet.isSuccessfully()) {
 			return true;
-		} 
+		} */
 		
 		return false;
 	}
@@ -173,7 +167,7 @@ public class KingInterface {
 	 * 审核客户资料
 	 * */
 	private static boolean auditCustom(String id) throws Exception{
-		K3CloudApi api=new K3CloudApi();
+		/*K3CloudApi api=new K3CloudApi();
 	
 		OperateParam param = new OperateParam();
 		param.setIds(id.toString());
@@ -181,14 +175,14 @@ public class KingInterface {
 		OperatorResult sRet = api.aduit("BD_Customer", param);
 		if (sRet.isSuccessfully()) {
 			return true;
-		} 
+		} */
 		
 		return false;
 	}
 	
 	@Bizlet("")
 	public static void testAdd() throws Exception {
-		K3CloudApi api=new K3CloudApi();
+		/*K3CloudApi api=new K3CloudApi();
 		Customer c = new Customer();
 		c.setCustID(176828);
 		
@@ -215,13 +209,13 @@ public class KingInterface {
 		} else {
 			//fail("dcs is null!");
 		}
-		
+		*/
 	}
 	
 	@Bizlet("")
 	public static void test() throws Exception {
 		
-		K3CloudApi api = new K3CloudApi();
+		/*K3CloudApi api = new K3CloudApi();
 		List<Customer> datas = null;
 		try {
 			datas = api.executeBillQuery(
@@ -242,6 +236,6 @@ public class KingInterface {
 			System.out.println(String.format("Total:%s", datas.size()));
 		} else {
 			//fail("dcs is null!");
-		}
+		}*/
 	}
 }

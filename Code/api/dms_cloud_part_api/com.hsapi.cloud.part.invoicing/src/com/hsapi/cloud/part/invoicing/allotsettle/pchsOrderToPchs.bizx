@@ -148,6 +148,17 @@
     <sourceConnections xsi:type="process:tLink" id="link24" name="link24" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign15</sourceNode>
       <targetNode>loopstart0</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link20" name="link20" displayName="连接线" type="transition">
+      <sourceNode>assign15</sourceNode>
+      <targetNode>assign8</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">pchsMain/settleGuestId</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
     <location x="795" y="219"/>
@@ -233,6 +244,18 @@
       <process:from type="query" pattern="reference">versionNo</process:from>
       <process:to type="query">pchsMain/versionNo</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">expAmt</process:from>
+      <process:to type="query">pchsMain/expenseAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderMain/businessTypeId</process:from>
+      <process:to type="query">pchsMain/businessTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderMain/settleGuestId</process:from>
+      <process:to type="query">pchsMain/settleGuestId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign15label" name="label" nodeType="label">
     <location x="785" y="255"/>
@@ -277,9 +300,11 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link24</targetConnections>
+    <targetConnections>link22</targetConnections>
     <location x="870" y="220"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="tempDetails" iterableElement="detailTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -391,6 +416,34 @@
     <process:copy>
       <process:from type="expression" pattern="reference">taxPrice*orderQty</process:from>
       <process:to type="query">detailTemp/expEnterAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxPrice</process:from>
+      <process:to type="query">detailTemp/taxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">taxPrice*orderQty</process:from>
+      <process:to type="query">detailTemp/taxCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">noTaxPrice</process:from>
+      <process:to type="query">detailTemp/noTaxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">noTaxPrice*orderQty</process:from>
+      <process:to type="query">detailTemp/noTaxCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderQty</process:from>
+      <process:to type="query">detailTemp/outableQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">taxPrice*1.02</process:from>
+      <process:to type="query">detailTemp/setCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">taxPrice*orderQty*1.02</process:from>
+      <process:to type="query">detailTemp/setCostAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">mTaxAmt+taxPrice*orderQty</process:from>
@@ -1065,6 +1118,7 @@
     <location x="1391" y="220"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="pchsDetail" iterableElement="detailTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart1label" name="label" nodeType="label">
@@ -1112,26 +1166,74 @@
       <process:to type="query">taxAmt</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">detailTemp/noTaxAmt</process:from>
+      <process:to type="query">noTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">detailTemp/orderQty</process:from>
       <process:to type="query">orderQty</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">orderAmt*1.0/mOrderAmt*expAmt</process:from>
-      <process:to type="query">orderTemp/expenseAmt</process:to>
+      <process:to type="query">detailTemp/expenseAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">orderAmt*1.0/mOrderAmt*expAmt+taxAmt</process:from>
-      <process:to type="query">orderTemp/expEnterAmt</process:to>
+      <process:to type="query">detailTemp/expEnterAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">(orderAmt*1.0/mOrderAmt*expAmt+taxAmt)/orderQty</process:from>
-      <process:to type="query">orderTemp/expEnterPrice</process:to>
+      <process:to type="query">detailTemp/expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(orderAmt*1.0/mOrderAmt*expAmt+taxAmt)*1.02</process:from>
+      <process:to type="query">detailTemp/setCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(orderAmt*1.0/mOrderAmt*expAmt+taxAmt)*1.02/orderQty</process:from>
+      <process:to type="query">detailTemp/setCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">taxAmt/orderQty</process:from>
+      <process:to type="query">detailTemp/taxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxAmt</process:from>
+      <process:to type="query">detailTemp/taxCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">noTaxAmt/orderQty</process:from>
+      <process:to type="query">detailTemp/noTaxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">noTaxAmt</process:from>
+      <process:to type="query">detailTemp/noTaxCostAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
     <location x="1447" y="254"/>
     <figSize height="20" width="40"/>
     <node>assign7</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值7" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link22" name="link22" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign8</sourceNode>
+      <targetNode>loopstart0</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link20</targetConnections>
+    <location x="796" y="392"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign8label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">pchsMain/guestId</process:from>
+      <process:to type="query">pchsMain/settleGuestId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
+    <location x="790" y="428"/>
+    <figSize height="20" width="40"/>
+    <node>assign8</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getImportPartInfo.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、根据配件编码，查询配件基本信息&#xD;&#xA;2、重新计算金额，计算不含税和含税成本&#xD;&#xA;3、如果有导入不成功的配件，需要提示导入不成功的配件信息" title="Administrator&#x9;18-5-6 下午6:06">
-    <location x="15" y="0"/>
+    <location x="-57" y="-39"/>
     <size height="100" width="271"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
@@ -74,7 +74,6 @@
     <location x="216" y="173"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
-    <process:condition/>
     <process:iterate iterable="enterDetail" iterableElement="enter"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -112,8 +111,6 @@
     <chidren>assign4</chidren>
     <chidren>assign5</chidren>
     <chidren>invokePojo1</chidren>
-    <chidren>assign6</chidren>
-    <chidren>assign7</chidren>
     <chidren>assign8</chidren>
     <chidren>assign12</chidren>
     <chidren>assign13</chidren>
@@ -128,6 +125,7 @@
     <chidren>assign14</chidren>
     <chidren>invokePojo11</chidren>
     <chidren>assign17</chidren>
+    <chidren>assign6</chidren>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
@@ -273,6 +271,22 @@
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[2]/_op</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enter/orgCarBrandId</process:from>
+      <process:to type="query">cond/_expr[3]/orgCarBrandId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[3]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enter/qualityTypeId</process:from>
+      <process:to type="query">cond/_expr[4]/qualityTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[4]/_op</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
     <location x="264" y="209"/>
@@ -318,16 +332,15 @@
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
-      <targetNode>assign6</targetNode>
+      <targetNode>assign8</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link16" name="0" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link46" name="link46" displayName="连接线" type="transition">
       <sourceNode>assign3</sourceNode>
-      <targetNode>assign7</targetNode>
+      <targetNode>assign6</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">taxSign</process:leftOperand>
-          <process:rightOperand type="literal">0</process:rightOperand>
-        </process:simpleCondition>
+        <process:complexCondition>
+          <process:code>enterQty&lt;=0||enterPrice&lt;0||taxRate&lt;0||expEnterPrice&lt;0||taxCostPrice&lt;0||setCostPrice&lt;0||noTaxCostPrice&lt;0||taxPrice&lt;0||noTaxPrice&lt;0</process:code>
+        </process:complexCondition>
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link34</targetConnections>
@@ -386,6 +399,30 @@
       <process:from type="query" pattern="reference">enter/taxRate</process:from>
       <process:to type="query">taxRate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enter/expEnterPrice</process:from>
+      <process:to type="query">expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enter/taxCostPrice</process:from>
+      <process:to type="query">taxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enter/setCostPrice</process:from>
+      <process:to type="query">setCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enter/noTaxCostPrice</process:from>
+      <process:to type="query">noTaxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enter/taxPrice</process:from>
+      <process:to type="query">taxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enter/noTaxPrice</process:from>
+      <process:to type="query">noTaxPrice</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
     <location x="444" y="208"/>
@@ -396,6 +433,7 @@
     <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>assign5</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link30" name="link30" displayName="连接线" type="transition">
       <sourceNode>assign4</sourceNode>
@@ -427,6 +465,7 @@
       <targetNode>loopend0</targetNode>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
+    <targetConnections>link48</targetConnections>
     <location x="971" y="75"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
@@ -466,68 +505,50 @@
     <figSize height="20" width="77"/>
     <node>invokePojo1</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" grouped="true" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign6</sourceNode>
-      <targetNode>assign8</targetNode>
-    </sourceConnections>
-    <targetConnections>link15</targetConnections>
-    <location x="510" y="173"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign6label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">enterPrice</process:from>
-      <process:to type="query">taxPrice</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">enterPrice/(1+taxRate)</process:from>
-      <process:to type="query">noTaxPrice</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
-    <location x="504" y="209"/>
-    <figSize height="20" width="40"/>
-    <node>assign6</node>
-  </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值7" displayName="赋值" grouped="true" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign7</sourceNode>
-      <targetNode>assign8</targetNode>
-    </sourceConnections>
-    <targetConnections>link16</targetConnections>
-    <location x="510" y="245"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign7label</nodeLabel>
-    <process:copy>
-      <process:from type="expression" pattern="reference">enterPrice*(1+taxRate)</process:from>
-      <process:to type="query">taxPrice</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">enterPrice</process:from>
-      <process:to type="query">noTaxPrice</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
-    <location x="504" y="281"/>
-    <figSize height="20" width="40"/>
-    <node>assign7</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
       <targetNode>invokePojo1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
-    <targetConnections>link17</targetConnections>
-    <targetConnections>link18</targetConnections>
+    <targetConnections>link15</targetConnections>
     <location x="574" y="173"/>
     <size height="28" width="28"/>
     <nodeLabel>assign8label</nodeLabel>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(enterQty))</process:from>
+      <process:to type="query">d1</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">noTaxCostPrice</process:from>
+      <process:to type="query">enter/noTaxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(noTaxCostPrice))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(noTaxCostPrice+&quot;&quot;).length()-(noTaxCostPrice+&quot;&quot;).indexOf(&quot;.&quot;)-1</process:from>
+      <process:to type="query">scale</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">enter/noTaxCostAmt</process:to>
+    </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">taxPrice</process:from>
       <process:to type="query">enter/taxPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">enterQty*taxPrice</process:from>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(taxPrice))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(taxPrice+&quot;&quot;).length()-(taxPrice+&quot;&quot;).indexOf(&quot;.&quot;)-1</process:from>
+      <process:to type="query">scale</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
       <process:to type="query">enter/taxAmt</process:to>
     </process:copy>
     <process:copy>
@@ -535,24 +556,92 @@
       <process:to type="query">enter/noTaxPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">enterQty*noTaxPrice</process:from>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(noTaxPrice))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(noTaxPrice+&quot;&quot;).length()-(noTaxPrice+&quot;&quot;).indexOf(&quot;.&quot;)-1</process:from>
+      <process:to type="query">scale</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
       <process:to type="query">enter/noTaxAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">enterQty*(taxPrice-noTaxPrice)</process:from>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(taxPrice))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(noTaxPrice))</process:from>
+      <process:to type="query">d3</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2.subtract(d3)).setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
       <process:to type="query">enter/taxDiff</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">enterQty*enterPrice</process:from>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(enterPrice))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(enterPrice+&quot;&quot;).length()-(enterPrice+&quot;&quot;).indexOf(&quot;.&quot;)-1</process:from>
+      <process:to type="query">scale</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
       <process:to type="query">enter/enterAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">taxPrice</process:from>
+      <process:from type="query" pattern="reference">expEnterPrice</process:from>
       <process:to type="query">enter/expEnterPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">enterQty*taxPrice</process:from>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(expEnterPrice))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(expEnterPrice+&quot;&quot;).length()-(expEnterPrice+&quot;&quot;).indexOf(&quot;.&quot;)-1</process:from>
+      <process:to type="query">scale</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
       <process:to type="query">enter/expEnterAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">taxCostPrice</process:from>
+      <process:to type="query">enter/taxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(taxCostPrice))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(taxCostPrice+&quot;&quot;).length()-(taxCostPrice+&quot;&quot;).indexOf(&quot;.&quot;)-1</process:from>
+      <process:to type="query">scale</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">enter/taxCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">setCostPrice</process:from>
+      <process:to type="query">enter/setCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(setCostPrice))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(setCostPrice+&quot;&quot;).length()-(setCostPrice+&quot;&quot;).indexOf(&quot;.&quot;)-1</process:from>
+      <process:to type="query">scale</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">enter/setCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enterMain/storeId</process:from>
+      <process:to type="query">enter/storeId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
@@ -681,6 +770,7 @@
       <targetNode>loopend0</targetNode>
     </sourceConnections>
     <targetConnections>link30</targetConnections>
+    <targetConnections>link47</targetConnections>
     <location x="868" y="99"/>
     <size height="28" width="28"/>
     <nodeLabel>assign12label</nodeLabel>
@@ -979,6 +1069,7 @@
     <sourceConnections xsi:type="process:tLink" id="link34" name="link34" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo9</sourceNode>
       <targetNode>assign3</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link11</targetConnections>
     <location x="390" y="173"/>
@@ -1119,6 +1210,41 @@
     <figSize height="20" width="49"/>
     <node>assign17</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" description="" id="link47" name="link47" displayName="连接线" isDefault="false" type="transition">
+      <sourceNode>assign6</sourceNode>
+      <targetNode>assign12</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">partMsg</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link48" name="link48" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign6</sourceNode>
+      <targetNode>assign5</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link46</targetConnections>
+    <location x="467" y="111"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign6label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">enter/partCode</process:from>
+      <process:to type="query">partCode</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
+    <location x="461" y="147"/>
+    <figSize height="20" width="40"/>
+    <node>assign6</node>
+  </nodes>
   <topRuler/>
   <leftRuler>
     <guides position="152" horizontal="true"/>
@@ -1136,9 +1262,9 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="enterQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="enterPrice" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="taxSign" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="taxRate" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="taxPrice" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="noTaxPrice" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="taxRate" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="taxPrice" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="noTaxPrice" primitiveType="Double"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="partCode" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPartPrice" name="straPart"/>
@@ -1149,6 +1275,14 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="detailId" primitiveType="Long"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="exists" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="expEnterPrice" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="taxCostPrice" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="setCostPrice" primitiveType="Double"/>
+    <process:variable description="taxCostPrice-taxPrice+noTaxPrice" historyStateLocation="client" isArray="false" name="noTaxCostPrice" primitiveType="Double"/>
+    <process:variable anyType="java.math.BigDecimal" description="" historyStateLocation="client" isArray="false" name="d1"/>
+    <process:variable anyType="java.math.BigDecimal" description="" historyStateLocation="client" isArray="false" name="d2"/>
+    <process:variable anyType="java.math.BigDecimal" description="" historyStateLocation="client" isArray="false" name="d3"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="scale" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjEnterMain" name="enterMain"/>

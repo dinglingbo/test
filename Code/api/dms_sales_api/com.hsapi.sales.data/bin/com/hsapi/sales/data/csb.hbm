@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.sales.data.csb.CsbGift" table="csb_gift">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="tenantId" type="int">
+            <column default="0" name="tenant_id"/>
+        </property>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid"/>
+        </property>
+        <property name="name" type="string">
+            <column length="500" name="name"/>
+        </property>
+        <property name="isDisabled" type="short">
+            <column default="0" name="is_disabled"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="128" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.sales.data.csb.CsbPdiCarTemplateDetail" table="csb_pdi_car_template_detail">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="templateId" type="int">
+            <column name="template_id" not-null="true"/>
+        </property>
+        <property name="pdiId" type="int">
+            <column name="pdi_id" not-null="true"/>
+        </property>
+        <property name="pdiName" type="string">
+            <column length="500" name="pdi_name" not-null="true"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.sales.data.csb.CsbCarModel" table="csb_car_model">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="tenantId" type="int">
+            <column default="0" name="tenant_id"/>
+        </property>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid"/>
+        </property>
+        <property name="pyCode" type="string">
+            <column length="100" name="py_code"/>
+        </property>
+        <property name="level" type="string">
+            <column length="20" name="level"/>
+        </property>
+        <property name="code" type="string">
+            <column length="20" name="code"/>
+        </property>
+        <property name="countryType" type="string">
+            <column length="20" name="country_type"/>
+        </property>
+        <property name="carBrandId" type="string">
+            <column length="20" name="car_brand_id"/>
+        </property>
+        <property name="carSeriesId" type="string">
+            <column length="20" name="car_series_id"/>
+        </property>
+        <property name="name" type="string">
+            <column length="100" name="name"/>
+        </property>
+        <property name="fullName" type="string">
+            <column length="500" name="full_name"/>
+        </property>
+        <property name="carStructureType" type="string">
+            <column length="20" name="car_structure_type"/>
+        </property>
+        <property name="outputVolume" type="string">
+            <column length="20" name="output_volume"/>
+        </property>
+        <property name="fyear" type="int">
+            <column default="0" name="fyear"/>
+        </property>
+        <property name="seatQty" type="string">
+            <column length="20" name="seat_qty"/>
+        </property>
+        <property name="inletType" type="string">
+            <column length="20" name="inlet_type"/>
+        </property>
+        <property name="powerType" type="string">
+            <column length="20" name="power_type"/>
+        </property>
+        <property name="driveMode" type="string">
+            <column length="20" name="drive_mode"/>
+        </property>
+        <property name="enduranceMileage" type="int">
+            <column default="0" name="endurance_mileage"/>
+        </property>
+        <property name="electricMotor" type="string">
+            <column length="20" name="electric_motor"/>
+        </property>
+        <property name="chargingTime" type="string">
+            <column length="20" name="charging_time"/>
+        </property>
+        <property name="engineModelNo" type="string">
+            <column length="20" name="engine_model_no"/>
+        </property>
+        <property name="gearBox" type="string">
+            <column length="20" name="gear_box"/>
+        </property>
+        <property name="productionMode" type="string">
+            <column length="20" name="production_mode"/>
+        </property>
+        <property name="launchDate" type="timestamp">
+            <column name="launch_date"/>
+        </property>
+        <property name="isImported" type="short">
+            <column default="0" name="is_imported"/>
+        </property>
+        <property name="isShare" type="short">
+            <column default="0" name="is_share"/>
+        </property>
+        <property name="guidingPrice" type="big_decimal">
+            <column default="0.00" length="10" name="guiding_price" precision="10" scale="2"/>
+        </property>
+        <property name="sellPrice" type="big_decimal">
+            <column default="0.00" length="10" name="sell_price" precision="10" scale="2"/>
+        </property>
+        <property name="sellPriceMin" type="big_decimal">
+            <column default="0.00" length="10" name="sell_price_min" precision="10" scale="2"/>
+        </property>
+        <property name="sellOrderPrice" type="big_decimal">
+            <column default="0.00" length="10" name="sell_order_price" precision="10" scale="2"/>
+        </property>
+        <property name="configure" type="string">
+            <column length="100" name="configure"/>
+        </property>
+        <property name="isDisabled" type="short">
+            <column default="0" name="is_disabled"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.sales.data.csb.CsbRebate" table="csb_rebate">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="tenantId" type="int">
+            <column default="0" name="tenant_id"/>
+        </property>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid"/>
+        </property>
+        <property name="name" type="string">
+            <column length="100" name="name"/>
+        </property>
+        <property name="rebateAmt" type="big_decimal">
+            <column default="0.0000" length="18" name="rebate_amt" precision="18" scale="4"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="500" name="remark"/>
+        </property>
+        <property name="isDisabled" type="short">
+            <column default="0" name="is_disabled"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.sales.data.csb.CsbPdiCarTemplate" table="csb_pdi_car_template">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="tenantId" type="int">
+            <column default="0" name="tenant_id"/>
+        </property>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid"/>
+        </property>
+        <property name="code" type="string">
+            <column length="30" name="code"/>
+        </property>
+        <property name="name" type="string">
+            <column length="100" name="name"/>
+        </property>
+        <property name="pyCode" type="string">
+            <column length="100" name="py_code"/>
+        </property>
+        <property name="carModelId" type="int">
+            <column name="car_model_id" not-null="true"/>
+        </property>
+        <property name="carModelName" type="string">
+            <column length="100" name="car_model_name"/>
+        </property>
+        <property name="isDefault" type="short">
+            <column default="0" name="is_default"/>
+        </property>
+        <property name="isDisabled" type="short">
+            <column default="0" name="is_disabled"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="255" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.sales.data.csb.CsbContactor" table="csb_contactor">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="tenantId" type="int">
+            <column default="0" name="tenant_id"/>
+        </property>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid"/>
+        </property>
+        <property name="guestId" type="int">
+            <column name="guest_id" not-null="true"/>
+        </property>
+        <property name="name" type="string">
+            <column default="''" length="20" name="name" not-null="true"/>
+        </property>
+        <property name="sex" type="short">
+            <column name="sex"/>
+        </property>
+        <property name="tel" type="string">
+            <column length="50" name="tel"/>
+        </property>
+        <property name="identity" type="string">
+            <column length="20" name="identity"/>
+        </property>
+        <property name="mobile" type="string">
+            <column length="50" name="mobile"/>
+        </property>
+        <property name="birthdayType" type="short">
+            <column default="0" name="birthday_type"/>
+        </property>
+        <property name="birthday" type="timestamp">
+            <column name="birthday"/>
+        </property>
+        <property name="maritalStatus" type="short">
+            <column name="marital_status"/>
+        </property>
+        <property name="buyCarStatus" type="short">
+            <column name="buy_car_status"/>
+        </property>
+        <property name="idNo" type="string">
+            <column length="20" name="id_no"/>
+        </property>
+        <property name="idAddress" type="string">
+            <column length="100" name="id_address"/>
+        </property>
+        <property name="trade" type="string">
+            <column length="20" name="trade"/>
+        </property>
+        <property name="duty" type="string">
+            <column length="20" name="duty"/>
+        </property>
+        <property name="source" type="string">
+            <column length="20" name="source"/>
+        </property>
+        <property name="relationship" type="string">
+            <column length="20" name="relationship"/>
+        </property>
+        <property name="specialCare" type="string">
+            <column length="20" name="special_care"/>
+        </property>
+        <property name="nature" type="string">
+            <column length="50" name="nature"/>
+        </property>
+        <property name="workPlace" type="string">
+            <column length="100" name="work_place"/>
+        </property>
+        <property name="scoutStatus" type="string">
+            <column default="'060701'" length="20" name="scout_status"/>
+        </property>
+        <property name="thisScoutDate" type="timestamp">
+            <column name="this_scout_date"/>
+        </property>
+        <property name="nextScoutDate" type="timestamp">
+            <column name="next_scout_date"/>
+        </property>
+        <property name="saleAdvisorId" type="int">
+            <column name="sale_advisor_id"/>
+        </property>
+        <property name="saleAdvisor" type="string">
+            <column length="20" name="sale_advisor"/>
+        </property>
+        <property name="status" type="short">
+            <column name="status"/>
+        </property>
+        <property name="isDisabled" type="short">
+            <column name="is_disabled"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="500" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.sales.data.csb.CsbPdi" table="csb_pdi">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="tenantId" type="int">
+            <column default="0" name="tenant_id"/>
+        </property>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid"/>
+        </property>
+        <property name="code" type="string">
+            <column length="40" name="code"/>
+        </property>
+        <property name="pyCode" type="string">
+            <column length="255" name="py_code"/>
+        </property>
+        <property name="name" type="string">
+            <column length="500" name="name"/>
+        </property>
+        <property name="pdiTypeId" type="string">
+            <column length="20" name="pdi_type_id"/>
+        </property>
+        <property name="orderNo" type="int">
+            <column name="order_no"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="100" name="remark"/>
+        </property>
+        <property name="isEnableCheck" type="short">
+            <column default="0" name="is_enable_check"/>
+        </property>
+        <property name="isDisabled" type="short">
+            <column default="0" name="is_disabled"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+</hibernate-mapping>

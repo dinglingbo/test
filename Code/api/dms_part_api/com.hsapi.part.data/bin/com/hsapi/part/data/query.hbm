@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class entity-name="com.hsapi.part.data.query.PtsOutDetailV" table="$QueryEntity[com.hsapi.part.data.query.PtsOutDetailV]$">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id column="$queryEntityId$" name="queryEntityId" type="string">
+            <generator class="assigned"/>
+        </id>
+        <property column="detail_id" insert="false" name="detailId" type="int" update="false"/>
+        <property column="out_id" insert="false" name="outId" type="int" update="false"/>
+        <property column="part_id" insert="false" name="partId" type="int" update="false"/>
+        <property column="part_code" insert="false" name="partCode" type="string" update="false"/>
+        <property column="unit" insert="false" name="unit" type="string" update="false"/>
+        <property column="out_qty" insert="false" name="outQty" type="big_decimal" update="false"/>
+        <property column="out_backable_qty" insert="false" name="outBackableQty" type="big_decimal" update="false"/>
+        <property column="tax_sign" insert="false" name="taxSign" type="short" update="false"/>
+        <property column="tax_rate" insert="false" name="taxRate" type="big_decimal" update="false"/>
+        <property column="tax_rate_amt" insert="false" name="taxRateAmt" type="big_decimal" update="false"/>
+        <property column="sell_unit_price" insert="false" name="sellUnitPrice" type="big_decimal" update="false"/>
+        <property column="sell_amt" insert="false" name="sellAmt" type="big_decimal" update="false"/>
+        <property column="discount_rate" insert="false" name="discountRate" type="big_decimal" update="false"/>
+        <property column="discount_amt" insert="false" name="discountAmt" type="big_decimal" update="false"/>
+        <property column="discount_last_amt" insert="false" name="discountLastAmt" type="big_decimal" update="false"/>
+        <property column="discount_last_unit_price" insert="false" name="discountLastUnitPrice" type="big_decimal" update="false"/>
+        <property column="cost_unit_price" insert="false" name="costUnitPrice" type="big_decimal" update="false"/>
+        <property column="cost_amt" insert="false" name="costAmt" type="big_decimal" update="false"/>
+        <property column="no_tax_cost_unit_price" insert="false" name="noTaxCostUnitPrice" type="big_decimal" update="false"/>
+        <property column="no_tax_cost_amt" insert="false" name="noTaxCostAmt" type="big_decimal" update="false"/>
+        <property column="tax_cost_unit_price" insert="false" name="taxCostUnitPrice" type="big_decimal" update="false"/>
+        <property column="tax_cost_amt" insert="false" name="taxCostAmt" type="big_decimal" update="false"/>
+        <property column="remark" insert="false" name="remark" type="string" update="false"/>
+        <property column="prev_enter_detail_id" insert="false" name="prevEnterDetailId" type="int" update="false"/>
+        <property column="order_detail_id" insert="false" name="orderDetailId" type="int" update="false"/>
+        <property column="apply_car_model" insert="false" name="applyCarModel" type="string" update="false"/>
+        <property column="part_name" insert="false" name="partName" type="string" update="false"/>
+        <property column="part_full_name" insert="false" name="partFullName" type="string" update="false"/>
+        <property column="part_name_id" insert="false" name="partNameId" type="string" update="false"/>
+        <property column="root_enter_detail_id" insert="false" name="rootEnterDetailId" type="int" update="false"/>
+        <property column="part_brand_id" insert="false" name="partBrandId" type="string" update="false"/>
+    </class>
+    <class entity-name="com.hsapi.part.data.query.PtsEnterMainDetailV" table="$QueryEntity[com.hsapi.part.data.query.PtsEnterMainDetailV]$">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id column="$queryEntityId$" name="queryEntityId" type="string">
+            <generator class="assigned"/>
+        </id>
+        <property column="enter_date" insert="false" name="enterDate" type="date" update="false"/>
+        <property column="orgid" insert="false" name="orgid" type="int" update="false"/>
+        <property column="store_id" insert="false" name="storeId" type="int" update="false"/>
+        <property column="guest_id" insert="false" name="guestId" type="int" update="false"/>
+        <property column="guest_full_name" insert="false" name="guestFullName" type="string" update="false"/>
+        <property column="bill_type_id" insert="false" name="billTypeId" type="string" update="false"/>
+        <property column="bill_status" insert="false" name="billStatus" type="string" update="false"/>
+        <property column="enter_type_id" insert="false" name="enterTypeId" type="string" update="false"/>
+        <property column="enter_total_qty" insert="false" name="enterTotalQty" type="big_decimal" update="false"/>
+        <property column="back_reason_id" insert="false" name="backReasonId" type="string" update="false"/>
+        <property column="quoter" insert="false" name="quoter" type="string" update="false"/>
+        <property column="buyer" insert="false" name="buyer" type="string" update="false"/>
+        <property column="store_keeper" insert="false" name="storeKeeper" type="string" update="false"/>
+        <property column="audit_status" insert="false" name="auditStatus" type="short" update="false"/>
+        <property column="auditor" insert="false" name="auditor" type="string" update="false"/>
+        <property column="audit_date" insert="false" name="auditDate" type="date" update="false"/>
+        <property column="post_status" insert="false" name="postStatus" type="short" update="false"/>
+        <property column="post_man" insert="false" name="postMan" type="string" update="false"/>
+        <property column="post_date" insert="false" name="postDate" type="date" update="false"/>
+        <property column="recorder" insert="false" name="recorder" type="string" update="false"/>
+        <property column="modifier" insert="false" name="modifier" type="string" update="false"/>
+        <property column="record_date" insert="false" name="recordDate" type="date" update="false"/>
+        <property column="modify_date" insert="false" name="modifyDate" type="date" update="false"/>
+        <property column="sett_type" insert="false" name="settType" type="string" update="false"/>
+        <property column="detail_id" insert="false" name="detailId" type="int" update="false"/>
+        <property column="part_id" insert="false" name="partId" type="int" update="false"/>
+        <property column="enter_id" insert="false" name="enterId" type="int" update="false"/>
+        <property column="part_code" insert="false" name="partCode" type="string" update="false"/>
+        <property column="name" insert="false" name="name" type="string" update="false"/>
+        <property column="unit" insert="false" name="unit" type="string" update="false"/>
+        <property column="apply_car_model" insert="false" name="applyCarModel" type="string" update="false"/>
+        <property column="enter_qty" insert="false" name="enterQty" type="big_decimal" update="false"/>
+        <property column="outable_qty" insert="false" name="outableQty" type="big_decimal" update="false"/>
+        <property column="tax_sign" insert="false" name="taxSign" type="short" update="false"/>
+        <property column="tax_rate" insert="false" name="taxRate" type="big_decimal" update="false"/>
+        <property column="tax_rate_amt" insert="false" name="taxRateAmt" type="big_decimal" update="false"/>
+        <property column="tax_unit_price" insert="false" name="taxUnitPrice" type="big_decimal" update="false"/>
+        <property column="tax_amt" insert="false" name="taxAmt" type="big_decimal" update="false"/>
+        <property column="no_tax_unit_price" insert="false" name="noTaxUnitPrice" type="big_decimal" update="false"/>
+        <property column="no_tax_amt" insert="false" name="noTaxAmt" type="big_decimal" update="false"/>
+        <property column="suggest_price" insert="false" name="suggestPrice" type="big_decimal" update="false"/>
+        <property column="suggest_amt" insert="false" name="suggestAmt" type="big_decimal" update="false"/>
+        <property column="remark" insert="false" name="remark" type="string" update="false"/>
+        <property column="order_detail_id" insert="false" name="orderDetailId" type="int" update="false"/>
+        <property column="prev_out_detail_id" insert="false" name="prevOutDetailId" type="int" update="false"/>
+        <property column="root_enter_detail_id" insert="false" name="rootEnterDetailId" type="int" update="false"/>
+    </class>
+    <class entity-name="com.hsapi.part.data.query.PtsOutMainDetailV" table="$QueryEntity[com.hsapi.part.data.query.PtsOutMainDetailV]$">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id column="$queryEntityId$" name="queryEntityId" type="string">
+            <generator class="assigned"/>
+        </id>
+        <property column="out_id" insert="false" name="outId" type="int" update="false"/>
+        <property column="out_date" insert="false" name="outDate" type="date" update="false"/>
+        <property column="orgid" insert="false" name="orgid" type="int" update="false"/>
+        <property column="store_id" insert="false" name="storeId" type="int" update="false"/>
+        <property column="guest_id" insert="false" name="guestId" type="int" update="false"/>
+        <property column="guest_full_name" insert="false" name="guestFullName" type="string" update="false"/>
+        <property column="out_type_id" insert="false" name="outTypeId" type="string" update="false"/>
+        <property column="bill_type_id" insert="false" name="billTypeId" type="string" update="false"/>
+        <property column="bill_status" insert="false" name="billStatus" type="short" update="false"/>
+        <property column="back_reason_id" insert="false" name="backReasonId" type="string" update="false"/>
+        <property column="checker" insert="false" name="checker" type="string" update="false"/>
+        <property column="seller" insert="false" name="seller" type="string" update="false"/>
+        <property column="store_keeper" insert="false" name="storeKeeper" type="string" update="false"/>
+        <property column="audit_status" insert="false" name="auditStatus" type="short" update="false"/>
+        <property column="auditor" insert="false" name="auditor" type="string" update="false"/>
+        <property column="audit_date" insert="false" name="auditDate" type="date" update="false"/>
+        <property column="post_status" insert="false" name="postStatus" type="short" update="false"/>
+        <property column="post_man" insert="false" name="postMan" type="string" update="false"/>
+        <property column="post_date" insert="false" name="postDate" type="date" update="false"/>
+        <property column="recorder" insert="false" name="recorder" type="string" update="false"/>
+        <property column="record_date" insert="false" name="recordDate" type="date" update="false"/>
+        <property column="modifier" insert="false" name="modifier" type="string" update="false"/>
+        <property column="modify_date" insert="false" name="modifyDate" type="date" update="false"/>
+        <property column="detail_id" insert="false" name="detailId" type="int" update="false"/>
+        <property column="part_id" insert="false" name="partId" type="int" update="false"/>
+        <property column="part_code" insert="false" name="partCode" type="string" update="false"/>
+        <property column="name" insert="false" name="name" type="string" update="false"/>
+        <property column="unit" insert="false" name="unit" type="string" update="false"/>
+        <property column="out_qty" insert="false" name="outQty" type="big_decimal" update="false"/>
+        <property column="out_backable_qty" insert="false" name="outBackableQty" type="big_decimal" update="false"/>
+        <property column="tax_sign" insert="false" name="taxSign" type="short" update="false"/>
+        <property column="tax_rate" insert="false" name="taxRate" type="big_decimal" update="false"/>
+        <property column="tax_rate_amt" insert="false" name="taxRateAmt" type="big_decimal" update="false"/>
+        <property column="sell_unit_price" insert="false" name="sellUnitPrice" type="big_decimal" update="false"/>
+        <property column="sell_amt" insert="false" name="sellAmt" type="big_decimal" update="false"/>
+        <property column="discount_rate" insert="false" name="discountRate" type="big_decimal" update="false"/>
+        <property column="discount_amt" insert="false" name="discountAmt" type="big_decimal" update="false"/>
+        <property column="discount_last_unit_price" insert="false" name="discountLastUnitPrice" type="big_decimal" update="false"/>
+        <property column="discount_last_amt" insert="false" name="discountLastAmt" type="big_decimal" update="false"/>
+        <property column="cost_unit_price" insert="false" name="costUnitPrice" type="big_decimal" update="false"/>
+        <property column="cost_amt" insert="false" name="costAmt" type="big_decimal" update="false"/>
+        <property column="no_tax_cost_unit_price" insert="false" name="noTaxCostUnitPrice" type="big_decimal" update="false"/>
+        <property column="no_tax_cost_amt" insert="false" name="noTaxCostAmt" type="big_decimal" update="false"/>
+        <property column="tax_cost_unit_price" insert="false" name="taxCostUnitPrice" type="big_decimal" update="false"/>
+        <property column="tax_cost_amt" insert="false" name="taxCostAmt" type="big_decimal" update="false"/>
+        <property column="remark" insert="false" name="remark" type="string" update="false"/>
+        <property column="prev_enter_detail_id" insert="false" name="prevEnterDetailId" type="int" update="false"/>
+        <property column="root_out_detail_id" insert="false" name="rootOutDetailId" type="int" update="false"/>
+        <property column="order_detail_id" insert="false" name="orderDetailId" type="int" update="false"/>
+        <property column="apply_car_model" insert="false" name="applyCarModel" type="string" update="false"/>
+    </class>
+    <class entity-name="com.hsapi.part.data.query.PtsEnterDetailV" table="$QueryEntity[com.hsapi.part.data.query.PtsEnterDetailV]$">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id column="$queryEntityId$" name="queryEntityId" type="string">
+            <generator class="assigned"/>
+        </id>
+        <property column="detail_id" insert="false" name="detailId" type="int" update="false"/>
+        <property column="enter_id" insert="false" name="enterId" type="int" update="false"/>
+        <property column="part_id" insert="false" name="partId" type="int" update="false"/>
+        <property column="part_code" insert="false" name="partCode" type="string" update="false"/>
+        <property column="unit" insert="false" name="unit" type="string" update="false"/>
+        <property column="enter_qty" insert="false" name="enterQty" type="big_decimal" update="false"/>
+        <property column="outable_qty" insert="false" name="outableQty" type="big_decimal" update="false"/>
+        <property column="tax_sign" insert="false" name="taxSign" type="short" update="false"/>
+        <property column="tax_rate" insert="false" name="taxRate" type="big_decimal" update="false"/>
+        <property column="tax_rate_amt" insert="false" name="taxRateAmt" type="big_decimal" update="false"/>
+        <property column="tax_unit_price" insert="false" name="taxUnitPrice" type="big_decimal" update="false"/>
+        <property column="tax_amt" insert="false" name="taxAmt" type="big_decimal" update="false"/>
+        <property column="no_tax_unit_price" insert="false" name="noTaxUnitPrice" type="big_decimal" update="false"/>
+        <property column="no_tax_amt" insert="false" name="noTaxAmt" type="big_decimal" update="false"/>
+        <property column="suggest_price" insert="false" name="suggestPrice" type="big_decimal" update="false"/>
+        <property column="suggest_amt" insert="false" name="suggestAmt" type="big_decimal" update="false"/>
+        <property column="remark" insert="false" name="remark" type="string" update="false"/>
+        <property column="prev_out_detail_id" insert="false" name="prevOutDetailId" type="int" update="false"/>
+        <property column="root_enter_detail_id" insert="false" name="rootEnterDetailId" type="int" update="false"/>
+        <property column="apply_car_model" insert="false" name="applyCarModel" type="string" update="false"/>
+        <property column="part_name" insert="false" name="partName" type="string" update="false"/>
+        <property column="part_full_name" insert="false" name="partFullName" type="string" update="false"/>
+        <property column="part_brand_id" insert="false" name="partBrandId" type="string" update="false"/>
+        <property column="store_location_id" insert="false" name="storeLocationId" type="int" update="false"/>
+    </class>
+    <class entity-name="com.hsapi.part.data.query.PtsStockCycV" table="$QueryEntity[com.hsapi.part.data.query.PtsStockCycV]$">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id column="id" name="id" type="int">
+            <generator class="assigned"/>
+        </id>
+        <property column="part_id" insert="false" name="partId" type="int" update="false"/>
+        <property column="store_id" insert="false" name="storeId" type="int" update="false"/>
+        <property column="orgid" insert="false" name="orgid" type="int" update="false"/>
+        <property column="last_sell_price" insert="false" name="lastSellPrice" type="big_decimal" update="false"/>
+        <property column="suggest_price" insert="false" name="suggestPrice" type="big_decimal" update="false"/>
+        <property column="cost_price" insert="false" name="costPrice" type="big_decimal" update="false"/>
+        <property column="store_location" insert="false" name="storeLocation" type="string" update="false"/>
+        <property column="order_cyc" insert="false" name="orderCyc" type="short" update="false"/>
+        <property column="arrive_cyc" insert="false" name="arriveCyc" type="short" update="false"/>
+        <property column="safe_cyc" insert="false" name="safeCyc" type="short" update="false"/>
+        <property column="stock_up_limit" insert="false" name="stockUpLimit" type="big_decimal" update="false"/>
+        <property column="stock_down_limit" insert="false" name="stockDownLimit" type="big_decimal" update="false"/>
+        <property column="day_sell_valume" insert="false" name="daySellValume" type="big_decimal" update="false"/>
+        <property column="month_sell_valume" insert="false" name="monthSellValume" type="big_decimal" update="false"/>
+        <property column="last_enter_date" insert="false" name="lastEnterDate" type="date" update="false"/>
+        <property column="last_out_date" insert="false" name="lastOutDate" type="date" update="false"/>
+        <property column="stock_qty" insert="false" name="stockQty" type="big_decimal" update="false"/>
+        <property column="stock_price" insert="false" name="stockPrice" type="big_decimal" update="false"/>
+        <property column="stock_amt" insert="false" name="stockAmt" type="big_decimal" update="false"/>
+        <property column="unuseable_day" insert="false" name="unuseableDay" type="short" update="false"/>
+        <property column="code" insert="false" name="code" type="string" update="false"/>
+        <property column="name" insert="false" name="name" type="string" update="false"/>
+        <property column="full_name" insert="false" name="fullName" type="string" update="false"/>
+        <property column="quality_type_id" insert="false" name="qualityTypeId" type="string" update="false"/>
+        <property column="part_brand_id" insert="false" name="partBrandId" type="string" update="false"/>
+        <property column="apply_car_model" insert="false" name="applyCarModel" type="string" update="false"/>
+        <property column="abc_type" insert="false" name="abcType" type="string" update="false"/>
+        <property column="unit" insert="false" name="unit" type="string" update="false"/>
+        <property column="car_type_id_f" insert="false" name="carTypeIdF" type="string" update="false"/>
+        <property column="car_type_id_s" insert="false" name="carTypeIdS" type="string" update="false"/>
+        <property column="car_type_id_t" insert="false" name="carTypeIdT" type="string" update="false"/>
+    </class>
+</hibernate-mapping>

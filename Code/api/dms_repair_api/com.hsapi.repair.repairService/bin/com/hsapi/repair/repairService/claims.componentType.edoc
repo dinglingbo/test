@@ -1,0 +1,50 @@
+<map>
+  <entry>
+    <string>com.hsapi.repair.repairService.claims.updateClaimPartAudit(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateClaimPartAudit&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateClaimPartAudit&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.claims.updateClaimPartAudit&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;claimId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>claims</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;claims.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;claims&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.claims&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.claims.queryClaimsList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryClaimsList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryClaimsList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.claims.queryClaimsList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.claims.delClaimsRepairOut(com.hsapi.repair.data.rps.RpsClaimsRepairOut)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;delClaimsRepairOut&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;delClaimsRepairOut&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.claims.delClaimsRepairOut&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;out(com.hsapi.repair.data.rps.RpsClaimsRepairOut):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.claims.claimsSett(String, String, Double, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;claimsSett&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;claimsSett&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.claims.claimsSett&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;claimId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;balanceAmt(Double):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;agioAmt(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;otherAmt(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;remark(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;claimsMain(com.hsapi.repair.data.rps.RpsClaimsMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.claims.saveClaims(com.hsapi.repair.data.rps.RpsClaimsMain, com.hsapi.repair.data.rps.RpsClaimsItem[], com.hsapi.repair.data.rps.RpsClaimsItem[], com.hsapi.repair.data.rps.RpsClaimsPart[], com.hsapi.repair.data.rps.RpsClaimsPart[], String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveClaims&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveClaims&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.claims.saveClaims&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;claimsMain(com.hsapi.repair.data.rps.RpsClaimsMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;insItems(com.hsapi.repair.data.rps.RpsClaimsItem[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;delItems(com.hsapi.repair.data.rps.RpsClaimsItem[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;insParts(com.hsapi.repair.data.rps.RpsClaimsPart[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;delParts(com.hsapi.repair.data.rps.RpsClaimsPart[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;claimsMain(com.hsapi.repair.data.rps.RpsClaimsMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.claims.queryClaimsList4Part(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryClaimsList4Part&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryClaimsList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.claims.queryClaimsList4Part&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.claims.addClaimsRepairOut(com.hsapi.repair.data.rps.RpsClaimsRepairOut, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;addClaimsRepairOut&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;addClaimsRepairOut&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.claims.addClaimsRepairOut&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;out(com.hsapi.repair.data.rps.RpsClaimsRepairOut):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.claims.getClaimsMainById(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getClaimsMainById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getClaimsMainById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.claims.getClaimsMainById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;claimsMain(commonj.sdo.DataObject):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.claims.getClaimsItems(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getClaimsItems&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getClaimsItems&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.claims.getClaimsItems&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;claimsId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.rps.RpsClaimsItem[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.claims.getClaimsRepairOut(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getClaimsRepairOut&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getClaimsItems&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.claims.getClaimsRepairOut&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;claimsId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.rps.RpsClaimsRepairOut[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.claims.getClaimsParts(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getClaimsParts&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getClaimsItems&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.claims.getClaimsParts&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;claimsId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.rps.RpsClaimsPart[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

@@ -1,0 +1,42 @@
+<map>
+  <entry>
+    <string>com.hsapi.repair.baseData.cardTimes.queryCardTimesList(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCardTimesList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;test&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.cardTimes.queryCardTimesList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;query(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cardData(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.cardTimes.queryCZRecord(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCZRecord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCZRecord&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.cardTimes.queryCZRecord&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.cardTimes.getCardTimesDe(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCardTimesDe&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getCardTimesDe&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.cardTimes.getCardTimesDe&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;Id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;f(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>cardTimes</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;cardTimes.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;cardTimes&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.cardTimes&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.cardTimes.queryCardTimesListByGuestId(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCardTimesListByGuestId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;test&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.cardTimes.queryCardTimesListByGuestId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;query(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.cardTimes.queryCKRecord(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCKRecord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCKRecord&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.cardTimes.queryCKRecord&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.cardTimes.queryMyCardTimesByGuestId(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryMyCardTimesByGuestId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryMyCardTimesByGuestId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.cardTimes.queryMyCardTimesByGuestId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guestId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.RpsCardTimes[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.cardTimes.queryCardTimesMaintain(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCardTimesMaintain&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;test&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.cardTimes.queryCardTimesMaintain&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cardMaintain(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.cardTimes.getCardTimes(com.hsapi.repair.data.rps.RpsCardTimes)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCardTimes&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getCardTimes&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.cardTimes.getCardTimes&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cardTimes(com.hsapi.repair.data.rps.RpsCardTimes):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cardTimes(com.hsapi.repair.data.rps.RpsCardTimes):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;cardTimesDe(com.hsapi.repair.data.rps.RpsCardTimesDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.cardTimes.queryRefundRecord(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRefundRecord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;test&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.cardTimes.queryRefundRecord&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

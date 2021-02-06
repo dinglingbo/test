@@ -1,0 +1,58 @@
+<map>
+  <entry>
+    <string>com.hsapi.crm.svr.visit.queryLoseGuestByDay(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryLoseGuestByDay&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryInvestList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.visit.queryLoseGuestByDay&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.visit.savevisitDetail(com.hsapi.crm.data.crm.CrmVisitRecord)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;savevisitDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savevisitDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.visit.savevisitDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(com.hsapi.crm.data.crm.CrmVisitRecord):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detailData(com.hsapi.crm.data.crm.CrmVisitRecord):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.visit.updateVisitRecord(com.hsapi.crm.data.crm.CrmVisitRecord)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateVisitRecord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateVisitTime&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.visit.updateVisitRecord&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(com.hsapi.crm.data.crm.CrmVisitRecord):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.visit.delectVisitRecordById(com.hsapi.crm.data.crm.CrmVisitRecord)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;delectVisitRecordById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;delectVisitRecordById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.visit.delectVisitRecordById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;visitRecord(com.hsapi.crm.data.crm.CrmVisitRecord):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.visit.queryCrmVisitMainList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCrmVisitMainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCrmVisitMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.visit.queryCrmVisitMainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.visit.queryCrmVisitRecord(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCrmVisitRecord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCrmVisitData&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.visit.queryCrmVisitRecord&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.crm.data.crm.CrmVisitRecord[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>visit</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;visit.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;visit&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.visit&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.visit.updateVisitTime(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateVisitTime&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateVisitTime&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.visit.updateVisitTime&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;visitData(com.hsapi.crm.data.crm.CrmVisitData):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.visit.queryRemindParams()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRemindParams&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCrmVisitData&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.visit.queryRemindParams&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.crm.data.crm.RpbRemindParam[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.visit.saveVisitLoseDetail(com.hsapi.crm.data.crm.CrmLostScoutDetail)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveVisitLoseDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savevisitDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.visit.saveVisitLoseDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detail(com.hsapi.crm.data.crm.CrmLostScoutDetail):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detailData(com.hsapi.crm.data.crm.CrmLostScoutDetail):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.visit.queryCrmVisitRecordSql(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCrmVisitRecordSql&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;newbiz&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.visit.queryCrmVisitRecordSql&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.visit.test(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;test&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;test&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.visit.test&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;ip(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.eos.data.datacontext.UserObject):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.visit.QueryCrmVisitLoseDetail(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;QueryCrmVisitLoseDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCrmVisitData&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.visit.QueryCrmVisitLoseDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.crm.data.crm.CrmLostScoutDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.visit.queryCrmVisitData(java.util.HashMap, com.eos.foundation.PageCond, Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCrmVisitData&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCrmVisitData&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.visit.queryCrmVisitData&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.crm.data.crm.CrmVisitData[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

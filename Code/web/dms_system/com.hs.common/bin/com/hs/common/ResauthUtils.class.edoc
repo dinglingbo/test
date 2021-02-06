@@ -1,0 +1,97 @@
+<map>
+  <entry>
+    <string>com.hs.common.ResauthUtils.getRoleResBtnAuth(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject[] com.hs.common.ResauthUtils.getRoleResBtnAuth(String roleId, String btnArea)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ResauthUtils.getMenu()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject[] com.hs.common.ResauthUtils.getMenu()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ResauthUtils.getComAppFunctionByFunccode(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject[] com.hs.common.ResauthUtils.getComAppFunctionByFunccode(String resId)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ResauthUtils.hsetAndExtend(java.lang.String, java.lang.String, java.lang.Object, int)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;void com.hs.common.ResauthUtils.hsetAndExtend(String hsetName, String key, Object value, int expireTime)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ResauthUtils.getUserRoles(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject[] com.hs.common.ResauthUtils.getUserRoles(String userId)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ResauthUtils.getRedisCache(java.lang.String, java.lang.String, java.util.HashMap, java.lang.String, java.lang.String, int, boolean, commonj.sdo.DataObject)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject[] com.hs.common.ResauthUtils.getRedisCache(String dsName, String nameSqlId, HashMap params, String title, String fromDb, int expireTimes, boolean setDe, DataObject deData)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ResauthUtils.getTenantProductValidity(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject[] com.hs.common.ResauthUtils.getTenantProductValidity(String tenantId, String productId)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ResauthUtils.getFunctionInfo(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject[] com.hs.common.ResauthUtils.getFunctionInfo(String resId)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ResauthUtils.getBtnInfo(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject[] com.hs.common.ResauthUtils.getBtnInfo(String btnId)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ResauthUtils.getProductRes(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject[] com.hs.common.ResauthUtils.getProductRes(String productId)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ResauthUtils.clearAndResetCache(java.lang.String, java.lang.String, java.util.HashMap, java.lang.String, java.lang.String, int, boolean, commonj.sdo.DataObject)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;boolean com.hs.common.ResauthUtils.clearAndResetCache(String dsName, String nameSqlId, HashMap params, String title, String fromDb, int expireTimes, boolean setDe, DataObject deData)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>ResauthUtils</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.hs.common.ResauthUtils&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &lt;dl&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;Administrator&lt;/dd&gt;&lt;dt&gt;@date&lt;/dt&gt;&lt;dd&gt;2019-01-22 17:26:23&#x0D;
+ 菜单权限及页面流权限处理&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ResauthUtils.getComAppFunction()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject[] com.hs.common.ResauthUtils.getComAppFunction()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ResauthUtils.getEmpOrg(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject[] com.hs.common.ResauthUtils.getEmpOrg(String empId)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ResauthUtils.genenCacheKey(java.lang.String, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hs.common.ResauthUtils.genenCacheKey(String nameSqlId, HashMap params)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ResauthUtils.hgetAndExtend(java.lang.String, java.lang.String, int)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.ResauthUtils.hgetAndExtend(String hsetName, String key, int expireTime)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ResauthUtils.getRoleRes(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject[] com.hs.common.ResauthUtils.getRoleRes(String roleId)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ResauthUtils.getAppFunction()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject[] com.hs.common.ResauthUtils.getAppFunction()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ResauthUtils.getOrgInfo(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject[] com.hs.common.ResauthUtils.getOrgInfo(String orgid)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ResauthUtils.hExists(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;boolean com.hs.common.ResauthUtils.hExists(String hsetName, String key)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 检查HashMap是否存在某个字段&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;hsetName&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;key&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ResauthUtils.getResInfo(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject[] com.hs.common.ResauthUtils.getResInfo(String resId)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ResauthUtils.getProductIdByResUrl(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject[] com.hs.common.ResauthUtils.getProductIdByResUrl(String resUrl)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ResauthUtils.getProUrlCoin(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.hs.common.ResauthUtils.getProUrlCoin(String proUrl)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

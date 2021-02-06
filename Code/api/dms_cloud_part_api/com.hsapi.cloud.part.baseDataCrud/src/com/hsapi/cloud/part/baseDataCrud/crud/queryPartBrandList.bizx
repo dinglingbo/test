@@ -59,14 +59,6 @@
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[1]/_op</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">firstCodeCh</process:from>
-      <process:to type="query">cond/_orderby[1]/_property</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">asc</process:from>
-      <process:to type="query">cond/_orderby[1]/_sort</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="207" y="96"/>

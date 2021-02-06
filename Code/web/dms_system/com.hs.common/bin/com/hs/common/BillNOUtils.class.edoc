@@ -1,0 +1,30 @@
+<map>
+  <entry>
+    <string>com.hs.common.BillNOUtils.getColumnMaxStringValue(java.lang.String, java.lang.String, java.lang.String, java.lang.Integer)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.BillNOUtils.getColumnMaxStringValue(String dataSource, String entityName, String maxColumn, Integer len)&lt;/b&gt;&lt;br/&gt;&lt;p&gt;getColumnMaxStringValue&lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;dataSource&lt;/b&gt; 数据源&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;entityName&lt;/b&gt; 实体名&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;maxColumn&lt;/b&gt; 最大值字段&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;len&lt;/b&gt; 长度&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;最大值 + 1&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.BillNOUtils.getColumnMaxValue(java.lang.String, java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Long com.hs.common.BillNOUtils.getColumnMaxValue(String dataSource, String entityName, String maxColumn)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>BillNOUtils</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.hs.common.BillNOUtils&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &lt;dl&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;Administrator&lt;/dd&gt;&lt;dt&gt;@date&lt;/dt&gt;&lt;dd&gt;2017-07-11 12:25:10&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.BillNOUtils.getColumnValue(java.lang.String, java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Long com.hs.common.BillNOUtils.getColumnValue(String dataSource, String entityName, String column)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.BillNOUtils.getColumnMaxStringValue(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Integer)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.BillNOUtils.getColumnMaxStringValue(String dataSource, String entityName, String maxColumn, String queryColumn, String queryValue, Integer len)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.BillNOUtils.getMaxNOToStr(int, int)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.BillNOUtils.getMaxNOToStr(int length, int maxno)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.BillNOUtils.getColumnMaxDateValue(java.lang.String, java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.BillNOUtils.getColumnMaxDateValue(String dataSource, String entityName, String maxColumn)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

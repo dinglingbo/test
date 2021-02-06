@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Require-Bundle: com.hsapi.cloud.part.data,com.hs.common,com.eos.founda
+ tion
+Bundle-Vendor: Administrator
+eos-webCtxPath: common
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsapi.cloud.part.common
+Bundle-Description: 
+Bundle-SymbolicName: com.hsapi.cloud.part.common
+

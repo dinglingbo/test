@@ -1,0 +1,106 @@
+<map>
+  <entry>
+    <string>com.hsapi.sales.svr.save.saveSaleCostLIst(com.hsapi.sales.data.css.CssSaleCostList[], com.hsapi.sales.data.css.CssSaleCostList[], com.hsapi.sales.data.css.CssSaleCostList[], Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveSaleCostLIst&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveSaleCostLIst&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save.saveSaleCostLIst&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addArr(com.hsapi.sales.data.css.CssSaleCostList[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;editArr(com.hsapi.sales.data.css.CssSaleCostList[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;deleteArr(com.hsapi.sales.data.css.CssSaleCostList[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;type(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>save</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;save.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;save&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.save.saveSaleCalc(com.hsapi.sales.data.css.CssSaleCalc, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveSaleCalc&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveSaleCalc&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save.saveSaleCalc&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;caCalculationData(com.hsapi.sales.data.css.CssSaleCalc):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;caCalculationData(com.hsapi.sales.data.css.CssSaleCalc):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.save.settlement(com.hsapi.sales.data.css.CssSaleExtend)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;settlement&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;settlement&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save.settlement&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;saleExtend(com.hsapi.sales.data.css.CssSaleExtend):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.save.backSingle(com.hsapi.sales.data.css.CssSaleMain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;backSingle&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;backSingle&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save.backSingle&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.sales.data.css.CssSaleMain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.save.saveSaleCalcNT(com.hsapi.sales.data.css.CssSaleCalc, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveSaleCalcNT&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveSaleCalc&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save.saveSaleCalcNT&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;caCalculationData(com.hsapi.sales.data.css.CssSaleCalc):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;caCalculationData(com.hsapi.sales.data.css.CssSaleCalc):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.save.auditingSales(com.hsapi.sales.data.css.CssSaleMain, com.hsapi.sales.data.css.CssSaleCalc)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;auditingSales&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generatingAdvancePayment&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save.auditingSales&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;billFormData(com.hsapi.sales.data.css.CssSaleMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;caCalculationData(com.hsapi.sales.data.css.CssSaleCalc):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.save.saveGiftApplyNT(com.hsapi.sales.data.css.CssSaleGiftApply[], com.hsapi.sales.data.css.CssSaleGiftApply[], com.hsapi.sales.data.css.CssSaleGiftApply[], Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveGiftApplyNT&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveGiftApply&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save.saveGiftApplyNT&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;jpDetailGridAdd(com.hsapi.sales.data.css.CssSaleGiftApply[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;jpDetailGridEdit(com.hsapi.sales.data.css.CssSaleGiftApply[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;jpDetailGridDel(com.hsapi.sales.data.css.CssSaleGiftApply[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.save.deletSaleMain(com.hsapi.sales.data.css.CssSaleMain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;deletSaleMain&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;deletSaleMain&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save.deletSaleMain&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;saleMain(com.hsapi.sales.data.css.CssSaleMain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.save.addRpbCarExtend(com.hsapi.sales.data.com.RpbCarExtend)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;addRpbCarExtend&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;addRpbCarExtend&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save.addRpbCarExtend&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;carExtend(com.hsapi.sales.data.com.RpbCarExtend):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.save.queryGiftItemCost(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryGiftItemCost&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryGiftItemCost&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save.queryGiftItemCost&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.sales.data.css.CssSaleGiftOutMain[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.save.generatingAdvancePayment(com.hsapi.sales.data.css.CssSaleMain, com.hsapi.sales.data.css.CssSaleCalc)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generatingAdvancePayment&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generatingAdvancePayment&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save.generatingAdvancePayment&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;billFormData(com.hsapi.sales.data.css.CssSaleMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;caCalculationData(com.hsapi.sales.data.css.CssSaleCalc):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.save.saveSaleCostLIstNT(com.hsapi.sales.data.css.CssSaleCostList[], com.hsapi.sales.data.css.CssSaleCostList[], com.hsapi.sales.data.css.CssSaleCostList[], Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveSaleCostLIstNT&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveSaleCostLIst&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save.saveSaleCostLIstNT&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addArr(com.hsapi.sales.data.css.CssSaleCostList[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;editArr(com.hsapi.sales.data.css.CssSaleCostList[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;deleteArr(com.hsapi.sales.data.css.CssSaleCostList[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;type(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.save.queryCarAndCarExtend(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCarAndCarExtend&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCarAndCarExtend&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save.queryCarAndCarExtend&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.save.checkCarExists(String, String, Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;checkCarExists&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;checkPartExists&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save.checkCarExists&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;carNo(String):&lt;/b&gt;车牌号&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;editType(String):&lt;/b&gt;add,edit&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;车辆ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carVin(String):&lt;/b&gt;vin&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.save.saveSaleMainAll(com.hsapi.sales.data.css.CssSaleMain, com.hsapi.sales.data.css.CssSaleGiftApply[], com.hsapi.sales.data.css.CssSaleGiftApply[], com.hsapi.sales.data.css.CssSaleGiftApply[], com.hsapi.sales.data.css.CssSaleCalc, com.hsapi.sales.data.css.CssSaleCostList[], com.hsapi.sales.data.css.CssSaleCostList[], com.hsapi.sales.data.css.CssSaleCostList[], com.hsapi.sales.data.css.CssSaleExtend)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveSaleMainAll&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveSaleMain&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save.saveSaleMainAll&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;billFormData(com.hsapi.sales.data.css.CssSaleMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;jpDetailGridAdd(com.hsapi.sales.data.css.CssSaleGiftApply[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;jpDetailGridEdit(com.hsapi.sales.data.css.CssSaleGiftApply[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;jpDetailGridDel(com.hsapi.sales.data.css.CssSaleGiftApply[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;caCalculationData(com.hsapi.sales.data.css.CssSaleCalc):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;addArr(com.hsapi.sales.data.css.CssSaleCostList[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;editArr(com.hsapi.sales.data.css.CssSaleCostList[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;deleteArr(com.hsapi.sales.data.css.CssSaleCostList[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;saleExtend(com.hsapi.sales.data.css.CssSaleExtend):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billFormData(com.hsapi.sales.data.css.CssSaleMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.save.saveRpbCars(com.hsapi.sales.data.com.ComGuest, com.hsapi.sales.data.com.RpbCar[], com.hsapi.sales.data.com.RpbCar[], String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveRpbCars&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveRpbCar&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save.saveRpbCars&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guest(com.hsapi.sales.data.com.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;insList(com.hsapi.sales.data.com.RpbCar[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updList(com.hsapi.sales.data.com.RpbCar[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;insList(com.hsapi.sales.data.com.RpbCar[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.save.checkMoneyForAuditAndUpdate(com.hsapi.sales.data.css.CssSaleCostList)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;checkMoneyForAuditAndUpdate&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;checkMoneyForAuditAndUpdate&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save.checkMoneyForAuditAndUpdate&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.sales.data.css.CssSaleCostList):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.save.backSettlement(com.hsapi.sales.data.css.CssSaleMain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;backSettlement&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;backSettlement&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save.backSettlement&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;saleMain(com.hsapi.sales.data.css.CssSaleMain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.save.saveGiftApply(com.hsapi.sales.data.css.CssSaleGiftApply[], com.hsapi.sales.data.css.CssSaleGiftApply[], com.hsapi.sales.data.css.CssSaleGiftApply[], Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveGiftApply&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveGiftApply&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save.saveGiftApply&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;jpDetailGridAdd(com.hsapi.sales.data.css.CssSaleGiftApply[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;jpDetailGridEdit(com.hsapi.sales.data.css.CssSaleGiftApply[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;jpDetailGridDel(com.hsapi.sales.data.css.CssSaleGiftApply[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.save.updateSaleMainMsg(com.hsapi.sales.data.css.CssSaleMain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateSaleMainMsg&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveSaleMainMsg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save.updateSaleMainMsg&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.sales.data.css.CssSaleMain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.save.serviceVinModel(com.hsapi.sales.data.com.RpbCar, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;serviceVinModel&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;serviceVinModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save.serviceVinModel&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;car(com.hsapi.sales.data.com.RpbCar):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carNo(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carVin(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCodeVin(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCodeModel(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCodeModelLy(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;car(com.hsapi.sales.data.com.RpbCar):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.save.saveSaleExtendNT(com.hsapi.sales.data.css.CssSaleExtend)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveSaleExtendNT&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateSaleExtend&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save.saveSaleExtendNT&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.sales.data.css.CssSaleExtend):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.save.updateCheckEnter(com.hsapi.sales.data.css.CssCheckEnter, com.hsapi.sales.data.css.CssSaleMain, com.hsapi.sales.data.css.CssSaleExtend)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateCheckEnter&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateCheckEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save.updateCheckEnter&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.sales.data.css.CssCheckEnter):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billFormData(com.hsapi.sales.data.css.CssSaleMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;saleExtend(com.hsapi.sales.data.css.CssSaleExtend):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billFormData(com.hsapi.sales.data.css.CssSaleMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.save.saveSaleExtend(com.hsapi.sales.data.css.CssSaleExtend)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveSaleExtend&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateSaleExtend&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save.saveSaleExtend&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.sales.data.css.CssSaleExtend):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.save.saveCarGuest(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveCarGuest&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveCarGuest&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.save.saveCarGuest&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

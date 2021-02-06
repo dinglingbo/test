@@ -1,0 +1,42 @@
+<map>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.query.querySettleType(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;querySettleType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;querySettleType&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.query.querySettleType&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;dictId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.cloud.part.data.com.ComDataitems[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.query.queryDeductPart(com.eos.foundation.PageCond, java.util.HashMap, Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryDeductPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryDeductPart&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.query.queryDeductPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.query.queryStockLevelPartForPlan(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryStockLevelPartForPlan&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryStockLevelPartForPlan&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.query.queryStockLevelPartForPlan&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.query.queryStockLevelPart(com.eos.foundation.PageCond, java.util.HashMap, Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryStockLevelPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryStockLevelPart&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.query.queryStockLevelPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.query.queryPartMatching(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPartMatching&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartMatching&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.query.queryPartMatching&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.cloud.part.data.pts.PjPartMatching[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.query.queryPartMatchs(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPartMatchs&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartMatchs&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.query.queryPartMatchs&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>query</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;query.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;query&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.query&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.query.queryComCompany(com.hsapi.cloud.part.data.com.ComCompany)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryComCompany&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryComCompany&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.query.queryComCompany&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;comp(com.hsapi.cloud.part.data.com.ComCompany):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;comp(com.hsapi.cloud.part.data.com.ComCompany):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.query.getLocationListByStoreId(String, Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getLocationListByStoreId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getLocationListByStoreId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.query.getLocationListByStoreId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;storeId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;locationList(com.hsapi.cloud.part.data.com.ComStoreLocation[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.query.queryPartMatchDetail(com.eos.foundation.PageCond, java.util.HashMap, Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPartMatchDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartMatchDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.query.queryPartMatchDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

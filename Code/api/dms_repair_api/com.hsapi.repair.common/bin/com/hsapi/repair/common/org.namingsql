@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.repair.common.org">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryOrgTreeRoot" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			a.ORGID nodeId,
+			a.ORGNAME nodeName,
+			'OrgOrganization' nodeType,
+			false isLeaf,
+			false expanded
+		FROM
+			org_organization a
+			where a.PARENTORGID is null</select>
+    <select id="queryOrgTreeByOrgId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			a.ORGID nodeId,
+			a.ORGNAME nodeName,
+			'OrgOrganization' nodeType,
+			false isLeaf,
+			false expanded
+		FROM
+			org_organization a
+			where a.PARENTORGID = #nodeId#
+		UNION
+		SELECT
+			a.POSITIONID nodeId,
+			a.POSINAME nodeName,
+			'OrgPosition' nodeType,
+			false isLeaf,
+			false expanded
+		FROM
+			org_position a
+			where a.ORGID = #nodeId# and a.MANAPOSI is null
+		UNION
+		SELECT
+			a.EMPID nodeId,
+			a.EMPNAME nodeName,
+			'OrgEmployee' nodeType,
+			true isLeaf,
+			false expanded
+		FROM
+			org_employee a
+			INNER JOIN org_emporg b on (a.EMPID = b.EMPID)
+			where b.ORGID = #nodeId#</select>
+    <select id="queryOrgTreeByPosId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			a.POSITIONID nodeId,
+			a.POSINAME nodeName,
+			'OrgPosition' nodeType,
+			false isLeaf,
+			false expanded
+		FROM
+			org_position a
+			where a.MANAPOSI = #nodeId#
+		UNION
+		SELECT
+			a.EMPID nodeId,
+			a.EMPNAME nodeName,
+			'OrgEmployee' nodeType,
+			true isLeaf,
+			false expanded
+		FROM
+			org_employee a
+			INNER JOIN org_empposition b on (a.EMPID = b.EMPID)
+			where b.POSITIONID = #nodeId#</select>
+</sqlMap>

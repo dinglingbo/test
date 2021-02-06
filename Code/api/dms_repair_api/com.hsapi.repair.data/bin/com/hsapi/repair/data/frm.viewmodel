@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<viewModelSet author="Administrator" displayName="frm" id="com.hsapi.repair.data.frm">
+    <viewModel author="Administrator" displayName="FisRpAdvance" entityName="com.hsapi.repair.data.frm.FisRpAdvance" id="FisRpAdvance">
+        <field dataType="Int" dict="false" entityField="id" id="id" label="id">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Int" dict="false" entityField="tenantId" id="tenantId" label="tenantId">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Int" dict="false" entityField="orgid" id="orgid" label="orgid">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Int" dict="false" entityField="billTypeId" id="billTypeId" label="billTypeId">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="billTypeCode" id="billTypeCode" label="billTypeCode">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Int" dict="false" entityField="codeid" id="codeid" label="codeid">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="code" id="code" label="code">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Int" dict="false" entityField="guestId" id="guestId" label="guestId">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="guestName" id="guestName" label="guestName">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Int" dict="false" entityField="carId" id="carId" label="carId">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="carNo" id="carNo" label="carNo">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Decimal" dict="false" entityField="amt" id="amt" label="amt">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Decimal" dict="false" entityField="charOffAmt" id="charOffAmt" label="charOffAmt">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Decimal" dict="false" entityField="deductionAmt" id="deductionAmt" label="deductionAmt">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Decimal" dict="false" entityField="balaAmt" id="balaAmt" label="balaAmt">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Decimal" dict="false" entityField="refundAmt" id="refundAmt" label="refundAmt">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Short" dict="false" entityField="billDc" id="billDc" label="billDc">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Short" dict="false" entityField="status" id="status" label="status">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Short" dict="false" entityField="isSettle" id="isSettle" label="isSettle">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="settleer" id="settleer" label="settleer">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Date" dict="false" entityField="settleDate" id="settleDate" label="settleDate">
+            <view type="write"/>
+            <edit name="" type="date"/>
+        </field>
+        <field dataType="String" dict="false" entityField="remark" id="remark" label="remark">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="recorder" id="recorder" label="recorder">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Date" dict="false" entityField="recordDate" id="recordDate" label="recordDate">
+            <view type="write"/>
+            <edit name="" type="date"/>
+        </field>
+        <field dataType="String" dict="false" entityField="modifier" id="modifier" label="modifier">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Date" dict="false" entityField="modifyDate" id="modifyDate" label="modifyDate">
+            <view type="write"/>
+            <edit name="" type="date"/>
+        </field>
+        <field dataType="String" dict="false" entityField="refunder" id="refunder" label="refunder">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Date" dict="false" entityField="refundDate" id="refundDate" label="refundDate">
+            <view type="write"/>
+            <edit name="" type="date"/>
+        </field>
+    </viewModel>
+</viewModelSet>

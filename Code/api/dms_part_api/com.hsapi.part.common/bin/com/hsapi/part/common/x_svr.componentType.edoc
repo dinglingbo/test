@@ -1,0 +1,46 @@
+<map>
+  <entry>
+    <string>com.hsapi.part.common.x_svr.getCurrentOrg()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCurrentOrg&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getCurrentOrg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.x_svr.getCurrentOrg&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;org(commonj.sdo.DataObject):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.x_svr.getDictItems(String[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getDictItems&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getDictItems&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.x_svr.getDictItems&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;dictIdList(String[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;dataItems(com.hsapi.part.data.com.ComDataitems[]):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;数据字典&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.x_svr.getAllCarBrand()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getAllCarBrand&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getAllCarBrand&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.x_svr.getAllCarBrand&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;carBrands(com.hsapi.part.data.com.ComCarBrand[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.x_svr.getPartTypeTree()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPartTypeTree&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPartTypeTree&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.x_svr.getPartTypeTree&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partTypes(com.hsapi.part.data.com.ComPartType[]):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;获取配件分类 &lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.x_svr.queryPartName(java.util.HashMap, String, String, com.eos.foundation.PageCond, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPartName&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartName&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.x_svr.queryPartName&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partName(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sortOrder(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sortField(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;searchKey(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partNames(com.hsapi.part.data.com.ComPartName[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.x_svr.getProvinceAndCity()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getProvinceAndCity&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getProvinceAndCity&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.x_svr.getProvinceAndCity&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;province(com.hsapi.part.data.com.ComArea[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;city(com.hsapi.part.data.com.ComArea[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.x_svr.getRoleMemberByRoleId(String[], String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRoleMemberByRoleId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;01081&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.x_svr.getRoleMemberByRoleId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;roleId(String[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;members(com.hsapi.part.data.com.ComRoleMember[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.x_svr.getOrgList()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getOrgList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getOrgList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.x_svr.getOrgList&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orgList(com.hsapi.part.data.system.OrgOrganization[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.x_svr.getLocationListByStoreId(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getLocationListByStoreId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getLocationListByStoreId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.x_svr.getLocationListByStoreId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;storeId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;locationList(com.hsapi.part.data.com.ComStoreLocation[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.x_svr.getAllPartBrand()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getAllPartBrand&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getAllPartBrand&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.x_svr.getAllPartBrand&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;quality(com.hsapi.part.data.com.ComPartBrand[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;brand(com.hsapi.part.data.com.ComPartBrand[]):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;获取配件品质和品牌&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>svr</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;x_svr.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;svr&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.x_svr&lt;/html&gt;</string>
+  </entry>
+</map>

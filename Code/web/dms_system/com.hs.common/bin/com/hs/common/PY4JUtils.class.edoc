@@ -1,0 +1,27 @@
+<map>
+  <entry>
+    <string>com.hs.common.PY4JUtils.converterToSpell(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.PY4JUtils.converterToSpell(String chines)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 汉字转换位汉语全拼，英文字符不变，特殊字符丢失&#x0D;
+ 支持多音字，生成方式如（重当参:zhongdangcen,zhongdangcan,chongdangcen&#x0D;
+ ,chongdangshen,zhongdangshen,chongdangcan）&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;chines&lt;/b&gt;&#x0D;
+            汉字&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;拼音&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.PY4JUtils.converterToFirstSpell(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.PY4JUtils.converterToFirstSpell(String chines)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 汉字转换位汉语拼音首字母，英文字符不变，特殊字符丢失 支持多音字，生成方式如（长沙市长:cssc,zssz,zssc,cssz）&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;chines&lt;/b&gt;&#x0D;
+            汉字&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;拼音&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>PY4JUtils</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.hs.common.PY4JUtils&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &lt;dl&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;chenyy&lt;/dd&gt;&lt;dt&gt;@date&lt;/dt&gt;&lt;dd&gt;2016-07-07 00:08:13&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.PY4JUtils.converterToSpellLimit(java.lang.String, int)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.PY4JUtils.converterToSpellLimit(String chines, int size)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 转拼音并截取size长度的字符&#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;chines&lt;/b&gt;	汉字&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;size&lt;/b&gt;		大小&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

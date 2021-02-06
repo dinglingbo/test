@@ -1,0 +1,114 @@
+<map>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.sAppShoppingSale(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sAppShoppingSale&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sAppStoreMan&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.sAppShoppingSale&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partNum(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;res(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.sAllSureRepair(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sAllSureRepair&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sAllShoppingSale&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.sAllSureRepair&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;appRes(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;wcRes(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.sWcSaleManReming(com.hsapi.repair.data.rps.RpsMaintain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sWcSaleManReming&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sStoreManReming&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.sWcSaleManReming&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;maintain(com.hsapi.repair.data.rps.RpsMaintain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;res(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.sAppSureRepair(String, commonj.sdo.DataObject[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sAppSureRepair&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sAppStoreMan&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.sAppSureRepair&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;workIdList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;res(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.sWcSureRepair(String, commonj.sdo.DataObject[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sWcSureRepair&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sStoreManReming&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.sWcSureRepair&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;workIdList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;res(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.sAppFinishBJ(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sAppFinishBJ&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sAppStoreMan&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.sAppFinishBJ&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;res(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.sAppSaleMan(com.hsapi.repair.data.rps.RpsMaintain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sAppSaleMan&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sStoreManReming&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.sAppSaleMan&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;maintain(com.hsapi.repair.data.rps.RpsMaintain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;res(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.sendBillCostInfo(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sendBillCostInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sendCheckInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.sendBillCostInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rurl(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.sWechatModelQF(java.util.HashMap[], String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sWechatModelQF&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sWechatModelQF&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.sWechatModelQF&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;tempDataList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;templateId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;url(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.sWcStoreManReming(com.hsapi.repair.data.rps.RpsMaintain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sWcStoreManReming&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sStoreManReming&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.sWcStoreManReming&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;maintain(com.hsapi.repair.data.rps.RpsMaintain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;res(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.sendFinishMTInfo(com.hsapi.repair.data.rps.RpsMaintain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sendFinishMTInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sendCheckInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.sendFinishMTInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;maintain(com.hsapi.repair.data.rps.RpsMaintain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.sAppPickPart(com.hsapi.repair.data.rps.RpsMaintain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sAppPickPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sAppStoreMan&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.sAppPickPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;maintain(com.hsapi.repair.data.rps.RpsMaintain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;res(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.sAllToWork(String, commonj.sdo.DataObject[], String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sAllToWork&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sAllShoppingSale&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.sAllToWork&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;workerIdList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isWc(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isApp(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;appRes(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;wcRes(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.sAppStoreMan(com.hsapi.repair.data.rps.RpsMaintain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sAppStoreMan&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sAppStoreMan&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.sAppStoreMan&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;maintain(com.hsapi.repair.data.rps.RpsMaintain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;res(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.queryWorksByServiceId(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryWorksByServiceId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryWorksByServiceId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.queryWorksByServiceId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.sAllFinishBJ(String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sAllFinishBJ&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sAllShoppingSale&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.sAllFinishBJ&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isApp(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isWc(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;appRes(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;wcRes(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>sendWeChat</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sendWeChat.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sendWeChat&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.sendTimeCardSellInfo(com.hsapi.repair.data.rps.RpsCardTimes)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sendTimeCardSellInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sendCheckInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.sendTimeCardSellInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cardTimes(com.hsapi.repair.data.rps.RpsCardTimes):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.sWcShoppingSale(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sWcShoppingSale&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sStoreManReming&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.sWcShoppingSale&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partNum(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;res(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.sendTimeCardCostInfo(com.hsapi.repair.data.rps.RpsPackage, com.hsapi.repair.data.rps.RpsItem, com.hsapi.repair.data.rps.RpsPart, com.hsapi.repair.data.rps.RpsMaintain, com.hsapi.repair.data.rps.RpsCardTimes, com.hsapi.repair.data.rps.RpsCardTimesDetail, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sendTimeCardCostInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sendCheckInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.sendTimeCardCostInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pkgTemp(com.hsapi.repair.data.rps.RpsPackage):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;itemTemp(com.hsapi.repair.data.rps.RpsItem):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partTemp(com.hsapi.repair.data.rps.RpsPart):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;maintain(com.hsapi.repair.data.rps.RpsMaintain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rpsCardTimes(com.hsapi.repair.data.rps.RpsCardTimes):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;cardTimesDetailTemp(com.hsapi.repair.data.rps.RpsCardTimesDetail):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;type(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.SendStoreCardInfo(com.hsapi.repair.data.rps.RpsStoredRecord)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;SendStoreCardInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sendCheckInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.SendStoreCardInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;stored(com.hsapi.repair.data.rps.RpsStoredRecord):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.sAllShoppingSale(String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sAllShoppingSale&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sAllShoppingSale&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.sAllShoppingSale&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partNum(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isWc(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isApp(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;appRes(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;wcRes(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;tempDataList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;roleList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.sAppToWork(String, commonj.sdo.DataObject[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sAppToWork&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sAppStoreMan&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.sAppToWork&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;workerIdList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;res(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.sendCheckInfo(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sendCheckInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sendCheckInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.sendCheckInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;checkId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rurl(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.sWcFinishBJ(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sWcFinishBJ&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sStoreManReming&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.sWcFinishBJ&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;res(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.sendPostUrl(String, String, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sendPostUrl&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;setBookWeChatInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.sendPostUrl&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;key(String):&lt;/b&gt;REPAIR&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;apiName(String):&lt;/b&gt;com.hsapi.wechat.autoServiceBackstage.weChatInterface.sendBookingWeChatTemplateMessage.biz.ext&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;turl(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.sWcPickPart(com.hsapi.repair.data.rps.RpsMaintain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sWcPickPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sStoreManReming&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.sWcPickPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;maintain(com.hsapi.repair.data.rps.RpsMaintain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;res(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sendWeChat.sWcToWork(String, commonj.sdo.DataObject[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sWcToWork&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sStoreManReming&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sendWeChat.sWcToWork&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;workIdList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;res(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

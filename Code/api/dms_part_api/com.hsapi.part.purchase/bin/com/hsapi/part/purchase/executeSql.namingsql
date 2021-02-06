@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.part.purchase.executeSql">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="getRpsPartById" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">select ifnull(qty,0) qty, ifnull(amt,0) amt from wb_repair.rps_part where ifnull(is_disabled,0) = 0 and service_id = #serviceId# and part_id = #partId#</select>
+    <update id="updateRpsPartById" parameterClass="java.util.HashMap">update wb_repair.rps_part set qty = #qty#, amt = #amt#, unit_price = #unitPrice#,
+		status = 2, modifier = #recorder#, modify_date = now(), is_disabled = 0
+		where service_id = #serviceId# and part_id = #partId#</update>
+    <insert id="insertRpsPartById" parameterClass="java.util.HashMap">insert into wb_repair.rps_part
+		      (service_id, package_id, part_id, part_code, part_name, qty, unit, unit_price,
+		      amt, status, rece_type_id, recorder, record_date, modifier, modify_date)
+		values (#serviceId#, '', #partId#, #partCode#, #partName#, #qty#, #unit#,#unitPrice#,
+				#amt#, 2, '04150101', #recorder#, now(), #recorder#, now())</insert>
+    <update id="updateRpsPartById1" parameterClass="java.util.HashMap">update wb_repair.rps_part set qty = 0, amt = 0, unit_price = 0,
+		status = 11 , is_disabled = 1, modifier = #recorder#, modify_date = now()
+		where service_id = #serviceId# and part_id = #partId#</update>
+    <update id="updateRpsPartById2" parameterClass="java.util.HashMap">update wb_repair.rps_part set qty = #qty#, amt = #amt#, unit_price = #unitPrice#
+		where service_id = #serviceId# and part_id = #partId#</update>
+</sqlMap>

@@ -1,0 +1,66 @@
+<map>
+  <entry>
+    <string>com.hsapi.system.product.items.getBrandPartDef(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getBrandPartDef&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;carModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.product.items.getBrandPartDef&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(com.hsapi.system.product.MyCache[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.product.items.getPart(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;carModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.product.items.getPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;p(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.product.items.getItemById(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getItemById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;carModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.product.items.getItemById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.product.items.getPkgDetail(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPkgDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;carModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.product.items.getPkgDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pkgCarMtId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.product.items.weChatGetItemNopage(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;weChatGetItemNopage&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;carModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.product.items.weChatGetItemNopage&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;p(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.product.items.getPrdtType(String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPrdtType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;carModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.product.items.getPrdtType&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;carBrandId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;parentId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;type(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;noShowParent(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.product.items.getHotWord(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getHotWord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getHotWord&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.product.items.getHotWord&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;type(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.product.items.getPackage(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPackage&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;carModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.product.items.getPackage&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;p(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.product.items.getBrandPartDefAll()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getBrandPartDefAll&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;carModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.product.items.getBrandPartDefAll&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(com.hsapi.system.product.MyCache[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.product.items.getItem(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getItem&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;carModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.product.items.getItem&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;p(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>items</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;items.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;items&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.product.items&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.product.items.getStock(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getStock&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;carModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.product.items.getStock&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;vin(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.product.items.getItemByModelId(Int, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getItemByModelId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;carModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.product.items.getItemByModelId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;carId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.product.items.getPackageById(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPackageById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;carModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.product.items.getPackageById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.product.items.getBrandPart(String, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getBrandPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;carModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.product.items.getBrandPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.product.items.getPartById(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPartById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;carModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.product.items.getPartById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Require-Bundle: com.hsapi.system.dict,com.hs.common,com.eos.foundation
+eos-webCtxPath: report
+Bundle-Vendor: Administrator
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsapi.repair.report
+Bundle-Description: 
+Bundle-SymbolicName: com.hsapi.repair.report
+

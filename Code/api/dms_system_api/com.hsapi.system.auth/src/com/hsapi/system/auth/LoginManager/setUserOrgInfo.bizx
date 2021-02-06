@@ -231,6 +231,14 @@
       <process:to type="query">m:userObject/userOrgId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">comp/kingId</process:from>
+      <process:to type="query">m:userObject/attributes/kingId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">comp/bookId</process:from>
+      <process:to type="query">m:userObject/attributes/bookId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">orgs</process:from>
       <process:to type="query">m:userObject/attributes/orgs</process:to>
     </process:copy>
@@ -285,6 +293,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">billParams/isOpenApp</process:from>
       <process:to type="query">m:userObject/attributes/isOpenApp</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billParams/isLoginControl</process:from>
+      <process:to type="query">m:userObject/attributes/isLoginControl</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject</process:from>

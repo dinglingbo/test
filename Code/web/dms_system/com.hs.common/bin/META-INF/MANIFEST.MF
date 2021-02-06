@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Require-Bundle: com.vplus.data,com.eos.foundation
+eos-webCtxPath: common
+Bundle-Vendor: Guine
+Bundle-Version: 1.0.0
+Bundle-Name: com.hs.common
+Bundle-Description: 
+Bundle-SymbolicName: com.hs.common
+

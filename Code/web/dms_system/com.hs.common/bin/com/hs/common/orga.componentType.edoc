@@ -1,0 +1,10 @@
+<map>
+  <entry>
+    <string>com.hs.common.orga.getAreaComp(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getAreaComp&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getAreaComp&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.orga.getAreaComp&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;deptCode(String):&lt;/b&gt;区域公司编码&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;deptCodes(String):&lt;/b&gt;下属公司编码&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>orga</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;orga.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;orga&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.orga&lt;/html&gt;</string>
+  </entry>
+</map>

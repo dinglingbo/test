@@ -1,0 +1,15 @@
+<map>
+  <entry>
+    <string>com.hs.common.BmwPartsGrab.send(java.lang.String, java.util.Map&lt;java.lang.String,java.lang.String&gt;, java.util.Map&lt;java.lang.String,java.lang.String&gt;, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.BmwPartsGrab.send(String url, Map&lt;String,String&gt; map, Map&lt;String,String&gt; header, String encoding)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 模拟请求&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;url&lt;/b&gt;&#x0D;
+            资源地址&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;map&lt;/b&gt;&#x0D;
+            参数列表&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;encoding&lt;/b&gt;&#x0D;
+            编码&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;dt&gt;抛出：&lt;/dt&gt;&lt;dd&gt;NoSuchAlgorithmException&lt;/dd&gt;&lt;dd&gt;KeyManagementException&lt;/dd&gt;&lt;dd&gt;IOException&lt;/dd&gt;&lt;dd&gt;ClientProtocolException&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>BmwPartsGrab</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.hs.common.BmwPartsGrab&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

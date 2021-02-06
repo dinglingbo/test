@@ -22,7 +22,7 @@
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-      <process:return id="2" language="Float" name="charOffAmt" type="query" valueType="Primitive">charOffAmt</process:return>
+      <process:return id="2" language="Double" name="charOffAmt" type="query" valueType="Primitive">charOffAmt</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -226,7 +226,7 @@
         <process:inputVariable id="1" name="FYear" type="query" value="Int" valueType="Primitive" pattern="reference">FYear</process:inputVariable>
         <process:inputVariable id="2" name="FMonth" type="query" value="Int" valueType="Primitive" pattern="reference">FMonth</process:inputVariable>
         <process:inputVariable id="3" name="dc" type="query" value="Int" valueType="Primitive" pattern="reference">rpDc</process:inputVariable>
-        <process:inputVariable id="4" name="BillAmt" type="query" value="Float" valueType="Primitive" pattern="reference">temp/charOffAmt</process:inputVariable>
+        <process:inputVariable id="4" name="BillAmt" type="query" value="Double" valueType="Primitive" pattern="reference">temp/charOffAmt</process:inputVariable>
         <process:inputVariable id="5" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">orgid</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
@@ -328,12 +328,14 @@
     <figSize height="20" width="40"/>
     <node>assign4</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="728" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-05-08 22:10:18" date="2018-05-08Z" description="" name="insertAccountDType" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.FiRpAccountDType" name="temp"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="tAmt" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="tAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="FYear" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="FMonth" primitiveType="Int"/>
   </process:variables>
@@ -347,7 +349,7 @@
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
-    <process:output description="" isArray="false" name="charOffAmt" primitiveType="Float"/>
+    <process:output description="" isArray="false" name="charOffAmt" primitiveType="Double"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

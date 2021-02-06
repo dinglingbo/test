@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.repair.common.ticheng">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryCarBrand" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">select 
+			a.id id,
+			a.name name,
+			a.orgid orgid,
+			a.is_disabled is_disabled,
+			b.sales_deduct_type salesDeductType,
+			b.sales_deduct_value salesDeductValue,
+			b.tech_deduct_type techDeductType,
+			b.tech_deduct_value techDeductValue,
+			b.advisor_deduct_type advisorDeductType,
+			b.advisor_deduct_value advisorDeductValue
+		from wb_repair.rpb_business_type a,wb_repair.rpb_business_deduct b
+		 where a.id = b.service_type_id</select>
+</sqlMap>

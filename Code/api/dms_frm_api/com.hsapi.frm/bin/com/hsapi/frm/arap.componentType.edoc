@@ -1,0 +1,38 @@
+<map>
+  <entry>
+    <string>com.hsapi.frm.arap.saveRpBill(com.hsapi.frm.arap.FisRpBillList)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveRpBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;insertAccount&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.arap.saveRpBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpBill(com.hsapi.frm.arap.FisRpBillList):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.arap.saveFisRpAccount(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveFisRpAccount&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveInitRpBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.arap.saveFisRpAccount&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.arap.test(com.hsapi.frm.arap.FisRpAccount, com.hsapi.frm.arap.FisRpBillList, com.hsapi.frm.arap.FisRpBillListDetail[], Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;test&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;test&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.arap.test&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;fisRpAccount(com.hsapi.frm.arap.FisRpAccount):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;payMain(com.hsapi.frm.arap.FisRpBillList):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;payDetail(com.hsapi.frm.arap.FisRpBillListDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isPay(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.arap.saveRpBillDetail(com.hsapi.frm.arap.FisRpBillListDetail[], Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveRpBillDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;insertAccountDType&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.arap.saveRpBillDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpBillDetail(com.hsapi.frm.arap.FisRpBillListDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rpDc(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>arap</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;arap.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;arap&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.arap&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.arap.saveFisRpBillList(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveFisRpBillList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveInitRpBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.arap.saveFisRpBillList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.arap.rpAccountSettle(com.hsapi.frm.arap.FisRpAccount, com.hsapi.frm.arap.FisRpBillList, com.hsapi.frm.arap.FisRpBillListDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;rpAccountSettle&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;rpAccountSettle&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.arap.rpAccountSettle&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;account(com.hsapi.frm.arap.FisRpAccount):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rpBill(com.hsapi.frm.arap.FisRpBillList):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rpBillDetial(com.hsapi.frm.arap.FisRpBillListDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;应收应付结算&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.arap.saveFisRpBillListDetail(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveFisRpBillListDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveInitRpBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.arap.saveFisRpBillListDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.arap.createArapService(com.hsapi.frm.arap.FisRpAccount)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;createArapService&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;createArapService&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.arap.createArapService&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.frm.arap.FisRpAccount):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.frm.arap.FisRpAccount):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

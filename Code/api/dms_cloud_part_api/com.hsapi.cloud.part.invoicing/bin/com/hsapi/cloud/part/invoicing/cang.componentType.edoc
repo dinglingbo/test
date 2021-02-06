@@ -1,0 +1,66 @@
+<map>
+  <entry>
+    <string>cang</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;cang.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;cang&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.cang&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.cang.allotinSettleByDetail(String, String, Int, String, String, Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;allotinSettleByDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;enterSettle&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.cang.allotinSettleByDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;sourceId(String):&lt;/b&gt; 仓先生ID或是调拨出库时的订单service_id&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;erpMainId(String):&lt;/b&gt;ERP单据ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orderTypeId(Int):&lt;/b&gt;1调拨申请；2调拨受理；3调出退回；4调入退回&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;creator(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;paramsMain/id&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;diff(Int):&lt;/b&gt;0代表APP回调；1代表PC直接出库&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;paramsSize(Int):&lt;/b&gt;调用参数长度 &lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.cloud.part.data.pts.PjAllotApplyMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detail(com.hsapi.cloud.part.data.pts.PjAllotApplyDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;S;E&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isDirect(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;applyServiceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;acceptServiceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.cang.syncOrderData(com.hsapi.cloud.part.data.pts.PjWmsParamsMain[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;syncOrderData&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;synPurchaseOrder&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.cang.syncOrderData&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.cloud.part.data.pts.PjWmsParamsMain[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.cang.outSettleByDetail(com.hsapi.cloud.part.data.pts.PjWmsParamsMain, com.hsapi.cloud.part.data.pts.PjWmsParamsDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;outSettleByDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;enterSettle&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.cang.outSettleByDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;paramsMain(com.hsapi.cloud.part.data.pts.PjWmsParamsMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;paramsDetail(com.hsapi.cloud.part.data.pts.PjWmsParamsDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.cloud.part.data.pts.PjSellOrderMainChk):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detail(com.hsapi.cloud.part.data.pts.PjSellOrderDetailChk[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;S;E&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.cang.generateAllotEnterData(com.hsapi.cloud.part.data.pts.PjWmsParamsMain, com.hsapi.cloud.part.data.pts.PjWmsParamsDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateAllotEnterData&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generateEnterData&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.cang.generateAllotEnterData&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;paramsMain(com.hsapi.cloud.part.data.pts.PjWmsParamsMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;paramsDetail(com.hsapi.cloud.part.data.pts.PjWmsParamsDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.cang.generateOutData(com.hsapi.cloud.part.data.pts.PjWmsParamsMain, com.hsapi.cloud.part.data.pts.PjWmsParamsDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateOutData&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generateEnterData&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.cang.generateOutData&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;paramsMain(com.hsapi.cloud.part.data.pts.PjWmsParamsMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;paramsDetail(com.hsapi.cloud.part.data.pts.PjWmsParamsDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.cang.x_synPurchaseOrder(java.util.HashMap[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;x_synPurchaseOrder&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;synPurchaseOrder&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.cang.x_synPurchaseOrder&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.cang.checkSettleByDetail(com.hsapi.cloud.part.data.pts.PjWmsParamsMain, com.hsapi.cloud.part.data.pts.PjWmsParamsDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;checkSettleByDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generateCheckData&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.cang.checkSettleByDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;paramsMain(com.hsapi.cloud.part.data.pts.PjWmsParamsMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;paramsDetail(com.hsapi.cloud.part.data.pts.PjWmsParamsDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;checkMain(com.hsapi.cloud.part.data.pts.PjStockCheckMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;checkDetail(com.hsapi.cloud.part.data.pts.PjStockCheckDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.cang.enterSettleByDetail(com.hsapi.cloud.part.data.pts.PjWmsParamsMain, com.hsapi.cloud.part.data.pts.PjWmsParamsDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;enterSettleByDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;enterSettle&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.cang.enterSettleByDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;paramsMain(com.hsapi.cloud.part.data.pts.PjWmsParamsMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;paramsDetail(com.hsapi.cloud.part.data.pts.PjWmsParamsDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detail(com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;S;E&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.cang.x_inserPjPchsOrderCheck(Int, java.util.HashMap[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;x_inserPjPchsOrderCheck&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;inserPjPchsOrderCheck&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.cang.x_inserPjPchsOrderCheck&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detail(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;auditMain(com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;auditDetails(com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.cang.synStockCheck()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;synStockCheck&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;synStockCheck&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.cang.synStockCheck&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.cang.enterSettleByQty()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;enterSettleByQty&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;enterSettle&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.cang.enterSettleByQty&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.cang.generateAllotOutData(com.hsapi.cloud.part.data.pts.PjWmsParamsMain, com.hsapi.cloud.part.data.pts.PjWmsParamsDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateAllotOutData&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generateAllotOutData&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.cang.generateAllotOutData&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;paramsMain(com.hsapi.cloud.part.data.pts.PjWmsParamsMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;paramsDetail(com.hsapi.cloud.part.data.pts.PjWmsParamsDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.cang.generateCheckData(com.hsapi.cloud.part.data.pts.PjWmsParamsMain, com.hsapi.cloud.part.data.pts.PjWmsParamsDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateCheckData&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generateCheckData&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.cang.generateCheckData&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;paramsMain(com.hsapi.cloud.part.data.pts.PjWmsParamsMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;paramsDetail(com.hsapi.cloud.part.data.pts.PjWmsParamsDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.cang.generateEnterData(com.hsapi.cloud.part.data.pts.PjWmsParamsMain, com.hsapi.cloud.part.data.pts.PjWmsParamsDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateEnterData&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generateEnterData&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.cang.generateEnterData&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;paramsMain(com.hsapi.cloud.part.data.pts.PjWmsParamsMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;paramsDetail(com.hsapi.cloud.part.data.pts.PjWmsParamsDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.cang.settleParams(com.hsapi.cloud.part.data.pts.PjWmsParamsMain[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;settleParams&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;settleParams&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.cang.settleParams&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.cloud.part.data.pts.PjWmsParamsMain[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;signId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.repair.data.CardTimes">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryCardTimesList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+       SELECT
+         a.id id,
+         a.code serviceCode,
+         a.orgid as orgid,
+         b.id cardDetailId,
+         c.full_name fullName,
+         a.guest_name guestName,
+         a.guest_id guestId,
+         c.mobile mobile,
+         a.card_name cardName,
+         a.record_date recordData,
+         a.status status,
+         a.is_refund isRefund,
+         a.refunder refunder,
+         a.refund_date refundDate,
+         a.past_date pastDate,
+         a.period_validity periodValidity,
+         a.settle_date as settleDate,
+         a.car_no as carNo,
+         b.prdt_name prdtName,
+         b.prdt_type prdtType,
+         b.sell_amt sellAmt,
+         b.bala_times balaTimes,
+         b.use_times useTimes,
+         b.can_use_times as canUseTimes,
+         a.buy_source as buySource,
+         b.total_times totalTimes,
+         (b.bala_times * b.sell_price) remainAmt
+         FROM rps_card_times a 
+         INNER JOIN rps_card_times_detail b ON(b.main_id = a.id)
+         INNER JOIN wb_common.com_guest c ON(a.guest_id = c.id) 
+         WHERE  a.status = 2 and a.is_refund = 0
+         <dynamic>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestName">(a.guest_name like '%$guestName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">(a.car_no like '%$carNo$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">(c.mobile like '%$mobile$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="cardName">(a.card_name like '%$cardName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="startDate">(a.record_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(a.record_date &lt;= #endDate#)</isNotEmpty>
+        </dynamic>
+        order by a.settle_date desc
+ 
+	</select>
+    <select id="queryCardTimesById" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+				a.id,
+				a.orgid,
+				a.`code` serviceCode,
+				a.guest_id guestId,
+				a.guest_name guestName,
+				c.mobile,
+				a.car_id carId,
+				a.car_no carNo,
+				a.card_id cardId,
+				a.card_name cardName,
+				a.period_validity periodValidity,
+				a.past_date pastDate,
+				a.sell_amt sellAmt,
+				a.total_amt totalAmt,
+				a.sale_man_id saleManId,
+				a.sale_man saleMan,
+				a.use_remark useRemark,
+				a.remark,
+				a.`status`,
+				a.settle_date settleDate,
+				a.recorder,
+				a.record_date recordDate
+			FROM
+				rps_card_times a
+			INNER JOIN wb_common.com_guest c ON(a.guest_id = c.id) 
+			where 1=1 and a.orgid=#orgid#
+		<isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+    </select>
+    <select id="queryCardTimesListreturn" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+       SELECT
+         a.id id,
+         a.guest_name guestName,
+         a.guest_id guestId,
+         a.sell_amt sellAmt,
+         a.card_name cardName,
+         a.record_date recordData,
+         a.status status,
+         a.is_refund isRefund,
+         a.refunder refunder,
+         a.refund_date refundDate,
+         a.past_date pastDate,
+         a.period_validity periodValidity,
+         a.settle_date as settleDate,
+         a.car_no as carNo
+         
+         FROM rps_card_times a 
+
+         WHERE  a.orgid = #orgid# and a.status = 2 and a.is_refund = 0
+         <dynamic>
+            <isNotEmpty prepend="and" property="guestName">(a.guest_name like '%$guestName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">(a.car_no like '%$carNo$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="cardName">(a.card_name like '%$cardName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="startDate">(a.record_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(a.record_date &lt;= #endDate#)</isNotEmpty>
+        </dynamic>
+        order by a.settle_date desc
+ 
+	</select>
+    <select id="queryRefundRecord" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+       SELECT
+         a.id id,
+         a.code code,
+         c.full_name fullName,
+         a.guest_id  guestId,
+         a.car_no  carNo,
+         a.type type,
+         a.guest_name guestName,
+         c.mobile mobile,
+         a.refund_amt refundAmt,
+         a.cut_amt cutAmt,
+		 a.remark remark,
+		 a.recorder recorder,
+         a.record_date as recordDate
+         FROM rps_refund_record a 
+         INNER JOIN wb_common.com_guest c ON(a.guest_id = c.id) 
+         WHERE  a.orgid = #orgid# 
+         <dynamic>
+            <isNotEmpty prepend="and" property="guestName">(a.guest_name like '%$guestName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">(a.car_no like '%$carNo$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">(c.mobile like '%$mobile$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="type">(a.type = #type#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="sOutDate">(a.record_date &gt;= #sOutDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eOutDate">(a.record_date &lt;= #eOutDate#)</isNotEmpty>
+        </dynamic>
+        order by a.record_date desc
+ 
+	</select>
+    <select id="queryStoredRecord" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+       SELECT
+         a.id id,
+         a.guest_id guestId,
+         a.car_no carNo,
+         a.car_id carId,
+         a.guest_name guestName,
+         c.mobile mobile,
+         a.card_id cardId,
+         a.card_name cardName,
+         a.recharge_amt rechargeAmt,
+         a.give_amt giveAmt,
+         a.total_amt totalAmt,
+         a.use_amt useAmt,
+         a.bala_amt balaAmt,
+         a.refund_amt refundAmt,
+         a.sales_deduct_value as salesDeductValue,
+         a.package_rate packageRate,
+         a.item_rate itemRate,
+         a.part_rate partRate,
+         a.sale_man saleMan,
+         a.record_date as recordDate
+         FROM rps_stored_record a 
+         INNER JOIN wb_common.com_guest c ON(a.guest_id = c.id) 
+         WHERE   a.orgid = #orgid# 
+         <dynamic>
+            <isNotEmpty prepend="and" property="guestName">(a.guest_name like '%$guestName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">(a.car_no like '%$carNo$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestTelephone">(c.mobile like '%$guestTelephone$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="cardName">(a.card_name like '%$cardName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="startDate">(a.record_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(a.record_date &lt; #endDate#)</isNotEmpty>
+        </dynamic>
+ 			order by a.record_date desc
+	</select>
+    <select id="queryCardTimesDe" parameterClass="java.lang.String" resultClass="java.util.HashMap">select 
+	       b.main_id mainId,
+	       b.prdt_id prdtId,
+	       b.prdt_name prdtName,
+	       b.bala_times balaTimes,
+	       b.total_times totalTimes,
+	       b.can_use_times canUseTimes,
+	       b.is_finish Isfinish
+	    FROM  rps_card_times_detail b WHERE b.main_id = #Id#</select>
+    <select id="queryConsumeCardStoredList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">SELECT
+         a.id id,
+         a.card_amt cardAmt,
+         a.consume_amt consumeAmt,
+         a.recorder recorder,
+         a.record_date recordDate,
+         b.service_code serviceCode,
+         b.service_type_id serviceTypeId,
+         b.mt_advisor_id mtAdvisorId,
+         b.mt_advisor mtAdvisor,
+         c.car_model  carModel,
+         c.vin  carVin,
+         c.car_no  carNo,
+         (select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
+	       inner join rpb_business_type f on e.service_type_id = f.id
+	       where e.service_id = b.id) as serviceTypeName
+         FROM rps_stored_consume_record a 
+         INNER JOIN rps_maintain b ON(a.service_id = b.id) 
+         inner JOIN rpb_car c ON ( b.car_id = c.id )
+         WHERE  a.orgid = #orgid# 
+         AND a.guest_stored_id = #id#</select>
+    <select id="queryStoreRecord" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+       select a.guest_name as guestName, a.card_name as cardName,
+		       a.recharge_amt as rechargeAmt, a.settle_date as settleDate
+		from rps_stored_record a
+         WHERE  a.orgid = #orgid# and a.is_settle = 1
+         <dynamic>
+            <isNotEmpty prepend="and" property="startDate">(a.settle_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(a.settle_date &lt;= #endDate#)</isNotEmpty>
+        </dynamic>
+        order by a.settle_date desc
+ 
+	</select>
+    <select id="queryCardTimesItem" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">SELECT
+         a.item_time qty,
+         a.subtotal subtotal,
+         b.id id,
+         b.car_no carNo,
+         b.car_vin carVin,
+         b.service_type_id serviceTypeId,
+         b.service_code serviceCode,
+         b.mt_advisor mtAdvisor,
+         b.out_date outDate,
+         b.collect_money_date collectMoneyDate
+         FROM rps_item a
+         INNER JOIN rps_maintain b ON(b.id = a.service_id)
+         WHERE  a.card_detail_id = #cardDetailId#</select>
+    <select id="queryCardTimesPkg" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">SELECT
+         
+         a.subtotal subtotal,
+         b.id id,
+         b.car_no carNo,
+         b.car_vin carVin,
+         b.service_type_id serviceTypeId,
+         b.service_code serviceCode,
+         b.mt_advisor mtAdvisor,
+         b.out_date outDate,
+         b.collect_money_date collectMoneyDate
+         FROM rps_package a
+         INNER JOIN rps_maintain b ON(b.id = a.service_id)
+         WHERE  a.card_detail_id = #cardDetailId#</select>
+    <select id="queryCardTimesPart" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">SELECT
+         a.qty qty,
+         a.subtotal subtotal,
+         b.id id,
+         b.car_no carNo,
+         b.car_vin carVin,
+         b.service_type_id serviceTypeId,
+         b.service_code serviceCode,
+         b.mt_advisor mtAdvisor,
+         b.out_date outDate,
+         b.collect_money_date collectMoneyDate
+         FROM rps_part a
+         INNER JOIN rps_maintain b ON(b.id = a.service_id)
+         WHERE  a.card_detail_id = #cardDetailId#</select>
+</sqlMap>

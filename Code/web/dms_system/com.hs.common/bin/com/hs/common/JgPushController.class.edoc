@@ -1,0 +1,16 @@
+<map>
+  <entry>
+    <string>com.hs.common.JgPushController.pushByTitle(java.lang.String, java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;PushResult com.hs.common.JgPushController.pushByTitle(String title, String userId, String message)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>JgPushController</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.hs.common.JgPushController&lt;/b&gt;&lt;br/&gt;&lt;p&gt; java后台极光推送方式：使用Java SDK&#x0D;
+&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.JgPushController.push(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;PushResult com.hs.common.JgPushController.push(String userId, String message)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 极光推送方法(采用java SDK)&#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;tag&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;message&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;PushResult&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

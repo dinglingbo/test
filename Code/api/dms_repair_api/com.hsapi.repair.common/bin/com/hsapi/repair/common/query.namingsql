@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.repair.common.query">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="getAllInsuranceCompany" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			a.id id,
+			a.code code,
+			a.full_name fullName,
+			a.short_name shortName
+		FROM
+			com_guest a 
+		WHERE
+			a.guest_type = '01020104'
+			and (a.orgid = 0 or a.orgid = #orgid#)</select>
+    <select id="getClassTree" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			id,
+			CONCAT( NAME, ' - ', captain_name ) AS name,
+			0 parentid
+		FROM
+			rpb_class 
+		WHERE
+			orgid = #orgid#
+			AND is_disabled = 0 UNION
+		SELECT
+			CONCAT('C',id) id,
+			empl_name name,
+			class_id parentid 
+		FROM
+			rpb_class_member 
+		WHERE
+			orgid = #orgid#
+			AND is_disabled = 0</select>
+</sqlMap>

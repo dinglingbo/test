@@ -1,0 +1,38 @@
+<map>
+  <entry>
+    <string>com.hsapi.frm.frmService.query.queryFisPreBill(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryFisPreBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;isExistPreBillDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.frmService.query.queryFisPreBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.frmService.query.queryIsFisPreBill(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryIsFisPreBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;isExistPreBillDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.frmService.query.queryIsFisPreBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;fisId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.frm.data.fis.FisPreBill[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>query</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;query.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;query&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.frmService.query&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.frmService.query.getServiceAccountDetail(Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getServiceAccountDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getServiceAccountDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.frmService.query.getServiceAccountDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billTypeId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.frmService.query.isExistPreBillDetail(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;isExistPreBillDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;isExistPreBillDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.frmService.query.isExistPreBillDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;ids(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.frmService.query.queryRPAccountDetail(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRPAccountDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRPAccount&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.frmService.query.queryRPAccountDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.frmService.query.queryRPAccount(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRPAccount&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRPAccount&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.frmService.query.queryRPAccount&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.frmService.query.getSettleCardPayAmt(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getSettleCardPayAmt&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getSettleCardPayAmt&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.frmService.query.getSettleCardPayAmt&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dtype(com.hsapi.frm.data.fis.FisRpAccountDType):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.frmService.query.getRpBillByMainId(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpBillByMainId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getRpBillByMainId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.frmService.query.getRpBillByMainId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;billMainId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billTypeId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpBill(com.hsapi.frm.data.fis.FisRpBill):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

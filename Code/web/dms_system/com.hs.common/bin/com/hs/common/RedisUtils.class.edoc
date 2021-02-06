@@ -1,0 +1,174 @@
+<map>
+  <entry>
+    <string>com.hs.common.RedisUtils.rPop(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.RedisUtils.rPop(String listName)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 右队列出队&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;listName&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.lRem(java.lang.String, long, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;void com.hs.common.RedisUtils.lRem(String listName, long count, String value)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 删除列表中值为value的元素&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;listName&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;count&lt;/b&gt;&#x0D;
+            count &gt; 0 : 从表头开始向表尾搜索，移除与 VALUE 相等的元素，数量为 COUNT &lt;br/&gt;&#x0D;
+            count &lt; 0 :从表尾开始向表头搜索，移除与 VALUE 相等的元素，数量为 COUNT 的绝对值。 &lt;br/&gt;&#x0D;
+            count = 0 : 移除表中所有与VALUE 相等的值。&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;value&lt;/b&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>RedisUtils</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.hs.common.RedisUtils&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &lt;dl&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;chenyy&lt;/dd&gt;&lt;dt&gt;@date&lt;/dt&gt;&lt;dd&gt;2016-10-12 12:24:00&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.hmSet(java.lang.String, java.util.Map&lt;java.lang.String,java.lang.String&gt;)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;void com.hs.common.RedisUtils.hmSet(String hsetName, Map&lt;String,String&gt; vals)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 批量设置值&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;hsetName&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;vals&lt;/b&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.hset(java.lang.String, java.lang.String, java.lang.Object)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;void com.hs.common.RedisUtils.hset(String hsetName, String key, Object value)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 设置haset的某个字段值&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;hsetName&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;key&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;value&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.exists(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;boolean com.hs.common.RedisUtils.exists(String key)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 检查是否存在某个Key&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;hsetName&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;key&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.lLen2Int(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;int com.hs.common.RedisUtils.lLen2Int(String listName)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.hExists(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;boolean com.hs.common.RedisUtils.hExists(String hsetName, String key)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 检查HashMap是否存在某个字段&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;hsetName&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;key&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.lSet(java.lang.String, java.lang.String, long)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;void com.hs.common.RedisUtils.lSet(String listName, String val, long index)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 设置list中的某个元素&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;listName&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;val&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;index&lt;/b&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.hIncrement(java.lang.String, java.lang.String, long)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;void com.hs.common.RedisUtils.hIncrement(String hsetName, String key, long value)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 增加至&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;hsetName&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.lTrim(java.lang.String, long, long)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;void com.hs.common.RedisUtils.lTrim(String listName, long start, long end)&lt;/b&gt;&lt;br/&gt;&lt;p&gt;&#x0D;
+ 保留队列从start到end之间的值&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;listName&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;start&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;end&lt;/b&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.expire(java.lang.String, int)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;void com.hs.common.RedisUtils.expire(String key, int seconds)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 设置键值过期时间，秒&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;key&lt;/b&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.list2DataObject(java.util.List&lt;java.lang.String&gt;, java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject[] com.hs.common.RedisUtils.list2DataObject(List&lt;String&gt; lists, String fieldName, String enity)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.lIndex(java.lang.String, long)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.RedisUtils.lIndex(String listName, long index)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 获取指定序号的值&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;listName&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;index&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.hDel(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;void com.hs.common.RedisUtils.hDel(String hsetName, String key)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 删除HashMap中的某个字段&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;hsetName&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;key&lt;/b&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.rPush(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;void com.hs.common.RedisUtils.rPush(String listName, String val)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 右队列入队&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;listName&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;val&lt;/b&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.lrang(java.lang.String, commonj.sdo.DataObject)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Object com.hs.common.RedisUtils.lrang(String listName, DataObject page)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.lrang2DataObject(java.lang.String, commonj.sdo.DataObject, java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject[] com.hs.common.RedisUtils.lrang2DataObject(String listName, DataObject page, String fieldName, String enity)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.hget(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.RedisUtils.hget(String hsetName, String key)&lt;/b&gt;&lt;br/&gt;&lt;p&gt;&#x0D;
+ 获取hset的属性值&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;hsetName&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;key&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.info()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.RedisUtils.info()&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 监控状态&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.lPop(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.RedisUtils.lPop(String listName)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 左队列出队&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;listName&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.hGetAll(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Map com.hs.common.RedisUtils.hGetAll(String hsetName)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 返回HashMap内所有的值&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;hsetName&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.lLen(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;long com.hs.common.RedisUtils.lLen(String listName)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 检查List长度&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;hsetName&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;vals&lt;/b&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.hsetAndExtend(java.lang.String, java.lang.String, java.lang.Object)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;void com.hs.common.RedisUtils.hsetAndExtend(String hsetName, String key, Object value)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 设置haset的某个字段值并设置过期时间（3600s）&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;hsetName&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;key&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;value&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.del(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;void com.hs.common.RedisUtils.del(String key)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 删除某个键值&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;key&lt;/b&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.hDelKeys(java.lang.String, java.lang.String[])</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;void com.hs.common.RedisUtils.hDelKeys(String hsetName, String[] keyList)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.lPush(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;void com.hs.common.RedisUtils.lPush(String listName, String val)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 左队列入队&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;listName&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;val&lt;/b&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.lrang(java.lang.String, long, long)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Object com.hs.common.RedisUtils.lrang(String listName, long begin, long end)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.hgetAndExtend(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.RedisUtils.hgetAndExtend(String hsetName, String key)&lt;/b&gt;&lt;br/&gt;&lt;p&gt;&#x0D;
+ 获取hset的属性值并延长过期时间&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;hsetName&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;key&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.RedisUtils.hLen(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;long com.hs.common.RedisUtils.hLen(String hsetName)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 获取长度&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;hsetName&lt;/b&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

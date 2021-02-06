@@ -1,0 +1,26 @@
+<map>
+  <entry>
+    <string>GoogleBarCodeUtils [条形码生成]</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.hs.common.GoogleBarCodeUtils&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &lt;dl&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;Administrator&lt;/dd&gt;&lt;dt&gt;@date&lt;/dt&gt;&lt;dd&gt;2019-07-08 16:19:35&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.GoogleBarCodeUtils.addWords(java.awt.image.BufferedImage, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.GoogleBarCodeUtils.addWords(BufferedImage image, String words)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 生成 七牛图片(底下有字)&#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;image&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;words&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;dt&gt;抛出：&lt;/dt&gt;&lt;dd&gt;IOException&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.GoogleBarCodeUtils.insertWords(java.awt.image.BufferedImage, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;BufferedImage com.hs.common.GoogleBarCodeUtils.insertWords(BufferedImage image, String words)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 把带logo的二维码下面加上文字&#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;image&lt;/b&gt;  条形码图片&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;words&lt;/b&gt;  文字&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;返回BufferedImage&lt;/dd&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;fxbin&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.GoogleBarCodeUtils.getBarCode(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;BufferedImage com.hs.common.GoogleBarCodeUtils.getBarCode(String vaNumber)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 生成 图片缓冲&#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;vaNumber&lt;/b&gt;  VA 码&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;返回BufferedImage&lt;/dd&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;fxbin&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.GoogleBarCodeUtils.createBarCode(java.lang.String, int, int)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.GoogleBarCodeUtils.createBarCode(String vaNumber, int width, int height)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 生成 七牛图片(底下无字)&#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;vaNumber&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;width&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;height&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

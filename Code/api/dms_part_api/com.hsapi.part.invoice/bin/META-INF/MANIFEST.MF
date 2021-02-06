@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Require-Bundle: com.hsapi.part.common,com.hsapi.part.baseDataCrud,com.
+ hs.common,com.eos.foundation,com.hsapi.part.data
+eos-webCtxPath: invoice
+Bundle-Vendor: Administrator
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsapi.part.invoice
+Bundle-Description: 
+Bundle-SymbolicName: com.hsapi.part.invoice
+

@@ -1,0 +1,50 @@
+<map>
+  <entry>
+    <string>com.hsapi.repair.repairService.waveBox.searchUploadPhoto(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchUploadPhoto&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchUploadPhoto&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.waveBox.searchUploadPhoto&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.RpsGearboxAttach[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.waveBox.searchContentManagement(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchContentManagement&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchContentManagement&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.waveBox.searchContentManagement&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.waveBox.saveContentManagement(com.hsapi.sales.data.css.CssSaleCostList[], com.hsapi.sales.data.css.CssSaleCostList[], com.hsapi.sales.data.css.CssSaleCostList[], Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveContentManagement&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveSaleCostLIst&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.waveBox.saveContentManagement&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addArr(com.hsapi.sales.data.css.CssSaleCostList[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;editArr(com.hsapi.sales.data.css.CssSaleCostList[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;deleteArr(com.hsapi.sales.data.css.CssSaleCostList[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.waveBox.addCarPhoto(Int, com.hsapi.repair.data.rpbse.RpbCarPhoto[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;addCarPhoto&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;deteleUploadPhoto&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.waveBox.addCarPhoto&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;carIdForPhoto(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;add(com.hsapi.repair.data.rpbse.RpbCarPhoto[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.waveBox.searchRegistered(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchRegistered&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchRegistered&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.waveBox.searchRegistered&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;msg(com.hsapi.repair.data.rps.RpsGearboxAttach[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.waveBox.addUploadPhoto(Int, com.hsapi.repair.data.rps.RpsGearboxAttach[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;addUploadPhoto&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;deteleUploadPhoto&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.waveBox.addUploadPhoto&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;add(com.hsapi.repair.data.rps.RpsGearboxAttach[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.waveBox.searchCarPhoto(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchCarPhoto&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchUploadPhoto&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.waveBox.searchCarPhoto&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;carIdForPhoto(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rpbse.RpbCarPhoto[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.waveBox.saveListInformation(com.hsapi.repair.data.rps.SysListInformation)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveListInformation&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveBXFaultRecord&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.waveBox.saveListInformation&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.SysListInformation):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.SysListInformation):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>waveBox</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;waveBox.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;waveBox&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.waveBox&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.waveBox.saveistInformation(commonj.sdo.DataObject[], commonj.sdo.DataObject[], commonj.sdo.DataObject[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveistInformation&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveSaleCostLIst&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.waveBox.saveistInformation&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addArr(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;editArr(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;deleteArr(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.waveBox.searchListInformation(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchListInformation&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveBXFaultRecord&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.waveBox.searchListInformation&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.SysListInformation[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.waveBox.updateRpsPartMsg(com.hsapi.repair.data.rps.RpsPart)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateRpsPartMsg&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateRpbPartState&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.waveBox.updateRpsPartMsg&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.RpsPart):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

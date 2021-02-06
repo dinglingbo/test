@@ -1,0 +1,194 @@
+<map>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.queryFrm(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryFrm&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRPAccountList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.queryFrm&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.queryQCRPBill(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryQCRPBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryQCRPBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.queryQCRPBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.cloud.part.data.pts.FiRpBill[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.getNoStateAmt(com.hsapi.cloud.part.data.pts.PjStatementDetail[], com.hsapi.cloud.part.data.pts.PjStatementDetail[], com.hsapi.cloud.part.data.pts.PjStatementDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getNoStateAmt&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getNoStateAmt&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.getNoStateAmt&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;stateDetailAdd(com.hsapi.cloud.part.data.pts.PjStatementDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stateDetailUpdate(com.hsapi.cloud.part.data.pts.PjStatementDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stateDetailList(com.hsapi.cloud.part.data.pts.PjStatementDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;stateDetailAdd(com.hsapi.cloud.part.data.pts.PjStatementDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stateDetailUpdate(com.hsapi.cloud.part.data.pts.PjStatementDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stateDetailList(com.hsapi.cloud.part.data.pts.PjStatementDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.queryBillsDue(java.util.HashMap, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryBillsDue&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryBillsDue&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.queryBillsDue&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pr(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pp(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dueAmt(Double):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.saveInitRpBill(com.hsapi.cloud.part.data.pts.FiRpBill[], com.hsapi.cloud.part.data.pts.FiRpBill[], com.hsapi.cloud.part.data.pts.FiRpBill[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveInitRpBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveInitRpBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.saveInitRpBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpAdd(com.hsapi.cloud.part.data.pts.FiRpBill[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rpUpdate(com.hsapi.cloud.part.data.pts.FiRpBill[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rpDelete(com.hsapi.cloud.part.data.pts.FiRpBill[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.queryOrderBill(com.eos.foundation.PageCond, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryOrderBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRPBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.queryOrderBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;单据查询&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.updateFiSettleAccountDisabled(Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateFiSettleAccountDisabled&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateComPartTypeDisabled&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.updateFiSettleAccountDisabled&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;isDisabled(Int):&lt;/b&gt;0,启用；1,禁用&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.saveFiSettleAccount(com.hsapi.cloud.part.data.pts.FiSettleAccount, com.hsapi.cloud.part.data.pts.FibAccountTypeRela[], com.hsapi.cloud.part.data.pts.FibAccountTypeRela[], com.hsapi.cloud.part.data.pts.FibAccountTypeRela[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveFiSettleAccount&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryComCompany&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.saveFiSettleAccount&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;settleAccount(com.hsapi.cloud.part.data.pts.FiSettleAccount):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;settleTypeAdd(com.hsapi.cloud.part.data.pts.FibAccountTypeRela[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;settleTypeDelete(com.hsapi.cloud.part.data.pts.FibAccountTypeRela[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;settleTypeUpdate(com.hsapi.cloud.part.data.pts.FibAccountTypeRela[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;settleAccount(com.hsapi.cloud.part.data.pts.FiSettleAccount):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.savePjStatement(com.hsapi.cloud.part.data.pts.PjStatementMain, com.hsapi.cloud.part.data.pts.PjStatementDetail[], com.hsapi.cloud.part.data.pts.PjStatementDetail[], com.hsapi.cloud.part.data.pts.PjStatementDetail[], com.hsapi.cloud.part.data.pts.PjStatementDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;savePjStatement&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePstEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.savePjStatement&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;stateMain(com.hsapi.cloud.part.data.pts.PjStatementMain):&lt;/b&gt;主表信息&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stateDetailAdd(com.hsapi.cloud.part.data.pts.PjStatementDetail[]):&lt;/b&gt;新增&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stateDetailUpdate(com.hsapi.cloud.part.data.pts.PjStatementDetail[]):&lt;/b&gt;更新&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stateDetailDelete(com.hsapi.cloud.part.data.pts.PjStatementDetail[]):&lt;/b&gt;删除&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stateDetailList(com.hsapi.cloud.part.data.pts.PjStatementDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.queryPJStatementList(com.eos.foundation.PageCond, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPJStatementList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPJStatementList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.queryPJStatementList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.queryFiSettleAccountForTenant(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryFiSettleAccountForTenant&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryFiSettleAccountForTenant&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.queryFiSettleAccountForTenant&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;settleAccount(com.hsapi.cloud.part.data.pts.FiSettleAccount[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.initSettleAccountBalance(com.hsapi.cloud.part.data.pts.FiSettleAccount[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;initSettleAccountBalance&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;initSettleAccountBalance&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.initSettleAccountBalance&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;settleAccount(com.hsapi.cloud.part.data.pts.FiSettleAccount[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.queryRPAccountList(com.eos.foundation.PageCond, Int, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRPAccountList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRPAccountList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.queryRPAccountList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.cloud.part.data.pts.FiRpBill[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.deleteFiSettleAccountById(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;deleteFiSettleAccountById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;deleteComPartTypeById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.deleteFiSettleAccountById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.saveFibInComeExpenses(com.hsapi.cloud.part.data.pts.FibIncomeExpenses)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveFibInComeExpenses&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryComCompany&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.saveFibInComeExpenses&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.cloud.part.data.pts.FibIncomeExpenses):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.queryStatementDetails(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryStatementDetails&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryStatementDetails&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.queryStatementDetails&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.getAdvanceRefund(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getAdvanceRefund&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getAdvanceRefund&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.getAdvanceRefund&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;advanceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.cloud.part.data.pts.FiRpAdvanceRefund[]):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;查询预收预付退款记录&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.backAuditStatement(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;backAuditStatement&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;backAuditStatement&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.backAuditStatement&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.getPJStatementDetailById(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPJStatementDetailById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPJStatementDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.getPJStatementDetailById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.cloud.part.data.pts.PjStatementDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.queryFiSettleAccount(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryFiSettleAccount&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryComPartType&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.queryFiSettleAccount&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;settleAccount(com.hsapi.cloud.part.data.pts.FiSettleAccount[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.savePjStatementNT(com.hsapi.cloud.part.data.pts.PjStatementMain, com.hsapi.cloud.part.data.pts.PjStatementDetail[], com.hsapi.cloud.part.data.pts.PjStatementDetail[], com.hsapi.cloud.part.data.pts.PjStatementDetail[], com.hsapi.cloud.part.data.pts.PjStatementDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;savePjStatementNT&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePstEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.savePjStatementNT&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;stateMain(com.hsapi.cloud.part.data.pts.PjStatementMain):&lt;/b&gt;主表信息&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stateDetailAdd(com.hsapi.cloud.part.data.pts.PjStatementDetail[]):&lt;/b&gt;新增&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stateDetailUpdate(com.hsapi.cloud.part.data.pts.PjStatementDetail[]):&lt;/b&gt;更新&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stateDetailDelete(com.hsapi.cloud.part.data.pts.PjStatementDetail[]):&lt;/b&gt;删除&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stateDetailList(com.hsapi.cloud.part.data.pts.PjStatementDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.deleteFibInComeExpenses(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;deleteFibInComeExpenses&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;deleteComPartTypeById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.deleteFibInComeExpenses&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.auditQTAccountList(com.hsapi.cloud.part.data.pts.FiRpAccount[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;auditQTAccountList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;auditInitRpBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.auditQTAccountList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;accountBill(com.hsapi.cloud.part.data.pts.FiRpAccount[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.queryFibInComeExpenses(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryFibInComeExpenses&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryFiInComeExpenses&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.queryFibInComeExpenses&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.cloud.part.data.pts.FibIncomeExpenses[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.queryBillDueDetail(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryBillDueDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryBillDueDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.queryBillDueDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.queryNoSettleBill(com.eos.foundation.PageCond, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryNoSettleBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryNoSettleBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.queryNoSettleBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.saveFiSettleAccountBatch(com.hsapi.cloud.part.data.pts.FiSettleAccount[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveFiSettleAccountBatch&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryComCompany&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.saveFiSettleAccountBatch&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;settleAccount(com.hsapi.cloud.part.data.pts.FiSettleAccount[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.queryGuestReceiveAmt(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryGuestReceiveAmt&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryGuestReceiveAmt&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.queryGuestReceiveAmt&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.getStateMentMan(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getStateMentMan&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStateMent&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.getStateMentMan&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.cloud.part.data.pts.PjStatementMain[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.getImportRPBill(commonj.sdo.DataObject[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getImportRPBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getImportPartInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.getImportRPBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpBill(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.saveInternalTransferList(com.hsapi.cloud.part.data.pts.FiRpInternalTransfer[], com.hsapi.cloud.part.data.pts.FiRpInternalTransfer[], com.hsapi.cloud.part.data.pts.FiRpInternalTransfer[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveInternalTransferList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveInitRpBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.saveInternalTransferList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;tranAdd(com.hsapi.cloud.part.data.pts.FiRpInternalTransfer[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;tranUpdate(com.hsapi.cloud.part.data.pts.FiRpInternalTransfer[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;tranDelete(com.hsapi.cloud.part.data.pts.FiRpInternalTransfer[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>svr</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;svr.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;svr&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.queryInternalTransfer(com.eos.foundation.PageCond, Int, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryInternalTransfer&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryAccountList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.queryInternalTransfer&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.cloud.part.data.pts.FiRpInternalTransfer[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;结算记录表&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.queryfibAccountTypeRela(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryfibAccountTypeRela&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryFiInComeExpenses&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.queryfibAccountTypeRela&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.cloud.part.data.pts.FibAccountTypeRela[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.auditPjStatement(com.hsapi.cloud.part.data.pts.PjStatementMain, com.hsapi.cloud.part.data.pts.PjStatementDetail[], com.hsapi.cloud.part.data.pts.PjStatementDetail[], com.hsapi.cloud.part.data.pts.PjStatementDetail[], com.hsapi.cloud.part.data.pts.PjStatementDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;auditPjStatement&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;auditBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.auditPjStatement&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;stateMain(com.hsapi.cloud.part.data.pts.PjStatementMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stateDetailAdd(com.hsapi.cloud.part.data.pts.PjStatementDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stateDetailUpdate(com.hsapi.cloud.part.data.pts.PjStatementDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stateDetailDelete(com.hsapi.cloud.part.data.pts.PjStatementDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stateDetailList(com.hsapi.cloud.part.data.pts.PjStatementDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.cloud.part.data.pts.PjStatementMain[]):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;单据审核&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.queryRPAccounts(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRPAccounts&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRPAccounts&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.queryRPAccounts&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.getStateMentDetails(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getStateMentDetails&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStateMentDetils&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.getStateMentDetails&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.cloud.part.data.pts.PjStatementDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.insertPjStatement(com.hsapi.cloud.part.data.pts.PjStatementMain, com.hsapi.cloud.part.data.pts.PjStatementDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;insertPjStatement&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;newbiz&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.insertPjStatement&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;stateMain(com.hsapi.cloud.part.data.pts.PjStatementMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stateDetail(com.hsapi.cloud.part.data.pts.PjStatementDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.queryAdvanceDeduct(com.eos.foundation.PageCond, Int, Int, Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryAdvanceDeduct&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRPAccountList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.queryAdvanceDeduct&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.cloud.part.data.pts.FiRpDeductRecord[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.queryRPBill(com.eos.foundation.PageCond, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRPBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRPBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.queryRPBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;单据查询&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.checkRpBill(Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;checkRpBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;checkRpBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.checkRpBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billTypeId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.cloud.part.data.pts.FiRpBill[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.auditInitRpBill(com.hsapi.cloud.part.data.pts.FiRpBill[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;auditInitRpBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;auditInitRpBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.auditInitRpBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpBill(com.hsapi.cloud.part.data.pts.FiRpBill[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.queryAccountList(com.eos.foundation.PageCond, Int, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryAccountList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryAccountList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.queryAccountList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.cloud.part.data.pts.FiRpAccount[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;结算记录表&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.updatePjStatement(com.hsapi.cloud.part.data.pts.PjStatementMain, com.hsapi.cloud.part.data.pts.PjStatementDetail[], com.hsapi.cloud.part.data.pts.PjStatementDetail[], com.hsapi.cloud.part.data.pts.PjStatementDetail[], com.hsapi.cloud.part.data.pts.PjStatementDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updatePjStatement&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;insertPtsEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.updatePjStatement&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;stateMain(com.hsapi.cloud.part.data.pts.PjStatementMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stateDetailAdd(com.hsapi.cloud.part.data.pts.PjStatementDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stateDetailUpdate(com.hsapi.cloud.part.data.pts.PjStatementDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stateDetailDelete(com.hsapi.cloud.part.data.pts.PjStatementDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stateDetailList(com.hsapi.cloud.part.data.pts.PjStatementDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.auditInternalTransferList(com.hsapi.cloud.part.data.pts.FiRpInternalTransfer[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;auditInternalTransferList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;auditInitRpBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.auditInternalTransferList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;tranBill(com.hsapi.cloud.part.data.pts.FiRpInternalTransfer[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.updateInitRpBill(Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateInitRpBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateInitRpBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.updateInitRpBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;codeId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;code(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;expAmt(Float):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;根据业务单号汇总费用，并更新其他应收应付为已审核&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.saveQTAccountList(com.hsapi.cloud.part.data.pts.FiRpAccount[], com.hsapi.cloud.part.data.pts.FiRpAccount[], com.hsapi.cloud.part.data.pts.FiRpAccount[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveQTAccountList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveInitRpBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.saveQTAccountList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;accountAdd(com.hsapi.cloud.part.data.pts.FiRpAccount[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;accountUpdate(com.hsapi.cloud.part.data.pts.FiRpAccount[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;accountDelete(com.hsapi.cloud.part.data.pts.FiRpAccount[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.settle.svr.delAdvance(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;delAdvance&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;delAdvance&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.settle.svr.delAdvance&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;应收应付ID&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

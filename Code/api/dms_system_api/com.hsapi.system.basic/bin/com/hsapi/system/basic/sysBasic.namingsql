@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.system.basic.sysBasic">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="getUserPosition" parameterClass="HashMap" resultClass="com.hsapi.system.data.sys.VwUserPosition">SELECT empid, userid, operatorid, empname, orgid, orgname, positionid, 
+    		posicode, posiname
+		FROM vw_user_position 
+		WHERE operatorId = #operatorId#</select>
+    <select id="getUserOrg" parameterClass="HashMap" resultClass="com.hsapi.system.data.sys.VwUserOrg">
+    	SELECT
+			realComp,ORGID,ORGCODE,ORGNAME,`STATUS`,ISLEAF,TENANT_ID,OPERATORID,USERID,EMPNAME
+		FROM
+			vw_user_org
+		WHERE
+	    operatorId = #operatorId# 
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgidOrName">(orgcode like '%$orgidOrName$%' or orgname like '%$orgidOrName$%')</isNotEmpty>
+        </dynamic>
+        ORDER BY  CREATETIME DESC
+    </select>
+    <select id="getUserOrgAll" parameterClass="HashMap" resultClass="com.hsapi.system.data.sys.VwUserOrg">
+    	SELECT
+			realComp,ORGID,ORGCODE,ORGNAME,`STATUS`,ISLEAF,TENANT_ID,OPERATORID,USERID,EMPNAME
+		FROM
+			vw_user_org
+			where 1=1
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgidOrName">(orgcode like '%$orgidOrName$%' or orgname like '%$orgidOrName$%')</isNotEmpty>
+        </dynamic>
+        ORDER BY  CREATETIME DESC
+    </select>
+    <select id="getCompanyAll" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+    	    a.orgid orgid,
+    	    a.tenant_id tenantId,
+			a.code code,
+			a.name name,
+			a.short_name shortName,
+			a.province_id provinceId,
+			a.city_id cityId,
+			a.county_id countyId,
+			a.street_address streetAddress,
+			a.address address,
+			a.longitude longitude,
+			a.latitude latitude,
+			a.tel tel,
+			a.complain_tel complainTel,
+			a.srm_user_id  srmUserId,
+			a.agency_id as agencyId
+		FROM  wb_common.com_company a
+			where 1=1
+		<dynamic>
+            <isNotEmpty prepend="and" property="code">(a.code like '%$code$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = $orgid$)</isNotEmpty>
+            <isNotEmpty prepend="and" property="tenantId">(a.tenant_id = #tenantId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="name">(a.name like '%$name$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgidOrName">(a.name like '%$orgidOrName$%' or a.orgid like '%$orgidOrName$%')</isNotEmpty>
+        </dynamic>
+             ORDER BY  a.record_date  DESC
+    </select>
+    <select id="getExistCompanyAll" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+    	    b.ismain ismain,
+    	    a.orgid orgid,
+    	    a.tenant_id tenantId,
+			a.code code,
+			a.name name,
+			a.short_name shortName,
+			a.province_id provinceId,
+			a.city_id cityId,
+			a.county_id countyId,
+			a.street_address streetAddress,
+			a.address address,
+			a.longitude longitude,
+			a.latitude latitude,
+			a.tel tel,
+			a.complain_tel complainTel,
+			b.empid empid
+		FROM  
+		dms_system.org_emporg b
+		
+		INNER JOIN wb_common.com_company a ON ( a.tenant_id = b.tenant_id and a.orgid = b.orgid)
+		 
+			where b.empid = #empId#
+		<dynamic>
+            <isNotEmpty prepend="and" property="code">(a.code like '%$code$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="name">(a.name like '%$name$%')</isNotEmpty>
+        </dynamic>
+             ORDER BY  a.record_date  DESC
+    </select>
+</sqlMap>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.cloud.part.invoicing.orderSettle">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <update id="updatePchsOrderAllIn" parameterClass="java.util.HashMap">update pj_pchs_order_detail_chk 
+			set true_enter_qty = order_qty - adjust_qty, 
+				true_enter_amt = order_amt - adjust_qty * order_price,
+				not_enter_amt = 0, 
+				not_enter_qty = 0, 
+				is_finished = 1, 
+				finish_date = SYSDATE()
+			where 1 = 1 and main_id = #mainId#</update>
+    <update id="updatePchsEnterOriginId" parameterClass="java.util.HashMap">update pj_enter_detail_chk set origin_id = id 
+		where 1 = 1 and main_id = #mainId#</update>
+    <update id="updatePchsOrderQty" parameterClass="java.util.HashMap">UPDATE pj_pchs_order_detail_chk
+			SET true_enter_qty = #trueEnterQty#,
+			 true_enter_amt = #trueEnterAmt#,
+			 not_enter_amt = #notEnterAmt#,
+			 not_enter_qty =#notEnterQty#,
+			 is_finished = #isFinished#,
+			 finish_date = #finishDate#
+		 WHERE 1=1 and id = #id#</update>
+    <update id="updatePchsMainFinish" parameterClass="java.util.HashMap">UPDATE pj_pchs_order_main_chk
+		SET	 is_finished = #isFinished#,
+		  bill_status_id = #billStatusId#
+		 WHERE 	id = #id#</update>
+    <update id="updateSellRtnOriginId" parameterClass="java.util.HashMap">update pj_enter_detail_chk set origin_id = id 
+		where IFNULL(origin_id,0) = 0 and main_id = #mainId#</update>
+    <!--更新盘点单的实盘数量-->
+    <update id="updateStockCheckQty" parameterClass="java.util.HashMap">update dms_cloud_part.pj_stock_check_detail a
+		inner join dms_cloud_part.pj_wms_params_detail b
+		on a.id = b.erp_detail_id and a.main_id = b.erp_main_id
+		inner join wb_common.com_attribute c
+		on b.part_id = c.cang_part_id and a.part_id = c.id
+		set a.true_qty = b.qty, a.true_amt = b.qty * a.true_price, 
+		    a.exhibit_qty = abs(a.true_qty - b.qty), exhibit_amt = abs(a.true_qty - b.qty) * a.true_price,
+		    a.exhibit_price = a.true_price, a.dc = case when a.true_qty - b.qty = 0 then 0 
+		    when a.true_qty - b.qty &gt; 0 then -1 else 1 end
+		where a.main_id = #erpId# and b.main_id = #mainId#</update>
+    <select id="querySettleAccountAmt" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.pts.AdvanceVoucher">SELECT b.code as voucherId, b.king_dept_code as deptCode, sum(a.char_off_amt) as amt
+		from fi_rp_account_d_type a
+		inner join fi_settle_account b
+		on a.sett_account_id = b.id
+		where a.main_id = #mainId#
+		group by b.code, b.king_dept_code</select>
+    <select id="querySettleDetailAmt" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.pts.AdvanceVoucher">SELECT b.code as voucherId, sum(a.char_off_amt) as amt
+		from fi_rp_account_detail a
+		inner join fib_income_expenses b
+		on a.bill_type_id = b.id
+		where a.main_id = #mainId#
+		group by b.code</select>
+</sqlMap>

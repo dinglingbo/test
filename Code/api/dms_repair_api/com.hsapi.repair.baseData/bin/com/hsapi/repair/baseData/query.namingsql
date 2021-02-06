@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.repair.baseData.query">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryRpbPart" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id AS id,
+			a.tenant_id AS tenantId,
+			a.orgid AS orgid,
+			a.part_id AS partId,
+			a.part_code AS partCode,
+			a.part_name AS partName,
+			a.sales_deduct_type AS salesDeductType,
+			a.sales_deduct_value AS salesDeductValue,
+			a.sell_price AS sellPrice,
+			a.remark AS remark,
+			a.is_disabled AS isDisabled,
+			a.recorder AS recorder,
+			a.record_date AS recordDate,
+			a.modifier AS modifier,
+			a.modify_date AS modifyDate,
+			a.is_cal_times isCalTimes,
+			a.use_times useTimes
+		FROM
+			wb_repair.rpb_part a 
+			<!-- INNER JOIN  wb_common.com_attribute b on a.part_id =b.id
+			LEFT JOIN  wb_part.pj_part_price c on a.part_id= c.part_id -->
+		where 1=1
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid =#orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">(a.part_name like '%$partName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(a.part_code = #partCode#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="namePy">(b.name_py like '%$namePy$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
+        </dynamic>
+    </select>
+    <!--#groupName# card_name  sale_man-->
+    <select id="queryCard" parameterClass="commonj.sdo.DataObject" resultClass="java.util.HashMap">
+		SELECT
+		
+		   <isEqual compareValue="card_name" prepend="" property="groupName">card_name as name,</isEqual>
+        <isEqual compareValue="sale_man" prepend="" property="groupName">sale_man as name,</isEqual>
+            
+				COUNT(1) AS num,
+				SUM(recharge_amt) AS amt
+			FROM wb_repair.rps_stored_record 
+			WHERE orgid =#orgid# and is_settle = 1
+			
+		<dynamic>
+            <isNotEmpty prepend="and" property="startDate">(settle_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(settle_date &lt;= #endDate#)</isNotEmpty>
+        </dynamic>
+        <isEqual compareValue="card_name" prepend="" property="groupName">GROUP BY card_name</isEqual>
+        <isEqual compareValue="sale_man" prepend="" property="groupName">GROUP BY sale_man</isEqual>
+        
+        
+        order by amt desc
+	</select>
+    <select id="querytimesCard" parameterClass="commonj.sdo.DataObject" resultClass="java.util.HashMap">
+		SELECT
+		
+		   <isEqual compareValue="card_name" prepend="" property="groupName">card_name as name,</isEqual>
+        <isEqual compareValue="sale_man" prepend="" property="groupName">sale_man as name,</isEqual>
+
+				COUNT(1) AS num,
+				SUM(sell_amt) AS amt
+			FROM wb_repair.rps_card_times 
+			WHERE orgid = #orgid# and status = 2
+		<dynamic>
+            <isNotEmpty prepend="and" property="startDate">(settle_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(settle_date &lt;= #endDate#)</isNotEmpty>
+        </dynamic>
+        <isEqual compareValue="card_name" prepend="" property="groupName">GROUP BY card_name</isEqual>
+        <isEqual compareValue="sale_man" prepend="" property="groupName">GROUP BY sale_man</isEqual>
+        order by amt desc
+	</select>
+    <select id="queryLastCheckModel" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT
+			check_date as checkDate,
+			check_point as checkPoint,
+			enter_kilometers as enterKilometers
+		FROM
+			rps_check_main
+		WHERE 1=1
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgid">(orgid=#orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(guest_id = #guestId#)</isNotEmpty>
+        </dynamic> 			
+		ORDER BY
+			check_date DESC
+		LIMIT 0,1
+	</select>
+    <select id="queryCompany" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT
+			orgid as orgid,
+			tenant_id as tenantId,
+			code as code,
+			name as name,
+			short_name as shortName,
+			province_id as provinceId,
+			city_id as cityId,
+			county_id as countyId,
+			street_address as streetAddress,
+			address as address,
+			longitude as longitude,
+			latitude as latitude,
+			tel as tel,
+			fax as fax,
+			bank_name as bankName,
+			bank_account_number as bankAccountNumber,
+			main_brand_id as mainBrandId,
+			webaddress as webaddress,
+			logo_img as logoImg,
+			soft_open_date as softOpenDate,
+			rescue_tel as rescueTel,
+			slogan1 as slogan1,
+			slogan2 as slogan2,
+			e_record_province as eRecordProvince,
+			e_record_repair_no as eRecordRepairNo,
+			e_record_user as eRecordUser,
+			remark as remark,
+			e_record_pwd as eRecordPwd,
+			recorder as recorder,
+			record_date as recordDate,
+			modifier as modifier,
+			modify_date as modifyDate
+		FROM
+			wb_common.com_company
+		WHERE 1=1
+		<dynamic>
+            <isNotEmpty prepend="or" property="code">(code like #name#)</isNotEmpty>
+            <isNotEmpty prepend="or" property="name">(name like #name#)</isNotEmpty>
+            <isNotEmpty prepend="or" property="shortName">(short_name like #name#)</isNotEmpty>
+        </dynamic> 			
+		ORDER BY
+			record_date DESC
+	</select>
+    <!--查车模板缓存数据-->
+    <select id="queryOrgCheckMain" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT id, tenant_id as tenantId, orgid as orgid, name as name, 
+		       is_disabled as isDisabled, is_share as isShare
+		from rpb_check_main
+		where is_disabled = 0 and (orgid = #orgid# or (tenant_id = #tenantId# and is_share = 1) or orgid = 0)</select>
+    <select id="queryCheckDetailById" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			a.id as id,
+			a.tenant_id as tenantId,
+			a.orgid as orgid,
+			a.main_id as mainId,
+			a.check_code as checkCode,
+			a.check_name as checkName,
+			a.check_type as checkType,
+			a.item_name_id as itemNameId,
+			a.item_name as itemName,
+			a.part_name_id as partNameId,
+			a.part_name as partName,
+			a.order_index as orderIndex,
+			a.is_disabled as isDisabled,
+			a.remark as remark,
+			a.recorder as recorder,
+			a.record_date as recordDate,
+			a.modifier as modifier,
+			a.modify_date as modifyDate
+		FROM
+			rpb_check_detail AS a
+		where 1 = 1 and a.main_id = #mainId# and a.is_disabled = 0
+			order by a.order_index asc</select>
+    <select id="queryCheckDetailContentById" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			a.id as id,
+			a.check_detail_id as checkDetailId,
+			a.content as content,
+			a.is_disabled as isDisalbed
+		FROM
+			rpb_check_item_content AS a
+		where a.check_detail_id = #checkDetailId#
+		      and a.is_disabled = 0</select>
+    <select id="queryItem" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			a.id as id,
+			a.tenant_id as tenantId,
+			a.orgid as orgid,
+			a.code as code,
+			a.type as type,
+			a.name as name
+		FROM
+			rpb_item AS a
+		where ((a.is_share=1 and a.tenant_id = #tenantId#) or (a.orgid = #orgid#) )  and a.name = #name#</select>
+    <select id="queryItemCode" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		select max(CONVERT(substring(code,3,6),SIGNED))  as code
+		from rpb_item 
+			where 1 =1
+		<dynamic>
+            <isNotEmpty prepend="and" property="tenantId">(tenant_id =#tenantId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="code">(code like '$code$%')</isNotEmpty>
+        </dynamic>
+    </select>
+</sqlMap>

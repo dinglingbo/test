@@ -176,7 +176,9 @@
 			a.srm_company_id srmCompanyId, a.srm_guest_id srmGuestId,
 			a.srm_user_id srmUserId, a.srm_user_pd srmUserPd, a.srm_modifier srmModifier,
 			a.srm_modify_date srmModifyDate, a.recorder recorder,
-			a.record_date recordDate, a.modifier modifier, a.modify_date modifyDate
+			a.record_date recordDate, a.modifier modifier, a.modify_date modifyDate,
+			a.king_id as kingId,
+			a.book_id as bookId
 		FROM
 			com_company AS a
 		where a.orgid = #orgid#

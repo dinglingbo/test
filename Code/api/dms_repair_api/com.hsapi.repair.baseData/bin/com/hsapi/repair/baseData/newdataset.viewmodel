@@ -1,0 +1,744 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<viewModelSet author="localhost" displayName="newdataset" id="com.hsapi.repair.baseData.newdataset">
+    <viewModel author="localhost" displayName="RpbBusinessType" entityName="com.hsapi.repair.baseData.newdataset.RpbBusinessType" id="RpbBusinessType">
+        <field dataType="Int" dict="false" entityField="id" id="id" label="id">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Int" dict="false" entityField="orgid" id="orgid" label="orgid">
+            <view type="write"/>
+            <edit name="orgid" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="code" id="code" label="code">
+            <view type="write"/>
+            <edit name="code" type="text">
+                <attr name="class">nui-textbox</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" entityField="name" id="name" label="name">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Short" dict="false" entityField="orderIndex" id="orderIndex" label="orderIndex">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Short" dict="false" entityField="isDisabled" id="isDisabled" label="isDisabled">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="recorder" id="recorder" label="recorder">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Date" dict="false" entityField="recordDate" id="recordDate" label="recordDate">
+            <view type="write"/>
+            <edit name="" type="date"/>
+        </field>
+        <field dataType="String" dict="false" entityField="modifier" id="modifier" label="modifier">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Date" dict="false" entityField="modifyDate" id="modifyDate" label="modifyDate">
+            <view type="write"/>
+            <edit name="" type="date"/>
+        </field>
+    </viewModel>
+    <viewModel author="localhost" displayName="RpbBusinessDeduct" entityName="com.hsapi.repair.baseData.newdataset.RpbBusinessDeduct" id="RpbBusinessDeduct">
+        <field dataType="Int" dict="false" entityField="id" id="id" label="id">
+            <view type="write"/>
+            <edit name="id" type="text"/>
+        </field>
+        <field dataType="Int" dict="false" entityField="serviceTypeId" id="serviceTypeId" label="serviceTypeId">
+            <view type="write"/>
+            <edit name="serviceTypeId" type="text"/>
+        </field>
+        <field dataType="Int" dict="false" entityField="orgid" id="orgid" label="orgid">
+            <view type="write"/>
+            <edit name="orgid" type="text"/>
+        </field>
+        <field dataType="Short" dict="false" entityField="salesDeductType" id="salesDeductType" label="salesDeductType">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Decimal" dict="false" entityField="salesDeductValue" id="salesDeductValue" label="salesDeductValue">
+            <view type="write"/>
+            <edit name="salesDeductValue" type="text">
+                <attr name="class">nui-textbox</attr>
+            </edit>
+        </field>
+        <field dataType="Short" dict="false" entityField="techDeductType" id="techDeductType" label="techDeductType">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Decimal" dict="false" entityField="techDeductValue" id="techDeductValue" label="techDeductValue">
+            <view type="write"/>
+            <edit name="techDeductValue" type="text">
+                <attr name="class">nui-textbox</attr>
+            </edit>
+        </field>
+        <field dataType="Short" dict="false" entityField="advisorDeductType" id="advisorDeductType" label="advisorDeductType">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Decimal" dict="false" entityField="advisorDeductValue" id="advisorDeductValue" label="advisorDeductValue">
+            <view type="write"/>
+            <edit name="advisorDeductValue" type="text">
+                <attr name="class">nui-textbox</attr>
+            </edit>
+        </field>
+        <field dataType="Short" dict="false" entityField="isDisabled" id="isDisabled" label="isDisabled">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="recorder" id="recorder" label="recorder">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Date" dict="false" entityField="recordDate" id="recordDate" label="recordDate">
+            <view type="write"/>
+            <edit name="" type="date"/>
+        </field>
+        <field dataType="String" dict="false" entityField="modifier" id="modifier" label="modifier">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Date" dict="false" entityField="modifyDate" id="modifyDate" label="modifyDate">
+            <view type="write"/>
+            <edit name="modifyDate" type="date"/>
+        </field>
+        <field dataType="Int" dict="false" entityField="type" id="type" label="type">
+            <view type="write"/>
+            <edit name="property0" type="text"/>
+        </field>
+    </viewModel>
+    <viewModel author="localhost" displayName="RpsItemBill" entityName="com.hsapi.repair.baseData.newdataset.RpsItemBill" id="RpsItemBill">
+        <field dataType="Int" dict="false" id="id" label="id">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Int" dict="false" id="serviceId" label="维修工单号">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="itemId" label="工时ID">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="packageId" label="套餐ID">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="itemCode" label="工时编码">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="itemName" label="工时名称">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Decimal" dict="false" id="itemTime" label="工时时间">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Decimal" dict="false" id="unitPrice" label="工时单价">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Decimal" dict="false" id="amt" label="工时金额">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Decimal" dict="false" id="rate" label="优惠率">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Decimal" dict="false" id="discountAmt" label="优惠金额">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Decimal" dict="false" id="subtotal" label="工时小计">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Int" dict="false" id="billPackageId" label="rps_package中的ID">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="remark" label="备注">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="recorder" label="建档人">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Date" dict="false" id="recordDate" label="建档时间">
+            <view type="write"/>
+            <edit name="" type="date">
+                <attr name="class">nui-datepicker</attr>
+                <attr name="popupWidth">100%</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="modifier" label="修改人">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Date" dict="false" id="modifyDate" label="修改时间">
+            <view type="write"/>
+            <edit name="" type="date">
+                <attr name="class">nui-datepicker</attr>
+                <attr name="popupWidth">100%</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+    </viewModel>
+    <viewModel author="localhost" displayName="RpsPackageBill" entityName="com.hsapi.repair.baseData.newdataset.RpsPackageBill" id="RpsPackageBill">
+        <field dataType="Int" dict="false" id="id" label="内码">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Int" dict="false" id="serviceId" label="报销单ID">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="packageId" label="套餐ID">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="packageName" label="套餐名称">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Decimal" dict="false" id="amt" label="金额">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Decimal" dict="false" id="rate" label="优惠率">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Decimal" dict="false" id="discountAmt" label="优惠金额">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Decimal" dict="false" id="subtotal" label="小计金额">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="remark" label="备注">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="recorder" label="建档人">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Date" dict="false" id="recordDate" label="建档日期">
+            <view type="write"/>
+            <edit name="" type="date">
+                <attr name="class">nui-datepicker</attr>
+                <attr name="popupWidth">100%</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="modifier" label="操作人">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Date" dict="false" id="modifyDate" label="操作日期">
+            <view type="write"/>
+            <edit name="" type="date">
+                <attr name="class">nui-datepicker</attr>
+                <attr name="popupWidth">100%</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+    </viewModel>
+    <viewModel author="localhost" displayName="RpsPartBill" entityName="com.hsapi.repair.baseData.newdataset.RpsPartBill" id="RpsPartBill">
+        <field dataType="Int" dict="false" id="id" label="id">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Int" dict="false" id="serviceId" label="serviceId">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Int" dict="false" id="serviceTypeId" label="serviceTypeId">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Int" dict="false" id="partId" label="partId">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="packageId" label="packageId">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="partCode" label="partCode">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="partName" label="partName">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Decimal" dict="false" id="qty" label="qty">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Decimal" dict="false" id="unitPrice" label="unitPrice">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="unit" label="unit">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Decimal" dict="false" id="amt" label="amt">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Decimal" dict="false" id="rate" label="rate">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Decimal" dict="false" id="discountAmt" label="discountAmt">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Decimal" dict="false" id="subtotal" label="subtotal">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Int" dict="false" id="billPackageId" label="billPackageId">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="remark" label="remark">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="recorder" label="recorder">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Date" dict="false" id="recordDate" label="recordDate">
+            <view type="write"/>
+            <edit name="" type="date">
+                <attr name="class">nui-datepicker</attr>
+                <attr name="popupWidth">100%</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="String" dict="false" id="modifier" label="modifier">
+            <view type="write"/>
+            <edit name="" type="text">
+                <attr name="class">nui-textbox</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+        <field dataType="Date" dict="false" id="modifyDate" label="modifyDate">
+            <view type="write"/>
+            <edit name="" type="date">
+                <attr name="class">nui-datepicker</attr>
+                <attr name="popupWidth">100%</attr>
+                <attr name="required">false</attr>
+                <attr name="enabled">true</attr>
+                <attr name="visible">true</attr>
+            </edit>
+        </field>
+    </viewModel>
+    <viewModel author="localhost" displayName="RpsMaintainBill" entityName="com.hsapi.repair.baseData.newdataset.RpsMaintainBill" id="RpsMaintainBill">
+        <field dataType="Int" dict="false" entityField="id" id="id" label="报销工单ID">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Int" dict="false" entityField="tenantId" id="tenantId" label="tenantId">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Int" dict="false" entityField="orgid" id="orgid" label="机构ID">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Int" dict="false" entityField="sourceServiceId" id="sourceServiceId" label="源工单ID">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Int" dict="false" entityField="billTypeId" id="billTypeId" label="0综合，1检查，2洗美，3销售，4理赔">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Int" dict="false" entityField="serviceTypeId" id="serviceTypeId" label="业务类型">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="serviceCode" id="serviceCode" label="维修工单号">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Int" dict="false" entityField="guestId" id="guestId" label="guestId">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="guestName" id="guestName" label="客户名称">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="guestTel" id="guestTel" label="guestTel">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="guestDesc" id="guestDesc" label="guestDesc">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="faultPhen" id="faultPhen" label="faultPhen">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="solveMethod" id="solveMethod" label="solveMethod">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Int" dict="false" entityField="contactorId" id="contactorId" label="contactorId">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="contactorName" id="contactorName" label="送修人名称">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="contactorTel" id="contactorTel" label="contactorTel">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Int" dict="false" entityField="carId" id="carId" label="车辆ID">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="carNo" id="carNo" label="车牌号">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="carVin" id="carVin" label="VIN车架号">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Decimal" dict="false" entityField="itemAmt" id="itemAmt" label="工时金额">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Decimal" dict="false" entityField="partAmt" id="partAmt" label="配件金额">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Decimal" dict="false" entityField="packageAmt" id="packageAmt" label="套餐金额">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Date" dict="false" entityField="enterDate" id="enterDate" label="进店日期">
+            <view type="write"/>
+            <edit name="" type="date"/>
+        </field>
+        <field dataType="Int" dict="false" entityField="enterKilometers" id="enterKilometers" label="进店里程">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="enterOilMass" id="enterOilMass" label="进店油量">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="engineNo" id="engineNo" label="engineNo">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="engineModel" id="engineModel" label="engineModel">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Int" dict="false" entityField="boxServiceTypeId" id="boxServiceTypeId" label="boxServiceTypeId">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="driveType" id="driveType" label="driveType">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Int" dict="false" entityField="mtAdvisorId" id="mtAdvisorId" label="维修顾问ID">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="mtAdvisor" id="mtAdvisor" label="维修顾问">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="drawOutReport" id="drawOutReport" label="出车报告">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Date" dict="false" entityField="outDate" id="outDate" label="离店日期(结算日期)完工日期">
+            <view type="write"/>
+            <edit name="" type="date"/>
+        </field>
+        <field dataType="String" dict="false" entityField="remark" id="remark" label="备注">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="String" dict="false" entityField="recorder" id="recorder" label="建档人">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Date" dict="false" entityField="recordDate" id="recordDate" label="建档日期">
+            <view type="write"/>
+            <edit name="" type="date"/>
+        </field>
+        <field dataType="String" dict="false" entityField="modifier" id="modifier" label="修改人">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+        <field dataType="Date" dict="false" entityField="modifyDate" id="modifyDate" label="修改日期">
+            <view type="write"/>
+            <edit name="" type="date"/>
+        </field>
+        <field dataType="String" dict="false" entityField="carBrandId" id="carBrandId" label="carBrandId">
+            <view type="write"/>
+            <edit name="" type="text"/>
+        </field>
+    </viewModel>
+</viewModelSet>

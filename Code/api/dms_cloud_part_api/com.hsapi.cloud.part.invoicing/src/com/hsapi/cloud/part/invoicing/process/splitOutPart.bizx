@@ -187,6 +187,10 @@
       <process:from type="literal" pattern="reference">010103</process:from>
       <process:to type="query">outmain/billTypeId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">guest/id</process:from>
+      <process:to type="query">outmain/settleGuestId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
     <location x="249" y="199"/>
@@ -413,6 +417,13 @@
         <process:inputVariable id="19" name="operatorId" type="query" value="String" valueType="Primitive" pattern="reference">processMain/auditorId</process:inputVariable>
         <process:inputVariable id="20" name="expPrice" type="query" value="Float" valueType="Primitive" pattern="reference">processProduct/expEnterPrice</process:inputVariable>
         <process:inputVariable id="21" name="expAmt" type="query" value="Float" valueType="Primitive" pattern="reference">processProduct/expEnterAmt</process:inputVariable>
+        <process:inputVariable id="22" name="taxCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">taxCostPrice</process:inputVariable>
+        <process:inputVariable id="23" name="taxCostAmt" type="expression" value="Float" valueType="Primitive" pattern="reference">outaleQty*taxCostPrice</process:inputVariable>
+        <process:inputVariable id="24" name="setCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">setCostPrice</process:inputVariable>
+        <process:inputVariable id="25" name="setCostAmt" type="expression" value="Float" valueType="Primitive" pattern="reference">outaleQty*setCostPrice</process:inputVariable>
+        <process:inputVariable id="26" name="noTaxCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">noTaxCostPrice</process:inputVariable>
+        <process:inputVariable id="27" name="noTaxCostAmt" type="expression" value="Float" valueType="Primitive" pattern="reference">outaleQty*noTaxCostPrice</process:inputVariable>
+        <process:inputVariable id="28" name="remark" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -477,6 +488,13 @@
         <process:inputVariable id="19" name="operatorId" type="query" value="String" valueType="Primitive" pattern="reference">processMain/auditorId</process:inputVariable>
         <process:inputVariable id="20" name="expPrice" type="query" value="Float" valueType="Primitive" pattern="reference">processProduct/expEnterPrice</process:inputVariable>
         <process:inputVariable id="21" name="expAmt" type="query" value="Float" valueType="Primitive" pattern="reference">processProduct/expEnterAmt</process:inputVariable>
+        <process:inputVariable id="22" name="taxCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">taxCostPrice</process:inputVariable>
+        <process:inputVariable id="23" name="taxCostAmt" type="expression" value="Float" valueType="Primitive" pattern="reference">billQty*taxCostPrice</process:inputVariable>
+        <process:inputVariable id="24" name="setCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">setCostPrice</process:inputVariable>
+        <process:inputVariable id="25" name="setCostAmt" type="expression" value="Float" valueType="Primitive" pattern="reference">billQty*setCostPrice</process:inputVariable>
+        <process:inputVariable id="26" name="noTaxCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">noTaxCostPrice</process:inputVariable>
+        <process:inputVariable id="27" name="noTaxCostAmt" type="expression" value="Float" valueType="Primitive" pattern="reference">billQty*noTaxCostPrice</process:inputVariable>
+        <process:inputVariable id="28" name="remark" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -842,6 +860,30 @@
       <process:to type="query">outdetail/expEnterAmt</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">taxCostPrice</process:from>
+      <process:to type="query">outdetail/taxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">outaleQty*taxCostPrice</process:from>
+      <process:to type="query">outdetail/taxCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">noTaxCostPrice</process:from>
+      <process:to type="query">outdetail/noTaxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">outaleQty*noTaxCostPrice</process:from>
+      <process:to type="query">outdetail/noTaxCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">setCostPrice</process:from>
+      <process:to type="query">outdetail/setCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">outaleQty*setCostPrice</process:from>
+      <process:to type="query">outdetail/setCostAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="expression" pattern="reference">mNoTaxAmt+(noTaxPrice*outaleQty)</process:from>
       <process:to type="query">mNoTaxAmt</process:to>
     </process:copy>
@@ -1053,6 +1095,30 @@
       <process:to type="query">outdetail/expEnterAmt</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">taxCostPrice</process:from>
+      <process:to type="query">outdetail/taxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">billQty*taxCostPrice</process:from>
+      <process:to type="query">outdetail/taxCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">noTaxCostPrice</process:from>
+      <process:to type="query">outdetail/noTaxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">billQty*noTaxCostPrice</process:from>
+      <process:to type="query">outdetail/noTaxCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">setCostPrice</process:from>
+      <process:to type="query">outdetail/setCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">billQty*setCostPrice</process:from>
+      <process:to type="query">outdetail/setCostAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="expression" pattern="reference">mNoTaxAmt+(noTaxPrice*billQty)</process:from>
       <process:to type="query">mNoTaxAmt</process:to>
     </process:copy>
@@ -1124,6 +1190,18 @@
     <process:copy>
       <process:from type="query" pattern="reference">outableDetail/expEnterPrice</process:from>
       <process:to type="query">expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/taxCostPrice</process:from>
+      <process:to type="query">taxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/setCostPrice</process:from>
+      <process:to type="query">setCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outableDetail/noTaxCostPrice</process:from>
+      <process:to type="query">noTaxCostPrice</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
@@ -1335,6 +1413,18 @@
         <process:inputVariable id="23" name="balaExpAmt" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaExpAmt</process:inputVariable>
         <process:inputVariable id="24" name="storeBalaExpPrice" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaExpPrice</process:inputVariable>
         <process:inputVariable id="25" name="storeBalaExpAmt" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaExpAmt</process:inputVariable>
+        <process:inputVariable id="26" name="balaTaxCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaTaxCostPrice</process:inputVariable>
+        <process:inputVariable id="27" name="balaTaxCostAmt" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaTaxCostAmt</process:inputVariable>
+        <process:inputVariable id="28" name="storeBalaTaxCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaTaxCostPrice</process:inputVariable>
+        <process:inputVariable id="29" name="storeBalaTaxCostAmt" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaTaxCostAmt</process:inputVariable>
+        <process:inputVariable id="30" name="balaSetCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaSetCostPrice</process:inputVariable>
+        <process:inputVariable id="31" name="balaSetCostAmt" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaSetCostAmt</process:inputVariable>
+        <process:inputVariable id="32" name="storeBalaSetCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaSetCostPrice</process:inputVariable>
+        <process:inputVariable id="33" name="storeBalaSetCostAmt" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaSetCostAmt</process:inputVariable>
+        <process:inputVariable id="34" name="balaNoTaxCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaNoTaxCostPrice</process:inputVariable>
+        <process:inputVariable id="35" name="balaNoTaxCostAmt" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaNoTaxCostAmt</process:inputVariable>
+        <process:inputVariable id="36" name="storeBalaNoTaxCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaNoTaxCostPrice</process:inputVariable>
+        <process:inputVariable id="37" name="storeBalaNoTaxCostAmt" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaNoTaxCostAmt</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -1396,6 +1486,18 @@
         <process:inputVariable id="23" name="balaExpAmt" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaExpAmt</process:inputVariable>
         <process:inputVariable id="24" name="storeBalaExpPrice" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaExpPrice</process:inputVariable>
         <process:inputVariable id="25" name="storeBalaExpAmt" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaExpAmt</process:inputVariable>
+        <process:inputVariable id="26" name="balaTaxCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaTaxCostPrice</process:inputVariable>
+        <process:inputVariable id="27" name="balaTaxCostAmt" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaTaxCostAmt</process:inputVariable>
+        <process:inputVariable id="28" name="storeBalaTaxCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaTaxCostPrice</process:inputVariable>
+        <process:inputVariable id="29" name="storeBalaTaxCostAmt" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaTaxCostAmt</process:inputVariable>
+        <process:inputVariable id="30" name="balaSetCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaSetCostPrice</process:inputVariable>
+        <process:inputVariable id="31" name="balaSetCostAmt" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaSetCostAmt</process:inputVariable>
+        <process:inputVariable id="32" name="storeBalaSetCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaSetCostPrice</process:inputVariable>
+        <process:inputVariable id="33" name="storeBalaSetCostAmt" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaSetCostAmt</process:inputVariable>
+        <process:inputVariable id="34" name="balaNoTaxCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaNoTaxCostPrice</process:inputVariable>
+        <process:inputVariable id="35" name="balaNoTaxCostAmt" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaNoTaxCostAmt</process:inputVariable>
+        <process:inputVariable id="36" name="storeBalaNoTaxCostPrice" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaNoTaxCostPrice</process:inputVariable>
+        <process:inputVariable id="37" name="storeBalaNoTaxCostAmt" type="query" value="Float" valueType="Primitive" pattern="reference">sdInvocing/balaNoTaxCostAmt</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -2221,6 +2323,9 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="len" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="enQty" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="expEnterPrice" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="taxCostPrice" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="setCostPrice" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="noTaxCostPrice" primitiveType="Float"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjProcessMain" name="processMain"/>

@@ -1,0 +1,34 @@
+<map>
+  <entry>
+    <string>time</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;time.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;time&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.time&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.time.sendWechatModelQF(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sendWechatModelQF&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sendWechatLicense&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.time.sendWechatModelQF&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;snum(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fnum(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;res(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.time.sendInfoQF(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sendInfoQF&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sendInfoQF&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.time.sendInfoQF&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;snum(Int):&lt;/b&gt;成功条数&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fnum(Int):&lt;/b&gt;失败条数&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.time.sendWechatPicTextQF(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sendWechatPicTextQF&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sendWechatPicText&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.time.sendWechatPicTextQF&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;snum(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fnum(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;res(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.time.test()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;test&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;test&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.time.test&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;retData(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.time.sendWechatCouponQF(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sendWechatCouponQF&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sendWechatPicText&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.time.sendWechatCouponQF&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;snum(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fnum(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;res(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.time.sendTask()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sendTask&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sendTask&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.time.sendTask&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;res(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;resModel(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.time.sendPostUrl(String, String, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sendPostUrl&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;setBookWeChatInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.time.sendPostUrl&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;key(String):&lt;/b&gt;REPAIR&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;apiName(String):&lt;/b&gt;com.hsapi.wechat.autoServiceBackstage.weChatInterface.sendBookingWeChatTemplateMessage.biz.ext&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;turl(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

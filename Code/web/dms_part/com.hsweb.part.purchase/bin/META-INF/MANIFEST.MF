@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Require-Bundle: 
+Bundle-Vendor: chenziming
+eos-webCtxPath: purchasePart
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsweb.part.purchase
+Bundle-Description: 入库，销售，调拨，库存管理
+Bundle-SymbolicName: com.hsweb.part.purchase
+

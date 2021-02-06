@@ -1,0 +1,38 @@
+<map>
+  <entry>
+    <string>com.hsapi.part.purchase.stockCheck.getCycStoreByPartId(String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCycStoreByPartId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStockQtyByPartId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.stockCheck.getCycStoreByPartId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;storeId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cyc(com.hsapi.part.data.x_pts.PtsCycStore):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.stockCheck.genPtsEnter(com.hsapi.part.data.x_pts.PtsStockCheckMain, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;genPtsEnter&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;genPtsEnterAndAudit&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.stockCheck.genPtsEnter&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;checkMain(com.hsapi.part.data.x_pts.PtsStockCheckMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guestId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guestFullName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;enterCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.stockCheck.getStockCheckList(String, String, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getStockCheckList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStockCheckList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.stockCheck.getStockCheckList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;storeId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.part.data.x_pts.PtsStockCheckMain[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>stockCheck</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;stockCheck.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;stockCheck&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.stockCheck&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.stockCheck.saveStockCheck(com.hsapi.part.data.x_pts.PtsStockCheckMain, com.hsapi.part.data.x_pts.PtsStockCheckDetail[], com.hsapi.part.data.x_pts.PtsStockCheckDetail[], com.hsapi.part.data.x_pts.PtsStockCheckDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveStockCheck&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveStockCheck&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.stockCheck.saveStockCheck&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.x_pts.PtsStockCheckMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;insertDetailList(com.hsapi.part.data.x_pts.PtsStockCheckDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updateDetailList(com.hsapi.part.data.x_pts.PtsStockCheckDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;deleteDetailList(com.hsapi.part.data.x_pts.PtsStockCheckDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.x_pts.PtsStockCheckMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.stockCheck.genPtsOut(com.hsapi.part.data.x_pts.PtsStockCheckMain, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;genPtsOut&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;genPtsEnterAndAudit&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.stockCheck.genPtsOut&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;checkMain(com.hsapi.part.data.x_pts.PtsStockCheckMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guestId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guestFullName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;outCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.stockCheck.saveStockCheckDetails(com.hsapi.part.data.x_pts.PtsStockCheckMain, com.hsapi.part.data.x_pts.PtsStockCheckDetail[], com.hsapi.part.data.x_pts.PtsStockCheckDetail[], com.hsapi.part.data.x_pts.PtsStockCheckDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveStockCheckDetails&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveStockCheck&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.stockCheck.saveStockCheckDetails&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.x_pts.PtsStockCheckMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;insertDetailList(com.hsapi.part.data.x_pts.PtsStockCheckDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updateDetailList(com.hsapi.part.data.x_pts.PtsStockCheckDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;deleteDetailList(com.hsapi.part.data.x_pts.PtsStockCheckDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.stockCheck.deleteStockCheck(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;deleteStockCheck&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;deleteStockCheck&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.stockCheck.deleteStockCheck&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;checkId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.stockCheck.auditStockCheck(String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;auditStockCheck&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;auditStockCheck&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.stockCheck.auditStockCheck&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;checkId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;auditor(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;enterCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;outCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.x_pts.PtsStockCheckMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;生成盈亏单&lt;/html&gt;</string>
+  </entry>
+</map>

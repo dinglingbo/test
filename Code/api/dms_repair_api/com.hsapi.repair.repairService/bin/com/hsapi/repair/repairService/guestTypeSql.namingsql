@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.repair.repairService.guestTypeSql">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <!--客户生日  -->
+    <select id="getGuestbyBir" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.birthday,b.wechat_open_id wechatOpenId,
+        b.wechat_service_id wechatServiceId,a.guest_id tureGuestId,
+        datediff(( DATE_FORMAT(b.birthday, '%m%d')+0),( DATE_FORMAT(curdate(), '%m%d')+0)) birComeDay
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+    where  datediff(( DATE_FORMAT(b.birthday, '%m%d')+0),( DATE_FORMAT(curdate(), '%m%d')+0)) &gt;= 0
+    and  datediff(( DATE_FORMAT(b.birthday, '%m%d')+0),( DATE_FORMAT(curdate(), '%m%d')+0)) &lt;= #tday#
+    and b.orgid = #orgid#
+    and a.is_disabled=0
+    order by birComeDay asc</select>
+    <!--驾照到期 -->
+    <select id="getGuestbyLicense" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
+        b.license_over_date licenseOverDate,a.guest_id tureGuestId,
+        b.wechat_service_id wechatServiceId
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+    where TIMESTAMPDIFF(DAY, NOW(), b.license_over_date) &gt;= 0
+    and TIMESTAMPDIFF(DAY, NOW(), b.license_over_date) &lt;= #tday#
+    and b.orgid = #orgid#
+    and a.is_disabled=0
+    order by licenseOverDate asc</select>
+    <!--车辆年检 -->
+    <select id="getGuestbyDue" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
+        a.annual_verification_due_date dueDate,a.guest_id tureGuestId,
+        b.wechat_service_id wechatServiceId
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+    where TIMESTAMPDIFF(DAY, NOW(), a.annual_verification_due_date) &gt;= 0
+    and TIMESTAMPDIFF(DAY, NOW(), a.annual_verification_due_date)  &lt;= #tday#
+    and b.orgid = #orgid#
+    and a.is_disabled=0
+    order by dueDate asc</select>
+    <!--保养提醒 -->
+    <select id="getGuestbyCare" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
+        c.care_due_date careDueDate,c.last_come_kilometers lastComeKilometers,
+        c.last_come_date lastComeDate,a.guest_id tureGuestId,
+        b.wechat_service_id wechatServiceId
+        
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+    INNER JOIN rpb_car_extend c on c.car_id = a.id 
+    where TIMESTAMPDIFF(DAY, NOW(), c.care_due_date)  &gt;= 0
+    and TIMESTAMPDIFF(DAY, NOW(), c.care_due_date)   &lt;= #tday#
+    and b.orgid = #orgid#
+    and a.is_disabled=0
+    order by careDueDate asc</select>
+    <!--交强险 -->
+    <select id="getGuestbyInsure" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
+        a.insure_due_date insureDueDate,a.guest_id tureGuestId,
+        b.wechat_service_id wechatServiceId
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+    where TIMESTAMPDIFF(DAY, NOW(), a.insure_due_date) &gt;= 0
+    and TIMESTAMPDIFF(DAY, NOW(), a.insure_due_date)  &lt;= #tday#
+    and b.orgid = #orgid#
+    and a.is_disabled=0
+    order by insureDueDate asc</select>
+    <!--商业险 -->
+    <select id="getGuestbyAnnual" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
+        a.annual_inspection_date annualInspectionDate,a.guest_id tureGuestId,
+        b.wechat_service_id wechatServiceId
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+    where TIMESTAMPDIFF(DAY, NOW(), a.annual_inspection_date) &gt;= 0
+    and TIMESTAMPDIFF(DAY, NOW(), a.annual_inspection_date)  &lt;= #tday#
+    and b.orgid = #orgid#
+    and a.is_disabled=0
+     order by annualInspectionDate asc</select>
+    <!--维修顾问 -->
+    <select id="getGuestbyMtAdvisor" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
+        c.mt_advisor_id mtAdvisorId ,c.mt_advisor_name mtAdvisorName,
+        b.wechat_service_id wechatServiceId
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+    INNER JOIN rpb_car_extend c on c.car_id = a.id 
+    where (c.mt_advisor_id in  ($mtAdvisorIds$))
+    and b.orgid = #orgid#
+    and a.is_disabled=0</select>
+    <!--行驶里程 -->
+    <select id="getGuestbyKilo" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
+        c.last_come_kilometers lastComeKilometers,
+        b.wechat_service_id wechatServiceId
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+    INNER JOIN rpb_car_extend c on c.car_id = a.id 
+    where c.last_come_kilometers  &gt;= #startKilo#
+    and  c.last_come_kilometers  &lt;= #endKilo#
+    and b.orgid = #orgid#
+    and a.is_disabled=0</select>
+    <!--消费次数-->
+    <select id="getGuestbyTime" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
+        c.chain_come_times chainComeTimes,
+        b.wechat_service_id wechatServiceId
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+    INNER JOIN rpb_car_extend c on c.car_id = a.id 
+    where c.chain_come_times  &gt;= #startTime#
+    and  c.chain_come_times  &lt;= #endTime#
+    and b.orgid = #orgid#
+    and a.is_disabled=0</select>
+    <!--消费金额-->
+    <select id="getGuestbyAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
+        c.chain_consume_amt chainConsumeAmt,
+        b.wechat_service_id wechatServiceId
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+    INNER JOIN rpb_car_extend c on c.car_id = a.id 
+    where c.chain_consume_amt  &gt;= #startAmt#
+    and  c.chain_consume_amt  &lt;= #endAmt#
+    and b.orgid = #orgid#
+    and a.is_disabled=0</select>
+    <!--离厂天数-->
+    <select id="getGuestbyLeave" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
+        TIMESTAMPDIFF(DAY,c.last_leave_date, NOW()) as leaveDay,
+        b.wechat_service_id wechatServiceId
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+    INNER JOIN rpb_car_extend c on c.car_id = a.id 
+    where TIMESTAMPDIFF(DAY,c.last_leave_date, NOW())  &gt;= #startDay#
+    and  TIMESTAMPDIFF(DAY,c.last_leave_date, NOW())  &lt;= #endDay#
+    and b.orgid = #orgid#
+    and a.is_disabled=0</select>
+    <!--客户级别-->
+    <select id="getGuestbyLevel" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
+        d.tgrade,e.name levelName,
+        b.wechat_service_id wechatServiceId
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+		INNER JOIN rpb_car_extend c on c.car_id = a.id 
+		INNER JOIN wb_common.com_guest d on d.id = a.guest_id 
+		INNER JOIN rpb_guest_type  e on e.id = d.tgrade 
+        where (e.id in  ($levels$))
+        and b.orgid = #orgid#
+        and a.is_disabled=0</select>
+    <!--车型 -->
+    <select id="getGuestbyModel" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
+        b.wechat_service_id wechatServiceId
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+    where b.orgid = #orgid#
+    and a.car_brand_id in ($brandList$) or a.car_model_id in ($modelList$)
+    and a.is_disabled=0</select>
+    <sql id="guest_column">
+ select 
+		a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,a.guest_id tureGuestId,
+		c.id conId,c.orgid,c.name guestName,c.mobile,c.wechat_open_id wechatOpenId,
+		d.tgrade,b.mt_advisor_id mtAdvisorId ,b.mt_advisor_name mtAdvisorName,
+		b.last_come_kilometers lastComeKilometers,b.chain_come_times chainComeTimes,
+		b.chain_consume_amt chainConsumeAmt,TIMESTAMPDIFF(DAY,b.last_leave_date, NOW()) as leaveDay,
+		b.first_come_date firstComeDate,
+		b.last_come_date lastComeDate,
+        c.wechat_service_id wechatServiceId
+from  rpb_car a
+INNER JOIN rpb_car_extend b on b.car_id = a.id 
+INNER JOIN rpb_contactor c on a.guest_id = c.guest_id
+INNER JOIN wb_common.com_guest d on d.id = a.guest_id 
+where c.orgid = #orgid#
+and a.is_disabled=0
+<isNotEmpty prepend="" property="level">and (d.tgrade in ($level$))</isNotEmpty>
+        <isNotEmpty prepend="" property="mta">and (b.mt_advisor_id in  ($mta$))</isNotEmpty>
+        <isNotEmpty prepend="" property="startKilo">and b.last_come_kilometers  &gt;= #startKilo#</isNotEmpty>
+        <isNotEmpty prepend="" property="endKilo">and b.last_come_kilometers  &lt;= #endKilo#</isNotEmpty>
+        <isNotEmpty prepend="" property="startTime">and b.chain_come_times  &gt;= #startTime#</isNotEmpty>
+        <isNotEmpty prepend="" property="endTime">and b.chain_come_times  &lt;= #endTime#</isNotEmpty>
+        <isNotEmpty prepend="" property="startAmt">and b.chain_consume_amt  &gt;= #startAmt#</isNotEmpty>
+        <isNotEmpty prepend="" property="endAmt">and b.chain_consume_amt  &lt;= #endAmt#</isNotEmpty>
+        <isNotEmpty prepend="" property="startDay">and TIMESTAMPDIFF(DAY,b.last_leave_date, NOW())  &gt;= #startDay#</isNotEmpty>
+        <isNotEmpty prepend="" property="endDay">and TIMESTAMPDIFF(DAY,b.last_leave_date, NOW())  &lt;= #endDay#</isNotEmpty>
+        <isNotEmpty prepend="" property="cbrand">and a.car_brand_id = #cbrand#</isNotEmpty>
+        <isNotEmpty prepend="" property="cmodel">and a.car_model_id REGEXP #cmodel#</isNotEmpty>
+    </sql>
+    <!-- 首修车辆  最近一个月的首次消费车辆-->
+    <select id="getGuestTypeA" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+        <include refid="guest_column"/>
+        AND B.CHAIN_COME_TIMES = 1
+        AND B.FIRST_COME_DATE  &gt;=  DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+         
+    </select>
+    <!-- 活跃期  来店2次（含）2次，且30天内消费过车辆-->
+    <select id="getGuestTypeB" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+        <include refid="guest_column"/>
+        AND B.CHAIN_COME_TIMES &gt;= 2
+        AND B.LAST_COME_DATE  &gt;= DATE_SUB(CURDATE(), INTERVAL 1 MONTH) 
+    </select>
+    <!-- 稳定期  来店2次（含）2次，且31-90天内消费过车辆-->
+    <select id="getGuestTypeC" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+        <include refid="guest_column"/> 
+        AND B.CHAIN_COME_TIMES &gt;= 2
+        AND B.LAST_COME_DATE  &lt; DATE_SUB(CURDATE(), INTERVAL 30 DAY)
+        AND B.LAST_COME_DATE  &gt;= DATE_SUB(CURDATE(), INTERVAL 90 DAY)
+    </select>
+    <!-- 睡眠期 离店天数在 91-180 天内-->
+    <select id="getGuestTypeD" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+        <include refid="guest_column"/>
+        AND B.CHAIN_COME_TIMES &gt;  0
+        AND B.LAST_COME_DATE  &lt; DATE_SUB(CURDATE(), INTERVAL 90 DAY)
+        AND B.LAST_COME_DATE  &gt;=  DATE_SUB(CURDATE(), INTERVAL 180 DAY)
+    </select>
+    <!-- 流失期  离店天数超 181 天以上-->
+    <select id="getGuestTypeE" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+        <include refid="guest_column"/>
+        AND B.CHAIN_COME_TIMES  &gt; 0
+        AND B.LAST_COME_DATE  &lt; DATE_SUB(CURDATE(), INTERVAL 180 DAY)
+    </select>
+    <!-- 未分类-->
+    <select id="getGuestTypeF" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+        <include refid="guest_column"/>
+        AND B.CHAIN_COME_TIMES  &lt; 1
+    </select>
+    <!-- 所有-->
+    <select id="getGuestTypeG" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+        <include refid="guest_column"/>
+        order by chainComeTimes desc
+    </select>
+    <!--特别关怀 -->
+    <select id="getGuestbyDate" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        select 
+            a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+            a.annual_verification_due_date dueDate,a.insure_due_date insureDueDate,
+            a.annual_inspection_date annualInspectionDate,
+            c.id conId,c.orgid,c.name guestName,c.mobile,c.wechat_open_id wechatOpenId,
+            c.birthday,c.license_over_date licenseOverDate,
+            b.care_due_date careDueDate,
+            0 as guestType,
+            datediff(( DATE_FORMAT(c.birthday, '%m%d')+0),( DATE_FORMAT(curdate(), '%m%d')+0)) birComeDay,
+            b.last_come_kilometers lastComeKilometers,
+            b.last_come_date lastComeDate,
+            a.annual_inspection_comp_code annualInspectionCompCode,
+            a.insure_comp_code insureCompCode,
+            c.guest_id guestId,
+            c.wechat_service_id wechatServiceId,
+            '' as crmGuestId
+        from  rpb_car a
+        INNER JOIN rpb_car_extend b on b.car_id = a.id 
+        INNER JOIN rpb_contactor c on a.guest_id = c.guest_id
+        where  a.orgid = #orgid#
+        and a.is_disabled=0
+        <isNotEmpty prepend="and" property="carNo">a.car_no = #carNo#</isNotEmpty>
+        <!-- 商业险-->
+        <isEqual compareValue="syx" prepend="" property="dateType">
+            <isNotEmpty prepend="and" property="startDate">a.annual_inspection_date &gt;= #startDate#</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">a.annual_inspection_date &lt;= #endDate#</isNotEmpty>
+        </isEqual>
+        <!-- 交强险 -->
+        <isEqual compareValue="jqx" prepend="" property="dateType">
+            <isNotEmpty prepend="and" property="startDate">a.insure_due_date &gt;= #startDate#</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">a.insure_due_date &lt;= #endDate#</isNotEmpty>
+        </isEqual>
+        <!-- 车辆年检 -->
+        <isEqual compareValue="clnj" prepend="" property="dateType">
+            <isNotEmpty prepend="and" property="startDate">a.annual_verification_due_date &gt;= #startDate#</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">a.annual_verification_due_date &lt;= #endDate#</isNotEmpty>
+        </isEqual>
+        <!-- 保养提醒 -->
+        <isEqual compareValue="bytx" prepend="" property="dateType">
+            <isNotEmpty prepend="and" property="startDate">b.care_due_date &gt;= #startDate#</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">b.care_due_date &lt;= #endDate#</isNotEmpty>
+        </isEqual>
+        <!-- 驾照年审 -->
+        <isEqual compareValue="jzns" prepend="" property="dateType">
+            <isNotEmpty prepend="and" property="startDate">c.license_over_date &gt;= #startDate#</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">c.license_over_date &lt;= #endDate#</isNotEmpty>
+        </isEqual>
+        <!-- 客户生日 -->
+        <isEqual compareValue="khsr" prepend="" property="dateType">
+            <isNotEmpty prepend="and" property="bir">datediff(( DATE_FORMAT(c.birthday, '%m%d')+0),( DATE_FORMAT(curdate(), '%m%d')+0))  &gt;= 0
+            and datediff(( DATE_FORMAT(c.birthday, '%m%d')+0),( DATE_FORMAT(curdate(), '%m%d')+0))  &lt;= #bir#</isNotEmpty>
+        </isEqual>
+
+        UNION all
+
+        SELECT 
+            '' as carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+            a.annual_verification_due_date dueDate,a.insure_due_date insureDueDate,
+            a.annual_inspection_date annualInspectionDate,
+            ''as conId,a.orgid ,a.guest_name guestName,a.mobile,''as wechatOpenId,
+            ''as birthday,a.driving_licence_due_date licenseOverDate,
+            a.care_due_date careDueDate,
+            1 as guestType,
+            '' as birComeDay,
+            '' as lastComeKilometers,
+            '' as lastComeDate,
+            a.insure_comp_code annualInspectionCompCode,
+            a.insure_comp_code insureCompCode,
+            a.guest_id guestId,
+            '' as wechatServiceId,
+            a.id as crmGuestId
+        from wb_crm.crm_guest  a
+        where  a.orgid = #orgid#
+        <isNotEmpty prepend="and" property="carNo">a.car_no = #carNo#</isNotEmpty>
+        <!-- 商业险-->
+        <isEqual compareValue="syx" prepend="" property="dateType">
+            <isNotEmpty prepend="and" property="startDate">a.annual_inspection_date &gt;= #startDate#</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">a.annual_inspection_date &lt;= #endDate#</isNotEmpty>
+        </isEqual>
+        <!-- 交强险 -->
+        <isEqual compareValue="jqx" prepend="" property="dateType">
+            <isNotEmpty prepend="and" property="startDate">a.insure_due_date &gt;= #startDate#</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">a.insure_due_date &lt;= #endDate#</isNotEmpty>
+        </isEqual>
+        <!-- 车辆年检 -->
+        <isEqual compareValue="clnj" prepend="" property="dateType">
+            <isNotEmpty prepend="and" property="startDate">a.annual_verification_due_date &gt;= #startDate#</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">a.annual_verification_due_date &lt;= #endDate#</isNotEmpty>
+        </isEqual>
+        <!-- 保养提醒 -->
+        <isEqual compareValue="bytx" prepend="" property="dateType">
+            <isNotEmpty prepend="and" property="startDate">a.care_due_date &gt;= #startDate#</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">a.care_due_date &lt;= #endDate#</isNotEmpty>
+        </isEqual>
+        <!-- 驾照年审 -->
+        <isEqual compareValue="jzns" prepend="" property="dateType">
+            <isNotEmpty prepend="and" property="startDate">a.driving_licence_due_date  &gt;= #startDate#</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">a.driving_licence_due_date  &lt;= #endDate#</isNotEmpty>
+        </isEqual>
+        <!-- 客户生日 -->
+        <isEqual compareValue="khsr" prepend="" property="dateType">and 1=2</isEqual>
+        <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
+    </select>
+    <!--特别关怀  ：保养提醒 商业 交强  车辆年检 -->
+    <select id="getGuest" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        select 
+            a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+            a.annual_verification_due_date dueDate,a.insure_due_date insureDueDate,
+            a.annual_inspection_date annualInspectionDate,
+            c.id guestId,c.orgid,c.short_name guestName,c.mobile,
+            c.guest_property guestProperty,
+            b.care_due_date careDueDate,
+            0 as guestType,
+            b.last_come_kilometers lastComeKilometers,
+            b.last_come_date lastComeDate,
+            a.annual_inspection_comp_code annualInspectionCompCode,
+            a.insure_comp_code insureCompCode,
+            a.remark,
+            '' as crmGuestId
+        from  rpb_car a
+        INNER JOIN rpb_car_extend b on b.car_id = a.id 
+        INNER JOIN wb_common.com_guest c on a.guest_id = c.id
+        where  a.orgid = #orgid#
+        and a.is_disabled=0
+        and c.is_disabled =0
+        <isNotEmpty prepend="and" property="carNo">a.car_no = #carNo#</isNotEmpty>
+        <!-- 商业险-->
+        <isEqual compareValue="syx" prepend="" property="dateType">
+            <isNotEmpty prepend="and" property="startDate">a.annual_inspection_date &gt;= #startDate#</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">a.annual_inspection_date &lt;= #endDate#</isNotEmpty>
+        </isEqual>
+        <!-- 交强险 -->
+        <isEqual compareValue="jqx" prepend="" property="dateType">
+            <isNotEmpty prepend="and" property="startDate">a.insure_due_date &gt;= #startDate#</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">a.insure_due_date &lt;= #endDate#</isNotEmpty>
+        </isEqual>
+        <!-- 车辆年检 -->
+        <isEqual compareValue="clnj" prepend="" property="dateType">
+            <isNotEmpty prepend="and" property="startDate">a.annual_verification_due_date &gt;= #startDate#</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">a.annual_verification_due_date &lt;= #endDate#</isNotEmpty>
+        </isEqual>
+        <!-- 保养提醒 -->
+        <isEqual compareValue="bytx" prepend="" property="dateType">
+            <isNotEmpty prepend="and" property="startDate">b.care_due_date &gt;= #startDate#</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">b.care_due_date &lt;= #endDate#</isNotEmpty>
+        </isEqual>
+
+        UNION all
+
+        SELECT 
+            '' as carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+            a.annual_verification_due_date dueDate,a.insure_due_date insureDueDate,
+            a.annual_inspection_date annualInspectionDate,
+            a.guest_id as guestId,a.orgid ,a.guest_name guestName,a.mobile,
+            '' as  guestProperty,
+            a.care_due_date careDueDate,
+            1 as guestType,
+            '' as lastComeKilometers,
+            '' as lastComeDate,
+            a.insure_comp_code annualInspectionCompCode,
+            a.insure_comp_code insureCompCode,
+            a.remark,
+            a.id as crmGuestId
+        from wb_crm.crm_guest  a
+        where  a.orgid = #orgid#
+        and a.status = 0
+        and a.is_come &lt;&gt; 1
+        <isNotEmpty prepend="and" property="carNo">a.car_no = #carNo#</isNotEmpty>
+        <!-- 商业险-->
+        <isEqual compareValue="syx" prepend="" property="dateType">
+            <isNotEmpty prepend="and" property="startDate">a.annual_inspection_date &gt;= #startDate#</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">a.annual_inspection_date &lt;= #endDate#</isNotEmpty>
+        </isEqual>
+        <!-- 交强险 -->
+        <isEqual compareValue="jqx" prepend="" property="dateType">
+            <isNotEmpty prepend="and" property="startDate">a.insure_due_date &gt;= #startDate#</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">a.insure_due_date &lt;= #endDate#</isNotEmpty>
+        </isEqual>
+        <!-- 车辆年检 -->
+        <isEqual compareValue="clnj" prepend="" property="dateType">
+            <isNotEmpty prepend="and" property="startDate">a.annual_verification_due_date &gt;= #startDate#</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">a.annual_verification_due_date &lt;= #endDate#</isNotEmpty>
+        </isEqual>
+        <!-- 保养提醒 -->
+        <isEqual compareValue="bytx" prepend="" property="dateType">
+            <isNotEmpty prepend="and" property="startDate">a.care_due_date &gt;= #startDate#</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">a.care_due_date &lt;= #endDate#</isNotEmpty>
+        </isEqual>
+        <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
+    </select>
+</sqlMap>

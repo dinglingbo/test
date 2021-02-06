@@ -266,6 +266,30 @@
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">ct/_and[1]/_expr[14]/_op</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/billTypeId</process:from>
+      <process:to type="query">ct/_and[1]/_expr[15]/billTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">ct/_and[1]/_expr[15]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/remark</process:from>
+      <process:to type="query">ct/_and[1]/_expr[16]/remark</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">like</process:from>
+      <process:to type="query">ct/_and[1]/_expr[16]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/settleSign</process:from>
+      <process:to type="query">ct/_and[1]/_expr[17]/settleSign</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">ct/_and[1]/_expr[17]/_op</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
     <location x="215" y="186"/>

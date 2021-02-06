@@ -1,0 +1,20 @@
+<map>
+  <entry>
+    <string>com.hsapi.part.purchase.PriceQuery.getSellPrice(java.lang.String, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hsapi.part.purchase.PriceQuery.getSellPrice(String url, HashMap params)&lt;/b&gt;&lt;br/&gt;&lt;p&gt;getSellPrice&lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;param&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.PriceQuery.sendGet(java.lang.String, java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hsapi.part.purchase.PriceQuery.sendGet(String url, String param, String chatSet)&lt;/b&gt;&lt;br/&gt;&lt;p&gt;&#x0D;
+ 发送get请求&#x0D;
+	&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.PriceQuery.getGoodsPrice(java.lang.String, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hsapi.part.purchase.PriceQuery.getGoodsPrice(String url, HashMap params)&lt;/b&gt;&lt;br/&gt;&lt;p&gt;getGoodsPrice&lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;param&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>PriceQuery</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.hsapi.part.purchase.PriceQuery&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &lt;dl&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;chenziming&lt;/dd&gt;&lt;dt&gt;@date&lt;/dt&gt;&lt;dd&gt;2018-02-10 09:55:56&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

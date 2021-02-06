@@ -1,0 +1,102 @@
+<map>
+  <entry>
+    <string>com.hsapi.system.auth.LoginManager.deleteQrcodeRecord(com.hsapi.system.data.sys.ComQrcodeLogin)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;deleteQrcodeRecord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;deleteQrcodeRecord&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.LoginManager.deleteQrcodeRecord&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;record(com.hsapi.system.data.sys.ComQrcodeLogin):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.auth.LoginManager.authApi(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;authApi&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;authApi&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.LoginManager.authApi&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;userId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;password(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;retCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;token(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.auth.LoginManager.logout(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;logout&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;logout&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.LoginManager.logout&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;uniqueId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;userObject(com.eos.data.datacontext.UserObject):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.auth.LoginManager.getOrgList(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getOrgList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getOrgList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.LoginManager.getOrgList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;userId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orgList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.auth.LoginManager.updatePassword(String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updatePassword&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updatePassword&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.LoginManager.updatePassword&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;oldPassword(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;password(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;loginName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.auth.LoginManager.setToggleUserOrgInfo20190308copy(Long, Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;setToggleUserOrgInfo20190308copy&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;setUserOrgInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.LoginManager.setToggleUserOrgInfo20190308copy&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;operatorId(Long):&lt;/b&gt;当前岗位&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userKey(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;token(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.auth.LoginManager.setUserOrgInfo(String, Long, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;setUserOrgInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;setUserOrgInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.LoginManager.setUserOrgInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;loginName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;posiId(Long):&lt;/b&gt;当前岗位&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;roleName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;company(String):&lt;/b&gt;登录公司&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;webPath(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userKey(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;token(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.auth.LoginManager.getSessionAttributes()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getSessionAttributes&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getSessionComp&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.LoginManager.getSessionAttributes&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;userObj(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.auth.LoginManager.registerIsdisable(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;registerIsdisable&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;registerIsdisable&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.LoginManager.registerIsdisable&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;userId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;returnValue(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.auth.LoginManager.login(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;login&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;login&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.LoginManager.login&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;userId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;password(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;retCode(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.auth.LoginManager.getMenuData(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getMenuData&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getMenuData&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.LoginManager.getMenuData&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;appCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;treeNodes(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>LoginManager</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;LoginManager.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;LoginManager&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.LoginManager&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.auth.LoginManager.checkToken(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;checkToken&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;erpAuth&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.LoginManager.checkToken&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;access_token(String):&lt;/b&gt;token&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;status(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userKey(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;ERP登录验证接口&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.auth.LoginManager.qrcodeLogin(String, String, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;qrcodeLogin&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;qrcodeLogin&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.LoginManager.qrcodeLogin&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;webId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;status(Int):&lt;/b&gt;1表示授权登录，2表示拒绝登录&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.auth.LoginManager.isend(org.gocom.components.coframe.rights.dataset.CapUser)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;isend&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;isend&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.LoginManager.isend&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;capuser(org.gocom.components.coframe.rights.dataset.CapUser):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;isend(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.auth.LoginManager.getUserByAccount(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getUserByAccount&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getUserByAccount&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.LoginManager.getUserByAccount&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;account(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;member(com.hsapi.system.data.sys.ComMember):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;user(com.hsapi.system.data.sys.CapUser):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.auth.LoginManager.authentication(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;authentication&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;authentication&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.LoginManager.authentication&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;userId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;password(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;returnValue(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.auth.LoginManager.qrcodeCheck(String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;qrcodeCheck&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;qrcodeCheck&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.LoginManager.qrcodeCheck&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;webId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;type(String):&lt;/b&gt;confirm,check&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;record(com.hsapi.system.data.sys.ComQrcodeLogin):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.auth.LoginManager.authApi2(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;authApi2&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;authApi&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.LoginManager.authApi2&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;userId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;password(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;retCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;token(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.auth.LoginManager.setUserOrgInfo20190308copy(String, Long, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;setUserOrgInfo20190308copy&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;setUserOrgInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.LoginManager.setUserOrgInfo20190308copy&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;loginName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;posiId(Long):&lt;/b&gt;当前岗位&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;roleName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userKey(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;token(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.auth.LoginManager.setUserDuty(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;setUserDuty&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;setUserDuty&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.LoginManager.setUserDuty&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;operatorId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;currDutyId(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.auth.LoginManager.getTenantId()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getTenantId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getTenantId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.LoginManager.getTenantId&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;tenantId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.auth.LoginManager.userLogin(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;userLogin&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;userLogin&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.LoginManager.userLogin&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;userId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;password(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.eos.data.datacontext.UserObject):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;S;E&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.auth.LoginManager.setToggleUserOrgInfo(Long, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;setToggleUserOrgInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;setUserOrgInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.LoginManager.setToggleUserOrgInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;operatorId(Long):&lt;/b&gt;当前岗位&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userKey(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;token(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.auth.LoginManager.getMenuList()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getMenuList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getMenuList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.LoginManager.getMenuList&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;treeNodes(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

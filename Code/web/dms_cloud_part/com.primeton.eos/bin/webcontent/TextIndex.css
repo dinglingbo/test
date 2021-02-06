@@ -1,0 +1,135 @@
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: Microsoft YaHei !important;
+}
+
+
+.vpanel{
+    border:1px solid #d9dee9;
+    /* margin:10px 0px 0px 20px; */
+
+    width:100%;
+    height:100%;
+
+}
+.vpanel_heading{
+    border-bottom:1px solid #d9dee9;
+    width:100%;
+    height:28px;
+    background-color:#f3f4f6;
+    color:#2d95ff;
+    line-height:28px;
+}
+.vpanel_heading span{
+    font-size:16px;
+    font-weight:normal;
+}
+
+.vpanel_heading  i{
+	    margin-left: 10px;
+}
+/* .vpanel_bodyww{
+    padding : 10 10 10 10px !important 
+
+    } */
+
+
+    #left,#right{
+        float:left;
+        width:50%;
+        height: 100%;
+        margin:0 0 0 -5px;
+    }
+    #innerLeft,#innerRight{
+        margin:0 0 0 5px;
+        height: 100%;
+    }
+    #middle{
+        float:left;
+        width:10px;
+        height: 100%;
+    }
+
+
+
+ .main{
+    /* text-align: center; */
+    width: 98%;
+    height: 200px;
+    margin: 0 auto; 
+} 
+.main_child{
+    float:left;
+    width: 49.5%; 
+    height: 100%;
+}
+
+.aa .mini-grid-cell-inner, .aa .mini-grid-headerCell-inner{/* 表格字体 */
+    font-size:10pt;
+}
+
+.mini-grid-cell-inner{/* 表格行高 */
+ line-height:30px !important;
+ font-family: Microsoft YaHei !important;
+}
+
+body .mini-grid-row-hover{/* 表格鼠标移入颜色 */
+    background:#89c3d6 !important; 
+}
+
+.nui-datagrid .mini-panel-border{/* 表格不圆角 */
+    border-radius:0px;
+}
+
+
+#table1 tr {
+    height:48px;
+    vertical-align:bottom;
+}
+
+#table1{
+    font-size:14px;
+} 
+.tabletext{
+   font-size:14px !important;
+} 
+
+.tablenum{
+    font-size:20px !important;
+    color:#61acc9;
+    font-weight:bold;
+}
+
+
+#newul{
+    margin-left:0px;
+    margin-right:0px;
+    margin-top:0px;
+    margin-bottom:0px;
+    padding:0px;
+}
+#newul li{
+ list-style:none;
+}
+
+#newul li:hover{ 
+    text-decoration:underline;
+    font-size:16px;
+} 
+
+#newul li a{
+    text-decoration:none;
+    font-size:14px;
+    height:25px;
+    color:#4d7496;
+}
+.fa-lg-custom{
+    font-size: 16px !important;
+    line-height: 28px !important;
+  /*   vertical-align: text-bottom; */
+}

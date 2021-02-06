@@ -1,0 +1,210 @@
+<map>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getPjPchsOrderDetailById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getPjPchsOrderDetailById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.part.data.pts.PjPchsOrderDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getShiftOrderStockOutByMainId(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getShiftOrderStockOutByMainId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getSellOrderStockOut&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getShiftOrderStockOutByMainId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.part.data.pts.PjStockShiftDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getPjEnterMainById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjEnterMainById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderMainById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getPjEnterMainById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.pts.PjEnterMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getPjStockShiftDetailById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjStockShiftDetailById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getPjStockShiftDetailById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.part.data.pts.PjStockShiftDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.queryPjEnterDetailList(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjEnterDetailList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.queryPjEnterDetailList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjEnterDetailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.queryPjSellOrderMainList(com.eos.foundation.PageCond, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjSellOrderMainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.queryPjSellOrderMainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjSellOrderMainList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.queryPjEnterMainList(com.eos.foundation.PageCond, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjEnterMainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.queryPjEnterMainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjEnterMainList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getPjEnterDetailById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjEnterDetailById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getPjEnterDetailById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.part.data.pts.PjEnterDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.queryPjInvoingDetail(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjInvoingDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjInvoingDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.queryPjInvoingDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getPjSellOutMainChkById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjSellOutMainChkById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderMainById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getPjSellOutMainChkById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.pts.PjOutMainChk):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getPjProductDetailChkById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjProductDetailChkById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getPjProductDetailChkById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.part.data.pts.PjProductEnterDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.queryPjStockCheckMainList(com.eos.foundation.PageCond, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjStockCheckMainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.queryPjStockCheckMainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getPjPchsOrderMainById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjPchsOrderMainById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderMainById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getPjPchsOrderMainById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.pts.PjPchsOrderMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getPjEnterDetailChkById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjEnterDetailChkById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getPjEnterDetailChkById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.part.data.pts.PjEnterDetailChk[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.queryTurnOverDetail(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryTurnOverDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryTurnOverDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.queryTurnOverDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getPjStockCheckMainById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjStockCheckMainById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderMainById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getPjStockCheckMainById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.pts.PjStockCheckMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getPjSellOutDetailById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjSellOutDetailById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getPjSellOutDetailById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.part.data.pts.PjOutDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getPjSellOrderMainChkById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjSellOrderMainChkById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderMainById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getPjSellOrderMainChkById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.pts.XPjSellOrderMainChk):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.queryPjSellOutMainList(com.eos.foundation.PageCond, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjSellOutMainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.queryPjSellOutMainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjSellOutMainList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.queryPjStoreInvoingDetail(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjStoreInvoingDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjStoreInvoingDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.queryPjStoreInvoingDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getStockCheckStockOutByMainId(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getStockCheckStockOutByMainId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getSellOrderStockOut&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getStockCheckStockOutByMainId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.part.data.pts.PjStockCheckDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getPjSellOrderDetailById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjSellOrderDetailById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getPjSellOrderDetailById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.part.data.pts.PjSellOrderDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getPjSellOrderMainById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjSellOrderMainById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderMainById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getPjSellOrderMainById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.pts.PjSellOrderMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.queryPjStoreInvoing(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjStoreInvoing&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjStoreInvoing&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.queryPjStoreInvoing&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.queryInventoryStoreDetailList(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryInventoryStoreDetailList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryInventoryDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.queryInventoryStoreDetailList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;beginList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;endList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;currList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getPjPchsOrderDetailChkById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjPchsOrderDetailChkById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getPjPchsOrderDetailChkById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.part.data.pts.PjPchsOrderDetailChk[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getPjSellOutDetailChkById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjSellOutDetailChkById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getPjSellOutDetailChkById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.part.data.pts.PjOutDetailChk[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.queryPjSellOutDetailList(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjSellOutDetailList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.queryPjSellOutDetailList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjSellOutDetailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.queryPjShiftOrderDetailList(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjShiftOrderDetailList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.queryPjShiftOrderDetailList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getPjStockCheckDetailById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjStockCheckDetailById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getPjStockCheckDetailById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.part.data.pts.PjStockCheckDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.queryPjSellOutDetailByMainId(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjSellOutDetailByMainId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.queryPjSellOutDetailByMainId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjSellOutDetailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.queryPjInvoing(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjInvoing&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjInvoing&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.queryPjInvoing&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.queryPjSellOrderDetailList(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjSellOrderDetailList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.queryPjSellOrderDetailList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjSellOrderDetailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.queryPjEnterDetailByMainId(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjEnterDetailByMainId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.queryPjEnterDetailByMainId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjEnterDetailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getSellOrderStockOutByMainId(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getSellOrderStockOutByMainId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getSellOrderStockOut&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getSellOrderStockOutByMainId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.part.data.pts.PjSellOrderDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.queryInventoryDetailList(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryInventoryDetailList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryInventoryDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.queryInventoryDetailList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;beginList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;endList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;currList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getPjPchsOrderMainChkById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjPchsOrderMainChkById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderMainById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getPjPchsOrderMainChkById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.pts.PjPchsOrderMainChk):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.queryPjStockCheckDetailList(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjStockCheckDetailList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.queryPjStockCheckDetailList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getPjStockShiftMainById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjStockShiftMainById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderMainById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getPjStockShiftMainById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.pts.PjStockShiftMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getPjEnterMainChkById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjEnterMainChkById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderMainById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getPjEnterMainChkById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.pts.PjEnterMainChk):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.queryPjProductMainList(com.eos.foundation.PageCond, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjProductMainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.queryPjProductMainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getPjSellOutMainById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjSellOutMainById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderMainById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getPjSellOutMainById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.pts.PjOutMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.queryPjSellOrPchsOrderMainChkList(com.eos.foundation.PageCond, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjSellOrPchsOrderMainChkList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.queryPjSellOrPchsOrderMainChkList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;orderTypeId&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getPjSellOrderDetailChkById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjSellOrderDetailChkById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getPjSellOrderDetailChkById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.part.data.pts.PjSellOrderDetailChk[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>svr</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;svr.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;svr&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getPjProductMainById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjProductMainById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderMainById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getPjProductMainById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.pts.PjProductEnterMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getSellOutStockOutByMainId(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getSellOutStockOutByMainId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getSellOrderStockOut&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getSellOutStockOutByMainId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.part.data.pts.PjOutDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.queryPjPchsOrderDetailList(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.queryPjPchsOrderDetailList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjPchsOrderDetailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.getPjStockCheckDetailByIdAndDc(Long, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjStockCheckDetailByIdAndDc&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.getPjStockCheckDetailByIdAndDc&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dc(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.part.data.pts.PjStockCheckDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.queryTurnOverCount(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryTurnOverCount&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryTurnOverCount&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.queryTurnOverCount&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.queryPjPchsOrderMainList(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.queryPjPchsOrderMainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjPchsOrderMainList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.svr.queryPjShiftOrderMainList(com.eos.foundation.PageCond, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjShiftOrderMainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.svr.queryPjShiftOrderMainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

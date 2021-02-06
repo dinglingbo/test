@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.system.dataProcessing.wbCrm">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
+    <!--电销客户资料表   删除wb_crm.crm_guest-->
+    <delete id="deleteCrmGuest" parameterClass="HashMap">DELETE wb_crm.crm_guest  FROM wb_crm.crm_guest
+ 			where wb_crm.crm_guest.orgid = #orgid#</delete>
+    <!--回访资料表   删除wb_crm.crm_visit_data-->
+    <delete id="deleteCrmVisitData" parameterClass="HashMap">DELETE wb_crm.crm_visit_data FROM wb_crm.crm_visit_data
+ 			where wb_crm.crm_visit_data.orgid = #orgid#</delete>
+    <!--回访记录表  删除wb_crm.crm_visit_record-->
+    <delete id="deleteCrmVisitRecord" parameterClass="HashMap">DELETE wb_crm.crm_visit_record  FROM wb_crm.crm_visit_record
+ 			where wb_crm.crm_visit_record.orgid = #orgid#</delete>
+</sqlMap>

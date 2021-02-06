@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Require-Bundle: 
+Bundle-Vendor: localhost
+eos-webCtxPath: cw
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsweb.cw
+Bundle-Description: 
+Bundle-SymbolicName: com.hsweb.cw
+

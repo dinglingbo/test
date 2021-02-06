@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.part.data.system.OrgOrganization" table="ORG_ORGANIZATION">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="orgid" type="int">
+            <column length="10" name="ORGID"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgcode" type="string">
+            <column length="32" name="ORGCODE" not-null="true"/>
+        </property>
+        <property name="orgname" type="string">
+            <column length="64" name="ORGNAME"/>
+        </property>
+        <property name="orglevel" type="int">
+            <column default="1" length="2" name="ORGLEVEL"/>
+        </property>
+        <property name="orgdegree" type="string">
+            <column length="255" name="ORGDEGREE"/>
+        </property>
+        <property name="orgseq" type="string">
+            <column length="512" name="ORGSEQ"/>
+        </property>
+        <property name="orgtype" type="string">
+            <column length="12" name="ORGTYPE"/>
+        </property>
+        <property name="orgaddr" type="string">
+            <column length="256" name="ORGADDR"/>
+        </property>
+        <property name="zipcode" type="string">
+            <column length="10" name="ZIPCODE"/>
+        </property>
+        <property name="manaposition" type="int">
+            <column length="10" name="MANAPOSITION"/>
+        </property>
+        <property name="managerid" type="int">
+            <column length="10" name="MANAGERID"/>
+        </property>
+        <property name="orgmanager" type="string">
+            <column length="128" name="ORGMANAGER"/>
+        </property>
+        <property name="linkman" type="string">
+            <column length="30" name="LINKMAN"/>
+        </property>
+        <property name="linktel" type="string">
+            <column length="20" name="LINKTEL"/>
+        </property>
+        <property name="email" type="string">
+            <column length="128" name="EMAIL"/>
+        </property>
+        <property name="weburl" type="string">
+            <column length="512" name="WEBURL"/>
+        </property>
+        <property name="startdate" type="date">
+            <column name="STARTDATE"/>
+        </property>
+        <property name="enddate" type="date">
+            <column name="ENDDATE"/>
+        </property>
+        <property name="status" type="string">
+            <column length="255" name="STATUS"/>
+        </property>
+        <property name="area" type="string">
+            <column length="30" name="AREA"/>
+        </property>
+        <property name="createtime" type="timestamp">
+            <column name="CREATETIME" not-null="true"/>
+        </property>
+        <property name="lastupdate" type="timestamp">
+            <column name="LASTUPDATE" not-null="true"/>
+        </property>
+        <property name="updator" type="int">
+            <column length="10" name="UPDATOR"/>
+        </property>
+        <property name="sortno" type="int">
+            <column length="10" name="SORTNO"/>
+        </property>
+        <property name="isleaf" type="string">
+            <column length="1" name="ISLEAF"/>
+        </property>
+        <property name="subcount" type="int">
+            <column length="10" name="SUBCOUNT"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="512" name="REMARK"/>
+        </property>
+        <property name="tenantId" type="string">
+            <column length="64" name="TENANT_ID" not-null="true"/>
+        </property>
+        <property name="appId" type="string">
+            <column length="64" name="APP_ID"/>
+        </property>
+        <property name="parentorgid" type="int">
+            <column length="10" name="PARENTORGID"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.repair.repairService.updateSql">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="select_id" parameterMap="parameterMap" resultMap="resultMap">
+    </select>
+    <update id="updateItemQuoteStatus" parameterClass="java.util.HashMap">Update rps_item_quote set status = 1, modifier = #userName#, modify_date = now() Where service_id = #serviceId# and package_id is null</update>
+    <update id="updateItemQuoteStatusPkg" parameterClass="java.util.HashMap">Update rps_item_quote set status = 1, modifier = #userName#, modify_date = now() Where package_id = #packageId#</update>
+    <update id="updatePartQuoteStatusPkg" parameterClass="java.util.HashMap">Update rps_part_quote set status = 1, modifier = #userName#, modify_date = now() Where package_id = #packageId#</update>
+    <!--20180905作废，套餐在新增和修改时已经保证数据统一；不用重新汇总套餐金额-->
+    <update id="updatePackageAmt" parameterClass="java.util.HashMap">update rps_package a
+		inner join (
+			select sum(ifnull(amt,0)) sumAmt, sum(ifnull(discount_amt,0)) sumtDiscountAmt,
+		         bill_package_id as packageId, service_id as serviceId
+		  from rps_item
+			where service_id = #serviceId# and package_id &gt; 0
+			group by bill_package_id, service_id
+		) b
+		on a.id = b.packageId and a.service_id = b.serviceId
+		inner join (
+			select sum(ifnull(amt,0)) sumAmt, sum(ifnull(discount_amt,0)) sumtDiscountAmt,
+		         bill_package_id as packageId, service_id as serviceId
+		  from rps_part
+			where service_id = #serviceId# and package_id &gt; 0
+			group by bill_package_id, service_id
+		) c
+		on a.id = c.packageId and a.service_id = c.serviceId
+		set a.amt = ifnull(b.sumAmt,0) + ifnull(c.sumAmt,0),
+		    a.discount_amt = ifnull(b.sumtDiscountAmt,0) + ifnull(c.sumtDiscountAmt,0),
+		    a.subtotal = ifnull(b.sumAmt,0) + ifnull(c.sumAmt,0) - ifnull(b.sumtDiscountAmt,0) - ifnull(c.sumtDiscountAmt,0)
+		where a.service_id = #serviceId#</update>
+    <!--套餐的优惠率修改后，更新工时的优惠信息-->
+    <update id="updateRpsItem" parameterClass="java.util.HashMap">update rps_item set rate = #rate#, discount_amt = amt * 1.0 * #rate#, subtotal = amt * (1.0 - #rate#)
+		where bill_package_id = #billPackageId#</update>
+    <!--套餐的优惠率修改后，更新配件的优惠信息-->
+    <update id="updateRpsPart" parameterClass="java.util.HashMap">update rps_part set rate = #rate#, discount_amt = amt * 1.0 * #rate#, subtotal = amt * (1.0 - #rate#)
+		where bill_package_id = #billPackageId#</update>
+    <update id="updateCardTimesFinish" parameterClass="java.util.HashMap">update rps_card_times set is_finish = 1 , modifier = #modifier#, modify_date = SYSDATE()
+		where car_id = #carId#   and is_finish = 0
+        and not exists(select 1 from rps_card_times_detail a 
+        where rps_card_times.id = a.main_id and a.is_finish = 0 and rps_card_times.car_id = #carId#  )</update>
+    <update id="reverseCardTimesFinish" parameterClass="java.util.HashMap">update rps_card_times set is_finish = 0 , modifier = #modifier#, modify_date = SYSDATE()
+		where car_id = #carId#   and is_finish = 1
+        and exists(select 1 from rps_card_times_detail a 
+        where rps_card_times.id = a.main_id and a.is_finish = 0 and rps_card_times.car_id = #carId#  )</update>
+    <delete id="deleteRepairRecord" parameterClass="java.util.HashMap">Delete from rps_repair_record where service_id = #serviceId#</delete>
+    <delete id="deleteRpsSettlementByServiceId" parameterClass="java.util.HashMap">DELETE FROM rps_settlement WHERE service_id = #serviceId#</delete>
+    <delete id="deleteRpsItemBillByServiceId" parameterClass="java.util.HashMap">DELETE FROM rps_item_bill WHERE service_id = #serviceId#</delete>
+    <delete id="deleteRpsPartBillByServiceId" parameterClass="java.util.HashMap">Delete from rps_part_bill where service_id = #serviceId#</delete>
+    <delete id="deleteRpsItemWorkersByPackageId" parameterClass="java.util.HashMap">DELETE a from rps_item_workers a
+		inner join rps_item b
+		on a.main_id = b.id
+		inner join rps_package c
+		on b.bill_package_id = c.id 
+		where c.service_id = #packageId#</delete>
+    <update id="resetRpsItem" parameterClass="java.util.HashMap">Update rps_item set rate = 0, discount_amt = 0, subtotal = amt where service_id = #serviceId#</update>
+    <update id="resetRpsPart" parameterClass="java.util.HashMap">Update rps_part set rate = 0, discount_amt = 0, subtotal = amt where service_id = #serviceId#</update>
+    <!--需要判断是否存在不能优惠的套餐-->
+    <update id="setPkgRateBatch" parameterClass="java.util.HashMap">update rps_package a set a.rate = #rate#, a.discount_amt = a.amt * #rate#, a.subtotal = a.amt * (1.0 - #rate#)
+		where service_id = #serviceId# and card_detail_id = 0
+              and exists(select 1 from rpb_package b where a.package_id = b.id and ifnull(b.is_can_rate,0) = 1)</update>
+    <update id="setPkgItemRateBatch" parameterClass="java.util.HashMap">update rps_item  a
+		inner join rps_package b
+		on a.bill_package_id = b.id
+		set a.rate = #rate#, a.discount_amt = a.amt * #rate#, a.subtotal = a.amt * (1.0 - #rate#)
+		where a.service_id = #serviceId# and a.bill_package_id &gt; 0 and a.card_detail_id = 0
+	          and exists(select 1 from rpb_package c where b.package_id = c.id and ifnull(c.is_can_rate,0) = 1)</update>
+    <update id="setPkgPartRateBatch" parameterClass="java.util.HashMap">update rps_part   a
+		inner join rps_package b
+		on a.bill_package_id = b.id
+		set a.rate = #rate#, a.discount_amt = a.amt * #rate#, a.subtotal = a.amt * (1.0 - #rate#)
+		where a.service_id = #serviceId# and a.bill_package_id &gt; 0 and a.card_detail_id = 0
+	          and exists(select 1 from rpb_package c where b.package_id = c.id and ifnull(c.is_can_rate,0) = 1)</update>
+    <update id="setItemRateBatch" parameterClass="java.util.HashMap">update rps_item set rate = #rate#, discount_amt = amt * #rate#, subtotal = amt * (1.0 - #rate#)
+		where service_id = #serviceId# and bill_package_id = 0 and card_detail_id = 0</update>
+    <update id="setPartRateBatch" parameterClass="java.util.HashMap">update rps_part set rate = #rate#, discount_amt = amt * #rate#, subtotal = amt * (1.0 - #rate#)
+		where service_id = #serviceId# and bill_package_id = 0 and card_detail_id = 0</update>
+    <update id="setPkgItemServiceType" parameterClass="java.util.HashMap">update rps_package a
+		inner join rps_item b
+		on a.id = b.bill_package_id
+		set b.service_type_id = a.service_type_id
+		where a.service_id = #serviceId# and b.service_id = #serviceId#</update>
+    <update id="setPkgPartServiceType" parameterClass="java.util.HashMap">update rps_package a
+		inner join rps_part b
+		on a.id = b.bill_package_id
+		set b.service_type_id = a.service_type_id
+		where a.service_id = #serviceId# and b.service_id = #serviceId#</update>
+    <update id="setItemPartServiceType" parameterClass="java.util.HashMap">update rps_item a
+		inner join rps_part b
+		on a.id = b.bill_item_id
+		set b.service_type_id = a.service_type_id
+		where a.service_id = #serviceId# and b.service_id = #serviceId#
+		      and a.bill_package_id = 0</update>
+    <update id="updateItemFinish" parameterClass="java.util.HashMap">update rps_item set `status` = 1, finish_date = SYSDATE(),
+                    		modifier = #modifier#, modify_date = SYSDATE()
+        where id = #detailId# and service_id = #serviceId# and `status` = 0</update>
+    <update id="updateItemBack" parameterClass="java.util.HashMap">update rps_item set `status` = 0, finish_date = null, is_back = 1, back_times = ifnull(back_times,0) + 1,
+		                    modifier = #modifier#, modify_date = SYSDATE()
+		where id = #detailId# and service_id = #serviceId# and `status` = 1</update>
+    <update id="updateItemWorkers" parameterClass="java.util.HashMap">
+		update rps_item set worker_ids = #workerIds#, workers = #workers#, 
+		                    modifier = #modifier#, modify_date = SYSDATE(),
+		                    plan_finish_date = #planFinishDate#
+		where service_id = #serviceId# 
+			<isNotEmpty prepend="" property="type">
+            <isEqual compareValue="package" prepend="and" property="type">ifnull(bill_package_id, 0) &gt; 0</isEqual>
+            <isEqual compareValue="item" prepend="and" property="type">ifnull(bill_package_id, 0) = 0</isEqual>
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="serviceTypeIds">(service_type_id in ($serviceTypeIds$))</isNotEmpty>
+    </update>
+    <update id="deleteItemWorkers" parameterClass="java.util.HashMap">
+		DELETE a
+		from rps_item_workers a
+		inner join rps_item b
+		on a.main_id = b.id
+		where b.service_id = #serviceId#
+
+			<isNotEmpty prepend="" property="type">
+            <isEqual compareValue="package" prepend="and" property="type">ifnull(b.bill_package_id, 0) &gt; 0</isEqual>
+            <isEqual compareValue="item" prepend="and" property="type">ifnull(b.bill_package_id, 0) = 0</isEqual>
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="serviceTypeIds">(b.service_type_id in ($serviceTypeIds$))</isNotEmpty>
+    </update>
+    <delete id="deleteDeductZero" parameterClass="java.util.HashMap">DELETE from rps_deduct_prdt_detail 
+		where service_id = #serviceId# and service_code = #serviceCode# 
+		      and ifnull(deduct_worker_value,0) = 0</delete>
+    <update id="updateCon" parameterClass="com.hsapi.repair.data.crm.CrmVisitRecord">
+	
+			UPDATE wb_repair.rpb_contactor  set 
+			
+					 <isEqual compareValue="10" prepend="" property="serviceType">is_bir_remind = 0, bir_status = 1</isEqual>
+        <isEqual compareValue="8" prepend="" property="serviceType">is_license_remind = 0, license_status = 1</isEqual>
+		
+		where  id = #guestId#
+			
+		</update>
+    <update id="updateCarExtend" parameterClass="com.hsapi.repair.data.crm.CrmVisitRecord">
+					UPDATE wb_repair.rpb_car_extend set 
+					<isEqual compareValue="5" prepend="" property="serviceType">is_need_remind = 0, remind_status = 1</isEqual>
+        <isEqual compareValue="6" prepend="" property="serviceType">is_annual_remind = 0, annual_status = 1</isEqual>
+        <isEqual compareValue="7" prepend="" property="serviceType">is_insure_remind = 0, insure_status = 1</isEqual>
+        <isEqual compareValue="9" prepend="" property="serviceType">is_veri_remind = 0, veri_status = 1</isEqual>
+					where car_id = #carId#
+		</update>
+    <update id="updateCrmVisitData" parameterClass="com.hsapi.repair.data.crm.CrmVisitRecord">UPDATE wb_crm.crm_visit_data set  `status` =1
+					where id =#mainId#</update>
+</sqlMap>

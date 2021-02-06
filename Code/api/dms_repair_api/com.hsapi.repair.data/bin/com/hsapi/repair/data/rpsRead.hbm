@@ -1,0 +1,2836 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsClaimsItem" table="rps_claims_item">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="claimId" type="int">
+            <column name="claim_id" not-null="true"/>
+        </property>
+        <property name="itemId" type="string">
+            <column length="20" name="item_id" not-null="true"/>
+        </property>
+        <property name="itemCode" type="string">
+            <column length="20" name="item_code"/>
+        </property>
+        <property name="itemName" type="string">
+            <column length="100" name="item_name"/>
+        </property>
+        <property name="itemKind" type="string">
+            <column length="20" name="item_kind"/>
+        </property>
+        <property name="amt" type="big_decimal">
+            <column default="0.00" length="18" name="amt" precision="18" scale="2"/>
+        </property>
+        <property name="className" type="string">
+            <column length="20" name="class_name"/>
+        </property>
+        <property name="worker" type="string">
+            <column length="20" name="worker"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="1000" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsClaimsMain" table="rps_claims_main">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="serviceId" type="int">
+            <column name="service_id"/>
+        </property>
+        <property name="serviceCode" type="string">
+            <column length="20" name="service_code"/>
+        </property>
+        <property name="claimsType" type="string">
+            <column length="20" name="claims_type"/>
+        </property>
+        <property name="isSettle" type="short">
+            <column name="is_settle"/>
+        </property>
+        <property name="clientDescription" type="string">
+            <column length="1" name="client_description"/>
+        </property>
+        <property name="processDescription" type="string">
+            <column length="1" name="process_description"/>
+        </property>
+        <property name="precautions" type="string">
+            <column length="1" name="precautions"/>
+        </property>
+        <property name="itemAmt" type="big_decimal">
+            <column default="0.00" length="18" name="item_amt" precision="18" scale="2"/>
+        </property>
+        <property name="partAmt" type="big_decimal">
+            <column default="0.00" length="18" name="part_amt" precision="18" scale="2"/>
+        </property>
+        <property name="agioAmt" type="big_decimal">
+            <column default="0.00" length="18" name="agio_amt" precision="18" scale="2"/>
+        </property>
+        <property name="otherAmt" type="big_decimal">
+            <column default="0.00" length="18" name="other_amt" precision="18" scale="2"/>
+        </property>
+        <property name="balanceAmt" type="big_decimal">
+            <column default="0.00" length="18" name="balance_amt" precision="18" scale="2"/>
+        </property>
+        <property name="jdDeductAmt" type="big_decimal">
+            <column default="0.00" length="18" name="jd_deduct_amt" precision="18" scale="2"/>
+        </property>
+        <property name="bjDeductAmt" type="big_decimal">
+            <column default="0.00" length="18" name="bj_deduct_amt" precision="18" scale="2"/>
+        </property>
+        <property name="pqDeductAmt" type="big_decimal">
+            <column default="0.00" length="18" name="pq_deduct_amt" precision="18" scale="2"/>
+        </property>
+        <property name="lostAmt" type="big_decimal">
+            <column default="0.00" length="18" name="lost_amt" precision="18" scale="2"/>
+        </property>
+        <property name="partAudit" type="short">
+            <column default="0" name="part_audit"/>
+        </property>
+        <property name="partAuditdate" type="timestamp">
+            <column name="part_auditdate"/>
+        </property>
+        <property name="partAuditor" type="string">
+            <column length="20" name="part_auditor"/>
+        </property>
+        <property name="state" type="short">
+            <column name="state"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="200" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsClaimsPart" table="rps_claims_part">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="claimId" type="int">
+            <column name="claim_id"/>
+        </property>
+        <property name="partId" type="string">
+            <column length="20" name="part_id"/>
+        </property>
+        <property name="partCode" type="string">
+            <column length="50" name="part_code"/>
+        </property>
+        <property name="partName" type="string">
+            <column length="100" name="part_name"/>
+        </property>
+        <property name="qty" type="big_decimal">
+            <column length="18" name="qty" precision="18" scale="2"/>
+        </property>
+        <property name="unitPrice" type="big_decimal">
+            <column length="18" name="unit_price" precision="18" scale="2"/>
+        </property>
+        <property name="amt" type="big_decimal">
+            <column length="18" name="amt" precision="18" scale="2"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="1000" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsClaimsRepairOut" table="rps_claims_repair_out">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="claimId" type="int">
+            <column name="claim_id" not-null="true"/>
+        </property>
+        <property name="repairOutId" type="int">
+            <column name="repair_out_id" not-null="true"/>
+        </property>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="sourceId" type="int">
+            <column name="source_id"/>
+        </property>
+        <property name="rootId" type="int">
+            <column name="root_id"/>
+        </property>
+        <property name="serviceId" type="int">
+            <column name="service_id"/>
+        </property>
+        <property name="carId" type="int">
+            <column name="car_id"/>
+        </property>
+        <property name="carNo" type="string">
+            <column length="15" name="car_no"/>
+        </property>
+        <property name="partId" type="int">
+            <column name="part_id"/>
+        </property>
+        <property name="partCode" type="string">
+            <column length="50" name="part_code"/>
+        </property>
+        <property name="partName" type="string">
+            <column length="100" name="part_name"/>
+        </property>
+        <property name="unit" type="string">
+            <column length="10" name="unit"/>
+        </property>
+        <property name="qty" type="big_decimal">
+            <column length="18" name="qty" precision="18" scale="2"/>
+        </property>
+        <property name="costPrice" type="big_decimal">
+            <column length="18" name="cost_price" precision="18" scale="2"/>
+        </property>
+        <property name="costAmt" type="big_decimal">
+            <column length="18" name="cost_amt" precision="18" scale="2"/>
+        </property>
+        <property name="sellPrice" type="big_decimal">
+            <column length="18" name="sell_price" precision="18" scale="2"/>
+        </property>
+        <property name="sellAmt" type="big_decimal">
+            <column length="18" name="sell_amt" precision="18" scale="2"/>
+        </property>
+        <property name="backPrice" type="big_decimal">
+            <column length="18" name="back_price" precision="18" scale="2"/>
+        </property>
+        <property name="backAmt" type="big_decimal">
+            <column length="18" name="back_amt" precision="18" scale="2"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsFalseBill" table="rps_false_bill">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="serviceId" type="string">
+            <column length="20" name="service_id"/>
+        </property>
+        <property name="orgid" type="big_decimal">
+            <column length="10" name="orgid" not-null="true" precision="10" scale="0"/>
+        </property>
+        <property name="guestId" type="string">
+            <column length="20" name="guest_id"/>
+        </property>
+        <property name="contactorId" type="string">
+            <column length="20" name="contactor_id"/>
+        </property>
+        <property name="carId" type="string">
+            <column length="20" name="car_id"/>
+        </property>
+        <property name="carNo" type="string">
+            <column length="15" name="car_no"/>
+        </property>
+        <property name="quoteId" type="string">
+            <column length="20" name="quote_id"/>
+        </property>
+        <property name="quoteDate" type="timestamp">
+            <column name="quote_date"/>
+        </property>
+        <property name="itemTotalAmt" type="big_decimal">
+            <column default="0.00" length="18" name="item_total_amt" precision="18" scale="2"/>
+        </property>
+        <property name="itemFreeAmt" type="big_decimal">
+            <column default="0.00" length="18" name="item_free_amt" precision="18" scale="2"/>
+        </property>
+        <property name="itemAmt" type="big_decimal">
+            <column default="0.00" length="18" name="item_amt" precision="18" scale="2"/>
+        </property>
+        <property name="itemPrefRate" type="big_decimal">
+            <column length="18" name="item_pref_rate" precision="18" scale="2"/>
+        </property>
+        <property name="itemPrefAmt" type="big_decimal">
+            <column length="18" name="item_pref_amt" precision="18" scale="2"/>
+        </property>
+        <property name="itemSubtotal" type="big_decimal">
+            <column length="18" name="item_subtotal" precision="18" scale="2"/>
+        </property>
+        <property name="partTotalAmt" type="big_decimal">
+            <column length="18" name="part_total_amt" precision="18" scale="2"/>
+        </property>
+        <property name="partFreeAmt" type="big_decimal">
+            <column length="18" name="part_free_amt" precision="18" scale="2"/>
+        </property>
+        <property name="partAmt" type="big_decimal">
+            <column length="18" name="part_amt" precision="18" scale="2"/>
+        </property>
+        <property name="partPrefRate" type="big_decimal">
+            <column length="18" name="part_pref_rate" precision="18" scale="2"/>
+        </property>
+        <property name="partPrefAmt" type="big_decimal">
+            <column length="18" name="part_pref_amt" precision="18" scale="2"/>
+        </property>
+        <property name="partSubtotal" type="big_decimal">
+            <column length="18" name="part_subtotal" precision="18" scale="2"/>
+        </property>
+        <property name="mtAmt" type="big_decimal">
+            <column length="18" name="mt_amt" precision="18" scale="2"/>
+        </property>
+        <property name="allowanceAmt" type="big_decimal">
+            <column length="18" name="allowance_amt" precision="18" scale="2"/>
+        </property>
+        <property name="allowanceRemark" type="string">
+            <column length="100" name="allowance_remark"/>
+        </property>
+        <property name="freePrefAllowanceAmt" type="big_decimal">
+            <column length="18" name="free_pref_allowance_amt" precision="18" scale="2"/>
+        </property>
+        <property name="partManageExp" type="big_decimal">
+            <column length="18" name="part_manage_exp" precision="18" scale="2"/>
+        </property>
+        <property name="materialExp" type="big_decimal">
+            <column length="18" name="material_exp" precision="18" scale="2"/>
+        </property>
+        <property name="otherExp" type="big_decimal">
+            <column length="18" name="other_exp" precision="18" scale="2"/>
+        </property>
+        <property name="totalPrefRate" type="big_decimal">
+            <column length="18" name="total_pref_rate" precision="18" scale="2"/>
+        </property>
+        <property name="totalPrefAmt" type="big_decimal">
+            <column length="18" name="total_pref_amt" precision="18" scale="2"/>
+        </property>
+        <property name="balaAmt" type="big_decimal">
+            <column length="18" name="bala_amt" precision="18" scale="2"/>
+        </property>
+        <property name="billAmt" type="big_decimal">
+            <column length="18" name="bill_amt" precision="18" scale="2"/>
+        </property>
+        <property name="serviceTypeId" type="string">
+            <column length="20" name="service_type_id"/>
+        </property>
+        <property name="mtType" type="string">
+            <column length="20" name="mt_type"/>
+        </property>
+        <property name="faultLevel" type="string">
+            <column length="20" name="fault_level"/>
+        </property>
+        <property name="guestDesc" type="string">
+            <column length="800" name="guest_desc"/>
+        </property>
+        <property name="faultPhen" type="string">
+            <column length="800" name="fault_phen"/>
+        </property>
+        <property name="solveMethod" type="string">
+            <column length="800" name="solve_method"/>
+        </property>
+        <property name="enterDate" type="timestamp">
+            <column name="enter_date"/>
+        </property>
+        <property name="enterKilometers" type="short">
+            <column name="enter_kilometers"/>
+        </property>
+        <property name="enterOilMass" type="string">
+            <column length="10" name="enter_oil_mass"/>
+        </property>
+        <property name="mtAdvisorId" type="string">
+            <column length="20" name="mt_advisor_id"/>
+        </property>
+        <property name="mtAdvisor" type="string">
+            <column length="20" name="mt_advisor"/>
+        </property>
+        <property name="mtAdvisorAssist" type="string">
+            <column length="20" name="mt_advisor_assist"/>
+        </property>
+        <property name="status" type="short">
+            <column default="0" name="status"/>
+        </property>
+        <property name="sureMtSign" type="short">
+            <column default="0" name="sure_mt_sign"/>
+        </property>
+        <property name="sureMtDate" type="timestamp">
+            <column name="sure_mt_date"/>
+        </property>
+        <property name="sureMtMan" type="string">
+            <column length="20" name="sure_mt_man"/>
+        </property>
+        <property name="planFinishDate" type="timestamp">
+            <column name="plan_finish_date"/>
+        </property>
+        <property name="checker" type="string">
+            <column length="20" name="checker"/>
+        </property>
+        <property name="checkSign" type="short">
+            <column default="0" name="check_sign"/>
+        </property>
+        <property name="checkDate" type="timestamp">
+            <column name="check_date"/>
+        </property>
+        <property name="drawOutReport" type="string">
+            <column length="2000" name="draw_out_report"/>
+        </property>
+        <property name="outBillSign" type="short">
+            <column default="0" name="out_bill_sign"/>
+        </property>
+        <property name="outDate" type="timestamp">
+            <column name="out_date"/>
+        </property>
+        <property name="insureCompCode" type="string">
+            <column length="20" name="insure_comp_code"/>
+        </property>
+        <property name="supplement" type="string">
+            <column length="255" name="supplement"/>
+        </property>
+        <property name="position" type="string">
+            <column length="2000" name="position"/>
+        </property>
+        <property name="goods" type="string">
+            <column length="255" name="goods"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="100" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsFalseDetail" table="rps_false_detail">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <composite-id>
+            <key-property name="serviceId" type="int">
+                <column name="service_id"/>
+            </key-property>
+            <key-property name="itemId" type="string">
+                <column length="20" name="item_id"/>
+            </key-property>
+            <key-property name="itemType" type="short">
+                <column default="0" name="item_type"/>
+            </key-property>
+        </composite-id>
+        <property name="packageId" type="string">
+            <column length="20" name="package_id"/>
+        </property>
+        <property name="itemCode" type="string">
+            <column length="20" name="item_code"/>
+        </property>
+        <property name="itemName" type="string">
+            <column length="100" name="item_name"/>
+        </property>
+        <property name="receTypeId" type="string">
+            <column length="20" name="rece_type_id"/>
+        </property>
+        <property name="itemKind" type="string">
+            <column length="20" name="item_kind"/>
+        </property>
+        <property name="itemTime" type="big_decimal">
+            <column length="18" name="item_time" precision="18" scale="2"/>
+        </property>
+        <property name="unitPrice" type="big_decimal">
+            <column length="18" name="unit_price" precision="18" scale="2"/>
+        </property>
+        <property name="amt" type="big_decimal">
+            <column length="18" name="amt" precision="18" scale="2"/>
+        </property>
+        <property name="unit" type="string">
+            <column length="10" name="unit"/>
+        </property>
+        <property name="rate" type="big_decimal">
+            <column length="18" name="rate" precision="18" scale="2"/>
+        </property>
+        <property name="discountAmt" type="big_decimal">
+            <column length="18" name="discount_amt" precision="18" scale="2"/>
+        </property>
+        <property name="subtotal" type="big_decimal">
+            <column length="18" name="subtotal" precision="18" scale="2"/>
+        </property>
+        <property name="status" type="short">
+            <column default="0" name="status"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="100" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsFaultMethod" table="rps_fault_method">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="carBrandId" type="string">
+            <column length="20" name="car_brand_id"/>
+        </property>
+        <property name="carSeriesId" type="string">
+            <column length="20" name="car_series_id"/>
+        </property>
+        <property name="carModelId" type="string">
+            <column length="20" name="car_model_id"/>
+        </property>
+        <property name="systemType" type="string">
+            <column length="10" name="system_type"/>
+        </property>
+        <property name="faultPhen" type="string">
+            <column length="800" name="fault_phen"/>
+        </property>
+        <property name="faultName" type="string">
+            <column length="100" name="fault_name"/>
+        </property>
+        <property name="faultType" type="string">
+            <column length="10" name="fault_type"/>
+        </property>
+        <property name="method" type="string">
+            <column length="800" name="method"/>
+        </property>
+        <property name="mainPartId" type="string">
+            <column length="20" name="main_part_id"/>
+        </property>
+        <property name="itemTime" type="big_decimal">
+            <column length="18" name="item_time" precision="18" scale="2"/>
+        </property>
+        <property name="amt" type="big_decimal">
+            <column length="18" name="amt" precision="18" scale="2"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="100" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsGuestImportLogs" table="rps_guest_import_logs">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="isupdate" type="short">
+            <column default="0" name="isupdate"/>
+        </property>
+        <property name="totalcount" type="int">
+            <column name="totalcount"/>
+        </property>
+        <property name="failurecount" type="int">
+            <column name="failurecount"/>
+        </property>
+        <property name="effective" type="int">
+            <column name="effective"/>
+        </property>
+        <property name="maxclientcode" type="int">
+            <column name="maxclientcode"/>
+        </property>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordeDate" type="timestamp">
+            <column name="recorde_date" not-null="true"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsGuestLost" table="rps_guest_lost">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="currentYear" type="int">
+            <column name="current_year"/>
+        </property>
+        <property name="currentMonth" type="int">
+            <column name="current_month"/>
+        </property>
+        <property name="currentDay" type="int">
+            <column name="current_day"/>
+        </property>
+        <property name="beginPeriodQty" type="int">
+            <column name="begin_period_qty"/>
+        </property>
+        <property name="endPeriodQty" type="int">
+            <column name="end_period_qty"/>
+        </property>
+        <property name="flowInQty" type="int">
+            <column name="flow_in_qty"/>
+        </property>
+        <property name="flowOutQty" type="int">
+            <column name="flow_out_qty"/>
+        </property>
+        <property name="flowBackQty" type="int">
+            <column name="flow_back_qty"/>
+        </property>
+        <property name="newQty" type="int">
+            <column name="new_qty"/>
+        </property>
+        <property name="beginPeriodLostQty" type="int">
+            <column name="begin_period_lost_qty"/>
+        </property>
+        <property name="endPeriodLostQty" type="int">
+            <column name="end_period_lost_qty"/>
+        </property>
+        <property name="lostQty" type="int">
+            <column name="lost_qty"/>
+        </property>
+        <property name="lostRate" type="big_decimal">
+            <column length="18" name="lost_rate" precision="18" scale="2"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordeDate" type="timestamp">
+            <column name="recorde_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsInsuranceMain" table="rps_insurance_main">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="serviceCode" type="string">
+            <column length="20" name="service_code" not-null="true"/>
+        </property>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="orderType" type="short">
+            <column name="order_type" not-null="true"/>
+        </property>
+        <property name="orderId" type="int">
+            <column name="order_id"/>
+        </property>
+        <property name="guestId" type="int">
+            <column name="guest_id" not-null="true"/>
+        </property>
+        <property name="carId" type="int">
+            <column name="car_id"/>
+        </property>
+        <property name="insuranceMan" type="string">
+            <column length="20" name="insurance_man"/>
+        </property>
+        <property name="mobile" type="string">
+            <column length="20" name="mobile"/>
+        </property>
+        <property name="buyDate" type="timestamp">
+            <column name="buy_date"/>
+        </property>
+        <property name="insuranceType" type="string">
+            <column length="20" name="insurance_type"/>
+        </property>
+        <property name="insuranceCommissioner" type="string">
+            <column length="20" name="insurance_commissioner"/>
+        </property>
+        <property name="insuranceSaliNo" type="string">
+            <column length="50" name="insurance_sali_no"/>
+        </property>
+        <property name="insuranceSaliComany" type="int">
+            <column name="insurance_sali_comany"/>
+        </property>
+        <property name="insuranceSaliDate" type="timestamp">
+            <column name="insurance_sali_date"/>
+        </property>
+        <property name="insuranceSaliDue" type="timestamp">
+            <column name="insurance_sali_due"/>
+        </property>
+        <property name="insuranceSaliContent" type="string">
+            <column length="500" name="insurance_sali_content"/>
+        </property>
+        <property name="insuranceBizNo" type="string">
+            <column length="50" name="insurance_biz_no"/>
+        </property>
+        <property name="insuranceBizComany" type="int">
+            <column name="insurance_biz_comany"/>
+        </property>
+        <property name="insuranceBizDate" type="timestamp">
+            <column name="insurance_biz_date"/>
+        </property>
+        <property name="insuranceBizDue" type="timestamp">
+            <column name="insurance_biz_due"/>
+        </property>
+        <property name="insuranceBizContent" type="string">
+            <column length="500" name="insurance_biz_content"/>
+        </property>
+        <property name="insuranceAmt" type="big_decimal">
+            <column default="0.00" length="18" name="insurance_amt" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="insuranceSaliAmt" type="big_decimal">
+            <column default="0.00" length="18" name="insurance_sali_amt" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="insuranceBizAmt" type="big_decimal">
+            <column default="0.00" length="18" name="insurance_biz_amt" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="carBoartTax" type="big_decimal">
+            <column default="0.00" length="18" name="car_boart_tax" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="insuranceSaliRate" type="big_decimal">
+            <column default="0.00" length="18" name="insurance_sali_rate" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="insuranceBizRate" type="big_decimal">
+            <column default="0.00" length="18" name="insurance_biz_rate" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="commissionAmt" type="big_decimal">
+            <column default="0.00" length="18" name="commission_amt" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="discount" type="big_decimal">
+            <column default="0.00" length="18" name="discount" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="othetExpense" type="big_decimal">
+            <column default="0.00" length="18" name="othet_expense" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="grossProfit" type="big_decimal">
+            <column default="0.00" length="18" name="gross_profit" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="status" type="short">
+            <column default="0" name="status"/>
+        </property>
+        <property name="settDate" type="timestamp">
+            <column name="sett_date"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="100" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsItemBill" table="rps_item_bill">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <composite-id>
+            <key-property name="serviceId" type="int">
+                <column name="service_id"/>
+            </key-property>
+            <key-property name="itemId" type="string">
+                <column length="20" name="item_id"/>
+            </key-property>
+        </composite-id>
+        <property name="packageId" type="string">
+            <column length="20" name="package_id"/>
+        </property>
+        <property name="itemCode" type="string">
+            <column length="20" name="item_code"/>
+        </property>
+        <property name="itemName" type="string">
+            <column length="100" name="item_name"/>
+        </property>
+        <property name="itemNameId" type="string">
+            <column length="20" name="item_name_id"/>
+        </property>
+        <property name="itemCarId" type="string">
+            <column length="50" name="item_car_id"/>
+        </property>
+        <property name="itemIsNeed" type="short">
+            <column default="0" name="item_is_need" not-null="true"/>
+        </property>
+        <property name="receTypeId" type="string">
+            <column length="20" name="rece_type_id"/>
+        </property>
+        <property name="itemKind" type="string">
+            <column length="20" name="item_kind"/>
+        </property>
+        <property name="itemTime" type="big_decimal">
+            <column default="0.00" length="18" name="item_time" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="unitPrice" type="big_decimal">
+            <column default="0.00" length="18" name="unit_price" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="amt" type="big_decimal">
+            <column default="0.00" length="18" name="amt" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="rate" type="big_decimal">
+            <column default="0.00" length="18" name="rate" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="discountAmt" type="big_decimal">
+            <column default="0.00" length="18" name="discount_amt" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="subtotal" type="big_decimal">
+            <column default="0.00" length="18" name="subtotal" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="status" type="short">
+            <column default="0" name="status" not-null="true"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="100" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsItemQuote" table="rps_item_quote">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <composite-id>
+            <key-property name="serviceId" type="int">
+                <column name="service_id"/>
+            </key-property>
+            <key-property name="itemId" type="string">
+                <column length="20" name="item_id"/>
+            </key-property>
+        </composite-id>
+        <property name="packageId" type="string">
+            <column length="20" name="package_id"/>
+        </property>
+        <property name="itemCode" type="string">
+            <column length="20" name="item_code"/>
+        </property>
+        <property name="itemName" type="string">
+            <column length="100" name="item_name"/>
+        </property>
+        <property name="itemNameId" type="string">
+            <column length="20" name="item_name_id"/>
+        </property>
+        <property name="itemCarId" type="string">
+            <column length="50" name="item_car_id"/>
+        </property>
+        <property name="itemIsNeed" type="short">
+            <column default="0" name="item_is_need" not-null="true"/>
+        </property>
+        <property name="receTypeId" type="string">
+            <column length="20" name="rece_type_id"/>
+        </property>
+        <property name="itemKind" type="string">
+            <column length="20" name="item_kind"/>
+        </property>
+        <property name="itemTime" type="big_decimal">
+            <column default="0.00" length="18" name="item_time" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="unitPrice" type="big_decimal">
+            <column default="0.00" length="18" name="unit_price" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="pkgitemamt" type="big_decimal">
+            <column default="0.00" length="18" name="pkgitemamt" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="amt" type="big_decimal">
+            <column default="0.00" length="18" name="amt" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="rate" type="big_decimal">
+            <column default="0.00" length="18" name="rate" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="discountAmt" type="big_decimal">
+            <column default="0.00" length="18" name="discount_amt" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="subtotal" type="big_decimal">
+            <column default="0.00" length="18" name="subtotal" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="status" type="short">
+            <column default="0" name="status" not-null="true"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="100" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsLog" table="rps_log">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <composite-id dummy="true">
+            <key-property name="serviceId" type="int">
+                <column name="service_id"/>
+            </key-property>
+            <key-property name="logType" type="string">
+                <column length="20" name="log_type"/>
+            </key-property>
+            <key-property name="logReason" type="string">
+                <column length="100" name="log_reason"/>
+            </key-property>
+            <key-property name="remark" type="string">
+                <column length="100" name="remark"/>
+            </key-property>
+            <key-property name="recorder" type="string">
+                <column length="20" name="recorder"/>
+            </key-property>
+            <key-property name="recordDate" type="timestamp">
+                <column name="record_date"/>
+            </key-property>
+            <key-property name="modifier" type="string">
+                <column length="20" name="modifier"/>
+            </key-property>
+            <key-property name="modifyDate" type="timestamp">
+                <column name="modify_date"/>
+            </key-property>
+        </composite-id>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsPackageBill" table="rps_package_bill">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="serviceId" type="int">
+            <column name="service_id" not-null="true"/>
+        </property>
+        <property name="packageCarmtId" type="string">
+            <column length="20" name="package_carmt_id" not-null="true"/>
+        </property>
+        <property name="packageId" type="string">
+            <column length="20" name="package_id"/>
+        </property>
+        <property name="packageName" type="string">
+            <column length="256" name="package_name"/>
+        </property>
+        <property name="packageTypeId" type="string">
+            <column length="20" name="package_type_id"/>
+        </property>
+        <property name="receTypeId" type="string">
+            <column length="20" name="rece_type_id"/>
+        </property>
+        <property name="amt" type="big_decimal">
+            <column default="0.00" length="18" name="amt" precision="18" scale="2"/>
+        </property>
+        <property name="rate" type="big_decimal">
+            <column default="0.00" length="18" name="rate" precision="18" scale="2"/>
+        </property>
+        <property name="discountAmt" type="big_decimal">
+            <column default="0.00" length="18" name="discount_amt" precision="18" scale="2"/>
+        </property>
+        <property name="subtotal" type="big_decimal">
+            <column default="0.00" length="18" name="subtotal" precision="18" scale="2"/>
+        </property>
+        <property name="detailAmt" type="big_decimal">
+            <column default="0.00" length="18" name="detail_amt" precision="18" scale="2"/>
+        </property>
+        <property name="differAmt" type="big_decimal">
+            <column default="0.00" length="18" name="differ_amt" precision="18" scale="2"/>
+        </property>
+        <property name="costAmt" type="big_decimal">
+            <column default="0.00" length="18" name="cost_amt" precision="18" scale="2"/>
+        </property>
+        <property name="status" type="string">
+            <column default="'0'" length="20" name="status"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="256" name="remark"/>
+        </property>
+        <property name="isDisabled" type="short">
+            <column default="0" name="is_disabled"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsPartBill" table="rps_part_bill">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <composite-id>
+            <key-property name="serviceId" type="int">
+                <column name="service_id"/>
+            </key-property>
+            <key-property name="partId" type="int">
+                <column name="part_id"/>
+            </key-property>
+        </composite-id>
+        <property name="packageId" type="string">
+            <column length="20" name="package_id"/>
+        </property>
+        <property name="partCode" type="string">
+            <column length="50" name="part_code"/>
+        </property>
+        <property name="partName" type="string">
+            <column length="50" name="part_name"/>
+        </property>
+        <property name="partNameId" type="string">
+            <column length="20" name="part_name_id"/>
+        </property>
+        <property name="partIsNeed" type="short">
+            <column default="0" name="part_is_need"/>
+        </property>
+        <property name="partBrandId" type="string">
+            <column length="20" name="part_brand_id"/>
+        </property>
+        <property name="receTypeId" type="string">
+            <column length="10" name="rece_type_id"/>
+        </property>
+        <property name="qty" type="big_decimal">
+            <column default="0.00" length="18" name="qty" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="unitPrice" type="big_decimal">
+            <column default="0.00" length="18" name="unit_price" precision="18" scale="2"/>
+        </property>
+        <property name="unit" type="string">
+            <column length="20" name="unit"/>
+        </property>
+        <property name="amt" type="big_decimal">
+            <column default="0.00" length="18" name="amt" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="rate" type="big_decimal">
+            <column default="0.00" length="18" name="rate" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="discountAmt" type="big_decimal">
+            <column default="0.00" length="18" name="discount_amt" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="subtotal" type="big_decimal">
+            <column default="0.00" length="18" name="subtotal" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="status" type="string">
+            <column length="20" name="status"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="100" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsPartQuote" table="rps_part_quote">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <composite-id>
+            <key-property name="serviceId" type="int">
+                <column name="service_id"/>
+            </key-property>
+            <key-property name="partId" type="string">
+                <column length="20" name="part_id"/>
+            </key-property>
+        </composite-id>
+        <property name="packageId" type="string">
+            <column length="20" name="package_id"/>
+        </property>
+        <property name="partCode" type="string">
+            <column length="50" name="part_code"/>
+        </property>
+        <property name="partName" type="string">
+            <column length="100" name="part_name"/>
+        </property>
+        <property name="partNameId" type="string">
+            <column length="20" name="part_name_id"/>
+        </property>
+        <property name="partIsNeed" type="short">
+            <column default="0" name="part_is_need" not-null="true"/>
+        </property>
+        <property name="partBrandId" type="string">
+            <column length="20" name="part_brand_id"/>
+        </property>
+        <property name="receTypeId" type="string">
+            <column length="20" name="rece_type_id"/>
+        </property>
+        <property name="qty" type="big_decimal">
+            <column default="0.00" length="18" name="qty" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="unitPrice" type="big_decimal">
+            <column default="0.00" length="18" name="unit_price" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="unit" type="string">
+            <column length="20" name="unit"/>
+        </property>
+        <property name="amt" type="big_decimal">
+            <column default="0.00" length="18" name="amt" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="rate" type="big_decimal">
+            <column default="0.00" length="18" name="rate" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="discountAmt" type="big_decimal">
+            <column default="0.00" length="18" name="discount_amt" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="subtotal" type="big_decimal">
+            <column default="0.00" length="18" name="subtotal" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="status" type="short">
+            <column default="0" name="status" not-null="true"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="100" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsPrebookTelScout" table="rps_prebook_tel_scout">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="serviceId" type="int">
+            <column default="0" name="service_id"/>
+        </property>
+        <property name="scoutContent" type="string">
+            <column default="''" length="800" name="scout_content"/>
+        </property>
+        <property name="scoutMode" type="string">
+            <column default="''" length="20" name="scout_mode"/>
+        </property>
+        <property name="scoutDate" type="timestamp">
+            <column name="scout_date"/>
+        </property>
+        <property name="nextScoutDate" type="timestamp">
+            <column name="next_scout_date"/>
+        </property>
+        <property name="isUsabled" type="string">
+            <column default="''" length="20" name="is_usabled"/>
+        </property>
+        <property name="scoutManId" type="int">
+            <column default="0" name="scout_man_id"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsCardStored" table="rps_card_stored">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid" not-null="true"/>
+        </property>
+        <property name="guestId" type="int">
+            <column default="0" name="guest_id" not-null="true"/>
+        </property>
+        <property name="cardId" type="int">
+            <column default="0" name="card_id"/>
+        </property>
+        <property name="cardName" type="string">
+            <column default="''" length="100" name="card_name"/>
+        </property>
+        <property name="periodValidity" type="short">
+            <column default="-1" name="period_validity"/>
+        </property>
+        <property name="rechargeAmt" type="big_decimal">
+            <column default="0.00" length="18" name="recharge_amt" precision="18" scale="2"/>
+        </property>
+        <property name="giveAmt" type="big_decimal">
+            <column default="0.00" length="18" name="give_amt" precision="18" scale="2"/>
+        </property>
+        <property name="totalAmt" type="big_decimal">
+            <column default="0.00" length="18" name="total_amt" precision="18" scale="2"/>
+        </property>
+        <property name="useAmt" type="big_decimal">
+            <column default="0.00" length="18" name="use_amt" precision="18" scale="2"/>
+        </property>
+        <property name="packageRate" type="short">
+            <column default="0" name="package_rate"/>
+        </property>
+        <property name="itemRate" type="short">
+            <column default="0" name="item_rate"/>
+        </property>
+        <property name="partRate" type="short">
+            <column default="0" name="part_rate"/>
+        </property>
+        <property name="remark" type="string">
+            <column default="''" length="200" name="remark"/>
+        </property>
+        <property name="status" type="short">
+            <column default="0" name="status"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="date">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsGuestFile" table="rps_guest_file">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid"/>
+        </property>
+        <property name="serviceId" type="int">
+            <column name="service_id"/>
+        </property>
+        <property name="guestId" type="int">
+            <column name="guest_id"/>
+        </property>
+        <property name="carId" type="int">
+            <column name="car_id"/>
+        </property>
+        <property name="carNo" type="string">
+            <column length="15" name="car_no"/>
+        </property>
+        <property name="compComeTimes" type="short">
+            <column default="0" name="comp_come_times"/>
+        </property>
+        <property name="datekey" type="int">
+            <column default="0" name="datekey"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsItemWorkers" table="rps_item_workers">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="mainId" type="int">
+            <column default="0" name="main_id"/>
+        </property>
+        <property name="serviceId" type="int">
+            <column default="0" name="service_id"/>
+        </property>
+        <property name="workerId" type="int">
+            <column default="0" name="worker_id"/>
+        </property>
+        <property name="worker" type="string">
+            <column default="''" length="20" name="worker"/>
+        </property>
+        <property name="deductType" type="short">
+            <column default="0" name="deduct_type"/>
+        </property>
+        <property name="deductValue" type="big_decimal">
+            <column default="0.00" length="18" name="deduct_value" precision="18" scale="2"/>
+        </property>
+        <property name="weight" type="short">
+            <column default="0" name="weight"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsStoredConsumeRecord" table="rps_stored_consume_record">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid" not-null="true"/>
+        </property>
+        <property name="type" type="short">
+            <column default="0" name="type"/>
+        </property>
+        <property name="isClearGiveAmt" type="short">
+            <column default="1" name="is_clear_give_amt"/>
+        </property>
+        <property name="guestStoredId" type="int">
+            <column default="0" name="guest_stored_id" not-null="true"/>
+        </property>
+        <property name="guestId" type="int">
+            <column default="0" name="guest_id" not-null="true"/>
+        </property>
+        <property name="serviceId" type="int">
+            <column default="0" name="service_id"/>
+        </property>
+        <property name="cardId" type="int">
+            <column default="0" name="card_id"/>
+        </property>
+        <property name="cardAmt" type="big_decimal">
+            <column default="0.00" length="18" name="card_amt" precision="18" scale="2"/>
+        </property>
+        <property name="consumeAmt" type="big_decimal">
+            <column default="0.00" length="18" name="consume_amt" precision="18" scale="2"/>
+        </property>
+        <property name="remark" type="string">
+            <column default="''" length="200" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsCardTimesDetail" table="rps_card_times_detail">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="mainId" type="int">
+            <column default="0" name="main_id"/>
+        </property>
+        <property name="detailId" type="int">
+            <column default="0" name="detail_id"/>
+        </property>
+        <property name="cardId" type="int">
+            <column default="0" name="card_id"/>
+        </property>
+        <property name="prdtId" type="string">
+            <column default="''" length="20" name="prdt_id"/>
+        </property>
+        <property name="prdtName" type="string">
+            <column default="''" length="100" name="prdt_name"/>
+        </property>
+        <property name="prdtType" type="short">
+            <column default="0" name="prdt_type"/>
+        </property>
+        <property name="totalTimes" type="short">
+            <column default="1" name="total_times"/>
+        </property>
+        <property name="useTimes" type="short">
+            <column default="0" name="use_times"/>
+        </property>
+        <property name="balaTimes" type="short">
+            <column default="0" name="bala_times"/>
+        </property>
+        <property name="canUseTimes" type="short">
+            <column default="0" name="can_use_times"/>
+        </property>
+        <property name="qty" type="big_decimal">
+            <column default="1.00" length="10" name="qty" precision="10" scale="2"/>
+        </property>
+        <property name="oldPrice" type="big_decimal">
+            <column default="0.00" length="10" name="old_price" precision="10" scale="2"/>
+        </property>
+        <property name="sellPrice" type="big_decimal">
+            <column default="0.00" length="10" name="sell_price" precision="10" scale="2"/>
+        </property>
+        <property name="oldAmt" type="big_decimal">
+            <column default="0.00" length="10" name="old_amt" precision="10" scale="2"/>
+        </property>
+        <property name="sellAmt" type="big_decimal">
+            <column default="0.00" length="10" name="sell_amt" precision="10" scale="2"/>
+        </property>
+        <property name="rate" type="big_decimal">
+            <column default="0.0000" length="10" name="rate" precision="10" scale="4"/>
+        </property>
+        <property name="isFinish" type="short">
+            <column default="0" name="is_finish"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsSettlement" table="rps_settlement">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="serviceId" type="int">
+            <column default="0" name="service_id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="tenantId" type="int">
+            <column default="0" name="tenant_id"/>
+        </property>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid" not-null="true"/>
+        </property>
+        <property name="datekey" type="int">
+            <column default="0" name="datekey"/>
+        </property>
+        <property name="packageAmt" type="big_decimal">
+            <column default="0.00" length="10" name="package_amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="packagePrefRate" type="big_decimal">
+            <column default="0.0000" length="10" name="package_pref_rate" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="packagePrefAmt" type="big_decimal">
+            <column default="0.00" length="10" name="package_pref_amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="packageSubtotal" type="big_decimal">
+            <column default="0.00" length="10" name="package_subtotal" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="itemTotalAmt" type="big_decimal">
+            <column default="0.00" length="10" name="item_total_amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="itemPrefRate" type="big_decimal">
+            <column default="0.0000" length="10" name="item_pref_rate" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="itemPrefAmt" type="big_decimal">
+            <column default="0.00" length="10" name="item_pref_amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="itemSubtotal" type="big_decimal">
+            <column default="0.00" length="10" name="item_subtotal" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="partTotalAmt" type="big_decimal">
+            <column default="0.00" length="10" name="part_total_amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="partPrefRate" type="big_decimal">
+            <column default="0.0000" length="10" name="part_pref_rate" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="partPrefAmt" type="big_decimal">
+            <column default="0.00" length="10" name="part_pref_amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="partSubtotal" type="big_decimal">
+            <column default="0.00" length="10" name="part_subtotal" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="partManageExpAmt" type="big_decimal">
+            <column default="0.00" length="10" name="part_manage_exp_amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="partTrueCost" type="big_decimal">
+            <column default="0.00" length="10" name="part_true_cost" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="partNoTaxCost" type="big_decimal">
+            <column default="0.00" length="10" name="part_no_tax_cost" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="partTaxCost" type="big_decimal">
+            <column default="0.00" length="10" name="part_tax_cost" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="mtAmt" type="big_decimal">
+            <column default="0.00" length="10" name="mt_amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="cardTimesAmt" type="big_decimal">
+            <column default="0.00" length="10" name="card_times_amt" precision="10" scale="2"/>
+        </property>
+        <property name="netinAmt" type="big_decimal">
+            <column default="0.00" length="10" name="netin_amt" precision="10" scale="2"/>
+        </property>
+        <property name="allowanceAmt" type="big_decimal">
+            <column default="0.00" length="10" name="allowance_amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="allowanceRemark" type="string">
+            <column default="'0'" length="100" name="allowance_remark" not-null="true"/>
+        </property>
+        <property name="materialExpAmt" type="big_decimal">
+            <column default="0.00" length="10" name="material_exp_amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="otherAmt" type="big_decimal">
+            <column default="0.00" length="10" name="other_amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="otherCostAmt" type="big_decimal">
+            <column default="0.00" length="10" name="other_cost_amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="totalPrefRate" type="big_decimal">
+            <column default="0.0000" length="10" name="total_pref_rate" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="totalPrefAmt" type="big_decimal">
+            <column default="0.00" length="10" name="total_pref_amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="balaAmt" type="big_decimal">
+            <column default="0.00" length="10" name="bala_amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="businessRemark" type="string">
+            <column default="''" length="100" name="business_remark"/>
+        </property>
+        <property name="salesDeductValue" type="big_decimal">
+            <column default="0.00" length="10" name="sales_deduct_value" precision="10" scale="2"/>
+        </property>
+        <property name="techDeductValue" type="big_decimal">
+            <column default="0.00" length="10" name="tech_deduct_value" precision="10" scale="2"/>
+        </property>
+        <property name="advisorDeductValue" type="big_decimal">
+            <column default="0.00" length="10" name="advisor_deduct_value" precision="10" scale="2"/>
+        </property>
+        <property name="totalDeductAmt" type="big_decimal">
+            <column default="0.00" length="10" name="total_deduct_amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="grossProfit" type="big_decimal">
+            <column default="0.00" length="10" name="gross_profit" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="grossProfitRate" type="big_decimal">
+            <column default="0.0000" length="10" name="gross_profit_rate" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="grossProfitRemark" type="string">
+            <column default="''" length="100" name="gross_profit_remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsRepairRecord" table="rps_repair_record">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="serviceId" type="int">
+            <column name="service_id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid"/>
+        </property>
+        <property name="mtAdvisorId" type="int">
+            <column name="mt_advisor_id"/>
+        </property>
+        <property name="mtAdvisorName" type="string">
+            <column default="''" length="20" name="mt_advisor_name"/>
+        </property>
+        <property name="enterDate" type="timestamp">
+            <column name="enter_date"/>
+        </property>
+        <property name="leaveDate" type="timestamp">
+            <column name="leave_date"/>
+        </property>
+        <property name="leaveDays" type="int">
+            <column name="leave_days"/>
+        </property>
+        <property name="prevServiceId" type="string">
+            <column length="20" name="prev_service_id"/>
+        </property>
+        <property name="prevCompCode" type="int">
+            <column name="prev_comp_code"/>
+        </property>
+        <property name="prevAdvisorId" type="int">
+            <column default="0" name="prev_advisor_id"/>
+        </property>
+        <property name="prevAdvisorName" type="string">
+            <column default="''" length="20" name="prev_advisor_name"/>
+        </property>
+        <property name="chainStatus" type="int">
+            <column name="chain_status"/>
+        </property>
+        <property name="compStatus" type="int">
+            <column name="comp_status"/>
+        </property>
+        <property name="compSign" type="int">
+            <column name="comp_sign"/>
+        </property>
+        <property name="lostScoutTimes" type="int">
+            <column name="lost_scout_times"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsExpense" table="rps_expense">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="serviceId" type="int">
+            <column default="0" name="service_id" not-null="true"/>
+        </property>
+        <property name="typeId" type="int">
+            <column name="type_id"/>
+        </property>
+        <property name="typeCode" type="string">
+            <column length="20" name="type_code"/>
+        </property>
+        <property name="dc" type="short">
+            <column name="dc"/>
+        </property>
+        <property name="amt" type="big_decimal">
+            <column default="0.0000" length="18" name="amt" precision="18" scale="4"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="100" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsServiceType" table="rps_service_type">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="serviceId" type="int">
+            <column default="0" name="service_id" not-null="true"/>
+        </property>
+        <property name="serviceTypeId" type="int">
+            <column default="0" name="service_type_id" not-null="true"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsPart" table="rps_part">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="serviceId" type="int">
+            <column name="service_id" not-null="true"/>
+        </property>
+        <property name="serviceTypeId" type="int">
+            <column default="0" name="service_type_id"/>
+        </property>
+        <property name="partId" type="int">
+            <column default="0" name="part_id" not-null="true"/>
+        </property>
+        <property name="packageId" type="string">
+            <column length="20" name="package_id"/>
+        </property>
+        <property name="partCode" type="string">
+            <column length="50" name="part_code"/>
+        </property>
+        <property name="partName" type="string">
+            <column length="500" name="part_name"/>
+        </property>
+        <property name="partNameId" type="string">
+            <column length="20" name="part_name_id"/>
+        </property>
+        <property name="partIsNeed" type="short">
+            <column default="0" name="part_is_need" not-null="true"/>
+        </property>
+        <property name="partBrandId" type="string">
+            <column length="20" name="part_brand_id"/>
+        </property>
+        <property name="qty" type="big_decimal">
+            <column default="0.00" length="18" name="qty" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="unitPrice" type="big_decimal">
+            <column default="0.00" length="18" name="unit_price" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="unit" type="string">
+            <column length="20" name="unit"/>
+        </property>
+        <property name="amt" type="big_decimal">
+            <column default="0.00" length="18" name="amt" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="pkgpartamt" type="big_decimal">
+            <column default="0.00" length="18" name="pkgpartamt" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="rate" type="big_decimal">
+            <column default="0.0000" length="18" name="rate" not-null="true" precision="18" scale="4"/>
+        </property>
+        <property name="discountAmt" type="big_decimal">
+            <column default="0.00" length="18" name="discount_amt" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="subtotal" type="big_decimal">
+            <column default="0.00" length="18" name="subtotal" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="status" type="int">
+            <column default="0" name="status"/>
+        </property>
+        <property name="pickQty" type="big_decimal">
+            <column default="0.00" length="18" name="pick_qty" precision="18" scale="2"/>
+        </property>
+        <property name="cardDetailId" type="int">
+            <column default="0" name="card_detail_id"/>
+        </property>
+        <property name="salesDeductType" type="short">
+            <column default="0" name="sales_deduct_type"/>
+        </property>
+        <property name="salesDeductOriginValue" type="big_decimal">
+            <column length="18" name="sales_deduct_origin_value" precision="18" scale="2"/>
+        </property>
+        <property name="salesDeductValue" type="big_decimal">
+            <column default="0.00" length="18" name="sales_deduct_value" precision="18" scale="2"/>
+        </property>
+        <property name="saleManId" type="int">
+            <column default="0" name="sale_man_id"/>
+        </property>
+        <property name="saleMan" type="string">
+            <column default="''" length="20" name="sale_man"/>
+        </property>
+        <property name="billPackageId" type="int">
+            <column default="0" name="bill_package_id"/>
+        </property>
+        <property name="billItemId" type="int">
+            <column default="0" name="bill_item_id"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="100" name="remark"/>
+        </property>
+        <property name="isDisabled" type="short">
+            <column default="0" name="is_disabled"/>
+        </property>
+        <property name="detailId" type="int">
+            <column default="0" name="detail_id"/>
+        </property>
+        <property name="outReturnQty" type="big_decimal">
+            <column default="0.00" length="18" name="out_return_qty" precision="18" scale="2"/>
+        </property>
+        <property name="sourceId" type="short">
+            <column default="1" name="source_id"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsBillComment" table="rps_bill_comment">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="serviceId" type="int">
+            <column default="0" name="service_id"/>
+        </property>
+        <property name="serviceCode" type="string">
+            <column length="20" name="service_code"/>
+        </property>
+        <property name="inFactorySpeed" type="big_decimal">
+            <column default="0.00" length="10" name="in_factory_speed" precision="10" scale="2"/>
+        </property>
+        <property name="polite" type="big_decimal">
+            <column length="10" name="polite" precision="10" scale="2"/>
+        </property>
+        <property name="interpretation" type="big_decimal">
+            <column length="10" name="interpretation" precision="10" scale="2"/>
+        </property>
+        <property name="environmental" type="big_decimal">
+            <column length="10" name="environmental" precision="10" scale="2"/>
+        </property>
+        <property name="outFactorySpeed" type="big_decimal">
+            <column length="10" name="out_factory_speed" precision="10" scale="2"/>
+        </property>
+        <property name="timeConsuming" type="big_decimal">
+            <column default="0.00" length="10" name="time_consuming" precision="10" scale="2"/>
+        </property>
+        <property name="repairQuality" type="big_decimal">
+            <column default="0.00" length="10" name="repair_quality" precision="10" scale="2"/>
+        </property>
+        <property name="clean" type="big_decimal">
+            <column length="10" name="clean" precision="10" scale="2"/>
+        </property>
+        <property name="care" type="big_decimal">
+            <column length="10" name="care" precision="10" scale="2"/>
+        </property>
+        <property name="isNextCome" type="short">
+            <column default="0" name="is_next_come"/>
+        </property>
+        <property name="suggestion" type="string">
+            <column length="800" name="suggestion"/>
+        </property>
+        <property name="sumPoint" type="big_decimal">
+            <column default="0.00" length="10" name="sum_point" precision="10" scale="2"/>
+        </property>
+        <property name="avgPoint" type="big_decimal">
+            <column default="0.00" length="10" name="avg_point" precision="10" scale="2"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsCareRecord" table="rps_care_record">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid"/>
+        </property>
+        <property name="careType" type="int">
+            <column name="care_type"/>
+        </property>
+        <property name="guestId" type="int">
+            <column name="guest_id"/>
+        </property>
+        <property name="carId" type="int">
+            <column name="car_id"/>
+        </property>
+        <property name="visitMode" type="string">
+            <column length="10" name="visit_mode"/>
+        </property>
+        <property name="visitContent" type="string">
+            <column length="500" name="visit_content"/>
+        </property>
+        <property name="visitId" type="int">
+            <column default="0" name="visit_id"/>
+        </property>
+        <property name="visitMan" type="string">
+            <column default="''" length="20" name="visit_man"/>
+        </property>
+        <property name="visitDate" type="date">
+            <column name="visit_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsInsuranceDetail" table="rps_insurance_detail">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="serviceId" type="int">
+            <column default="0" name="service_id" not-null="true"/>
+        </property>
+        <property name="insureTypeId" type="int">
+            <column default="1" name="insure_type_id" not-null="true"/>
+        </property>
+        <property name="insureTypeName" type="string">
+            <column length="20" name="insure_type_name" not-null="true"/>
+        </property>
+        <property name="insureNo" type="string">
+            <column length="50" name="insure_no"/>
+        </property>
+        <property name="amt" type="big_decimal">
+            <column default="0.0000" length="10" name="amt" precision="10" scale="4"/>
+        </property>
+        <property name="rtnCompRate" type="big_decimal">
+            <column default="0.00" length="10" name="rtn_comp_rate" precision="10" scale="2"/>
+        </property>
+        <property name="rtnCompAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="rtn_comp_amt" precision="10" scale="4"/>
+        </property>
+        <property name="rtnGuestRate" type="big_decimal">
+            <column default="0.00" length="10" name="rtn_guest_rate" precision="10" scale="2"/>
+        </property>
+        <property name="rtnGuestAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="rtn_guest_amt" precision="10" scale="4"/>
+        </property>
+        <property name="deductType" type="short">
+            <column default="0" name="deduct_type"/>
+        </property>
+        <property name="deductOriginValue" type="big_decimal">
+            <column default="0.00" length="10" name="deduct_origin_value" precision="10" scale="2"/>
+        </property>
+        <property name="deductValue" type="big_decimal">
+            <column default="0.00" length="10" name="deduct_value" precision="10" scale="2"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsPrebook" table="rps_prebook">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid" not-null="true"/>
+        </property>
+        <property name="serviceCode" type="string">
+            <column default="''" length="20" name="service_code"/>
+        </property>
+        <property name="guestId" type="int">
+            <column default="0" name="guest_id"/>
+        </property>
+        <property name="carId" type="int">
+            <column default="0" name="car_id"/>
+        </property>
+        <property name="carNo" type="string">
+            <column default="''" length="15" name="car_no"/>
+        </property>
+        <property name="serviceTypeId" type="int">
+            <column default="0" name="service_type_id"/>
+        </property>
+        <property name="mtAdvisorId" type="int">
+            <column default="0" name="mt_advisor_id"/>
+        </property>
+        <property name="mtAdvisor" type="string">
+            <column default="''" length="20" name="mt_advisor"/>
+        </property>
+        <property name="carBrandId" type="string">
+            <column default="''" length="20" name="car_brand_id"/>
+        </property>
+        <property name="carSeriesId" type="string">
+            <column default="''" length="20" name="car_series_id"/>
+        </property>
+        <property name="carModel" type="string">
+            <column default="''" length="100" name="car_model"/>
+        </property>
+        <property name="contactorId" type="int">
+            <column default="0" name="contactor_id"/>
+        </property>
+        <property name="contactorName" type="string">
+            <column default="''" length="20" name="contactor_name"/>
+        </property>
+        <property name="contactorTel" type="string">
+            <column default="''" length="50" name="contactor_tel"/>
+        </property>
+        <property name="predictComeDate" type="timestamp">
+            <column name="predict_come_date"/>
+        </property>
+        <property name="prebookSource" type="string">
+            <column default="''" length="20" name="prebook_source"/>
+        </property>
+        <property name="prebookCategory" type="string">
+            <column default="''" length="10" name="prebook_category"/>
+        </property>
+        <property name="itemId" type="int">
+            <column default="0" name="item_id"/>
+        </property>
+        <property name="itemName" type="string">
+            <column default="''" length="100" name="item_name"/>
+        </property>
+        <property name="status" type="int">
+            <column default="0" name="status"/>
+        </property>
+        <property name="isOpenBill" type="short">
+            <column default="0" name="is_open_bill"/>
+        </property>
+        <property name="isJudge" type="short">
+            <column default="0" name="is_judge"/>
+        </property>
+        <property name="fileType" type="string">
+            <column default="''" length="20" name="file_type"/>
+        </property>
+        <property name="fileRemark" type="string">
+            <column default="''" length="100" name="file_remark"/>
+        </property>
+        <property name="faultDesc" type="string">
+            <column default="''" length="800" name="fault_desc"/>
+        </property>
+        <property name="isPush" type="short">
+            <column default="0" name="is_push"/>
+        </property>
+        <property name="pushCompCode" type="string">
+            <column default="''" length="255" name="push_comp_code"/>
+        </property>
+        <property name="pushCompName" type="string">
+            <column default="''" length="255" name="push_comp_name"/>
+        </property>
+        <property name="remark" type="string">
+            <column default="''" length="200" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recorderId" type="string">
+            <column default="''" length="20" name="recorder_id"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsItem" table="rps_item">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="serviceId" type="int">
+            <column default="0" name="service_id" not-null="true"/>
+        </property>
+        <property name="serviceTypeId" type="int">
+            <column default="0" name="service_type_id"/>
+        </property>
+        <property name="itemId" type="string">
+            <column default="''" length="20" name="item_id" not-null="true"/>
+        </property>
+        <property name="packageId" type="string">
+            <column default="''" length="20" name="package_id"/>
+        </property>
+        <property name="itemCode" type="string">
+            <column default="''" length="20" name="item_code"/>
+        </property>
+        <property name="itemName" type="string">
+            <column default="''" length="100" name="item_name"/>
+        </property>
+        <property name="itemNameId" type="string">
+            <column default="''" length="20" name="item_name_id"/>
+        </property>
+        <property name="itemIsNeed" type="short">
+            <column default="0" name="item_is_need" not-null="true"/>
+        </property>
+        <property name="itemTime" type="big_decimal">
+            <column default="0.00" length="10" name="item_time" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="unitPrice" type="big_decimal">
+            <column default="0.00" length="10" name="unit_price" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="pkgitemamt" type="big_decimal">
+            <column default="0.00" length="10" name="pkgitemamt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="amt" type="big_decimal">
+            <column default="0.00" length="10" name="amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="rate" type="big_decimal">
+            <column default="0.0000" length="10" name="rate" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="discountAmt" type="big_decimal">
+            <column default="0.00" length="10" name="discount_amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="subtotal" type="big_decimal">
+            <column default="0.00" length="10" name="subtotal" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="isStand" type="short">
+            <column default="0" name="is_stand"/>
+        </property>
+        <property name="workerIds" type="string">
+            <column default="''" length="100" name="worker_ids"/>
+        </property>
+        <property name="workers" type="string">
+            <column default="''" length="500" name="workers"/>
+        </property>
+        <property name="status" type="short">
+            <column default="0" name="status"/>
+        </property>
+        <property name="isBack" type="short">
+            <column default="0" name="is_back"/>
+        </property>
+        <property name="backTimes" type="int">
+            <column default="0" name="back_times"/>
+        </property>
+        <property name="finishAuditor" type="string">
+            <column default="''" length="20" name="finish_auditor"/>
+        </property>
+        <property name="finishAuditDate" type="timestamp">
+            <column name="finish_audit_date"/>
+        </property>
+        <property name="beginDate" type="timestamp">
+            <column name="begin_date"/>
+        </property>
+        <property name="finishDate" type="timestamp">
+            <column name="finish_date"/>
+        </property>
+        <property name="salesDeductType" type="short">
+            <column default="0" name="sales_deduct_type"/>
+        </property>
+        <property name="salesDeductOriginValue" type="big_decimal">
+            <column length="10" name="sales_deduct_origin_value" precision="10" scale="2"/>
+        </property>
+        <property name="salesDeductValue" type="big_decimal">
+            <column default="0.00" length="10" name="sales_deduct_value" precision="10" scale="2"/>
+        </property>
+        <property name="techDeductType" type="short">
+            <column default="0" name="tech_deduct_type"/>
+        </property>
+        <property name="techDeductOriginValue" type="big_decimal">
+            <column length="10" name="tech_deduct_origin_value" precision="10" scale="2"/>
+        </property>
+        <property name="techDeductValue" type="big_decimal">
+            <column default="0.00" length="10" name="tech_deduct_value" precision="10" scale="2"/>
+        </property>
+        <property name="advisorDeductType" type="short">
+            <column default="0" name="advisor_deduct_type"/>
+        </property>
+        <property name="advisorDeductOriginValue" type="big_decimal">
+            <column length="10" name="advisor_deduct_origin_value" precision="10" scale="2"/>
+        </property>
+        <property name="advisorDeductValue" type="big_decimal">
+            <column default="0.00" length="10" name="advisor_deduct_value" precision="10" scale="2"/>
+        </property>
+        <property name="totalDeductAmt" type="big_decimal">
+            <column default="0.00" length="10" name="total_deduct_amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="cardDetailId" type="int">
+            <column default="0" name="card_detail_id"/>
+        </property>
+        <property name="billPackageId" type="int">
+            <column default="0" name="bill_package_id"/>
+        </property>
+        <property name="saleManId" type="int">
+            <column default="0" name="sale_man_id"/>
+        </property>
+        <property name="saleMan" type="string">
+            <column default="''" length="20" name="sale_man"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="100" name="remark"/>
+        </property>
+        <property name="sourceId" type="short">
+            <column default="1" name="source_id"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsPackage" table="rps_package">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="serviceId" type="int">
+            <column default="0" name="service_id" not-null="true"/>
+        </property>
+        <property name="serviceTypeId" type="int">
+            <column default="0" name="service_type_id"/>
+        </property>
+        <property name="packageCarmtId" type="string">
+            <column default="''" length="20" name="package_carmt_id" not-null="true"/>
+        </property>
+        <property name="packageId" type="string">
+            <column default="''" length="20" name="package_id"/>
+        </property>
+        <property name="packageName" type="string">
+            <column default="''" length="256" name="package_name"/>
+        </property>
+        <property name="packageTypeId" type="string">
+            <column default="''" length="20" name="package_type_id"/>
+        </property>
+        <property name="pkgamt" type="big_decimal">
+            <column default="0.00" length="10" name="pkgamt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="amt" type="big_decimal">
+            <column default="0.00" length="10" name="amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="amt4s" type="big_decimal">
+            <column default="0.00" length="10" name="amt4s" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="rate" type="big_decimal">
+            <column default="0.0000" length="10" name="rate" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="discountAmt" type="big_decimal">
+            <column default="0.00" length="10" name="discount_amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="subtotal" type="big_decimal">
+            <column default="0.00" length="10" name="subtotal" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="detailAmt" type="big_decimal">
+            <column default="0.00" length="10" name="detail_amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="differAmt" type="big_decimal">
+            <column default="0.00" length="10" name="differ_amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="costAmt" type="big_decimal">
+            <column default="0.00" length="10" name="cost_amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="status" type="string">
+            <column default="'0'" length="20" name="status" not-null="true"/>
+        </property>
+        <property name="salesDeductType" type="short">
+            <column default="0" name="sales_deduct_type"/>
+        </property>
+        <property name="salesDeductOriginValue" type="big_decimal">
+            <column default="0.00" length="10" name="sales_deduct_origin_value" precision="10" scale="2"/>
+        </property>
+        <property name="salesDeductValue" type="big_decimal">
+            <column default="0.00" length="10" name="sales_deduct_value" precision="10" scale="2"/>
+        </property>
+        <property name="techDeductType" type="short">
+            <column default="0" name="tech_deduct_type"/>
+        </property>
+        <property name="techDeductOriginValue" type="big_decimal">
+            <column default="0.00" length="10" name="tech_deduct_origin_value" precision="10" scale="2"/>
+        </property>
+        <property name="techDeductValue" type="big_decimal">
+            <column default="0.00" length="10" name="tech_deduct_value" precision="10" scale="2"/>
+        </property>
+        <property name="advisorDeductType" type="short">
+            <column default="0" name="advisor_deduct_type"/>
+        </property>
+        <property name="advisorDeductOriginValue" type="big_decimal">
+            <column default="0.00" length="10" name="advisor_deduct_origin_value" precision="10" scale="2"/>
+        </property>
+        <property name="advisorDeductValue" type="big_decimal">
+            <column default="0.00" length="10" name="advisor_deduct_value" precision="10" scale="2"/>
+        </property>
+        <property name="totalDeductAmt" type="big_decimal">
+            <column default="0.00" length="10" name="total_deduct_amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="cardDetailId" type="int">
+            <column default="0" name="card_detail_id"/>
+        </property>
+        <property name="isStand" type="short">
+            <column default="0" name="is_stand"/>
+        </property>
+        <property name="saleManId" type="int">
+            <column default="0" name="sale_man_id"/>
+        </property>
+        <property name="saleMan" type="string">
+            <column default="''" length="20" name="sale_man"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="256" name="remark"/>
+        </property>
+        <property name="isCanRate" type="short">
+            <column default="0" name="is_can_rate"/>
+        </property>
+        <property name="isDisabled" type="short">
+            <column default="0" name="is_disabled"/>
+        </property>
+        <property name="sourceId" type="short">
+            <column default="1" name="source_id"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsCardTimes" table="rps_card_times">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid" not-null="true"/>
+        </property>
+        <property name="code" type="string">
+            <column default="''" length="20" name="code" not-null="true"/>
+        </property>
+        <property name="guestId" type="int">
+            <column default="0" name="guest_id" not-null="true"/>
+        </property>
+        <property name="guestName" type="string">
+            <column default="''" length="50" name="guest_name"/>
+        </property>
+        <property name="carId" type="int">
+            <column default="0" name="car_id" not-null="true"/>
+        </property>
+        <property name="carNo" type="string">
+            <column default="''" length="15" name="car_no" not-null="true"/>
+        </property>
+        <property name="cardId" type="int">
+            <column default="0" name="card_id"/>
+        </property>
+        <property name="cardName" type="string">
+            <column default="''" length="100" name="card_name"/>
+        </property>
+        <property name="periodValidity" type="short">
+            <column default="-1" name="period_validity"/>
+        </property>
+        <property name="pastDate" type="timestamp">
+            <column name="past_date"/>
+        </property>
+        <property name="sellAmt" type="big_decimal">
+            <column default="0.00" length="10" name="sell_amt" precision="10" scale="2"/>
+        </property>
+        <property name="totalAmt" type="big_decimal">
+            <column default="0.00" length="10" name="total_amt" precision="10" scale="2"/>
+        </property>
+        <property name="salesDeductType" type="short">
+            <column default="0" name="sales_deduct_type"/>
+        </property>
+        <property name="salesDeductOriginValue" type="big_decimal">
+            <column length="10" name="sales_deduct_origin_value" precision="10" scale="0"/>
+        </property>
+        <property name="salesDeductValue" type="big_decimal">
+            <column default="0.00" length="10" name="sales_deduct_value" precision="10" scale="2"/>
+        </property>
+        <property name="saleManId" type="int">
+            <column default="0" name="sale_man_id"/>
+        </property>
+        <property name="saleMan" type="string">
+            <column default="''" length="20" name="sale_man"/>
+        </property>
+        <property name="useRemark" type="string">
+            <column default="''" length="200" name="use_remark"/>
+        </property>
+        <property name="remark" type="string">
+            <column default="''" length="200" name="remark"/>
+        </property>
+        <property name="status" type="short">
+            <column default="0" name="status"/>
+        </property>
+        <property name="settleDate" type="timestamp">
+            <column name="settle_date"/>
+        </property>
+        <property name="isFinish" type="short">
+            <column default="0" name="is_finish"/>
+        </property>
+        <property name="isRefund" type="short">
+            <column default="0" name="is_refund"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+        <property name="refunder" type="string">
+            <column default="''" length="20" name="refunder"/>
+        </property>
+        <property name="refundDate" type="timestamp">
+            <column name="refund_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsStoredRecord" table="rps_stored_record">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="tenantId" type="int">
+            <column default="0" name="tenant_id"/>
+        </property>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid" not-null="true"/>
+        </property>
+        <property name="code" type="string">
+            <column default="''" length="20" name="code" not-null="true"/>
+        </property>
+        <property name="guestId" type="int">
+            <column default="0" name="guest_id" not-null="true"/>
+        </property>
+        <property name="guestName" type="string">
+            <column default="''" length="50" name="guest_name"/>
+        </property>
+        <property name="cardId" type="int">
+            <column default="0" name="card_id"/>
+        </property>
+        <property name="cardName" type="string">
+            <column default="''" length="100" name="card_name"/>
+        </property>
+        <property name="periodValidity" type="short">
+            <column default="-1" name="period_validity"/>
+        </property>
+        <property name="rechargeAmt" type="big_decimal">
+            <column default="0.00" length="10" name="recharge_amt" precision="10" scale="2"/>
+        </property>
+        <property name="giveAmt" type="big_decimal">
+            <column default="0.00" length="10" name="give_amt" precision="10" scale="2"/>
+        </property>
+        <property name="totalAmt" type="big_decimal">
+            <column default="0.00" length="10" name="total_amt" precision="10" scale="2"/>
+        </property>
+        <property name="useAmt" type="big_decimal">
+            <column default="0.00" length="10" name="use_amt" precision="10" scale="2"/>
+        </property>
+        <property name="balaAmt" type="big_decimal">
+            <column default="0.00" length="10" name="bala_amt" precision="10" scale="2"/>
+        </property>
+        <property name="refundAmt" type="big_decimal">
+            <column default="0.00" length="10" name="refund_amt" precision="10" scale="2"/>
+        </property>
+        <property name="cutAmt" type="big_decimal">
+            <column default="0.00" length="10" name="cut_amt" precision="10" scale="2"/>
+        </property>
+        <property name="integral" type="big_decimal">
+            <column length="10" name="integral" precision="10" scale="4"/>
+        </property>
+        <property name="packageRate" type="big_decimal">
+            <column default="0.00" length="10" name="package_rate" precision="10" scale="2"/>
+        </property>
+        <property name="itemRate" type="big_decimal">
+            <column default="0.00" length="10" name="item_rate" precision="10" scale="2"/>
+        </property>
+        <property name="partRate" type="big_decimal">
+            <column default="0.00" length="10" name="part_rate" precision="10" scale="2"/>
+        </property>
+        <property name="salesDeductType" type="short">
+            <column default="0" name="sales_deduct_type"/>
+        </property>
+        <property name="salesDeductOriginValue" type="big_decimal">
+            <column length="10" name="sales_deduct_origin_value" precision="10" scale="2"/>
+        </property>
+        <property name="salesDeductValue" type="big_decimal">
+            <column default="0.00" length="10" name="sales_deduct_value" precision="10" scale="2"/>
+        </property>
+        <property name="saleManId" type="int">
+            <column default="0" name="sale_man_id"/>
+        </property>
+        <property name="saleMan" type="string">
+            <column default="''" length="20" name="sale_man"/>
+        </property>
+        <property name="useRemark" type="string">
+            <column default="''" length="200" name="use_remark"/>
+        </property>
+        <property name="remark" type="string">
+            <column default="''" length="200" name="remark"/>
+        </property>
+        <property name="status" type="short">
+            <column default="0" name="status"/>
+        </property>
+        <property name="isSettle" type="short">
+            <column default="0" name="is_settle"/>
+        </property>
+        <property name="settleDate" type="timestamp">
+            <column name="settle_date"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+        <property name="refunder" type="string">
+            <column default="''" length="20" name="refunder"/>
+        </property>
+        <property name="refundDate" type="timestamp">
+            <column name="refund_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsRefundRecord" table="rps_refund_record">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="tenantId" type="int">
+            <column default="0" name="tenant_id"/>
+        </property>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid" not-null="true"/>
+        </property>
+        <property name="code" type="string">
+            <column default="''" length="30" name="code" not-null="true"/>
+        </property>
+        <property name="type" type="int">
+            <column default="0" name="type"/>
+        </property>
+        <property name="guestId" type="int">
+            <column default="0" name="guest_id" not-null="true"/>
+        </property>
+        <property name="guestName" type="string">
+            <column default="''" length="50" name="guest_name"/>
+        </property>
+        <property name="carId" type="int">
+            <column default="0" name="car_id" not-null="true"/>
+        </property>
+        <property name="carNo" type="string">
+            <column default="''" length="15" name="car_no" not-null="true"/>
+        </property>
+        <property name="sourceId" type="int">
+            <column default="0" name="source_id"/>
+        </property>
+        <property name="sourceCode" type="string">
+            <column default="''" length="30" name="source_code"/>
+        </property>
+        <property name="refundAmt" type="big_decimal">
+            <column default="0.00" length="10" name="refund_amt" precision="10" scale="2"/>
+        </property>
+        <property name="cutAmt" type="big_decimal">
+            <column default="0.00" length="10" name="cut_amt" precision="10" scale="2"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="200" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsMaintain" table="rps_maintain">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="tenantId" type="int">
+            <column name="tenant_id"/>
+        </property>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid" not-null="true"/>
+        </property>
+        <property name="datekey" type="int">
+            <column default="0" name="datekey"/>
+        </property>
+        <property name="billTypeId" type="int">
+            <column default="0" name="bill_type_id"/>
+        </property>
+        <property name="serviceTypeId" type="int">
+            <column default="0" name="service_type_id" not-null="true"/>
+        </property>
+        <property name="serviceCode" type="string">
+            <column default="''" length="30" name="service_code" not-null="true"/>
+        </property>
+        <property name="guestId" type="int">
+            <column default="0" name="guest_id" not-null="true"/>
+        </property>
+        <property name="contactorId" type="int">
+            <column default="0" name="contactor_id" not-null="true"/>
+        </property>
+        <property name="carId" type="int">
+            <column default="0" name="car_id" not-null="true"/>
+        </property>
+        <property name="carNo" type="string">
+            <column default="''" length="15" name="car_no" not-null="true"/>
+        </property>
+        <property name="carVin" type="string">
+            <column default="''" length="20" name="car_vin"/>
+        </property>
+        <property name="itemAmt" type="big_decimal">
+            <column default="0.00" length="10" name="item_amt" precision="10" scale="2"/>
+        </property>
+        <property name="partAmt" type="big_decimal">
+            <column default="0.00" length="10" name="part_amt" precision="10" scale="2"/>
+        </property>
+        <property name="packageAmt" type="big_decimal">
+            <column default="0.00" length="10" name="package_amt" precision="10" scale="2"/>
+        </property>
+        <property name="compComeTimes" type="int">
+            <column default="0" name="comp_come_times"/>
+        </property>
+        <property name="chainComeTimes" type="int">
+            <column default="0" name="chain_come_times"/>
+        </property>
+        <property name="guestDesc" type="string">
+            <column default="''" length="800" name="guest_desc"/>
+        </property>
+        <property name="faultPhen" type="string">
+            <column default="''" length="800" name="fault_phen"/>
+        </property>
+        <property name="solveMethod" type="string">
+            <column default="''" length="800" name="solve_method"/>
+        </property>
+        <property name="enterDate" type="timestamp">
+            <column name="enter_date"/>
+        </property>
+        <property name="lastEnterKilometers" type="int">
+            <column default="0" name="last_enter_kilometers"/>
+        </property>
+        <property name="enterKilometers" type="int">
+            <column default="0" name="enter_kilometers"/>
+        </property>
+        <property name="insureCompId" type="int">
+            <column default="0" name="insure_comp_id"/>
+        </property>
+        <property name="insureCompName" type="string">
+            <column default="''" length="100" name="insure_comp_name"/>
+        </property>
+        <property name="enterOilMass" type="string">
+            <column default="''" length="20" name="enter_oil_mass"/>
+        </property>
+        <property name="mtAdvisorId" type="int">
+            <column default="0" name="mt_advisor_id"/>
+        </property>
+        <property name="mtAdvisor" type="string">
+            <column default="''" length="20" name="mt_advisor"/>
+        </property>
+        <property name="status" type="short">
+            <column default="0" name="status" not-null="true"/>
+        </property>
+        <property name="noMtFileSign" type="short">
+            <column default="0" name="no_mt_file_sign"/>
+        </property>
+        <property name="noMtFileMan" type="string">
+            <column default="''" length="20" name="no_mt_file_man"/>
+        </property>
+        <property name="noMtFileDate" type="timestamp">
+            <column name="no_mt_file_date"/>
+        </property>
+        <property name="noMtReason" type="string">
+            <column default="''" length="200" name="no_mt_reason"/>
+        </property>
+        <property name="noMtType" type="string">
+            <column default="'0'" length="20" name="no_mt_type"/>
+        </property>
+        <property name="sureMtSign" type="short">
+            <column default="0" name="sure_mt_sign"/>
+        </property>
+        <property name="sureMtDate" type="timestamp">
+            <column name="sure_mt_date"/>
+        </property>
+        <property name="sureMtMan" type="string">
+            <column default="''" length="20" name="sure_mt_man"/>
+        </property>
+        <property name="planFinishDate" type="timestamp">
+            <column name="plan_finish_date"/>
+        </property>
+        <property name="checker" type="string">
+            <column default="''" length="20" name="checker"/>
+        </property>
+        <property name="checkSign" type="short">
+            <column default="0" name="check_sign"/>
+        </property>
+        <property name="checkDate" type="timestamp">
+            <column name="check_date"/>
+        </property>
+        <property name="drawOutReport" type="string">
+            <column default="''" length="1000" name="draw_out_report"/>
+        </property>
+        <property name="balaAuditSign" type="short">
+            <column default="0" name="bala_audit_sign"/>
+        </property>
+        <property name="balaAuditDate" type="timestamp">
+            <column name="bala_audit_date"/>
+        </property>
+        <property name="balaAuditor" type="string">
+            <column default="''" length="20" name="bala_auditor"/>
+        </property>
+        <property name="partAuditSign" type="short">
+            <column default="0" name="part_audit_sign"/>
+        </property>
+        <property name="partAuditor" type="string">
+            <column default="''" length="255" name="part_auditor"/>
+        </property>
+        <property name="partAuditDate" type="timestamp">
+            <column name="part_audit_date"/>
+        </property>
+        <property name="outDate" type="timestamp">
+            <column name="out_date"/>
+        </property>
+        <property name="goods" type="string">
+            <column default="''" length="800" name="goods"/>
+        </property>
+        <property name="isDisabled" type="short">
+            <column default="0" name="is_disabled"/>
+        </property>
+        <property name="isSettle" type="short">
+            <column default="0" name="is_settle"/>
+        </property>
+        <property name="isJudge" type="short">
+            <column default="0" name="is_judge"/>
+        </property>
+        <property name="isCheck" type="short">
+            <column default="0" name="is_check"/>
+        </property>
+        <property name="isOutBill" type="short">
+            <column default="0" name="is_out_bill"/>
+        </property>
+        <property name="remark" type="string">
+            <column default="''" length="800" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpsRead.RpsDeductDetail" table="rps_deduct_detail">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="serviceId" type="int">
+            <column name="service_id" not-null="true"/>
+        </property>
+        <property name="serviceCode" type="string">
+            <column default="''" length="30" name="service_code" not-null="true"/>
+        </property>
+        <property name="workerId" type="int">
+            <column default="0" name="worker_id" not-null="true"/>
+        </property>
+        <property name="worker" type="string">
+            <column default="''" length="20" name="worker" not-null="true"/>
+        </property>
+        <property name="billTypeId" type="int">
+            <column default="-1" name="bill_type_id"/>
+        </property>
+        <property name="salesDeductValue" type="big_decimal">
+            <column default="0.00" length="18" name="sales_deduct_value" precision="18" scale="2"/>
+        </property>
+        <property name="techDeductValue" type="big_decimal">
+            <column default="0.00" length="18" name="tech_deduct_value" precision="18" scale="2"/>
+        </property>
+        <property name="advisorDeductValue" type="big_decimal">
+            <column default="0.00" length="18" name="advisor_deduct_value" precision="18" scale="2"/>
+        </property>
+        <property name="annualInspectionDeductValue" type="big_decimal">
+            <column default="0.00" length="18" name="annual_inspection_deduct_value" precision="18" scale="2"/>
+        </property>
+        <property name="insureDueDeductValue" type="big_decimal">
+            <column default="0.00" length="18" name="insure_due_deduct_value" precision="18" scale="2"/>
+        </property>
+        <property name="vesselTaxDeductValue" type="big_decimal">
+            <column default="0.00" length="18" name="vessel_tax_deduct_value" precision="18" scale="2"/>
+        </property>
+        <property name="totalDeductAmt" type="big_decimal">
+            <column default="0.00" length="18" name="total_deduct_amt" not-null="true" precision="18" scale="2"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+</hibernate-mapping>

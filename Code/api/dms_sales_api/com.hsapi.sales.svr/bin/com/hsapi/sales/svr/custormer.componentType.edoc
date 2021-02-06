@@ -1,0 +1,82 @@
+<map>
+  <entry>
+    <string>com.hsapi.sales.svr.custormer.changStatus(Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;changStatus&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;changStatus&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.custormer.changStatus&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;action(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guestCome(com.hsapi.sales.data.css.CssGuestCome):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>save</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;custormer.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;save&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.custormer&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.custormer.queryGuestAndContactor(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryGuestAndContactor&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryGuestAndContactor&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.custormer.queryGuestAndContactor&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guestId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guest(com.hsapi.sales.data.com.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;contactor(com.hsapi.sales.data.csb.CsbContactor):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.custormer.insSaleMain(com.hsapi.sales.data.css.CssGuestCome)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;insSaleMain&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;insSaleMain&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.custormer.insSaleMain&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guestCome(com.hsapi.sales.data.css.CssGuestCome):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.custormer.queryGuestList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryGuestList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;qyeryMaintainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.custormer.queryGuestList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.custormer.saveContactorNT(com.hsapi.sales.data.com.ComGuest)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveContactorNT&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveGuestAndContactor&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.custormer.saveContactorNT&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guest(com.hsapi.sales.data.com.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.custormer.saveGuestScout(com.hsapi.sales.data.csb.CsbContactor, com.hsapi.sales.data.css.CssGuestScout, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveGuestScout&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveGuestScout&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.custormer.saveGuestScout&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;contactor(com.hsapi.sales.data.csb.CsbContactor):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guestScout(com.hsapi.sales.data.css.CssGuestScout):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;comeId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guestScout(com.hsapi.sales.data.css.CssGuestScout):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.custormer.queryCustomerListByMobile(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCustomerListByMobile&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCustomerList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.custormer.queryCustomerListByMobile&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.sales.data.com.ComGuest[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.custormer.queryGuestCome(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryGuestCome&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;qyeryMaintainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.custormer.queryGuestCome&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.custormer.saveGuestCome(com.hsapi.sales.data.css.CssGuestCome, com.hsapi.sales.data.com.ComGuest)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveGuestCome&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveGuestCome&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.custormer.saveGuestCome&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guestCome(com.hsapi.sales.data.css.CssGuestCome):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guest(com.hsapi.sales.data.com.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guestCome(com.hsapi.sales.data.css.CssGuestCome):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rguest(com.hsapi.sales.data.com.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.custormer.saveGuestAndContactor(com.hsapi.sales.data.com.ComGuest, com.hsapi.sales.data.csb.CsbContactor)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveGuestAndContactor&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveGuestAndContactor&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.custormer.saveGuestAndContactor&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guest(com.hsapi.sales.data.com.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;contactor(com.hsapi.sales.data.csb.CsbContactor):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guest(com.hsapi.sales.data.com.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;contactor(com.hsapi.sales.data.csb.CsbContactor):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.custormer.checkCustomerExists(String, String, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;checkCustomerExists&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;checkPartExists&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.custormer.checkCustomerExists&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mobile(String):&lt;/b&gt;手机号&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;editType(String):&lt;/b&gt;add,edit&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;客户ID&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guestData(com.hsapi.sales.data.com.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.custormer.queryScoutList(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryScoutList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryScoutList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.custormer.queryScoutList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;comeId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.sales.data.css.CssGuestScout[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.custormer.saveEntity(String, commonj.sdo.DataObject, Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveEntity&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveTalkArt&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.custormer.saveEntity&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;dsName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;forceInsert(Boolean):&lt;/b&gt;强制插入true&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.custormer.queryCarSellPrice(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCarSellPrice&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCarSellPrice&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.custormer.queryCarSellPrice&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;carModelId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carModel(com.hsapi.sales.data.csb.CsbCarModel):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.custormer.saveGuestComeBath(com.hsapi.sales.data.css.CssGuestCome[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveGuestComeBath&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveGuestComeBath&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.custormer.saveGuestComeBath&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guestComeList(com.hsapi.sales.data.css.CssGuestCome[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.custormer.queryGuestComeAndGuest(com.hsapi.sales.data.css.CssGuestCome)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryGuestComeAndGuest&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryGuestComeAndGuest&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.custormer.queryGuestComeAndGuest&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guestCome(com.hsapi.sales.data.css.CssGuestCome):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.custormer.saveGuestContactor(com.hsapi.sales.data.com.ComGuest, com.hsapi.sales.data.csb.CsbContactor)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveGuestContactor&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveGuestContactor&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.custormer.saveGuestContactor&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guest(com.hsapi.sales.data.com.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;contactor(com.hsapi.sales.data.csb.CsbContactor):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guest(com.hsapi.sales.data.com.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;contactor(com.hsapi.sales.data.csb.CsbContactor):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.custormer.saveContactor(com.hsapi.sales.data.com.ComGuest)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveContactor&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveGuestAndContactor&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.custormer.saveContactor&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guest(com.hsapi.sales.data.com.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.sales.svr.custormer.changeSaleAdvisor(com.hsapi.sales.data.csb.CsbContactor[], String, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;changeSaleAdvisor&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveGuestComeBath&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.sales.svr.custormer.changeSaleAdvisor&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;contactorList(com.hsapi.sales.data.csb.CsbContactor[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;saleAdvisor(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;saleAdvisorId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

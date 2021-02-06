@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Require-Bundle: com.hsapi.part.common,com.hs.common,com.hsapi.system.t
+ enant,com.eos.foundation,com.hsapi.part.data
+eos-webCtxPath: query
+Bundle-Vendor: Administrator
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsapi.part.query
+Bundle-Description: 
+Bundle-SymbolicName: com.hsapi.part.query
+

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.cloud.part.invoicing.crud">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <!-- 删除主表 -->
+    <delete id="deletePchMain" parameterClass="java.util.HashMap">DELETE FROM pj_pchs_order_main WHERE id = #id#</delete>
+    <!-- 删除主表审核 -->
+    <delete id="deletePchMainChk" parameterClass="java.util.HashMap">DELETE FROM  pj_pchs_order_main_chk WHERE id = #id#</delete>
+    <!-- 删除明细表 -->
+    <delete id="deletePchDetail" parameterClass="java.util.HashMap">DELETE FROM pj_pchs_order_detail WHERE main_id = #mainId#</delete>
+    <!-- 删除明细审核 -->
+    <delete id="deletePchDetailChk" parameterClass="java.util.HashMap">DELETE FROM pj_pchs_order_detail_chk WHERE main_id = #mainId#</delete>
+    <!-- 更新采购主表的金额 -->
+    <update id="updatePchAmt" parameterClass="java.util.HashMap">UPDATE pj_pchs_order_main_chk a
+		INNER JOIN (
+			SELECT
+				main_id AS mainId,
+				sum(order_amt) AS orderAmt,
+				sum(tax_amt) AS taxAmt,
+				sum(no_tax_amt) AS noTaxAmt,
+				sum(order_qty) as orderQty
+			FROM
+				pj_pchs_order_detail_chk
+			WHERE
+				main_id = #mainId#
+			GROUP BY
+				main_id
+		) b ON a.id = b.mainId
+		SET a.order_amt = b.orderAmt,
+		 a.tax_amt = b.taxAmt,
+		 a.no_tax_amt = b.noTaxAmt,
+		 a.tax_diff =  b.taxAmt - b.noTaxAmt,
+		 a.no_state_amt =  b.orderAmt,
+		 a.order_qty = b.orderQty,
+		 a.show_amt = b.orderAmt
+		WHERE
+			a.id = #mainId#</update>
+    <!-- 更新明细单价金额 -->
+    <update id="updatePchDetaiLAmt" parameterClass="java.util.HashMap">UPDATE pj_pchs_order_detail_chk a
+		SET 
+		 a.order_price =#orderPrice#,
+		 a.order_amt = #orderAmt#,
+		 a.tax_price  =  #taxPrice#,
+		 a.tax_amt = #taxAmt#,
+		 a.no_tax_price = #noTaxPrice#,
+		 a.no_tax_amt = #noTaxAmt#,
+		 a.tax_diff = #taxDiff#
+		WHERE
+			a.id = #mainId#</update>
+    <!-- 更新出库订单主表的返点率 -->
+    <update id="updateSellMainRebateRate" parameterClass="java.util.HashMap">update pj_sell_order_main_chk a
+		inner join wb_common.com_dataitems b
+		on a.business_type_id = b.customid
+		inner join wb_common.com_guest c
+		on a.settle_guest_id = c.id
+		set a.business_type_rebate_rate = b.property1 * 1.0 / 100,
+		    a.settle_guest_rebate_rate = c.return_rate * 1.0 / 100
+		where a.id = #mainId#</update>
+    <!-- 更新出库订单明细表的返点金额 -->
+    <update id="updateSellDetailRebateAmt" parameterClass="java.util.HashMap">update pj_sell_order_main_chk a
+		inner join pj_sell_order_detail_chk c
+		on a.id = c.main_id
+		set c.business_type_rebate_amt = c.order_amt * a.business_type_rebate_rate,
+		    c.settle_guest_rebate_amt = c.order_amt * a.settle_guest_rebate_rate
+		where a.id = #mainId#</update>
+    <!-- 更新出库主表的返点率 -->
+    <update id="updateSellOutMainRebateRate" parameterClass="java.util.HashMap">update pj_sell_order_main_chk a
+		inner join pj_sell_order_main_chk b
+		on a.code_id = b.id and a.code = b.service_id
+		set a.business_type_rebate_rate = b.business_type_rebate_rate,
+		    a.settle_guest_rebate_rate = b.settle_guest_rebate_rate
+		where b.id = #mainId#</update>
+    <!-- 更新出库明细表的返点金额 -->
+    <update id="updateSellOutDetailRebateAmt" parameterClass="java.util.HashMap">update pj_sell_order_main_chk a
+		inner join pj_sell_order_main_chk b
+		on a.code_id = b.id and a.code = b.service_id
+		inner join pj_sell_order_detail_chk c
+		on a.id = c.main_id
+		set c.business_type_rebate_amt = c.order_amt * a.business_type_rebate_rate,
+		    c.settle_guest_rebate_amt = c.order_amt * a.settle_guest_rebate_rate
+		where b.id = #mainId#</update>
+    <!-- 更新出库成本主表的返点率 -->
+    <update id="updateOutMainRebateRate" parameterClass="java.util.HashMap">update pj_sell_order_main_chk a
+		inner join pj_sell_order_main_chk b
+		on a.code_id = b.id and a.code = b.service_id
+		inner join pj_out_main_chk c
+		on c.code_id = a.id and c.code = a.service_id
+		set c.business_type_rebate_rate = b.business_type_rebate_rate,
+		    c.settle_guest_rebate_rate = b.settle_guest_rebate_rate
+		where b.id = #mainId#</update>
+    <!-- 更新出库成本明细表的返点金额 -->
+    <update id="updateOutDetailRebateAmt" parameterClass="java.util.HashMap">update pj_sell_order_main_chk a
+		inner join pj_sell_order_main_chk b
+		on a.code_id = b.id and a.code = b.service_id
+		inner join pj_out_main_chk c
+		on c.code_id = a.id and c.code = a.service_id
+		inner join pj_out_detail_chk d
+		on c.id = d.main_id
+		set d.business_type_rebate_amt = d.sell_amt * a.business_type_rebate_rate,
+		    d.settle_guest_rebate_amt = d.sell_amt * a.settle_guest_rebate_rate
+		where b.id = #mainId#</update>
+    <!-- 更新出库成本主表的返点率    没有订单表，只有出库表和成本表 -->
+    <update id="updateOutMainRebateRate2" parameterClass="java.util.HashMap">update pj_sell_order_main_chk a
+		inner join pj_out_main_chk c
+		on c.code_id = a.id and c.code = a.service_id
+		set c.business_type_rebate_rate = a.business_type_rebate_rate,
+		    c.settle_guest_rebate_rate = a.settle_guest_rebate_rate
+		where a.id = #mainId#</update>
+    <!-- 更新出库成本明细表的返点金额    没有订单表，只有出库表和成本表 -->
+    <update id="updateOutDetailRebateAmt2" parameterClass="java.util.HashMap">update pj_sell_order_main_chk a
+		inner join pj_out_main_chk c
+		on c.code_id = a.id and c.code = a.service_id
+		inner join pj_out_detail_chk d
+		on c.id = d.main_id
+		set d.business_type_rebate_amt = d.sell_amt * a.business_type_rebate_rate,
+		    d.settle_guest_rebate_amt = d.sell_amt * a.settle_guest_rebate_rate
+		where a.id = #mainId#</update>
+    <!-- 更新销售退货订单主表的返点率 -->
+    <update id="updateSellRtnMainRebateRate" parameterClass="java.util.HashMap">update pj_pchs_order_main_chk a
+		inner join wb_common.com_dataitems b
+		on a.business_type_id = b.customid
+		inner join wb_common.com_guest c
+		on a.settle_guest_id = c.id
+		set a.business_type_rebate_rate = b.property1 * 1.0 / 100,
+		    a.settle_guest_rebate_rate = c.return_rate * 1.0 / 100
+		where a.id = #mainId#</update>
+    <!-- 更新销售退货订单明细表的返点金额 -->
+    <update id="updateSellRtnDetailRebateAmt" parameterClass="java.util.HashMap">update pj_pchs_order_main_chk a
+		inner join pj_pchs_order_detail_chk c
+		on a.id = c.main_id
+		set c.business_type_rebate_amt = c.order_amt * a.business_type_rebate_rate,
+		    c.settle_guest_rebate_amt = c.order_amt * a.settle_guest_rebate_rate
+		where a.id = #mainId#</update>
+    <!-- 更新销售退货主表的返点率 -->
+    <update id="updateSellRtnEnterMainRebateRate" parameterClass="java.util.HashMap">update pj_pchs_order_main_chk a
+		inner join pj_pchs_order_main_chk b
+		on a.code_id = b.id and a.code = b.service_id
+		set a.business_type_rebate_rate = b.business_type_rebate_rate,
+		    a.settle_guest_rebate_rate = b.settle_guest_rebate_rate
+		where b.id = #mainId#</update>
+    <!-- 更新销售退货明细表的返点金额 -->
+    <update id="updateSellRtnEnterDetailRebateAmt" parameterClass="java.util.HashMap">update pj_pchs_order_main_chk a
+		inner join pj_pchs_order_main_chk b
+		on a.code_id = b.id and a.code = b.service_id
+		inner join pj_pchs_order_detail_chk c
+		on a.id = c.main_id
+		set c.business_type_rebate_amt = c.order_amt * a.business_type_rebate_rate,
+		    c.settle_guest_rebate_amt = c.order_amt * a.settle_guest_rebate_rate
+		where b.id = #mainId#</update>
+    <!-- 更新销售退货成本主表的返点率 -->
+    <update id="updateOutRtnMainRebateRate" parameterClass="java.util.HashMap">update pj_pchs_order_main_chk a
+		inner join pj_pchs_order_main_chk b
+		on a.code_id = b.id and a.code = b.service_id
+		inner join pj_enter_main_chk c
+		on c.code_id = a.id and c.code = a.service_id
+		set c.business_type_rebate_rate = b.business_type_rebate_rate,
+		    c.settle_guest_rebate_rate = b.settle_guest_rebate_rate
+		where b.id = #mainId#</update>
+    <!-- 更新销售退货成本明细表的返点金额 -->
+    <update id="updateOutRtnDetailRebateAmt" parameterClass="java.util.HashMap">update pj_pchs_order_main_chk a
+		inner join pj_pchs_order_main_chk b
+		on a.code_id = b.id and a.code = b.service_id
+		inner join pj_enter_main_chk c
+		on c.code_id = a.id and c.code = a.service_id
+		inner join pj_enter_detail_chk d
+		on c.id = d.main_id
+		set d.business_type_rebate_amt = d.rtn_amt * a.business_type_rebate_rate,
+		    d.settle_guest_rebate_amt = d.rtn_amt * a.settle_guest_rebate_rate
+		where b.id = #mainId#</update>
+    <!-- 更新销售订单明细的分摊费用-->
+    <update id="updateSellOrderShareExpenseAmt" parameterClass="java.util.HashMap">update pj_sell_order_detail_chk a
+		inner join pj_sell_order_main_chk b
+		on a.main_id = b.id
+		set a.share_expense_amt = a.order_amt * 1.0 / b.order_amt * b.expense_amt
+		where b.id = #mainId#</update>
+    <!-- 更新销售出库主表费用-->
+    <update id="updateSellOutExpenseAmt" parameterClass="java.util.HashMap">update pj_sell_order_main_chk a
+		inner join pj_sell_order_main_chk b
+		on a.code_id = b.id and a.code = b.service_id
+		set a.expense_amt = b.expense_amt
+		where b.id = #mainId#</update>
+    <!-- 更新销售出库明细表分摊费用-->
+    <update id="updateSellOutShareExpenseAmt" parameterClass="java.util.HashMap">update pj_sell_order_main_chk a
+		inner join pj_sell_order_main_chk b
+		on a.code_id = b.id and a.code = b.service_id
+		inner join pj_sell_order_detail_chk c
+		on a.id = c.main_id
+		set c.share_expense_amt = c.order_amt * 1.0 / b.order_amt * b.expense_amt
+		where b.id = #mainId#</update>
+    <!-- 更新出库表费用-->
+    <update id="updateOutExpenseAmt" parameterClass="java.util.HashMap">update pj_sell_order_main_chk a
+		inner join pj_sell_order_main_chk b
+		on a.code_id = b.id and a.code = b.service_id
+		inner join pj_out_main_chk c
+		on a.id = c.code_id and a.service_id = c.code
+		set c.expense_amt = b.expense_amt
+		where b.id = #mainId#</update>
+    <!-- 更新出库明细表分摊费用-->
+    <update id="updateOutShareExpenseAmt" parameterClass="java.util.HashMap">update pj_sell_order_main_chk a
+		inner join pj_sell_order_main_chk b
+		on a.code_id = b.id and a.code = b.service_id
+		inner join pj_out_main_chk c
+		on a.id = c.code_id and a.service_id = c.code
+		inner join pj_out_detail_chk d
+		on c.id = d.main_id
+		set d.share_expense_amt = d.sell_amt * 1.0 / b.order_amt * b.expense_amt
+		where b.id = #mainId#</update>
+    <!-- 根据出库主表更新出库明细表分摊费用-->
+    <update id="updateOutDetailShareExpenseAmt" parameterClass="java.util.HashMap">update  pj_out_main_chk c
+		inner join pj_out_detail_chk d
+		on c.id = d.main_id
+		set d.share_expense_amt = d.sell_amt * 1.0 /c.out_amt * c.expense_amt
+		where c.id = #mainId#</update>
+    <!-- 根据入库主表更新入库明细表分摊费用-->
+    <update id="updateEnterDetailShareExpenseAmt" parameterClass="java.util.HashMap">update  pj_enter_main_chk c
+		inner join pj_enter_detail_chk d
+		on c.id = d.main_id
+		set d.expense_amt = d.enter_amt * 1.0 /c.enter_amt * c.expense_amt
+		where c.id = #mainId#</update>
+    <!-- 更新入库表打印次数 -->
+    <update id="updatePchPrintTimes" parameterClass="java.util.HashMap">UPDATE pj_pchs_order_main_chk 
+		SET print_times = ifnull(print_times,0) + 1,
+			print_man = #printMan#,
+			print_man_id = #printManId#,
+			print_date = SYSDATE()
+		WHERE id = #id#</update>
+    <!-- 更新出库表打印次数 -->
+    <update id="updateSellPrintTimes" parameterClass="java.util.HashMap">UPDATE pj_sell_order_main_chk 
+		SET print_times = ifnull(print_times,0) + 1,
+			print_man = #printMan#,
+			print_man_id = #printManId#,
+			print_date = SYSDATE()
+		WHERE id = #id#</update>
+    <!-- 更新出库表费用-->
+    <update id="updateGuestOutExpenseAmt" parameterClass="java.util.HashMap">update pj_sell_order_main_chk a
+		inner join pj_out_main_chk b
+		on a.id = b.code_id and a.service_id = b.code
+		set b.expense_amt = a.expense_amt
+		where a.id = #mainId#</update>
+    <!-- 更新出库明细表分摊费用-->
+    <update id="updateGuestOutShareExpenseAmt" parameterClass="java.util.HashMap">update pj_sell_order_main_chk a
+		inner join pj_out_main_chk b
+		on a.id = b.code_id and a.service_id = b.code
+		inner join pj_out_detail_chk c
+		on b.id = c.main_id
+		set c.share_expense_amt = c.sell_amt * 1.0 / b.out_amt * b.expense_amt
+		where a.id = #mainId#</update>
+    <!--每日库存拍照-->
+    <insert id="collectStock" parameterClass="java.util.HashMap">INSERT INTO `dms_cloud_part`.`pj_part_store_day_stock` (
+			`f_year`, `f_month`, `f_day`,
+			`orgid`, `store_id`, `store_name`, `shelf`,
+			`part_id`, `part_code`, `part_name`, `full_name`, `system_unit_id`,
+			`cost_price`, `stock_qty`, `stock_amt`, `position`, `up_limit`, `down_limit`,
+			`up_limit_winter`, `down_limit_winter`, `exp_enter_price`, `exp_enter_amt`,
+			`tax_cost_price`, `tax_cost_amt`, `set_cost_price`, `set_cost_amt`,
+			`no_tax_cost_price`, `no_tax_cost_amt`, `create_date`
+		)
+		SELECT #fyear#,#fmonth#,#fday#, orgid, store_id, `store_name`, `shelf`,
+			`part_id`, `part_code`, `part_name`, `full_name`, `system_unit_id`,
+			`cost_price`, `stock_qty`, `stock_amt`, `position`, `up_limit`, `down_limit`,
+			`up_limit_winter`, `down_limit_winter`, `exp_enter_price`, `exp_enter_amt`,
+			`tax_cost_price`, `tax_cost_amt`, `set_cost_price`, `set_cost_amt`,
+			`no_tax_cost_price`, `no_tax_cost_amt`, SYSDATE()
+		from pj_part_store_stock where stock_qty &gt; 0</insert>
+    <!-- 删除每日库存拍照 -->
+    <delete id="deleteCollectStock" parameterClass="java.util.HashMap">DELETE FROM  pj_part_store_day_stock WHERE f_year = #fyear# and f_month = #fyear# and f_day = #fday#</delete>
+    <!-- 更新快速报价生成的销售订单的仓位 and b.store_id = c.store_id -->
+    <update id="updateSellStoreShelf" parameterClass="java.util.HashMap">update pj_sell_order_detail a
+		inner join pj_sell_order_main b
+		on a.main_id = b.id
+		inner join pj_part_store_stock c
+		on b.orgid = c.orgid  and a.part_id = c.part_id and b.store_id = c.store_id
+		set a.store_shelf = shelf
+		where b.id = #mainId#</update>
+    <!-- 更新快速报价生成的采购订单的仓位 and b.store_id = c.store_id -->
+    <update id="updatePchsStoreShelf" parameterClass="java.util.HashMap">update pj_pchs_order_detail a
+		inner join pj_pchs_order_main b
+		on a.main_id = b.id
+		inner join pj_part_store_stock c
+		on b.orgid = c.orgid  and a.part_id = c.part_id and b.store_id = c.store_id
+		set a.store_shelf = shelf
+		where b.id = #mainId#</update>
+    <!-- 更新移仓出库的仓位为空的仓位 -->
+    <update id="updateShiftOutStoreShelf" parameterClass="java.util.HashMap">update pj_stock_shift_detail a
+		inner join pj_part_store_stock b
+		on a.store_id = b.store_id and a.part_id = b.part_id 
+		set a.store_shelf = shelf 
+		where a.main_id = #id# and ifnull(a.store_shelf,'') = ''</update>
+    <!-- 更新移仓入库的仓位为空的仓位 -->
+    <update id="updateShiftEnterStoreShelf" parameterClass="java.util.HashMap">update pj_stock_shift_detail a
+		inner join pj_part_store_stock b
+		on a.receive_store_id = b.store_id and a.part_id = b.part_id 
+		set a.receive_store_shelf = shelf 
+		where a.main_id = #id# and ifnull(a.receive_store_shelf,'') = ''</update>
+    <!-- 更新销售出库的可退货数量 -->
+    <update id="updateSellOrderOutableQty" parameterClass="java.util.HashMap">update pj_pchs_order_detail_chk a
+		inner join pj_sell_order_detail_chk b
+		on a.rtn_main_id = b.main_id and a.rtn_detail_id = b.id
+		set b.outable_qty = b.outable_qty + a.order_qty
+		where a.main_id = #mainId#</update>
+</sqlMap>

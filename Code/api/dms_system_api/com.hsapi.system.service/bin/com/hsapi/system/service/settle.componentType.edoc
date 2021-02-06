@@ -1,0 +1,54 @@
+<map>
+  <entry>
+    <string>com.hsapi.system.service.settle.initRpbContactorId()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;initRpbContactorId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;initRpbItemId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.service.settle.initRpbContactorId&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cacheContactorId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.service.settle.initComAttributeId()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;initComAttributeId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;initRpbItemId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.service.settle.initComAttributeId&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cachePartId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.service.settle.initRpbItemId()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;initRpbItemId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;initRpbItemId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.service.settle.initRpbItemId&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cacheItemId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.service.settle.setIdCache()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;setIdCache&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;setIdCache&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.service.settle.setIdCache&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.service.settle.initRpbCardTimesId()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;initRpbCardTimesId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;initRpbItemId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.service.settle.initRpbCardTimesId&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cacheCardTimesId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.service.settle.initRpbCardStoredId()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;initRpbCardStoredId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;initRpbItemId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.service.settle.initRpbCardStoredId&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cacheCardStoredId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.service.settle.initRpbCarId()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;initRpbCarId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;initRpbItemId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.service.settle.initRpbCarId&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cacheCarId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.service.settle.setCdrRecord(Date, Date, com.alibaba.fastjson.JSON[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;setCdrRecord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;setCdrRecord&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.service.settle.setCdrRecord&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;startDate(Date):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;endDate(Date):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;cdrList(com.alibaba.fastjson.JSON[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.service.settle.initRpbPackageId()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;initRpbPackageId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;initRpbItemId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.service.settle.initRpbPackageId&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cachePackageId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.service.settle.insCdrRecord()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;insCdrRecord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;insCdrRecord&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.service.settle.insCdrRecord&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.service.settle.clearIdCache(String, String, String, String, String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;clearIdCache&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;clearIdCache&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.service.settle.clearIdCache&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;item(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;contactor(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;car(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guest(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rpbCardTimes(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rpbPackage(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;comAttribute(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rpbCardStored(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cachePartId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;cacheGuestId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;cacheCardStoredId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;cacheCardTimesId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;cacheCarId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;cacheContactorId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;cacheItemId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;cachePackageId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>settle</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;settle.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;settle&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.service.settle&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.service.settle.initComGuestId()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;initComGuestId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;initRpbItemId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.service.settle.initComGuestId&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cacheGuestId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

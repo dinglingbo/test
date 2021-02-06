@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Require-Bundle: com.hsapi.cloud.part.common,com.hsapi.cloud.part.data,
+ com.eos.foundation,com.hs.common
+eos-webCtxPath: settle
+Bundle-Vendor: Administrator
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsapi.cloud.part.settle
+Bundle-Description: 
+Bundle-SymbolicName: com.hsapi.cloud.part.settle
+

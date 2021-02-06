@@ -1,0 +1,14 @@
+<map>
+  <entry>
+    <string>com.hsapi.system.llq.LlqCall.setHashKeyV2(java.util.Map&lt;java.lang.String,java.lang.Object&gt;)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;void com.hsapi.system.llq.LlqCall.setHashKeyV2(Map&lt;String,Object&gt; params)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>LlqCall [llq工具类]</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.hsapi.system.llq.LlqCall&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.llq.LlqCall.setHashKey(java.util.Map&lt;java.lang.String,java.lang.Object&gt;)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;void com.hsapi.system.llq.LlqCall.setHashKey(Map&lt;String,Object&gt; params)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

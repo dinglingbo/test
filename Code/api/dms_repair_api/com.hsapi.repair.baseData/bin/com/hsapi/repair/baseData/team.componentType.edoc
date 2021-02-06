@@ -1,0 +1,62 @@
+<map>
+  <entry>
+    <string>com.hsapi.repair.baseData.team.updateTeamMember(com.hsapi.repair.data.rpbse.RpbClassMember, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateTeamMember&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateTeamMember&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.team.updateTeamMember&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;member(com.hsapi.repair.data.rpbse.RpbClassMember):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>DataBase</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;team.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;DataBase&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.team&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.team.saveTeam(com.hsapi.repair.data.rpbse.RpbClass, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveTeam&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveTeam&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.team.saveTeam&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;team(com.hsapi.repair.data.rpbse.RpbClass):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;team(com.hsapi.repair.data.rpbse.RpbClass):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;S/E&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.team.getRepairGroup()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRepairGroup&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getOrgGroup&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.team.getRepairGroup&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.team.getTeamByTypeList(String[], String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getTeamByTypeList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getTeamByIds&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.team.getTeamByTypeList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;type(String[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.rpbse.RpbClass[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.team.getTeamMemberByTeamIdList(String[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getTeamMemberByTeamIdList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getTeamByIds&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.team.getTeamMemberByTeamIdList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;idList(String[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.rpbse.RpbClassMember[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.team.getTeam(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getTeam&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;ClassQuery&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.team.getTeam&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;param(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.team.queryTeam(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryTeam&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;ClassQuery&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.team.queryTeam&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.team.queryTeamMember(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryTeamMember&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryTeamMember&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.team.queryTeamMember&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;classId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isDisabled(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;members(com.hsapi.repair.data.rpbse.RpbClassMember[]):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;查询班组成员&lt;br&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.team.getClassById(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getClassById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getClassMemberByClassId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.team.getClassById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpbclass(com.hsapi.repair.data.rpbse.RpbClass):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;len(Int):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;获取班组成员&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.team.saveMemberLevel(com.hsapi.repair.data.common.ComMemberLevel[], com.hsapi.repair.data.common.ComMemberLevel[], com.hsapi.repair.data.common.ComMemberLevel[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveMemberLevel&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveStation&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.team.saveMemberLevel&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addList(com.hsapi.repair.data.common.ComMemberLevel[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updateList(com.hsapi.repair.data.common.ComMemberLevel[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;deleteList(com.hsapi.repair.data.common.ComMemberLevel[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.team.queryWorkTeam(com.primeton.das.criteria.criteriaType)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryWorkTeam&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryWorkTeam&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.team.queryWorkTeam&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;criteria(com.primeton.das.criteria.criteriaType):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.common.ComMemberGroup[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.team.saveWorkTeam(com.hsapi.repair.data.common.ComMemberGroup[], com.hsapi.repair.data.common.ComMemberGroup[], com.hsapi.repair.data.common.ComMemberGroup[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveWorkTeam&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveStation&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.team.saveWorkTeam&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addList(com.hsapi.repair.data.common.ComMemberGroup[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updateList(com.hsapi.repair.data.common.ComMemberGroup[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;deleteList(com.hsapi.repair.data.common.ComMemberGroup[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.team.queryMemberLevel(com.primeton.das.criteria.criteriaType)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryMemberLevel&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryWorkTeam&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.team.queryMemberLevel&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;criteria(com.primeton.das.criteria.criteriaType):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.common.ComMemberLevel[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.team.saveTeamMembers(com.hsapi.repair.data.rpbse.RpbClassMember[], String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveTeamMembers&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveTeamMembers&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.team.saveTeamMembers&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;members(com.hsapi.repair.data.rpbse.RpbClassMember[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

@@ -1,0 +1,22 @@
+<map>
+  <entry>
+    <string>com.hs.timer.SyncElectronicArchives.registerElectronicArchives(java.util.Map&lt;java.lang.String,java.lang.String&gt;)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.timer.SyncElectronicArchives.registerElectronicArchives(Map&lt;String,String&gt; map)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.timer.SyncElectronicArchives.pushElectricData()</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.timer.SyncElectronicArchives.pushElectricData()&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.timer.SyncElectronicArchives.getAccessToken(java.lang.String, java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Map&lt;String,String&gt; com.hs.timer.SyncElectronicArchives.getAccessToken(String companycode, String companypassword, String eTokenUrl)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.timer.SyncElectronicArchives.getCompanyCode(java.util.Map&lt;java.lang.String,java.lang.String&gt;, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Map&lt;String,String&gt; com.hs.timer.SyncElectronicArchives.getCompanyCode(Map&lt;String,String&gt; companydata, String registerUrl)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>SyncElectronicArchives [电子档案对接]</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.hs.timer.SyncElectronicArchives&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &lt;dl&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;Administrator&lt;/dd&gt;&lt;dt&gt;@date&lt;/dt&gt;&lt;dd&gt;2018-12-09 22:58:33&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

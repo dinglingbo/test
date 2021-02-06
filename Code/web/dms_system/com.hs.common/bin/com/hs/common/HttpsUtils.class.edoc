@@ -1,0 +1,20 @@
+<map>
+  <entry>
+    <string>HttpsUtils</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.hs.common.HttpsUtils&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.HttpsUtils.bmwPartsPost(java.util.Map&lt;java.lang.String,java.lang.String&gt;, java.util.Map&lt;java.lang.String,java.lang.String&gt;)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.HttpsUtils.bmwPartsPost(Map&lt;String,String&gt; params, Map&lt;String,String&gt; header)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 以POST方式发送JSON数据请求&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;urlParam&lt;/b&gt;&#x0D;
+            (Https)&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;json&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.HttpsUtils.sendHttpsPost(java.lang.String, java.util.Map&lt;java.lang.String,java.lang.String&gt;, java.util.Map&lt;java.lang.String,java.lang.String&gt;)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.HttpsUtils.sendHttpsPost(String urlParam, Map&lt;String,String&gt; params, Map&lt;String,String&gt; header)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 以POST方式发送JSON数据请求&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;urlParam&lt;/b&gt;&#x0D;
+            (Https)&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;json&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

@@ -1,0 +1,14 @@
+<map>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.timer.updateChainStockAge()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateChainStockAge&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updatechainStockAge&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.timer.updateChainStockAge&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>timer</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;timer.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;timer&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.timer&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.timer.updateBranchStockAge()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateBranchStockAge&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateBranchStockAge&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.timer.updateBranchStockAge&lt;/html&gt;</string>
+  </entry>
+</map>

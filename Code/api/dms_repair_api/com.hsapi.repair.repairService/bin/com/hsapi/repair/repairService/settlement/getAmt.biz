@@ -1,0 +1,804 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getAmt.bizx" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="process:tStart" id="start0" name="开始" type="start">
+    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" isDefault="true" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <nodeLabel>start0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end0" name="结束" type="end">
+    <targetConnections>link11</targetConnections>
+    <nodeLabel>end0label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="com.hsapi.repair.data.rps.RpsSettlement" name="settleMent" type="query" valueType="DataObject">settleMent</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" nodeType="label">
+    <figSize height="17" width="25"/>
+    <node>start0</node>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
+    <figSize height="17" width="25"/>
+    <node>end0</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" id="invokePojo0" name="queryByNamedSql" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" isDefault="true" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>subprocess0</targetNode>
+    </sourceConnections>
+    <targetConnections>link1</targetConnections>
+    <nodeLabel>invokePojo0label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.queryByNamedSql</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
+      <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.repair.repairService.settleMent.getAmt</process:inputVariable>
+      <process:inputVariable id="2" name="parameterObject" type="query" value="java.lang.Object" valueType="Java" pattern="reference">params</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.Object[]" valueType="Java">tmpList</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
+    <figSize height="17" width="109"/>
+    <node>invokePojo0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign0" name="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" isDefault="true" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link0</targetConnections>
+    <nodeLabel>assign0label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">settleMent/serviceId</process:from>
+      <process:to type="query">params/serviceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">settleMent/packageDiscountAmt</process:from>
+      <process:to type="query">packageDiscountAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">settleMent/packgePrefAmt</process:from>
+      <process:to type="query">packgePrefAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">outBillBalaAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">outBillBalaSubtoal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">outTurnUpAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">outTurnUpTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">planTaxAmt</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
+    <figSize height="17" width="25"/>
+    <node>assign0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign1" name="赋值1" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" isDefault="true" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>assign3</targetNode>
+    </sourceConnections>
+    <targetConnections>link8</targetConnections>
+    <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmpList[1]</process:from>
+      <process:to type="query">tmp</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/itemAmt</process:from>
+      <process:to type="query">itemAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/itemTotalAmt</process:from>
+      <process:to type="query">itemTotalAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/itemPrefAmt</process:from>
+      <process:to type="query">itemPrefAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/itemSubtotal</process:from>
+      <process:to type="query">itemSubtotal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">itemTotalAmt-itemAmt</process:from>
+      <process:to type="query">itemFreeAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/outItemTotal</process:from>
+      <process:to type="query">outItemTotal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/outItemAmt</process:from>
+      <process:to type="query">outItemAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/outItemSubtotal</process:from>
+      <process:to type="query">outItemSubtotal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/outItemPrefAmt</process:from>
+      <process:to type="query">outItemPrefAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">outItemTotal-outItemAmt</process:from>
+      <process:to type="query">outItemFreeAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/partTotalAmt</process:from>
+      <process:to type="query">partTotalAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/partAmt</process:from>
+      <process:to type="query">partAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/partPrefAmt</process:from>
+      <process:to type="query">partPrefAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/partSubtotal</process:from>
+      <process:to type="query">partSubtotal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">partTotalAmt-partAmt</process:from>
+      <process:to type="query">partFreeAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/outPartAmt</process:from>
+      <process:to type="query">outPartAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/outPartPrefAmt</process:from>
+      <process:to type="query">outPartPrefAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/outPartTotal</process:from>
+      <process:to type="query">outPartTotal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/outPartSubtotal</process:from>
+      <process:to type="query">outPartSubtotal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">outPartTotal-outPartAmt</process:from>
+      <process:to type="query">outPartFreeAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/elecAmt</process:from>
+      <process:to type="query">elecAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">elecAmtRate*elecAmt</process:from>
+      <process:to type="query">elecDeduct</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/metalAmt</process:from>
+      <process:to type="query">metalAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">metalAmtRate*metalAmt</process:from>
+      <process:to type="query">metalDeduct</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/paintmt</process:from>
+      <process:to type="query">paintmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">paintDeduct*paintmt</process:from>
+      <process:to type="query">paintDeduct</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
+    <figSize height="17" width="32"/>
+    <node>assign1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign2" name="赋值2" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link11" name="link11" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link4</targetConnections>
+    <targetConnections>link10</targetConnections>
+    <nodeLabel>assign2label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">itemTotalAmt</process:from>
+      <process:to type="query">settleMent/itemTotalAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">itemFreeAmt</process:from>
+      <process:to type="query">settleMent/itemFreeAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">itemAmt</process:from>
+      <process:to type="query">settleMent/itemAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">itemAmt==0?0:(100*itemPrefAmt/itemAmt)</process:from>
+      <process:to type="query">settleMent/itemPrefRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">itemPrefAmt</process:from>
+      <process:to type="query">settleMent/itemPrefAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">itemSubtotal</process:from>
+      <process:to type="query">settleMent/itemSubtotal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">partTotalAmt</process:from>
+      <process:to type="query">settleMent/partTotalAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">partFreeAmt</process:from>
+      <process:to type="query">settleMent/partFreeAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">partAmt</process:from>
+      <process:to type="query">settleMent/partAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">partAmt==0?0:(100*partPrefAmt/partAmt)</process:from>
+      <process:to type="query">settleMent/partPrefRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">partPrefAmt</process:from>
+      <process:to type="query">settleMent/partPrefAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">partSubtotal</process:from>
+      <process:to type="query">settleMent/partSubtotal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outItemTotal</process:from>
+      <process:to type="query">settleMent/outItemTotal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outPartTotal</process:from>
+      <process:to type="query">settleMent/outPartTotal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">outItemAmt==0?0:(100*outItemPrefAmt/outItemAmt)</process:from>
+      <process:to type="query">settleMent/outItemPrefRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">outPartAmt==0?0:(100*outPartPrefAmt/outPartAmt)</process:from>
+      <process:to type="query">settleMent/outPartPrefRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outItemPrefAmt</process:from>
+      <process:to type="query">settleMent/outItemPrefAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outPartPrefAmt</process:from>
+      <process:to type="query">settleMent/outPartPrefAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">outItemPrefAmt+outPartPrefAmt</process:from>
+      <process:to type="query">settleMent/outTotalPrefAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outItemFreeAmt</process:from>
+      <process:to type="query">settleMent/outItemFreeAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outPartFreeAmt</process:from>
+      <process:to type="query">settleMent/outPartFreeAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outItemSubtotal</process:from>
+      <process:to type="query">settleMent/outItemSubtotal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outPartSubtotal</process:from>
+      <process:to type="query">settleMent/outPartSubtotal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">elecAmt</process:from>
+      <process:to type="query">settleMent/elecAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">elecDeduct</process:from>
+      <process:to type="query">settleMent/elecDeduct</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">elecAmt</process:from>
+      <process:to type="query">settleMent/elecSubtotal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">partManageExp</process:from>
+      <process:to type="query">settleMent/partManageExp</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">partTrueCost</process:from>
+      <process:to type="query">settleMent/partTrueCost</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">partNoTaxCost</process:from>
+      <process:to type="query">settleMent/partNoTaxCost</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">partTaxCost</process:from>
+      <process:to type="query">settleMent/partTaxCost</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mtAmt</process:from>
+      <process:to type="query">settleMent/mtAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">settleMent/allowanceAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">freePrefAllowanceAmt</process:from>
+      <process:to type="query">settleMent/freePrefAllowanceAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">materialExp</process:from>
+      <process:to type="query">settleMent/materialExp</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">settleMent/otherExp</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">totalReceivableAmt</process:from>
+      <process:to type="query">settleMent/totalReceivableAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">settleMent/totalPrefRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">totalPrefAmt</process:from>
+      <process:to type="query">settleMent/totalPrefAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">balaAmt</process:from>
+      <process:to type="query">settleMent/balaAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outItemAmt</process:from>
+      <process:to type="query">settleMent/outBillItemAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outPartAmt</process:from>
+      <process:to type="query">settleMent/outBillPartAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outTotalPrefAmt</process:from>
+      <process:to type="query">settleMent/outTotalPrefAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">settleMent/outBillAllowance</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outBillBalaAmt</process:from>
+      <process:to type="query">settleMent/outBillBalaAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outBillBalaSubtoal</process:from>
+      <process:to type="query">settleMent/outBillBalaSubtoal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outTurnUpAmt</process:from>
+      <process:to type="query">settleMent/outTurnUpAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outTurnUpTaxAmt</process:from>
+      <process:to type="query">settleMent/outTurnUpTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outRebateAmt</process:from>
+      <process:to type="query">settleMent/outRebateAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">settleMent/billAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">settleMent/businessRemark</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">metalAmt</process:from>
+      <process:to type="query">settleMent/metalAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">metalAmt</process:from>
+      <process:to type="query">settleMent/metalAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">metalDeduct</process:from>
+      <process:to type="query">settleMent/metalDeduct</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">paintmt</process:from>
+      <process:to type="query">settleMent/paintAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">paintDeduct</process:from>
+      <process:to type="query">settleMent/paintDeduct</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">paintmt</process:from>
+      <process:to type="query">settleMent/paintSubtotal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">grossProfit</process:from>
+      <process:to type="query">settleMent/grossProfit</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">grossProfitRate</process:from>
+      <process:to type="query">settleMent/grossProfitRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">settleMent/grossProfitRemark</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">balaAmt</process:from>
+      <process:to type="query">settleMent/incomeAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">balaAmt</process:from>
+      <process:to type="query">settleMent/receivableAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">balaAmt</process:from>
+      <process:to type="query">settleMent/incomeRealAmt</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <figSize height="17" width="32"/>
+    <node>assign2</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign3" name="赋值3" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link4" name="link4" isDefault="true" type="transition">
+      <sourceNode>assign3</sourceNode>
+      <targetNode>assign2</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" type="transition">
+      <sourceNode>assign3</sourceNode>
+      <targetNode>assign4</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">outBillSign</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link3</targetConnections>
+    <nodeLabel>assign3label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">itemTotalAmt</process:from>
+      <process:to type="query">mtAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mtAmt+partTotalAmt</process:from>
+      <process:to type="query">mtAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mtAmt+packgePrefAmt</process:from>
+      <process:to type="query">mtAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mtAmt-packageDiscountAmt</process:from>
+      <process:to type="query">mtAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">partManageExp*partAmt</process:from>
+      <process:to type="query">partManageExp</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">partManageExp*outPartAmt</process:from>
+      <process:to type="query">outPartManageExp</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">itemSubtotal</process:from>
+      <process:to type="query">balaAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">balaAmt+partSubtotal</process:from>
+      <process:to type="query">balaAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">balaAmt+partManageExp</process:from>
+      <process:to type="query">balaAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">balaAmt+materialExp</process:from>
+      <process:to type="query">balaAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">balaAmt-packageDiscountAmt</process:from>
+      <process:to type="query">balaAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">balaAmt</process:from>
+      <process:to type="query">grossProfit</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">balaAmt-partTaxCost</process:from>
+      <process:to type="query">grossProfit</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">balaAmt-elecDeduct</process:from>
+      <process:to type="query">grossProfit</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">balaAmt-metalDeduct</process:from>
+      <process:to type="query">grossProfit</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">balaAmt-paintDeduct</process:from>
+      <process:to type="query">grossProfit</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">balaAmt==0?0:grossProfit/balaAmt</process:from>
+      <process:to type="query">grossProfitRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">itemFreeAmt</process:from>
+      <process:to type="query">freePrefAllowanceAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">freePrefAllowanceAmt+partFreeAmt</process:from>
+      <process:to type="query">freePrefAllowanceAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">freePrefAllowanceAmt+itemPrefAmt</process:from>
+      <process:to type="query">freePrefAllowanceAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">freePrefAllowanceAmt+partPrefAmt</process:from>
+      <process:to type="query">freePrefAllowanceAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">freePrefAllowanceAmt+packgePrefAmt</process:from>
+      <process:to type="query">freePrefAllowanceAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mtAmt</process:from>
+      <process:to type="query">totalReceivableAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">totalReceivableAmt+materialExp</process:from>
+      <process:to type="query">totalReceivableAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">totalReceivableAmt+partManageExp</process:from>
+      <process:to type="query">totalReceivableAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">itemPrefAmt</process:from>
+      <process:to type="query">totalPrefAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">totalPrefAmt+partPrefAmt</process:from>
+      <process:to type="query">totalPrefAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">totalPrefAmt+packgePrefAmt</process:from>
+      <process:to type="query">totalPrefAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outItemPrefAmt</process:from>
+      <process:to type="query">outTotalPrefAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">outTotalPrefAmt+outPartPrefAmt</process:from>
+      <process:to type="query">outTotalPrefAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">outTotalPrefAmt+packgePrefAmt</process:from>
+      <process:to type="query">outTotalPrefAmt</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
+    <figSize height="17" width="32"/>
+    <node>assign3</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" id="subprocess0" name="getAmtRate" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" isDefault="true" type="transition">
+      <sourceNode>subprocess0</sourceNode>
+      <targetNode>subprocess2</targetNode>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <nodeLabel>subprocess0label</nodeLabel>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.getAmtRate</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="orgid" type="query" value="String" valueType="Primitive" pattern="reference">settleMent/orgid</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="elecAmtRate" type="query" value="Double" valueType="Primitive">elecAmtRate</process:outputVariable>
+        <process:outputVariable id="1" name="metalAmtRate" type="query" value="Double" valueType="Primitive">metalAmtRate</process:outputVariable>
+        <process:outputVariable id="2" name="paintAmtRate" type="query" value="Double" valueType="Primitive">paintAmtRate</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
+    <figSize height="17" width="69"/>
+    <node>subprocess0</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" id="subprocess2" name="getPartCost" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" isDefault="true" type="transition">
+      <sourceNode>subprocess2</sourceNode>
+      <targetNode>assign1</targetNode>
+    </sourceConnections>
+    <targetConnections>link7</targetConnections>
+    <nodeLabel>subprocess2label</nodeLabel>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.getPartCost</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="serviceId" type="query" value="String" valueType="Primitive" pattern="reference">settleMent/serviceId</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="partTrueCost" type="query" value="Double" valueType="Primitive">partTrueCost</process:outputVariable>
+        <process:outputVariable id="1" name="materialExp" type="query" value="Double" valueType="Primitive">materialExp</process:outputVariable>
+        <process:outputVariable id="2" name="partTaxCost" type="query" value="Double" valueType="Primitive">partTaxCost</process:outputVariable>
+        <process:outputVariable id="3" name="partNoTaxCost" type="query" value="Double" valueType="Primitive">partNoTaxCost</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
+    <figSize height="17" width="69"/>
+    <node>subprocess2</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign4" name="赋值4" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" isDefault="true" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>assign2</targetNode>
+    </sourceConnections>
+    <targetConnections>link9</targetConnections>
+    <nodeLabel>assign4label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">outItemAmt</process:from>
+      <process:to type="query">outBillBalaAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">outBillBalaAmt+outPartAmt</process:from>
+      <process:to type="query">outBillBalaAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">outBillBalaAmt+materialExp</process:from>
+      <process:to type="query">outBillBalaAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">outBillBalaAmt+outPartManageExp</process:from>
+      <process:to type="query">outBillBalaAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">outBillBalaAmt+packgePrefAmt</process:from>
+      <process:to type="query">outBillBalaAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">outBillBalaAmt-packageDiscountAmt</process:from>
+      <process:to type="query">outBillBalaAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outPartSubtotal</process:from>
+      <process:to type="query">outBillBalaSubtoal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">outBillBalaSubtoal+outItemSubtotal</process:from>
+      <process:to type="query">outBillBalaSubtoal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">outBillBalaSubtoal+materialExp</process:from>
+      <process:to type="query">outBillBalaSubtoal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">outBillBalaSubtoal+outPartManageExp</process:from>
+      <process:to type="query">outBillBalaSubtoal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">outBillBalaSubtoal+packgePrefAmt</process:from>
+      <process:to type="query">outBillBalaSubtoal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">outBillBalaSubtoal-packageDiscountAmt</process:from>
+      <process:to type="query">outBillBalaSubtoal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">outBillBalaSubtoal>0?outBillBalaSubtoal-balaAmt:0</process:from>
+      <process:to type="query">outTurnUpAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">outTurnUpAmt>0?outTurnUpAmt-outTurnUpTaxAmt:0</process:from>
+      <process:to type="query">outRebateAmt</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
+    <figSize height="17" width="32"/>
+    <node>assign4</node>
+  </nodes>
+  <topRuler/>
+  <leftRuler/>
+  <process:info version="7.0.0.0"/>
+  <process:variables>
+    <process:variable anyType="commonj.sdo.DataObject" historyStateLocation="client" isArray="false" name="tmp"/>
+    <process:variable anyType="commonj.sdo.DataObject" historyStateLocation="client" isArray="true" name="tmpList"/>
+    <process:variable historyStateLocation="client" isArray="false" name="itemAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="itemTotalAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="itemFreeAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="itemSubtotal" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="itemPrefAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="partAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="partTotalAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="partFreeAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="partSubtotal" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="partPrefAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="outItemTotal" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="outItemAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="outItemPrefAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="outItemSubtotal" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="outItemFreeAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="outPartTotal" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="outPartAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="outPartPrefAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="outPartSubtotal" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="outPartFreeAmt" primitiveType="Double"/>
+    <process:variable anyType="java.util.HashMap" historyStateLocation="client" isArray="false" name="params"/>
+    <process:variable historyStateLocation="client" isArray="false" name="packgePrefAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="packageDiscountAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="mtAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="partManageExp" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="outPartManageExp" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="elecAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="metalAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="paintmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="elecAmtRate" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="metalAmtRate" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="paintAmtRate" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="elecDeduct" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="metalDeduct" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="paintDeduct" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="partTrueCost" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="partNoTaxCost" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="partTaxCost" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="materialExp" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="balaAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="outBillBalaAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="outBillBalaSubtoal" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="outTurnUpAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="outTurnUpTaxAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="outRebateAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="planTaxAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="grossProfit" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="grossProfitRate" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="freePrefAllowanceAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="totalReceivableAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="totalPrefAmt" primitiveType="Double"/>
+    <process:variable historyStateLocation="client" isArray="false" name="outTotalPrefAmt" primitiveType="Double"/>
+  </process:variables>
+  <process:inputs varArgs="false">
+    <process:input isArray="false" modelType="com.hsapi.repair.data.rps.RpsSettlement" name="settleMent"/>
+    <process:input isArray="false" name="partManageExpRate" primitiveType="Double"/>
+    <process:input isArray="false" name="outBillSign" primitiveType="Int"/>
+  </process:inputs>
+  <process:outputs>
+    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsSettlement" name="settleMent"/>
+  </process:outputs>
+  <process:extAttribute1>public</process:extAttribute1>
+  <process:transactionType>true</process:transactionType>
+</process:tBusinessLogic>

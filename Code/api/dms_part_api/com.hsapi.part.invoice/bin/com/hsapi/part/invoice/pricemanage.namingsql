@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.part.invoice.pricemanage">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryGuestPartSellPrice" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT a.strategy_id as strategyId, b.`name` as name,
+		       c.part_id as partId,
+		       c.sell_price as sellPrice, c.operate_date operateDate, c.operator as operator
+		FROM pj_sell_price_guest a
+		inner join pj_sell_price_strategy b
+		on a.strategy_id = b.id
+		inner join pj_sell_price_part c
+		on a.strategy_id = c.strategy_id
+		where 1 = 1 and b.is_disabled = 0 and c.is_disabled = 0
+		      and b.orgid = #orgid# and c.part_id = #partId# 
+		      and (a.guest_id = #guestId#)</select>
+    <select id="queryGuestPartSellPriceHash" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">SELECT b.id as strategyId, b.`name` as name,
+		       c.part_id as partId,
+		       c.sell_price as sellPrice, c.operate_date operateDate, c.operator as operator
+		FROM pj_sell_price_strategy b
+		inner join pj_sell_price_part c
+		on b.id = c.strategy_id
+		where 1 = 1 and b.is_disabled = 0 and c.is_disabled = 0
+		      and b.orgid = #orgid# and c.part_id = #partId#</select>
+    <select id="queryPartSellPriceHash" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	select a.id as partId, a.code as partCode, a.common_id as commonId, c.sell_price as sellPrice 
+		from wb_common.com_attribute a
+		inner join pj_part_stock b
+		on a.id = b.part_id
+		inner join pj_part_price c
+		on b.orgid = c.orgid and a.id = c.part_id
+		where 1 = 1
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgid">(b.orgid = #orgid# and b.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="outableQty">(b.outable_qty &gt; 0 )</isNotEmpty>
+            <isNotEmpty prepend="and" property="stockQty">(b.stock_qty &gt; 0 )</isNotEmpty>
+            <isNotEmpty prepend="and" property="commonId">(a.common_id = #commonId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="commonIds">(a.common_id in ($commonIds$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="partId">(a.id = #partId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partIds">(a.id in ($partIds$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(a.code = #commonId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCoseList">(a.code in ($partCoseList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCommon">(a.id in ($opartIds$) or a.common_id in ($ocommonIds$))</isNotEmpty>
+        </dynamic>
+    </select>
+</sqlMap>

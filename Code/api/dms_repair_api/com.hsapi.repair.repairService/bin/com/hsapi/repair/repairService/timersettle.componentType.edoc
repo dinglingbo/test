@@ -1,0 +1,70 @@
+<map>
+  <entry>
+    <string>timersettle</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;timersettle.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;timersettle&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.timersettle&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.timersettle.registerElectronicArchives(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;registerElectronicArchives&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;syncElectronicArchives&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.timersettle.registerElectronicArchives&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;companycode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.timersettle.generateAnnualInspectionRemind(Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateAnnualInspectionRemind&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generateAnnualInspectionRemind&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.timersettle.generateAnnualInspectionRemind&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;ln(Int):&lt;/b&gt;距离多少天提醒&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;商业险到期提醒&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.timersettle.generateGuestBirthdayRemind(Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateGuestBirthdayRemind&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generateNextCareRemind&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.timersettle.generateGuestBirthdayRemind&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;ln(Int):&lt;/b&gt;距离多少天提醒&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;下次保养提醒&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.timersettle.generateInsureDueRemind(Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateInsureDueRemind&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generateInsureDueRemind&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.timersettle.generateInsureDueRemind&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;ln(Int):&lt;/b&gt;距离多少天提醒&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;交强险到期提醒&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.timersettle.queryRemind(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRemind&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryMaintain&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.timersettle.queryRemind&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;maintainList(java.util.HashMap[]):&lt;/b&gt;保养&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;annualTrialList(java.util.HashMap[]):&lt;/b&gt;年审&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;strongInsuranceList(java.util.HashMap[]):&lt;/b&gt;交强险&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;insuranceList(java.util.HashMap[]):&lt;/b&gt;保险&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guestBirthdayList(java.util.HashMap[]):&lt;/b&gt;客户生日&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.timersettle.generateCareCircleRemind(Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateCareCircleRemind&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generateCareCircleRemind&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.timersettle.generateCareCircleRemind&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;ln(Int):&lt;/b&gt;距离多少天提醒&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.timersettle.generateVisitData()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateVisitData&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generateVisitDate&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.timersettle.generateVisitData&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.timersettle.generatePchsEnterRemind(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generatePchsEnterRemind&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generateNextCareRemind&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.timersettle.generatePchsEnterRemind&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;ln(Int):&lt;/b&gt;距离多少天提醒&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;下次保养提醒&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.timersettle.generateOneHourData()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateOneHourData&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generateRemindData&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.timersettle.generateOneHourData&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.timersettle.generateRemindData()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateRemindData&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generateRemindData&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.timersettle.generateRemindData&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.timersettle.generateCarAnnualRemind(Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateCarAnnualRemind&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generateCarAnnualRemind&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.timersettle.generateCarAnnualRemind&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;ln(Int):&lt;/b&gt;距离多少天提醒&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.timersettle.updateUseTimes()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateUseTimes&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateUserTimes&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.timersettle.updateUseTimes&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.timersettle.generateMemBirthdayRemind(Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateMemBirthdayRemind&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generateNextCareRemind&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.timersettle.generateMemBirthdayRemind&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;ln(Int):&lt;/b&gt;距离多少天提醒&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;下次保养提醒&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.timersettle.syncElectronicArchives()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;syncElectronicArchives&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;syncElectronicArchives&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.timersettle.syncElectronicArchives&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.timersettle.generateNextCareRemind(Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateNextCareRemind&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generateNextCareRemind&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.timersettle.generateNextCareRemind&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;ln(Int):&lt;/b&gt;距离多少天提醒&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;下次保养提醒&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.timersettle.test()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;test&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;test&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.timersettle.test&lt;/html&gt;</string>
+  </entry>
+</map>

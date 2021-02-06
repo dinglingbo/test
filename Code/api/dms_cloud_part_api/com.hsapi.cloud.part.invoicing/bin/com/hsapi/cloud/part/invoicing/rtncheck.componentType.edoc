@@ -1,0 +1,26 @@
+<map>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.rtncheck.checkDuplicateSellOrderRtn(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;checkDuplicateSellOrderRtn&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;checkMainId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.rtncheck.checkDuplicateSellOrderRtn&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pchsMainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.rtncheck.updateSellOrderOutableQty(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateSellOrderOutableQty&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;checkMainId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.rtncheck.updateSellOrderOutableQty&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pchsMainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.rtncheck.checkSellOrderOutableQty(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;checkSellOrderOutableQty&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;checkMainId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.rtncheck.checkSellOrderOutableQty&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pchsMainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>rtncheck</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;rtncheck.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;rtncheck&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.rtncheck&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.rtncheck.checkSellOrderOutRtnMainId(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;checkSellOrderOutRtnMainId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;checkMainId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.rtncheck.checkSellOrderOutRtnMainId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pchsMainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.rtncheck.checkSellOrderOutRtnQty(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;checkSellOrderOutRtnQty&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;checkMainId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.rtncheck.checkSellOrderOutRtnQty&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pchsMainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

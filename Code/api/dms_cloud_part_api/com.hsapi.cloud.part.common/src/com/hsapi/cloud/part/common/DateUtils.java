@@ -237,6 +237,12 @@ public class DateUtils {
 	             return gc.get(2) + 1;
 	         }
 		  
+		  @Bizlet("")
+	      //获取当前是多少号
+	      public static int getNowDay() {
+			  return Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+	       }
+		  
 		  
 		  @Bizlet("")
 	      //两个日期相减得到的天数

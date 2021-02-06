@@ -1,0 +1,18 @@
+<map>
+  <entry>
+    <string>com.harsons.hscp.common.util.HttpClientUtil.doPost(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.harsons.hscp.common.util.HttpClientUtil.doPost(String url, String jsonData)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>HttpClientUtil</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.harsons.hscp.common.util.HttpClientUtil&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.harsons.hscp.common.util.HttpClientUtil.doGet(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;JSONObject com.harsons.hscp.common.util.HttpClientUtil.doGet(String url)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.harsons.hscp.common.util.HttpClientUtil.imgURLToBase64(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.harsons.hscp.common.util.HttpClientUtil.imgURLToBase64(String imgURL)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

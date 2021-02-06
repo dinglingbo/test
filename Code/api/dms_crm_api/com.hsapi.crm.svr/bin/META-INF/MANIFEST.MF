@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Require-Bundle: com.hsapi.part.common,com.hsapi.system.basic,com.prime
+ ton.eos.richweb,com.hs.common,com.hsapi.repair.data,com.hsapi.repair.
+ common,com.eos.foundation,com.hsapi.repair.baseData,com.hsapi.crm.dat
+ a
+eos-webCtxPath: svr
+Bundle-Vendor: Administrator
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsapi.crm.svr
+Bundle-Description: 
+Bundle-SymbolicName: com.hsapi.crm.svr
+

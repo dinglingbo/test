@@ -1,0 +1,10 @@
+<map>
+  <entry>
+    <string>com.hsapi.system.auth.timer.clearQrcode()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;clearQrcode&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;clearQrcode&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.timer.clearQrcode&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>timer</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;timer.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;timer&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.timer&lt;/html&gt;</string>
+  </entry>
+</map>

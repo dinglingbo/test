@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:dlb -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
+    
+    <select id="queryPartOrderMainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id,
+			a.service_id as serviceId,
+			a.orgid as orgid,
+			a.order_type_id as orderTypeId,
+			a.guest_id as guestId,
+			a.store_id as storeId,
+			a.code_id as codeId,
+			a.`code`,
+			a.order_date as orderDate,
+			a.plan_arrive_date as planArriveDate,
+			a.order_man_id as orderManId,
+			a.order_man as orderMan,
+			a.bill_type_id as billTypeId,
+			a.tax_sign as taxSign,
+			a.tax_rate as taxRate,
+			a.tax_amt as taxAmt,
+			a.no_tax_amt as noTaxAmt,
+			a.tax_diff as taxDiff,
+			a.order_qty as orderQty,
+			a.order_item as orderItem,
+			a.order_amt as orderAmt,
+			a.is_finished as isFinished,
+			a.finish_date as finishDate,
+			a.print_times as printTimes,
+			a.print_man_id as printManId,
+			a.print_man as printMan, 
+			a.print_date as printDate,
+			a.audit_sign as auditSign,
+			a.auditor_id as auditorId,
+			a.auditor as auditor,
+			a.audit_date as auditDate,
+			a.remark,
+			a.creator_id as creatorId,
+			a.creator ,
+			a.create_date as createDate,
+			a.operator_id as operatorId,
+			a.operator,
+			a.operate_date as operateDate,
+			a.settle_type_id as settleTypeId,
+			a.bill_status_id as billStatusId,
+			a.is_inner as isInner,
+			a.is_state as isState,
+			a.state_man_id as stateManId,
+			a.state_man as stateMan,
+			a.state_sign as stateSign,
+			a.state_date as stateDate,
+			a.rtn_reason_id as rtnReasonId,
+			a.is_diff_order as isDiffOrder,
+			a.source_type as sourceType,
+			a.order_code as orderCode,
+			a.accept_status as acceptStatus,
+			a.accept_man as acceptMan,
+			a.accept_date as acceptDate,
+			a.accept_code as acceptCode
+		FROM
+			pj_pchs_order_main_chk AS a
+		WHERE
+			1 = 1 and a.audit_sign = 1 and a.guest_id = #guestId#
+		 <dynamic>
+        	<isNotEmpty prepend="and" property="orgid"> 
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="id"> 
+                (a.id = #id#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="acceptStatus"> 
+                (A.accept_status = #acceptStatus#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceId">  
+                (a.service_id like '%$serviceId$%')
+            </isNotEmpty>
+            <!--审核日期 -->
+            <isNotEmpty prepend="and" property="sAuditDate">  
+                (A.AUDIT_DATE &gt;= #sAuditDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eAuditDate">  
+                (A.AUDIT_DATE &lt; #eAuditDate#)
+            </isNotEmpty>
+        </dynamic>  
+      	
+        
+        ORDER BY A.operate_date asc
+    </select>
+    
+    <select id="queryPartOrderDetailList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">   	
+            SELECT
+				a.id,
+				a.main_id as mainId,
+				a.store_id as storeId,
+				a.part_id as partId,
+				a.part_code as partCode,
+				a.part_name as partName,
+				a.full_name as fullName,
+				a.enter_unit_id as enterUnitId,
+				a.system_unit_id as systemUnitId,
+				a.order_qty as orderQty,
+				a.order_price as orderPrice,
+				a.order_amt as orderAmt,
+				a.tax_sign as taxSign,
+				a.tax_rate as taxRate,
+				a.tax_price as taxPrice,
+				a.tax_amt as taxAmt,
+				a.no_tax_price as noTaxPrice,
+				a.no_tax_amt as noTaxAmt,
+				a.tax_diff as taxDiff,
+				a.true_enter_qty as trueEnterQty,
+				a.true_enter_amt as trueEnterAmt,
+				a.not_enter_qty as notEnterQty,
+				a.not_enter_amt as notEnterAmt,
+				a.adjust_qty as adjustQty,
+				a.is_finished as isFinished,
+				a.finish_date as finishDate,
+				a.sell_price as sellPrice,
+				a.prev_detail_id as prevDetailId,
+				a.source_detail_id as sourceDetailId,
+				a.source_main_id as sourceMainId,
+				a.source_bill_type_id as sourceBillTypeId,
+				a.remark as remark,
+				a.store_shelf as storeShelf,
+				a.goods_code as goodsCode,
+				B.`code` AS code,
+				B.`code` AS comPartCode,
+				B.`name` AS comPartName,
+				B.full_name AS comFullName,
+				B.brand_code AS comBrandCode,
+				B.oem_code AS comOemCode,
+				B.quality_type_id AS comQualityTypeId,
+				B.part_brand_id AS comPartBrandId,
+				B.apply_car_model AS comApplyCarModel,
+				B.unit AS comUnit,
+				B.spec AS comSpec,
+				B.direction AS comDirection,
+				b.org_car_brand_id as orgCarBrandId
+			FROM
+				pj_pchs_order_detail_chk A
+			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
+			WHERE
+				1 = 1  and  (A.MAIN_ID = #mainId#)
+        
+        ORDER BY a.id asc
+    </select>
+    
+</sqlMap>

@@ -1,0 +1,722 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.cloud.part.invoicing.stockcal">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="getEnterOutableDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject"> 
+		SELECT  b.ID as id, b.OUTABLE_QTY - IFNULL(E.SellQty, 0) AS outableQty,
+				B.MAIN_ID as mainId, B.SOURCE_ID as sourceId, B.ROOT_ID as rootId, 
+				B.STORE_ID as storeId, b.store_shelf as storeShelf, B.PART_ID as partId, B.PART_CODE as partCode, B.PART_NAME as partName,
+				B.FULL_NAME as fullName, B.ENTER_UNIT_ID as enterUnitId, B.SYSTEM_UNIT_ID as systemUnitId,
+				B.ENTER_QTY as enterQty, B.ENTER_PRICE as enterPrice,
+				B.ENTER_AMT as enterAmt, B.OUTABLE_QTY as trueOutableQty, B.TAX_SIGN as taxSign,
+				B.TAX_RATE as taxRate, B.TAX_PRICE as taxPrice, B.TAX_AMT as taxAmt,
+				B.NO_TAX_PRICE as noTaxPrice, B.NO_TAX_AMT as noTaxAmt, B.TAX_DIFF as taxDiff,
+				B.RTN_PRICE as rtnPrice, B.RTN_AMT as rtnAmt, B.ENTER_DATE as enterDate,
+				B.PREV_DETAIL_ID as preDetailId, B.ORDER_DETAIL_ID as orderDetailId,
+				B.ORDER_MAIN_ID as orderMainId, B.BRANCH_STOCK_AGE as branchStockAge,
+				B.CHAIN_STOCK_AGE as chainStockAge, B.GUEST_ID as guestId,B.GUEST_NAME as guestName,
+				B.REMARK as remark, b.origin_id as originId, b.origin_guest_id as originGuestId,
+				b.exp_enter_price as expEnterPrice,
+			    b.tax_cost_price as taxCostPrice,
+			    b.no_tax_cost_price as noTaxCostPrice,
+			    b.set_cost_price as setCostPrice
+		FROM
+			PJ_ENTER_MAIN_CHK A
+		INNER JOIN PJ_ENTER_DETAIL_CHK B ON A.ID = B.MAIN_ID
+		LEFT JOIN (
+			SELECT
+				C.SOURCE_ID,
+				SUM(C.SELL_QTY) AS SellQty
+			FROM
+				PJ_OUT_DETAIL_CHK C
+			INNER JOIN PJ_OUT_MAIN_CHK D ON C.MAIN_ID = D.ID
+			WHERE 1 = 1 and D.AUDIT_SIGN = 0
+			
+			<isNotNull prepend="" property="orgid">AND D.ORGID = #orgid#</isNotNull>
+        <isNotNull prepend="" property="storeId">AND c.STORE_ID = #storeId#</isNotNull>
+        <isNotNull prepend="" property="partId">AND C.PART_ID = #partId#</isNotNull>
+        <!--AND D.BILL_STATUS_ID <> ''-->
+			GROUP BY
+				C.SOURCE_ID
+		) E ON E.SOURCE_ID = b.ID
+		WHERE 1 =1 
+			  AND A.AUDIT_SIGN = 1
+		      AND B.OUTABLE_QTY &gt; 0
+		      AND B.OUTABLE_QTY - IFNULL(E.SellQty, 0) &gt; 0
+		
+			<isNotNull prepend="" property="orgid">AND A.ORGID = #orgid#</isNotNull>
+        <isNotNull prepend="" property="storeId">AND B.STORE_ID = #storeId#</isNotNull>
+        <isNotNull prepend="" property="partId">AND B.PART_ID = #partId#</isNotNull>
+			
+		ORDER BY
+			A.AUDIT_DATE
+		
+
+	
+    </select>
+    <select id="chooseEnterOutableDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap"> 
+		SELECT  b.ID as id, b.OUTABLE_QTY AS stockQty, ifnull(b.pre_out_qty,0) as preOutQty,
+				B.MAIN_ID as mainId, B.STORE_ID as storeId, b.store_shelf as storeShelf, B.PART_ID as partId, 
+        		B.PART_CODE as partCode, B.PART_NAME as partName, b.outable_qty * b.enter_price as stockAmt,
+				B.FULL_NAME as fullName, B.ENTER_UNIT_ID as enterUnitId, B.SYSTEM_UNIT_ID as systemUnitId,
+				B.ENTER_PRICE as enterPrice, a.bill_type_id as billTypeId, B.ENTER_DATE as enterDate,
+				B.GUEST_ID as guestId,j.full_name as guestName,
+				B.REMARK as remark, F.CODE AS code, F.NAME as name, F.OEM_CODE as oemCode,
+				F.PART_BRAND_ID as partBrandId, F.APPLY_CAR_MODEL as applyCarModel,
+				F.SPEC as spec, F.DIRECTION as direction, a.audit_date as auditDate, F.common_id as commonId,
+				a.service_id as serviceId,A.`code` as enterCode, a.remark as mainRemark
+		FROM
+			PJ_ENTER_MAIN_CHK A
+		INNER JOIN PJ_ENTER_DETAIL_CHK B ON A.ID = B.MAIN_ID
+		INNER JOIN WB_COMMON.COM_ATTRIBUTE F ON F.ID = B.PART_ID
+		inner join WB_COMMON.COM_GUEST J ON b.origin_guest_id = J.ID
+		WHERE 1 =1 
+			  AND A.AUDIT_SIGN = 1
+		      AND B.OUTABLE_QTY &gt; 0
+		      
+		      <isNull prepend="" property="showAll">AND B.OUTABLE_QTY - IFNULL(b.pre_out_qty, 0) &gt; 0</isNull>
+        <isNotNull prepend="" property="orgid">AND A.ORGID = #orgid#</isNotNull>
+        <isNotNull prepend="" property="storeId">AND B.STORE_ID = #storeId#</isNotNull>
+        <isNotNull prepend="" property="isDisabled">AND F.is_disabled = #isDisabled#</isNotNull>
+        <isNotNull prepend="" property="storeShelf">and b.store_shelf like '%$storeShelf$%'</isNotNull>
+        <isNotNull prepend="" property="partId">AND B.PART_ID = #partId#</isNotNull>
+        <isNotNull prepend="" property="partCode">AND ( F.code like '%$partCode$' or F.oem_code like '%$partCode$')</isNotNull>
+        <!--编码全匹配-->
+        <isNotNull prepend="" property="partCodeAll">AND ( F.code like '%$partCodeAll$%' or F.oem_code like '%$partCodeAll$%')</isNotNull>
+        <isNotNull prepend="" property="partName">AND F.full_name like '%$partName$%'</isNotNull>
+        <isNotNull prepend="" property="namePy">AND F.NAME_PY like '%$namePy$%'</isNotNull>
+        <isNotNull prepend="" property="serviceId">AND a.code like '%$serviceId$%'</isNotNull>
+        <isNotNull prepend="" property="applyCarModel">AND F.apply_car_model like '%$applyCarModel$%'</isNotNull>
+        <isNotNull prepend="" property="partBrandId">AND F.part_brand_id = #partBrandId#</isNotNull>
+        <isNotEmpty prepend="and" property="commonId">(F.common_id = #commonId#)</isNotEmpty>
+        <isNotNull prepend="" property="partNameAndPY">and ( F.NAME like '%$partNameAndPY$%' or F.FULL_NAME like '%$partNameAndPY$%' or F.NAME_PY like '%$partNameAndPY$%')</isNotNull>
+        <isNotNull prepend="" property="cartypeid">
+            <isNotEqual compareValue="0" prepend="" property="cartypeid">and (F.CAR_TYPE_ID_F = #cartypeid# or F.CAR_TYPE_ID_S = #cartypeid# or F.CAR_TYPE_ID_T = #cartypeid#)</isNotEqual>
+        </isNotNull>
+        <isNotNull prepend="" property="guestId">
+            <!--AND (A.GUEST_ID = #guestId# OR N.GUEST_ID = #guestId# )-->
+				AND (b.origin_guest_id = #guestId#)
+			</isNotNull>
+        <!--可以按成本从高到低排序，可以按库存数量排序，可以按时间先后顺序排序-->
+        <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
+    </select>
+    <!-- 销售退货的出库记录选择 -->
+    <select id="querySellOrderOutDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+	    SELECT
+			a.id, a.main_id as mainId, a.store_id as storeId, a.part_id as partId, a.part_code as partCode, 
+			a.part_name as partName, a.full_name as fullName, a.out_unit_id as outUnitId, a.system_unit_id as systemUnitId,
+			a.order_qty as orderQty, a.order_price as orderPrice, a.order_amt as orderAmt, a.true_out_qty as trueOutQty, 
+			a.true_out_amt as trueOutAmt, a.not_out_qty as notOutQty, a.not_out_amt as notOutAmt, a.adjust_qty as adjustQty, 
+			a.occupy_qty as occupyQty, a.is_finished as isFinished, a.finish_date as finishDate, a.prev_detail_id as prevDetailId,
+			a.source_detail_id as sourceDetailId, a.source_main_id as sourceMainId, a.source_bill_type_id as sourceBillType,
+			a.out_detail_id as outDetail, a.remark as detailRemark, a.is_mark_batch as isMarkBatch, a.batch_source_id as batchSourceId,
+			a.direct_store_id as directStoreId, a.store_shelf as storeShelf, a.show_part_id as showPartId, a.show_part_code as showPartCode,
+			a.show_full_name as showFullName, a.show_brand_name as showBrandName, a.show_car_model as showCarModel,
+			a.show_oem_code as showOemCode, a.show_spec as showSpec, a.show_price as showPrice, a.show_amt as showAmt, a.remark as mainRemark,
+			a.outable_qty as outableQty, b.service_id as serviceId, b.`code` as code, b.code_id as codeId,
+			b.auditor as auditor, b.audit_date as auditDate, b.creator as creator, b.create_date as createDate, b.settle_type_id as settleTypeId,
+			b.business_type_id as businessTypeId, b.settle_guest_id as settleGuestId, c.full_name as guestFullName,
+			c.short_name as guestShortName, d.`code` as comPartCode, d.name as comPartName, d.oem_code as comOemCode,
+			d.part_brand_id as comPartBrandId, d.apply_car_model as comApplyCarModel, d.spec as comSpec, d.direction as comDirection, 
+		    d.full_name as comFullName, d.unit as comUnit, d.org_car_brand_id as orgCarBrandId
+		from pj_sell_order_detail_chk a
+		inner join pj_sell_order_main_chk b
+		on a.main_id = b.id
+		inner join wb_common.com_guest c
+		on b.guest_id = c.id
+		inner join wb_common.com_attribute d
+		on a.part_id = d.id
+		where b.is_diff_order = 1 and b.order_type_id = 2
+		      and b.audit_sign = 1 and a.outable_qty &gt; 0
+		    <isNotNull prepend="" property="orgid">AND b.ORGID = #orgid#</isNotNull>
+        <isNotNull prepend="" property="storeId">AND a.STORE_ID = #storeId#</isNotNull>
+        <isNotNull prepend="" property="partId">AND A.PART_ID = #partId#</isNotNull>
+        <isNotNull prepend="" property="code">AND (D.QUERY_CODE like '%$code$%' or d.code like '%$code$%')</isNotNull>
+        <isNotNull prepend="" property="serviceId">AND (b.service_id like '%$serviceId$%' or b.code like '%$serviceId$%')</isNotNull>
+        <isNotNull prepend="" property="partCode">AND (D.QUERY_CODE like '%$partCode$%' or d.code like '%$partCode$%')</isNotNull>
+        <isNotNull prepend="" property="name">AND D.full_name like '%$name$%'</isNotNull>
+        <isNotNull prepend="" property="namePy">AND D.NAME_PY like '%$namePy$%'</isNotNull>
+        <isNotNull prepend="" property="applyCarModel">AND D.apply_car_model like '%$applyCarModel$%'</isNotNull>
+        <isNotNull prepend="" property="partBrandId">AND D.part_brand_id = #partBrandId#</isNotNull>
+        <isNotNull prepend="" property="cnp">and (D.QUERY_CODE like '%$cnp$%' or D.code like '%$cnp$%' or D.NAME like '%$cnp$%' or D.FULL_NAME like '%$cnp$%' or D.NAME_PY like '%$cnp$%')</isNotNull>
+        <isNotNull prepend="" property="cartypeid">
+            <isNotEqual compareValue="0" prepend="" property="cartypeid">and (D.CAR_TYPE_ID_F = #cartypeid# or D.CAR_TYPE_ID_S = #cartypeid# or D.CAR_TYPE_ID_T = #cartypeid#)</isNotEqual>
+        </isNotNull>
+        <isNotNull prepend="" property="guestId">AND (B.GUEST_ID = #guestId# )</isNotNull>
+        <isNotNull prepend="" property="settleGuestId">AND (B.settle_guest_id = #settleGuestId# )</isNotNull>
+        <isNotNull prepend="" property="businessTypeId">AND (B.business_type_id = #businessTypeId# )</isNotNull>
+        <isNotNull prepend="" property="billTypeId">AND (B.bill_type_id = #billTypeId# )</isNotNull>
+        <!--审核日期 -->
+        <isNotEmpty prepend="and" property="sAuditDate">(b.AUDIT_DATE &gt;= #sAuditDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eAuditDate">(b.AUDIT_DATE &lt; #eAuditDate#)</isNotEmpty>
+			
+			order by b.audit_date desc
+    </select>
+    <select id="chooseOutRtnableDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT
+		A.ID as id,
+		A.MAIN_ID as mainId,
+		A.SOURCE_ID as sourceId,
+		A.ROOT_ID as rootId,
+		A.STORE_ID as storeId,
+		A.PART_ID as partId,
+		A.PART_CODE as partCode,
+		A.PART_NAME as partName,
+		A.FULL_NAME as fullName,
+		A.OUT_UNIT_ID as outUnitId,
+		A.SYSTEM_UNIT_ID as systemUnitId,
+		A.SELL_QTY as sellQty,
+		A.SELL_PRICE as sellPrice,
+		A.SELL_AMT as sellAmt,
+		A.RTNABLE_QTY as rtnableQty,
+		A.TAX_SIGN as taxSign,
+		A.TAX_RATE as taxRate,
+		A.TAX_PRICE as taxPrice,
+		A.TAX_AMT as taxAmt,
+		A.NO_TAX_PRICE as noTaxPrice,
+		A.NO_TAX_AMT as noTaxAmt,
+		A.TAX_DIFF as taxDiff,
+		A.ENTER_PRICE as enterPrice,
+		A.ENTER_AMT as enterAmt,
+		A.OUT_TO_IN_QTY as outToInQty,
+		A.ENTER_DATE as enterDate,
+		A.PREV_DETAIL_ID as prevDetailId,
+		A.ORDER_DETAIL_ID as orderDetailId,
+		A.ORDER_MAIN_ID as orderMainId,
+		A.GUEST_ID as guestId,
+		A.GUEST_NAME as guestName,
+		A.REMARK as remark,
+		A.OCCUPY_QTY as occupyQty,
+		A.STOCK_OUT_QTY as stockOutQty,
+		a.origin_id as originId,
+		a.origin_guest_id as originGuestId,
+		B.SERVICE_ID as serviceId,
+		B.OUT_DATE as outDate,
+		B.AUDIT_DATE as auditDate,
+		D.CODE AS code, D.NAME as name, D.OEM_CODE as oemCode,
+		D.PART_BRAND_ID as partBrandId, D.APPLY_CAR_MODEL as carModelName,
+		D.SPEC as spec, D.DIRECTION as direction
+		FROM
+			PJ_OUT_DETAIL_CHK A
+		INNER JOIN PJ_OUT_MAIN_CHK B ON A.MAIN_ID = B.ID
+		INNER JOIN WB_COMMON.COM_GUEST C ON B.GUEST_ID = C.ID
+		INNER JOIN WB_COMMON.COM_ATTRIBUTE D ON A.PART_ID = D.ID
+		where 1 = 1
+			  and b.enter_type_id = '050202'
+			  AND B.AUDIT_SIGN = 1
+		      AND A.RTNABLE_QTY &gt; 0
+		
+			<isNotNull prepend="" property="orgid">AND B.ORGID = #orgid#</isNotNull>
+        <isNotNull prepend="" property="storeId">AND A.STORE_ID = #storeId#</isNotNull>
+        <isNotNull prepend="" property="partId">AND A.PART_ID = #partId#</isNotNull>
+        <isNotNull prepend="" property="code">AND (D.QUERY_CODE like '%$code$%' or d.code like '%$code$%')</isNotNull>
+        <isNotNull prepend="" property="name">AND D.full_name like '%$name$%'</isNotNull>
+        <isNotNull prepend="" property="namePy">AND D.NAME_PY like '%$namePy$%'</isNotNull>
+        <isNotNull prepend="" property="applyCarModel">AND D.apply_car_model like '%$applyCarModel$%'</isNotNull>
+        <isNotNull prepend="" property="partBrandId">AND D.part_brand_id = #partBrandId#</isNotNull>
+        <isNotNull prepend="" property="cnp">and (D.QUERY_CODE like '%$cnp$%' or D.code like '%$cnp$%' or D.NAME like '%$cnp$%' or D.FULL_NAME like '%$cnp$%' or D.NAME_PY like '%$cnp$%')</isNotNull>
+        <isNotNull prepend="" property="cartypeid">
+            <isNotEqual compareValue="0" prepend="" property="cartypeid">and (D.CAR_TYPE_ID_F = #cartypeid# or D.CAR_TYPE_ID_S = #cartypeid# or D.CAR_TYPE_ID_T = #cartypeid#)</isNotEqual>
+        </isNotNull>
+        <isNotNull prepend="" property="guestId">AND (B.GUEST_ID = #guestId# )</isNotNull>
+    </select>
+    <select id="getBalanceInvocing" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject"> 
+		SELECT A.ID as id, A.DC as dc, A.ORGID as orgid, A.SERVICE_ID as serviceId, 
+		       A.BILL_MAIN_ID as billMainId, A.BILL_DETAIL_ID as billDetailId, A.BILL_TYPE_ID as billTypeId, A.GUEST_ID as guestId, 
+		       A.GUEST_NAME as guestName, A.PART_ID as partId, A.PART_CODE as partCode, A.PART_NAME as partName, A.QC_QTY as qcQty,
+			   A.QC_PRICE as qcPrice, A.QC_AMT as qcAmt, A.QTY as qty, A.PRICE as price, A.AMT as amt, A.COST_PRICE as costPrice, 
+			   A.COST_AMT as costAmt, A.BALA_QTY balaQty, A.BALA_PRICE as balaPrice, A.BALA_AMT as balaAmt, A.REMARK as remark, 
+			   A.CREATOR_ID as creatorId, A.CREATOR as creator, A.CREATE_DATE as createDate, 
+               A.OPERATOR_ID as operatorId, A.OPERATOR as operator, A.OPERATE_DATE as operateDate,
+               a.qc_exp_price as qcExpPrice, 
+               a.qc_exp_amt as qcExpAmt, 
+               a.exp_price as expPrice, 
+               a.exp_amt as expAmt,
+               a.bala_exp_price as balaExpPrice, 
+               a.bala_exp_amt as balaExpAmt, 
+               a.qc_tax_cost_price as qcTaxCostPrice, 
+               a.qc_tax_cost_amt as qcTaxCostAmt,
+               a.tax_cost_price as taxCostPrice, 
+               a.tax_cost_amt as taxCostAmt, 
+               a.bala_tax_cost_price as balaTaxCostPrice, 
+               a.bala_tax_cost_amt as balaTaxCostAmt,
+               a.qc_set_cost_price as qcSetCostPrice, 
+               a.qc_set_cost_amt AS qcSetCostAmt, 
+               a.set_cost_price AS setCostPrice, 
+               a.set_cost_amt AS setCostAmt, 
+               a.bala_set_cost_price AS balaSetCostPrice, 
+               a.bala_set_cost_amt AS balaSetCostAmt, 
+               a.qc_no_tax_cost_price as qcNoTaxCostPrice, 
+               a.qc_no_tax_cost_amt as qcNoTaxCostAmt,
+               a.no_tax_cost_price as noTaxCostPrice, 
+               a.no_tax_cost_amt as noTaxCostAmt, 
+               a.bala_no_tax_cost_price as balaNoTaxCostPrice, 
+               a.bala_no_tax_cost_amt as balaNoTaxCostAmt
+               FROM PJ_INVOCING A
+               where 1 = 1 and 
+               A.ID = (select max(ID) from PJ_INVOCING B
+               		 where 1 = 1 
+               		 
+				<isNotNull prepend="" property="orgid">AND B.ORGID = #orgid#</isNotNull>
+        <isNotNull prepend="" property="partId">AND B.PART_ID = #partId#</isNotNull>
+                
+                
+                )
+		
+
+	
+    </select>
+    <select id="getBalanceStoreInvocing" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject"> 
+		SELECT A.ID as id, A.DC as dc, A.ORGID as orgid, A.STORE_ID as storeId, A.SERVICE_ID as serviceId, 
+		       A.BILL_MAIN_ID as billMainId, A.BILL_DETAIL_ID as billDetailId, A.BILL_TYPE_ID as billTypeId, A.GUEST_ID as guestId, 
+		       A.GUEST_NAME as guestName, A.PART_ID as partId, A.PART_CODE as partCode, A.PART_NAME as partName, A.QC_QTY as qcQty,
+			   A.QC_PRICE as qcPrice, A.QC_AMT as qcAmt, A.QTY as qty, A.PRICE as price, A.AMT as amt, A.COST_PRICE as costPrice, 
+			   A.COST_AMT as costAmt, A.BALA_QTY balaQty, A.BALA_PRICE as balaPrice, A.BALA_AMT as balaAmt, A.REMARK as remark, 
+			   A.CREATOR_ID as creatorId, A.CREATOR as creator, A.CREATE_DATE as createDate, 
+               A.OPERATOR_ID as operatorId, A.OPERATOR as operator, A.OPERATE_DATE as operateDate,
+               a.qc_exp_price as qcExpPrice, 
+               a.qc_exp_amt as qcExpAmt, 
+               a.exp_price as expPrice, 
+               a.exp_amt as expAmt,
+               a.bala_exp_price as balaExpPrice, 
+               a.bala_exp_amt as balaExpAmt, 
+               a.qc_tax_cost_price as qcTaxCostPrice, 
+               a.qc_tax_cost_amt as qcTaxCostAmt,
+               a.tax_cost_price as taxCostPrice, 
+               a.tax_cost_amt as taxCostAmt, 
+               a.bala_tax_cost_price as balaTaxCostPrice, 
+               a.bala_tax_cost_amt as balaTaxCostAmt,
+               a.qc_set_cost_price as qcSetCostPrice, 
+               a.qc_set_cost_amt AS qcSetCostAmt, 
+               a.set_cost_price AS setCostPrice, 
+               a.set_cost_amt AS setCostAmt, 
+               a.bala_set_cost_price AS balaSetCostPrice, 
+               a.bala_set_cost_amt AS balaSetCostAmt, 
+               a.qc_no_tax_cost_price as qcNoTaxCostPrice, 
+               a.qc_no_tax_cost_amt as qcNoTaxCostAmt,
+               a.no_tax_cost_price as noTaxCostPrice, 
+               a.no_tax_cost_amt as noTaxCostAmt, 
+               a.bala_no_tax_cost_price as balaNoTaxCostPrice, 
+               a.bala_no_tax_cost_amt as balaNoTaxCostAmt
+               FROM PJ_STORE_INVOCING A
+               where 1 = 1 and 
+               A.ID = (select max(B.ID) from PJ_STORE_INVOCING B
+               		 where 1 = 1 
+               		 
+                <isNotNull prepend="" property="orgid">AND B.ORGID = #orgid#</isNotNull>
+        <isNotNull prepend="" property="storeId">AND B.STORE_ID = #storeId#</isNotNull>
+        <isNotNull prepend="" property="partId">AND B.PART_ID = #partId#</isNotNull>
+                
+                
+                )
+		
+
+	
+    </select>
+    <update id="updateMainTableQTAXSC" parameterClass="java.util.HashMap">
+		UPDATE PJ_OUT_MAIN A set (A.TAX_AMT, A.NO_TAX_AMT, A.ENTER_AMT, A.OUT_AMT, A.OUT_QTY, A.OUT_ITEM, A.TAX_DIFF) = (
+			SELECT SUM(B.TAX_AMT), SUM(B.NO_TAX_AMT), SUM(B.ENTER_AMT), SUM(B.SELL_AMT), SUM(B.SELL_QTY), COUNT(B.ID),
+		         SUM(B.TAX_AMT) - SUM(B.NO_TAX_AMT)
+			from PJ_OUT_DETAIL B
+			where A.ID = B.MAIN_ID
+			
+				<isNotNull prepend="" property="mainId">AND B.MAIN_ID = #mainId#</isNotNull>
+				
+			GROUP BY B.MAIN_ID
+		)  
+		WHERE EXISTS(
+			SELECT 1 FROM PJ_OUT_DETAIL B WHERE B.MAIN_ID = A.ID
+		
+			<isNotNull prepend="" property="mainId">AND B.MAIN_ID = #mainId#</isNotNull>
+		)
+	</update>
+    <update id="updateMainTableQTACGC" parameterClass="java.util.HashMap">
+		UPDATE PJ_OUT_MAIN A set (A.TAX_AMT, A.NO_TAX_AMT, A.ENTER_AMT, A.OUT_AMT, A.OUT_QTY, A.OUT_ITEM, A.TAX_DIFF) = (
+			SELECT SUM(B.TAX_AMT), SUM(B.NO_TAX_AMT), SUM(B.ENTER_AMT), SUM(B.SELL_AMT), SUM(B.SELL_QTY), COUNT(B.ID),
+		         SUM(B.TAX_AMT) * A.TAX_RATE
+			from PJ_OUT_DETAIL B
+			where A.ID = B.MAIN_ID
+			
+				<isNotNull prepend="" property="mainId">AND B.MAIN_ID = #mainId#</isNotNull>
+				
+			GROUP BY B.MAIN_ID
+		)  
+		WHERE EXISTS(
+			SELECT 1 FROM PJ_OUT_DETAIL B WHERE B.MAIN_ID = A.ID
+		
+			<isNotNull prepend="" property="mainId">AND B.MAIN_ID = #mainId#</isNotNull>
+		)
+	</update>
+    <update id="updateMainTableQTACGR" parameterClass="java.util.HashMap">
+		UPDATE PJ_ENTER_MAIN A set (A.TAX_AMT, A.NO_TAX_AMT, A.ENTER_AMT, A.ENTER_QTY, A.ENTER_ITEM, A.TAX_DIFF) = (
+			SELECT SUM(B.TAX_AMT), SUM(B.NO_TAX_AMT), SUM(B.ENTER_AMT), SUM(B.ENTER_QTY), COUNT(B.ID),
+		         SUM(B.TAX_AMT) - SUM(B.NO_TAX_AMT)
+			from PJ_ENTER_DETAIL B
+			where A.ID = B.MAIN_ID
+			
+				<isNotNull prepend="" property="mainId">AND B.MAIN_ID = #mainId#</isNotNull>
+				
+			GROUP BY B.MAIN_ID
+		)  
+		WHERE EXISTS(
+			SELECT 1 FROM PJ_ENTER_DETAIL B WHERE B.MAIN_ID = A.ID
+		
+			<isNotNull prepend="" property="mainId">AND B.MAIN_ID = #mainId#</isNotNull>
+		)
+	</update>
+    <update id="updateMainTableQTAXSR" parameterClass="java.util.HashMap">
+		UPDATE PJ_ENTER_MAIN A set (A.TAX_AMT, A.NO_TAX_AMT, A.ENTER_AMT, A.ENTER_QTY, A.ENTER_ITEM, A.TAX_DIFF, A.SELL_RTN_AMT) = (
+			SELECT SUM(B.TAX_AMT), SUM(B.NO_TAX_AMT), SUM(B.ENTER_AMT), SUM(B.ENTER_QTY), COUNT(B.ID),
+		         SUM(B.TAX_AMT) - SUM(B.NO_TAX_AMT), SUM(B.RTN_AMT)
+			from PJ_ENTER_DETAIL B
+			where A.ID = B.MAIN_ID
+			
+				<isNotNull prepend="" property="mainId">AND B.MAIN_ID = #mainId#</isNotNull>
+				
+			GROUP BY B.MAIN_ID
+		)  
+		WHERE EXISTS(
+			SELECT 1 FROM PJ_ENTER_DETAIL B WHERE B.MAIN_ID = A.ID
+		
+			<isNotNull prepend="" property="mainId">AND B.MAIN_ID = #mainId#</isNotNull>
+		)
+	</update>
+    <update id="updateMainTableQTACGD" parameterClass="java.util.HashMap">
+		UPDATE PJ_PCHS_ORDER_MAIN A set (A.TAX_AMT, A.NO_TAX_AMT, A.ORDER_AMT, A.ORDER_QTY, A.ORDER_ITEM, A.TAX_DIFF) = (
+			SELECT SUM(B.TAX_AMT), SUM(B.NO_TAX_AMT), SUM(B.ORDER_AMT), SUM(B.ORDER_QTY), COUNT(B.ID),
+		         SUM(B.TAX_AMT) - SUM(B.NO_TAX_AMT)
+			from PJ_PCHS_ORDER_DETAIL B
+			where A.ID = B.MAIN_ID
+			
+				<isNotNull prepend="" property="mainId">AND B.MAIN_ID = #mainId#</isNotNull>
+				
+			GROUP BY B.MAIN_ID
+		)  
+		WHERE EXISTS(
+			SELECT 1 FROM PJ_PCHS_ORDER_DETAIL B WHERE B.MAIN_ID = A.ID
+		
+			<isNotNull prepend="" property="mainId">AND B.MAIN_ID = #mainId#</isNotNull>
+		)
+	</update>
+    <update id="updateMainTableQTAXSD" parameterClass="java.util.HashMap">
+		UPDATE PJ_SELL_ORDER_MAIN A set (A.ORDER_AMT, A.ORDER_QTY, A.ORDER_ITEM) = (
+			SELECT SUM(B.ORDER_AMT), SUM(B.ORDER_QTY), COUNT(B.ID)
+			from PJ_SELL_ORDER_DETAIL B
+			where A.ID = B.MAIN_ID
+			
+				<isNotNull prepend="" property="mainId">AND B.MAIN_ID = #mainId#</isNotNull>
+				
+			GROUP BY B.MAIN_ID
+		)  
+		WHERE EXISTS(
+			SELECT 1 FROM PJ_SELL_ORDER_DETAIL B WHERE B.MAIN_ID = A.ID
+		
+			<isNotNull prepend="" property="mainId">AND B.MAIN_ID = #mainId#</isNotNull>
+		)
+	</update>
+    <update id="updateOrderMainTableQTAXSD" parameterClass="java.util.HashMap">update pj_sell_order_main_chk a
+		inner join (
+			select main_id as mainId, sum(order_qty) as orderQty, sum(order_amt) as  orderAmt
+		  from pj_sell_order_detail_chk 
+		  where main_id = #mainId#
+		  group by main_id 
+		) b
+		on a.id = b.mainId
+		set a.order_qty = b.orderQty, a.order_amt = b.orderAmt
+		where a.id = #mainId#</update>
+    <update id="updateEnterStoreId" parameterClass="java.util.HashMap">update pj_out_detail_chk a
+		inner join pj_out_main_chk b
+		on a.main_id = b.id
+		inner join pj_enter_detail_chk c
+		on a.id = c.prev_detail_id
+		inner join pj_enter_main_chk d
+		on c.main_id = d.id and b.id = d.code_id and b.service_id = d.code
+		inner join pj_allot_accept_detail e
+		on a.order_detail_id = e.id and a.order_main_id = e.main_id
+		set c.store_id = e.direct_store_id
+		where b.id = #outMainId#</update>
+    <update id="updateOrderDetailId" parameterClass="java.util.HashMap">update pj_sell_order_detail_chk a
+		inner join pj_out_detail_chk b
+		on a.part_id = b.part_id
+		set b.order_detail_id = a.id
+		where a.main_id = #orderMainId# and b.main_id = #outMainId#</update>
+    <select id="queryGuestEnterRtnableRecord" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.pts.RtnRecord"> 
+		SELECT a.id AS sourceId, CASE WHEN IFNULL(a.root_id,0) = 0 THEN a.id ELSE a.root_id END AS rootId,
+		       b.id as mainId, b.service_id AS serviceId, b.guest_id AS guestId, a.part_id AS partId,
+		       a.part_code AS partCode, a.part_name AS partName, a.full_name as fullName, a.enter_unit_id AS unitId,
+		       a.outable_qty AS rtnableQty, a.tax_sign AS taxSign, a.tax_rate AS taxRate,
+		       a.no_tax_price AS noTaxPrice, a.tax_price AS taxPrice, a.enter_price AS enterPrice,
+			   a.enter_date AS enterDate, a.origin_id as originId, a.origin_guest_id as originGuestId,
+			   a.exp_enter_price as expEnterPrice,
+			   a.tax_cost_price as taxCostPrice,
+			   a.no_tax_cost_price as noTaxCostPrice,
+			   a.set_cost_price as setCostPrice
+		FROM pj_enter_detail_chk a 
+		inner  JOIN pj_enter_main_chk b 
+			ON a.main_id = b.id
+		LEFT JOIN (
+			SELECT
+				C.SOURCE_ID,
+				SUM(C.SELL_QTY) AS SellQty
+			FROM
+				PJ_OUT_DETAIL_chk C
+			INNER JOIN PJ_OUT_MAIN_chk D ON C.MAIN_ID = D.ID
+			WHERE 1 = 1 and D.AUDIT_SIGN = 0
+			<isNotNull prepend="" property="orgid">AND d.orgid = #orgid#</isNotNull>
+        <isNotNull prepend="" property="storeId">AND c.store_id = #storeId#</isNotNull>
+        <isNotNull prepend="" property="partId">AND c.part_id = #partId#</isNotNull>
+			GROUP BY
+				C.SOURCE_ID
+		) E ON E.SOURCE_ID = a.ID
+		WHERE 1 = 1 AND b.audit_sign = 1 
+		      AND a.outable_qty  - IFNULL(E.SellQty, 0) &gt; 0
+		
+		 	 <isNotNull prepend="" property="orgid">AND b.orgid = #orgid#</isNotNull>
+        <isNotNull prepend="" property="storeId">AND a.store_id = #storeId#</isNotNull>
+        <isNotNull prepend="" property="guestId">AND (a.origin_guest_id = #guestId#)</isNotNull>
+        <isNotNull prepend="" property="partId">AND a.part_id = #partId#</isNotNull>
+			 
+			 
+	  	order by b.audit_date asc
+					
+
+    </select>
+    <select id="queryGuestOutRtnableRecord" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.pts.RtnRecord"> 
+		SELECT a.ID AS sourceId, CASE WHEN IFNULL(a.root_id,0) = 0 THEN a.id ELSE a.root_id END AS rootId,
+		       b.id as mainId, b.service_id AS serviceId, b.guest_id AS guestId, a.part_id AS partId,
+		       a.part_code AS partCode, a.part_name AS partName, a.out_unit_id AS unitId,
+		       a.rtnable_qty AS rtnableQty, a.tax_sign AS taxSign, a.tax_rate AS taxRate,
+		       a.no_tax_price AS noTaxPrice, a.tax_price AS taxPrice, 
+		       CASE WHEN a.tax_sign = 1 THEN a.tax_price ELSE a.no_tax_price end AS enterPrice,
+			    a.enter_date AS enterDate, a.origin_id as originId, a.origin_guest_id as originGuestId,
+			    a.exp_enter_price as expEnterPrice, a.exp_enter_amt as expEnterAmt,
+			    a.tax_cost_price as taxCostPrice, a.tax_cost_amt as taxCostAmt,
+			    a.no_tax_cost_price as noTaxCostPrice, a.no_tax_cost_amt as noTaxCostAmt,
+			    a.set_cost_price as setCostPrice, a.set_cost_amt as setCostAmt
+		FROM pj_out_detail_chk a
+		INNER JOIN pj_out_main_chk b
+		ON a.main_id = b.id
+		WHERE 1 = 1 and b.audit_sign = 1
+		      AND a.rtnable_qty  &gt; 0
+		
+		 	 <isNotNull prepend="" property="orgid">AND b.orgid = #orgid#</isNotNull>
+        <isNotNull prepend="" property="storeId">AND a.store_id = #storeId#</isNotNull>
+        <isNotNull prepend="" property="guestId">AND (b.guest_id = #guestId#)</isNotNull>
+        <isNotNull prepend="" property="partId">AND a.part_id = #partId#</isNotNull>
+			 
+			 
+	  	order by b.audit_date asc
+					
+
+    </select>
+    <select id="queryGuestSellOrderOutRtnableRecord" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.pts.RtnRecord"> 
+		SELECT b.enter_type_id, a.ID AS sourceId, CASE WHEN IFNULL(a.root_id,0) = 0 THEN a.id ELSE a.root_id END AS rootId,
+		       b.id as mainId, b.service_id AS serviceId, b.guest_id AS guestId, a.part_id AS partId,
+		       a.part_code AS partCode, a.part_name AS partName, a.out_unit_id AS unitId,
+		       a.rtnable_qty AS rtnableQty, a.tax_sign AS taxSign, a.tax_rate AS taxRate,
+		       a.no_tax_price AS noTaxPrice, a.tax_price AS taxPrice, 
+		       CASE WHEN a.tax_sign = 1 THEN a.tax_price ELSE a.no_tax_price end AS enterPrice,
+			    a.enter_date AS enterDate, a.origin_id as originId, a.origin_guest_id as originGuestId,
+			    a.exp_enter_price as expEnterPrice, a.exp_enter_amt as expEnterAmt,
+			    a.tax_cost_price as taxCostPrice, a.tax_cost_amt as taxCostAmt,
+			    a.no_tax_cost_price as noTaxCostPrice, a.no_tax_cost_amt as noTaxCostAmt,
+			    a.set_cost_price as setCostPrice, a.set_cost_amt as setCostAmt
+		FROM pj_out_detail_chk a
+		INNER JOIN pj_out_main_chk b
+		ON a.main_id = b.id
+		inner join pj_sell_order_detail_chk c
+		on a.order_detail_id = c.id and a.order_main_id = c.main_id
+		WHERE 1 = 1 and b.audit_sign = 1 and b.enter_type_id = '050202'
+		      AND a.rtnable_qty &gt; 0 
+		
+		 	 <isNotNull prepend="" property="orgid">AND b.orgid = #orgid#</isNotNull>
+        <isNotNull prepend="" property="storeId">AND a.store_id = #storeId#</isNotNull>
+        <isNotNull prepend="" property="guestId">AND (b.guest_id = #guestId#)</isNotNull>
+        <isNotNull prepend="" property="partId">AND a.part_id = #partId#</isNotNull>
+        <isNotNull prepend="" property="rtnDetailId">AND c.id = #rtnDetailId#</isNotNull>
+        <isNotNull prepend="" property="rtnMainId">AND c.main_id = #rtnMainId#</isNotNull>
+			 
+			 
+	  	order by b.audit_date asc
+					
+
+    </select>
+    <select id="x_chooseEnterOutableDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap"> 
+		SELECT  b.ID as id, b.OUTABLE_QTY - IFNULL(E.SellQty, 0) AS outableQty,
+				B.MAIN_ID as mainId, B.SOURCE_ID as sourceId, B.ROOT_ID as rootId, 
+				B.STORE_ID as storeId, b.store_shelf as storeShelf, B.PART_ID as partId, B.PART_CODE as partCode, B.PART_NAME as partName,
+				B.FULL_NAME as fullName, B.ENTER_UNIT_ID as enterUnitId, B.SYSTEM_UNIT_ID as systemUnitId,
+				B.ENTER_QTY as enterQty, B.ENTER_PRICE as enterPrice,
+				B.ENTER_AMT as enterAmt, B.OUTABLE_QTY as trueOutableQty, B.TAX_SIGN as taxSign,
+				B.TAX_RATE as taxRate, B.TAX_PRICE as taxPrice, B.TAX_AMT as taxAmt,
+				B.NO_TAX_PRICE as noTaxPrice, B.NO_TAX_AMT as noTaxAmt, B.TAX_DIFF as taxDiff,
+				B.RTN_PRICE as rtnPrice, B.RTN_AMT as rtnAmt, B.ENTER_DATE as enterDate,
+				B.PREV_DETAIL_ID as preDetailId, B.ORDER_DETAIL_ID as orderDetailId,
+				B.ORDER_MAIN_ID as orderMainId, B.BRANCH_STOCK_AGE as branchStockAge,
+				B.CHAIN_STOCK_AGE as chainStockAge, B.GUEST_ID as guestId,j.full_name as guestName,
+				B.REMARK as remark, F.CODE AS code, F.NAME as name, F.OEM_CODE as oemCode,
+				F.PART_BRAND_ID as partBrandId, F.APPLY_CAR_MODEL as carModelName,
+				F.SPEC as spec, F.DIRECTION as direction, a.audit_date as auditDate, 
+				a.service_id as serviceId, b.origin_id as originId, b.origin_guest_id as originGuestId
+		FROM
+			PJ_ENTER_MAIN_CHK A
+		INNER JOIN PJ_ENTER_DETAIL_CHK B ON A.ID = B.MAIN_ID
+		INNER JOIN WB_COMMON.COM_ATTRIBUTE F ON F.ID = B.PART_ID
+		<!--INNER JOIN WB_COMMON.COM_GUEST K ON A.GUEST_ID = K.ID
+		LEFT JOIN PJ_ENTER_DETAIL_CHK M ON M.ID = B.ROOT_ID
+		LEFT JOIN PJ_ENTER_MAIN_CHK N ON N.ID = M.MAIN_ID
+		LEFT JOIN WB_COMMON.COM_GUEST J ON N.GUEST_ID = J.ID-->
+		inner join WB_COMMON.COM_GUEST J ON b.origin_guest_id = J.ID
+		LEFT JOIN (
+			SELECT
+				C.SOURCE_ID,
+				SUM(C.SELL_QTY) AS SellQty
+			FROM
+				PJ_OUT_DETAIL C
+			INNER JOIN PJ_OUT_MAIN D ON C.MAIN_ID = D.ID
+			INNER JOIN WB_COMMON.COM_ATTRIBUTE G ON G.ID = C.PART_ID
+			WHERE 1 = 1 and D.AUDIT_SIGN = 0
+			
+			<isNotNull prepend="" property="orgid">
+            <!--<isNotEqual prepend = "" property = "orgid" compareValue="0">-->
+				AND D.ORGID = #orgid#
+				<!--</isNotEqual>--></isNotNull>
+        <isNotNull prepend="" property="storeId">AND c.STORE_ID = #storeId#</isNotNull>
+        <isNotNull prepend="" property="partId">AND C.PART_ID = #partId#</isNotNull>
+        <isNotNull prepend="" property="code">AND (g.QUERY_CODE like '%$code$%' or g.code like '%$code$%')</isNotNull>
+        <isNotNull prepend="" property="name">AND G.full_name like '%$name$%'</isNotNull>
+        <isNotNull prepend="" property="namePy">AND G.NAME_PY like '%$namePy$%'</isNotNull>
+        <isNotNull prepend="" property="applyCarModel">AND G.apply_car_model like '%$applyCarModel$%'</isNotNull>
+        <isNotNull prepend="" property="partBrandId">AND G.part_brand_id = #partBrandId#</isNotNull>
+        <isNotNull prepend="" property="cnp">and (G.QUERY_CODE like '%$cnp$%' or g.code like '%$cnp$%' or G.NAME like '%$cnp$%' or G.FULL_NAME like '%$cnp$%' or G.NAME_PY like '%$cnp$%')</isNotNull>
+        <isNotNull prepend="" property="cartypeid">
+            <isNotEqual compareValue="0" prepend="" property="cartypeid">and (G.CAR_TYPE_ID_F = #cartypeid# or G.CAR_TYPE_ID_S = #cartypeid# or G.CAR_TYPE_ID_T = #cartypeid#)</isNotEqual>
+        </isNotNull>
+        <!--AND D.BILL_STATUS_ID <> ''-->
+			GROUP BY
+				C.SOURCE_ID
+		) E ON E.SOURCE_ID = B.ID
+		WHERE 1 =1 
+			  AND A.AUDIT_SIGN = 1
+		      AND B.OUTABLE_QTY &gt; 0
+		      AND B.OUTABLE_QTY - IFNULL(E.SellQty, 0) &gt; 0
+		
+			<isNotNull prepend="" property="orgid">AND A.ORGID = #orgid#</isNotNull>
+        <isNotNull prepend="" property="storeId">AND B.STORE_ID = #storeId#</isNotNull>
+        <isNotNull prepend="" property="partId">AND B.PART_ID = #partId#</isNotNull>
+        <isNotNull prepend="" property="code">AND (F.QUERY_CODE like '%$code$%' or f.code like '%$code$%')</isNotNull>
+        <isNotNull prepend="" property="name">AND F.full_name like '%$name$%'</isNotNull>
+        <isNotNull prepend="" property="namePy">AND F.NAME_PY like '%$namePy$%'</isNotNull>
+        <isNotNull prepend="" property="applyCarModel">AND F.apply_car_model like '%$applyCarModel$%'</isNotNull>
+        <isNotNull prepend="" property="partBrandId">AND F.part_brand_id = #partBrandId#</isNotNull>
+        <isNotNull prepend="" property="cnp">and (F.QUERY_CODE like '%$cnp$%' or f.code like '%$cnp$%' or F.NAME like '%$cnp$%' or F.FULL_NAME like '%$cnp$%' or F.NAME_PY like '%$cnp$%')</isNotNull>
+        <isNotNull prepend="" property="cartypeid">
+            <isNotEqual compareValue="0" prepend="" property="cartypeid">and (F.CAR_TYPE_ID_F = #cartypeid# or F.CAR_TYPE_ID_S = #cartypeid# or F.CAR_TYPE_ID_T = #cartypeid#)</isNotEqual>
+        </isNotNull>
+        <isNotNull prepend="" property="guestId">
+            <!--AND (A.GUEST_ID = #guestId# OR N.GUEST_ID = #guestId# )-->
+				AND (b.origin_guest_id = #guestId#)
+			</isNotNull>
+			
+		ORDER BY
+			A.AUDIT_DATE
+		
+
+	
+    </select>
+    <delete id="deletePartStock" parameterClass="java.util.HashMap">DELETE FROM pj_part_stock WHERE orgid = #orgid#</delete>
+    <delete id="deletePartStoreStock" parameterClass="java.util.HashMap">DELETE FROM pj_part_store_stock WHERE orgid = #orgid#</delete>
+    <!--采购订单提交后更新在途数量  增加-->
+    <update id="updatePartStockOnroadQtyByPchsA" parameterClass="java.util.HashMap">update pj_part_stock a
+		inner join (
+		  select part_id, sum(order_qty) as orderQty
+		  from pj_pchs_order_detail_chk a
+		  where main_id = #id#
+		  group by part_id
+		) b
+		on a.part_id = b.part_id
+		set a.on_road_qty = a.on_road_qty + b.orderQty</update>
+    <update id="updatePartStoreStockOnroadQtyByPchsA" parameterClass="java.util.HashMap">update pj_part_store_stock a
+		inner join (
+		  select part_id, store_id, sum(order_qty) as orderQty
+		  from pj_pchs_order_detail_chk a
+		  where main_id = #id#
+		  group by part_id, store_id
+		) b
+		on a.store_id = b.store_id and a.part_id = b.part_id
+		set a.on_road_qty = a.on_road_qty + b.orderQty</update>
+    <!--采购订单入库后更新在途数量  减少-->
+    <update id="updatePartStockOnroadQtyByPchsD" parameterClass="java.util.HashMap">update pj_part_stock a
+		inner join (
+		  select part_id, sum(order_qty) as orderQty
+		  from pj_pchs_order_detail_chk a
+		  where main_id = #id#
+		  group by part_id
+		) b
+		on a.part_id = b.part_id
+		set a.on_road_qty = case when a.on_road_qty - b.orderQty &gt; 0 then a.on_road_qty - b.orderQty else 0 end</update>
+    <update id="updatePartStoreStockOnroadQtyByPchsD" parameterClass="java.util.HashMap">update pj_part_store_stock a
+		inner join (
+		  select part_id, store_id, sum(order_qty) as orderQty
+		  from pj_pchs_order_detail_chk a
+		  where main_id = #id#
+		  group by part_id, store_id
+		) b
+		on a.store_id = b.store_id and a.part_id = b.part_id
+		set a.on_road_qty = case when a.on_road_qty - b.orderQty &gt; 0 then a.on_road_qty - b.orderQty else 0 end</update>
+    <update id="updatePartStoreStockOnroadQtyByPchsAdjD" parameterClass="java.util.HashMap">update pj_part_store_stock set on_road_qty = case when on_road_qty - #qty# &gt; 0 then on_road_qty - #qty# else 0 end
+		where part_id = #partId# and store_id = #storeId# and orgid = #orgid#</update>
+    <update id="updatePartStockOnroadQtyByPchsAdjD" parameterClass="java.util.HashMap">update pj_part_stock set on_road_qty = case when on_road_qty - #qty# &gt; 0 then on_road_qty - #qty# else 0 end
+		where part_id = #partId# and orgid = #orgid#</update>
+    <!--调拨申请提交后更新在途数量  增加-->
+    <update id="updatePartStockOnroadQtyByAllotA" parameterClass="java.util.HashMap">update pj_part_stock a
+		inner join (
+		  select a.part_id, sum(apply_qty) as orderQty
+		  from pj_allot_apply_detail a
+		  inner join pj_allot_apply_main b
+		  on a.main_id = b.id
+		  where a.main_id = #id# 
+		  group by part_id
+		) b
+		on a.part_id = b.part_id
+		set a.on_road_qty = a.on_road_qty + b.orderQty</update>
+    <update id="updatePartStoreStockOnroadQtyByAllotA" parameterClass="java.util.HashMap">update pj_part_store_stock a
+		inner join (
+		  select a.part_id, a.store_id, sum(apply_qty) as orderQty
+		  from pj_allot_apply_detail a
+		  inner join pj_allot_apply_main b
+		  on a.main_id = b.id
+		  where main_id = #id#
+		  group by a.part_id, a.store_id
+		) b
+		on a.store_id = b.store_id and a.part_id = b.part_id
+		set a.on_road_qty = a.on_road_qty + b.orderQty</update>
+    <!--调拨申请入库后更新在途数量  减少-->
+    <update id="updatePartStockOnroadQtyByAllotD" parameterClass="java.util.HashMap">update pj_part_stock a
+		inner join (
+		  select a.part_id, sum(apply_qty) as orderQty
+		  from pj_allot_apply_detail a
+		  inner join pj_allot_apply_main b
+		  on a.main_id = b.id
+		  where a.main_id = #id# 
+		  group by part_id
+		) b
+		on a.part_id = b.part_id
+		set a.on_road_qty = case when a.on_road_qty - b.orderQty &gt; 0 then a.on_road_qty - b.orderQty else 0 end</update>
+    <update id="updatePartStoreStockOnroadQtyByAllotD" parameterClass="java.util.HashMap">update pj_part_store_stock a
+		inner join (
+		  select a.part_id, a.store_id, sum(apply_qty) as orderQty
+		  from pj_allot_apply_detail a
+		  inner join pj_allot_apply_main b
+		  on a.main_id = b.id
+		  where main_id = #id#
+		  group by a.part_id, a.store_id
+		) b
+		on a.store_id = b.store_id and a.part_id = b.part_id
+		set a.on_road_qty = case when a.on_road_qty - b.orderQty &gt; 0 then a.on_road_qty - b.orderQty else 0 end</update>
+</sqlMap>

@@ -1,0 +1,26 @@
+<map>
+  <entry>
+    <string>com.hsapi.cloud.part.common.uniq.test()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;test&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;test&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.common.uniq.test&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;y(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;m(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.uniq.partSeqs(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;partSeqs&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;seqs&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.common.uniq.partSeqs&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;seqName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;seq(Long):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>uniq</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;uniq.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;uniq&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.common.uniq&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.uniq.testKingId()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;testKingId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;testKingId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.common.uniq.testKingId&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;msg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.uniq.getCompBillNO(String, Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCompBillNO&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;execEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.common.uniq.getCompBillNO&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;billTypeCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceno(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billrecords(com.hsapi.cloud.part.data.pts.PjBillRecord[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.uniq.generateDetailID()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateDetailID&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generateDetailID&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.common.uniq.generateDetailID&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

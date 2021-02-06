@@ -1,0 +1,102 @@
+<map>
+  <entry>
+    <string>com.hsapi.system.config.paramSet.getbusinessSort(String[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getbusinessSort&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savebusinessSort&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.paramSet.getbusinessSort&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(String[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.system.data.repair.RpbBusinessType[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.paramSet.queryBillParams(java.util.HashMap, Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryBillParams&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryBillParams&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.paramSet.queryBillParams&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;billParams(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.paramSet.getParamsTemplate()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getParamsTemplate&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryParamsTemplate&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.paramSet.getParamsTemplate&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.paramSet.saveDisclaimer(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveDisclaimer&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveDisclaimer&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.paramSet.saveDisclaimer&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.paramSet.queryStockParams(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryStockParams&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryBillParams&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.paramSet.queryStockParams&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;billParams(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>disclaimer</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;paramSet.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;disclaimer&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.paramSet&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.paramSet.queryBillParams_copy(java.util.HashMap, Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryBillParams_copy&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryBillParams&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.paramSet.queryBillParams_copy&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;billParams(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.paramSet.saveTenantShareUrl(com.hsapi.system.data.sys.ComTenantShareUrl[], com.hsapi.system.data.sys.ComTenantShareUrl[], com.hsapi.system.data.sys.ComTenantShareUrl[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveTenantShareUrl&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveStation&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.paramSet.saveTenantShareUrl&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addList(com.hsapi.system.data.sys.ComTenantShareUrl[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updateList(com.hsapi.system.data.sys.ComTenantShareUrl[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;deleteList(com.hsapi.system.data.sys.ComTenantShareUrl[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.paramSet.saveComParams(com.hsapi.system.data.sys.ComParams[], com.hsapi.system.data.sys.ComParams[], com.hsapi.system.data.sys.ComParams[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveComParams&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveComParams&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.paramSet.saveComParams&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addList(com.hsapi.system.data.sys.ComParams[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updateList(com.hsapi.system.data.sys.ComParams[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;deleteList(com.hsapi.system.data.sys.ComParams[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.paramSet.delBusinessSort(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;delBusinessSort&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;delBusinessSort&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.paramSet.delBusinessSort&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.paramSet.saveBillParams(commonj.sdo.DataObject[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveBillParams&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveBillParams&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.paramSet.saveBillParams&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;billParams(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.paramSet.saveMemberParams(com.hsapi.system.data.sys.ComMember, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveMemberParams&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveMemberParams&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.paramSet.saveMemberParams&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;emp(com.hsapi.system.data.sys.ComMember):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;empid(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;E失败;S成功&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.paramSet.saveDiscount(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveDiscount&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveDisclaimer&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.paramSet.saveDiscount&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.paramSet.getStoreList()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getStoreList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStoreList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.paramSet.getStoreList&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.system.data.repair.ComStore[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.paramSet.queryBasicDeductParams(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryBasicDeductParams&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryBillParams&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.paramSet.queryBasicDeductParams&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;billParams(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.paramSet.saveStockParams(commonj.sdo.DataObject[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveStockParams&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveBillParams&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.paramSet.saveStockParams&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;billParams(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.paramSet.saveReturn(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveReturn&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveDisclaimer&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.paramSet.saveReturn&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.paramSet.queryTenantShareUrl(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryTenantShareUrl&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryAppointmentStation&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.paramSet.queryTenantShareUrl&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;param(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.system.data.sys.ComTenantShareUrl[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.paramSet.removeComParams(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;removeComParams&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;removeComParams&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.paramSet.removeComParams&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.paramSet.saveBusinessSort(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveBusinessSort&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveDisclaimer&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.paramSet.saveBusinessSort&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.paramSet.queryComParams(java.util.HashMap, Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryComParams&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryComParams&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.paramSet.queryComParams&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;cache&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.paramSet.saveRepairStore(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveRepairStore&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveDisclaimer&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.paramSet.saveRepairStore&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.paramSet.queryMemberParms(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryMemberParms&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryMemberParms&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.paramSet.queryMemberParms&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mem(com.hsapi.system.data.sys.ComMember[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.paramSet.saveShowSet(java.util.HashMap[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveShowSet&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveShowSet&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.paramSet.saveShowSet&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.paramSet.updatebusinessSort(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updatebusinessSort&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveDisclaimer&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.paramSet.updatebusinessSort&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.part.query.stock">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <!--分仓库存数量-->
+    <select id="queryPartStoreStockQty" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT a.store_id as storeId, sum(a.stock_qty) as stockQty
+			from pj_part_store_stock a
+			inner join wb_common.com_store b
+			on a.store_id = b.id
+			where 1 = 1
+				<isNotEmpty prepend="and" property="orgid">(b.orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="isDisabled">(b.is_disabled = #isDisabled#)</isNotEmpty>
+			
+			group by a.store_id
+			order by b.id asc
+				
+    </select>
+    <!--分仓库存金额-->
+    <select id="queryPartStoreStockAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT a.store_id as storeId, sum(a.stock_amt) as stockAmt
+			from pj_part_store_stock a
+			inner join wb_common.com_store b
+			on a.store_id = b.id
+			where 1 = 1
+				<isNotEmpty prepend="and" property="orgid">(b.orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="isDisabled">(b.is_disabled = #isDisabled#)</isNotEmpty>
+			
+			group by a.store_id
+			order by b.id asc
+				
+    </select>
+    <!--当天入库数量-->
+    <select id="queryTodayInQty" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT a.store_id as storeId, sum(a.qty) as inQty
+			from pj_store_invocing a
+			inner join wb_common.com_store b
+			on a.store_id = b.id
+			where dc = 1 and to_days(a.create_date ) = to_days(now()) 
+				<isNotEmpty prepend="and" property="orgid">(b.orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="isDisabled">(b.is_disabled = #isDisabled#)</isNotEmpty>
+			group by a.store_id
+			order by b.id asc
+
+				
+    </select>
+    <!--当天入库金额-->
+    <select id="queryTodayInAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT a.store_id as storeId, sum(a.cost_amt) as inAmt
+			from pj_store_invocing a
+			inner join wb_common.com_store b
+			on a.store_id = b.id
+			where dc = 1 and to_days(a.create_date ) = to_days(now()) 
+				<isNotEmpty prepend="and" property="orgid">(b.orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="isDisabled">(b.is_disabled = #isDisabled#)</isNotEmpty>
+			group by a.store_id
+			order by b.id asc
+
+				
+    </select>
+    <!--当天出库数量-->
+    <select id="queryTodayOutQty" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT a.store_id as storeId, sum(a.qty) as outQty
+			from pj_store_invocing a
+			inner join wb_common.com_store b
+			on a.store_id = b.id
+			where dc = -1 and to_days(a.create_date ) = to_days(now()) 
+				<isNotEmpty prepend="and" property="orgid">(b.orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="isDisabled">(b.is_disabled = #isDisabled#)</isNotEmpty>
+			group by a.store_id
+			order by b.id asc
+
+				
+    </select>
+    <!--当天入库金额-->
+    <select id="queryTodayOutAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT a.store_id as storeId, sum(a.cost_amt) as outAmt
+			from pj_store_invocing a
+			inner join wb_common.com_store b
+			on a.store_id = b.id
+			where dc = 1 and to_days(a.create_date ) = to_days(now()) 
+				<isNotEmpty prepend="and" property="orgid">(b.orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="isDisabled">(b.is_disabled = #isDisabled#)</isNotEmpty>
+			group by a.store_id
+			order by b.id asc
+
+				
+    </select>
+    <select id="queryPartStoreTotal" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">SELECT
+                a.orgid as orgid,
+                b.name as name,
+				a.store_id AS storeId,
+				sum(a.stock_qty) AS stockQty,
+				sum(a.cost_price) AS costPrice
+			FROM
+				pj_part_store_stock a
+			INNER JOIN wb_common.com_company b ON a.orgid = b.orgid
+			WHERE
+				1 = 1
+			AND b.tenant_id = #tenantId#
+			GROUP BY a.orgid</select>
+</sqlMap>

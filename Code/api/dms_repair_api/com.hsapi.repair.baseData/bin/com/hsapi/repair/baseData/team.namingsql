@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.repair.baseData.team">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <!--作废 -->
+    <select id="getTeam" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id id,
+			a.orgid orgid,
+			a.type type,
+			c.name typeName,
+			a.code code,
+			a.name name,
+			a.captain_name captainName,
+			a.is_disabled isDisabled
+		FROM
+			rpb_class a
+			LEFT JOIN wb_common.com_datadictionaries c on (a.type = c.customid)
+			where a.orgid = #orgid#
+		<dynamic>
+            <isNotEmpty prepend="and" property="isDisabled">(a.is_disabled = #isDisabled#)</isNotEmpty>
+        </dynamic>
+    </select>
+    <select id="getGroup" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">SELECT type, id, name from (
+			select 'ALL' as type, 0 as id, '全部' as name
+			union
+				select 'BZ' as type, id, name from wb_common.com_member_group 
+				where is_disabled = 0 and tenant_id = #tenantId# and orgid = #orgid#
+			union
+				select 'DJ' as type, id, name from wb_common.com_member_level 
+				where is_disabled = 0 and tenant_id = #tenantId# and orgid = #orgid#) m</select>
+</sqlMap>

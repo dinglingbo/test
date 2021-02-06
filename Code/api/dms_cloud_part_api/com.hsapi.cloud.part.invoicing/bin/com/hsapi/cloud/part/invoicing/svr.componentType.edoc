@@ -1,0 +1,182 @@
+<map>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.queryPjSellOutDetailByMainId(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjSellOutDetailByMainId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.queryPjSellOutDetailByMainId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjSellOutDetailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.queryPjStockCheckDetailList(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjStockCheckDetailList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.queryPjStockCheckDetailList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getPjPchsOrderDetailById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getPjPchsOrderDetailById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.cloud.part.data.pts.PjPchsOrderDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getPjEnterMainById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjEnterMainById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderMainById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getPjEnterMainById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.cloud.part.data.pts.PjEnterMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailListBill(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjSellOrderDetailListBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailListBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjSellOrderDetailList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getPjPchsOrderDetailChkById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjPchsOrderDetailChkById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getPjPchsOrderDetailChkById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.queryBillOrders(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryBillOrders&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryBillOrders&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.queryBillOrders&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getPjSellOutDetailChkById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjSellOutDetailChkById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getPjSellOutDetailChkById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.cloud.part.data.pts.PjOutDetailChk[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getPjSellOrderMainById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjSellOrderMainById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderMainById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getPjSellOrderMainById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.cloud.part.data.pts.PjSellOrderMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getPjSellOutMainChkById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjSellOutMainChkById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderMainById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getPjSellOutMainChkById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.cloud.part.data.pts.PjOutMainChk):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.queryPjEnterMainList(com.eos.foundation.PageCond, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjEnterMainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.queryPjEnterMainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjEnterMainList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getStockCheckStockOutByMainId(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getStockCheckStockOutByMainId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getSellOrderStockOut&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getStockCheckStockOutByMainId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.cloud.part.data.pts.PjStockCheckDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getPchsOrderDetailChkById(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPchsOrderDetailChkById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getPchsOrderDetailChkById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getPjPchsOrderMainById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjPchsOrderMainById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderMainById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getPjPchsOrderMainById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.cloud.part.data.pts.PjPchsOrderMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderMainList(com.eos.foundation.PageCond, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjSellOrderMainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderMainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjSellOrderMainList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getPjSellOrderMainChkById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjSellOrderMainChkById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderMainById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getPjSellOrderMainChkById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.cloud.part.data.pts.PjSellOrderMainChk):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.queryPjEnterDetailByMainId(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjEnterDetailByMainId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.queryPjEnterDetailByMainId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjEnterDetailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderMainList(com.eos.foundation.PageCond, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderMainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjPchsOrderMainList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.queryPjShiftOrderDetailList(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjShiftOrderDetailList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.queryPjShiftOrderDetailList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjSellOrderDetailList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjSellOrderDetailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getPjPchsOrderMainChkById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjPchsOrderMainChkById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderMainById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getPjPchsOrderMainChkById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getPjSellOrderDetailById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjSellOrderDetailById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getPjSellOrderDetailById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.cloud.part.data.pts.PjSellOrderDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.queryPjShiftOrderMainList(com.eos.foundation.PageCond, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjShiftOrderMainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.queryPjShiftOrderMainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getPjSellOrderDetailChkById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjSellOrderDetailChkById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getPjSellOrderDetailChkById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.cloud.part.data.pts.PjSellOrderDetailChk[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.queryPjStockCheckMainList(com.eos.foundation.PageCond, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjStockCheckMainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.queryPjStockCheckMainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getPjStockShiftMainById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjStockShiftMainById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderMainById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getPjStockShiftMainById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.cloud.part.data.pts.PjStockShiftMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getPjEnterMainChkById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjEnterMainChkById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderMainById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getPjEnterMainChkById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.cloud.part.data.pts.PjEnterMainChk):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getPjSellOutMainById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjSellOutMainById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderMainById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getPjSellOutMainById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.cloud.part.data.pts.PjOutMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.queryPjSellOrPchsOrderMainChkList(com.eos.foundation.PageCond, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjSellOrPchsOrderMainChkList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.queryPjSellOrPchsOrderMainChkList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;orderTypeId&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.queryPjEnterDetailList(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjEnterDetailList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.queryPjEnterDetailList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjEnterDetailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>svr</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;svr.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;svr&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjPchsOrderDetailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getPjEnterDetailChkById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjEnterDetailChkById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getPjEnterDetailChkById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.cloud.part.data.pts.PjEnterDetailChk[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getShiftOrderStockOutByMainId(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getShiftOrderStockOutByMainId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getSellOrderStockOut&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getShiftOrderStockOutByMainId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.cloud.part.data.pts.PjStockShiftDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getPjStockCheckDetailById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjStockCheckDetailById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getPjStockCheckDetailById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.cloud.part.data.pts.PjStockCheckDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.queryPjSellOutDetailList(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjSellOutDetailList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.queryPjSellOutDetailList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjSellOutDetailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailListBill(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjPchsOrderDetailListBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailListBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjPchsOrderDetailList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getPjStockCheckMainById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjStockCheckMainById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderMainById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getPjStockCheckMainById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.cloud.part.data.pts.PjStockCheckMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getPjEnterDetailById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjEnterDetailById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getPjEnterDetailById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.cloud.part.data.pts.PjEnterDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getPjStockShiftDetailById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjStockShiftDetailById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getPjStockShiftDetailById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.cloud.part.data.pts.PjStockShiftDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.queryPjSellOutMainList(com.eos.foundation.PageCond, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjSellOutMainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.queryPjSellOutMainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjSellOutMainList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getPjSellOutDetailById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjSellOutDetailById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getPjSellOutDetailById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.cloud.part.data.pts.PjOutDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getPjStockCheckDetailByIdAndDc(Long, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjStockCheckDetailByIdAndDc&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsOrderDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getPjStockCheckDetailByIdAndDc&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dc(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.cloud.part.data.pts.PjStockCheckDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getSellOrderStockOutByMainId(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getSellOrderStockOutByMainId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getSellOrderStockOut&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getSellOrderStockOutByMainId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.cloud.part.data.pts.PjSellOrderDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.svr.getSellOutStockOutByMainId(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getSellOutStockOutByMainId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getSellOrderStockOut&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.svr.getSellOutStockOutByMainId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.cloud.part.data.pts.PjOutDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

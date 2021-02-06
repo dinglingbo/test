@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.system.config.com_bmwUserCfg.ComBmwusercfg" table="com_bmwusercfg">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="string">
+            <column length="255" name="ID"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="loginname" type="string">
+            <column length="255" name="loginName"/>
+        </property>
+        <property name="password" type="string">
+            <column length="255" name="passWord"/>
+        </property>
+        <property name="encryptedstr" type="string">
+            <column length="255" name="encryptedStr" not-null="true"/>
+        </property>
+        <property name="remarks" type="string">
+            <column length="255" name="Remarks"/>
+        </property>
+        <property name="apptype" type="string">
+            <column length="255" name="appType"/>
+        </property>
+    </class>
+</hibernate-mapping>

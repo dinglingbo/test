@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Require-Bundle: 
+eos-webCtxPath: data
+Bundle-Vendor: Administrator
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsapi.cloud.part.data
+Bundle-Description: 数据集
+Bundle-SymbolicName: com.hsapi.cloud.part.data
+

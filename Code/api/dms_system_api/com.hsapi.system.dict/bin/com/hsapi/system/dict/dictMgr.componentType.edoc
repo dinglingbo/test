@@ -1,0 +1,118 @@
+<map>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.queryCarSeries(String, Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCarSeries&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;查询业务字典项&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.queryCarSeries&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;carBrandId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;强制从数据库查询&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.saveDictList(com.hsapi.system.data.dict.ComDataitems[], com.hsapi.system.data.dict.ComDataitems[], String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveDictList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveDictList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.saveDictList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addList(com.hsapi.system.data.dict.ComDataitems[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updateList(com.hsapi.system.data.dict.ComDataitems[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dictid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rootid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.queryDictTree(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryDictTree&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryDictTree&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.queryDictTree&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;parentid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.queryDictTypeItems(String, String, String, Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryDictTypeItems&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;查询业务字典项&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.queryDictTypeItems&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;sortField(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sortOrder(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;customid(String):&lt;/b&gt;父节点ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;强制从数据库查询&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>dictMgr</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;dictMgr.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;dictMgr&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.querySell(String, String, String, String[], Boolean, String, String, String, String, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;querySell&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;查询业务字典项&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.querySell&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;sortField(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sortOrder(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dictid(String):&lt;/b&gt;父节点ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dictids(String[]):&lt;/b&gt;多父节点ID列表&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;强制从数据库查询&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgids(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;tenantId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;tenantIds(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.queryDictType(com.eos.foundation.PageCond, String, String, String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryDictType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;查询业务字典类型&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.queryDictType&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sortField(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sortOrder(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;queryId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;customid(String):&lt;/b&gt;类型代码&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;name(String):&lt;/b&gt;类型名称&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;父节点ID&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.queryPartType(Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPartType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;查询业务字典项&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.queryPartType&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;强制从数据库查询&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partTypes(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.queryDictTypeChild(String, String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryDictTypeChild&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;查询业务字典类型&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.queryDictTypeChild&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;sortField(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sortOrder(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;customid(String):&lt;/b&gt;父节点ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rootId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isDisabled(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dictIds(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dictIda(String[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.queryCarModel(String, String, Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCarModel&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;查询业务字典项&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.queryCarModel&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;carBrandId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carSeriesId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;强制从数据库查询&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.removeGuestTypeCache(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;removeGuestTypeCache&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;查询业务字典项&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.removeGuestTypeCache&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;tenantId(String):&lt;/b&gt;父节点ID&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.saveDict(com.hsapi.system.data.dict.ComDataitems)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveDict&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveDictType&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.saveDict&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.system.data.dict.ComDataitems):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.system.data.dict.ComDataitems):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.removeDictCache(String, String[], String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;removeDictCache&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;查询业务字典项&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.removeDictCache&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;dictid(String):&lt;/b&gt;父节点ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dictids(String[]):&lt;/b&gt;多父节点ID列表&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;tenantId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.queryDictTypeTree(Boolean, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryDictTypeTree&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;查询业务字典项&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.queryDictTypeTree&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;强制从数据库查询&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;p(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.querySelectGuestType(java.util.HashMap, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;querySelectGuestType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;querySelectGuestType&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.querySelectGuestType&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fromDb(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.saveDictType(com.hsapi.system.data.dict.ComDatadictionaries)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveDictType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveDictType&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.saveDictType&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.system.data.dict.ComDatadictionaries):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.system.data.dict.ComDatadictionaries):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.queryPartBrand(Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPartBrand&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;查询业务字典项&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.queryPartBrand&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;强制从数据库查询&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;quality(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;brand(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.queryServiceType(Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryServiceType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryServiceType&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.queryServiceType&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;强制从数据库查询&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.queryDict(String, String, String, String[], Boolean, String, String, String, String, java.util.HashMap, Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryDict&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;查询业务字典项&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.queryDict&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;sortField(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sortOrder(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dictid(String):&lt;/b&gt;父节点ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dictids(String[]):&lt;/b&gt;多父节点ID列表&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;强制从数据库查询&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgids(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;tenantId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;tenantIds(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isClear(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isDisabled(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.getProvinces(Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getProvinces&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;查询业务字典项&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.getProvinces&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;强制从数据库查询&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.queryDictClear(String, String, String, Boolean, String, String, String, String, java.util.HashMap, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryDictClear&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;查询业务字典项&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.queryDictClear&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;sortField(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sortOrder(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dictid(String):&lt;/b&gt;父节点ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;强制从数据库查询&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgids(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;tenantId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;tenantIds(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isClear(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.dictParamsSet(java.util.HashMap, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;dictParamsSet&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;dictParamsSet&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.dictParamsSet&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dictid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.test(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;test&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;test&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.test&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;ca(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;p(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;s(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;t(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.eos.data.datacontext.UserObject):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.checkDataItemsExists(String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;checkDataItemsExists&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;checkPartExists&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.checkDataItemsExists&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;name(String):&lt;/b&gt;字典名称&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;type(String):&lt;/b&gt;add,edit&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;字典ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dictId(String):&lt;/b&gt;父ID&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.updateOrgEmp()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateOrgEmp&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateOrgEmp&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.updateOrgEmp&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.queryPartBrandParams(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPartBrandParams&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartBrandParams&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.queryPartBrandParams&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.queryCarBrand(Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCarBrand&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;查询业务字典项&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.queryCarBrand&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;强制从数据库查询&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.getCitys(Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCitys&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;查询业务字典项&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.getCitys&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;强制从数据库查询&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.dictMgr.query(com.primeton.das.criteria.criteriaType, com.eos.foundation.PageCond, String, String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;query&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;query&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.dictMgr.query&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;criteria(com.primeton.das.criteria.criteriaType):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sortField(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sortOrder(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dicttypeid(String):&lt;/b&gt;类型代码&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dictid(String):&lt;/b&gt;父节点ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;parenttypeid(String):&lt;/b&gt;父节点类型ID&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(org.gocom.components.coframe.dict.dict.EosDictEntry[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

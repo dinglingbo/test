@@ -2,17 +2,11 @@ package com.hsapi.system.kingkong;
 
 import java.util.UUID;
 
-import com.google.gson.Gson;
-import com.kingdee.bos.webapi.sdk.K3CloudApi;
-import com.kingdee.bos.webapi.sdk.OperateParam;
-import com.kingdee.bos.webapi.sdk.OperatorResult;
-import com.kingdee.bos.webapi.sdk.SaveParam;
-import com.kingdee.bos.webapi.sdk.SaveResult;
 
 public class DataTransfer {
 
 	public static void main(String[] args) throws Exception {
-		K3CloudApi api = new K3CloudApi("http://epc.youfan.pub/k3cloud/"); 
+		/*K3CloudApi api = new K3CloudApi("http://epc.youfan.pub/k3cloud/"); 
 		Customer c = new Customer();
 		c.setFNumber("BC");
 		c.setFName("客户名称-A" + UUID.randomUUID().toString());
@@ -39,7 +33,7 @@ public class DataTransfer {
 				} else {
 					System.out.println(" ");
 				}
-
+*/
 
 	}
 

@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Require-Bundle: 
+eos-webCtxPath: page
+Bundle-Vendor: steven
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsweb.crm.page
+Bundle-Description: 
+Bundle-SymbolicName: com.hsweb.crm.page
+

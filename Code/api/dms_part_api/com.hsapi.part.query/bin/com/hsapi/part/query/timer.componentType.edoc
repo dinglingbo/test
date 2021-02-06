@@ -1,0 +1,22 @@
+<map>
+  <entry>
+    <string>com.hsapi.part.query.timer.queryStaffAchievement(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryStaffAchievement&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryProductPanorama&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.timer.queryStaffAchievement&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;公司，是否统计禁用&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;staffArr(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;staffAchValue(java.util.List):&lt;/b&gt;销售业绩&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;区域、门店、年月&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.timer.businessCount()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;businessCount&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;businessCount&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.timer.businessCount&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.timer.targetCount()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;targetCount&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;businessCount&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.timer.targetCount&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>timer</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;timer.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;timer&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.timer&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.query.timer.queryTodayBill(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryTodayBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryTodayBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.query.timer.queryTodayBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

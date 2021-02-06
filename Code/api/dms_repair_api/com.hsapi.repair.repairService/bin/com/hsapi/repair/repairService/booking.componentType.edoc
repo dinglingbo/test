@@ -1,0 +1,66 @@
+<map>
+  <entry>
+    <string>booking</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;booking.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;booking&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.booking&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.booking.getAppointmentDate(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getAppointmentDate&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getAppointmentDate&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.booking.getAppointmentDate&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orgid(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;nowMinute(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;endMinute(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;nowDateStr(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;advanceDay(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.booking.getAppointmentTimes(Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getAppointmentTimes&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getAppointmentTimes&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.booking.getAppointmentTimes&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;isToday(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;advanceTimes(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;timeList(com.hsapi.repair.data.rpbse.RpbAppointmentTimes[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;nowTimeStr(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.booking.saveBookingMaintain(String, com.hsapi.repair.data.rps.RpsPrebook, com.hsapi.repair.data.rps.RpsMaintain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveBookingMaintain&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveBookingMaintain&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.booking.saveBookingMaintain&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;action(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rpsPrebook(com.hsapi.repair.data.rps.RpsPrebook):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;maintain(com.hsapi.repair.data.rps.RpsMaintain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.RpsMaintain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rpsPrebook(com.hsapi.repair.data.rps.RpsPrebook):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.booking.updateBooking(com.hsapi.repair.data.rps.RpsPrebook, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateBooking&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateBooking&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.booking.updateBooking&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpsPrebook(com.hsapi.repair.data.rps.RpsPrebook):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;action(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;openid(String):&lt;/b&gt;发微信通知用&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;url(String):&lt;/b&gt;发微信通知用&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rpsPrebook(com.hsapi.repair.data.rps.RpsPrebook):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.booking.queryPrebookList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPrebookList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPrebookList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.booking.queryPrebookList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(com.hsapi.repair.data.rps.RpsPrebook[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.booking.queryPrebookListNopage(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPrebookListNopage&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPrebookList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.booking.queryPrebookListNopage&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(com.hsapi.repair.data.rps.RpsPrebook[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.booking.saveBookScout(com.hsapi.repair.data.rps.RpsPrebookTelScout, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveBookScout&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveBookScout&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.booking.saveBookScout&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpsPrebookTelScout(com.hsapi.repair.data.rps.RpsPrebookTelScout):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;out1(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.booking.queryBookingTrace(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryBookingTrace&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryBokingList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.booking.queryBookingTrace&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(com.hsapi.repair.data.rps.RpsPrebookTelScout[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.booking.queryPrebookById(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPrebookById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPrebookById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.booking.queryPrebookById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;preBook(com.hsapi.repair.data.rps.RpsPrebook):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.booking.pushHSBespeak(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;pushHSBespeak&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;pushHSBespeak&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.booking.pushHSBespeak&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;compCode,compName,mtAdvisor&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.booking.setBookingGuestId(com.hsapi.repair.data.rps.RpsPrebook)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;setBookingGuestId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;setBookingGuestId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.booking.setBookingGuestId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpsPrebook(com.hsapi.repair.data.rps.RpsPrebook):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rpsPrebook(com.hsapi.repair.data.rps.RpsPrebook):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.booking.setBookWeChatInfo(com.hsapi.repair.data.rps.RpsPrebook, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;setBookWeChatInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;setBookWeChatInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.booking.setBookWeChatInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpsPrebook(com.hsapi.repair.data.rps.RpsPrebook):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;openid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;url(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.booking.queryPreBookByGuest(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPreBookByGuest&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPreBookByGuest&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.booking.queryPreBookByGuest&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.RpsPrebook[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.booking.saveBookingRpsMaintain(com.hsapi.repair.data.rps.RpsMaintain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveBookingRpsMaintain&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveRpsMaintain&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.booking.saveBookingRpsMaintain&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;maintain(com.hsapi.repair.data.rps.RpsMaintain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.booking.getRpsPrebook(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpsPrebook&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getRpsPrebook&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.booking.getRpsPrebook&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpsPreBook(com.hsapi.repair.data.rps.RpsPrebook):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

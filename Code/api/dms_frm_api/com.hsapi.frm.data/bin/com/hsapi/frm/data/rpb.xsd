@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns="com.hsapi.frm.data.rpb" xmlns:sdo="commonj.sdo" xmlns:sdoJava="commonj.sdo/java" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="com.hsapi.frm.data.rpb">
+    <xs:complexType name="RpbCar">
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+            <xs:element minOccurs="0" name="id" nillable="true" type="xs:int"/>
+            <xs:element default="0" minOccurs="0" name="tenantId" nillable="true" type="xs:int"/>
+            <xs:element default="0" minOccurs="0" name="orgid" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="carNo" nillable="true" type="xs:string"/>
+            <xs:element default="0" minOccurs="0" name="isWash" nillable="true" type="xs:short"/>
+            <xs:element default="0" minOccurs="0" name="guestId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="carModelId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="carModelIdLy" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="carBrandId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="carModel" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="carModelFullName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="produceDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="engineNo" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="vin" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="color" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="carType" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="driveLicenseAddress" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="driveLicensePicOne" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="driveLicensePicTwo" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="firstRegDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="issuingDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="annualVerificationDueDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="insureBuyDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="annualInspectionNo" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="annualInspectionDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="annualInspectionCompCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="annualInspectionCompName" nillable="true" type="xs:string"/>
+            <xs:element default="0.00" minOccurs="0" name="annualInspectionAmt" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="insureNo" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="insureDueDate" nillable="true" type="xs:dateTime"/>
+            <xs:element default="0" minOccurs="0" name="insureCompCode" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="insureCompName" nillable="true" type="xs:string"/>
+            <xs:element default="0.00" minOccurs="0" name="insureAmt" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="recorder" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="recordDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="modifier" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="modifyDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

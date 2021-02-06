@@ -1,0 +1,30 @@
+<map>
+  <entry>
+    <string>com.hsapi.repair.common.svr.getDeductRate(String[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getDeductRate&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getDeductRate&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.common.svr.getDeductRate&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;itemKindList(String[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.rpbse.RpbDeductRate[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.common.svr.queryCarBrandSeriesTreeT(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCarBrandSeriesTreeT&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCarBrandSeriesTree&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.common.svr.queryCarBrandSeriesTreeT&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.common.svr.queryCarBrandSeriesTree(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCarBrandSeriesTree&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCarBrandSeriesTree&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.common.svr.queryCarBrandSeriesTree&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;nodeId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.common.svr.getClassTree(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getClassTree&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getClassTree&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.common.svr.getClassTree&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.common.svr.getGuestById(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getGuestById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getGuestById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.common.svr.getGuestById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guestId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guest(com.hsapi.repair.data.common.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.common.svr.getAllInsuranceCompany(String, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getAllInsuranceCompany&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getAllInsuranceCompany&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.common.svr.getAllInsuranceCompany&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;获取保险公司&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>svr</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;svr.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;svr&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.common.svr&lt;/html&gt;</string>
+  </entry>
+</map>

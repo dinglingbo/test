@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Require-Bundle: com.hs.common,com.hsapi.system.data,com.eos.foundation
+Bundle-Vendor: Administrator
+eos-webCtxPath: service
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsapi.system.service
+Bundle-Description: 
+Bundle-SymbolicName: com.hsapi.system.service
+

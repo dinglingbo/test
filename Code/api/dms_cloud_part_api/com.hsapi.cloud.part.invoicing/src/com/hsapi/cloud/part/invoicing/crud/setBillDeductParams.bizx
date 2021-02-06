@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="setBillDeductParams" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="订单提交之后，生成提成参数&#xD;&#xA;&#xD;&#xA;查询 pj_bill_deduct_params 中是否已经存在 orderId 的数据&#xD;&#xA;&#xD;&#xA;根据订单ID查询特定产品的提成参数 com.hsapi.cloud.part.invoicing.deduct.queryDeductPart&#xD;&#xA;根据订单ID及订单金额查询单据的提成金额  com.hsapi.cloud.part.invoicing.deduct.queryDeductBill&#xD;&#xA;单据金额 - 特定产品金额&#xD;&#xA;汇总特定产品金额 com.hsapi.cloud.part.invoicing.deduct.queryDeductPartSum&#xD;&#xA;type 提成方式（1按销售金额分成；2按销售毛利分成）" title="Administrator&#x9;19-6-27 下午2:28">
-    <location x="-165" y="-285"/>
+    <location x="-180" y="-300"/>
     <size height="196" width="676"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">

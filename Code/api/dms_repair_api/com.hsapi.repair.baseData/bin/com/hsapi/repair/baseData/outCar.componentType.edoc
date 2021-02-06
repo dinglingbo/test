@@ -1,0 +1,22 @@
+<map>
+  <entry>
+    <string>outCarReport</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;outCar.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;outCarReport&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.outCar&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.outCar.deleteOutReport(com.hsapi.repair.data.rpbse.RpbOutReport)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;deleteOutReport&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;deleteOutReport&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.outCar.deleteOutReport&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;report(com.hsapi.repair.data.rpbse.RpbOutReport):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.outCar.saveOutReport(com.hsapi.repair.data.rpbse.RpbOutReport, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveOutReport&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveOutCarReport&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.outCar.saveOutReport&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;report(com.hsapi.repair.data.rpbse.RpbOutReport):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;S/E&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.outCar.getOutCarTree()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getOutCarTree&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;outCarReportMain&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.outCar.getOutCarTree&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;datas(com.hsapi.repair.data.common.ComDataitems[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.outCar.queryOutCar(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryOutCar&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryOutCarData&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.outCar.queryOutCar&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;outs(com.hsapi.repair.data.rpbse.RpbOutReport[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

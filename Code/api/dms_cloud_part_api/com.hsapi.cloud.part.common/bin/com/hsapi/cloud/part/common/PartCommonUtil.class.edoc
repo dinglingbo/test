@@ -1,0 +1,22 @@
+<map>
+  <entry>
+    <string>PartCommonUtil</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.hsapi.cloud.part.common.PartCommonUtil&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &lt;dl&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;chenziming&lt;/dd&gt;&lt;dt&gt;@date&lt;/dt&gt;&lt;dd&gt;2018-02-28 20:06:56&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.PartCommonUtil.putDataObjectToMap(java.util.HashMap&lt;java.lang.String,commonj.sdo.DataObject&gt;, java.lang.String, commonj.sdo.DataObject)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap&lt;String,DataObject&gt; com.hsapi.cloud.part.common.PartCommonUtil.putDataObjectToMap(HashMap&lt;String,DataObject&gt; map, String key, DataObject data)&lt;/b&gt;&lt;br/&gt;&lt;p&gt;putDataObjectToMap&lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;map&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;key&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data&lt;/b&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.PartCommonUtil.getDataObjectFromMap(java.util.HashMap&lt;java.lang.String,commonj.sdo.DataObject&gt;, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.hsapi.cloud.part.common.PartCommonUtil.getDataObjectFromMap(HashMap&lt;String,DataObject&gt; map, String key)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.PartCommonUtil.getShortPyWithoutSpace(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hsapi.cloud.part.common.PartCommonUtil.getShortPyWithoutSpace(String text)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.common.PartCommonUtil.add2Array(commonj.sdo.DataObject, commonj.sdo.DataObject[])</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject[] com.hsapi.cloud.part.common.PartCommonUtil.add2Array(DataObject sourceDO, DataObject[] dos)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

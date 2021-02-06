@@ -1,0 +1,18 @@
+<map>
+  <entry>
+    <string>feedback</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;feedback.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;feedback&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.feedback&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.feedback.queryFeedBackInfo(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryFeedBackInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveFeedBackInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.feedback.queryFeedBackInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.system.data.sys.SysFeedbackRecord[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.feedback.updatFeedBack(com.hsapi.system.data.sys.SysFeedbackRecord, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updatFeedBack&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updatFeedBack&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.feedback.updatFeedBack&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;updaFree(com.hsapi.system.data.sys.SysFeedbackRecord):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;finish(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.feedback.saveFeedBackInfo(com.hsapi.system.data.sys.SysFeedbackRecord)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveFeedBackInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveFeedBackInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.feedback.saveFeedBackInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;feedback(com.hsapi.system.data.sys.SysFeedbackRecord):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

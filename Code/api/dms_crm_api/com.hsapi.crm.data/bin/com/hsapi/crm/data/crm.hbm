@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.crm.data.crm.CrmVisitAchievement" table="crm_visit_achievement">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid"/>
+        </property>
+        <property name="serviceId" type="int">
+            <column default="0" name="service_id"/>
+        </property>
+        <property name="serviceCode" type="string">
+            <column default="''" length="255" name="service_code"/>
+        </property>
+        <property name="guestId" type="int">
+            <column default="0" name="guest_id"/>
+        </property>
+        <property name="guestName" type="string">
+            <column default="''" length="50" name="guest_name"/>
+        </property>
+        <property name="carId" type="int">
+            <column default="0" name="car_id"/>
+        </property>
+        <property name="carNo" type="string">
+            <column default="''" length="15" name="car_no"/>
+        </property>
+        <property name="carVin" type="string">
+            <column default="''" length="20" name="car_vin"/>
+        </property>
+        <property name="visitId" type="int">
+            <column name="visit_id"/>
+        </property>
+        <property name="visitMan" type="string">
+            <column default="''" length="20" name="visit_man"/>
+        </property>
+        <property name="carType" type="int">
+            <column default="1" name="car_type"/>
+        </property>
+        <property name="auditSign" type="short">
+            <column default="0" name="audit_sign"/>
+        </property>
+        <property name="auditor" type="string">
+            <column default="''" length="20" name="auditor"/>
+        </property>
+        <property name="auditOpinion" type="string">
+            <column length="200" name="audit_opinion"/>
+        </property>
+        <property name="auditDate" type="date">
+            <column name="audit_date"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="date">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="date">
+            <column name="modify_date"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="200" name="remark"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.crm.data.crm.RpbRemindParam" table="rpb_remind_param">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="param1" type="short">
+            <column default="3" name="param1"/>
+        </property>
+        <property name="param2" type="short">
+            <column default="3" name="param2"/>
+        </property>
+        <property name="param3" type="short">
+            <column default="30" name="param3"/>
+        </property>
+        <property name="param4" type="short">
+            <column default="30" name="param4"/>
+        </property>
+        <property name="param5" type="short">
+            <column default="30" name="param5"/>
+        </property>
+        <property name="param6" type="short">
+            <column default="2" name="param6"/>
+        </property>
+        <property name="param7" type="short">
+            <column default="7" name="param7"/>
+        </property>
+        <property name="param8" type="short">
+            <column default="7" name="param8"/>
+        </property>
+        <property name="param9" type="short">
+            <column default="180" name="param9"/>
+        </property>
+        <property name="param10" type="short">
+            <column default="1" name="param10"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.crm.data.crm.CrmLostScoutDetail" table="crm_lost_scout_detail">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="string">
+            <column length="20" name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgid" type="big_decimal">
+            <column length="10" name="orgid" not-null="true" precision="10" scale="0"/>
+        </property>
+        <property name="carId" type="int">
+            <column name="car_id"/>
+        </property>
+        <property name="guestId" type="int">
+            <column name="guest_id"/>
+        </property>
+        <property name="mainReason" type="string">
+            <column length="100" name="main_reason"/>
+        </property>
+        <property name="subReason" type="string">
+            <column length="100" name="sub_reason"/>
+        </property>
+        <property name="predComeDate" type="timestamp">
+            <column name="pred_come_date"/>
+        </property>
+        <property name="nowMtComp" type="string">
+            <column length="20" name="now_mt_comp"/>
+        </property>
+        <property name="content" type="string">
+            <column length="1000" name="content"/>
+        </property>
+        <property name="mode" type="string">
+            <column length="10" name="mode"/>
+        </property>
+        <property name="scoutMan" type="string">
+            <column length="20" name="scout_man"/>
+        </property>
+        <property name="scoutDate" type="timestamp">
+            <column name="scout_date"/>
+        </property>
+        <property name="isContinueScout" type="big_decimal">
+            <column length="10" name="is_continue_scout" precision="10" scale="0"/>
+        </property>
+        <property name="nextScoutDate" type="timestamp">
+            <column name="next_scout_date"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.crm.data.crm.CrmVisitData" table="crm_visit_data">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid" not-null="true"/>
+        </property>
+        <property name="type" type="int">
+            <column name="type"/>
+        </property>
+        <property name="billTypeId" type="int">
+            <column default="0" name="bill_type_id"/>
+        </property>
+        <property name="serviceId" type="int">
+            <column name="service_id"/>
+        </property>
+        <property name="serviceCode" type="string">
+            <column default="''" length="20" name="service_code" not-null="true"/>
+        </property>
+        <property name="guestId" type="int">
+            <column default="0" name="guest_id" not-null="true"/>
+        </property>
+        <property name="contactorId" type="int">
+            <column default="0" name="contactor_id" not-null="true"/>
+        </property>
+        <property name="carId" type="int">
+            <column default="0" name="car_id" not-null="true"/>
+        </property>
+        <property name="carNo" type="string">
+            <column default="''" length="15" name="car_no" not-null="true"/>
+        </property>
+        <property name="carVin" type="string">
+            <column default="''" length="20" name="car_vin"/>
+        </property>
+        <property name="mtAdvisorId" type="int">
+            <column default="0" name="mt_advisor_id"/>
+        </property>
+        <property name="mtAdvisor" type="string">
+            <column default="''" length="20" name="mt_advisor"/>
+        </property>
+        <property name="outDate" type="timestamp">
+            <column name="out_date"/>
+        </property>
+        <property name="nextVisitDate" type="timestamp">
+            <column name="next_visit_date"/>
+        </property>
+        <property name="visitTimes" type="int">
+            <column default="0" name="visit_times"/>
+        </property>
+        <property name="leaveDays" type="int">
+            <column default="0" name="leave_days"/>
+        </property>
+        <property name="status" type="short">
+            <column default="0" name="status"/>
+        </property>
+        <property name="dataType" type="int">
+            <column default="1" name="data_type"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.crm.data.crm.CrmVisitRecord" table="crm_visit_record">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="orgid" type="big_decimal">
+            <column length="10" name="orgid" not-null="true" precision="10" scale="0"/>
+        </property>
+        <property name="mainId" type="int">
+            <column default="0" name="main_id"/>
+        </property>
+        <property name="serviceType" type="int">
+            <column name="service_type"/>
+        </property>
+        <property name="serviceId" type="int">
+            <column name="service_id"/>
+        </property>
+        <property name="guestId" type="int">
+            <column name="guest_id"/>
+        </property>
+        <property name="guestSource" type="string">
+            <column default="''" length="20" name="guest_source"/>
+        </property>
+        <property name="carNo" type="string">
+            <column length="20" name="car_no"/>
+        </property>
+        <property name="carId" type="int">
+            <column name="car_id"/>
+        </property>
+        <property name="visitStatus" type="string">
+            <column length="20" name="visit_status"/>
+        </property>
+        <property name="visitResult" type="string">
+            <column length="20" name="visit_result"/>
+        </property>
+        <property name="visitMode" type="string">
+            <column length="10" name="visit_mode"/>
+        </property>
+        <property name="careDueDate" type="timestamp">
+            <column name="care_due_date"/>
+        </property>
+        <property name="careDayCycle" type="int">
+            <column default="0" name="care_day_cycle"/>
+        </property>
+        <property name="contentId" type="string">
+            <column default="'0'" length="255" name="content_id"/>
+        </property>
+        <property name="visitContent" type="string">
+            <column length="500" name="visit_content"/>
+        </property>
+        <property name="visitId" type="int">
+            <column default="0" name="visit_id"/>
+        </property>
+        <property name="visitMan" type="string">
+            <column default="''" length="20" name="visit_man"/>
+        </property>
+        <property name="visitDate" type="timestamp">
+            <column name="visit_date"/>
+        </property>
+        <property name="nextVisitDate" type="timestamp">
+            <column name="next_visit_date"/>
+        </property>
+        <property name="isContinueVisit" type="big_decimal">
+            <column length="10" name="is_continue_visit" precision="10" scale="0"/>
+        </property>
+        <property name="mainReason" type="string">
+            <column length="255" name="main_reason"/>
+        </property>
+        <property name="subReason" type="string">
+            <column length="255" name="sub_reason"/>
+        </property>
+        <property name="nowMtComp" type="string">
+            <column length="255" name="now_mt_comp"/>
+        </property>
+        <property name="planComeDate" type="timestamp">
+            <column name="plan_come_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.crm.data.crm.CrmSellChanceDetail" table="crm_sell_chance_detail">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="tenantId" type="int">
+            <column default="0" name="tenant_id" not-null="true"/>
+        </property>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="guestId" type="int">
+            <column default="0" name="guest_id" not-null="true"/>
+        </property>
+        <property name="guestName" type="string">
+            <column default="''" length="50" name="guest_name"/>
+        </property>
+        <property name="guestMobile" type="string">
+            <column default="''" length="15" name="guest_mobile"/>
+        </property>
+        <property name="carId" type="int">
+            <column default="0" name="car_id" not-null="true"/>
+        </property>
+        <property name="carNo" type="string">
+            <column default="''" length="15" name="car_no" not-null="true"/>
+        </property>
+        <property name="chanceType" type="string">
+            <column default="'0'" length="20" name="chance_type"/>
+        </property>
+        <property name="prdtName" type="string">
+            <column default="''" length="100" name="prdt_name"/>
+        </property>
+        <property name="prdtAmt" type="big_decimal">
+            <column default="0.00" length="10" name="prdt_amt" precision="10" scale="2"/>
+        </property>
+        <property name="status" type="int">
+            <column default="0" name="status"/>
+        </property>
+        <property name="chanceManId" type="int">
+            <column default="0" name="chance_man_id"/>
+        </property>
+        <property name="chanceMan" type="string">
+            <column default="''" length="20" name="chance_man"/>
+        </property>
+        <property name="planFinishDate" type="timestamp">
+            <column name="plan_finish_date"/>
+        </property>
+        <property name="nextFollowDate" type="timestamp">
+            <column name="next_follow_date"/>
+        </property>
+        <property name="chanceContent" type="string">
+            <column default="''" length="200" name="chance_content"/>
+        </property>
+        <property name="remark" type="string">
+            <column default="''" length="200" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.crm.data.crm.CrmSendTaskMain" table="crm_send_task_main">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="code" type="string">
+            <column length="30" name="code"/>
+        </property>
+        <property name="serviceType" type="int">
+            <column name="service_type"/>
+        </property>
+        <property name="visitMode" type="string">
+            <column length="10" name="visit_mode"/>
+        </property>
+        <property name="isSend" type="int">
+            <column default="0" name="is_send"/>
+        </property>
+        <property name="taskNum" type="int">
+            <column name="task_num"/>
+        </property>
+        <property name="taskSuccessNum" type="int">
+            <column name="task_success_num"/>
+        </property>
+        <property name="taskFaultNum" type="int">
+            <column name="task_fault_num"/>
+        </property>
+        <property name="taskBeginTime" type="timestamp">
+            <column name="task_begin_time"/>
+        </property>
+        <property name="taskEndTime" type="timestamp">
+            <column name="task_end_time"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.crm.data.crm.CrmSendTaskDetail" table="crm_send_task_detail">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="tenantId" type="int">
+            <column default="0" name="tenant_id"/>
+        </property>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid" not-null="true"/>
+        </property>
+        <property name="mainId" type="int">
+            <column default="0" name="main_id"/>
+        </property>
+        <property name="guestId" type="int">
+            <column name="guest_id"/>
+        </property>
+        <property name="guestSource" type="string">
+            <column default="''" length="20" name="guest_source"/>
+        </property>
+        <property name="contactor" type="string">
+            <column length="255" name="contactor"/>
+        </property>
+        <property name="contactorId" type="int">
+            <column name="contactor_id"/>
+        </property>
+        <property name="carId" type="int">
+            <column name="car_id"/>
+        </property>
+        <property name="carNo" type="string">
+            <column length="20" name="car_no"/>
+        </property>
+        <property name="mobile" type="string">
+            <column default="''" length="50" name="mobile"/>
+        </property>
+        <property name="wechatOpenId" type="string">
+            <column default="''" length="50" name="wechat_open_id"/>
+        </property>
+        <property name="wechatServiceId" type="string">
+            <column default="''" length="50" name="wechat_service_id"/>
+        </property>
+        <property name="contentId" type="string">
+            <column default="'0'" length="255" name="content_id"/>
+        </property>
+        <property name="visitContent" type="string">
+            <column length="500" name="visit_content"/>
+        </property>
+        <property name="sendStatus" type="int">
+            <column name="send_status"/>
+        </property>
+        <property name="sendDate" type="timestamp">
+            <column name="send_date"/>
+        </property>
+        <property name="firstText" type="string">
+            <column length="500" name="first_text"/>
+        </property>
+        <property name="endText" type="string">
+            <column length="500" name="end_text"/>
+        </property>
+        <property name="keyword1" type="string">
+            <column length="255" name="keyword1"/>
+        </property>
+        <property name="keyword2" type="string">
+            <column length="255" name="keyword2"/>
+        </property>
+        <property name="keyword3" type="string">
+            <column length="255" name="keyword3"/>
+        </property>
+        <property name="keyword4" type="string">
+            <column length="255" name="keyword4"/>
+        </property>
+        <property name="keyword5" type="string">
+            <column length="255" name="keyword5"/>
+        </property>
+    </class>
+</hibernate-mapping>

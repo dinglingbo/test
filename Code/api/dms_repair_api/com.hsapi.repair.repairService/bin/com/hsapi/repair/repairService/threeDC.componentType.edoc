@@ -1,0 +1,34 @@
+<map>
+  <entry>
+    <string>com.hsapi.repair.repairService.threeDC.saveContactData(com.hsapi.repair.data.rpbse.RpbContactor)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveContactData&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveContactData&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.threeDC.saveContactData&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;conData(com.hsapi.repair.data.rpbse.RpbContactor):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.threeDC.saveScoutDetail(com.hsapi.repair.data.rpbse.RpbCar, com.hsapi.repair.data.crm.Crm3dcScoutDetail, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveScoutDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveScoutDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.threeDC.saveScoutDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;car(com.hsapi.repair.data.rpbse.RpbCar):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detail(com.hsapi.repair.data.crm.Crm3dcScoutDetail):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detail(com.hsapi.repair.data.crm.Crm3dcScoutDetail):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.threeDC.updateDate(commonj.sdo.DataObject, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateDate&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateDate&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.threeDC.updateDate&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainData(commonj.sdo.DataObject):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updateDate(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.threeDC.sendPostUrl(String, String, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sendPostUrl&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;setBookWeChatInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.threeDC.sendPostUrl&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;key(String):&lt;/b&gt;REPAIR&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;apiName(String):&lt;/b&gt;com.hsapi.wechat.autoServiceBackstage.weChatInterface.sendBookingWeChatTemplateMessage.biz.ext&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;turl(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>threeDC</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;threeDC.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;threeDC&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.threeDC&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.threeDC.getScoutDetailByServiceId(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getScoutDetailByServiceId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getScoutDetailByServiceId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.threeDC.getScoutDetailByServiceId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detail(commonj.sdo.DataObject):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.threeDC.saveCarData(com.hsapi.repair.data.rpbse.RpbCar, com.hsapi.repair.data.rpbse.RpbCarExtend)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveCarData&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveContactData&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.threeDC.saveCarData&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;carData(com.hsapi.repair.data.rpbse.RpbCar):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carExData(com.hsapi.repair.data.rpbse.RpbCarExtend):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.threeDC.queryScoutList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryScoutList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryScoutList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.threeDC.queryScoutList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

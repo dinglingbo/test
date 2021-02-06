@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.crm.data.crmPage">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <!-- 储值卡 -->
+    <select id="searchRpbCardStored" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">select 
+    		id id,
+    		name name,
+			period_validity periodValidity,
+			use_range useRange,
+			recharge_amt rechargeAmt,
+			give_amt giveAmt,
+			can_modify canModify,
+			total_amt totalAmt,
+			package_rate packageRate,
+			item_rate itemRate,
+			part_rate partRate,
+			sales_deduct_type salesDeductType,
+			sales_deduct_value salesDeductValue,
+			use_remark useRemark,
+			remark remark,
+			status status
+		from rpb_card_stored</select>
+    <!-- 计次卡 -->
+    <select id="searchRpbCardTimes" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">select 
+    		id id,
+			name name,
+			period_validity periodValidity,
+			sell_amt sellAmt,
+			total_amt totalAmt,
+			sales_deduct_type salesDeductType,
+			sales_deduct_value salesDeductValue,			
+			use_remark useRemark,
+			remark remark,
+			status status
+		from rpb_card_times</select>
+</sqlMap>

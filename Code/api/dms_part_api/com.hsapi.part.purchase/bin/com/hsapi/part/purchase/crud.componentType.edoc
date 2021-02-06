@@ -1,0 +1,66 @@
+<map>
+  <entry>
+    <string>com.hsapi.part.purchase.crud.updatePtsOut(com.hsapi.part.data.x_pts.PtsOutMain, com.hsapi.part.data.x_pts.PtsOutDetail[], com.hsapi.part.data.x_pts.PtsOutDetail[], com.hsapi.part.data.x_pts.PtsOutDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updatePtsOut&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;insertPtsEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.crud.updatePtsOut&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;outMain(com.hsapi.part.data.x_pts.PtsOutMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;outDetailAdd(com.hsapi.part.data.x_pts.PtsOutDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;outDetailUpdate(com.hsapi.part.data.x_pts.PtsOutDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;outDetailDelete(com.hsapi.part.data.x_pts.PtsOutDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.crud.insertPtsOut(com.hsapi.part.data.x_pts.PtsOutMain, com.hsapi.part.data.x_pts.PtsOutDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;insertPtsOut&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;insertPtsEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.crud.insertPtsOut&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;outMain(com.hsapi.part.data.x_pts.PtsOutMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;outDetail(com.hsapi.part.data.x_pts.PtsOutDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.crud.insertPtsEnterDetailBatch(com.hsapi.part.data.x_pts.PtsEnterDetail[], com.hsapi.part.data.x_pts.PtsEnterMain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;insertPtsEnterDetailBatch&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePtsEnterDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.crud.insertPtsEnterDetailBatch&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.part.data.x_pts.PtsEnterDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.x_pts.PtsEnterMain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.crud.updatePtsEnter(com.hsapi.part.data.x_pts.PtsEnterMain, com.hsapi.part.data.x_pts.PtsEnterDetail[], com.hsapi.part.data.x_pts.PtsEnterDetail[], com.hsapi.part.data.x_pts.PtsEnterDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updatePtsEnter&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;insertPtsEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.crud.updatePtsEnter&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;enterMain(com.hsapi.part.data.x_pts.PtsEnterMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;enterDetailAdd(com.hsapi.part.data.x_pts.PtsEnterDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;enterDetailUpdate(com.hsapi.part.data.x_pts.PtsEnterDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;enterDetailDelete(com.hsapi.part.data.x_pts.PtsEnterDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.crud.auditOut(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;auditOut&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;auditOut&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.crud.auditOut&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.crud.setStoreLocationBatch(String[], String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;setStoreLocationBatch&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;setStoreLocationBatch&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.crud.setStoreLocationBatch&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partCodeList(String[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;storeId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;storeLocation(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.crud.insertPtsEnter(com.hsapi.part.data.x_pts.PtsEnterMain, com.hsapi.part.data.x_pts.PtsEnterDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;insertPtsEnter&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;insertPtsEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.crud.insertPtsEnter&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;enterMain(com.hsapi.part.data.x_pts.PtsEnterMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;enterDetail(com.hsapi.part.data.x_pts.PtsEnterDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.crud.getStockListByLocIdList(java.util.HashMap, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getStockListByLocIdList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStockListByLocIdList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.crud.getStockListByLocIdList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;param(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.crud.savePtsEnterDetail(com.hsapi.part.data.x_pts.PtsEnterDetail)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;savePtsEnterDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePtsEnterDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.crud.savePtsEnterDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;ptsEnterDetail(com.hsapi.part.data.x_pts.PtsEnterDetail):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.crud.insertPtsEnterDetail(com.hsapi.part.data.x_pts.PtsEnterDetail)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;insertPtsEnterDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePtsEnterDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.crud.insertPtsEnterDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;ptsEnterDetail(com.hsapi.part.data.x_pts.PtsEnterDetail):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.crud.savePtsOut(com.hsapi.part.data.x_pts.PtsOutMain, com.hsapi.part.data.x_pts.PtsOutDetail[], com.hsapi.part.data.x_pts.PtsOutDetail[], com.hsapi.part.data.x_pts.PtsOutDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;savePtsOut&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePstEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.crud.savePtsOut&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;outMain(com.hsapi.part.data.x_pts.PtsOutMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;outDetailAdd(com.hsapi.part.data.x_pts.PtsOutDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;outDetailUpdate(com.hsapi.part.data.x_pts.PtsOutDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;outDetailDelete(com.hsapi.part.data.x_pts.PtsOutDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.crud.savePtsEnter(com.hsapi.part.data.x_pts.PtsEnterMain, com.hsapi.part.data.x_pts.PtsEnterDetail[], com.hsapi.part.data.x_pts.PtsEnterDetail[], com.hsapi.part.data.x_pts.PtsEnterDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;savePtsEnter&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePstEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.crud.savePtsEnter&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;enterMain(com.hsapi.part.data.x_pts.PtsEnterMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;enterDetailAdd(com.hsapi.part.data.x_pts.PtsEnterDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;enterDetailUpdate(com.hsapi.part.data.x_pts.PtsEnterDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;enterDetailDelete(com.hsapi.part.data.x_pts.PtsEnterDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.crud.saveCycSotreWithLoc(commonj.sdo.DataObject[], commonj.sdo.DataObject)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveCycSotreWithLoc&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;insertCycSotreWithLoc&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.crud.saveCycSotreWithLoc&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;main(commonj.sdo.DataObject):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>crud</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;crud.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;crud&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.crud&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.crud.auditEnter(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;auditEnter&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;auditEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.crud.auditEnter&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.crud.saveCycStore(com.hsapi.part.data.x_pts.PtsCycStore)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveCycStore&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveCycStore&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.crud.saveCycStore&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;storeCyc(com.hsapi.part.data.x_pts.PtsCycStore):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

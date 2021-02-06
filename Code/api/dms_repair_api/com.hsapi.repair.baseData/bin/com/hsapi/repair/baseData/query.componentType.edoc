@@ -1,0 +1,206 @@
+<map>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryHSMTAdvisor(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryHSMTAdvisor&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryHSComp&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryHSMTAdvisor&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;compCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryUnfinishBill(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryUnfinishBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryUnfinishBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryUnfinishBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryLastCheckModel(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryLastCheckModel&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryLastCheckModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryLastCheckModel&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryAppointmentStation(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryAppointmentStation&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryAppointmentStation&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryAppointmentStation&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;param(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;stations(com.hsapi.repair.data.rpbse.RpbAppointmentStation[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.searchExpense(Int, java.util.HashMap[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchExpense&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchExpense&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.searchExpense&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pkgBill(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;itemBill(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryCheckModel(java.util.HashMap, Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCheckModel&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCheckModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryCheckModel&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.rpbse.RpbCheckMain[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryAttributeById(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryAttributeById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryAttribute&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryAttributeById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;attribute(com.hsapi.repair.data.common.ComAttribute[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.searchExpensePkgBill(Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchExpensePkgBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchExpense&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.searchExpensePkgBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;type(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pkgBill(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryItemTimesByUsableWithPage(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryItemTimesByUsableWithPage&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCardtd&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryItemTimesByUsableWithPage&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;p(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.RpsItemTimes[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;次卡查询&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.get(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;get&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;get&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.get&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.common.ComGuest[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryCardIdRate(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCardIdRate&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCardIdRate&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryCardIdRate&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cardId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.rpbse.RpbCardRate[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.qyeryMaintainList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;qyeryMaintainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;qyeryMaintainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.qyeryMaintainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.qyeryPushBillList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;qyeryPushBillList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;qyeryMaintainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.qyeryPushBillList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryRpsPart(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRpsPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRpsPart&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryRpsPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.RpsPart[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryStoredRecord(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryStoredRecord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCardstored&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryStoredRecord&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryCheckModelDetailContent(Int, Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCheckModelDetailContent&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCheckModelDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryCheckModelDetailContent&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;checkId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.rpbse.RpbCheckItemContent[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryCardByGuestIdNoPage(Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCardByGuestIdNoPage&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCardtd&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryCardByGuestIdNoPage&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guestId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.RpsStoredRecord[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;次卡查询&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryStoreConsume(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryStoreConsume&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryStoreConsume&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryStoreConsume&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryCardstoredList()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCardstoredList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCardstored&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryCardstoredList&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cardStoreds(com.hsapi.repair.data.rpbse.RpbCardStored[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryCardById(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCardById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCardtd&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryCardById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;次卡查询&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryRpsPPIMaintainDetail(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRpsPPIMaintainDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRpsMaintainDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryRpsPPIMaintainDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.QueryRpsCheckDetailList(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;QueryRpsCheckDetailList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCheckModelDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.QueryRpsCheckDetailList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.rps.RpsCheckDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.searchExpenseItemBill(String, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchExpenseItemBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchExpense&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.searchExpenseItemBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;type(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;itemBill(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryCardTimesByGuestIdNopage(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCardTimesByGuestIdNopage&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCardtd&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryCardTimesByGuestIdNopage&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;p(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.RpsCardTimesDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;次卡查询&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryAppointmentParams(String, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryAppointmentParams&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryAppointmentParams&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryAppointmentParams&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;type(Int):&lt;/b&gt;2主+时间&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(com.hsapi.repair.data.rpbse.RpbAppointmentParams):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;times(com.hsapi.repair.data.rpbse.RpbAppointmentTimes[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>query</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;query.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;query&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryScoutParam(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryScoutParam&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryScoutParam&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryScoutParam&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.rpbse.RpbScoutParam[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryRpsMaintainDetail(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRpsMaintainDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRpsMaintainDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryRpsMaintainDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryRpsPackageByServiceId(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRpsPackageByServiceId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPackageDetails&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryRpsPackageByServiceId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;维修工单号&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpsPackage(com.hsapi.repair.data.rpsRead.RpsPackage[]):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;套餐详情&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryCheckModelDetail(Int, Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCheckModelDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCheckModelDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryCheckModelDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.rpbse.RpbCheckDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryCardTimesByGuestId(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCardTimesByGuestId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCardtd&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryCardTimesByGuestId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;p(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.RpsCardTimesDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;次卡查询&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryMemberByGuestId(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryMemberByGuestId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryMemberByGuestid&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryMemberByGuestId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guestId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;member(com.hsapi.repair.data.common.ComJoinMember[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryAllRpsItemByServiceId(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryAllRpsItemByServiceId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRpsItemByServiceId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryAllRpsItemByServiceId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;工单中的维修工单号&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpsItem(com.hsapi.repair.data.rps.RpsItem[]):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;工时详情&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryRpsItemTimes(String, String, String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRpsItemTimes&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRpsItemTimes&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryRpsItemTimes&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guestId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;contactorId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;openId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carNo(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpsItemTimes(com.hsapi.repair.data.rps.RpsItemTimes):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;itemList(com.hsapi.repair.data.rps.RpsItemTimes[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryGuestType(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryGuestType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCheckModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryGuestType&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.rpbse.RpbGuestType[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryPackageById(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPackageById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPackageById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryPackageById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;packages(com.hsapi.repair.data.rpbRead.RpbPackage[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryRpsItemByServiceId(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRpsItemByServiceId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRpsItemByServiceId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryRpsItemByServiceId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;工单中的维修工单号&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;packageId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpsItem(com.hsapi.repair.data.rps.RpsItem[]):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;工时详情&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryItemTimesByUsable(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryItemTimesByUsable&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCardtd&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryItemTimesByUsable&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;p(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.RpsItemTimes[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;次卡查询&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryRpbItemByPackageId(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRpbItemByPackageId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRpbItemByPackageId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryRpbItemByPackageId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;packageId(String):&lt;/b&gt;工单中的维修工单号&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpbItime(com.hsapi.repair.data.rpbRead.RpbPackageItem[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryAppointmentTimes(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryAppointmentTimes&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryAppointmentTimes&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryAppointmentTimes&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;times(com.hsapi.repair.data.rpbse.RpbAppointmentTimes[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryCareRecord(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCareRecord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCarRemind&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryCareRecord&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.quryCardIdRateSrv(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;quryCardIdRateSrv&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;quryCardIdRate&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.quryCardIdRateSrv&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cardId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;typeList(com.hsapi.repair.data.rpbse.RpbBusinessType[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.rpbse.RpbCardRate[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;resList(com.hsapi.repair.data.rpbse.RpbCardRate[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryRpbPartByPackageId(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRpbPartByPackageId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRpbPartByPackageId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryRpbPartByPackageId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;packageId(String):&lt;/b&gt;工单中的维修工单号&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpbPart(com.hsapi.repair.data.rpbRead.RpbPackagePart[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryRpsPartByServiceId(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRpsPartByServiceId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRpsPartByServiceId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryRpsPartByServiceId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;维修工单号&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;packageId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpsPart(com.hsapi.repair.data.rps.RpsPart[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryCardByGuestId(Int, com.eos.foundation.PageCond, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCardByGuestId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCardtd&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryCardByGuestId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guestId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rps.RpsStoredRecord[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;次卡查询&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryRpsPkgItemPartByServiceId(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRpsPkgItemPartByServiceId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPackageDetails&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryRpsPkgItemPartByServiceId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;维修工单号&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;packageId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;套餐详情&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryRemindParams(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRemindParams&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRemindParams&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryRemindParams&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.rpbse.RpbRemindParam[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryGuestTypeDiscountSrv(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryGuestTypeDiscountSrv&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryGuestTypeDiscountSrv&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryGuestTypeDiscountSrv&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guestTypeId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;typeList(com.hsapi.repair.data.rpbse.RpbBusinessType[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.rpbse.RpbGuestTypeDiscount[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;resList(com.hsapi.repair.data.rpbse.RpbGuestTypeDiscount[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryRpbPart(com.eos.foundation.PageCond, java.util.HashMap, Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRpbPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRpbPart&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryRpbPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryGuestTypeDiscount(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryGuestTypeDiscount&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCheckModelDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryGuestTypeDiscount&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guestTypeId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.repair.data.rpbse.RpbGuestTypeDiscount[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.query.queryHSComp(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryHSComp&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryHSComp&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.query.queryHSComp&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.common.WbCompanies[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

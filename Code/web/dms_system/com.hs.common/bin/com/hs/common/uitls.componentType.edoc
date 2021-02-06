@@ -1,0 +1,90 @@
+<map>
+  <entry>
+    <string>com.hs.common.uitls.newDataObject(commonj.sdo.DataObject)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;newDataObject&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;newDataObject&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uitls.newDataObject&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;objA(commonj.sdo.DataObject):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;objB(commonj.sdo.DataObject):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uitls.newHashMap()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;newHashMap&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;newHashMap&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uitls.newHashMap&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;map(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uitls.createQRCode(String, Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;createQRCode&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;createQRCode&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uitls.createQRCode&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;text(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;width(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;height(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;path(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uitls.passwordCipher(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;passwordCipher&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;passwordCipher&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uitls.passwordCipher&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;password(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;type(String):&lt;/b&gt;加密encrypt;解密decrypt&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;password(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uitls.sendNoticeAlertToUser(java.util.HashMap, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sendNoticeAlertToUser&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sendNoticeAlert&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uitls.sendNoticeAlertToUser&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;msg(java.util.HashMap):&lt;/b&gt;消息记录表&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;title(String):&lt;/b&gt;消息标题&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;content(String):&lt;/b&gt;消息内容&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userId(String):&lt;/b&gt;用户ID&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(cn.jpush.api.push.PushResult):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uitls.parseCode(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;parseCode&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;parseCode&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uitls.parseCode&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;path(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;str(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uitls.addWords(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;addWords&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;addWords&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uitls.addWords&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;vaNumber(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;words(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;path(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uitls.queryVoucherRecord(com.eos.foundation.PageCond, Int, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryVoucherRecord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryVoucherRecord&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uitls.queryVoucherRecord&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hs.common.com.PjVoucherRecord[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uitls.saveVoucherRecord(String, String, String, String, Int, String, String, Int, Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveVoucherRecord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;genenCacheKey&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uitls.saveVoucherRecord&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;dsName(String):&lt;/b&gt;数据源&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;name(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;method(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;type(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;operParam(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;jsonResult(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;status(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;successSign(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errorMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uitls.queryCdrRecord(String, String, String, String, String, String, String, String, java.util.HashMap, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCdrRecord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCdrRecord&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uitls.queryCdrRecord&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;userId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;username(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;clientId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carrierId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;version(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;state(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;companyId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;contentType(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;host(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;path(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;accessToken(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.alibaba.fastjson.JSON[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(Int):&lt;/b&gt;当前第几页&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;每页记录数&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;总共记录数&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;maxPage(Int):&lt;/b&gt;最大页数&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uitls.getCdrEncryptRecord(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCdrEncryptRecord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCdrRecord&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uitls.getCdrEncryptRecord&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;recordingUrl(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;recordingUrl(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uitls.getRedisCacheBasic(String, String, java.util.HashMap, String, String, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRedisCacheBasic&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;carModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uitls.getRedisCacheBasic&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;dsName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;nameSqlId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;title(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fromDb(String):&lt;/b&gt;强制从数据库查询&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;expireTimes(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uitls.genenCacheKey(String, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;genenCacheKey&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;genenCacheKey&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uitls.genenCacheKey&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;nameSqlId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cacheName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;key(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>uitls</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;uitls.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;uitls&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uitls&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uitls.createQRCodeByList(java.util.HashMap[], Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;createQRCodeByList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;createQRCode&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uitls.createQRCodeByList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;codeList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;width(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;height(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;codeList(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uitls.dfFormat(Double, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;dfFormat&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;dfFormat&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uitls.dfFormat&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;s(Double):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;f(Int):&lt;/b&gt;四舍五入取多少位小数&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;s(Double):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uitls.testPush(String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;testPush&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;testPush&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uitls.testPush&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;phones(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;message(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;roleId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;resId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;d(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;m(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uitls.createQRCodeLogo(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;createQRCodeLogo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;createQRCodeLogo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uitls.createQRCodeLogo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;logoPath(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;text(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;path(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uitls.createBarCode(String, Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;createBarCode&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;createBarCode&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uitls.createBarCode&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;vaNumber(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;width(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;height(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;path(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uitls.getCdrToken(String, String, String, String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCdrToken&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;testCdrToken&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uitls.getCdrToken&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;grant_type(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;username(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;client_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;client_secret(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;display(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carrierId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;urlPath(String):&lt;/b&gt;http://sit.open.recency.cn/auth/accessToken&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.alibaba.fastjson.JSON):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;access_token(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uitls.testJPush()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;testJPush&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;testJPush&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uitls.testJPush&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(cn.jpush.api.push.PushResult):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uitls.saveCacheKey(String, String, java.util.HashMap, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveCacheKey&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;genenCacheKey&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uitls.saveCacheKey&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;dsName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;nameSqlId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;title(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

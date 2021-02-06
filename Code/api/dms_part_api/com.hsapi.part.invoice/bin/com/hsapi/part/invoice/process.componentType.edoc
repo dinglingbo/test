@@ -1,0 +1,110 @@
+<map>
+  <entry>
+    <string>com.hsapi.part.invoice.process.insertProcessZz(com.hsapi.part.data.pts.PjProcessMain, com.hsapi.part.data.pts.PjProcessProduct)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;insertProcessZz&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;insertProcessZz&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.insertProcessZz&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;processMain(com.hsapi.part.data.pts.PjProcessMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;processProduct(com.hsapi.part.data.pts.PjProcessProduct):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;auditMain(com.hsapi.part.data.pts.PjProcessMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;auditProduct(com.hsapi.part.data.pts.PjProcessProduct):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;auditDetail(com.hsapi.part.data.pts.PjProcessDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.process.updateProcessZz(com.hsapi.part.data.pts.PjProcessMain, com.hsapi.part.data.pts.PjProcessProduct)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateProcessZz&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateProcessZz&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.updateProcessZz&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;processMain(com.hsapi.part.data.pts.PjProcessMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;processProduct(com.hsapi.part.data.pts.PjProcessProduct):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.process.insertProcessOrderZz(com.hsapi.part.data.pts.PjProcessMain, com.hsapi.part.data.pts.PjProcessProduct)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;insertProcessOrderZz&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;insertProcess&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.insertProcessOrderZz&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;processMain(com.hsapi.part.data.pts.PjProcessMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;processProduct(com.hsapi.part.data.pts.PjProcessProduct):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.process.saveProcessZz(com.hsapi.part.data.pts.PjProcessMain, com.hsapi.part.data.pts.PjProcessProduct)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveProcessZz&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveProcess&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.saveProcessZz&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;processMain(com.hsapi.part.data.pts.PjProcessMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;processProduct(com.hsapi.part.data.pts.PjProcessProduct):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;processMainList(com.hsapi.part.data.pts.PjProcessMain[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.process.splitOutPart(com.hsapi.part.data.pts.PjProcessMain, com.hsapi.part.data.pts.PjProcessProduct, com.hsapi.part.data.com.ComGuest)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;splitOutPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;splitOutPart&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.splitOutPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;processMain(com.hsapi.part.data.pts.PjProcessMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;processProduct(com.hsapi.part.data.pts.PjProcessProduct):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guest(com.hsapi.part.data.com.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;processMain(com.hsapi.part.data.pts.PjProcessMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;processProduct(com.hsapi.part.data.pts.PjProcessProduct):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.process.generateProcessEnter(Int, com.hsapi.part.data.com.ComGuest)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateProcessEnter&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generateProcessEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.generateProcessEnter&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orderMainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guest(com.hsapi.part.data.com.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.process.getProcessMainZz(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getProcessMainZz&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getProcessMainZz&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.getProcessMainZz&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.pts.PjProcessMain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.process.insertProcessOrderSplit(com.hsapi.part.data.pts.PjProcessMain, com.hsapi.part.data.pts.PjProcessProduct)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;insertProcessOrderSplit&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;insertProcess&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.insertProcessOrderSplit&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;processMain(com.hsapi.part.data.pts.PjProcessMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;processProduct(com.hsapi.part.data.pts.PjProcessProduct):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.process.saveProcessSplit(com.hsapi.part.data.pts.PjProcessMain, com.hsapi.part.data.pts.PjProcessProduct)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveProcessSplit&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveProcess&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.saveProcessSplit&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;processMain(com.hsapi.part.data.pts.PjProcessMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;processProduct(com.hsapi.part.data.pts.PjProcessProduct):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;processMainList(com.hsapi.part.data.pts.PjProcessMain[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.process.queryProcessEnterPartList(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryProcessEnterPartList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryProcessProductMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.queryProcessEnterPartList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.process.queryProcessMain(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryProcessMain&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryProcessMain&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.queryProcessMain&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;processMain(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.process.processZzBatchOfOut(com.hsapi.part.data.pts.PjProcessMain, com.hsapi.part.data.pts.PjProcessDetail[], com.hsapi.part.data.com.ComGuest)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;processZzBatchOfOut&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;processZzBatchOfOut&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.processZzBatchOfOut&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainenter(com.hsapi.part.data.pts.PjProcessMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;details(com.hsapi.part.data.pts.PjProcessDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guest(com.hsapi.part.data.com.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.process.updateProcessZzAmt(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateProcessZzAmt&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateProcessZzAmt&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.updateProcessZzAmt&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.process.queryProcessDetail(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryProcessDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryProcessProduct&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.queryProcessDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.part.data.pts.PjProcessDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.process.saveProcessAddOrDeleteSplit(com.hsapi.part.data.pts.PjProcessMain, com.hsapi.part.data.pts.PjProcessProduct)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveProcessAddOrDeleteSplit&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveProcessAddOrDelete&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.saveProcessAddOrDeleteSplit&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;processMain(com.hsapi.part.data.pts.PjProcessMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;processProduct(com.hsapi.part.data.pts.PjProcessProduct):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.process.splitEnterPart(com.hsapi.part.data.pts.PjProcessMain, com.hsapi.part.data.pts.PjProcessProduct, com.hsapi.part.data.com.ComGuest)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;splitEnterPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;shiftOutToEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.splitEnterPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;processMain(com.hsapi.part.data.pts.PjProcessMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;processProduct(com.hsapi.part.data.pts.PjProcessProduct):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guest(com.hsapi.part.data.com.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;processMain(com.hsapi.part.data.pts.PjProcessMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;processProduct(com.hsapi.part.data.pts.PjProcessProduct):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;根据移仓出库数据生成移仓入库数据&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.process.queryProcessProductMainList(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryProcessProductMainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryProcessProductMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.queryProcessProductMainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.process.auditProcessPart(com.hsapi.part.data.pts.PjProcessMain, com.hsapi.part.data.pts.PjProcessProduct)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;auditProcessPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;auditProcessPart&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.auditProcessPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;processMain(com.hsapi.part.data.pts.PjProcessMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;processProduct(com.hsapi.part.data.pts.PjProcessProduct):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.process.queryProcessDetailAndEnter(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryProcessDetailAndEnter&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryProcessProduct&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.queryProcessDetailAndEnter&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.part.data.pts.PjProcessDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>process</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;process.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;process&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.process.updateProcessOrderSplit(com.hsapi.part.data.pts.PjProcessMain, com.hsapi.part.data.pts.PjProcessProduct)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateProcessOrderSplit&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;insertProcess&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.updateProcessOrderSplit&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;processMain(com.hsapi.part.data.pts.PjProcessMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;processProduct(com.hsapi.part.data.pts.PjProcessProduct):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.process.getProcessProductZz(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getProcessProductZz&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getProcessProductZz&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.getProcessProductZz&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;product(com.hsapi.part.data.pts.PjProcessProduct):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.process.auditProcessOrderZz(com.hsapi.part.data.pts.PjProcessMain, com.hsapi.part.data.pts.PjProcessProduct)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;auditProcessOrderZz&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;auditProcessOrderZz&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.auditProcessOrderZz&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;processMain(com.hsapi.part.data.pts.PjProcessMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;processProduct(com.hsapi.part.data.pts.PjProcessProduct):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.process.delectDetailSellRecord(com.hsapi.part.data.pts.PjProcessMain, com.hsapi.part.data.pts.PjProcessProduct)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;delectDetailSellRecord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;delectDetailSellRecord&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.delectDetailSellRecord&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;processMain(com.hsapi.part.data.pts.PjProcessMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;processProduct(com.hsapi.part.data.pts.PjProcessProduct):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.process.saveProcessAddOrDeleteZz(com.hsapi.part.data.pts.PjProcessMain, com.hsapi.part.data.pts.PjProcessProduct)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveProcessAddOrDeleteZz&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveProcessAddOrDelete&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.saveProcessAddOrDeleteZz&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;processMain(com.hsapi.part.data.pts.PjProcessMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;processProduct(com.hsapi.part.data.pts.PjProcessProduct):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.process.getProcessDetail(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getProcessDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getProcessDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.getProcessDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.part.data.pts.PjProcessDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.process.queryProcessProduct(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryProcessProduct&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryProcessProduct&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.process.queryProcessProduct&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.cloud.part.data.pts.PjProcessProduct[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

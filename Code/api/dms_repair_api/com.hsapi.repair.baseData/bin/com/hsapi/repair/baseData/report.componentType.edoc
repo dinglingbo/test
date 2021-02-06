@@ -1,0 +1,10 @@
+<map>
+  <entry>
+    <string>com.hsapi.repair.baseData.report.yingyemingxi(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;yingyemingxi&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;newbiz&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.report.yingyemingxi&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>report</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;report.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;report&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.report&lt;/html&gt;</string>
+  </entry>
+</map>

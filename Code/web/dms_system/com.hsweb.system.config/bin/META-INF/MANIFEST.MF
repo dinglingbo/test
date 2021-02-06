@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Require-Bundle: com.eos.foundation
+eos-webCtxPath: config
+Bundle-Vendor: steven
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsweb.system.config
+Bundle-Description: 
+Bundle-SymbolicName: com.hsweb.system.config
+

@@ -1,0 +1,26 @@
+<map>
+  <entry>
+    <string>com.hsapi.crm.svr.guest.getCrmGuestById(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCrmGuestById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getCrmGuestById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.guest.getCrmGuestById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;crmGuest(com.hsapi.crm.data.crmTelsales.CrmGuest):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.guest.saveSendTask(com.hsapi.crm.data.crm.CrmSendTaskMain, com.hsapi.crm.data.crm.CrmSendTaskDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveSendTask&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveSendTask&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.guest.saveSendTask&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;taskMain(com.hsapi.crm.data.crm.CrmSendTaskMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;taskDetail(com.hsapi.crm.data.crm.CrmSendTaskDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;snum(Int):&lt;/b&gt;成功数量&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fnum(Int):&lt;/b&gt;失败数量&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>guest</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;guest.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;guest&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.guest&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.guest.getGuestTypeNum()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getGuestTypeNum&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getGuestType&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.guest.getGuestTypeNum&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;carNum(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.guest.getCrmGuestByCarNo(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCrmGuestByCarNo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getCrmGuestByCarNo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.guest.getCrmGuestByCarNo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;carNo(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.guest.getGuestType(com.eos.foundation.PageCond, com.eos.foundation.PageCond, com.eos.foundation.PageCond, com.eos.foundation.PageCond, com.eos.foundation.PageCond, com.eos.foundation.PageCond, com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getGuestType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getGuestType&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.guest.getGuestType&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pagefi(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageac(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pagest(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pagesl(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageal(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageno(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pagelo(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;firstCar(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;activeCar(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stableCar(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sleepCar(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;notypeCar(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;allCar(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;loseCar(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pagefi(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageac(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pagest(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pagesl(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageal(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageno(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pagelo(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

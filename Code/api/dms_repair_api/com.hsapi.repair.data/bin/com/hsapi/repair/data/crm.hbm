@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.crm.CrmGuestScout" table="crm_guest_scout">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="serviceId" type="int">
+            <column name="service_id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="guestId" type="int">
+            <column name="guest_id" not-null="true"/>
+        </property>
+        <property name="carId" type="int">
+            <column name="car_id" not-null="true"/>
+        </property>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="t3dcSign" type="short">
+            <column default="0" name="3dc_sign"/>
+        </property>
+        <property name="t3dcPredDate" type="timestamp">
+            <column name="3dc_pred_date"/>
+        </property>
+        <property name="t3dcTrueDate" type="timestamp">
+            <column name="3dc_true_date"/>
+        </property>
+        <property name="t3dcManId" type="int">
+            <column default="0" name="3dc_man_id"/>
+        </property>
+        <property name="t3dcMan" type="string">
+            <column length="20" name="3dc_man"/>
+        </property>
+        <property name="t7dcSign" type="short">
+            <column default="0" name="7dc_sign"/>
+        </property>
+        <property name="t7dcPredDate" type="timestamp">
+            <column name="7dc_pred_date"/>
+        </property>
+        <property name="t7dcTrueDate" type="timestamp">
+            <column name="7dc_true_date"/>
+        </property>
+        <property name="t7dcManId" type="int">
+            <column default="0" name="7dc_man_id"/>
+        </property>
+        <property name="t7dcMan" type="string">
+            <column length="20" name="7dc_man"/>
+        </property>
+        <property name="sampleSign" type="short">
+            <column default="0" name="sample_sign"/>
+        </property>
+        <property name="satisfySign" type="short">
+            <column default="0" name="satisfy_sign"/>
+        </property>
+        <property name="satisfyPredDate" type="timestamp">
+            <column name="satisfy_pred_date"/>
+        </property>
+        <property name="satisfyTrueDate" type="timestamp">
+            <column name="satisfy_true_date"/>
+        </property>
+        <property name="satisferMainId" type="int">
+            <column default="0" name="satisfer_main_id"/>
+        </property>
+        <property name="satisferMain" type="string">
+            <column length="20" name="satisfer_main"/>
+        </property>
+        <property name="careSign" type="short">
+            <column default="0" name="care_sign"/>
+        </property>
+        <property name="carePredDate" type="timestamp">
+            <column name="care_pred_date"/>
+        </property>
+        <property name="careTrueDate" type="timestamp">
+            <column name="care_true_date"/>
+        </property>
+        <property name="careMainId" type="int">
+            <column default="0" name="care_main_id"/>
+        </property>
+        <property name="careMain" type="string">
+            <column length="20" name="care_main"/>
+        </property>
+        <property name="lostSign" type="short">
+            <column default="0" name="lost_sign"/>
+        </property>
+        <property name="lostPredDate" type="timestamp">
+            <column name="lost_pred_date"/>
+        </property>
+        <property name="lostTrueDate" type="timestamp">
+            <column name="lost_true_date"/>
+        </property>
+        <property name="lostManId" type="int">
+            <column default="0" name="lost_man_id"/>
+        </property>
+        <property name="lostMan" type="string">
+            <column length="20" name="lost_man"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.crm.Crm3dcScoutDetail" table="crm_3dc_scout_detail">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="detailId" type="int">
+            <column name="detail_id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="serviceId" type="int">
+            <column name="service_id" not-null="true"/>
+        </property>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="qualityDegree" type="short">
+            <column default="0" name="quality_degree"/>
+        </property>
+        <property name="serviceDegree" type="short">
+            <column default="0" name="service_degree"/>
+        </property>
+        <property name="timeDegree" type="short">
+            <column default="0" name="time_degree"/>
+        </property>
+        <property name="priceDegree" type="short">
+            <column default="0" name="price_degree"/>
+        </property>
+        <property name="content" type="string">
+            <column length="1000" name="content"/>
+        </property>
+        <property name="mode" type="string">
+            <column length="20" name="mode"/>
+        </property>
+        <property name="scoutMan" type="string">
+            <column length="20" name="scout_man"/>
+        </property>
+        <property name="scoutDate" type="timestamp">
+            <column name="scout_date"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.crm.CrmVisitData" table="crm_visit_data">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid" not-null="true"/>
+        </property>
+        <property name="type" type="int">
+            <column name="type"/>
+        </property>
+        <property name="billTypeId" type="int">
+            <column default="0" name="bill_type_id"/>
+        </property>
+        <property name="serviceId" type="int">
+            <column name="service_id"/>
+        </property>
+        <property name="serviceCode" type="string">
+            <column default="''" length="20" name="service_code" not-null="true"/>
+        </property>
+        <property name="guestId" type="int">
+            <column default="0" name="guest_id" not-null="true"/>
+        </property>
+        <property name="contactorId" type="int">
+            <column default="0" name="contactor_id" not-null="true"/>
+        </property>
+        <property name="carId" type="int">
+            <column default="0" name="car_id" not-null="true"/>
+        </property>
+        <property name="carNo" type="string">
+            <column default="''" length="15" name="car_no" not-null="true"/>
+        </property>
+        <property name="carVin" type="string">
+            <column default="''" length="20" name="car_vin"/>
+        </property>
+        <property name="mtAdvisorId" type="int">
+            <column default="0" name="mt_advisor_id"/>
+        </property>
+        <property name="mtAdvisor" type="string">
+            <column default="''" length="20" name="mt_advisor"/>
+        </property>
+        <property name="outDate" type="timestamp">
+            <column name="out_date"/>
+        </property>
+        <property name="nextVisitDate" type="date">
+            <column name="next_visit_date"/>
+        </property>
+        <property name="visitTimes" type="int">
+            <column default="0" name="visit_times"/>
+        </property>
+        <property name="leaveDays" type="int">
+            <column default="0" name="leave_days"/>
+        </property>
+        <property name="status" type="short">
+            <column default="0" name="status"/>
+        </property>
+        <property name="dataType" type="int">
+            <column default="1" name="data_type"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.crm.CrmVisitRecord" table="crm_visit_record">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="orgid" type="big_decimal">
+            <column length="10" name="orgid" not-null="true" precision="10" scale="0"/>
+        </property>
+        <property name="mainId" type="int">
+            <column default="0" name="main_id"/>
+        </property>
+        <property name="serviceType" type="int">
+            <column name="service_type"/>
+        </property>
+        <property name="serviceId" type="int">
+            <column name="service_id"/>
+        </property>
+        <property name="guestId" type="int">
+            <column name="guest_id"/>
+        </property>
+        <property name="guestSource" type="string">
+            <column default="''" length="20" name="guest_source"/>
+        </property>
+        <property name="carNo" type="string">
+            <column length="20" name="car_no"/>
+        </property>
+        <property name="carId" type="int">
+            <column name="car_id"/>
+        </property>
+        <property name="visitStatus" type="string">
+            <column length="20" name="visit_status"/>
+        </property>
+        <property name="visitResult" type="string">
+            <column length="20" name="visit_result"/>
+        </property>
+        <property name="visitMode" type="string">
+            <column length="10" name="visit_mode"/>
+        </property>
+        <property name="careDueDate" type="timestamp">
+            <column name="care_due_date"/>
+        </property>
+        <property name="careDayCycle" type="int">
+            <column default="0" name="care_day_cycle"/>
+        </property>
+        <property name="recordId" type="string">
+            <column length="50" name="record_id"/>
+        </property>
+        <property name="contentId" type="string">
+            <column default="'0'" length="255" name="content_id"/>
+        </property>
+        <property name="visitContent" type="string">
+            <column length="500" name="visit_content"/>
+        </property>
+        <property name="visitId" type="int">
+            <column default="0" name="visit_id"/>
+        </property>
+        <property name="visitMan" type="string">
+            <column default="''" length="20" name="visit_man"/>
+        </property>
+        <property name="visitDate" type="timestamp">
+            <column name="visit_date"/>
+        </property>
+        <property name="nextVisitDate" type="timestamp">
+            <column name="next_visit_date"/>
+        </property>
+        <property name="isContinueVisit" type="big_decimal">
+            <column length="10" name="is_continue_visit" precision="10" scale="0"/>
+        </property>
+        <property name="mainReason" type="string">
+            <column length="255" name="main_reason"/>
+        </property>
+        <property name="subReason" type="string">
+            <column length="255" name="sub_reason"/>
+        </property>
+        <property name="nowMtComp" type="string">
+            <column length="255" name="now_mt_comp"/>
+        </property>
+        <property name="planComeDate" type="timestamp">
+            <column name="plan_come_date"/>
+        </property>
+    </class>
+</hibernate-mapping>

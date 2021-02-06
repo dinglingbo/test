@@ -1,0 +1,139 @@
+<map>
+  <entry>
+    <string>com.hs.common.ArrayUtils.propertyToArrEntity(java.lang.Object[], java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;List com.hs.common.ArrayUtils.propertyToArrEntity(Object[] b, String propertyName)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.add2Array(java.util.HashMap[], java.util.HashMap[], java.util.HashMap[], java.util.HashMap[])</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap[] com.hs.common.ArrayUtils.add2Array(HashMap[] source1, HashMap[] source2, HashMap[] source3, HashMap[] source4)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.addDoubleColumn(commonj.sdo.DataObject[], java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;double com.hs.common.ArrayUtils.addDoubleColumn(DataObject[] b, String propertyName)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.propertyToFloatArr(commonj.sdo.DataObject[], java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Float[] com.hs.common.ArrayUtils.propertyToFloatArr(DataObject[] b, String propertyName)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.checkIntValue(commonj.sdo.DataObject, commonj.sdo.DataObject[], java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;boolean com.hs.common.ArrayUtils.checkIntValue(DataObject a, DataObject[] b, String columnField)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.concatArray(java.util.List)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Object[] com.hs.common.ArrayUtils.concatArray(List a)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.transDataObjects(commonj.sdo.DataObject[], java.util.HashMap&lt;java.lang.String,java.lang.Object&gt;[], java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject[] com.hs.common.ArrayUtils.transDataObjects(DataObject[] objs, HashMap&lt;String,Object&gt;[] maps, String entityName)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.getColumnValue(java.lang.String, java.lang.String, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Long com.hs.common.ArrayUtils.getColumnValue(String entityName, String column, HashMap p)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.addNArray(java.util.HashMap, java.util.HashMap[])</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap[] com.hs.common.ArrayUtils.addNArray(HashMap sourceDO, HashMap[] dos)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.mul(double, double)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;double com.hs.common.ArrayUtils.mul(double v1, double v2)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.propertyToStringArr(java.util.HashMap[], java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String[] com.hs.common.ArrayUtils.propertyToStringArr(HashMap[] b, String propertyName)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.remove(java.lang.Object[], java.lang.Integer)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Object[] com.hs.common.ArrayUtils.remove(Object[] pros, Integer index)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.propertyHashToString(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.ArrayUtils.propertyHashToString(HashMap map)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.judgeExists(commonj.sdo.DataObject[], commonj.sdo.DataObject[], java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.ArrayUtils.judgeExists(DataObject[] a, DataObject[] b, String compField, String promptField)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.getFiledValues(java.lang.Object)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Object[] com.hs.common.ArrayUtils.getFiledValues(Object o)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; ��ȡ�������������ֵ������һ���������� &#x0D;
+&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.sumValue(double, double)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;double com.hs.common.ArrayUtils.sumValue(double d1, double d2)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.settleMetalSpray(java.lang.Integer)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap[] com.hs.common.ArrayUtils.settleMetalSpray(Integer serviceId)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.add2ArrayExcludeI(commonj.sdo.DataObject[], commonj.sdo.DataObject[], java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject[] com.hs.common.ArrayUtils.add2ArrayExcludeI(DataObject[] a, DataObject[] b, String columnField)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>ArrayUtils</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.hs.common.ArrayUtils&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.add2Array(commonj.sdo.DataObject, commonj.sdo.DataObject[])</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject[] com.hs.common.ArrayUtils.add2Array(DataObject sourceDO, DataObject[] dos)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.add2PojoArray(java.lang.Object[], java.lang.Object[])</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Object[] com.hs.common.ArrayUtils.add2PojoArray(Object[] a, Object[] b)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.longArray2String(long[])</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.ArrayUtils.longArray2String(long[] ids)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.moveArrayOfEL(java.lang.Object[], int, int)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Object[] com.hs.common.ArrayUtils.moveArrayOfEL(Object[] dos, int s, int e)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.add2PojoArray(java.lang.Object, java.lang.Object[])</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Object[] com.hs.common.ArrayUtils.add2PojoArray(Object sourceDO, Object[] dos)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.propertyToStringArr(commonj.sdo.DataObject[], java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String[] com.hs.common.ArrayUtils.propertyToStringArr(DataObject[] b, String propertyName)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.add2Array(java.util.HashMap, java.util.HashMap[], int)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap[] com.hs.common.ArrayUtils.add2Array(HashMap sourceDO, HashMap[] dos, int index)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.propertyHashToStringArr(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String[] com.hs.common.ArrayUtils.propertyHashToStringArr(HashMap map)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.addFloatColumn(commonj.sdo.DataObject[], java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;Float com.hs.common.ArrayUtils.addFloatColumn(DataObject[] b, String propertyName)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.str2Array(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String[] com.hs.common.ArrayUtils.str2Array(String str, String splitFlag)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.add2Array(commonj.sdo.DataObject[], commonj.sdo.DataObject[], java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject[] com.hs.common.ArrayUtils.add2Array(DataObject[] a, DataObject[] b, String compField)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.checkStringValue(commonj.sdo.DataObject, commonj.sdo.DataObject[], java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;boolean com.hs.common.ArrayUtils.checkStringValue(DataObject a, DataObject[] b, String columnField)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.transDataObject(commonj.sdo.DataObject, java.util.HashMap&lt;java.lang.String,java.lang.Object&gt;)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.hs.common.ArrayUtils.transDataObject(DataObject obj, HashMap&lt;String,Object&gt; map)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.add2Array(java.util.HashMap, java.util.HashMap[])</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap[] com.hs.common.ArrayUtils.add2Array(HashMap sourceDO, HashMap[] dos)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.ArrayUtils.sub(double, double)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;double com.hs.common.ArrayUtils.sub(double v1, double v2)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

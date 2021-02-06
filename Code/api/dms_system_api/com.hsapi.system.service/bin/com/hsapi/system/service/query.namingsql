@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.system.service.query">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <!--获取待维护的车辆信息-->
+    <select id="queryCarInfo" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT id as id, car_no as carNo, vin as carVin, car_model_id as carModelId, 
+    	       car_model_id_ly as carModelIdLy, 
+       		   car_brand_id as carBrandId, car_model as carModel, 
+       		   car_model_full_name as carModelFullName
+		from wb_repair.rpb_car 
+		where 1 = 1 and (IFNULL(vin,'') = '' or ifnull(car_model_full_name,'') = '') 
+              and TIMESTAMPDIFF(SECOND,record_date,NOW()) &lt;=3600</select>
+    <!--获取待维护的车辆信息-->
+    <select id="queryCarAutoServiceInfo" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id as id, a.car_id as carId, a.car_no as carNo, a.car_vin as carVin, a.car_brand_id as carBrandId,
+			a.car_model_id as carModelId, a.car_model_id_ly as carModelIdLy,
+			a.car_model as carModel, a.car_model_full_name as carModelFullName,
+			a.vin_service_times as vinServiceTimes, a.last_vin_service_date as lastVinServiceDate,
+			a.model_service_times as modelServiceTimes, a.last_model_service_date as lastModelServiceDate,
+			a.recorder as recorder, a.record_date as recordDate,
+			a.modifier as modifier, a.modify_date as modifyDate
+		FROM
+			wb_slog.sys_car_auto_service AS a
+			WHERE 1 = 1
+			
+			<isNotNull property="carVin">and ifnull(a.car_vin,'') = '' and a.vin_service_times &lt; 2</isNotNull>
+			
+			limit 100
+			
+	</select>
+    <update id="updateRpsMaintain" parameterClass="java.util.HashMap">update rps_maintain set car_vin = #carVin# where ifnull(car_vin,'') = '' and car_id = #carId#</update>
+    <!--获取车型数据为空，vin的长度为17的车辆数据-->
+    <select id="queryCarVinByCarModelNull" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT id as id, car_no as carNo, vin as vin
+		from wb_repair.rpb_car 
+		where ifnull(car_model_full_name,'') = '' and ifnull(vin,'') != ''
+		      and LENGTH(vin) = 17 and service_date is null
+		      limit 100</select>
+    <!--获取车型ID数据为空，车辆品牌为空-->
+    <select id="queryCarBrandByCarModel" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT id as id, car_no as carNo, vin as vin
+		from wb_repair.rpb_car 
+		where (ifnull(car_model_id,'') = '' or ifnull(car_brand_id,'') = '') and ifnull(vin,'') != '' and LENGTH(vin) = 17
+		      limit 1000</select>
+</sqlMap>

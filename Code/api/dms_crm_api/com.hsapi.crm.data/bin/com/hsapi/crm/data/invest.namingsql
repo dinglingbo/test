@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.crm.data.invest">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryInvestList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	select
+			a.orgid             orgid,
+			a.auditor           auditor,
+			a.audit_sign        auditSign,
+			a.car_id            carId,
+			a.car_no            carNo,
+			a.car_type          carType,
+			a.car_vin           carVin,
+			a.guest_id          guestId,
+			a.id                id,
+			a.modifier          modifier,
+			a.modify_date       modifyDate,
+			a.audit_opinion     auditOpinion,
+			a.audit_date        auditDate,
+			a.recorder          recorder,
+			a.record_date       recordDate,
+			a.remark            remark,
+			a.service_code      serviceCode,
+			a.service_id        serviceId,
+			a.visit_id          visitId,
+			a.visit_man         visitMan,
+			b.item_total_amt    itemTotalAmt,
+			b.part_total_amt    partTotalAmt,
+			c.service_type_id   serviceTypeId,
+			c.mt_advisor        mtAdvisor,
+			c.enter_kilometers  enterKilometers,
+			c.comp_come_times   compComeTimes,
+			c.chain_come_times  chainComeTimes,
+			c.bill_type_id      billTypeId,
+			c.out_date          outDate,
+			c.enter_date        enterDate,
+			c.is_out_bill       isOutBill,
+			d.car_model         carModel,
+			d.car_brand_id      carBrandId,
+			d.engine_no         engineNo,
+			d.vin               vin,
+			e.full_name         guestName,
+			e.mobile            guestMobile,
+			f.name              contactName,
+			f.mobile            contactMobile,
+			f.id_no             contactIdNo
+		from crm_visit_achievement a, 
+		wb_repair.rps_settlement b,
+		wb_repair.rps_maintain c, 
+		wb_repair.rpb_car d, 
+		wb_common.com_guest e, 
+		wb_repair.rpb_contactor f
+		where a.service_id = b.service_id
+ 			and b.service_id = c.id
+ 			and d.id = c.car_id
+ 			and c.guest_id = e.id
+			and c.contactor_id = f.id
+			and a.orgid = #orgid#
+ 		<isNotEmpty prepend="and" property="carNo">(a.car_no = #carNo#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="serviceCode">(a.service_code = #serviceCode#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="auditSign">(a.audit_sign = #auditSign#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="startDate">(a.record_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(a.record_date &lt;=  #endDate#)</isNotEmpty>
+    </select>
+    <select id="queryComplainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.orgid            		 orgid,
+			a.car_id       			 carId,
+			a.car_no          		 carNo,
+			a.guest_id        		 guestId ,
+			a.guest_name         	 guestName,
+			a.mobile        		 mobile,
+			a.service_id          	 serviceId,
+			a.complaint_orgid        complaintOrgid,
+			a.complaint_reason       complaintReason,
+			a.complaint_type         complaintType,
+			a.complaint_level        complaintLevel,
+			a.complaint_date         complaintDate,
+			a.status                 status,
+			a.complaint_reamrk       complaintReamrk,
+			a.inquiry_reamrk         inquiryReamrk,
+			a.duty_dept              dutyDept,
+			a.duty_man               dutyMan,
+			a.process_reamrk         processReamrk,
+			a.solution               solution,
+			a.solution_remark        solutionRemark,
+			a.punish_type            punishType,
+			a.punish_amt             punishAmt,
+			a.prevent_reamrk         preventReamrk,
+			a.recorder               recorder,
+			a.record_date            recordDate,
+			a.modifier               modifier,
+			a.modify_date            modifyDate,
+			a.id                     id
+		FROM
+			crm_complaint a
+		WHERE 1 = 1
+			and a.orgid = #orgid#
+		<dynamic>
+            <isNotEmpty prepend="and" property="status">(a.status = #status#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">(a.car_no like '%$carNo$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="sEnterDate">(a.complaint_date &gt;= #sEnterDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eEnterDate">(a.complaint_date &lt; #eEnterDate#)</isNotEmpty>
+        </dynamic>  
+        order by a.modify_date desc
+	</select>
+</sqlMap>

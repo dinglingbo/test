@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Require-Bundle: com.primeton.eos.richweb,com.eos.foundation,com.eos.wo
+ rkflow
+eos-webCtxPath: purchase
+Bundle-Vendor: Administrator
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsweb.cloud.part.purchase
+Bundle-Description: 采购入库管理
+Bundle-SymbolicName: com.hsweb.cloud.part.purchase
+

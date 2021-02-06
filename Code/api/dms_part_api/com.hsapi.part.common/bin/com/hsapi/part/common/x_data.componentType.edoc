@@ -1,0 +1,14 @@
+<map>
+  <entry>
+    <string>data</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;x_data.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;data&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.x_data&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.x_data.getSequenceValue(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getSequenceValue&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getSequenceValue&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.x_data.getSequenceValue&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;name(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dsName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;value(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.x_data.getGeustByInternalId(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getGeustByInternalId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getGeustByInternalId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.x_data.getGeustByInternalId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;internalId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guest(com.hsapi.part.data.com.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

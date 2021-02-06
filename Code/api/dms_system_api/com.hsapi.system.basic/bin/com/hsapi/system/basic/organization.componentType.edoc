@@ -1,0 +1,62 @@
+<map>
+  <entry>
+    <string>com.hsapi.system.basic.organization.deletExistCompany(com.hsapi.system.data.sys.OrgEmporg[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;deletExistCompany&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getUserOrg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.basic.organization.deletExistCompany&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;companyList(com.hsapi.system.data.sys.OrgEmporg[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.basic.organization.getUserOrgAll(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getUserOrgAll&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getUserOrgAll&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.basic.organization.getUserOrgAll&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orgList(com.hsapi.system.data.sys.VwUserOrg[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.basic.organization.getUserByAccount(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getUserByAccount&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getUserByAccount&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.basic.organization.getUserByAccount&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;account(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;userInfo(com.hsapi.system.data.sys.VwDmsUserinfo):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.basic.organization.getUserRoleByOperatorId(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getUserRoleByOperatorId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getUserByAccount&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.basic.organization.getUserRoleByOperatorId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;operatorId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orgs(com.hsapi.system.data.sys.VwUserOrg[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgIds(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgNames(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.basic.organization.getCompanyInfo(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCompanyInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getCompanyInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.basic.organization.getCompanyInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;company(com.hsapi.system.data.sys.ComCompany):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.basic.organization.getExistCompany(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getExistCompany&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getUserOrg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.basic.organization.getExistCompany&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;companyList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.basic.organization.getUserOrgByOperatorId(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getUserOrgByOperatorId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getUserByAccount&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.basic.organization.getUserOrgByOperatorId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;operatorId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orgs(com.hsapi.system.data.sys.VwUserOrg[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgIds(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgNames(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.basic.organization.getUserPosiByOperatorId(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getUserPosiByOperatorId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getUserByAccount&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.basic.organization.getUserPosiByOperatorId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;operatorId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;posi(com.hsapi.system.data.sys.VwUserPosition[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>organization</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;organization.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;organization&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.basic.organization&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.basic.organization.getCompanyAllWithPage(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCompanyAllWithPage&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getUserOrgAll&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.basic.organization.getCompanyAllWithPage&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;companyList(com.hsapi.system.data.sys.ComCompany[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.basic.organization.saveMyCompany(com.hsapi.system.data.sys.ComCompany[], String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveMyCompany&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getUserOrgAll&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.basic.organization.saveMyCompany&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;intCompanyList(com.hsapi.system.data.sys.ComCompany[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;empId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.basic.organization.clearEmpOrgByEmpId(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;clearEmpOrgByEmpId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getUserOrg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.basic.organization.clearEmpOrgByEmpId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;empId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.basic.organization.getUserOrgByOperatorIdAndOrgid(Long, Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getUserOrgByOperatorIdAndOrgid&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getUserByAccount&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.basic.organization.getUserOrgByOperatorIdAndOrgid&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;operatorId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;org(com.hsapi.system.data.sys.VwUserOrg):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.basic.organization.getCompanyAll(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCompanyAll&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getUserOrgAll&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.basic.organization.getCompanyAll&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;companyList(com.hsapi.system.data.sys.ComCompany[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.basic.organization.getUserOrg(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getUserOrg&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getUserOrg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.basic.organization.getUserOrg&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orgList(com.hsapi.system.data.sys.VwUserOrg[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;o(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

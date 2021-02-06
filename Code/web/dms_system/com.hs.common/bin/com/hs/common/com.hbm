@@ -1,0 +1,1152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hs.common.com.ComBillRecord" table="com_bill_record">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="customCode" type="string">
+            <column length="20" name="custom_code"/>
+        </property>
+        <property name="yearMonthFlag" type="int">
+            <column name="year_month_flag"/>
+        </property>
+        <property name="billTypeId" type="int">
+            <column name="bill_type_id"/>
+        </property>
+        <property name="billType" type="string">
+            <column length="50" name="bill_type"/>
+        </property>
+        <property name="billTypeCode" type="string">
+            <column length="50" name="bill_type_code"/>
+        </property>
+        <property name="billQty" type="big_decimal">
+            <column length="10" name="bill_qty" precision="10" scale="2"/>
+        </property>
+        <property name="lastOperatorId" type="int">
+            <column name="last_operator_id"/>
+        </property>
+        <property name="lastOperator" type="string">
+            <column length="20" name="last_operator"/>
+        </property>
+        <property name="lastOperateDate" type="timestamp">
+            <column name="last_operate_date"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="200" name="remark"/>
+        </property>
+        <property name="versionNo" type="timestamp">
+            <column name="version_no"/>
+        </property>
+        <property name="creatorId" type="int">
+            <column name="creator_id"/>
+        </property>
+        <property name="creator" type="string">
+            <column length="20" name="creator"/>
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="create_date"/>
+        </property>
+        <property name="operatorId" type="int">
+            <column name="operator_id"/>
+        </property>
+        <property name="operator" type="string">
+            <column length="20" name="operator"/>
+        </property>
+        <property name="operateDate" type="timestamp">
+            <column name="operate_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hs.common.com.ComMessage" table="com_message">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="orgid" type="big_decimal">
+            <column length="10" name="orgid" not-null="true" precision="10" scale="0"/>
+        </property>
+        <property name="msgTitle" type="string">
+            <column length="256" name="msg_title"/>
+        </property>
+        <property name="msgSubTitle" type="string">
+            <column default="''" length="256" name="msg_sub_title"/>
+        </property>
+        <property name="msgContent" type="string">
+            <column default="''" length="500" name="msg_content"/>
+        </property>
+        <property name="msgType" type="int">
+            <column default="0" name="msg_type"/>
+        </property>
+        <property name="msgTypeName" type="string">
+            <column default="''" length="50" name="msg_type_name"/>
+        </property>
+        <property name="msgParams" type="string">
+            <column length="256" name="msg_params"/>
+        </property>
+        <property name="msgFormid" type="string">
+            <column length="20" name="msg_formid"/>
+        </property>
+        <property name="sendSign" type="short">
+            <column default="0" name="send_sign"/>
+        </property>
+        <property name="readerType" type="short">
+            <column name="reader_type"/>
+        </property>
+        <property name="readSign" type="short">
+            <column default="0" name="read_sign"/>
+        </property>
+        <property name="readerTargetId" type="string">
+            <column length="20" name="reader_target_id"/>
+        </property>
+        <property name="readerId" type="string">
+            <column length="20" name="reader_id"/>
+        </property>
+        <property name="reader" type="string">
+            <column length="20" name="reader"/>
+        </property>
+        <property name="readDuty" type="string">
+            <column length="20" name="read_duty"/>
+        </property>
+        <property name="readDate" type="timestamp">
+            <column name="read_date"/>
+        </property>
+        <property name="recorderDuty" type="string">
+            <column length="20" name="recorder_duty"/>
+        </property>
+        <property name="recorderId" type="string">
+            <column length="20" name="recorder_id"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hs.common.com.ComGuest" table="com_guest">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="tenantId" type="int">
+            <column default="0" name="tenant_id" not-null="true"/>
+        </property>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid" not-null="true"/>
+        </property>
+        <property name="code" type="string">
+            <column default="''" length="20" name="code"/>
+        </property>
+        <property name="fullName" type="string">
+            <column default="''" length="200" name="full_name" not-null="true"/>
+        </property>
+        <property name="shortName" type="string">
+            <column default="''" length="200" name="short_name"/>
+        </property>
+        <property name="cardNo" type="string">
+            <column default="''" length="20" name="card_no"/>
+        </property>
+        <property name="pyName" type="string">
+            <column default="''" length="100" name="py_name"/>
+        </property>
+        <property name="guestType" type="string">
+            <column default="''" length="10" name="guest_type"/>
+        </property>
+        <property name="isSupplier" type="short">
+            <column default="0" name="is_supplier"/>
+        </property>
+        <property name="isClient" type="short">
+            <column default="0" name="is_client"/>
+        </property>
+        <property name="contactor" type="string">
+            <column default="''" length="20" name="contactor"/>
+        </property>
+        <property name="contactorTel" type="string">
+            <column default="''" length="20" name="contactor_tel"/>
+        </property>
+        <property name="manager" type="string">
+            <column default="''" length="20" name="manager"/>
+        </property>
+        <property name="managerDuty" type="string">
+            <column default="''" length="20" name="manager_duty"/>
+        </property>
+        <property name="provinceId" type="string">
+            <column default="''" length="20" name="province_id"/>
+        </property>
+        <property name="areaId" type="string">
+            <column default="''" length="20" name="area_id"/>
+        </property>
+        <property name="cityId" type="string">
+            <column default="''" length="20" name="city_id"/>
+        </property>
+        <property name="addr" type="string">
+            <column default="''" length="100" name="addr"/>
+        </property>
+        <property name="postalCode" type="string">
+            <column default="''" length="6" name="postal_code"/>
+        </property>
+        <property name="website" type="string">
+            <column default="''" length="50" name="website"/>
+        </property>
+        <property name="tel" type="string">
+            <column default="''" length="50" name="tel"/>
+        </property>
+        <property name="mobile" type="string">
+            <column default="''" length="50" name="mobile"/>
+        </property>
+        <property name="fax" type="string">
+            <column default="''" length="20" name="fax"/>
+        </property>
+        <property name="email" type="string">
+            <column default="''" length="50" name="email"/>
+        </property>
+        <property name="supplierType" type="string">
+            <column default="''" length="50" name="supplier_type"/>
+        </property>
+        <property name="advantageCarbrandId" type="string">
+            <column default="''" length="50" name="advantage_carbrand_id"/>
+        </property>
+        <property name="instantMsg" type="string">
+            <column default="''" length="20" name="instant_msg"/>
+        </property>
+        <property name="memCarNo" type="string">
+            <column default="''" length="40" name="mem_car_no"/>
+        </property>
+        <property name="memLevelId" type="int">
+            <column default="0" name="mem_level_id"/>
+        </property>
+        <property name="taxpayerCode" type="string">
+            <column default="''" length="30" name="taxpayer_code"/>
+        </property>
+        <property name="taxpayerName" type="string">
+            <column default="''" length="50" name="taxpayer_name"/>
+        </property>
+        <property name="manageAddr" type="string">
+            <column default="''" length="50" name="manage_addr"/>
+        </property>
+        <property name="taxpayerTel" type="string">
+            <column default="''" length="50" name="taxpayer_tel"/>
+        </property>
+        <property name="accountBank" type="string">
+            <column default="''" length="50" name="account_bank"/>
+        </property>
+        <property name="accountBankNo" type="string">
+            <column default="''" length="40" name="account_bank_no"/>
+        </property>
+        <property name="sex" type="short">
+            <column default="1" name="sex"/>
+        </property>
+        <property name="birthdayType" type="short">
+            <column default="0" name="birthday_type"/>
+        </property>
+        <property name="birthday" type="date">
+            <column name="birthday"/>
+        </property>
+        <property name="billTypeId" type="string">
+            <column default="''" length="10" name="bill_type_id"/>
+        </property>
+        <property name="settTypeId" type="string">
+            <column default="''" length="10" name="sett_type_id"/>
+        </property>
+        <property name="tgrade" type="string">
+            <column default="''" length="20" name="tgrade"/>
+        </property>
+        <property name="creditLimit" type="big_decimal">
+            <column default="0.0000" length="10" name="credit_limit" precision="10" scale="4"/>
+        </property>
+        <property name="isDisabled" type="short">
+            <column default="0" name="is_disabled"/>
+        </property>
+        <property name="remark" type="string">
+            <column default="''" length="100" name="remark"/>
+        </property>
+        <property name="isInternal" type="short">
+            <column default="0" name="is_internal"/>
+        </property>
+        <property name="isInternalId" type="string">
+            <column default="''" length="20" name="is_internal_id"/>
+        </property>
+        <property name="isNeedPack" type="int">
+            <column default="0" name="is_need_pack"/>
+        </property>
+        <property name="orderIndex" type="int">
+            <column default="0" name="order_index"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+        <property name="defaultLogisticsId" type="int">
+            <column default="0" name="default_logistics_id"/>
+        </property>
+        <property name="defaultLogistics" type="string">
+            <column default="''" length="100" name="default_logistics"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hs.common.com.ComArea" table="com_area">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="string">
+            <column length="20" name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="parentid" type="string">
+            <column length="20" name="parentid"/>
+        </property>
+        <property name="name" type="string">
+            <column length="100" name="name" not-null="true"/>
+        </property>
+        <property name="shortname" type="string">
+            <column length="100" name="shortname"/>
+        </property>
+        <property name="pycode" type="string">
+            <column length="100" name="pycode"/>
+        </property>
+        <property name="code" type="string">
+            <column length="20" name="code"/>
+        </property>
+        <property name="areacode" type="string">
+            <column length="10" name="areacode"/>
+        </property>
+        <property name="postalcode" type="string">
+            <column length="10" name="postalcode"/>
+        </property>
+        <property name="longitude" type="string">
+            <column length="20" name="longitude"/>
+        </property>
+        <property name="latitude" type="string">
+            <column length="20" name="latitude"/>
+        </property>
+        <property name="level" type="short">
+            <column name="level"/>
+        </property>
+        <property name="isend" type="short">
+            <column name="isend"/>
+        </property>
+        <property name="isdisabled" type="short">
+            <column default="0" name="isdisabled"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+        <property name="bdbCode" type="string">
+            <column length="20" name="bdb_code"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hs.common.com.RpbContactor" table="rpb_contactor">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="tenantId" type="int">
+            <column default="0" name="tenant_id" not-null="true"/>
+        </property>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid" not-null="true"/>
+        </property>
+        <property name="guestId" type="int">
+            <column default="0" name="guest_id" not-null="true"/>
+        </property>
+        <property name="name" type="string">
+            <column default="''" length="20" name="name" not-null="true"/>
+        </property>
+        <property name="sex" type="short">
+            <column default="1" name="sex"/>
+        </property>
+        <property name="tel" type="string">
+            <column default="''" length="50" name="tel"/>
+        </property>
+        <property name="mobile" type="string">
+            <column default="''" length="50" name="mobile"/>
+        </property>
+        <property name="birthdayType" type="short">
+            <column default="0" name="birthday_type"/>
+        </property>
+        <property name="birthday" type="timestamp">
+            <column name="birthday"/>
+        </property>
+        <property name="idNo" type="string">
+            <column default="''" length="20" name="id_no"/>
+        </property>
+        <property name="idAddress" type="string">
+            <column default="''" length="100" name="id_address"/>
+        </property>
+        <property name="idPicOne" type="string">
+            <column default="''" length="200" name="id_pic_one"/>
+        </property>
+        <property name="idPicTwo" type="string">
+            <column default="''" length="200" name="id_pic_two"/>
+        </property>
+        <property name="email" type="string">
+            <column default="''" length="20" name="email"/>
+        </property>
+        <property name="qq" type="string">
+            <column default="''" length="20" name="qq"/>
+        </property>
+        <property name="trade" type="string">
+            <column default="''" length="20" name="trade"/>
+        </property>
+        <property name="degree" type="string">
+            <column default="''" length="20" name="degree"/>
+        </property>
+        <property name="duty" type="string">
+            <column default="''" length="20" name="duty"/>
+        </property>
+        <property name="source" type="string">
+            <column default="''" length="20" name="source"/>
+        </property>
+        <property name="wechatOpenId" type="string">
+            <column default="''" length="50" name="wechat_open_id"/>
+        </property>
+        <property name="groupId" type="string">
+            <column default="''" length="20" name="group_id"/>
+        </property>
+        <property name="identity" type="string">
+            <column default="''" length="20" name="identity"/>
+        </property>
+        <property name="mtCompNow" type="string">
+            <column default="''" length="20" name="mt_comp_now"/>
+        </property>
+        <property name="specialCare" type="string">
+            <column default="''" length="20" name="special_care"/>
+        </property>
+        <property name="traits" type="string">
+            <column default="''" length="20" name="traits"/>
+        </property>
+        <property name="natureId" type="string">
+            <column length="500" name="nature_id"/>
+        </property>
+        <property name="nature" type="string">
+            <column default="''" length="500" name="nature"/>
+        </property>
+        <property name="licenseNo" type="string">
+            <column default="''" length="30" name="license_no"/>
+        </property>
+        <property name="licenseRecordDate" type="timestamp">
+            <column name="license_record_date"/>
+        </property>
+        <property name="licenseOverDate" type="timestamp">
+            <column name="license_over_date"/>
+        </property>
+        <property name="licenseType" type="string">
+            <column default="''" length="20" name="license_type"/>
+        </property>
+        <property name="licensePicOne" type="string">
+            <column default="''" length="200" name="license_pic_one"/>
+        </property>
+        <property name="licensePicTwo" type="string">
+            <column default="''" length="200" name="license_pic_two"/>
+        </property>
+        <property name="isBirRemind" type="short">
+            <column default="0" name="is_bir_remind"/>
+        </property>
+        <property name="birStatus" type="short">
+            <column default="0" name="bir_status"/>
+        </property>
+        <property name="isLicenseRemind" type="short">
+            <column default="0" name="is_license_remind"/>
+        </property>
+        <property name="licenseStatus" type="short">
+            <column default="0" name="license_status"/>
+        </property>
+        <property name="remark" type="string">
+            <column default="''" length="100" name="remark"/>
+        </property>
+        <property name="isDisabled" type="short">
+            <column default="0" name="is_disabled"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hs.common.com.SysCache" table="sys_cache">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <composite-id dummy="true">
+            <key-property name="sid" type="string">
+                <column length="20" name="SID" not-null="true"/>
+            </key-property>
+            <key-property name="title" type="string">
+                <column length="100" name="TITLE"/>
+            </key-property>
+            <key-property name="cacheName" type="string">
+                <column length="100" name="CACHE_NAME"/>
+            </key-property>
+            <key-property name="key" type="string">
+                <column length="100" name="KEY_"/>
+            </key-property>
+            <key-property name="dsName" type="string">
+                <column length="50" name="DS_NAME"/>
+            </key-property>
+            <key-property name="nameSql" type="string">
+                <column length="100" name="NAME_SQL"/>
+            </key-property>
+            <key-property name="params" type="string">
+                <column length="500" name="PARAMS"/>
+            </key-property>
+            <key-property name="createDate" type="timestamp">
+                <column name="CREATE_DATE"/>
+            </key-property>
+            <key-property name="accessDate" type="timestamp">
+                <column name="ACCESS_DATE"/>
+            </key-property>
+        </composite-id>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hs.common.com.AppMenu" table="app_menu">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="menuid" type="string">
+            <column length="40" name="MENUID"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="menuname" type="string">
+            <column length="40" name="MENUNAME" not-null="true"/>
+        </property>
+        <property name="menulabel" type="string">
+            <column length="40" name="MENULABEL" not-null="true"/>
+        </property>
+        <property name="menucode" type="string">
+            <column length="40" name="MENUCODE"/>
+        </property>
+        <property name="isleaf" type="string">
+            <column length="1" name="ISLEAF"/>
+        </property>
+        <property name="parameter" type="string">
+            <column length="256" name="PARAMETER"/>
+        </property>
+        <property name="uientry" type="string">
+            <column length="256" name="UIENTRY"/>
+        </property>
+        <property name="menulevel" type="short">
+            <column name="MENULEVEL"/>
+        </property>
+        <property name="rootid" type="string">
+            <column length="40" name="ROOTID"/>
+        </property>
+        <property name="displayorder" type="short">
+            <column name="DISPLAYORDER"/>
+        </property>
+        <property name="imagepath" type="string">
+            <column length="100" name="IMAGEPATH"/>
+        </property>
+        <property name="expandpath" type="string">
+            <column length="100" name="EXPANDPATH"/>
+        </property>
+        <property name="menuseq" type="string">
+            <column length="256" name="MENUSEQ"/>
+        </property>
+        <property name="openmode" type="string">
+            <column length="255" name="OPENMODE"/>
+        </property>
+        <property name="subcount" type="big_decimal">
+            <column length="10" name="SUBCOUNT" precision="10" scale="0"/>
+        </property>
+        <property name="funccode" type="string">
+            <column length="255" name="FUNCCODE"/>
+        </property>
+        <property name="appId" type="string">
+            <column length="64" name="APP_ID"/>
+        </property>
+        <property name="tenantId" type="string">
+            <column length="64" name="TENANT_ID" not-null="true"/>
+        </property>
+        <property name="parentsid" type="string">
+            <column length="40" name="PARENTSID"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hs.common.com.ComAppFunction" table="com_app_function">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="funccode" type="string">
+            <column length="255" name="FUNCCODE"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="funcname" type="string">
+            <column length="128" name="FUNCNAME" not-null="true"/>
+        </property>
+        <property name="funcdesc" type="string">
+            <column length="512" name="FUNCDESC"/>
+        </property>
+        <property name="funcaction" type="string">
+            <column length="256" name="FUNCACTION"/>
+        </property>
+        <property name="parainfo" type="string">
+            <column length="256" name="PARAINFO"/>
+        </property>
+        <property name="ischeck" type="string">
+            <column length="1" name="ISCHECK"/>
+        </property>
+        <property name="functype" type="string">
+            <column default="'1'" length="255" name="FUNCTYPE"/>
+        </property>
+        <property name="ismenu" type="string">
+            <column length="1" name="ISMENU"/>
+        </property>
+        <property name="appId" type="string">
+            <column length="64" name="APP_ID"/>
+        </property>
+        <property name="tenantId" type="string">
+            <column length="64" name="TENANT_ID" not-null="true"/>
+        </property>
+        <property name="funcgroupid" type="big_decimal">
+            <column length="10" name="FUNCGROUPID" precision="10" scale="0"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hs.common.com.ComCompany" table="com_company">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="orgid" type="int">
+            <column name="orgid"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="tenantId" type="int">
+            <column name="tenant_id"/>
+        </property>
+        <property name="code" type="string">
+            <column length="5" name="code"/>
+        </property>
+        <property name="name" type="string">
+            <column length="200" name="name"/>
+        </property>
+        <property name="shortName" type="string">
+            <column length="200" name="short_name"/>
+        </property>
+        <property name="provinceId" type="string">
+            <column length="20" name="province_id"/>
+        </property>
+        <property name="cityId" type="string">
+            <column length="20" name="city_id"/>
+        </property>
+        <property name="countyId" type="string">
+            <column length="20" name="county_id"/>
+        </property>
+        <property name="streetAddress" type="string">
+            <column length="200" name="street_address"/>
+        </property>
+        <property name="address" type="string">
+            <column length="200" name="address"/>
+        </property>
+        <property name="longitude" type="string">
+            <column length="20" name="longitude"/>
+        </property>
+        <property name="latitude" type="string">
+            <column length="20" name="latitude"/>
+        </property>
+        <property name="tel" type="string">
+            <column length="20" name="tel"/>
+        </property>
+        <property name="fax" type="string">
+            <column length="20" name="fax"/>
+        </property>
+        <property name="bankName" type="string">
+            <column length="100" name="bank_name"/>
+        </property>
+        <property name="bankAccountNumber" type="string">
+            <column length="50" name="bank_account_number"/>
+        </property>
+        <property name="mainBrandId" type="string">
+            <column length="100" name="main_brand_id"/>
+        </property>
+        <property name="webaddress" type="string">
+            <column length="100" name="webaddress"/>
+        </property>
+        <property name="wechatImg" type="string">
+            <column length="200" name="wechat_img"/>
+        </property>
+        <property name="logoImg" type="string">
+            <column length="200" name="logo_img"/>
+        </property>
+        <property name="softOpenDate" type="timestamp">
+            <column name="soft_open_date"/>
+        </property>
+        <property name="partExpireDate" type="timestamp">
+            <column name="part_expire_date"/>
+        </property>
+        <property name="isOpenSystem" type="short">
+            <column default="0" name="is_open_system"/>
+        </property>
+        <property name="isOpenProcess" type="short">
+            <column default="0" name="is_open_process"/>
+        </property>
+        <property name="isUnifyFinancial" type="short">
+            <column default="0" name="is_unify_financial"/>
+        </property>
+        <property name="isAccount" type="short">
+            <column default="0" name="is_account"/>
+        </property>
+        <property name="settCompCode" type="string">
+            <column default="''" length="30" name="sett_comp_code"/>
+        </property>
+        <property name="unsalableDays" type="short">
+            <column default="120" name="unsalable_days"/>
+        </property>
+        <property name="widenTaxRate" type="big_decimal">
+            <column default="0.00" length="18" name="widen_tax_rate" precision="18" scale="2"/>
+        </property>
+        <property name="partManageRate" type="big_decimal">
+            <column default="0.00" length="18" name="part_manage_rate" precision="18" scale="2"/>
+        </property>
+        <property name="complainTel" type="string">
+            <column length="50" name="complain_tel"/>
+        </property>
+        <property name="rescueTel" type="string">
+            <column length="20" name="rescue_tel"/>
+        </property>
+        <property name="userQty" type="short">
+            <column default="10" name="user_qty"/>
+        </property>
+        <property name="reportTitle" type="string">
+            <column length="50" name="report_title"/>
+        </property>
+        <property name="slogan1" type="string">
+            <column length="50" name="slogan1"/>
+        </property>
+        <property name="slogan2" type="string">
+            <column length="50" name="slogan2"/>
+        </property>
+        <property name="isDataShare" type="short">
+            <column default="0" name="is_data_share"/>
+        </property>
+        <property name="eRecordProvince" type="string">
+            <column default="''" length="20" name="e_record_province"/>
+        </property>
+        <property name="eRecordRepairNo" type="string">
+            <column length="50" name="e_record_repair_no"/>
+        </property>
+        <property name="eRecordUser" type="string">
+            <column length="50" name="e_record_user"/>
+        </property>
+        <property name="eRecordPwd" type="string">
+            <column length="50" name="e_record_pwd"/>
+        </property>
+        <property name="eTokenUrl" type="string">
+            <column length="200" name="e_token_url"/>
+        </property>
+        <property name="ePushUrl" type="string">
+            <column length="200" name="e_push_url"/>
+        </property>
+        <property name="isMaster" type="short">
+            <column default="0" name="is_master"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="200" name="remark"/>
+        </property>
+        <property name="propertyName" type="string">
+            <column default="''" length="20" name="property_name"/>
+        </property>
+        <property name="srmCompanyId" type="string">
+            <column default="''" length="30" name="srm_company_id"/>
+        </property>
+        <property name="srmGuestId" type="string">
+            <column default="''" length="30" name="srm_guest_id"/>
+        </property>
+        <property name="srmUserId" type="string">
+            <column default="''" length="30" name="srm_user_id"/>
+        </property>
+        <property name="srmUserPd" type="string">
+            <column default="''" length="30" name="srm_user_pd"/>
+        </property>
+        <property name="srmModifier" type="string">
+            <column default="''" length="20" name="srm_modifier"/>
+        </property>
+        <property name="srmModifyDate" type="timestamp">
+            <column name="srm_modify_date"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+        <property name="agencyId" type="string">
+            <column default="''" length="30" name="agency_id"/>
+        </property>
+        <property name="kingId" type="string">
+            <column length="20" name="king_id"/>
+        </property>
+        <property name="bookId" type="string">
+            <column length="20" name="book_id"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hs.common.com.ComTreeNo" table="com_tree_no">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="treeType" type="string">
+            <column default="''" length="10" name="tree_type"/>
+        </property>
+        <property name="treeNo" type="string">
+            <column length="100" name="tree_no"/>
+        </property>
+        <property name="codeSize" type="int">
+            <column default="3" name="code_size"/>
+        </property>
+        <property name="codeQty" type="int">
+            <column name="code_qty"/>
+        </property>
+        <property name="creatorId" type="int">
+            <column name="creator_id"/>
+        </property>
+        <property name="creator" type="string">
+            <column length="20" name="creator"/>
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="create_date"/>
+        </property>
+        <property name="operatorId" type="int">
+            <column name="operator_id"/>
+        </property>
+        <property name="operator" type="string">
+            <column length="20" name="operator"/>
+        </property>
+        <property name="operateDate" type="timestamp">
+            <column name="operate_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hs.common.com.ComTenant" table="com_tenant">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="tenantId" type="int">
+            <column name="tenant_id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="tenantType" type="short">
+            <column default="1" name="tenant_type"/>
+        </property>
+        <property name="registerId" type="int">
+            <column name="register_id"/>
+        </property>
+        <property name="code" type="string">
+            <column length="5" name="code"/>
+        </property>
+        <property name="tenantName" type="string">
+            <column length="100" name="tenant_name"/>
+        </property>
+        <property name="mobile" type="string">
+            <column length="20" name="mobile"/>
+        </property>
+        <property name="provinceId" type="string">
+            <column length="20" name="province_id"/>
+        </property>
+        <property name="areaId" type="string">
+            <column length="20" name="area_id"/>
+        </property>
+        <property name="cityId" type="string">
+            <column length="20" name="city_id"/>
+        </property>
+        <property name="addr" type="string">
+            <column length="100" name="addr"/>
+        </property>
+        <property name="address" type="string">
+            <column length="500" name="address"/>
+        </property>
+        <property name="manager" type="string">
+            <column length="20" name="manager"/>
+        </property>
+        <property name="managerIdentity" type="short">
+            <column name="manager_identity"/>
+        </property>
+        <property name="orgQty" type="int">
+            <column name="org_qty"/>
+        </property>
+        <property name="auditDate" type="timestamp">
+            <column name="audit_date"/>
+        </property>
+        <property name="auditMan" type="string">
+            <column length="255" name="audit_man"/>
+        </property>
+        <property name="startDate" type="timestamp">
+            <column name="start_date"/>
+        </property>
+        <property name="endDate" type="timestamp">
+            <column name="end_date"/>
+        </property>
+        <property name="salesMan" type="string">
+            <column length="20" name="sales_man"/>
+        </property>
+        <property name="referee" type="string">
+            <column length="255" name="referee"/>
+        </property>
+        <property name="invitationNumber" type="string">
+            <column length="20" name="Invitation_number"/>
+        </property>
+        <property name="largessMonth" type="short">
+            <column name="largess_month"/>
+        </property>
+        <property name="maxUserQty" type="int">
+            <column name="max_user_qty"/>
+        </property>
+        <property name="storesQty" type="int">
+            <column name="stores_qty"/>
+        </property>
+        <property name="firstPayAmt" type="big_decimal">
+            <column length="10" name="first_pay_amt" precision="10" scale="2"/>
+        </property>
+        <property name="nextRenewDate" type="timestamp">
+            <column name="next_renew_date"/>
+        </property>
+        <property name="nextRenewAmt" type="big_decimal">
+            <column length="10" name="next_renew_amt" precision="10" scale="2"/>
+        </property>
+        <property name="isPay" type="short">
+            <column default="0" name="is_pay"/>
+        </property>
+        <property name="isDisabled" type="short">
+            <column default="0" name="is_disabled"/>
+        </property>
+        <property name="lastChargeAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="last_charge_amt" precision="10" scale="4"/>
+        </property>
+        <property name="lastChargeDate" type="timestamp">
+            <column name="last_charge_date"/>
+        </property>
+        <property name="lastRechargeCoin" type="int">
+            <column default="0" name="last_recharge_coin"/>
+        </property>
+        <property name="lastGiveCoin" type="int">
+            <column default="0" name="last_give_coin"/>
+        </property>
+        <property name="lastUseCoinDate" type="timestamp">
+            <column name="last_use_coin_date"/>
+        </property>
+        <property name="totalChargeAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="total_charge_amt" precision="10" scale="4"/>
+        </property>
+        <property name="remainCoin" type="int">
+            <column default="0" name="remain_coin"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="200" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hs.common.com.ComCarModel" table="com_car_model">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="string">
+            <column length="20" name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="carBrandId" type="string">
+            <column length="20" name="car_brand_id"/>
+        </property>
+        <property name="carBrandName" type="string">
+            <column length="100" name="car_brand_name"/>
+        </property>
+        <property name="carFactoryId" type="string">
+            <column length="20" name="car_factory_id"/>
+        </property>
+        <property name="carFactoryName" type="string">
+            <column length="100" name="car_factory_name"/>
+        </property>
+        <property name="carSeriesId" type="string">
+            <column length="100" name="car_series_id"/>
+        </property>
+        <property name="carSeriesName" type="string">
+            <column length="100" name="car_series_name"/>
+        </property>
+        <property name="carModel" type="string">
+            <column length="100" name="car_model"/>
+        </property>
+        <property name="isDisabled" type="short">
+            <column default="0" name="is_disabled"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hs.common.com.ComDept" table="com_dept">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="tenantId" type="int">
+            <column default="0" name="tenant_id" not-null="true"/>
+        </property>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid" not-null="true"/>
+        </property>
+        <property name="deptName" type="string">
+            <column default="''" length="30" name="dept_name" not-null="true"/>
+        </property>
+        <property name="kingCode" type="string">
+            <column default="''" length="30" name="king_code"/>
+        </property>
+        <property name="isDisabled" type="short">
+            <column default="0" name="is_disabled"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hs.common.com.ComKingAccountno" table="com_king_accountno">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="yearMonthFlag" type="int">
+            <column name="year_month_flag"/>
+        </property>
+        <property name="billQty" type="big_decimal">
+            <column length="18" name="bill_qty" precision="18" scale="2"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hs.common.com.PjVoucherRecord" table="pj_voucher_record">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid" not-null="true"/>
+        </property>
+        <property name="serviceId" type="string">
+            <column length="20" name="service_id" not-null="true"/>
+        </property>
+        <property name="name" type="string">
+            <column default="''" length="100" name="name" not-null="true"/>
+        </property>
+        <property name="method" type="string">
+            <column default="''" length="100" name="method" not-null="true"/>
+        </property>
+        <property name="type" type="int">
+            <column default="0" name="type" not-null="true"/>
+        </property>
+        <property name="operParam" type="string">
+            <column default="''" length="2000" name="oper_param"/>
+        </property>
+        <property name="jsonResult" type="string">
+            <column default="''" length="2000" name="json_result"/>
+        </property>
+        <property name="status" type="int">
+            <column default="0" name="status"/>
+        </property>
+        <property name="successSign" type="int">
+            <column default="0" name="success_sign"/>
+        </property>
+        <property name="errorMsg" type="string">
+            <column default="''" length="2000" name="error_msg"/>
+        </property>
+        <property name="handleSign" type="short">
+            <column default="0" name="handle_sign"/>
+        </property>
+        <property name="creatorId" type="string">
+            <column length="20" name="creator_id"/>
+        </property>
+        <property name="creator" type="string">
+            <column length="20" name="creator"/>
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="create_date"/>
+        </property>
+        <property name="operatorId" type="string">
+            <column length="20" name="operator_id"/>
+        </property>
+        <property name="operator" type="string">
+            <column length="20" name="operator"/>
+        </property>
+        <property name="operateDate" type="timestamp">
+            <column name="operate_date"/>
+        </property>
+        <property name="settleId" type="string">
+            <column default="'0'" length="20" name="settle_id"/>
+        </property>
+        <property name="settler" type="string">
+            <column default="''" length="20" name="settler"/>
+        </property>
+        <property name="settleDate" type="timestamp">
+            <column name="settle_date"/>
+        </property>
+    </class>
+</hibernate-mapping>

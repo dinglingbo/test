@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.part.purchase.queryRepair">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
+    <select id="queryRepairOutList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id id,
+			a.orgid orgid,
+			a.service_id serviceId,
+			a.service_code serviceCode,
+			a.store_id storeId,
+			a.source_id sourceId,
+			a.car_id carId,
+			a.car_no carNo,
+			a.part_id partId,
+			a.part_name partName,
+			a.part_code partCode,
+			a.part_name_id partNameId,
+			a.part_full_name partFullName,
+			a.unit unit,
+			a.out_qty outQty,
+			a.true_unit_price trueUnitPrice,
+			a.true_cost trueCost,
+			a.pick_man pickMan,
+			a.pick_date pickDate,
+			a.recorder recorder,
+			a.remark remark,
+			ifnull(a.return_sign,0) returnSign,
+			1-(ifnull(a.return_sign,0)) outSign,
+			a.return_man returnMan,
+			a.return_date returnDate,
+			c.guest_full_name guestFullName,
+			c.enter_date enterDate,
+			d.apply_car_model applyCarModel,
+			e.NAME partBrandName,
+			a.sell_unit_price sellUnitPrice,
+			a.sell_amt sellAmt,
+			(a.sell_amt - a.true_cost) grossProfit,
+			a.auditor auditor
+		FROM
+			pj_repair_out a
+			LEFT JOIN pj_enter_detail b ON ( a.source_id = b.detail_id )
+			LEFT JOIN pj_enter_main c ON ( b.enter_id = c.id )
+			LEFT JOIN wb_common.com_attribute d ON ( a.part_id = d.id )
+			LEFT JOIN wb_common.com_part_brand e ON ( d.part_brand_id = e.id )	
+		WHERE
+			a.orgid = #orgid#
+		<dynamic>
+            <isNotEmpty prepend="and" property="returnSign">(ifnull(a.return_sign,0) = #returnSign#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="startDate">(date_format(a.record_date,'%Y-%m-%d') &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(date_format(a.record_date,'%Y-%m-%d') &lt;= #endDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="pickMan">(a.pickMan = #pickMan#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="pickType">(a.pick_type = #pickType#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceId">(a.service_id = #serviceId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(c.guest_id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceCode">(a.service_code like '%$serviceCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">(a.car_no like '%$carNo$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(a.part_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">(a.part_Name like '%$partName$%')</isNotEmpty>
+        </dynamic>
+    </select>
+    <!-- <select id="queryRepairOutListByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id id,
+			a.source_id sourceId,
+			a.root_id rootId,
+			a.orgid orgid,
+			a.service_id serviceId,
+			a.car_no carNo,
+			a.car_id carId,
+			a.part_id partId,
+			a.part_code partCode,
+			a.part_name partName,
+			a.unit unit,
+			out_qty outQty,
+			tax_unit_price taxUnitPrice,
+			tax_amt taxAmt,
+			no_tax_unit_price noTaxUnitPrcie,
+			no_tax_amt noTaxAmt,
+			true_unit_price trueUnitPrice,
+			true_cost trueCost,
+			sell_unit_price sellUnitPrice,
+			sell_amt sellAmt,
+			(sell_amt - true_cost) grossProfit,
+			auditor,
+			audit_sign auditSign,
+			audit_date auditDate,
+			pick_man pickMan,
+			pick_date pickDate,
+			pick_type pickType,
+			return_sign returnSign,
+			out_return_sign outReturnSign,
+			return_man returnMan,
+			return_date returnDate,
+			a.return_remark returnRemark,
+			a.recorder recorder,
+			a.record_date recordDate,
+			b.stock_location stockLocation 
+		FROM
+			pj_repair_out a
+			LEFT JOIN pj_cyc_org b ON a.part_id = b.part_id 
+		WHERE
+			a.orgid = b.orgid 
+			AND a.service_id = #serviceId#
+			AND ifnull(a.return_sign, 0 ) = 0
+		<dynamic>
+			<isNotEmpty prepend="and" property="pickType">  
+                (a.pick_type = #pickType#)
+            </isNotEmpty>
+        </dynamic> 
+    </select>-->
+</sqlMap>

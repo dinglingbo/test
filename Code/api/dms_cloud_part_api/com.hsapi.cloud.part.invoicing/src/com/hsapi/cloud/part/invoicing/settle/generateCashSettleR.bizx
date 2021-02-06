@@ -62,7 +62,7 @@
       <process:to type="query">stateMain/debtRAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">main/guestId</process:from>
+      <process:from type="query" pattern="reference">main/settleGuestId</process:from>
       <process:to type="query">stateMain/guestId</process:to>
     </process:copy>
     <process:copy>

@@ -1,0 +1,82 @@
+<map>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.cang.updateUser(String, String, String, String, String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateUser&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateUser&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.cang.updateUser&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;agency_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;wid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;username(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;password(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;phone(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;erp_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;roles(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;storeId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.cang.updateShelfBatch(String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateShelfBatch&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateShelfBatch&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.cang.updateShelfBatch&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;agency_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;wid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;literainfos(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.cang.addPartType(String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;addPartType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;addPartType&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.cang.addPartType&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;agency_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;part_type(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.cang.addUser(String, String, String, String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;addUser&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;addUser&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.cang.addUser&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;agency_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;wid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;username(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;password(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;phone(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;erp_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;roles(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>cang</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;cang.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;cang&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.cang&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.cang.validUser(String, String, com.hsapi.cloud.part.data.com.ComMember[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;validUser&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;validUser&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.cang.validUser&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;agency_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;erp_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;memberList(com.hsapi.cloud.part.data.com.ComMember[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;仓先生接口&lt;br&gt;恢复APP使用权限&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.cang.updatePart(String, String, String, String, String, String, String, String, String, String, String, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updatePart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updatePart&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.cang.updatePart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;part_type_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;agency_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;part_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;source_pid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;um(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;remark(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;origin(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;label(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;cars(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;spec(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;status(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.cang.outStock(String, String, String, String, Int, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;outStock&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;outStock&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.cang.outStock&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;agency_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stock_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stock(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stock_type_name(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stock_type_id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stock_args(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;direct(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.cang.queryStocks(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryStocks&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryStocks&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.cang.queryStocks&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.cang.addShelf(String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;addShelf&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;addShelf&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.cang.addShelf&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;agency_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;wid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;literainfos(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.cang.updatePartType(String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updatePartType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updatePartType&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.cang.updatePartType&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;agency_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;part_type_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;part_type(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;status(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.cang.inStock(String, String, String, String, Int, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;inStock&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;inStock&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.cang.inStock&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;agency_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stock_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stock(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stock_type_name(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stock_type_id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stock_args(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;direct(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.cang.registerCompany(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;registerCompany&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;registerCompany&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.cang.registerCompany&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;company(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.cang.unvalidUser(String, String, com.hsapi.cloud.part.data.com.ComMember[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;unvalidUser&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;unvalidUser&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.cang.unvalidUser&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;agency_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;erp_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;memberList(com.hsapi.cloud.part.data.com.ComMember[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;仓先生接口&lt;br&gt;删除用户APP使用权限&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.cang.updateShelf(String, String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateShelf&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateShelf&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.cang.updateShelf&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;agency_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;wid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;litera_name(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;cid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;status(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.cang.updateStore(String, String, String, String, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateStore&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateStore&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.cang.updateStore&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;agency_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;warehouse_name(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;status(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;wid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.cang.addStore(String, String, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;addStore&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;addStore&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.cang.addStore&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;warehouse_name(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;agency_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;wid(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.cang.addPart(Int, String, String, String, String, String, String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;addPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;addPart&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.cang.addPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;part_type_id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;agency_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;source_pid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;um(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;remark(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;origin(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;label(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;spec(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.cang.addParts(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;addParts&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;addParts&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.cang.addParts&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;agency_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partinfos(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.baseDataCrud.cang.printPath(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;printPath&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;printPath&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.baseDataCrud.cang.printPath&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;agency_id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

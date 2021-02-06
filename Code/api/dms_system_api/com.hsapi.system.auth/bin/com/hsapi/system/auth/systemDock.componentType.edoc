@@ -1,0 +1,10 @@
+<map>
+  <entry>
+    <string>systemDock</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;systemDock.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;systemDock&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.systemDock&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.auth.systemDock.supplyCompMgr(Int, String, String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;supplyCompMgr&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;supplyCompMgr&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.auth.systemDock.supplyCompMgr&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orgid(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;srmCompanyId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;srmGuestId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;srmUserId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;srmUserPd(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;modifier(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

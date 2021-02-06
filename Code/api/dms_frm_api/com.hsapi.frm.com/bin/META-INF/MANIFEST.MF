@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Require-Bundle: com.hsapi.frm.data
+Bundle-Vendor: Administrator
+eos-webCtxPath: com
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsapi.frm.com
+Bundle-Description: 
+Bundle-SymbolicName: com.hsapi.frm.com
+

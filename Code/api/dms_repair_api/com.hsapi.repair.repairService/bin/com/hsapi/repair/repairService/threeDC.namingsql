@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.repair.repairService.threeDC">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryScoutList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id id,
+			a.car_id carId,
+			a.service_code serviceCode,
+			a.car_no carNo,
+			a.mt_advisor mtAdvisor,
+			ifnull( DATEDIFF( now( ), a.out_date ), 0 ) leaveDay,
+			a.contactor_id contactorId,
+			c.care_cycle careCycle,
+			c.care_due_date careDueDate 
+		FROM
+			rps_maintain a
+			INNER JOIN wb_crm.crm_guest_scout b ON ( a.id = b.service_id )
+			INNER JOIN rpb_car c ON ( a.car_id = c.id )
+		WHERE
+			a.orgid = #orgid#
+		<dynamic>
+            <isNotEmpty prepend="and" property="highLeaveDay">(ifnull( DATEDIFF( now( ), a.out_date ), 0 ) &lt;= #highLeaveDay#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="status">(a.status = #status#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">(a.car_no like '%$carNo$%')</isNotEmpty>
+        </dynamic>
+    </select>
+    <select id="getScoutDetailByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			a.service_id serviceId,
+			a.car_id carId,
+			c.quality_degree qualityDegree,
+			c.service_degree serviceDegree,
+			c.time_degree timeDegree,
+			c.price_degree priceDegree,
+			c.mode mode,
+			b.care_due_date careDueDate,
+			b.care_cycle careCycle,
+			c.content content,
+			c.scout_man scoutMan,
+			c.detail_id detailId,
+			c.scout_date scoutDate
+		FROM
+			wb_crm.crm_guest_scout a
+			INNER JOIN rpb_car b ON ( a.car_id = b.id )
+			INNER JOIN wb_crm.crm_3dc_scout_detail c on (c.service_id = a.service_id)
+		where a.service_id = #serviceId#</select>
+    <!-- 更新 下次保养日期 -->
+    <update id="updateCareCueDate" parameterClass="java.util.HashMap">UPDATE  rpb_car_extend  set care_due_date = #careDueDate#
+            where  car_id  = #carId#</update>
+    <!-- 更新 商业险日期 -->
+    <update id="updateSYXDate" parameterClass="java.util.HashMap">UPDATE  rpb_car set annual_inspection_date = #annualInspectionDate#
+            where  id  = #carId#</update>
+    <!-- 更新 交强险日期 -->
+    <update id="updateJQXDate" parameterClass="java.util.HashMap">UPDATE  rpb_car set insure_due_date = #insureDueDate#
+            where  id  = #carId#</update>
+    <!-- 更新 车辆年审日期 -->
+    <update id="updateCLNJDate" parameterClass="java.util.HashMap">UPDATE  rpb_car set annual_verification_due_date = #dueDate#
+            where  id  = #carId#</update>
+    <!-- 更新 驾照日期 -->
+    <update id="updateJZNSDate" parameterClass="java.util.HashMap">UPDATE  rpb_contactor set license_over_date = #licenseOverDate#
+            where  id  = #conId#</update>
+    <!-- 更新 生日 -->
+    <update id="updateKHDRDate" parameterClass="java.util.HashMap">UPDATE  rpb_contactor set birthday = #birthday#
+            where  id  = #conId#</update>
+</sqlMap>

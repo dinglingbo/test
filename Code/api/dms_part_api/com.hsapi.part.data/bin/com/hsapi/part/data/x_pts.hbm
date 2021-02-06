@@ -1,0 +1,961 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.part.data.x_pts.PtsInvoicingDetail" table="pts_invoicing_detail">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="detailId" type="int">
+            <column name="detail_id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="operateType" type="string">
+            <column length="10" name="operate_type" not-null="true"/>
+        </property>
+        <property name="serviceId" type="int">
+            <column name="service_id" not-null="true"/>
+        </property>
+        <property name="serviceCode" type="string">
+            <column length="20" name="service_code" not-null="true"/>
+        </property>
+        <property name="sourceDetailId" type="int">
+            <column name="source_detail_id"/>
+        </property>
+        <property name="partId" type="int">
+            <column name="part_id" not-null="true"/>
+        </property>
+        <property name="partCode" type="string">
+            <column length="50" name="part_code" not-null="true"/>
+        </property>
+        <property name="partName" type="string">
+            <column length="50" name="part_name" not-null="true"/>
+        </property>
+        <property name="partNameId" type="string">
+            <column length="20" name="part_name_id"/>
+        </property>
+        <property name="fyear" type="short">
+            <column name="fyear" not-null="true"/>
+        </property>
+        <property name="fperiod" type="short">
+            <column name="fperiod" not-null="true"/>
+        </property>
+        <property name="partFullName" type="string">
+            <column length="1000" name="part_full_name"/>
+        </property>
+        <property name="qty" type="big_decimal">
+            <column default="0.00" length="10" name="qty" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="unit" type="string">
+            <column length="20" name="unit"/>
+        </property>
+        <property name="unitPrice" type="big_decimal">
+            <column default="0.0000" length="10" name="unit_price" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="amt" type="big_decimal">
+            <column default="0.0000" length="10" name="amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="balaQty" type="big_decimal">
+            <column default="0.0000" length="10" name="bala_qty" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="balaUnitPrice" type="big_decimal">
+            <column default="0.0000" length="10" name="bala_unit_price" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="balaAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="bala_amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder" not-null="true"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.part.data.x_pts.PtsInvoicingStoreDetail" table="pts_invoicing_store_detail">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="detailId" type="int">
+            <column name="detail_id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="operateType" type="string">
+            <column length="10" name="operate_type" not-null="true"/>
+        </property>
+        <property name="serviceId" type="int">
+            <column name="service_id" not-null="true"/>
+        </property>
+        <property name="serviceCode" type="string">
+            <column length="20" name="service_code" not-null="true"/>
+        </property>
+        <property name="sourceDetailId" type="int">
+            <column name="source_detail_id" not-null="true"/>
+        </property>
+        <property name="storeId" type="int">
+            <column name="store_id" not-null="true"/>
+        </property>
+        <property name="partId" type="int">
+            <column name="part_id" not-null="true"/>
+        </property>
+        <property name="partCode" type="string">
+            <column length="50" name="part_code" not-null="true"/>
+        </property>
+        <property name="partName" type="string">
+            <column length="50" name="part_name" not-null="true"/>
+        </property>
+        <property name="partNameId" type="string">
+            <column length="20" name="part_name_id"/>
+        </property>
+        <property name="partFullName" type="string">
+            <column length="1000" name="part_full_name"/>
+        </property>
+        <property name="fyear" type="short">
+            <column name="fyear" not-null="true"/>
+        </property>
+        <property name="fperiod" type="short">
+            <column name="fperiod" not-null="true"/>
+        </property>
+        <property name="qty" type="big_decimal">
+            <column default="0.00" length="10" name="qty" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="unit" type="string">
+            <column length="20" name="unit"/>
+        </property>
+        <property name="unitPrice" type="big_decimal">
+            <column default="0.0000" length="10" name="unit_price" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="amt" type="big_decimal">
+            <column default="0.0000" length="10" name="amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="balaQty" type="big_decimal">
+            <column default="0.0000" length="10" name="bala_qty" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="balaUnitPrice" type="big_decimal">
+            <column default="0.0000" length="10" name="bala_unit_price" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="balaAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="bala_amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder" not-null="true"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.part.data.x_pts.PtsCycOrg" table="pts_cyc_org">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="partId" type="int">
+            <column name="part_id" not-null="true"/>
+        </property>
+        <property name="partCode" type="string">
+            <column length="50" name="part_code"/>
+        </property>
+        <property name="partName" type="string">
+            <column length="50" name="part_name"/>
+        </property>
+        <property name="partNameId" type="string">
+            <column length="20" name="part_name_id"/>
+        </property>
+        <property name="partFullName" type="string">
+            <column length="1000" name="part_full_name"/>
+        </property>
+        <property name="unit" type="string">
+            <column length="10" name="unit"/>
+        </property>
+        <property name="storeLocationId" type="int">
+            <column name="store_location_id"/>
+        </property>
+        <property name="stockLocation" type="string">
+            <column length="100" name="stock_location"/>
+        </property>
+        <property name="lastSellPrice" type="big_decimal">
+            <column length="10" name="last_sell_price" precision="10" scale="4"/>
+        </property>
+        <property name="suggestPrice" type="big_decimal">
+            <column length="10" name="suggest_price" precision="10" scale="4"/>
+        </property>
+        <property name="costPrice" type="big_decimal">
+            <column length="10" name="cost_price" precision="10" scale="4"/>
+        </property>
+        <property name="orderCyc" type="short">
+            <column name="order_cyc"/>
+        </property>
+        <property name="arriveCyc" type="short">
+            <column name="arrive_cyc"/>
+        </property>
+        <property name="safeCyc" type="big_decimal">
+            <column length="10" name="safe_cyc" precision="10" scale="2"/>
+        </property>
+        <property name="stockUpLimit" type="big_decimal">
+            <column length="10" name="stock_up_limit" precision="10" scale="2"/>
+        </property>
+        <property name="stockDownLimit" type="big_decimal">
+            <column length="10" name="stock_down_limit" precision="10" scale="2"/>
+        </property>
+        <property name="daySellValume" type="big_decimal">
+            <column length="10" name="day_sell_valume" precision="10" scale="2"/>
+        </property>
+        <property name="monthSellValume" type="big_decimal">
+            <column length="10" name="month_sell_valume" precision="10" scale="2"/>
+        </property>
+        <property name="lastEnterDate" type="timestamp">
+            <column name="last_enter_date"/>
+        </property>
+        <property name="lastOutDate" type="timestamp">
+            <column name="last_out_date"/>
+        </property>
+        <property name="stockQty" type="big_decimal">
+            <column length="10" name="stock_qty" precision="10" scale="2"/>
+        </property>
+        <property name="stockPrice" type="big_decimal">
+            <column length="10" name="stock_price" precision="10" scale="4"/>
+        </property>
+        <property name="stockAmt" type="big_decimal">
+            <column length="10" name="stock_amt" precision="10" scale="4"/>
+        </property>
+        <property name="unuseableDay" type="int">
+            <column name="unuseable_day"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.part.data.x_pts.PtsCycStore" table="pts_cyc_store">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="storeId" type="int">
+            <column name="store_id" not-null="true"/>
+        </property>
+        <property name="partId" type="int">
+            <column name="part_id" not-null="true"/>
+        </property>
+        <property name="partCode" type="string">
+            <column length="50" name="part_code"/>
+        </property>
+        <property name="partName" type="string">
+            <column length="50" name="part_name"/>
+        </property>
+        <property name="partNameId" type="string">
+            <column length="20" name="part_name_id"/>
+        </property>
+        <property name="partFullName" type="string">
+            <column length="1000" name="part_full_name"/>
+        </property>
+        <property name="unit" type="string">
+            <column length="10" name="unit"/>
+        </property>
+        <property name="storeLocationId" type="int">
+            <column name="store_location_id"/>
+        </property>
+        <property name="storeLocation" type="string">
+            <column length="100" name="store_location"/>
+        </property>
+        <property name="lastSellPrice" type="big_decimal">
+            <column length="10" name="last_sell_price" precision="10" scale="4"/>
+        </property>
+        <property name="suggestPrice" type="big_decimal">
+            <column length="10" name="suggest_price" precision="10" scale="4"/>
+        </property>
+        <property name="costPrice" type="big_decimal">
+            <column length="10" name="cost_price" precision="10" scale="4"/>
+        </property>
+        <property name="orderCyc" type="short">
+            <column name="order_cyc"/>
+        </property>
+        <property name="arriveCyc" type="short">
+            <column name="arrive_cyc"/>
+        </property>
+        <property name="safeCyc" type="short">
+            <column name="safe_cyc"/>
+        </property>
+        <property name="stockUpLimit" type="big_decimal">
+            <column length="10" name="stock_up_limit" precision="10" scale="2"/>
+        </property>
+        <property name="stockDownLimit" type="big_decimal">
+            <column length="10" name="stock_down_limit" precision="10" scale="2"/>
+        </property>
+        <property name="daySellValume" type="big_decimal">
+            <column length="10" name="day_sell_valume" precision="10" scale="2"/>
+        </property>
+        <property name="monthSellValume" type="big_decimal">
+            <column length="10" name="month_sell_valume" precision="10" scale="2"/>
+        </property>
+        <property name="lastEnterDate" type="timestamp">
+            <column name="last_enter_date"/>
+        </property>
+        <property name="lastOutDate" type="timestamp">
+            <column name="last_out_date"/>
+        </property>
+        <property name="stockQty" type="big_decimal">
+            <column length="10" name="stock_qty" precision="10" scale="2"/>
+        </property>
+        <property name="stockPrice" type="big_decimal">
+            <column length="10" name="stock_price" precision="10" scale="4"/>
+        </property>
+        <property name="stockAmt" type="big_decimal">
+            <column length="10" name="stock_amt" precision="10" scale="4"/>
+        </property>
+        <property name="unuseableDay" type="short">
+            <column name="unuseable_day"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.part.data.x_pts.PtsOutMain" table="pts_out_main">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="outCode" type="string">
+            <column length="20" name="out_code" not-null="true"/>
+        </property>
+        <property name="outDate" type="timestamp">
+            <column name="out_date" not-null="true"/>
+        </property>
+        <property name="storeId" type="int">
+            <column name="store_id" not-null="true"/>
+        </property>
+        <property name="sourceId" type="int">
+            <column name="source_id"/>
+        </property>
+        <property name="guestId" type="int">
+            <column name="guest_id" not-null="true"/>
+        </property>
+        <property name="guestFullName" type="string">
+            <column length="200" name="guest_full_name" not-null="true"/>
+        </property>
+        <property name="outTypeId" type="string">
+            <column length="20" name="out_type_id" not-null="true"/>
+        </property>
+        <property name="outTotalQty" type="big_decimal">
+            <column length="10" name="out_total_qty" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="trueCost" type="big_decimal">
+            <column length="10" name="true_cost" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="taxAmt" type="big_decimal">
+            <column length="10" name="tax_amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="totalDiscountAmt" type="big_decimal">
+            <column length="10" name="total_discount_amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="goodsAmt" type="big_decimal">
+            <column length="10" name="goods_amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="totalAmt" type="big_decimal">
+            <column length="10" name="total_amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="receivableAmt" type="big_decimal">
+            <column length="10" name="receivable_amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="billTypeId" type="string">
+            <column length="20" name="bill_type_id" not-null="true"/>
+        </property>
+        <property name="billTaxRate" type="big_decimal">
+            <column default="0.00" length="10" name="bill_tax_rate" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="billStatus" type="short">
+            <column default="0" name="bill_status" not-null="true"/>
+        </property>
+        <property name="backReasonId" type="string">
+            <column length="20" name="back_reason_id"/>
+        </property>
+        <property name="checker" type="string">
+            <column length="20" name="checker"/>
+        </property>
+        <property name="seller" type="string">
+            <column length="20" name="seller"/>
+        </property>
+        <property name="storeKeeper" type="string">
+            <column length="20" name="store_keeper"/>
+        </property>
+        <property name="auditStatus" type="short">
+            <column default="0" name="audit_status" not-null="true"/>
+        </property>
+        <property name="auditor" type="string">
+            <column length="20" name="auditor"/>
+        </property>
+        <property name="auditDate" type="timestamp">
+            <column name="audit_date"/>
+        </property>
+        <property name="postStatus" type="short">
+            <column default="0" name="post_status" not-null="true"/>
+        </property>
+        <property name="postMan" type="string">
+            <column length="20" name="post_man"/>
+        </property>
+        <property name="postDate" type="timestamp">
+            <column name="post_date"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="100" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.part.data.x_pts.PtsEnterDetail" table="pts_enter_detail">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="detailId" type="int">
+            <column name="detail_id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="enterId" type="int">
+            <column name="enter_id" not-null="true"/>
+        </property>
+        <property name="partId" type="int">
+            <column name="part_id" not-null="true"/>
+        </property>
+        <property name="partCode" type="string">
+            <column length="50" name="part_code" not-null="true"/>
+        </property>
+        <property name="partName" type="string">
+            <column length="50" name="part_name" not-null="true"/>
+        </property>
+        <property name="partNameId" type="string">
+            <column length="20" name="part_name_id" not-null="true"/>
+        </property>
+        <property name="partFullName" type="string">
+            <column length="1000" name="part_full_name" not-null="true"/>
+        </property>
+        <property name="unit" type="string">
+            <column length="10" name="unit" not-null="true"/>
+        </property>
+        <property name="enterQty" type="big_decimal">
+            <column default="0.00" length="10" name="enter_qty" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="outableQty" type="big_decimal">
+            <column default="0.00" length="10" name="outable_qty" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="taxSign" type="short">
+            <column default="0" name="tax_sign" not-null="true"/>
+        </property>
+        <property name="taxRate" type="big_decimal">
+            <column default="0.00" length="10" name="tax_rate" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="taxRateAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="tax_rate_amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="taxUnitPrice" type="big_decimal">
+            <column default="0.0000" length="10" name="tax_unit_price" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="taxAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="tax_amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="noTaxUnitPrice" type="big_decimal">
+            <column default="0.0000" length="10" name="no_tax_unit_price" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="noTaxAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="no_tax_amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="suggestPrice" type="big_decimal">
+            <column default="0.0000" length="10" name="suggest_price" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="suggestAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="suggest_amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="100" name="remark"/>
+        </property>
+        <property name="orderDetailId" type="int">
+            <column name="order_detail_id"/>
+        </property>
+        <property name="prevOutDetailId" type="int">
+            <column name="prev_out_detail_id"/>
+        </property>
+        <property name="rootEnterDetailId" type="int">
+            <column name="root_enter_detail_id"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.part.data.x_pts.PtsEnterMain" table="pts_enter_main">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="enterCode" type="string">
+            <column length="20" name="enter_code" not-null="true"/>
+        </property>
+        <property name="enterDate" type="timestamp">
+            <column name="enter_date" not-null="true"/>
+        </property>
+        <property name="storeId" type="int">
+            <column name="store_id" not-null="true"/>
+        </property>
+        <property name="sourceId" type="int">
+            <column name="source_id"/>
+        </property>
+        <property name="guestId" type="int">
+            <column name="guest_id" not-null="true"/>
+        </property>
+        <property name="guestFullName" type="string">
+            <column length="200" name="guest_full_name" not-null="true"/>
+        </property>
+        <property name="billCode" type="string">
+            <column length="20" name="bill_code" not-null="true"/>
+        </property>
+        <property name="billTypeId" type="string">
+            <column length="20" name="bill_type_id"/>
+        </property>
+        <property name="billTaxRate" type="big_decimal">
+            <column default="0.00" length="10" name="bill_tax_rate" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="settType" type="string">
+            <column length="20" name="sett_type"/>
+        </property>
+        <property name="billStatus" type="string">
+            <column length="20" name="bill_status"/>
+        </property>
+        <property name="enterTypeId" type="string">
+            <column length="20" name="enter_type_id" not-null="true"/>
+        </property>
+        <property name="enterTotalQty" type="big_decimal">
+            <column default="0.00" length="10" name="enter_total_qty" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="taxAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="tax_amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="goodsAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="goods_amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="totalAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="total_amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="payableAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="payable_amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="backReasonId" type="string">
+            <column length="20" name="back_reason_id"/>
+        </property>
+        <property name="quoter" type="string">
+            <column length="20" name="quoter"/>
+        </property>
+        <property name="buyer" type="string">
+            <column length="20" name="buyer"/>
+        </property>
+        <property name="storeKeeper" type="string">
+            <column length="20" name="store_keeper"/>
+        </property>
+        <property name="auditStatus" type="short">
+            <column default="0" name="audit_status" not-null="true"/>
+        </property>
+        <property name="auditor" type="string">
+            <column length="20" name="auditor"/>
+        </property>
+        <property name="auditDate" type="timestamp">
+            <column name="audit_date"/>
+        </property>
+        <property name="postStatus" type="short">
+            <column default="0" name="post_status"/>
+        </property>
+        <property name="postMan" type="string">
+            <column length="20" name="post_man"/>
+        </property>
+        <property name="postDate" type="timestamp">
+            <column name="post_date"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="100" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.part.data.x_pts.PtsOutDetail" table="pts_out_detail">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="detailId" type="int">
+            <column name="detail_id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="outId" type="int">
+            <column name="out_id" not-null="true"/>
+        </property>
+        <property name="partId" type="int">
+            <column name="part_id" not-null="true"/>
+        </property>
+        <property name="partCode" type="string">
+            <column length="50" name="part_code" not-null="true"/>
+        </property>
+        <property name="partName" type="string">
+            <column length="50" name="part_name" not-null="true"/>
+        </property>
+        <property name="partNameId" type="string">
+            <column length="20" name="part_name_id" not-null="true"/>
+        </property>
+        <property name="partFullName" type="string">
+            <column length="1000" name="part_full_name" not-null="true"/>
+        </property>
+        <property name="unit" type="string">
+            <column length="10" name="unit" not-null="true"/>
+        </property>
+        <property name="outQty" type="big_decimal">
+            <column default="0.00" length="10" name="out_qty" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="outBackableQty" type="big_decimal">
+            <column default="0.00" length="10" name="out_backable_qty" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="taxSign" type="short">
+            <column default="0" name="tax_sign" not-null="true"/>
+        </property>
+        <property name="taxRate" type="big_decimal">
+            <column default="0.00" length="10" name="tax_rate" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="taxRateAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="tax_rate_amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="sellUnitPrice" type="big_decimal">
+            <column default="0.0000" length="10" name="sell_unit_price" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="sellAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="sell_amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="discountRate" type="big_decimal">
+            <column default="0.00" length="10" name="discount_rate" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="discountAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="discount_amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="discountLastUnitPrice" type="big_decimal">
+            <column default="0.0000" length="10" name="discount_last_unit_price" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="discountLastAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="discount_last_amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="costUnitPrice" type="big_decimal">
+            <column default="0.0000" length="10" name="cost_unit_price" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="costAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="cost_amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="noTaxCostUnitPrice" type="big_decimal">
+            <column default="0.0000" length="10" name="no_tax_cost_unit_price" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="noTaxCostAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="no_tax_cost_amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="taxCostUnitPrice" type="big_decimal">
+            <column default="0.0000" length="10" name="tax_cost_unit_price" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="taxCostAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="tax_cost_amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="100" name="remark"/>
+        </property>
+        <property name="prevEnterDetailId" type="int">
+            <column name="prev_enter_detail_id"/>
+        </property>
+        <property name="rootEnterDetailId" type="int">
+            <column name="root_enter_detail_id"/>
+        </property>
+        <property name="orderDetailId" type="int">
+            <column name="order_detail_id"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.part.data.x_pts.PtsStockCheckDetail" table="pts_stock_check_detail">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="detailId" type="int">
+            <column name="detail_id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="checkId" type="int">
+            <column name="check_id"/>
+        </property>
+        <property name="partId" type="int">
+            <column name="part_id"/>
+        </property>
+        <property name="partCode" type="string">
+            <column length="50" name="part_code"/>
+        </property>
+        <property name="partName" type="string">
+            <column length="50" name="part_name"/>
+        </property>
+        <property name="partNameId" type="string">
+            <column length="20" name="part_name_id"/>
+        </property>
+        <property name="partFullName" type="string">
+            <column length="1000" name="part_full_name"/>
+        </property>
+        <property name="storeLocationId" type="int">
+            <column name="store_location_id"/>
+        </property>
+        <property name="storeLocation" type="string">
+            <column length="100" name="store_location"/>
+        </property>
+        <property name="unit" type="string">
+            <column length="10" name="unit"/>
+        </property>
+        <property name="balaUnitPrice" type="big_decimal">
+            <column length="10" name="bala_unit_price" precision="10" scale="4"/>
+        </property>
+        <property name="paperQty" type="big_decimal">
+            <column length="10" name="paper_qty" precision="10" scale="2"/>
+        </property>
+        <property name="trueQty" type="big_decimal">
+            <column length="10" name="true_qty" precision="10" scale="2"/>
+        </property>
+        <property name="invtLossQty" type="big_decimal">
+            <column length="10" name="invt_loss_qty" precision="10" scale="2"/>
+        </property>
+        <property name="flag" type="short">
+            <column default="0" name="flag"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="100" name="remark"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.part.data.x_pts.PtsStockCheckMain" table="pts_stock_check_main">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="checkCode" type="string">
+            <column length="20" name="check_code" not-null="true"/>
+        </property>
+        <property name="storeId" type="int">
+            <column name="store_id" not-null="true"/>
+        </property>
+        <property name="checkName" type="string">
+            <column length="100" name="check_name"/>
+        </property>
+        <property name="helpMan" type="string">
+            <column length="20" name="help_man"/>
+        </property>
+        <property name="checker" type="string">
+            <column length="20" name="checker"/>
+        </property>
+        <property name="checkDate" type="date">
+            <column name="check_date"/>
+        </property>
+        <property name="auditor" type="string">
+            <column length="20" name="auditor"/>
+        </property>
+        <property name="auditDate" type="date">
+            <column name="audit_date"/>
+        </property>
+        <property name="auditStatus" type="short">
+            <column default="0" name="audit_status"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="100" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="date">
+            <column name="record_date"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="date">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.part.data.x_pts.PtsRepairOut" table="pts_repair_out">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="storeId" type="int">
+            <column name="store_id" not-null="true"/>
+        </property>
+        <property name="sourceId" type="int">
+            <column name="source_id"/>
+        </property>
+        <property name="rootId" type="int">
+            <column name="root_id"/>
+        </property>
+        <property name="serviceId" type="int">
+            <column name="service_id"/>
+        </property>
+        <property name="serviceCode" type="string">
+            <column length="20" name="service_code"/>
+        </property>
+        <property name="packageId" type="string">
+            <column length="20" name="package_id"/>
+        </property>
+        <property name="carId" type="int">
+            <column name="car_id"/>
+        </property>
+        <property name="carNo" type="string">
+            <column length="20" name="car_no"/>
+        </property>
+        <property name="vin" type="string">
+            <column length="20" name="vin"/>
+        </property>
+        <property name="partId" type="int">
+            <column name="part_id" not-null="true"/>
+        </property>
+        <property name="partCode" type="string">
+            <column length="50" name="part_code" not-null="true"/>
+        </property>
+        <property name="partName" type="string">
+            <column length="50" name="part_name" not-null="true"/>
+        </property>
+        <property name="partNameId" type="string">
+            <column length="20" name="part_name_id" not-null="true"/>
+        </property>
+        <property name="partFullName" type="string">
+            <column length="1000" name="part_full_name" not-null="true"/>
+        </property>
+        <property name="unit" type="string">
+            <column length="20" name="unit"/>
+        </property>
+        <property name="outQty" type="big_decimal">
+            <column default="0.00" length="10" name="out_qty" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="taxUnitPrice" type="big_decimal">
+            <column default="0.0000" length="10" name="tax_unit_price" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="taxAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="tax_amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="noTaxUnitPrice" type="big_decimal">
+            <column default="0.0000" length="10" name="no_tax_unit_price" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="noTaxAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="no_tax_amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="trueUnitPrice" type="big_decimal">
+            <column default="0.0000" length="10" name="true_unit_price" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="trueCost" type="big_decimal">
+            <column default="0.0000" length="10" name="true_cost" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="sellUnitPrice" type="big_decimal">
+            <column default="0.0000" length="10" name="sell_unit_price" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="sellAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="sell_amt" not-null="true" precision="10" scale="4"/>
+        </property>
+        <property name="auditor" type="string">
+            <column length="20" name="auditor"/>
+        </property>
+        <property name="auditSign" type="short">
+            <column name="audit_sign" not-null="true"/>
+        </property>
+        <property name="auditDate" type="date">
+            <column name="audit_date"/>
+        </property>
+        <property name="balaSign" type="short">
+            <column name="bala_sign"/>
+        </property>
+        <property name="balaDate" type="date">
+            <column name="bala_date"/>
+        </property>
+        <property name="pickMan" type="string">
+            <column length="20" name="pick_man"/>
+        </property>
+        <property name="pickDate" type="date">
+            <column name="pick_date"/>
+        </property>
+        <property name="pickType" type="string">
+            <column length="20" name="pick_type" not-null="true"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="100" name="remark"/>
+        </property>
+        <property name="returnSign" type="short">
+            <column name="return_sign"/>
+        </property>
+        <property name="returnMan" type="string">
+            <column length="20" name="return_man"/>
+        </property>
+        <property name="returnDate" type="date">
+            <column name="return_date"/>
+        </property>
+        <property name="returnReasonId" type="string">
+            <column length="20" name="return_reason_id"/>
+        </property>
+        <property name="returnRemark" type="string">
+            <column length="100" name="return_remark"/>
+        </property>
+        <property name="outReturnSign" type="short">
+            <column name="out_return_sign"/>
+        </property>
+        <property name="outReturnQty" type="big_decimal">
+            <column length="10" name="out_return_qty" precision="10" scale="2"/>
+        </property>
+        <property name="outNo" type="string">
+            <column length="20" name="out_no"/>
+        </property>
+        <property name="printNum" type="short">
+            <column default="0" name="print_num"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="date">
+            <column name="record_date" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

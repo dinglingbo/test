@@ -1,0 +1,50 @@
+<map>
+  <entry>
+    <string>com.hsapi.frm.frmService.rpinterface.rpSettle(Long, String, String, Long, Int, Float, Date, Int, String, String, String, String, String, com.hsapi.frm.data.fis.FisRpBill[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;rpSettle&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;rpSettle&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.frmService.rpinterface.rpSettle&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;GuestId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;GuestName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;ServiceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;BillMainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;BillTypeId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;BillAmt(Float):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;operateDate(Date):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dc(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;remark(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;BillTypeCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carNo(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carVin(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rpAdd(com.hsapi.frm.data.fis.FisRpBill[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.frmService.rpinterface.reverseAccount(Int, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;reverseAccount&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;reverseAccount&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.frmService.rpinterface.reverseAccount&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;billMainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billServiceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billTypeId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;remark(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.frmService.rpinterface.reverseRepair(Int, Float)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;reverseRepair&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;reverseRepair&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.frmService.rpinterface.reverseRepair&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;cardPayAmt(Float):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.frmService.rpinterface.generateRpBill(com.hsapi.frm.data.fis.FisRpBill[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateRpBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveInitRpBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.frmService.rpinterface.generateRpBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpAdd(com.hsapi.frm.data.fis.FisRpBill[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.frmService.rpinterface.getFisRpAdvance(Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getFisRpAdvance&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getFisRpAdvance&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.frmService.rpinterface.getFisRpAdvance&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;codeId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billTypeId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fisRpAdvanceList(com.hsapi.frm.data.fis.FisRpAdvance[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.frmService.rpinterface.delBillAdvance(Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;delBillAdvance&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;delBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.frmService.rpinterface.delBillAdvance&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;billMainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billServiceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.frmService.rpinterface.billSettle(com.hsapi.frm.data.fis.FisRpBill, com.hsapi.frm.data.fis.FisRpAccount, com.hsapi.frm.data.fis.FisRpAccountDType[], com.hsapi.frm.data.fis.FisRpAccountDetail[], com.hsapi.frm.data.fis.FisRpBill[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;billSettle&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;repairSettle&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.frmService.rpinterface.billSettle&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;fisRpBill(com.hsapi.frm.data.fis.FisRpBill):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fisRpAccount(com.hsapi.frm.data.fis.FisRpAccount):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fisRpAccountDType(com.hsapi.frm.data.fis.FisRpAccountDType[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fisRpAccountDetial(com.hsapi.frm.data.fis.FisRpAccountDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;rpAdd(com.hsapi.frm.data.fis.FisRpBill[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.frmService.rpinterface.delFisRpBillByServiceId(Int, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;delFisRpBillByServiceId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;delFisRpBillByServiceId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.frmService.rpinterface.delFisRpBillByServiceId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;billMainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billServiceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billTypeId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.frmService.rpinterface.fisRpBillIsSettle(Int, Int, String, String, java.util.HashMap, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;fisRpBillIsSettle&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;fisRpBillIsSettle&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.frmService.rpinterface.fisRpBillIsSettle&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;billMainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;type(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billTypeId(String):&lt;/b&gt;业务类型&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billServiceId(String):&lt;/b&gt;工单号&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;paramsyk(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.frmService.rpinterface.testExpand(com.hsapi.frm.data.fis.FisRpBill)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;testExpand&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;testExpand&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.frmService.rpinterface.testExpand&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;fisRpBill(com.hsapi.frm.data.fis.FisRpBill):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.frmService.rpinterface.rpSBillDouble(com.hsapi.frm.data.fis.FisRpBill[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;rpSBillDouble&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;rpSettle&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.frmService.rpinterface.rpSBillDouble&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.frm.data.fis.FisRpBill[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>rpinterface</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;rpinterface.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;rpinterface&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.frmService.rpinterface&lt;/html&gt;</string>
+  </entry>
+</map>

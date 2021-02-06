@@ -1320,7 +1320,8 @@
 		on a.main_id = b.id 
 		inner join (SELECT a.order_detail_id, a.order_main_id, b.code, 
 					 sum(a.tax_amt) as taxAmt, sum(a.no_tax_amt) as noTaxAmt, 
-					 sum(a.enter_amt) as enterAmt, sum(a.exp_enter_amt) as expEnterAmt
+					 sum(a.enter_amt) as enterAmt, sum(a.exp_enter_amt) as expEnterAmt,
+					 sum(a.tax_cost_amt) as taxCostAmt 
 		from pj_out_detail_chk a
 		inner join pj_out_main_chk b
 		on a.main_id = b.id
@@ -1330,7 +1331,9 @@
 		set a.order_amt = c.enterAmt, a.tax_amt = c.taxAmt, a.no_tax_amt = c.noTaxAmt,
 				a.order_price = c.enterAmt/a.accept_qty, a.tax_price = c.taxAmt/a.accept_qty,
 				a.no_tax_price = c.noTaxAmt/a.accept_qty, a.exp_enter_amt = c.expEnterAmt, 
-		    a.exp_enter_price = c.expEnterAmt/a.accept_qty
+		    a.exp_enter_price = c.expEnterAmt/a.accept_qty,
+		    a.tax_cost_amt = c.taxCostAmt,
+		    a.tax_cost_price = c.taxCostAmt/a.accept_qty
 		where a.main_id = #acceptMainId#
 		
 	</update>
@@ -1501,6 +1504,12 @@
 			a.sell_price as sellPrice,
 			a.exp_enter_price as expEnterPrice,
 			a.exp_enter_amt as expEnterAmt,
+			a.tax_cost_price as taxCostPrice,  
+			a.tax_cost_amt as taxCostAmt,  
+			a.no_tax_cost_price as noTaxCostPrice,  
+			a.no_tax_cost_amt as noTaxCostAmt, 
+			a.set_cost_price as setCostPrice,
+			a.set_cost_amt as setCostAmt,
 			d.id as guestOrderDetailid,
 			d.order_qty as orderQty,
 			d.order_price as orderPrice,
@@ -1569,6 +1578,12 @@
 			a.sell_price as sellPrice,
 			a.exp_enter_price as expEnterPrice,
 			a.exp_enter_amt as expEnterAmt,
+			a.tax_cost_price as taxCostPrice,  
+			a.tax_cost_amt as taxCostAmt,  
+			a.no_tax_cost_price as noTaxCostPrice,
+			a.no_tax_cost_amt as noTaxCostAmt,
+			a.set_cost_price as setCostPrice,
+			a.set_cost_amt as setCostAmt,
 			d.id as guestOrderDetailid,
 			d.order_qty as orderQty,
 			d.order_price as orderPrice,
@@ -1634,7 +1649,11 @@
 			a.origin_id as originId,
 			a.origin_guest_id as originGuestId,
 			a.exp_enter_price as expEnterPrice,
-			a.exp_enter_amt as expEnterAmt
+			a.exp_enter_amt as expEnterAmt,
+			a.tax_cost_price as taxCostPrice,  
+			a.tax_cost_amt as taxCostAmt,
+			a.no_tax_cost_price as noTaxCostPrice,  
+			a.no_tax_cost_amt as noTaxCostAmt
 		from pj_out_detail_chk a
 			inner join pj_out_main_chk b
 			on a.main_id = b.id
@@ -1689,7 +1708,11 @@
 			a.origin_id as originId,
 			a.origin_guest_id as originGuestId,
 			a.exp_enter_price as expEnterPrice,
-			a.exp_enter_amt as expEnterAmt
+			a.exp_enter_amt as expEnterAmt,
+			a.tax_cost_price as taxCostPrice,  
+			a.tax_cost_amt as taxCostAmt,
+			a.no_tax_cost_price as noTaxCostPrice,  
+			a.no_tax_cost_amt as noTaxCostAmt
 		from pj_out_detail_chk a
 			inner join pj_out_main_chk b
 			on a.main_id = b.id
@@ -1749,7 +1772,11 @@
 			a.origin_id as originId,
 			a.origin_guest_id as originGuestId,
 			a.exp_enter_price as expEnterPrice,
-			a.exp_enter_amt as expEnterAmt
+			a.exp_enter_amt as expEnterAmt,
+			a.tax_cost_price as taxCostPrice,  
+			a.tax_cost_amt as taxCostAmt,
+			a.no_tax_cost_price as noTaxCostPrice,  
+			a.no_tax_cost_amt as noTaxCostAmt
 		from pj_out_detail_chk a
 			inner join pj_out_main_chk b
 			on a.main_id = b.id

@@ -1,0 +1,168 @@
+<map>
+  <entry>
+    <string>com.hs.kinginterface.KingAccountInterface.addInternalTransfer(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Double, commonj.sdo.DataObject[], java.lang.Integer)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hs.kinginterface.KingAccountInterface.addInternalTransfer(String serviceNo, String title, String bookId, String date, String year, String month, String day, Double amt, DataObject[] data, Integer type)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingAccountInterface.addPackExpense(java.lang.Integer, java.lang.Long, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Double)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hs.kinginterface.KingAccountInterface.addPackExpense(Integer packType, Long packMainId, String serviceNo, String bookId, String date, String year, String month, String day, String guestId, String guestName, Double amt)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 打包发货费用登记 &#x0D;
+年-月-日付XXX供应商什么费用多少金额（例：2020-06-04付铜陵智远之星汽车服务有限公司物流费用5789.65）&#x0D;
+d	6601.05.02	销售费用-销售运费&#x0D;
+c	2241.02	其他应付款_供应商往来&#x0D;
+	&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingAccountInterface.addStockCheckProfit(java.lang.Long, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Double, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hs.kinginterface.KingAccountInterface.addStockCheckProfit(Long enterMainId, String serviceNo, String bookId, String date, String year, String month, String day, Double orderAmt, String storeName)&lt;/b&gt;&lt;br/&gt;&lt;p&gt;           年-月-日XXX仓库盘盈多少金额（例：2020-10-31杭州蓝都库盘盈322721.31）单据的金额&#x0D;
+  d	1405	库存商品&#x0D;
+c	1901.02	待处理财产损溢_库存盘点&#x0D;
+	&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingAccountInterface.addSettleOther(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Integer, java.lang.String, java.lang.String, commonj.sdo.DataObject[], commonj.sdo.DataObject[], java.lang.Double)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hs.kinginterface.KingAccountInterface.addSettleOther(String serviceNo, String bookId, String date, String year, String month, String day, Integer dc, String guestId, String guestName, DataObject[] accountDetail, DataObject[] detail, Double amt)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingAccountInterface.addPurchase(java.lang.Long, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String, java.lang.Double, java.lang.Double)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hs.kinginterface.KingAccountInterface.addPurchase(Long enterMainId, String serviceNo, String orderServiceNo, String bookId, String date, String year, String month, String day, Integer orderType, Integer taxSign, String supplierId, String guestName, Double expenseAmt, Double orderAmt)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 采购入库&#x0D;
+ FAccountBookID 账簿   日期  年  月&#x0D;
+  String fEXPLANATION 摘要, Double amt 商品金额, Double taxAmt 进项税额, Double payAmt 应付款&#x0D;
+  order_type 订单类型 ：1常规订单，2备货订单，3急件订单&#x0D;
+  expenseAmt 费用金额   orderAmt采购金额&#x0D;
+  &#x0D;
+  年-月-日从XXX采购入库多少金额（例：2020-06-04从北京新华奥商贸有限责任公司采购入库5789.65）单据的金额&#x0D;
+  &#x0D;
+  采购入库-常规订单和备货订单&#x0D;
+  d	1405	库存商品	部门&#x0D;
+d	2221.01.01	应交税费_应交增值税_进项税额	部门&#x0D;
+c	2202.02	应付账款_明细应付款	供应商+部门&#x0D;
+c	2241.02	其他应付款	供应商(物流公司)+部门&#x0D;
+采购入库-急件订单&#x0D;
+d	1405	库存商品&#x0D;
+d	6601.05.01	销售费用-采购运费&#x0D;
+d	2221.01.01	应交税费_应交增值税_进项税额&#x0D;
+c	2202.02	应付账款_明细应付款&#x0D;
+c	2241.02	其他应付款&#x0D;
+&#x0D;
+	&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingAccountInterface.addSellRtn(java.lang.Long, java.lang.Long, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Integer, java.lang.String, java.lang.String, java.lang.Double)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hs.kinginterface.KingAccountInterface.addSellRtn(Long orderMainId, Long outMainId, String serviceNo, String bookId, String date, String year, String month, String day, String orderTypeAccountCode, Integer taxSign, String clientId, String guestName, Double orderAmt)&lt;/b&gt;&lt;br/&gt;&lt;p&gt;           年-月-日销售给XXX多少金额（例：2020-06-04销售给铜陵智远之星汽车服务有限公司5789.65）单据的金额&#x0D;
+           orderTypeAccountCode 销售类型在金蝶中对应的科目编码&#x0D;
+  d	1122	应收账款&#x0D;
+d	6601.29.01	销售费用-销售优惠-开单差异额&#x0D;
+d	6601.29.02	销售费用-销售优惠-结算单位返点&#x0D;
+d	6601.29.03	销售费用-销售优惠-销售类型返点&#x0D;
+c	6001.01	主营业务收入&#x0D;
+c	2221.01.02	应交税费_应交增值税_销项税额&#x0D;
+c	2241.06.01	其他应付款-销售优惠-开单差异额&#x0D;
+c	2241.06.02	其他应付款-销售优惠-结算单位返点&#x0D;
+c	2241.06.03.01	其他应付款-销售优惠-销售类型返点-正常销售&#x0D;
+c	2241.06.03.02	其他应付款-销售优惠-销售类型返点-保险业务&#x0D;
+c	2241.06.03.03	其他应付款-销售优惠-销售类型返点-开思平台&#x0D;
+c	2241.06.03.04	其他应付款-销售优惠-销售类型返点-创配平台（平安）&#x0D;
+c	2241.06.03.05	其他应付款-销售优惠-销售类型返点-驾安配平台（人保）&#x0D;
+c	2241.06.03.06	其他应付款-销售优惠-销售类型返点-商铺开思平台&#x0D;
+d	6401.01	主营业务成本&#x0D;
+c	1405	库存商品&#x0D;
+&#x0D;
+ &#x0D;
+	&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingAccountInterface.addBillExpense(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, commonj.sdo.DataObject[], java.lang.Double)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hs.kinginterface.KingAccountInterface.addBillExpense(String serviceNo, String bookId, String date, String year, String month, String day, String guestId, String guestName, DataObject[] accountDetail, Double amt)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingAccountInterface.deleteVoucher(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;boolean com.hs.kinginterface.KingAccountInterface.deleteVoucher(String id)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 删除凭证&#x0D;
+&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingAccountInterface.addAdvanceRtn(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Integer, java.lang.String, java.lang.String, java.lang.Double, commonj.sdo.DataObject[])</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hs.kinginterface.KingAccountInterface.addAdvanceRtn(String serviceNo, String bookId, String date, String year, String month, String day, Integer dc, String guestId, String guestName, Double amt, DataObject[] data)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingAccountInterface.reloadVoucher(int, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hs.kinginterface.KingAccountInterface.reloadVoucher(int type, String jsonStr)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingAccountInterface.addSettle(java.lang.String, java.lang.String, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Integer, java.lang.String, java.lang.String, commonj.sdo.DataObject[], java.lang.Double)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hs.kinginterface.KingAccountInterface.addSettle(String serviceNo, String bookId, boolean isAdvance, String date, String year, String month, String day, Integer dc, String guestId, String guestName, DataObject[] data, Double amt)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingAccountInterface.addSell(java.lang.Long, java.lang.Long, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Integer, java.lang.String, java.lang.String, java.lang.Double)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hs.kinginterface.KingAccountInterface.addSell(Long orderMainId, Long outMainId, String serviceNo, String bookId, String date, String year, String month, String day, String orderTypeAccountCode, Integer taxSign, String clientId, String guestName, Double orderAmt)&lt;/b&gt;&lt;br/&gt;&lt;p&gt;           年-月-日销售给XXX多少金额（例：2020-06-04销售给铜陵智远之星汽车服务有限公司5789.65）单据的金额&#x0D;
+           orderTypeAccountCode 销售类型在金蝶中对应的科目编码&#x0D;
+  d	1122	应收账款&#x0D;
+d	6601.29.01	销售费用-销售优惠-开单差异额&#x0D;
+d	6601.29.02	销售费用-销售优惠-结算单位返点&#x0D;
+d	6601.29.03	销售费用-销售优惠-销售类型返点&#x0D;
+c	6001.01	主营业务收入&#x0D;
+c	2221.01.02	应交税费_应交增值税_销项税额&#x0D;
+c	2241.06.01	其他应付款-销售优惠-开单差异额&#x0D;
+c	2241.06.02	其他应付款-销售优惠-结算单位返点&#x0D;
+c	2241.06.03.01	其他应付款-销售优惠-销售类型返点-正常销售&#x0D;
+c	2241.06.03.02	其他应付款-销售优惠-销售类型返点-保险业务&#x0D;
+c	2241.06.03.03	其他应付款-销售优惠-销售类型返点-开思平台&#x0D;
+c	2241.06.03.04	其他应付款-销售优惠-销售类型返点-创配平台（平安）&#x0D;
+c	2241.06.03.05	其他应付款-销售优惠-销售类型返点-驾安配平台（人保）&#x0D;
+c	2241.06.03.06	其他应付款-销售优惠-销售类型返点-商铺开思平台&#x0D;
+d	6401.01	主营业务成本&#x0D;
+c	1405	库存商品&#x0D;
+&#x0D;
+ &#x0D;
+	&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingAccountInterface.addAdvance(java.lang.Long, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Integer, java.lang.String, java.lang.String, java.lang.Double, commonj.sdo.DataObject[])</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hs.kinginterface.KingAccountInterface.addAdvance(Long mainId, String serviceNo, String bookId, String date, String year, String month, String day, Integer dc, String guestId, String guestName, Double amt, DataObject[] data)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>KingAccountInterface [金塔凭证接口对接]</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.hs.kinginterface.KingAccountInterface&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &lt;dl&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;dlb&lt;/dd&gt;&lt;dt&gt;@date&lt;/dt&gt;&lt;dd&gt;2020-06-01 09:25:12&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingAccountInterface.addStockCheckLoss(java.lang.Long, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Double, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hs.kinginterface.KingAccountInterface.addStockCheckLoss(Long outMainId, String serviceNo, String bookId, String date, String year, String month, String day, Double orderAmt, String storeName)&lt;/b&gt;&lt;br/&gt;&lt;p&gt;           年-月-日XXX仓库盘亏多少金额（例：2020-10-31杭州蓝都库盘亏322721.31）单据的金额&#x0D;
+  d	1405	库存商品&#x0D;
+c	1901.02	待处理财产损溢_库存盘点&#x0D;
+	&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingAccountInterface.addStockShift(java.lang.Long, java.lang.Long, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Double, java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hs.kinginterface.KingAccountInterface.addStockShift(Long outMainId, Long enterMainId, String serviceNo, String bookId, String date, String year, String month, String day, Double orderAmt, String storeName, String receiveStoreName)&lt;/b&gt;&lt;br/&gt;&lt;p&gt;           年-月-日从XXX库移仓到XXX库多少金额（例：2020-10-31从杭州蓝都库移仓到南京库322721.31）单据的金额&#x0D;
+  d	1405	库存商品&#x0D;
+c	1405	库存商品 &#x0D;
+	&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingAccountInterface.addPurchaseRtn(java.lang.Long, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Double, java.lang.Integer, java.lang.Double)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hs.kinginterface.KingAccountInterface.addPurchaseRtn(Long pchsRtnMainId, String serviceNo, String bookId, String date, String year, String month, String day, String supplierId, String guestName, Double orderAmt, Integer taxSign, Double taxRate)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 采购退货&#x0D;
+ FAccountBookID 账簿   日期  年  月&#x0D;
+  String fEXPLANATION 摘要, Double amt 商品金额, Double taxAmt 进项税额, Double payAmt 应付款&#x0D;
+  orderAmt采购退货金额&#x0D;
+  &#x0D;
+  年-月-日从XXX采购退货多少金额（例：2020-06-04从北京新华奥商贸有限责任公司采购退货5789.65）单据的金额&#x0D;
+  &#x0D;
+  采购退货-常规订单和备货订单&#x0D;
+  d	1405	库存商品&#x0D;
+d	2221.01.01	应交税费_应交增值税_进项税额&#x0D;
+d	6601.05.01	销售运费-采购运费&#x0D;
+c	2202.02	应付账款_明细应付款&#x0D;
+采购退货-急件订单&#x0D;
+d	1405	库存商品&#x0D;
+d	2221.01.01	应交税费_应交增值税_进项税额&#x0D;
+c	2202.02	应付账款_明细应付款&#x0D;
+退货金额和成本差异&#x0D;
+d	1901.01 待处理财产损溢_采购退货成本差异&#x0D;
+d	2221.01.01	应交税费_应交增值税_进项税额&#x0D;
+c	2202.02	应付账款_明细应付款&#x0D;
+	&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingAccountInterface.addRtn(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Integer, java.lang.String, java.lang.String, java.lang.Double, commonj.sdo.DataObject[])</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hs.kinginterface.KingAccountInterface.addRtn(String serviceNo, String bookId, String date, String year, String month, String day, Integer dc, String guestId, String guestName, Double amt, DataObject[] data)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

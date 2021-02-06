@@ -45,6 +45,7 @@
 		       a.is_disabled isDisabled,
 		       a.is_host isHost,
 		       a.common_id as commonId,
+		       a.org_car_brand_id as orgCarBrandId,
 		       b.`name` as partBrandName
         FROM com_attribute a
         INNER JOIN com_part_brand b on a.part_brand_id =b.id
@@ -56,6 +57,9 @@
             <isNotEmpty prepend="and" property="tenantId">  
                 (a.tenant_id = #tenantId# or a.orgid = 0)
             </isNotEmpty>
+    		<isNotEmpty prepend="and" property="orgCarBrandId">  
+                (a.org_car_brand_id = #orgCarBrandId#)
+            </isNotEmpty>
     		<isNotEmpty prepend="and" property="isDisabled">  
                 (a.is_disabled = #isDisabled#)
             </isNotEmpty>
@@ -63,7 +67,7 @@
                 (a.common_id = #commonId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="commonIds">  
-               (a.common_id in ($commonIds$))
+               (a.common_id in ($commonIds$) and a.common_id != 0)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="partBrandId">  
                 (a.PART_BRAND_ID = #partBrandId#)
@@ -167,7 +171,9 @@
 		       a.record_date           recordDate,
 		       a.modifier              modifier,
 		       a.modify_date           modifyDate,
-		       a.is_need_pack          isNeedPack
+		       a.is_need_pack          isNeedPack,
+		       a.emp_id as empId,
+		       a.emp_name as empName
 		       FROM com_guest a
 		       WHERE 1 = 1 
 		       <!-- 汽配不共享 -->
@@ -176,6 +182,9 @@
     	<dynamic>	
     		<isNotEmpty prepend="and" property="tenantId">  
                 (a.tenant_id = #tenantId#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="id">  
+                (a.id = #id#)
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="orgid">  
                 (a.orgid = #orgid#)
@@ -234,6 +243,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="name">  
                 (a.full_name like '%$name$%' or a.short_name like '%$name$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="pyName">  
+                (a.py_name like '%$pyName$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="pny">  
                 (a.full_name like '%$pny$%' or a.short_name like '%$pny$%' or a.code like '%$pny$%' or a.py_name like '%$pny$%')
@@ -305,12 +317,18 @@
 		       a.is_need_pack          isNeedPack,
 		       a.default_logistics_id  defaultLogisticsId,
 		       a.default_logistics     defaultLogistics,
-		       a.return_rate returnRate
+		       a.return_rate returnRate,
+		       a.business_type_id businessTypeId,
+		       a.emp_id as empId,
+		       a.emp_name as empName
 		       FROM com_guest a
 		       WHERE a.is_client = 1  
 		       <!-- 汽配客户不共享-->
 		 
     	<dynamic>
+    		<isNotEmpty prepend="and" property="id">  
+                (a.id = #id#)
+            </isNotEmpty>
     		<isNotEmpty prepend="and" property="tenantId">  
                 (a.tenant_id = #tenantId#)
             </isNotEmpty>
@@ -427,7 +445,7 @@
                 (c.full_name like '%$fullName$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="queryCode">  
-                (c.query_code like '%$queryCode$%' or c.code like '%$partCode$%')
+                (c.query_code like '%$queryCode$%' or c.code like '%$queryCode$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="partBrandId">  
                 (c.part_brand_id = #partBrandId#)
@@ -476,6 +494,9 @@
             <isNotEmpty prepend="and" property="namePy">  
                 (c.name_py like '%$namePy$%')
             </isNotEmpty>
+             <isNotEmpty prepend="and" property="partIdList">
+            	(a.part_id in ($partIdList$))
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="sortField">  
                 $sortField$ $sortOrder$
             </isNotEmpty>  
@@ -507,7 +528,7 @@
                 (c.full_name like '%$fullName$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="queryCode">  
-                (c.query_code like '%$queryCode$%' or c.code like '%$partCode$%')
+                (c.query_code like '%$queryCode$%' or c.code like '%$queryCode$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="partBrandId">  
                 (c.part_brand_id = #partBrandId#)
@@ -524,6 +545,7 @@
     <!--查询云配件资料 查询本地配件资料-->
     <select id="queryPartListByOrgid" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.com.ComAttribute">
     	SELECT a.id ID,
+    	       a.org_car_brand_id as orgCarBrandId,
 		       a.code CODE,
 		       a.name NAME,
 		       a.full_name fullName,
@@ -566,7 +588,9 @@
 		       a.cang_part_id as cangPartId,
 		       a.origin as origin,
 		       a.custom_class_id as customClassId,
-		       a.custom_class_name as customClassName	       
+		       a.custom_class_name as customClassName,
+		       a.property1 as property1,
+		       a.property2 as property2    
         FROM com_attribute a
         where 1 = 1
     	<dynamic>
@@ -578,6 +602,12 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="orgids">  
                 (a.orgid = #orgids# or a.orgid = 0)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgCarBrandId">  
+                (a.org_car_brand_id = #orgCarBrandId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partBrandId">  
+                (a.part_brand_id = #partBrandId#)
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="isDisabled">  
                 (a.is_disabled = #isDisabled#)
@@ -611,6 +641,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="commonCode">  
                 (a.common_code = #commonCode#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partId">  
+                (a.id = #partId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">
             	(a.code in ($partCodeList$))
@@ -705,7 +738,8 @@
 			 a.modify_date           modifyDate,
 		     a.default_logistics_id as defaultLogisticsId,
 		     a.default_logistics as defaultLogistics,
-		     a.is_need_pack          isNeedPack
+		     a.is_need_pack          isNeedPack,
+		     a.business_type_id      businessTypeId
 		FROM com_guest a
 		WHERE 1 = 1
     	<dynamic>
@@ -724,6 +758,10 @@
             
             <isNotEmpty prepend="and" property="guestType">  
                 (guest_type = #guestType#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="businessTypeId">  
+                (a.business_type_id = #businessTypeId#)
             </isNotEmpty>
     		
     		<isNotEmpty prepend="and" property="isInternal">  
@@ -749,6 +787,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="memCarNo">  
                 (mem_car_no like '%$memCarNo$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestFullName">  
+                (full_name = #guestFullName#)
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="fullName">  
                 (full_name like '%$fullName$%')
@@ -1078,6 +1119,26 @@
             </isNotEmpty>
         </dynamic>
 	</select>
+	
+	<!--用于界面显示仓库-->
+    <select id="queryStore" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id as id,
+			a.tenant_id as tenantId,
+			a.orgid as orgid,
+			a.`name` as name
+		FROM
+		com_store a
+		WHERE a.is_disabled = 0
+			<dynamic>
+	            <isNotEmpty prepend="and" property="orgid">
+	            	(a.orgid = #orgid#)
+	            </isNotEmpty>
+	            <isNotEmpty prepend="and" property="tenantId">
+	            	(a.tenant_id = #tenantId#)
+	            </isNotEmpty>
+	        </dynamic>
+    </select> 
 	
 <!-- <update id="updateStockSet" resultMap="Select" parameterClass="list">  
 	   begin  

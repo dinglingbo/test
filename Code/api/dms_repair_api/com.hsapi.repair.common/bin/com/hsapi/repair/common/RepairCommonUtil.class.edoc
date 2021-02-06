@@ -1,0 +1,22 @@
+<map>
+  <entry>
+    <string>com.hsapi.repair.common.RepairCommonUtil.getShortPyWithoutSpace(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hsapi.repair.common.RepairCommonUtil.getShortPyWithoutSpace(String text)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.common.RepairCommonUtil.putDataObjectToMap(java.util.HashMap&lt;java.lang.String,commonj.sdo.DataObject&gt;, java.lang.String, commonj.sdo.DataObject)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap&lt;String,DataObject&gt; com.hsapi.repair.common.RepairCommonUtil.putDataObjectToMap(HashMap&lt;String,DataObject&gt; map, String key, DataObject data)&lt;/b&gt;&lt;br/&gt;&lt;p&gt;putDataObjectToMap&lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;map&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;key&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data&lt;/b&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.common.RepairCommonUtil.getPyWithoutSpace(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hsapi.repair.common.RepairCommonUtil.getPyWithoutSpace(String text)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.common.RepairCommonUtil.getDataObjectFromMap(java.util.HashMap&lt;java.lang.String,commonj.sdo.DataObject&gt;, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.hsapi.repair.common.RepairCommonUtil.getDataObjectFromMap(HashMap&lt;String,DataObject&gt; map, String key)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>RepairCommonUtil</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.hsapi.repair.common.RepairCommonUtil&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &lt;dl&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;chenziming&lt;/dd&gt;&lt;dt&gt;@date&lt;/dt&gt;&lt;dd&gt;2018-02-28 20:06:56&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

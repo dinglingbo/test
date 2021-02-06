@@ -1,0 +1,50 @@
+<map>
+  <entry>
+    <string>com.hs.common.uniq.seqs(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;seqs&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;seqs&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uniq.seqs&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;seqName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dbName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;seq(Long):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uniq.getTreeNO(String, Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getTreeNO&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;execEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uniq.getTreeNO&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;treeType(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;treeNo(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billrecords(com.hs.common.com.ComTreeNo[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uniq.maxId(String, Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;maxId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;maxId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uniq.maxId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;tableName(String):&lt;/b&gt;表名&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;len(Int):&lt;/b&gt;是否固定长度&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;field(String):&lt;/b&gt;字段名&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uniq.getTempGuestByTenantId(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getTempGuestByTenantId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getGuestById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uniq.getTempGuestByTenantId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guest(com.hs.common.com.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;contactor(com.hs.common.com.RpbContactor):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>uniq</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;uniq.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;uniq&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uniq&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uniq.upDatePrimaryKey(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;upDatePrimaryKey&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;maxId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uniq.upDatePrimaryKey&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;name(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;value(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uniq.getKingAccountNO(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getKingAccountNO&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;execEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uniq.getKingAccountNO&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orgid(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;no(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uniq.getCompBillNO(String, Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCompBillNO&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;execEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uniq.getCompBillNO&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;billTypeCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceno(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billrecords(com.hs.common.com.ComBillRecord[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uniq.getGuestByInternalId(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getGuestByInternalId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getGuestById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uniq.getGuestByInternalId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guest(com.hs.common.com.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uniq.getPrimaryKey(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPrimaryKey&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;maxId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uniq.getPrimaryKey&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;entityName(String):&lt;/b&gt;实体名&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(commonj.sdo.DataObject):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uniq.getCompBillNOBak(String, Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCompBillNOBak&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;execEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uniq.getCompBillNOBak&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;billTypeCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceno(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billrecords(com.hs.common.com.ComBillRecord[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.uniq.getBusinessId(String, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getBusinessId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getBusinessServiceID&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.uniq.getBusinessId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;prefix(String):&lt;/b&gt;前缀3位&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;len(Int):&lt;/b&gt;长度&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;flowID(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

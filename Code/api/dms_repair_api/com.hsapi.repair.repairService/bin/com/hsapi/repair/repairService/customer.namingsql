@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.repair.repairService.customer">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <!--
+    	LEFT  JOIN rpb_contactor d ON b.id=d.guest_id
+    	活跃期（ 近三个月内有消费）、稳定期（ 近三个月无消费、近6个月有消费）、
+                    睡眠期（ 近6个月无消费、近1个月有消费）、流失期（ 1年以上无消费）、未分类（无消费历史）
+    -->
+    <select id="queryCustomerList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id id,
+			a.is_disabled isDisabled,
+			b.orgid orgid,
+			a.car_no carNo,
+			b.id as guestId,
+			a.vin vin,
+			b.full_name guestFullName,
+			a.car_model_id carModelId,
+			a.car_model carModel,
+			a.car_model_full_name as carModelFullName,
+			a.car_brand_id carBrandId,
+			a.engine_no engineNo,
+			a.annual_inspection_date annualInspectionDate,
+			a.annual_verification_due_date annualVerificationDueDate,
+			a.insure_comp_code insureCompCode,
+			a.insure_comp_name insureCompName,
+			a.insure_due_date insureDueDate,
+			b.addr addr,
+			c.last_come_date lastComeDate,
+			c.last_leave_date lastLeaveDate,
+			a.recorder recorder,
+			a.record_date recordDate,
+			a.produce_date produceDate,
+			a.color color,
+			c.chain_come_times chainComeTimes,
+			b.mobile mobile,
+			c.mt_advisor_name mtAdvisorName,
+			b.tgrade tgrade,
+			ifnull( DATEDIFF( now( ), c.last_leave_date ), 0 ) leaveDay
+		FROM
+			wb_common.com_guest b
+		left JOIN rpb_car a ON (a.guest_id = b.id)
+		LEFT  JOIN rpb_car_extend c ON a.id=c.car_id
+		WHERE
+			b.guest_type = '01020103' 
+		<dynamic>
+            <isNotEmpty prepend="and" property="rechargeBalaAmtStar">exists(select 1 from wb_common.com_join_member d where d.guest_id = b.id   and  d.recharge_bala_amt &gt;= #rechargeBalaAmtStar#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="rechargeBalaAmtEnd">exists(select 1 from wb_common.com_join_member d where d.guest_id = b.id   and  d.recharge_bala_amt &lt;= #rechargeBalaAmtEnd#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="integralStar">exists(select 1 from wb_common.com_join_member d where d.guest_id = b.id   and  d.integral &gt;= #integralStar#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="integralEnd">exists(select 1 from wb_common.com_join_member d where d.guest_id = b.id   and  d.integral &lt;= #integralEnd#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="nature">exists(select 1 from wb_repair.rpb_contactor e where e.guest_id = b.id   and  e.nature  like '%$nature$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="tenantId">(b.tenant_id = #tenantId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgid">(b.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="lastOrgid">(c.last_orgid = #lastOrgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isDisabled">(a.is_disabled = #isDisabled# )</isNotEmpty>
+            <isNotEmpty prepend="and" property="recordStart">(a.record_date &gt;= #recordStart# )</isNotEmpty>
+            <isNotEmpty prepend="and" property="recordEnd">(a.record_date &lt;= #recordEnd# )</isNotEmpty>
+            <isNotEmpty prepend="and" property="carModelId">(a.car_model_id = #carModelId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAdvisorId">(C.mt_advisor_id = #mtAdvisorId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAdvisorName">(C.mt_advisor_name like '%$mtAdvisorName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestProperty">(b.guest_property = #guestProperty#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carBrandId">(a.car_brand_id = #carBrandId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">(a.car_no like '%$carNo$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">(b.mobile like '%$mobile$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="vin">(a.vin like '%$vin$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestFullName">(b.full_name like '%$guestFullName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestTypeId">(b.tgrade in #guestTypeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="chainConsumeAmtStar">(c.chain_consume_amt &gt;= #chainConsumeAmtStar# )</isNotEmpty>
+            <isNotEmpty prepend="and" property="chainConsumeAmtEnd">(c.chain_consume_amt &lt;= #chainConsumeAmtEnd# )</isNotEmpty>
+            <isNotEmpty prepend="and" property="chainComeTimesStar">(c.chain_come_times &gt;= #chainComeTimesStar# )</isNotEmpty>
+            <isNotEmpty prepend="and" property="chainComeTimesEnd">(c.chain_come_times &lt;= #chainComeTimesEnd# )</isNotEmpty>
+            <isNotEmpty prepend="and" property="annualVerificationDueDateStar">(a.annual_verification_due_date &gt;= #annualVerificationDueDateStar# )</isNotEmpty>
+            <isNotEmpty prepend="and" property="annualVerificationDueDateEnd">(a.annual_verification_due_date &lt;= #annualVerificationDueDateEnd# )</isNotEmpty>
+            <isNotEmpty prepend="and" property="annualInspectionDate">(a.annual_inspection_date &lt; #annualInspectionDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="annualInspectionDateStar">(a.annual_inspection_date &gt;= #annualInspectionDateStar# )</isNotEmpty>
+            <isNotEmpty prepend="and" property="annualInspectionDateEnd">(a.annual_inspection_date &lt;= #annualInspectionDateEnd# )</isNotEmpty>
+            <isNotEmpty prepend="and" property="insureDueDateStar">(a.insure_due_date &gt;= #insureDueDateStar# )</isNotEmpty>
+            <!--本日所有保险开单客户-->
+            <isNotEmpty prepend="and" property="insurance">exists(select 1 from wb_repair.rps_insurance_main d
+                     where b.id = d.guest_id and d.record_date &gt;= date_format(DATE_SUB(curdate(),INTERVAL 0 DAY),'%Y-%m-%d %H:%i:%s') )</isNotEmpty>
+            <isNotEmpty prepend="and" property="insureDueDateEnd">(a.insure_due_date &lt;= #insureDueDateEnd# )</isNotEmpty>
+            <isNotEmpty prepend="and" property="type">
+                <!-- 
+             		0全部、1活跃期（ 近三个月内有消费）、2稳定期（ 近三个月无消费、近6个月有消费）、
+                    3睡眠期（ 近6个月无消费、近1个月有消费）、4流失期（ 1年以上无消费）、5未分类（无消费历史）
+             	-->
+                <isEqual compareValue="1" prepend="and" property="type">and c.last_leave_date  &gt;= date_format(DATE_ADD(curdate(),interval -day(curdate())+1 day),'%Y-%m-%d %H:%i:%s')  
+                	and c.last_leave_date  &lt; date_format(date_add(curdate()-day(curdate())+1,interval 1 month),'%Y-%m-%d %H:%i:%s')</isEqual>
+            </isNotEmpty>
+            <!--本日来厂-->
+            <isEqual compareValue="1" property="todayEnter">AND c.last_come_date &gt;= date_format(DATE_SUB(curdate(),INTERVAL 0 DAY),'%Y-%m-%d %H:%i:%s')</isEqual>
+            <!--昨日来厂-->
+            <isEqual compareValue="1" property="yesterdayEnter">AND c.last_come_date &gt;= date_format(DATE_SUB(curdate(),INTERVAL 1 DAY),'%Y-%m-%d %H:%i:%s')  
+                    AND c.last_come_date &lt; date_format(DATE_SUB(curdate(),INTERVAL 0 DAY),'%Y-%m-%d %H:%i:%s')</isEqual>
+            <!--本日新客户-->
+            <isEqual compareValue="1" property="todayNew">AND c.last_come_date &gt;= date_format(DATE_SUB(curdate(),INTERVAL 0 DAY),'%Y-%m-%d %H:%i:%s')
+					 AND ifnull(c.chain_come_times,0) = 1</isEqual>
+            <!--本月新客户 -->
+            <isEqual compareValue="1" property="thisMonthNew">and c.last_come_date  &gt;= date_format(DATE_ADD(curdate(),interval -day(curdate())+1 day),'%Y-%m-%d %H:%i:%s')  
+                and c.last_come_date  &lt; date_format(date_add(curdate()-day(curdate())+1,interval 1 month),'%Y-%m-%d %H:%i:%s')
+                and ifnull(c.chain_come_times,0) = 1</isEqual>
+            <!--本月所有来厂客户 -->
+            <isEqual compareValue="1" property="thisMonthEnter">and c.last_come_date  &gt;= date_format(DATE_ADD(curdate(),interval -day(curdate())+1 day),'%Y-%m-%d %H:%i:%s')  
+                and c.last_come_date  &lt; date_format(date_add(curdate()-day(curdate())+1,interval 1 month),'%Y-%m-%d %H:%i:%s')</isEqual>
+            <!--最后来厂日期 -->
+            <isNotEmpty prepend="and" property="lastEnterStart">(c.last_come_date &gt;= #lastEnterStart#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="lastEnterEnd">(c.last_come_date &lt; #lastEnterEnd#)</isNotEmpty>
+            <!--第一次来厂日期 -->
+            <isNotEmpty prepend="and" property="firstEnterStart">(c.first_come_date &gt;= #firstEnterStart#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="firstEnterEnd">(c.first_come_date &lt; #firstEnterEnd#)</isNotEmpty>
+            <!--最后离厂日期 -->
+            <isNotEmpty prepend="and" property="lastOutStart">(c.last_leave_date &gt;= #lastOutStart#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="lastOutEnd">(c.last_leave_date &lt; #lastOutEnd#)</isNotEmpty>
+            <!--最后来厂日期 -->
+        </dynamic>
+        order by b.modify_date desc
+	</select>
+    <select id="wechatQueryCarByMobile" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			a.id id,
+			b.orgid orgid,
+			a.car_no carNo,
+			b.id as guestId,
+			a.vin vin,
+			b.full_name fullName,
+			a.car_model_id carModelId,
+			a.car_model_id_ly carModelIdLy,
+			a.car_model carModel,
+			a.car_model_full_name as carModelFullName,
+			a.car_brand_id carBrandId,
+			a.car_series_id carSeriesId
+		FROM
+			wb_common.com_guest b
+		LEFT JOIN rpb_car a ON (a.guest_id = b.id)
+		WHERE
+			b.guest_type = '01020103'
+			and b.mobile = #mobile#
+        order by b.modify_date desc</select>
+    <!--
+	
+	-->
+    <select id="queryCustomerWithContactList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT
+			a.id id,
+			a.id carId,
+			a.orgid orgid,
+			a.car_no carNo,
+			a.insure_comp_name insureCompName,
+			a.insure_no insureNo,
+			a.insure_due_date insureDueDate,
+			a.annual_inspection_comp_name annualInspectionCompName,
+			a.annual_inspection_no annualInspectionNo,
+			a.guest_id guestId,
+			a.car_model_full_name carModelFullName,
+			b.full_name guestFullName,
+			b.mobile as guestMobile,
+			a.car_model_id carModelId,
+			a.car_model carModel,
+			a.car_brand_id carBrandId,
+			a.car_model_id_ly as carModelIdLy,
+			a.engine_no engineNo,
+			a.annual_inspection_date annualInspectionDate,
+			a.annual_verification_due_date annualVerificationDueDate,
+			a.insure_comp_code insureCompCode,
+			b.addr addr,
+			a.recorder recorder,
+			a.record_date recordDate,
+			a.produce_date produceDate,
+			a.color color,
+			d.name contactName,
+			d.identity identity,
+			d.mobile mobile,
+			d.remark  remark,
+			d.tel tel,
+			d.id contactorId,
+			a.vin as vin,
+		    d.birthday_type as birthdayType,
+            d.birthday,
+            d.sex,
+            d.id_no as idNo,
+            d.wechat_open_id wechatOpenId
+		FROM
+			rpb_car a
+			inner join wb_common.com_guest b on (a.guest_id = b.id)
+			inner join rpb_contactor d on (b.id = d.guest_id)
+		WHERE
+			b.guest_type = '01020103'
+		<dynamic>
+            <isNotEmpty prepend="and" property="tenantId">(b.tenant_id = #tenantId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carId">(a.id = #carId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isDisabled">(a.is_disabled = #isDisabled#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgId">(b.orgid = #orgId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(b.id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="contactorId">(d.id = #contactorId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carId">(a.ID = #carId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">(a.car_no = #carNo#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="lcarNo">(a.car_no like '%$lcarNo$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="carModel">(a.car_model like '%$carModel$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="carVin">(a.vin like '%$carVin$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestMobile">(b.mobile = #guestMobile#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">(b.mobile like '%$mobile$%' or d.mobile like '%$mobile$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestFullName">(b.full_name like '%$guestFullName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="contactor">(d.name like '%$contactor$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="name">(b.full_name like '%$name$%' or d.name like '%$name$%')</isNotEmpty>
+            <!--纯数字  手机，车牌，车驾号-->
+            <isNotEmpty prepend="and" property="nums">(b.mobile like '%$nums$%' or d.mobile like '%$nums$%' or a.car_no like '%$nums$%' or a.vin like '%$nums$%')</isNotEmpty>
+            <!--纯字母   车牌，车驾号    数字+字母 车牌，车驾号-->
+            <isNotEmpty prepend="and" property="letters">(a.car_no like '%$letters$%' or a.vin like '%$letters$%')</isNotEmpty>
+            <!--包含中文   只按名称查询 -->
+            <isNotEmpty prepend="and" property="chis">(b.full_name like '%$chis$%' or d.name like '%$chis$%' or a.car_no like '%$chis$%')</isNotEmpty>
+        </dynamic>
+        order by b.modify_date desc
+	</select>
+    <!--
+		销售开单客户查询，只需要客户联系人，可以不要车辆信息
+	-->
+    <select id="querySellCustomerList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT
+			a.id id,
+			a.id carId,
+			a.orgid orgid,
+			a.car_no carNo,
+			b.id guestId,
+			a.car_model_full_name carModelFullName,
+			b.full_name guestFullName,
+			b.mobile as guestMobile,
+			a.car_model_id carModelId,
+			a.car_model carModel,
+			a.car_brand_id carBrandId,
+			a.car_model_id_ly as carModelIdLy,
+			a.insure_comp_code insureCompCode,
+			b.addr addr,
+			a.color color,
+			d.name contactName,
+			d.identity identity,
+			d.mobile mobile,
+			d.remark  remark,
+			d.tel tel,
+			d.id contactorId,
+			a.vin as vin,
+		    d.birthday_type as birthdayType,
+            d.birthday,
+            d.sex,
+            d.id_no as idNo,
+            d.wechat_open_id wechatOpenId
+		FROM
+			wb_common.com_guest b 
+			inner join rpb_contactor d on (b.id = d.guest_id)
+			left join rpb_car a on b.id = a.guest_id
+		WHERE
+			b.guest_type = '01020103'
+		<dynamic>
+            <isNotEmpty prepend="and" property="tenantId">(b.tenant_id = #tenantId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carId">(a.id = #carId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgId">(b.orgid = #orgId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(b.id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="contactorId">(d.id = #contactorId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carId">(a.ID = #carId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">(a.car_no = #carNo#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="lcarNo">(a.car_no like '%$lcarNo$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="carModel">(a.car_model like '%$carModel$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="carVin">(a.vin like '%$carVin$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestMobile">(b.mobile = #guestMobile#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">(b.mobile like '%$mobile$%' or d.mobile like '%$mobile$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestFullName">(b.full_name like '%$guestFullName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="contactor">(d.name like '%$contactor$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="name">(b.full_name like '%$name$%' or d.name like '%$name$%')</isNotEmpty>
+            <!--纯数字  手机，车牌，车驾号-->
+            <isNotEmpty prepend="and" property="nums">(b.mobile like '%$nums$%' or b.full_name like '%$nums$%' or d.mobile like '%$nums$%' or a.car_no like '%$nums$%' or a.vin like '%$nums$%')</isNotEmpty>
+            <!--纯字母   车牌，车驾号    数字+字母 车牌，车驾号-->
+            <isNotEmpty prepend="and" property="letters">(a.car_no like '%$letters$%' or b.full_name like '%$letters$%' or a.vin like '%$letters$%')</isNotEmpty>
+            <!--包含中文   只按名称查询 -->
+            <isNotEmpty prepend="and" property="chis">(b.full_name like '%$chis$%' or d.name like '%$chis$%')</isNotEmpty>
+        </dynamic>
+        order by b.modify_date desc
+	</select>
+    <!--保险开单 整车客户 -->
+    <select id="queryCustomerWithSALE" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+					SELECT
+			b.id contactorId,
+			b.tenant_id tenantId,
+			b.orgid,
+			b.guest_id guestId,
+			a.full_name guestFullName,
+			b.`name` contactName,
+			b.sex,
+			b.tel,
+			b.identity,
+			b.mobile ,
+			a.mobile guestMobile,
+			b.birthday_type birthdayType,
+			b.birthday,
+			b.marital_status maritalStatus,
+			b.buy_car_status buyCarStatus,
+			b.id_no idNo,
+			b.id_address idAddress,
+			b.trade,
+			b.duty,
+			b.source,
+			b.relationship,
+			b.special_care specialCare,
+			b.nature,
+			b.work_place workPlace,
+			b.scout_status scoutStatus,
+			b.this_scout_date thisScoutDate,
+			b.next_scout_date nextScoutDate,
+			b.sale_advisor_id saleAdvisorId,
+			b.sale_advisor saleAdvisor,
+			b.`status`,
+			b.is_disabled isDisabled,
+			b.remark,
+			b.recorder,
+			b.record_date recordDate,
+			b.modifier,
+			b.modify_date modifyDate,
+			c.enter_id enterId,
+			d.car_no carNo,
+			d.car_model_name carModel
+			FROM
+			wb_common.com_guest AS a 
+			INNER JOIN wb_sales.csb_contactor AS b ON a.id = b.guest_id
+			INNER JOIN wb_sales.css_sale_main AS c ON a.id = c.guest_id
+			INNER JOIN wb_sales.css_check_enter AS d ON c.enter_id = d.id
+		WHERE 1=1 and c.enter_id &gt; 0
+		<dynamic>
+            <isNotEmpty prepend="and" property="tenantId">(a.tenant_id = #tenantId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgId">(a.orgid = #orgId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(a.id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="contactorId">(b.id = #contactorId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestMobile">(a.mobile = #guestMobile#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">(b.mobile like '%$mobile$%' or a.mobile like '%$mobile$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestFullName">(b.name like '%$guestFullName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="contactor">(b.name like '%$contactor$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="name">(b.name like '%$name$%' or d.name like '%$name$%')</isNotEmpty>
+            <!--纯数字  手机，车牌，车驾号-->
+            <isNotEmpty prepend="and" property="nums">(a.mobile like '%$nums$%' or  b.mobile like '%$nums$%' )</isNotEmpty>
+            <!--纯字母   车牌，车驾号    数字+字母 车牌，车驾号-->
+            <isNotEmpty prepend="and" property="letters">( a.full_name like '%$letters$%' or b.name like '%$letters$%')</isNotEmpty>
+            <!--包含中文   只按名称查询 -->
+            <isNotEmpty prepend="and" property="chis">(a.full_name like '%$chis$%' or b.name like '%$chis$%')</isNotEmpty>
+        </dynamic>
+        order by a.modify_date desc
+	</select>
+    <select id="queryGuestList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT
+			a.orgid,
+			a.short_name shortName,
+			a.full_name fullName,
+			a. CODE CODE,
+			a.id id,
+			a.card_no cardNo,
+			a.py_name pyName,
+			a.guest_type guestType,
+			a.is_supplier isSupplier,
+			a.is_client isClient,
+			a.contactor contactor,
+			a.contactor_tel contactorTel,
+			a.manager manager,
+			a.manager_duty managerDuty,
+			a.province_id provinceId,
+			a.area_id areaId,
+			a.city_id cityId,
+			a.addr addr,
+			a.postal_code postalCode,
+			a.website website,
+			a.tel tel,
+			a.mobile mobile,
+			a.fax fax,
+			a.email email,
+			a.supplier_type supplierType,
+			a.advantage_carbrand_id advantageCarbrandId,
+			a.instant_msg instantMsg,
+			a.mem_car_no memCarNo,
+			a.taxpayer_code taxpayerCode,
+			a.taxpayer_name taxpayerName,
+			a.manage_addr manageAddr,
+			a.taxpayer_tel taxpayerTel,
+			a.account_bank accountBank,
+			a.account_bank_no accountBankNo,
+			a.bill_type_id billTypeId,
+			a.sett_type_id settTypeId,
+			a.tgrade tgrade,
+			a.credit_limit creditLimit,
+			a.is_disabled isDisabled,
+			a.remark remark,
+			a.is_internal isInternal,
+			a.is_internal_id isInternalId,
+			a.order_index orderIndex,
+			a.recorder recorder,
+			a.record_date recordDate,
+			a.modifier modifier,
+			a.modify_date modifyDate,
+			a.is_need_pack AS isNeedPack,
+			a.default_logistics_id AS defaultLogisticsId,
+			a.default_logistics AS defaultLogistics,
+			f.chain_consume_amt AS chainConsumeAmt,
+      		g.card_type as cardType,
+			g.recharge_bala_amt as rechargeBalaAmt
+		FROM
+			wb_common.com_guest a
+		    LEFT JOIN wb_repair.rpb_guest f ON a.id = f.id
+		    left join wb_common.com_join_member g on a.id = g.guest_id
+		WHERE
+			a.guest_type = '01020103'
+		<dynamic>
+            <isNotEmpty prepend="and" property="tenantId">(a.tenant_id = #tenantId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="code">(code like '%$code$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="supplierType">(supplier_type = #supplierType#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestTypeList">(guest_type in ($guestTypeList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestType">(guest_type = #guestType#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isSupplier">(a.is_supplier = #isSupplier#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isClient">(is_client = #isClient#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="cityId">(city_id = #cityId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="provinceId">(province_id = #provinceId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isDisabled">(is_disabled = #isDisabled#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="memLevel">(mem_level = #memLevel#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="memCarNo">(mem_car_no like '%$memCarNo$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="fullName">(a.full_name like '%$fullName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="advantageCarbrandId">(advantage_carbrand_id like '%$advantageCarbrandId$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">(mobile like '%$mobile$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="shortName">(short_name like '%$shortName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="manager">(manager like '%$manager$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="name">(a.full_name like '%$name$%' or a.short_name like '%$name$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">exists (select 1 from wb_repair.rpb_car b where a.id = b.guest_id and b.car_no like '%$carNo$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
+        </dynamic>
+    </select>
+    <select id="queryMyCustomerWithContactList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT
+			a.id carId,
+			a.car_no carNo,
+			b.id guestId,
+			b.full_name name,
+			b.mobile,
+			a.vin vin,
+			a.car_model_id carModelId,
+			a.car_model carModel,
+			b.addr addr,
+			b.sex sex,
+			c.mt_advisor_id mtAdvisorId,
+			c.mt_advisor_name mtAdvisorName
+		FROM
+			rpb_car a
+			inner join wb_common.com_guest b on (a.guest_id = b.id)
+			inner join rpb_guest c on b.id = c.id
+			
+		WHERE
+			b.guest_type = '01020103'
+			and c.mt_advisor_id = #mtAdvisorId#
+		<dynamic>
+            <isNotEmpty prepend="and" property="tenantId">(b.tenant_id = #tenantId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">(a.car_no = #carNo#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">(b.mobile like '%$mobile$%' )</isNotEmpty>
+            <isNotEmpty prepend="and" property="name">(b.full_name like '%$name$%')</isNotEmpty>
+        </dynamic>
+        order by b.modify_date desc
+	</select>
+    <select id="queryCustomerWithContactListBX" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT
+			a.id id,
+			a.id carId,
+			a.orgid orgid,
+			a.car_no carNo,
+			a.insure_comp_name insureCompName,
+			a.insure_no insureNo,
+			a.insure_due_date insureDueDate,
+			a.annual_inspection_comp_name annualInspectionCompName,
+			a.annual_inspection_no annualInspectionNo,
+			a.guest_id guestId,
+			b.full_name guestFullName,
+			b.mobile as guestMobile,
+			a.car_model_id carModelId,
+			a.car_model carModel,
+			a.car_brand_id carBrandId,
+			a.car_model_id_ly as carModelIdLy,
+			a.engine_no engineNo,
+			a.annual_inspection_date annualInspectionDate,
+			a.annual_verification_due_date annualVerificationDueDate,
+			a.insure_comp_code insureCompCode,
+			b.addr addr,
+			a.recorder recorder,
+			a.record_date recordDate,
+			a.produce_date produceDate,
+			a.color color,
+			d.name contactName,
+			d.identity identity,
+			d.mobile mobile,
+			d.remark  remark,
+			d.tel tel,
+			d.id contactorId,
+			a.vin as vin,
+		    d.birthday_type as birthdayType,
+            d.birthday,
+            d.sex,
+            d.id_no as idNo,
+            d.wechat_open_id wechatOpenId
+		FROM
+			rpb_car a
+			inner join wb_common.com_guest b on (a.guest_id = b.id)
+			inner join rpb_contactor d on (b.id = d.guest_id)
+		WHERE
+			b.guest_type = '01020103'
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgId">(b.orgid = #orgId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(b.id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="contactorId">(d.id = #contactorId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carId">(a.ID = #carId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">(a.car_no = #carNo#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="lcarNo">(a.car_no like '%$lcarNo$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="carModel">(a.car_model like '%$carModel$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="carVin">(a.vin like '%$carVin$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestMobile">(b.mobile = #guestMobile#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">(b.mobile like '%$mobile$%' or d.mobile like '%$mobile$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestFullName">(b.full_name like '%$guestFullName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="contactor">(d.name like '%$contactor$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="name">(b.full_name like '%$name$%' or d.name like '%$name$%')</isNotEmpty>
+            <!--纯数字  手机，车牌，车驾号-->
+            <isNotEmpty prepend="and" property="nums">(b.mobile like '%$nums$%' or d.mobile like '%$nums$%' or a.car_no like '%$nums$%' or a.vin like '%$nums$%')</isNotEmpty>
+            <!--纯字母   车牌，车驾号    数字+字母 车牌，车驾号-->
+            <isNotEmpty prepend="and" property="letters">(a.car_no like '%$letters$%' or a.vin like '%$letters$%')</isNotEmpty>
+            <!--包含中文   只按名称查询 -->
+            <isNotEmpty prepend="and" property="chis">(b.full_name like '%$chis$%' or d.name like '%$chis$%')</isNotEmpty>
+        </dynamic>
+        order by b.modify_date desc
+	</select>
+</sqlMap>

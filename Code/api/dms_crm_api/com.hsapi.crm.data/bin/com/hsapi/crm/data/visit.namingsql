@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.crm.data.visit">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"/>
+    <select id="queryVisitMainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+            	SELECT
+			a.id AS serviceId,
+			a.guest_id AS guestId, 
+			a.service_code AS serviceCode,
+			a.enter_date AS enterDate,
+			a.car_vin AS carVin,
+			a.car_id AS carId,
+			a.car_no AS carNo,
+			a.bill_type_id billTypeId,
+			c.mobile AS guestMobile,
+			c.name AS guestFullName,
+			c.wechat_service_id wechatServiceId,
+			c.birthday,
+			c.wechat_open_id wechatOpenId,
+			a.mt_advisor AS mtAdvisor,
+			a.`status` AS `status`,
+			a.service_type_id AS serviceTypeId,
+			a.remark AS remark,
+			a.modifier AS modifier,
+			a.modify_date AS modifyDate,
+			a.recorder AS recorder,
+			a.record_date AS recordDate,
+			b.car_model AS carModel,
+			b.car_brand_id AS carBrandId,
+			b.insure_comp_name AS insureCompName,
+			a.package_amt AS packageAmt,
+			a.is_check AS isCheck,
+			b.insure_no AS insureNo,
+			b.color AS color,
+			a.enter_kilometers AS enterKilometers,
+			b.engine_no AS engineNo,
+			b.first_reg_date AS firstRegDate,
+			b.annual_verification_due_date AS annualVerificationDueDate,
+			b.insure_due_date AS insureDueDate,
+			b.annual_inspection_date AS annualInspectionDate,
+			b.annual_inspection_no AS annualInspectionNo,
+			a.part_amt AS partAmt,
+			a.out_date as outDate,
+			e.visit_times visitTimes,
+			TIMESTAMPDIFF(DAY ,a.out_date  ,NOW())  as leaveDays,
+			e.status visitStatus,
+			e.contactor_id contactorId,
+			e.id,
+			e.data_type dataType,
+			e.next_visit_date nextVisitDate,
+			d.tgrade,
+			z.last_leave_date lastLeaveDate,
+			z.last_care_due_date lastCareDueDate,
+			z.care_due_date careDueDate,
+			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
+	       inner join wb_repair.rpb_business_type f on e.service_type_id = f.id
+	       where e.service_id = a.id) as serviceTypeName
+		FROM
+			wb_crm.crm_visit_data e 
+			INNER JOIN wb_repair.rps_maintain a on e.service_id = a.id 
+			inner JOIN wb_repair.rpb_car b ON ( a.car_id = b.id )
+			inner join wb_repair.rpb_car_extend z on b.id = z.car_id
+		  	INNER JOIN wb_repair.rpb_contactor c on e.contactor_id = c.id
+		  	INNER JOIN wb_common.com_guest d on d.id = e.guest_id
+		WHERE 1 = 1
+				and b.is_disabled=0
+			 and e.orgid = #orgid#
+			 and type = #type#
+			 and e.status = 0
+			 <isNotEmpty prepend="and" property="id">e.id  =  #id#</isNotEmpty>
+        <isNotEmpty prepend="and" property="carNo">a.car_no   like  '%$carNo$%'</isNotEmpty>
+        <isNotEmpty prepend="and" property="mobile">c.mobile =   #mobile#</isNotEmpty>
+        <isNotEmpty prepend="and" property="carId">a.car_id =   #carId#</isNotEmpty>
+        <isNotEmpty prepend="and" property="leaveDays">e.leave_days  &lt;=   #leaveDays#</isNotEmpty>
+        <isNotEmpty prepend="and" property="mtAdvisorId">e.mt_advisor_id  =  #mtAdvisorId#</isNotEmpty>
+        <isNotEmpty prepend="and" property="sNextVisitDay">e.next_visit_date &gt;=  #sNextVisitDay#</isNotEmpty>
+        <isNotEmpty prepend="and" property="eNextVisitDay">e.next_visit_date  &lt;=  #eNextVisitDay#</isNotEmpty>
+        <isNotEmpty prepend="and" property="sEnterDate">a.enter_date &gt;=  #sEnterDate#</isNotEmpty>
+        <isNotEmpty prepend="and" property="eEnterDate">a.enter_date  &lt;=  #eEnterDate#</isNotEmpty>
+        <isNotEmpty prepend="and" property="sOutDate">a.out_date &gt;=  #sOutDate#</isNotEmpty>
+        <isNotEmpty prepend="and" property="eOutDate">a.out_date  &lt;=  #eOutDate#</isNotEmpty>
+        <isNotEmpty prepend="and" property="sVisitTimes">e.visit_times &gt;=  #sVisitTimes#</isNotEmpty>
+        <isNotEmpty prepend="and" property="eVisitTimes">e.visit_times  &lt;=  #eVisitTimes#</isNotEmpty>
+        <isNotEmpty prepend="and" property="sLeaveDays">TIMESTAMPDIFF(DAY ,a.out_date  ,NOW()) &gt;=  #sLeaveDays#</isNotEmpty>
+        <isNotEmpty prepend="and" property="eLeaveDays">TIMESTAMPDIFF(DAY ,a.out_date  ,NOW())  &lt;=  #eLeaveDays#</isNotEmpty>
+        <isNotEmpty prepend="and" property="level">(d.tgrade in ($level$))</isNotEmpty>
+        <isNotEmpty prepend="and" property="dataType">(e.data_type in ($dataType$))</isNotEmpty>
+    </select>
+    <!-- 更新 下次保养日期 -->
+    <update id="updateCareCueDate" parameterClass="java.util.HashMap">UPDATE  rpb_car_extend  set care_due_date = #careDueDate#
+            where  car_id  = #carId#</update>
+    <!-- 更新 商业险日期 -->
+    <update id="updateSYXDate" parameterClass="java.util.HashMap">UPDATE  rpb_car set annual_inspection_date = #annualInspectionDate#
+            where  id  = #carId#</update>
+    <!-- 更新 交强险日期 -->
+    <update id="updateJQXDate" parameterClass="java.util.HashMap">UPDATE  rpb_car set insure_due_date = #insureDueDate#
+            where  id  = #carId#</update>
+    <!-- 更新 车辆年审日期 -->
+    <update id="updateCLNJDate" parameterClass="java.util.HashMap">UPDATE  rpb_car set annual_verification_due_date = #dueDate#
+            where  id  = #carId#</update>
+    <!-- 更新 驾照日期 -->
+    <update id="updateJZNSDate" parameterClass="java.util.HashMap">UPDATE  rpb_contactor set license_over_date = #licenseOverDate#
+            where  id  = #conId#</update>
+    <!-- 更新 生日 -->
+    <update id="updateKHDRDate" parameterClass="java.util.HashMap">UPDATE  rpb_contactor set birthday = #birthday#
+            where  id  = #conId#</update>
+    <!-- 回访历史 -->
+    <select id="queryVisitHistory" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		select 
+			a.id,a.orgid,a.main_id mainId,a.service_type serviceType,a.guest_source guestSource,a.service_id serviceId,
+			a.guest_id guestId,a.car_no carNo,a.car_id carId,a.visit_mode visitMode,a.care_due_date careDueDate,
+			a.visit_content visitContent,a.visit_id visitId,a.visit_man visitMan,a.visit_date visitDate,record_id recordId,
+		 	case when a.guest_source = 0 then b.name else c.guest_name end as  contactorName
+		from crm_visit_record a 
+		LEFT JOIN wb_repair.rpb_contactor b on a.guest_id = b.id
+		LEFT JOIN crm_guest c on c.id = a.main_id
+		where a.orgid = #orgid#
+		<isNotEmpty prepend="and" property="mainId">a.main_id =   #mainId#</isNotEmpty>
+        <isNotEmpty prepend="and" property="carId">a.car_id =   #carId#</isNotEmpty>
+        <isNotEmpty prepend="and" property="carNo">a.car_no =   #carNo#</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestSource">a.guest_source =   #guestSource#</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">a.guest_id =   #guestId#</isNotEmpty>
+        <isNotEmpty prepend="and" property="visitMode">a.visit_mode =   #visitMode#</isNotEmpty>
+        <isNotEmpty prepend="and" property="serviceType">a.service_type =   #serviceType#</isNotEmpty>
+        <isNotEmpty prepend="and" property="startDate">a.visit_date &gt;=  #startDate#</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">a.visit_date  &lt;=  #endDate#</isNotEmpty>
+	  order by  a.visit_date desc
+	  </select>
+</sqlMap>

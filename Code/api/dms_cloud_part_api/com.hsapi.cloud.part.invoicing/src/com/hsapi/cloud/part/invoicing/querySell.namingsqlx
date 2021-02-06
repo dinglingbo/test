@@ -56,6 +56,12 @@
         <result column="showAmt" javaType="double" property="showAmt"/>
         <result column="directOrgid" javaType="int" property="directOrgid"/>
         <result column="directGuestId" javaType="int" property="directGuestId"/>
+        <result column="approveSign" javaType="int" property="approveSign"/>
+        <result column="businessTypeId" javaType="string" property="businessTypeId"/>
+        <result column="settleGuestId" javaType="int" property="settleGuestId"/>
+        <result column="approveSign" javaType="int" property="approveSign"/>
+        <result column="outMan" javaType="string" property="outMan"/>
+        <result column="outDate" javaType="string" property="outDate"/>
     </resultMap>
     <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->
     <select id="queryPjSellOrderMainList" parameterClass="java.util.HashMap" resultMap="pjSellOrderMainList">
@@ -106,7 +112,11 @@
             M.showAmt,
 			M.directGuestId,
 			M.directOrgid,
-			m.approveSign
+			m.approveSign,
+			M.businessTypeId,
+			M.settleGuestId,
+			M.outMan,
+			M.outDate
         FROM (
             SELECT DISTINCT
 				A.id as id,
@@ -153,12 +163,16 @@
 				A.direct_guest_id AS directGuestId,
 				A.direct_orgid AS directOrgid,
 				a.approve_sign as approveSign,
+				a.business_type_id as businessTypeId,
+				a.settle_guest_id as settleGuestId,
 				B.FULL_NAME AS guestFullName,
-				B.SHORT_NAME AS guestShortName
+				B.SHORT_NAME AS guestShortName,
+				a.out_man as outMan,
+				a.out_date as outDate
 				FROM
 				DMS_CLOUD_PART.pj_sell_order_main A
 				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
-				LEFT JOIN DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL C ON A.ID = C.MAIN_ID
+				LEFT JOIN DMS_CLOUD_PART.pj_sell_order_detail C ON A.ID = C.MAIN_ID
 				LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
                 where 1=1
             <dynamic>
@@ -237,7 +251,7 @@
                     (A.order_man = #orderMan#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="storeId">  
-                    (c.store_id = #storeId#)
+                    (a.store_id = #storeId#)
                 </isNotEmpty>
             </dynamic>  
             
@@ -288,12 +302,16 @@
 				A.direct_guest_id AS directGuestId,
 				A.direct_orgid AS directOrgid,
 				a.approve_sign as approveSign,
+				a.business_type_id as businessTypeId,
+				a.settle_guest_id as settleGuestId,
 				B.FULL_NAME AS guestFullName,
-				B.SHORT_NAME AS guestShortName
+				B.SHORT_NAME AS guestShortName,
+				a.out_man as outMan,
+				a.out_date as outDate
 				FROM
 				DMS_CLOUD_PART.pj_sell_order_main_chk A
 				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
-				LEFT JOIN DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL C ON A.ID = C.MAIN_ID
+				LEFT JOIN DMS_CLOUD_PART.pj_sell_order_detail_chk C ON A.ID = C.MAIN_ID
 				LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
                 where 1=1
             <dynamic>
@@ -373,7 +391,7 @@
                     (A.order_man = #orderMan#)
                 </isNotEmpty>
                  <isNotEmpty prepend="and" property="storeId">  
-                    (c.store_id = #storeId#)
+                    (a.store_id = #storeId#)
                 </isNotEmpty>
             </dynamic>  
         )M
@@ -461,7 +479,8 @@
             M.comApplyCarModel,
             M.comUnit,
             M.comSpec,
-            M.comDirection
+            M.comDirection,
+            M.orgCarBrandId
         FROM (
             SELECT 
 			A.id as id,
@@ -500,7 +519,8 @@
 			B.apply_car_model AS comApplyCarModel,
 			B.unit AS comUnit,
 			B.spec AS comSpec,
-			B.direction AS comDirection
+			B.direction AS comDirection,
+			b.org_car_brand_id as orgCarBrandId
 			FROM
 			DMS_CLOUD_PART.PJ_SELL_ORDER_DETAIL A
 			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
@@ -551,7 +571,8 @@
 			B.apply_car_model AS comApplyCarModel,
 			B.unit AS comUnit,
 			B.spec AS comSpec,
-			B.direction AS comDirection
+			B.direction AS comDirection,
+			b.org_car_brand_id as orgCarBrandId
 			FROM
 			DMS_CLOUD_PART.PJ_SELL_ORDER_DETAIL_chk A
 			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
@@ -931,6 +952,7 @@
         <result column="comUnit" javaType="string" property="comUnit"/>
         <result column="comSpec" javaType="string" property="comSpec"/>
         <result column="comDirection" javaType="string" property="comDirection"/>
+        <result column="orgCarBrandId" javaType="string" property="orgCarBrandId"/>
     </resultMap>
     <!-- 根据主表ID查询 -->
     <select id="queryPjOutDetailList" parameterClass="java.util.HashMap" resultMap="pjOutDetailList">
@@ -985,7 +1007,8 @@
 			M.comApplyCarModel,
 			M.comUnit,
 			M.comSpec,
-			M.comDirection
+			M.comDirection,
+			M.orgCarBrandId
         FROM (
             SELECT
 			A.id as id,
@@ -1037,7 +1060,8 @@
 			B.apply_car_model AS comApplyCarModel,
 			B.unit AS comUnit,
 			B.spec AS comSpec,
-			B.direction AS comDirection
+			B.direction AS comDirection,
+			B.org_car_brand_id AS orgCarBrandId
 			FROM
 			DMS_CLOUD_PART.pj_out_detail A
 				INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
@@ -1101,7 +1125,8 @@
 			B.apply_car_model AS comApplyCarModel,
 			B.unit AS comUnit,
 			B.spec AS comSpec,
-			B.direction AS comDirection
+			B.direction AS comDirection,
+			B.org_car_brand_id AS orgCarBrandId
 			FROM
 			DMS_CLOUD_PART.pj_out_detail_chk A
 				INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
@@ -1171,7 +1196,8 @@
 			B.apply_car_model AS comApplyCarModel,
 			B.unit AS comUnit,
 			B.spec AS comSpec,
-			B.direction AS comDirection
+			B.direction AS comDirection,
+			B.org_car_brand_id AS orgCarBrandId
 			FROM
 			DMS_CLOUD_PART.pj_out_detail_chk A
 				INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
@@ -1239,7 +1265,12 @@
                 a.is_diff_order as isDiffOrder,
                 a.rtn_sign_date as rtnSignDate,
                 a.is_billing as isBilling,
-                a.show_amt as showAmt
+                a.show_amt as showAmt,
+                a.business_type_id as businessTypeId,
+				a.settle_guest_id as settleGuestId,
+				a.approve_sign as approveSign,
+				a.out_man as outMan,
+				a.out_date as outDate
 				FROM
 				DMS_CLOUD_PART.pj_sell_order_main A
 				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
@@ -1255,6 +1286,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="isDiffOrder"> 
                     (a.is_diff_order = #isDiffOrder#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="orgCarBrandId"> 
+                    (D.org_car_brand_id = #orgCarBrandId#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="orderTypeId"> 
                     (a.order_type_id = #orderTypeId#)
@@ -1384,7 +1418,12 @@
                 a.rtn_sign_date as rtnSignDate,
                 a.is_out as isOut,
                 a.is_billing as isBilling,
-                a.show_amt as showAmt
+                a.show_amt as showAmt,
+                a.business_type_id as businessTypeId,
+				a.settle_guest_id as settleGuestId,
+				a.approve_sign as approveSign,
+				a.out_man as outMan,
+				a.out_date as outDate
 				FROM
 				DMS_CLOUD_PART.pj_sell_order_main_chk A
 				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
@@ -1400,6 +1439,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="isDiffOrder"> 
                     (a.is_diff_order = #isDiffOrder#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="orgCarBrandId"> 
+                    (D.org_car_brand_id = #orgCarBrandId#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="approveSign"> 
                     (a.approve_sign = #approveSign#)
@@ -1542,7 +1584,8 @@
 			a.show_spec as showSpec,
 			a.show_price as showPrice,
 			a.show_amt as showAmt,
-			A.direct_store_id as directStoreId
+			A.direct_store_id as directStoreId,
+			b.org_car_brand_id as orgCarBrandId
 			FROM
 			DMS_CLOUD_PART.PJ_SELL_ORDER_DETAIL A
 			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
@@ -1617,7 +1660,8 @@
 			a.show_spec as showSpec,
 			a.show_price as showPrice,
 			a.show_amt as showAmt,
-			A.direct_store_id as directStoreId
+			A.direct_store_id as directStoreId,
+			B.org_car_brand_id AS orgCarBrandId
 			FROM
 			DMS_CLOUD_PART.PJ_SELL_ORDER_DETAIL_chk A
 			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID

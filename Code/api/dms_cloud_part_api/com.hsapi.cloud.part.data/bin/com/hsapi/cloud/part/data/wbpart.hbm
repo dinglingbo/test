@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.cloud.part.data.wbpart.PjPchsOrderDetailChk" table="pj_pchs_order_detail_chk">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="mainId" type="int">
+            <column name="main_id" not-null="true"/>
+        </property>
+        <property name="storeId" type="int">
+            <column name="store_id"/>
+        </property>
+        <property name="partId" type="int">
+            <column name="part_id" not-null="true"/>
+        </property>
+        <property name="partCode" type="string">
+            <column length="50" name="part_code"/>
+        </property>
+        <property name="partName" type="string">
+            <column length="100" name="part_name"/>
+        </property>
+        <property name="fullName" type="string">
+            <column length="1000" name="full_name"/>
+        </property>
+        <property name="enterUnitId" type="string">
+            <column length="20" name="enter_unit_id"/>
+        </property>
+        <property name="systemUnitId" type="string">
+            <column length="20" name="system_unit_id"/>
+        </property>
+        <property name="orderQty" type="big_decimal">
+            <column length="10" name="order_qty" precision="10" scale="2"/>
+        </property>
+        <property name="orderPrice" type="big_decimal">
+            <column length="10" name="order_price" precision="10" scale="4"/>
+        </property>
+        <property name="orderAmt" type="big_decimal">
+            <column length="10" name="order_amt" precision="10" scale="4"/>
+        </property>
+        <property name="taxSign" type="short">
+            <column default="0" name="tax_sign"/>
+        </property>
+        <property name="taxRate" type="big_decimal">
+            <column length="10" name="tax_rate" precision="10" scale="4"/>
+        </property>
+        <property name="taxPrice" type="big_decimal">
+            <column length="10" name="tax_price" precision="10" scale="4"/>
+        </property>
+        <property name="taxAmt" type="big_decimal">
+            <column length="10" name="tax_amt" precision="10" scale="4"/>
+        </property>
+        <property name="noTaxPrice" type="big_decimal">
+            <column length="10" name="no_tax_price" precision="10" scale="4"/>
+        </property>
+        <property name="noTaxAmt" type="big_decimal">
+            <column length="10" name="no_tax_amt" precision="10" scale="4"/>
+        </property>
+        <property name="taxDiff" type="big_decimal">
+            <column length="10" name="tax_diff" precision="10" scale="4"/>
+        </property>
+        <property name="trueEnterQty" type="big_decimal">
+            <column length="10" name="true_enter_qty" precision="10" scale="2"/>
+        </property>
+        <property name="trueEnterAmt" type="big_decimal">
+            <column length="10" name="true_enter_amt" precision="10" scale="4"/>
+        </property>
+        <property name="notEnterQty" type="big_decimal">
+            <column length="10" name="not_enter_qty" precision="10" scale="2"/>
+        </property>
+        <property name="notEnterAmt" type="big_decimal">
+            <column length="10" name="not_enter_amt" precision="10" scale="4"/>
+        </property>
+        <property name="adjustQty" type="big_decimal">
+            <column length="10" name="adjust_qty" precision="10" scale="2"/>
+        </property>
+        <property name="isFinished" type="short">
+            <column default="0" name="is_finished"/>
+        </property>
+        <property name="finishDate" type="timestamp">
+            <column name="finish_date"/>
+        </property>
+        <property name="sellPrice" type="big_decimal">
+            <column length="10" name="sell_price" precision="10" scale="2"/>
+        </property>
+        <property name="prevDetailId" type="int">
+            <column name="prev_detail_id"/>
+        </property>
+        <property name="sourceDetailId" type="int">
+            <column name="source_detail_id"/>
+        </property>
+        <property name="sourceMainId" type="int">
+            <column name="source_main_id"/>
+        </property>
+        <property name="sourceBillTypeId" type="string">
+            <column length="20" name="source_bill_type_id"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="255" name="remark"/>
+        </property>
+        <property name="storeShelf" type="string">
+            <column length="100" name="store_shelf"/>
+        </property>
+        <property name="goodsCode" type="string">
+            <column length="30" name="goods_code"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.cloud.part.data.wbpart.PjPchsOrderMainChk" table="pj_pchs_order_main_chk">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="serviceId" type="string">
+            <column length="30" name="service_id" not-null="true"/>
+        </property>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="orderTypeId" type="int">
+            <column name="order_type_id" not-null="true"/>
+        </property>
+        <property name="guestId" type="int">
+            <column name="guest_id" not-null="true"/>
+        </property>
+        <property name="storeId" type="int">
+            <column name="store_id"/>
+        </property>
+        <property name="codeId" type="int">
+            <column name="code_id"/>
+        </property>
+        <property name="code" type="string">
+            <column length="20" name="code"/>
+        </property>
+        <property name="orderDate" type="timestamp">
+            <column name="order_date"/>
+        </property>
+        <property name="planArriveDate" type="timestamp">
+            <column name="plan_arrive_date"/>
+        </property>
+        <property name="orderManId" type="string">
+            <column length="20" name="order_man_id"/>
+        </property>
+        <property name="orderMan" type="string">
+            <column length="20" name="order_man"/>
+        </property>
+        <property name="billTypeId" type="string">
+            <column length="20" name="bill_type_id"/>
+        </property>
+        <property name="taxSign" type="short">
+            <column default="0" name="tax_sign"/>
+        </property>
+        <property name="taxRate" type="big_decimal">
+            <column length="10" name="tax_rate" precision="10" scale="4"/>
+        </property>
+        <property name="taxAmt" type="big_decimal">
+            <column length="10" name="tax_amt" precision="10" scale="4"/>
+        </property>
+        <property name="noTaxAmt" type="big_decimal">
+            <column length="10" name="no_tax_amt" precision="10" scale="4"/>
+        </property>
+        <property name="taxDiff" type="big_decimal">
+            <column length="10" name="tax_diff" precision="10" scale="4"/>
+        </property>
+        <property name="orderQty" type="big_decimal">
+            <column length="10" name="order_qty" precision="10" scale="2"/>
+        </property>
+        <property name="orderItem" type="int">
+            <column default="0" name="order_item"/>
+        </property>
+        <property name="orderAmt" type="big_decimal">
+            <column length="10" name="order_amt" precision="10" scale="4"/>
+        </property>
+        <property name="isFinished" type="short">
+            <column default="0" name="is_finished"/>
+        </property>
+        <property name="finishDate" type="timestamp">
+            <column name="finish_date"/>
+        </property>
+        <property name="printTimes" type="int">
+            <column name="print_times"/>
+        </property>
+        <property name="printManId" type="string">
+            <column length="20" name="print_man_id"/>
+        </property>
+        <property name="printMan" type="string">
+            <column length="20" name="print_man"/>
+        </property>
+        <property name="printDate" type="timestamp">
+            <column name="print_date"/>
+        </property>
+        <property name="auditSign" type="short">
+            <column name="audit_sign"/>
+        </property>
+        <property name="auditorId" type="string">
+            <column length="20" name="auditor_id"/>
+        </property>
+        <property name="auditor" type="string">
+            <column length="20" name="auditor"/>
+        </property>
+        <property name="auditDate" type="timestamp">
+            <column name="audit_date"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="255" name="remark"/>
+        </property>
+        <property name="versionNo" type="timestamp">
+            <column name="version_no"/>
+        </property>
+        <property name="creatorId" type="string">
+            <column length="20" name="creator_id"/>
+        </property>
+        <property name="creator" type="string">
+            <column length="20" name="creator"/>
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="create_date"/>
+        </property>
+        <property name="operatorId" type="string">
+            <column length="20" name="operator_id"/>
+        </property>
+        <property name="operator" type="string">
+            <column length="20" name="operator"/>
+        </property>
+        <property name="operateDate" type="timestamp">
+            <column name="operate_date"/>
+        </property>
+        <property name="settleTypeId" type="string">
+            <column length="20" name="settle_type_id"/>
+        </property>
+        <property name="billStatusId" type="int">
+            <column default="0" name="bill_status_id"/>
+        </property>
+        <property name="isInner" type="short">
+            <column default="0" name="is_inner"/>
+        </property>
+        <property name="isState" type="short">
+            <column default="0" name="is_state"/>
+        </property>
+        <property name="stateManId" type="string">
+            <column length="20" name="state_man_id"/>
+        </property>
+        <property name="stateMan" type="string">
+            <column length="20" name="state_man"/>
+        </property>
+        <property name="stateSign" type="short">
+            <column default="0" name="state_sign"/>
+        </property>
+        <property name="stateDate" type="timestamp">
+            <column name="state_date"/>
+        </property>
+        <property name="rtnReasonId" type="string">
+            <column length="20" name="rtn_reason_id"/>
+        </property>
+        <property name="isDiffOrder" type="short">
+            <column default="0" name="is_diff_order"/>
+        </property>
+        <property name="sourceType" type="int">
+            <column default="0" name="source_type"/>
+        </property>
+        <property name="orderCode" type="string">
+            <column length="30" name="order_code"/>
+        </property>
+        <property name="acceptStatus" type="int">
+            <column default="0" name="accept_status"/>
+        </property>
+        <property name="acceptMan" type="string">
+            <column default="''" length="20" name="accept_man"/>
+        </property>
+        <property name="acceptDate" type="timestamp">
+            <column name="accept_date"/>
+        </property>
+        <property name="acceptCode" type="string">
+            <column default="''" length="30" name="accept_code"/>
+        </property>
+    </class>
+</hibernate-mapping>

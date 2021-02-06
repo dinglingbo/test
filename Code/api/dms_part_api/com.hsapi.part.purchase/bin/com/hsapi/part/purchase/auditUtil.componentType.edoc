@@ -1,0 +1,30 @@
+<map>
+  <entry>
+    <string>com.hsapi.part.purchase.auditUtil.getInvoicingDetail(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getInvoicingDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getInvoicingDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.auditUtil.getInvoicingDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orgId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detail(com.hsapi.part.data.x_pts.PtsInvoicingDetail):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.auditUtil.getCycOrg(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCycOrg&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getCycOrg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.auditUtil.getCycOrg&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cycOrg(com.hsapi.part.data.x_pts.PtsCycOrg):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.auditUtil.saveInvoicingDetail(String, String, String, String, String, String, String, String, Int, String, Double, Double, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveInvoicingDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveInvoicingStoreDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.auditUtil.saveInvoicingDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sourceDetailId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;recorder(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;operateType(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;qty(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;unit(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;amt(Double):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;unitPrice(Double):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.auditUtil.getInvoicingStoreDetail(String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getInvoicingStoreDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getInvoicingDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.auditUtil.getInvoicingStoreDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orgId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;storeId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detail(com.hsapi.part.data.x_pts.PtsInvoicingStoreDetail):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.auditUtil.getCycStore(String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCycStore&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getCycOrg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.auditUtil.getCycStore&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;storeId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cycOrg(com.hsapi.part.data.x_pts.PtsCycStore):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>auditUtil</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;auditUtil.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;auditUtil&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.auditUtil&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.auditUtil.saveInvoicingStoreDetail(String, String, String, String, String, String, String, String, Int, String, Double, Double, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveInvoicingStoreDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveInvoicingStoreDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.auditUtil.saveInvoicingStoreDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sourceDetailId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;recorder(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;operateType(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;qty(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;unit(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;amt(Double):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;unitPrice(Double):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;storeId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

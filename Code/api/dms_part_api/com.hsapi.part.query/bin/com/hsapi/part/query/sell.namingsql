@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.part.query.sell">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <!--按月汇总  销售数量，销售金额，销售成本，退货数量，退货金额，退货成本         实销数量，实销金额，实销成本        实销毛利-->
+    <select id="queryPartBrandSellForMonth" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+            select c.part_brand_id as partBrandId, month(a.audit_date) as fMonth, year(a.audit_date) as fYear,
+						 sum(b.sell_qty) as sellQty, sum(b.sell_amt) as sellAmt, sum(b.enter_amt) as enterAmt
+			from pj_out_main_chk a
+			inner join pj_out_detail_chk b
+			on a.id = b.main_id
+			inner join wb_common.com_attribute c
+			on b.part_id = c.id
+			where 1 = 1 and a.audit_sign = 1 and a.enter_type_id = '050202' 
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--审核日期 -->
+        <isNotEmpty prepend="and" property="sAuditDate">(A.AUDIT_DATE &gt;= #sAuditDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eAuditDate">(A.AUDIT_DATE &lt; #eAuditDate#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(A.AUDIT_DATE &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(A.AUDIT_DATE &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partBrandId">(C.part_brand_id = #partBrandId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdF">(c.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdS">(c.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdT">(c.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partId">(b.PART_ID = #partId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty> 
+                
+			group by c.part_brand_id, month(a.audit_date) , year(a.audit_date)
+    </select>
+    <select id="queryPartBrandSellRtnForMonth" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+            select c.part_brand_id as partBrandId, month(a.audit_date) as fMonth, year(a.audit_date) as fYear,
+						 sum(b.enter_qty) as sellRtnQty, sum(b.rtn_amt) as sellRtnAmt, sum(b.enter_amt) as rtnEnterAmt
+			from pj_enter_main_chk a
+			inner join pj_enter_detail_chk b
+			on a.id = b.main_id
+			inner join wb_common.com_attribute c
+			on b.part_id = c.id
+			where 1 = 1 and a.audit_sign = 1 and a.enter_type_id = '050102'
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--审核日期 -->
+        <isNotEmpty prepend="and" property="sAuditDate">(A.AUDIT_DATE &gt;= #sAuditDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eAuditDate">(A.AUDIT_DATE &lt; #eAuditDate#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(A.AUDIT_DATE &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(A.AUDIT_DATE &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partBrandId">(C.part_brand_id = #partBrandId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdF">(c.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdS">(c.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdT">(c.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partId">(b.PART_ID = #partId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty> 
+                
+			group by c.part_brand_id, month(a.audit_date) , year(a.audit_date)
+    </select>
+    <select id="queryPartSellForMonth" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+    		select b.part_id as partId, month(a.audit_date) as fMonth, year(a.audit_date) as fYear,
+						 sum(b.sell_qty) as sellQty, sum(b.sell_amt) as sellAmt, sum(b.enter_amt) as enterAmt
+			from pj_out_main_chk a
+			inner join pj_out_detail_chk b
+			on a.id = b.main_id
+			inner join wb_common.com_attribute c
+			on b.part_id = c.id
+			where 1 = 1 and a.audit_sign = 1 and a.enter_type_id = '050202' 
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--审核日期 -->
+        <isNotEmpty prepend="and" property="sAuditDate">(A.AUDIT_DATE &gt;= #sAuditDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eAuditDate">(A.AUDIT_DATE &lt; #eAuditDate#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(A.AUDIT_DATE &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(A.AUDIT_DATE &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partBrandId">(C.part_brand_id = #partBrandId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdF">(c.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdS">(c.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdT">(c.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partId">(b.PART_ID = #partId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty> 
+                
+			group by b.part_id, month(a.audit_date) , year(a.audit_date)
+    </select>
+    <select id="queryPartSellRtnForMonth" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+    		select b.part_id as partId, month(a.audit_date) as fMonth, year(a.audit_date) as fYear,
+						 sum(b.enter_qty) as sellRtnQty, sum(b.rtn_amt) as sellRtnAmt, sum(b.enter_amt) as rtnEnterAmt
+			from pj_enter_main_chk a
+			inner join pj_enter_detail_chk b
+			on a.id = b.main_id
+			inner join wb_common.com_attribute c
+			on b.part_id = c.id
+			where 1 = 1 and a.audit_sign = 1 and a.enter_type_id = '050102'
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--审核日期 -->
+        <isNotEmpty prepend="and" property="sAuditDate">(A.AUDIT_DATE &gt;= #sAuditDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eAuditDate">(A.AUDIT_DATE &lt; #eAuditDate#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(A.AUDIT_DATE &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(A.AUDIT_DATE &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partBrandId">(C.part_brand_id = #partBrandId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdF">(c.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdS">(c.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdT">(c.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partId">(b.PART_ID = #partId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty> 
+                
+			group by b.part_id, month(a.audit_date) , year(a.audit_date)
+    </select>
+    <select id="queryClientSellForMonth" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+    		select a.guest_id as guestId, month(a.audit_date) as fMonth, year(a.audit_date) as fYear,
+						 sum(b.sell_qty) as sellQty, sum(b.sell_amt) as sellAmt, sum(b.enter_amt) as enterAmt
+			from pj_out_main_chk a
+			inner join pj_out_detail_chk b
+			on a.id = b.main_id
+			inner join wb_common.com_attribute c
+			on b.part_id = c.id
+			where 1 = 1 and a.audit_sign = 1 and a.enter_type_id = '050202'
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--审核日期 -->
+        <isNotEmpty prepend="and" property="sAuditDate">(A.AUDIT_DATE &gt;= #sAuditDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eAuditDate">(A.AUDIT_DATE &lt; #eAuditDate#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(A.AUDIT_DATE &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(A.AUDIT_DATE &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partBrandId">(C.part_brand_id = #partBrandId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdF">(c.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdS">(c.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdT">(c.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partId">(b.PART_ID = #partId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty> 
+                
+			group by a.guest_id, month(a.audit_date) , year(a.audit_date)
+    </select>
+    <select id="queryClientSellRtnForMonth" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+    		select a.guest_id as guestId, month(a.audit_date) as fMonth, year(a.audit_date) as fYear,
+						 sum(b.enter_qty) as sellRtnQty, sum(b.rtn_amt) as sellRtnAmt, sum(b.enter_amt) as rtnEnterAmt
+			from pj_enter_main_chk a
+			inner join pj_enter_detail_chk b
+			on a.id = b.main_id
+			inner join wb_common.com_attribute c
+			on b.part_id = c.id
+			where 1 = 1 and a.audit_sign = 1 and a.enter_type_id = '050102'
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--审核日期 -->
+        <isNotEmpty prepend="and" property="sAuditDate">(A.AUDIT_DATE &gt;= #sAuditDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eAuditDate">(A.AUDIT_DATE &lt; #eAuditDate#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(A.AUDIT_DATE &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(A.AUDIT_DATE &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partBrandId">(C.part_brand_id = #partBrandId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdF">(c.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdS">(c.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdT">(c.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partId">(b.PART_ID = #partId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty> 
+                
+			group by a.guest_id, month(a.audit_date) , year(a.audit_date)
+    </select>
+    <select id="queryPartTypeSellForMonth" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+    		select c.car_type_id_f as carTypeIdF, month(a.audit_date) as fMonth, year(a.audit_date) as fYear,
+						 sum(b.sell_qty) as sellQty, sum(b.sell_amt) as sellAmt, sum(b.enter_amt) as enterAmt
+			from pj_out_main_chk a
+			inner join pj_out_detail_chk b
+			on a.id = b.main_id
+			inner join wb_common.com_attribute c
+			on b.part_id = c.id
+			where 1 = 1 and a.audit_sign = 1 and a.enter_type_id = '050202'
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--审核日期 -->
+        <isNotEmpty prepend="and" property="sAuditDate">(A.AUDIT_DATE &gt;= #sAuditDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eAuditDate">(A.AUDIT_DATE &lt; #eAuditDate#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(A.AUDIT_DATE &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(A.AUDIT_DATE &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partBrandId">(C.part_brand_id = #partBrandId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdF">(c.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdS">(c.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdT">(c.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partId">(b.PART_ID = #partId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty> 
+                
+			group by c.car_type_id_f, month(a.audit_date) , year(a.audit_date)
+    </select>
+    <select id="queryPartTypeSellRtnForMonth" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+    		select c.car_type_id_f as carTypeIdF, month(a.audit_date) as fMonth, year(a.audit_date) as fYear,
+						 sum(b.enter_qty) as sellRtnQty, sum(b.rtn_amt) as sellRtnAmt, sum(b.enter_amt) as rtnEnterAmt
+			from pj_enter_main_chk a
+			inner join pj_enter_detail_chk b
+			on a.id = b.main_id
+			inner join wb_common.com_attribute c
+			on b.part_id = c.id
+			where 1 = 1 and a.audit_sign = 1 and a.enter_type_id = '050102'
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--审核日期 -->
+        <isNotEmpty prepend="and" property="sAuditDate">(A.AUDIT_DATE &gt;= #sAuditDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eAuditDate">(A.AUDIT_DATE &lt; #eAuditDate#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(A.AUDIT_DATE &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(A.AUDIT_DATE &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partBrandId">(C.part_brand_id = #partBrandId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdF">(c.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdS">(c.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdT">(c.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partId">(b.PART_ID = #partId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty> 
+                
+			group by c.car_type_id_f, month(a.audit_date) , year(a.audit_date)
+    </select>
+    <!--直接汇总-->
+    <select id="queryPartBrandSell" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+    		select c.part_brand_id as partBrandId,
+						 sum(b.sell_qty) as sellQty, sum(b.sell_amt) as sellAmt, sum(b.enter_amt) as enterAmt
+			from pj_out_main_chk a
+			inner join pj_out_detail_chk b
+			on a.id = b.main_id
+			inner join wb_common.com_attribute c
+			on b.part_id = c.id
+			where 1 = 1 and a.audit_sign = 1 and a.enter_type_id = '050202'
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--审核日期 -->
+        <isNotEmpty prepend="and" property="sAuditDate">(A.AUDIT_DATE &gt;= #sAuditDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eAuditDate">(A.AUDIT_DATE &lt; #eAuditDate#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(A.AUDIT_DATE &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(A.AUDIT_DATE &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partBrandId">(C.part_brand_id = #partBrandId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdF">(c.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdS">(c.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdT">(c.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partId">(b.PART_ID = #partId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty> 
+                
+			group by c.part_brand_id
+    </select>
+    <select id="queryPartBrandSellRtn" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+    		select c.part_brand_id as partBrandId, 
+						 sum(b.enter_qty) as sellRtnQty, sum(b.rtn_amt) as sellRtnAmt, sum(b.enter_amt) as rtnEnterAmt
+			from pj_enter_main_chk a
+			inner join pj_enter_detail_chk b
+			on a.id = b.main_id
+			inner join wb_common.com_attribute c
+			on b.part_id = c.id
+			where 1 = 1 and a.audit_sign = 1 and a.enter_type_id = '050102'
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--审核日期 -->
+        <isNotEmpty prepend="and" property="sAuditDate">(A.AUDIT_DATE &gt;= #sAuditDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eAuditDate">(A.AUDIT_DATE &lt; #eAuditDate#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(A.AUDIT_DATE &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(A.AUDIT_DATE &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partBrandId">(C.part_brand_id = #partBrandId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdF">(c.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdS">(c.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdT">(c.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partId">(b.PART_ID = #partId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty> 
+                
+			group by c.part_brand_id
+    </select>
+    <select id="queryPartSell" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+    		select b.part_id as partId,
+				   sum(b.sell_qty) as sellQty, sum(b.sell_amt) as sellAmt, sum(b.enter_amt) as enterAmt
+			from pj_out_main_chk a
+			inner join pj_out_detail_chk b
+			on a.id = b.main_id
+			inner join wb_common.com_attribute c
+			on b.part_id = c.id
+			where 1 = 1 and a.audit_sign = 1 and a.enter_type_id = '050202'
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--审核日期 -->
+        <isNotEmpty prepend="and" property="sAuditDate">(A.AUDIT_DATE &gt;= #sAuditDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eAuditDate">(A.AUDIT_DATE &lt; #eAuditDate#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(A.AUDIT_DATE &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(A.AUDIT_DATE &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partBrandId">(C.part_brand_id = #partBrandId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdF">(c.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdS">(c.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdT">(c.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partId">(b.PART_ID = #partId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty> 
+                
+			group by b.part_id
+    </select>
+    <select id="queryPartSellRtn" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+    		select b.part_id as partId,
+						 sum(b.enter_qty) as sellRtnQty, sum(b.rtn_amt) as sellRtnAmt, sum(b.enter_amt) as rtnEnterAmt
+			from pj_enter_main_chk a
+			inner join pj_enter_detail_chk b
+			on a.id = b.main_id
+			inner join wb_common.com_attribute c
+			on b.part_id = c.id
+			where 1 = 1 and a.audit_sign = 1 and a.enter_type_id = '050102'
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--审核日期 -->
+        <isNotEmpty prepend="and" property="sAuditDate">(A.AUDIT_DATE &gt;= #sAuditDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eAuditDate">(A.AUDIT_DATE &lt; #eAuditDate#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(A.AUDIT_DATE &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(A.AUDIT_DATE &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partBrandId">(C.part_brand_id = #partBrandId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdF">(c.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdS">(c.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdT">(c.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partId">(b.PART_ID = #partId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty> 
+                
+			group by b.part_id
+    </select>
+    <select id="queryClientSell" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+    		select a.guest_id as guestId,
+				   sum(b.sell_qty) as sellQty, sum(b.sell_amt) as sellAmt, sum(b.enter_amt) as enterAmt
+			from pj_out_main_chk a
+			inner join pj_out_detail_chk b
+			on a.id = b.main_id
+			inner join wb_common.com_attribute c
+			on b.part_id = c.id
+			where 1 = 1 and a.audit_sign = 1 and a.enter_type_id = '050202'
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--审核日期 -->
+        <isNotEmpty prepend="and" property="sAuditDate">(A.AUDIT_DATE &gt;= #sAuditDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eAuditDate">(A.AUDIT_DATE &lt; #eAuditDate#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(A.AUDIT_DATE &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(A.AUDIT_DATE &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partBrandId">(C.part_brand_id = #partBrandId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdF">(c.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdS">(c.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdT">(c.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partId">(b.PART_ID = #partId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty> 
+                
+			group by a.guest_id
+    </select>
+    <select id="queryClientSellRtn" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+    		select a.guest_id as guestId,
+				   sum(b.enter_qty) as sellRtnQty, sum(b.rtn_amt) as sellRtnAmt, sum(b.enter_amt) as rtnEnterAmt
+			from pj_enter_main_chk a
+			inner join pj_enter_detail_chk b
+			on a.id = b.main_id
+			inner join wb_common.com_attribute c
+			on b.part_id = c.id
+			where 1 = 1 and a.audit_sign = 1 and a.enter_type_id = '050102'
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--审核日期 -->
+        <isNotEmpty prepend="and" property="sAuditDate">(A.AUDIT_DATE &gt;= #sAuditDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eAuditDate">(A.AUDIT_DATE &lt; #eAuditDate#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(A.AUDIT_DATE &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(A.AUDIT_DATE &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partBrandId">(C.part_brand_id = #partBrandId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdF">(c.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdS">(c.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdT">(c.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partId">(b.PART_ID = #partId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty> 
+                
+			group by a.guest_id
+    </select>
+    <select id="queryPartTypeSell" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+    		select c.car_type_id_f as carTypeIdF,
+				   sum(b.sell_qty) as sellQty, sum(b.sell_amt) as sellAmt, sum(b.enter_amt) as enterAmt
+			from pj_out_main_chk a
+			inner join pj_out_detail_chk b
+			on a.id = b.main_id
+			inner join wb_common.com_attribute c
+			on b.part_id = c.id
+			where 1 = 1 and a.audit_sign = 1 and a.enter_type_id = '050202'
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--审核日期 -->
+        <isNotEmpty prepend="and" property="sAuditDate">(A.AUDIT_DATE &gt;= #sAuditDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eAuditDate">(A.AUDIT_DATE &lt; #eAuditDate#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(A.AUDIT_DATE &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(A.AUDIT_DATE &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partBrandId">(C.part_brand_id = #partBrandId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdF">(c.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdS">(c.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdT">(c.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partId">(b.PART_ID = #partId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty> 
+                
+			group by c.car_type_id_f
+    </select>
+    <select id="queryPartTypeSellRtn" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+    		select c.car_type_id_f as carTypeIdF,
+				   sum(b.enter_qty) as sellRtnQty, sum(b.rtn_amt) as sellRtnAmt, sum(b.enter_amt) as rtnEnterAmt
+			from pj_enter_main_chk a
+			inner join pj_enter_detail_chk b
+			on a.id = b.main_id
+			inner join wb_common.com_attribute c
+			on b.part_id = c.id
+			where 1 = 1 and a.audit_sign = 1 and a.enter_type_id = '050102'
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--审核日期 -->
+        <isNotEmpty prepend="and" property="sAuditDate">(A.AUDIT_DATE &gt;= #sAuditDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eAuditDate">(A.AUDIT_DATE &lt; #eAuditDate#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(A.AUDIT_DATE &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(A.AUDIT_DATE &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partBrandId">(C.part_brand_id = #partBrandId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdF">(c.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdS">(c.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdT">(c.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partId">(b.PART_ID = #partId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty> 
+                
+			group by c.car_type_id_f
+    </select>
+    <!--维修领料统计-->
+    <select id="queryRepairOut" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+	    	SELECT c.name as partName, a.pick_man as pickMan, sum(a.out_qty) as outQty, sum(a.true_cost) as costAmt,
+			       sum(a.sell_amt) as sellAmt
+			from wb_part.pj_repair_out a
+			inner join wb_repair.rps_maintain b
+			on a.service_id = b.id and a.service_code = b.service_code
+			inner join wb_common.com_attribute c
+			on a.part_id = c.id
+			where a.return_sign = 0
+			
+				 <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--领料日期 -->
+        <isNotEmpty prepend="and" property="sPickDate">(a.pick_date &gt;= #sPickDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="ePickDate">(a.pick_date &lt; #ePickDate#)</isNotEmpty>
+        <!--出厂日期 -->
+        <isNotEmpty prepend="and" property="sOutDate">(b.out_date &gt;= #sOutDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eOutDate">(b.out_date &lt; #eOutDate#)</isNotEmpty>
+			
+			
+			group by c.name, a.pick_man
+			order by a.pick_man
+    	
+    	
+    </select>
+    <!--维修领料需要统计的配件名称-->
+    <select id="queryRepairOutPartName" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+	    	SELECT distinct c.name as partName
+			from wb_part.pj_repair_out a
+			inner join wb_repair.rps_maintain b
+			on a.service_id = b.id and a.service_code = b.service_code
+			inner join wb_common.com_attribute c
+			on a.part_id = c.id
+			where a.return_sign = 0
+			
+				 <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--领料日期 -->
+        <isNotEmpty prepend="and" property="sPickDate">(a.pick_date &gt;= #sPickDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="ePickDate">(a.pick_date &lt; #ePickDate#)</isNotEmpty>
+        <!--出厂日期 -->
+        <isNotEmpty prepend="and" property="sOutDate">(b.out_date &gt;= #sOutDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eOutDate">(b.out_date &lt; #eOutDate#)</isNotEmpty>
+    </select>
+    <!--维修领料需要统计的领料人-->
+    <select id="queryRepairOutPickMan" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+	    	SELECT distinct a.pick_man as pickMan
+			from wb_part.pj_repair_out a
+			inner join wb_repair.rps_maintain b
+			on a.service_id = b.id and a.service_code = b.service_code
+			where a.return_sign = 0
+			
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--领料日期 -->
+        <isNotEmpty prepend="and" property="sPickDate">(a.pick_date &gt;= #sPickDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="ePickDate">(a.pick_date &lt; #ePickDate#)</isNotEmpty>
+        <!--出厂日期 -->
+        <isNotEmpty prepend="and" property="sOutDate">(b.out_date &gt;= #sOutDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eOutDate">(b.out_date &lt; #eOutDate#)</isNotEmpty>
+    </select>
+</sqlMap>

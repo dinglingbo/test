@@ -1422,11 +1422,11 @@
                 B.SHORT_NAME AS guestShortName,
                 b.srm_guest_id as srmGuestId,
                 a.version_no as versionNo,
-                a.is_diff_order as isDiffOrder,
-               <!-- c.store_id as storeId,-->
+                a.is_diff_order as isDiffOrder
+               <!-- c.store_id as storeId,
                 c.order_price as orderPrice,
                 c.store_shelf as storeShelf,
-                a.order_code as orderCode
+                a.order_code as orderCode -->
                 FROM
                 Wb_PART.PJ_PCHS_ORDER_MAIN A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID

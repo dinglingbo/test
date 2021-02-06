@@ -28,6 +28,7 @@
 			a.part_brand_id as partBrandId,
 			a.apply_carbrand_id as applyCarbrandId,
 			a.apply_car_model as applyCarModel,
+			a.org_car_brand_id as orgCarBrandId,
 			a.car_type_id_f as carTypeIdf,
 			a.car_type_id_s as carTypeIds,
 			a.car_type_id_t as carTypeIdt,
@@ -183,11 +184,12 @@
 		SELECT 
 			a.id as id,
 			a.service_id as serviceId,
+			a.settle_type_id as settleTypeId,
 			a.order_man as orderMan,
 		  	a.audit_date as auditDate,
 			a.order_amt as orderAmt,
 			a.remark as remark,
-		  b.full_name as fullName  
+		    b.full_name as fullName  
 		from pj_sell_order_main_chk a
 		inner join wb_common.com_guest b
 		on a.guest_id = b.id
@@ -198,6 +200,12 @@
                     (a.orgid = #orgid#)
                 </isNotEmpty>
                 
+                <isNotEmpty prepend="and" property="orderTypeId"> 
+                    (a.order_type_id = #orderTypeId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="sourceType"> 
+                    (a.source_type = #sourceType#)
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
                     (a.guest_id = #guestId#)
                 </isNotEmpty>
@@ -250,6 +258,18 @@
                 
                 <isNotEmpty prepend="and" property="isSend">  
                     (a.is_send = #isSend#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="packSign">  
+                    (a.pack_sign = #packSign#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="isDiffOrder">  
+                    (a.is_diff_order = #isDiffOrder#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="storeId">  
+                    (a.store_id = #storeId#)
                 </isNotEmpty>
                 
 	            <isNotEmpty prepend="order by" property="sortField">  
@@ -365,6 +385,9 @@
                 <isNotEmpty prepend="and" property="guestName">  
                     (a.guest_name like '%$guestName$%')
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="logisticsName">
+                    (a.logistics_name like '%$logisticsName$%')
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="packMan">  
                     (a.pack_man = #packMan#)
                 </isNotEmpty>
@@ -390,7 +413,6 @@
 	                $sortField$ $sortOrder$
 	            </isNotEmpty> 
             </dynamic> 
-			group by a.id	
 	</select>
 	
 	<select id="querySellOrderPartChoose" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
@@ -407,9 +429,11 @@
 				 a.is_disabled isDisabled,
 				 a.apply_car_model as applyCarModel,
 				 a.common_id as commonId,
+				 a.org_car_brand_id as orgCarBrandId,
 			     IFNULL(b.stock_qty,0) as stockQty,
 			     b.cost_price as costPrice,
 			     b.exp_enter_price as expEnterPrice,
+			     b.tax_cost_price as taxCostPrice,
                  IFNULL(b.outable_qty,0)as outableQty,
                  IFNULL(b.on_road_qty,0) as onRoadQty,
 			     IFNULL(b.order_qty,0) as orderQty
@@ -539,9 +563,12 @@
 				 a.is_disabled isDisabled,
 				 a.apply_car_model as applyCarModel,
 				 a.common_id as commonId,
+				 a.org_car_brand_id as orgCarBrandId,
 			     IFNULL(b.stock_qty,0) as stockQty,
 			     b.cost_price as costPrice,
 			     b.exp_enter_price as expEnterPrice,
+			     b.tax_cost_price as taxCostPrice,
+			     b.set_cost_price as setCostPrice,
                  IFNULL(b.outable_qty,0)as outableQty,
                  IFNULL(b.on_road_qty,0) as onRoadQty,
 			     IFNULL(b.order_qty,0) as orderQty,
@@ -629,7 +656,7 @@
                 (a.id = #partId#)
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="partCode">  
-                (a.code like '$partCode$%' or a.oem_code like '$partCode$%')
+                (a.code like '%$partCode$%' or a.oem_code like '%$partCode$%')
             </isNotEmpty>
             <!-- 全匹配 -->
             <isNotEmpty prepend="and" property="partCodeAll">  

@@ -135,7 +135,7 @@
 					provinceList = window.top._provinceList;
 					window.top._cityList = data.city;
 					provinceList.forEach(function(v) {
-						provinceHash[v.id] = v;
+						provinceHash[v.code] = v;
 					});
 					if (provinceEl) {
 						provinceEl.setData(provinceList);
@@ -226,6 +226,30 @@
 	        },
 	        error:function(jqXHR, textStatus, errorThrown){
 	            //  nui.alert(jqXHR.responseText);
+	            console.log(jqXHR.responseText);
+	        }
+	    });
+	}
+	
+	var getResBtnAuthUrl = apiPath + sysApi + "/com.hsapi.system.tenant.permissions.getResBtnAuth.biz.ext";
+	function getResBtnAuth(btnArea, callback)
+	{
+	    nui.ajax({
+	        url: getResBtnAuthUrl,
+	        data : {
+	        	btnArea: btnArea,
+	        	token: token
+	        },
+	        type:"post",
+	        async:false,
+	        success:function(data)
+	        {
+	            if(data && data.list)
+	            {
+	                callback && callback(data.list);
+	            }
+	        },
+	        error:function(jqXHR, textStatus, errorThrown){
 	            console.log(jqXHR.responseText);
 	        }
 	    });

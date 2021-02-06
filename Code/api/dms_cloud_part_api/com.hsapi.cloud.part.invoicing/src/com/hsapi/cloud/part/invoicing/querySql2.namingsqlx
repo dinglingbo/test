@@ -1037,15 +1037,34 @@
 			c.part_brand_id AS partBrandId,
 			c.apply_car_model AS applyCarModel,
 			c.direction AS direction,
-			a.qty AS qty,
+			c.org_car_brand_id as orgCarBrandId,
+			a.qty * a.dc AS qty,
 			a.cost_price AS costPrice,
-			a.cost_amt AS costAmt,
+			a.cost_amt * 1.0 * a.dc AS costAmt,
 			a.bala_qty AS balaQty,
 			a.bala_price AS balaPrice,
 			a.bala_amt AS balaAmt,
+			a.exp_price as expPrice,
+			a.exp_amt * a.dc as expAmt,
+			a.bala_exp_price as balaExpPrice,
+			a.bala_exp_amt as balaExpAmt,
+			a.tax_cost_price as taxCostPrice,
+			a.tax_cost_amt * a.dc as taxCostAmt,
+			a.bala_tax_cost_price as balaTaxCostPrice,
+			a.bala_tax_cost_amt as balaTaxCostAmt,
+			a.set_cost_price as setCostPrice,
+			a.set_cost_amt * a.dc as setCostAmt,
+			a.bala_set_cost_price as balaSetCostPrice,
+			a.bala_set_cost_amt as balaSetCostAmt,
+			a.no_tax_cost_price as noTaxCostPrice,
+			a.no_tax_cost_amt * a.dc as noTaxCostAmt,
+			a.bala_no_tax_cost_price as balaNoTaxCostPrice,
+			a.bala_no_tax_cost_amt as balaNoTaxCostAmt,		
 			a.operator AS operator,
 			a.operate_date as operateDate,
-			a.orgid as orgid
+			a.orgid as orgid,
+			a.store_id as storeId,
+			a.remark
 		FROM
 			pj_invocing a
 		INNER JOIN wb_common.com_guest b ON a.guest_id = b.id
@@ -1061,14 +1080,14 @@
             </isNotEmpty>
 
 			<isNotEmpty prepend="and" property="partCodeOrName">  
-				a.part_code like '%$partCodeOrName$%'or a.part_name like '%$partCodeOrName$%'
+				(a.part_code like '%$partCodeOrName$%'or a.part_name like '%$partCodeOrName$%')
 			</isNotEmpty>
 			<isNotEmpty prepend="and" property="partId">  
-				a.part_id like '%$partId$%'
+				a.part_id = #partId#
 			</isNotEmpty>
 			
 			<isNotEmpty prepend="and" property="partBrandId">  
-				c.part_brand_id like '%$partBrandId$%'
+				c.part_brand_id = #partBrandId#
 			</isNotEmpty>
 			
 			<isNotEmpty prepend="and" property="serviceId">  
@@ -1076,6 +1095,9 @@
 			</isNotEmpty>
 			<isNotEmpty prepend="and" property="guestId">  
                 (a.guest_id = #guestId#)
+            </isNotEmpty>
+			<isNotEmpty prepend="and" property="orgCarBrandId">  
+                (c.org_car_brand_id = #orgCarBrandId#)
             </isNotEmpty>
             
             <isNotEmpty prepend="and" property="guestName">  
@@ -1121,16 +1143,34 @@
 			c.part_brand_id AS partBrandId,
 			c.apply_car_model AS applyCarModel,
 			c.direction AS direction,
-			a.qty AS qty,
+			c.org_car_brand_id as orgCarBrandId,
+			a.qty * a.dc  AS qty,
 			a.cost_price AS costPrice,
-			a.cost_amt AS costAmt,
+			a.cost_amt * a.dc  AS costAmt,
 			a.bala_qty AS balaQty,
 			a.bala_price AS balaPrice,
 			a.bala_amt AS balaAmt,
+			a.exp_price as expPrice,
+			a.exp_amt * a.dc as expAmt,
+			a.bala_exp_price as balaExpPrice,
+			a.bala_exp_amt as balaExpAmt,
+			a.tax_cost_price as taxCostPrice,
+			a.tax_cost_amt * a.dc as taxCostAmt,
+			a.bala_tax_cost_price as balaTaxCostPrice,
+			a.bala_tax_cost_amt as balaTaxCostAmt,
+			a.set_cost_price as setCostPrice,
+			a.set_cost_amt * a.dc as setCostAmt,
+			a.bala_set_cost_price as balaSetCostPrice,
+			a.bala_set_cost_amt as balaSetCostAmt,
+			a.no_tax_cost_price as noTaxCostPrice,
+			a.no_tax_cost_amt * a.dc as noTaxCostAmt,
+			a.bala_no_tax_cost_price as balaNoTaxCostPrice,
+			a.bala_no_tax_cost_amt as balaNoTaxCostAmt,			
 			a.operator AS operator,
 			a.operate_date as operateDate,
 			a.orgid as orgid,
-			a.store_id as storeId
+			a.store_id as storeId,
+			a.remark
 		FROM
 			pj_store_invocing a
 		INNER JOIN wb_common.com_guest b ON a.guest_id = b.id
@@ -1151,10 +1191,10 @@
 			</isNotEmpty>
 			
 			<isNotEmpty prepend="and" property="partCodeOrName">  
-				a.part_code like '%$partCodeOrName$%'or a.part_name like '%$partCodeOrName$%'
+				(a.part_code like '%$partCodeOrName$%'or a.part_name like '%$partCodeOrName$%')
 			</isNotEmpty>
 			<isNotEmpty prepend="and" property="partId">  
-				a.part_id like '%$partId$%'
+				a.part_id = #partId#
 			</isNotEmpty>
 			<isNotEmpty prepend="and" property="serviceId">  
 				a.service_id like '%$serviceId$%'
@@ -1163,13 +1203,16 @@
                 (a.guest_id = #guestId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="partBrandId">  
-				c.part_brand_id like '%$partBrandId$%'
+				c.part_brand_id = #partBrandId#
 			</isNotEmpty>
 			
             <isNotEmpty prepend="and" property="guestName">  
                 (b.full_name like '%$guestName$%' or b.short_name like '%$guestName$%')
             </isNotEmpty>
             
+			<isNotEmpty prepend="and" property="orgCarBrandId">  
+                (c.org_car_brand_id = #orgCarBrandId#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="operatorId">  
                 (a.operator_id = #operatorId#)
             </isNotEmpty>

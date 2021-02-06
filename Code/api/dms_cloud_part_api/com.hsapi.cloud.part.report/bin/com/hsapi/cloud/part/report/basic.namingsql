@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.cloud.part.report.basic">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <!--根据条件查询有入的信息-->
+    <select id="queryInvocingInBrand" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+            SELECT DISTINCT b.part_brand_id as partBrandId
+			from pj_invocing a
+			inner join wb_common.com_attribute b
+			on a.part_id = b.id
+			where 1 = 1 and a.dc = 1
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--审核日期 -->
+        <isNotEmpty prepend="and" property="sAuditDate">(A.create_date &gt;= #sAuditDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eAuditDate">(A.create_date &lt; #eAuditDate#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(A.create_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(A.create_date &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partBrandId">(b.part_brand_id = #partBrandId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdF">(b.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdS">(b.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdT">(b.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partId">(a.PART_ID = #partId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partName">(b.FULL_NAME like '%$partName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partNameAndPY">(b.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCode">(b.query_code like '%$partCode$%' or b.code like '%$partCode$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCodeList">(b.code in ($partCodeList$))</isNotEmpty>
+    </select>
+    <select id="queryInvocingInPart" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+            SELECT DISTINCT a.part_id as partId, b.oem_code as oemCode, b.part_brand_id as partBrandId,
+				   b.car_type_id_f as carTypeIdF, b.car_type_id_s as carTypeIdS, b.car_type_id_t as carTypeIdT,
+		           b.`code` as partCode, b.name as partName, b.full_name as fullName, b.spec as spec, b.apply_carbrand_id as applyCarbrandId, 
+		           b.apply_car_model as applyCarModel, b.quality_type_id as qualityTypeId
+			from pj_invocing a
+			inner join wb_common.com_attribute b
+			on a.part_id = b.id
+			where 1 = 1 and a.bill_type_id in ('050101','050201')
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--审核日期 -->
+        <isNotEmpty prepend="and" property="sAuditDate">(A.create_date &gt;= #sAuditDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eAuditDate">(A.create_date &lt; #eAuditDate#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(A.create_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(A.create_date &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partBrandId">(b.part_brand_id = #partBrandId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdF">(b.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdS">(b.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdT">(b.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partId">(a.PART_ID = #partId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partName">(b.FULL_NAME like '%$partName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partNameAndPY">(b.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCode">(b.query_code like '%$partCode$%' or b.code like '%$partCode$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCodeList">(b.code in ($partCodeList$))</isNotEmpty>
+    </select>
+    <select id="queryInvocingInSupplier" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+            SELECT DISTINCT a.guest_id as guestId, c.`code` as supplierCode, c.full_name as fullName,
+                   c.short_name as shortName, c.supplier_type as supplierType
+			from pj_invocing a
+			inner join wb_common.com_attribute b
+			on a.part_id = b.id
+			inner join wb_common.com_guest c
+			on a.guest_id = c.id
+			where 1 = 1 and c.is_supplier = 1
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--审核日期 -->
+        <isNotEmpty prepend="and" property="sAuditDate">(A.create_date &gt;= #sAuditDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eAuditDate">(A.create_date &lt; #eAuditDate#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(A.create_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(A.create_date &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partBrandId">(b.part_brand_id = #partBrandId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdF">(b.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdS">(b.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdT">(b.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partId">(a.PART_ID = #partId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partName">(b.FULL_NAME like '%$partName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partNameAndPY">(b.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCode">(b.query_code like '%$partCode$%' or b.code like '%$partCode$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCodeList">(b.code in ($partCodeList$))</isNotEmpty>
+    </select>
+    <select id="queryInvocingInPartType" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+            SELECT DISTINCT b.car_type_id_f as carTypeIdF
+			from pj_invocing a
+			inner join wb_common.com_attribute b
+			on a.part_id = b.id
+			where 1 = 1 and a.dc = 1
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--审核日期 -->
+        <isNotEmpty prepend="and" property="sAuditDate">(A.create_date &gt;= #sAuditDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eAuditDate">(A.create_date &lt; #eAuditDate#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(A.create_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(A.create_date &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partBrandId">(b.part_brand_id = #partBrandId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdF">(b.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdS">(b.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdT">(b.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partId">(a.PART_ID = #partId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partName">(b.FULL_NAME like '%$partName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partNameAndPY">(b.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCode">(b.query_code like '%$partCode$%' or b.code like '%$partCode$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCodeList">(b.code in ($partCodeList$))</isNotEmpty>
+    </select>
+    <!--根据条件查询有出的信息-->
+    <select id="queryInvocingOutBrand" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+            SELECT DISTINCT b.part_brand_id as partBrandId
+			from pj_invocing a
+			inner join wb_common.com_attribute b
+			on a.part_id = b.id
+			where 1 = 1 and a.dc = -1
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--审核日期 -->
+        <isNotEmpty prepend="and" property="sAuditDate">(A.create_date &gt;= #sAuditDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eAuditDate">(A.create_date &lt; #eAuditDate#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(A.create_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(A.create_date &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partBrandId">(b.part_brand_id = #partBrandId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdF">(b.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdS">(b.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdT">(b.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partId">(a.PART_ID = #partId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partName">(b.FULL_NAME like '%$partName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partNameAndPY">(b.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCode">(b.query_code like '%$partCode$%' or b.code like '%$partCode$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCodeList">(b.code in ($partCodeList$))</isNotEmpty>
+    </select>
+    <select id="queryInvocingOutPart" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+            SELECT DISTINCT a.part_id as partId, b.oem_code as oemCode, b.part_brand_id as partBrandId,
+				   b.car_type_id_f as carTypeIdF, b.car_type_id_s as carTypeIdS, b.car_type_id_t as carTypeIdT,
+		           b.`code` as partCode, b.name as partName, b.full_name as fullName, b.spec as spec, b.apply_carbrand_id as applyCarbrandId, 
+		           b.apply_car_model as applyCarModel, b.quality_type_id as qualityTypeId
+			from pj_invocing a
+			inner join wb_common.com_attribute b
+			on a.part_id = b.id
+			where 1 = 1 and a.bill_type_id in ('050202','050102')
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--审核日期 -->
+        <isNotEmpty prepend="and" property="sAuditDate">(A.create_date &gt;= #sAuditDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eAuditDate">(A.create_date &lt; #eAuditDate#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(A.create_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(A.create_date &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partBrandId">(b.part_brand_id = #partBrandId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdF">(b.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdS">(b.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdT">(b.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partId">(a.PART_ID = #partId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partName">(b.FULL_NAME like '%$partName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partNameAndPY">(b.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCode">(b.query_code like '%$partCode$%' or b.code like '%$partCode$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCodeList">(b.code in ($partCodeList$))</isNotEmpty>
+    </select>
+    <select id="queryInvocingOutClient" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+            SELECT DISTINCT a.guest_id as guestId, c.`code` as clientCode, c.full_name as fullName,
+                   c.short_name as shortName, c.guest_type as guestType, c.province_id as provinceId,
+                   c.city_id as cityId
+			from pj_invocing a
+			inner join wb_common.com_attribute b
+			on a.part_id = b.id
+			inner join wb_common.com_guest c
+			on a.guest_id = c.id
+			where 1 = 1 and c.is_client = 1
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--审核日期 -->
+        <isNotEmpty prepend="and" property="sAuditDate">(A.create_date &gt;= #sAuditDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eAuditDate">(A.create_date &lt; #eAuditDate#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(A.create_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(A.create_date &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partBrandId">(b.part_brand_id = #partBrandId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdF">(b.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdS">(b.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdT">(b.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partId">(a.PART_ID = #partId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="provinceId">(c.province_id = #provinceId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="cityId">(c.city_id = #cityId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partName">(b.FULL_NAME like '%$partName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partNameAndPY">(b.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCode">(b.query_code like '%$partCode$%' or b.code like '%$partCode$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCodeList">(b.code in ($partCodeList$))</isNotEmpty>
+    </select>
+    <select id="queryInvocingOutPartType" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+            SELECT DISTINCT b.car_type_id_f as carTypeIdF
+			from pj_invocing a
+			inner join wb_common.com_attribute b
+			on a.part_id = b.id
+			where 1 = 1 and a.dc = -1
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--审核日期 -->
+        <isNotEmpty prepend="and" property="sAuditDate">(A.create_date &gt;= #sAuditDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eAuditDate">(A.create_date &lt; #eAuditDate#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(A.create_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(A.create_date &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partBrandId">(b.part_brand_id = #partBrandId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdF">(b.car_type_id_f = #carTypeIdF#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdS">(b.car_type_id_s = #carTypeIdS#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="carTypeIdT">(b.car_type_id_t = #carTypeIdT#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partId">(a.PART_ID = #partId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="partName">(b.FULL_NAME like '%$partName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partNameAndPY">(b.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCode">(b.query_code like '%$partCode$%' or b.code like '%$partCode$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="partCodeList">(b.code in ($partCodeList$))</isNotEmpty>
+    </select>
+    <select id="queryDeptMember" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+            SELECT a.name, b.dept_name as deptName
+			from wb_common.com_member a
+			left join wb_common.com_dept b
+			on a.dept_id = b.id
+			where 1 = 1 
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+    </select>
+    <select id="queryStore" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+            SELECT id as storeId, name
+			from wb_common.com_store 
+			where 1 = 1 
+				<isNotEmpty prepend="and" property="orgid">(orgid = #orgid#)</isNotEmpty>
+    </select>
+    <select id="queryBusinessType" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+            SELECT customid as businessTypeId, name
+			from wb_common.com_dataitems
+			where dictid = '10445' and is_disabled = 0
+				<isNotEmpty prepend="and" property="tenantId">(tenant_id = #tenantId# or tenant_id = 0)</isNotEmpty>
+    </select>
+</sqlMap>

@@ -1,0 +1,750 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.repair.report.repairBillSql">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <!--工单收入 a.bill_type_id in (0, 2, 3, 4) -->
+    <select id="queryBillIncome" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	select sum(ifnull(package_subtotal,0) + ifnull(item_subtotal,0) 
+    	       + ifnull(part_subtotal,0) )  as outputValue,
+    	       count(1) as billCount
+		from rps_maintain a
+		inner join rps_settlement b
+		on a.id = b.service_id
+		where a.orgid = #orgid# and a.is_settle = 1
+		<dynamic>
+            <isNotEmpty prepend="and" property="billTypeIds">(a.bill_type_id in ($billTypeIds$))</isNotEmpty>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">(a.out_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(a.out_date &lt; #endDate#)</isNotEmpty>
+        </dynamic>
+    </select>
+    <!--退货开单金额 -->
+    <select id="querySaleReturn" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	select sum(ifnull(part_subtotal,0) )  as outputValue,
+    	       count(1) as billCount
+		from rps_maintain a
+		inner join rps_settlement b
+		on a.id = b.service_id
+		where a.orgid = #orgid# and a.is_settle = 1
+		      and a.bill_type_id = 5
+		<dynamic>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">(a.out_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(a.out_date &lt; #endDate#)</isNotEmpty>
+        </dynamic>
+    </select>
+    <!--保险收入-->
+    <select id="queryInsureIncome" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(ifnull(amt,0)) as insureAmt,
+    		   count(1) as billCount
+    	from rps_insurance_main 
+		where orgid = #orgid# and is_settle = 1
+		<dynamic>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">(out_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(out_date &lt; #endDate#)</isNotEmpty>
+        </dynamic>
+    </select>
+    <!--业务产值占比图-->
+    <select id="queryOutputValue" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+    	SELECT n.name, sum(m.subtotal) as value
+		from (
+			SELECT a.service_type_id as serviceTypeId, a.subtotal as subtotal
+			from rps_package a
+			inner join rps_maintain b
+			on a.service_id = b.id
+			where  b.is_settle = 1
+			
+			<!--结算日期 --><isNotEmpty prepend="and" property="orgid">(b.orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="orgids">(b.orgid in ($orgids$))</isNotEmpty>
+        <isNotEmpty prepend="and" property="startDate">(b.out_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(b.out_date &lt; #endDate#)</isNotEmpty>
+            
+			union all
+			SELECT a.service_type_id as serviceTypeId, a.subtotal as subtotal
+			from rps_item a
+			inner join rps_maintain b
+			on a.service_id = b.id
+			where b.orgid = #orgid# and b.is_settle = 1 and a.bill_package_id = 0
+			
+			<!--结算日期 --><isNotEmpty prepend="and" property="startDate">(b.out_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(b.out_date &lt; #endDate#)</isNotEmpty>
+            
+			union all
+			SELECT a.service_type_id as serviceTypeId, a.subtotal as subtotal
+			from rps_part a
+			inner join rps_maintain b
+			on a.service_id = b.id
+			where b.orgid = #orgid# and b.is_settle = 1 and a.bill_package_id = 0
+			
+			<!--结算日期 --><isNotEmpty prepend="and" property="startDate">(b.out_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(b.out_date &lt; #endDate#)</isNotEmpty>
+		)m
+		inner join rpb_business_type n
+		on m.serviceTypeId = n.id
+		group by n.name
+		order by m.serviceTypeId
+    	
+	</select>
+    <!--总收入-->
+    <select id="querySumReceive" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(char_off_amt * bill_dc) as rAmt
+		from fis_rp_bill 
+		where audit_sign = 1 and orgid = #orgid#
+		<dynamic>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">(audit_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(audit_date &lt; #endDate#)</isNotEmpty>
+        </dynamic>
+    </select>
+    <!--成本：配件，提成-->
+    <select id="querySumCost" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(char_off_amt * bill_dc) as rAmt
+		from fis_rp_bill 
+		where audit_sign = 1 and orgid = #orgid#
+		<dynamic>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">(audit_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(audit_date &lt; #endDate#)</isNotEmpty>
+        </dynamic>
+    </select>
+    <!--业务产值汇总统计，可以根据工单的业务类型，也可以根据工单服务顾问进行统计-->
+    <select id="queryOutputAnalysis" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT  
+    	     <isEqual compareValue="0" prepend="" property="groupByType">DATE_FORMAT(a.out_date,'%Y-%m-%d')  as groupName,</isEqual>
+        <isEqual compareValue="1" prepend="" property="groupByType">a.mt_advisor_id ,a.mt_advisor as groupName,</isEqual>
+        <isEqual compareValue="2" prepend="" property="groupByType">c.car_model as groupName,</isEqual>
+        <isEqual compareValue="3" prepend="" property="groupByType">a.service_type_id as groupName,</isEqual>
+        <isEqual compareValue="4" prepend="" property="groupByType">a.bill_type_id as groupName,</isEqual>  	       
+    	       count(1) as ct, a.orgid as orgid ,sum(b.package_amt) as pkgAmt, sum(b.package_pref_amt) as pkgPrefAmt,
+		       sum(b.package_subtotal) as pkgSubtotal, sum(b.item_total_amt) as itemTotalAmt, sum(b.item_pref_amt) as itemPrefAmt,
+		       sum(b.item_subtotal) as itemSubtotal, sum(b.part_total_amt) as partTotalAmt, sum(b.part_pref_amt) as partPrefAmt,
+		       sum(b.part_subtotal) as partSubtotal, sum(b.part_true_cost) as partTrueCost, sum(b.card_times_amt) as cardTimesAmt,
+		       sum(b.allowance_amt) as allowanceAmt, sum(b.other_amt) as otherAmt, sum(b.other_cost_amt) as otherCostAmt,
+		       sum(b.total_pref_amt) as totalPrefAmt, sum(b.bala_amt) as balaAmt, sum(b.sales_deduct_value) as salesDeductValue,
+		       sum(b.tech_deduct_value) as techDeductValue, sum(b.advisor_deduct_value) as advisorDeductValue,
+		       sum(b.total_deduct_amt) as totalDeductAmt, sum(b.netin_amt) as netinAmt, sum(b.gross_profit) as grossProfit,
+		       case when sum(b.netin_amt) = 0 then 0 
+		       else (sum(b.netin_amt) - sum(b.tech_deduct_value) - sum(b.part_true_cost) - sum(b.other_cost_amt))*1.0/sum(b.netin_amt)
+		       end as grossProfitRate,
+		       sum(b.allowance_amt) as allowanceAmt
+		from rps_maintain a
+		inner join rps_settlement b on a.id = b.service_id
+		inner join rpb_car c on a.car_id = c.id
+		where  a.bill_type_id in (0,2,4,6) and a.is_disabled=0 and a.is_settle = 1
+		
+		<dynamic>
+            <isNotEmpty prepend="and" property="billTypeId">(a.bill_type_id = #billTypeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="billTypeIdList">(a.bill_type_id in ($billTypeIdList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestProperty">(c.guest_property = #guestProperty#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="propertyFeatures">(c.property_features like '%$propertyFeatures$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="isCollectMoney">(a.is_collect_money = #isCollectMoney#)</isNotEmpty>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">(a.out_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(a.out_date &lt; #endDate#)</isNotEmpty>
+            <!--收款日期 -->
+            <isNotEmpty prepend="and" property="collectMoneyDateStart">(a.collect_money_date &gt;= #collectMoneyDateStart#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="collectMoneyDateEnd">(a.collect_money_date &lt; #collectMoneyDateEnd#)</isNotEmpty>
+            <!--进厂日期 -->
+            <isNotEmpty prepend="and" property="sEnterDate">(a.enter_date &gt;= #sEnterDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eEnterDate">(a.enter_date &lt; #eEnterDate#)</isNotEmpty>
+            <!--出厂日期 -->
+            <isNotEmpty prepend="and" property="outDateStart">(a.out_date &gt;= #outDateStart#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="outDateEnd">(a.out_date &lt; #outDateEnd#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAdvisorId">(a.mt_advisor_id = #mtAdvisorId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeId">(a.service_type_id = #serviceTypeId#)</isNotEmpty>
+        </dynamic>
+        <isEqual compareValue="3" prepend="" property="groupByType">group by a.service_type_id</isEqual>
+        <isEqual compareValue="0" prepend="" property="groupByType">GROUP BY DATE_FORMAT(a.out_date,'%Y-%m-%d')</isEqual>
+        <isEqual compareValue="1" prepend="" property="groupByType">GROUP BY a.mt_advisor_id,a.mt_advisor</isEqual>
+        <isEqual compareValue="2" prepend="" property="groupByType">GROUP BY c.car_model</isEqual>
+        <isEqual compareValue="4" prepend="" property="groupByType">GROUP BY a.bill_type_id</isEqual>
+    </select>
+    <!--配件维修销售汇总表-->
+    <select id="queryBillPartSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT  
+	   <isEqual compareValue="0" prepend="" property="groupByType">DATE_FORMAT(c.out_date,'%Y-%m-%d')  as groupName,</isEqual>
+        <isEqual compareValue="1" prepend="" property="groupByType">c.service_type_id as groupName,</isEqual>
+        <isEqual compareValue="2" prepend="" property="groupByType">b.part_code as groupName,
+	     	 b.part_name as partName,</isEqual>
+        <isEqual compareValue="3" prepend="" property="groupByType">c.mt_advisor as groupName,</isEqual>    
+	        count(distinct c.id) as ct,
+ 			SUM(a.true_cost) as trueCost,
+			SUM(b.subtotal) as subtotal,
+			SUM(b.qty) as qty,
+ 			SUM(b.discount_amt) as discountAmt,
+ 			SUM(b.amt) as amt
+ 			      		
+       		FROM wb_repair.rps_part b 
+			INNER JOIN  (
+				select sum(a.true_cost) as true_cost ,a.main_id as main_id from wb_part.pj_repair_out a 
+					where a.orgid = #orgid# and  a.return_sign = 0 GROUP BY a.main_id) a on a.main_id = b.id
+			inner join wb_repair.rps_maintain c on b.service_id = c.id 
+			where  c.orgid = #orgid#
+			and c.bill_type_id != 5 and b.is_disabled = 0 and c.is_disabled=0 and c.is_settle = 1
+			
+		
+            <isNotEmpty prepend="and" property="startDate">(c.out_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="billTypeId">(c.bill_type_id = #billTypeId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="noBillTypeId">(c.bill_type_id != #noBillTypeId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(c.out_date &lt; #endDate#)</isNotEmpty>
+        <isEqual compareValue="0" prepend="" property="groupByType">GROUP BY DATE_FORMAT(c.out_date,'%Y-%m-%d')</isEqual>
+        <isEqual compareValue="1" prepend="" property="groupByType">group by c.service_type_id</isEqual>
+        <isEqual compareValue="2" prepend="" property="groupByType">group by b.part_code , b.part_name</isEqual>
+        <isEqual compareValue="3" prepend="" property="groupByType">group by c.mt_advisor</isEqual>
+    </select>
+    <!--配件维修销售汇总表-->
+    <select id="queryBillPartSummaryBy2" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT  	     
+	   <isEqual compareValue="2" prepend="" property="groupByType">b.id as id,
+	     	 b.part_code as groupName,
+	     	 b.part_name as partName,</isEqual>  
+	        count(distinct c.id) as ct,     
+ 			SUM(a.true_cost) as trueCost,
+			SUM(b.subtotal) as subtotal,
+			SUM(b.qty) as qty,
+ 			SUM(b.discount_amt) as discountAmt,
+ 			SUM(b.amt) as amt
+ 			      		
+       		FROM wb_repair.rps_part b 
+			INNER JOIN  (
+				select sum(a.true_cost) as true_cost ,a.main_id as main_id from wb_part.pj_repair_out a 
+					where a.orgid = #orgid# and  a.return_sign = 0 GROUP BY a.main_id) a on a.main_id = b.id
+			inner join wb_repair.rps_maintain c on b.service_id = c.id 
+			where  c.orgid = #orgid#
+			and c.bill_type_id != 5 and b.is_disabled = 0 and c.is_settle = 1
+			
+		
+            <isNotEmpty prepend="and" property="startDate">(c.out_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(c.out_date &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="billTypeId">(c.bill_type_id = #billTypeId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="noBillTypeId">(c.bill_type_id != #noBillTypeId#)</isNotEmpty>
+        <isEqual compareValue="2" prepend="" property="groupByType">group by b.part_code , b.part_name</isEqual>
+    </select>
+    <!--配件销售汇总表-->
+    <select id="queryPartSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT  
+	   <isEqual compareValue="0" prepend="" property="groupByType">DATE_FORMAT(c.out_date,'%Y-%m-%d')  as groupName,</isEqual>
+        <isEqual compareValue="1" prepend="" property="groupByType">c.service_type_id as groupName,</isEqual>
+        <isEqual compareValue="2" prepend="" property="groupByType">b.part_code as groupName,
+	     	 b.part_name as partName,</isEqual>
+        <isEqual compareValue="3" prepend="" property="groupByType">c.mt_advisor as groupName,</isEqual>     
+	        count(distinct c.id) as ct,
+ 			SUM(a.true_cost) as trueCost,
+			SUM(case when b.is_disabled = 0 then b.subtotal else 0 end) as subtotal,
+			SUM(case when b.is_disabled = 0 then b.qty else 0 end) as qty,
+ 			SUM(case when b.is_disabled = 0 then b.discount_amt else 0 end) as discountAmt,
+ 			SUM(case when b.is_disabled = 0 then b.amt else 0 end) as amt
+ 			      		
+       		FROM wb_repair.rps_part b 
+			left JOIN  (
+				select sum(a.true_cost) as true_cost ,a.main_id as main_id from wb_part.pj_repair_out a 
+					where a.orgid = #orgid# and  a.return_sign = 0 GROUP BY a.main_id) a on a.main_id = b.id
+			inner join wb_repair.rps_maintain c on b.service_id = c.id 
+			where  c.orgid = #orgid#
+			and c.bill_type_id != 5 and c.is_settle = 1
+			
+		
+            <isNotEmpty prepend="and" property="startDate">(c.out_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="billTypeId">(c.bill_type_id = #billTypeId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="noBillTypeId">(c.bill_type_id != #noBillTypeId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(c.out_date &lt; #endDate#)</isNotEmpty>
+        <isEqual compareValue="0" prepend="" property="groupByType">GROUP BY DATE_FORMAT(c.out_date,'%Y-%m-%d')</isEqual>
+        <isEqual compareValue="1" prepend="" property="groupByType">group by c.service_type_id</isEqual>
+        <isEqual compareValue="2" prepend="" property="groupByType">group by b.part_code , b.part_name</isEqual>
+        <isEqual compareValue="3" prepend="" property="groupByType">group by c.mt_advisor</isEqual>
+    </select>
+    <!--配件销售汇总表-->
+    <select id="queryPartSummaryBy2" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT  	     
+	   <isEqual compareValue="2" prepend="" property="groupByType">b.id as id,
+	     	 b.part_code as groupName,
+	     	 b.part_name as partName,</isEqual>      
+	        count(distinct c.id) as ct, 
+ 			SUM(a.true_cost) as trueCost,
+			SUM(b.subtotal) as subtotal,
+			SUM(b.qty) as qty,
+ 			SUM(b.discount_amt) as discountAmt,
+ 			SUM(b.amt) as amt
+ 			      		
+       		FROM wb_repair.rps_part b 
+			INNER JOIN  (
+				select sum(a.true_cost) as true_cost ,a.main_id as main_id from wb_part.pj_repair_out a 
+					where a.orgid = #orgid# and  a.return_sign = 0 GROUP BY a.main_id) a on a.main_id = b.id
+			inner join wb_repair.rps_maintain c on b.service_id = c.id 
+			where  c.orgid = #orgid#
+			and c.bill_type_id != 5 and b.is_disabled = 0 and c.is_settle = 1
+			
+		
+            <isNotEmpty prepend="and" property="startDate">(c.out_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(c.out_date &lt; #endDate#)</isNotEmpty>
+        <isEqual compareValue="2" prepend="" property="groupByType">group by b.part_code , b.part_name</isEqual>
+    </select>
+    <!--应付汇总表 -->
+    <select id="queryPaySummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT  
+    <isEqual compareValue="0" prepend="" property="groupByType">DATE_FORMAT(a.operate_date,'%Y-%m-%d')  as groupName,</isEqual>
+        <isEqual compareValue="1" prepend="" property="groupByType">b.bill_type_id as groupName,</isEqual>
+        <isEqual compareValue="2" prepend="" property="groupByType">a.guest_name as groupName,</isEqual> 
+	      	       
+    	
+    	  	sum(a.true_char_off_amt) as trueCharOffAmt
+					
+		from  wb_frm.fis_rp_account a
+			inner join wb_frm.fis_rp_account_detail  b on b.main_id = a.id
+		where a.audit_sign = 1 and a.rp_dc = -1
+		<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
+        <isNotEmpty prepend="and" property="startDate">(a.operate_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(a.operate_date &lt; #endDate#)</isNotEmpty>
+        <isEqual compareValue="0" prepend="" property="groupByType">GROUP BY DATE_FORMAT(a.operate_date,'%Y-%m-%d')</isEqual>
+        <isEqual compareValue="1" prepend="" property="groupByType">group by b.bill_type_id</isEqual>
+        <isEqual compareValue="2" prepend="" property="groupByType">group by a.guest_name</isEqual>
+    </select>
+    <!--应收汇总表 -->
+    <select id="queryCollectSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT  
+    <isEqual compareValue="0" prepend="" property="groupByType">DATE_FORMAT(a.operate_date,'%Y-%m-%d')  as groupName,</isEqual>
+        <isEqual compareValue="1" prepend="" property="groupByType">b.bill_type_id as groupName,</isEqual>
+        <isEqual compareValue="2" prepend="" property="groupByType">a.guest_name as groupName,</isEqual> 
+	      	       
+    	
+    	  	sum(a.true_char_off_amt) as trueCharOffAmt
+					
+		from  wb_frm.fis_rp_account a
+			inner join wb_frm.fis_rp_account_detail  b on b.main_id = a.id
+		where a.audit_sign = 1 and a.rp_dc = 1
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
+        <isNotEmpty prepend="and" property="startDate">(a.operate_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(a.operate_date &lt; #endDate#)</isNotEmpty>
+        <isEqual compareValue="0" prepend="" property="groupByType">GROUP BY DATE_FORMAT(a.operate_date,'%Y-%m-%d')</isEqual>
+        <isEqual compareValue="1" prepend="" property="groupByType">group by b.bill_type_id</isEqual>
+        <isEqual compareValue="2" prepend="" property="groupByType">group by a.guest_name</isEqual>
+    </select>
+    <!--员工提成汇总表-->
+    <select id="queryWorkerSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT  
+    <isEqual compareValue="0" prepend="" property="groupByType">DATE_FORMAT(a.record_date,'%Y-%m-%d')  as groupName,</isEqual>
+        <isEqual compareValue="1" prepend="" property="groupByType">a.service_type_id as groupName,</isEqual>
+        <isEqual compareValue="2" prepend="" property="groupByType">a.worker as groupName,</isEqual> 
+	      	       
+    	
+    	  	sum(case when a.deduct_mode = 3 then  a.deduct_worker_value else 0 end ) as salesDeductValue,
+    	  	sum(case when a.deduct_mode = 2 then  a.deduct_worker_value else 0 end ) as techDeductValue,
+       		sum(case when a.deduct_mode = 1 then  a.deduct_worker_value else 0 end) as advisorDeductValue,
+       		sum(a.deduct_worker_value) as totalDeductAmt
+		   from wb_repair.rps_deduct_prdt_detail a
+		
+		   where 1=1 
+		     <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
+        <isNotEmpty prepend="and" property="startDate">(a.record_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(a.record_date &lt; #endDate#)</isNotEmpty>
+        <isEqual compareValue="0" prepend="" property="groupByType">GROUP BY DATE_FORMAT(a.record_date,'%Y-%m-%d')</isEqual>
+        <isEqual compareValue="1" prepend="" property="groupByType">group by a.service_type_id</isEqual>
+        <isEqual compareValue="2" prepend="" property="groupByType">group by a.worker</isEqual>
+    </select>
+    <select id="queryTechnicianSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT  
+    <isEqual compareValue="0" prepend="" property="groupByType">DATE_FORMAT(a.record_date,'%Y-%m-%d')  as groupName,</isEqual>
+        <isEqual compareValue="1" prepend="" property="groupByType">a.service_type_id as groupName,</isEqual>
+        <isEqual compareValue="2" prepend="" property="groupByType">a.worker as groupName,</isEqual> 
+	      	       
+    	  	sum(a.deduct_origin_value) as deductOriginValue,
+    	  	sum(a.deduct_worker_value) as deductWorkerValue,
+       		sum(a.deduct_value) as deductValue
+		   from wb_repair.rps_deduct_prdt_detail a
+		
+		  where a.deduct_mode = #deductMode#
+		
+            <isNotEmpty prepend="and" property="startDate">(a.record_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(a.record_date &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
+        <isEqual compareValue="0" prepend="" property="groupByType">GROUP BY DATE_FORMAT(a.record_date,'%Y-%m-%d')</isEqual>
+        <isEqual compareValue="1" prepend="" property="groupByType">group by a.service_type_id</isEqual>
+        <isEqual compareValue="2" prepend="" property="groupByType">group by a.worker</isEqual>
+    </select>
+    <!--bill_type_id  0综合，1检查，2洗美，3销售，4理赔，5退货    
+		总收入：  综合开单收入 + 理赔开单收入 + 洗美开单收入 + 销售开单收入 + 保险开单收入
+		总毛利： and a.bill_type_id in (0, 2, 3, 4,6)
+    -->
+    <select id="queryRepairIncome" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(ifnull(b.netin_amt,0)) as netinAmt, sum(ifnull(b.gross_profit,0)) as grossProfit
+		from rps_maintain a
+		inner join rps_settlement b
+		on a.id = b.service_id
+		where a.is_settle = 1 and a.is_disabled=0 and a.bill_type_id in (0,2,3,4,6)
+		      
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="billTypeIds">(a.bill_type_id in ($billTypeIds$))</isNotEmpty>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">(a.out_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(a.out_date &lt; #endDate#)</isNotEmpty>
+        </dynamic>
+    </select>
+    <select id="queryInsuranceIncome" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(ifnull(amt,0)) as netinAmt, sum(IFNULL(rtn_comp_amt,0)) as grossProfit 
+		from rps_insurance_main
+		where is_settle = 1
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgid">(orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">(orgid in ($orgids$))</isNotEmpty>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">(out_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(out_date &lt; #endDate#)</isNotEmpty>
+        </dynamic>
+    </select>
+    <!--预收 储值卡充值 -->
+    <select id="queryStoredAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(ifnull(recharge_amt,0)) as amt from rps_stored_record
+		where is_settle = 1 
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgid">(orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">(orgid in ($orgids$))</isNotEmpty>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">(settle_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(settle_date &lt; #endDate#)</isNotEmpty>
+        </dynamic>
+    </select>
+    <!--预收 计次卡购买 -->
+    <select id="queryCardTimesAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(ifnull(sell_amt,0)) as amt from rps_card_times
+		where status = 2 
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgid">(orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">(orgid in ($orgids$))</isNotEmpty>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">(settle_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(settle_date &lt; #endDate#)</isNotEmpty>
+        </dynamic>
+    </select>
+    <!--type 1次卡   2充值 -->
+    <select id="queryRefundAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(case when type = 1 then ifnull(refund_amt,0) else 0 end ) as cardAmt,
+    	       sum(case when type = 2 then ifnull(refund_amt,0) else 0 end ) as storedAmt
+    	from rps_refund_record
+		where 1=1
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgid">(orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">(orgid in ($orgids$))</isNotEmpty>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">(record_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(record_date &lt; #endDate#)</isNotEmpty>
+        </dynamic>
+    </select>
+    <!--bill_type_id  0综合，1检查，2洗美，3销售，4理赔，5退货    
+		客户记账
+		挂账 = （综合开单 + 理赔开单 + 洗美开单 + 销售开单 + 保险开单）转预结算未结算的
+		收款 = （综合开单 + 理赔开单 + 洗美开单 + 销售开单 + 保险开单）已结算的金额
+    -->
+    <select id="queryRepairBalaAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(ifnull(b.bala_amt,0)) as balaAmt
+		from rps_maintain a
+		inner join rps_settlement b
+		on a.id = b.service_id
+		where a.bala_audit_sign = 1 and a.is_settle = 0 
+		      and a.bill_type_id in (0, 2, 3, 4)
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">(a.bala_audit_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(a.bala_audit_date &lt; #endDate#)</isNotEmpty>
+        </dynamic>
+    </select>
+    <select id="queryInsuranceBalaAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(case when settle_type_id = 3 then ifnull(amt,0) - ifnull(rtn_guest_amt,0) else amt end ) as balaAmt
+		from rps_insurance_main
+		where bala_audit_sign = 1 and is_settle = 0 and orgid = #orgid# 
+		<dynamic>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">(bala_audit_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(bala_audit_date &lt; #endDate#)</isNotEmpty>
+        </dynamic>
+    </select>
+    <select id="queryRepairSettleAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(ifnull(b.bala_amt,0)) as balaAmt
+		from rps_maintain a
+		inner join rps_settlement b
+		on a.id = b.service_id
+		where a.is_settle = 1 
+		      and a.bill_type_id in (0, 2, 3, 4)
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">(a.out_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(a.out_date &lt; #endDate#)</isNotEmpty>
+        </dynamic>
+    </select>
+    <select id="queryInsuranceSettleAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(case when settle_type_id = 3 then ifnull(amt,0) - ifnull(rtn_guest_amt,0) else amt end ) as balaAmt
+		from rps_insurance_main
+		where is_settle = 1 
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgid">(orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">(orgid in ($orgids$))</isNotEmpty>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">(out_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(out_date &lt; #endDate#)</isNotEmpty>
+        </dynamic>
+    </select>
+    <!--现金银行
+		收款  所有收款
+		付款  所有付款
+    -->
+    <select id="queryRPAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(case when rp_dc = 1 then ifnull(true_char_off_amt,0) else 0 end ) as rAmt,
+    	       sum(case when rp_dc = -1 then ifnull(true_char_off_amt,0) else 0 end ) as pAmt
+    	from fis_rp_account
+    	where  audit_sign = 1
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgid">(orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">(orgid in ($orgids$))</isNotEmpty>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">(audit_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(audit_date &lt; #endDate#)</isNotEmpty>
+        </dynamic>
+    </select>
+    <select id="queryCardRunningWaterSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT a.id as id,
+			   a.dc as dc,
+			   a.orgid as orgid,
+			   a.bill_main_id as billMainId,
+			   a.bill_service_id as billServiceId,
+			   a.bill_type_id as billTypeId,
+			   a.guest_id as guestId,
+			   a.guest_name as guestName,
+			   a.car_id as carId,
+			   a.car_no as carNo,
+			   a.card_id as cardId,
+			   a.card_name as cardName,
+			   a.qc_amt as qcAmt,
+			   a.amt as amt,
+			   a.bala_amt as balaAmt,
+			   a.remark as remark,
+			   a.creator_id as creatorId,
+			   a.creator as creator,
+			   a.create_date as createDate,
+			   a.operator_id as operatorId,
+			   a.operator as operator,
+			   a.operate_date as operateDate
+				
+               FROM rps_stored_invocing a
+    	where orgid = #orgid# 
+		<dynamic>
+            <isNotEmpty prepend="and" property="startDate">(a.create_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(a.create_date &lt; #endDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="billTypeIds">(a.bill_type_id in ($billTypeIds$))</isNotEmpty>
+        </dynamic>
+    </select>
+    <select id="queryCardRunningWaterSZ" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT sum(case when dc = 1 then ifnull(amt,0) else 0 end ) as sAmt,
+    	       sum(case when a.dc = -1 and a.bill_type_id= 7 then ifnull(amt,0) else 0 end ) as tAmt,
+    	       sum(case when a.dc = -1 and a.bill_type_id &lt;&gt; 7 then ifnull(amt,0) else 0 end ) as zAmt
+				
+               FROM rps_stored_invocing a
+    	where orgid = #orgid# 
+		<dynamic>
+            <isNotEmpty prepend="and" property="startDate">(a.create_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(a.create_date &lt; #endDate#)</isNotEmpty>
+        </dynamic>
+    </select>
+    <select id="queryCardRunningWaterQC" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT 
+				SUM(b.qc_amt) as qcAmt
+				
+               FROM rps_stored_invocing b
+ 		WHERE orgid = #orgid# and id in(
+               SELECT min(a.id) from rps_stored_invocing a
+               		 where 1 = 1 
+               	<isNotNull prepend="" property="startDate">AND  a.create_date &gt;= #startDate#</isNotNull>
+        <isNotNull prepend="" property="endDate">AND   a.create_date &lt; #endDate#</isNotNull>
+					group by a.card_id
+               		 )
+	</select>
+    <select id="queryCardRunningWaterBala" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT 
+				SUM(b.bala_amt) as balaAmt
+				
+               FROM rps_stored_invocing b
+ 		WHERE id in(
+               SELECT max(a.id) from rps_stored_invocing a
+               		 where 1 = 1 
+               	<isNotNull prepend="" property="startDate">AND  a.create_date &gt;= #startDate#</isNotNull>
+        <isNotNull prepend="" property="endDate">AND   a.create_date &lt; #endDate#</isNotNull>
+					group by a.card_id
+               		 )
+	</select>
+    <select id="queryCardTimesRunningWaterSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT a.id as id,
+			   a.dc as dc,
+			   a.orgid as orgid,
+			   a.bill_main_id as billMainId,
+			   a.bill_service_id as billServiceId,
+			   a.bill_type_id as billTypeId,
+			   a.guest_id as guestId,
+			   a.guest_name as guestName,
+			   a.car_id as carId,
+			   a.car_no as carNo,
+			   
+			   a.prdt_id as prdtId,
+			   a.prdt_name as prdtName,
+			   a.prdt_type as prdtType,
+			   a.qc_times as qcTimes,
+			   a.qc_price as qcPrice,
+			   a.qc_amt as qcAmt,
+			   a.times as times,
+			   a.price as price,
+			   a.amt as amt,
+			   a.bala_times as balaTimes,
+			   a.bala_price as balaPrice,
+			   a.bala_amt as balaAmt,
+			   b.sell_price as sellPrice,
+			   a.remark as remark,
+			   a.creator_id as creatorId,
+			   a.creator as creator,
+			   a.create_date as createDate,
+			   a.operator_id as operatorId,
+			   a.operator as operator,
+			   a.operate_date as operateDate
+				
+               FROM rps_card_times_invocing a
+               inner join rps_card_times_detail b on a.prdt_id = b.prdt_id and a.bill_main_id = b.main_id
+    	where orgid = #orgid# 
+		<dynamic>
+            <isNotEmpty prepend="and" property="startDate">(a.create_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(a.create_date &lt; #endDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="billTypeIds">(a.bill_type_id in ($billTypeIds$))</isNotEmpty>
+        </dynamic>
+    </select>
+    <select id="queryCardTimesRunningWaterSZ" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT sum(case when dc = 1 then ifnull(a.amt,0) else 0 end ) as sAmt,
+    	       sum(case when a.dc = -1 and a.bill_type_id= 7 then ifnull(a.amt,0) else 0 end ) as tAmt,
+    	       sum(case when a.dc = -1 and a.bill_type_id &lt;&gt; 7 then ifnull(b.sell_price,0) else 0 end ) as zAmt
+				
+               FROM rps_card_times_invocing a
+               inner join rps_card_times_detail b on a.prdt_id = b.prdt_id and a.bill_main_id = b.main_id
+    	where orgid = #orgid# 
+		<dynamic>
+            <isNotEmpty prepend="and" property="startDate">(a.create_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(a.create_date &lt; #endDate#)</isNotEmpty>
+        </dynamic>
+    </select>
+    <select id="queryCardTimesRunningWaterQC" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT 
+				SUM(b.qc_amt) as qcAmt
+				
+               FROM rps_card_times_invocing b
+ 		WHERE  orgid = #orgid# and id in(
+               SELECT min(a.id) from rps_card_times_invocing a
+               		 where 1 = 1 
+               	<isNotNull prepend="" property="startDate">AND  a.create_date &gt;= #startDate#</isNotNull>
+        <isNotNull prepend="" property="endDate">AND   a.create_date &lt; #endDate#</isNotNull>
+					group by a.prdt_id
+               		 )
+               		 
+	</select>
+    <select id="queryChainCashWaterSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT 
+				sum(case when a.bill_type_id in (103,106,107,108,109)  then ifnull(a.char_off_amt,0) else 0 end ) as repairAmt,
+				sum(case when a.bill_type_id = 104  then ifnull(a.char_off_amt,0) else 0 end ) as cardAmt,
+				sum(case when a.bill_type_id = 105  then ifnull(a.char_off_amt,0) else 0 end ) as cardTimesAmt,
+				sum(char_off_amt) as zongAmt,
+				a.orgid as orgid
+               FROM wb_frm.fis_rp_bill a
+ 		WHERE settle_status = 2 and is_disabled = 0 
+ 		
+           	<isNotEmpty prepend="and" property="startDate">(a.operate_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(a.operate_date &lt; #endDate#)</isNotEmpty>
+        <isNotNull prepend="" property="billDc">AND   a.bill_dc = #billDc#</isNotNull>
+        <isNotNull prepend="" property="orgidList">AND   a.orgid in ($orgidList$)</isNotNull>
+				group by a.orgid
+	</select>
+    <select id="queryCardTimesRunningWaterBala" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT 
+
+				SUM(b.bala_amt) as balaAmt
+				
+               FROM rps_card_times_invocing b
+ 		WHERE  id in(
+               SELECT max(a.id) from rps_card_times_invocing a
+               		 where 1 = 1 
+               	<isNotNull prepend="" property="startDate">AND  a.create_date &gt;= #startDate#</isNotNull>
+        <isNotNull prepend="" property="orgid">AND  a.orgid = #orgid#</isNotNull>
+        <isNotNull prepend="" property="endDate">AND   a.create_date &lt; #endDate#</isNotNull>
+					group by a.prdt_id
+               		 )
+	</select>
+    <select id="queryChainCarSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	       
+		    
+		       SELECT 
+				 sum(case when a.status = 0 then  1 else 0 end) as statusA,
+    	  	     sum(case when a.status = 1 then  1 else 0 end) as statusB,
+       		     sum(case when a.status = 2 then  1 else 0 end) as statusC,
+       		     sum(case when a.is_settle = 1 then  1 else 0 end) as isSettle,
+       		     sum(case when a.bala_audit_sign = 1 then  1 else 0 end) as balaAuditSign,
+       		     b.short_name shortName
+                 from rps_maintain a 
+                 inner join wb_common.com_company b on  a.orgid = b.orgid
+                 where a.tenant_id = #tenantId#
+               	<isNotEmpty prepend="and" property="startDate">(a.record_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(a.record_date &lt; #endDate#)</isNotEmpty>
+					group by a.orgid
+	</select>
+    <!--租户下的机构-->
+    <select id="queryTenantIdSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT 
+       		     a.tenant_id  tenantId,
+       		     a.orgid orgid,
+       		     a.short_name shortName
+                 from wb_common.com_company a
+                 where a.tenant_id = #tenantId#</select>
+    <!--计次卡剩余-->
+    <select id="queryChainCardTimesSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT
+		         a.orgid  orgid, 
+       		     sum(b.can_use_times) as canUseTimesTotal,
+       		     sum(b.sell_price * b.can_use_times) as amtTotal,
+       		     c.short_name shortName
+                 from wb_common.com_company c
+                 inner join  rps_card_times a on   a.orgid = c.orgid
+                 inner join rps_card_times_detail b on  a.id = b.main_id
+                 where c.tenant_id = #tenantId#
+                 and a.is_finish = 0
+                 and a.is_refund = 0
+                 and b.is_finish = 0
+				 group by a.orgid</select>
+    <!--储值卡余额 -->
+    <select id="queryChainStoredRecordSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT 
+		         a.orgid  orgid,
+       		     sum(a.bala_amt) as balaAmtTotal,
+       		     b.short_name shortName
+                 from rps_stored_record a 
+                 inner join wb_common.com_company b on  a.orgid = b.orgid
+                 where a.tenant_id = #tenantId#
+                 and a.is_settle = 1 
+                 and a.refund_amt = 0
+            	 group by a.orgid</select>
+    <!--客户数量 -->
+    <select id="queryChainComGuestSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT
+		         a.orgid  orgid,
+       		     count(*) as guestTotal,
+       		     b.short_name shortName
+                 from wb_common.com_guest a 
+                 inner join wb_common.com_company b on  a.orgid = b.orgid
+                 where a.tenant_id = #tenantId#
+                 and a.guest_type = 01020103 
+            	 group by a.orgid</select>
+</sqlMap>

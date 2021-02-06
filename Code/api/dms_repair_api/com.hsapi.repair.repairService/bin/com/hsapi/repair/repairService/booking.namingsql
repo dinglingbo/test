@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.repair.repairService.booking">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryBookingList" parameterClass="HashMap" resultClass="com.hsapi.repair.data.rps.RpsPrebook">
+    	SELECT id,mt_advisor mtAdvisor,car_no carNo,car_brand_id carBrandId,car_series_id carSeriesId,contactor_name contactorName,contactor_tel contactorTel,predict_come_date predictComeDate,
+    	prebook_category prebookCategory,fault_desc faultDesc,service_type_id serviceTypeId,mt_advisor_id mtAdvisorId,status
+		from rps_prebook
+		where 1=1
+		 <isNotNull property="carNo">AND car_no=#carNo#</isNotNull>
+        <isNotNull property="carcontactorTelNo">AND contactor_tel=#contactorTel#</isNotNull>
+        <isNotNull property="mtAdvisor">AND mt_advisor=#mtAdvisor#</isNotNull>
+        <isNotNull property="status">AND status=#status#</isNotNull>
+        <isEqual compareValue="today" property="timeStatus">AND date(record_date) = date(NOW())</isEqual>
+        <isEqual compareValue="tomorrow" property="timeStatus">AND  PERIOD_DIFF( date_format( now( ) , '%Y%m%d' ) , date_format(record_date, '%Y%m%d' ) )=1</isEqual>
+        <isEqual compareValue="week" property="timeStatus">And YEARWEEK(record_date) = YEARWEEK(now())</isEqual>
+        <isEqual compareValue="month" property="timeStatus">And MONTH(record_date) = MONTH(now())</isEqual>
+        <isEqual compareValue="smounth" property="timeStatus">And PERIOD_DIFF( date_format( now( ) , '%Y%m' ) , date_format(record_date , '%Y%m' ) ) =1</isEqual>
+        <isEqual compareValue="year" property="timeStatus">And YEAR(record_date) = YEAR(now())</isEqual>
+    </select>
+</sqlMap>

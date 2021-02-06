@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="generateRPAccount.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、现结直接生成应收应付&#xD;&#xA;settleTypeId = 020501" title="Administrator&#x9;18-5-20 下午5:23">
-    <location x="30" y="0"/>
+    <location x="-101" y="-30"/>
     <size height="100" width="346"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
@@ -62,6 +62,26 @@
       <sourceNode>assign0</sourceNode>
       <targetNode>invokePojo1</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link0" name="采购退货" displayName="连接线" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>assign4</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">typeCode</process:leftOperand>
+          <process:rightOperand type="literal">3</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link7" name="销售退货" displayName="连接线" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>assign5</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">typeCode</process:leftOperand>
+          <process:rightOperand type="literal">4</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link3</targetConnections>
     <location x="350" y="164"/>
     <size height="28" width="28"/>
@@ -97,6 +117,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">main/creatorId</process:from>
       <process:to type="query">main/auditorId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">detail/typeCode</process:from>
+      <process:to type="query">typeCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">rtnBillSign</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -140,6 +168,8 @@
       <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
+    <targetConnections>link1</targetConnections>
+    <targetConnections>link19</targetConnections>
     <location x="435" y="164"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
@@ -162,6 +192,7 @@
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>assign10</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo2</sourceNode>
@@ -239,13 +270,17 @@
         <process:inputVariable id="2" name="ServiceId" type="query" value="String" valueType="Primitive" pattern="reference">main/serviceId</process:inputVariable>
         <process:inputVariable id="3" name="BillMainId" type="query" value="Long" valueType="Primitive" pattern="reference">main/id</process:inputVariable>
         <process:inputVariable id="4" name="BillTypeId" type="query" value="Int" valueType="Primitive" pattern="reference">billTypeId</process:inputVariable>
-        <process:inputVariable id="5" name="BillAmt" type="query" value="Float" valueType="Primitive" pattern="reference">main/trueRpAmt</process:inputVariable>
+        <process:inputVariable id="5" name="BillAmt" type="query" value="Double" valueType="Primitive" pattern="reference">main/trueRpAmt</process:inputVariable>
         <process:inputVariable id="6" name="dc" type="query" value="Int" valueType="Primitive" pattern="reference">main/rpDc</process:inputVariable>
         <process:inputVariable id="7" name="remark" type="query" value="String" valueType="Primitive" pattern="reference">main/remark</process:inputVariable>
         <process:inputVariable id="8" name="BillTypeCode" type="query" value="String" valueType="Primitive" pattern="reference">billTypeCode</process:inputVariable>
         <process:inputVariable id="9" name="orgid" type="query" value="String" valueType="Primitive" pattern="reference">main/orgid</process:inputVariable>
         <process:inputVariable id="10" name="fYear" type="query" value="Int" valueType="Primitive" pattern="reference">value</process:inputVariable>
         <process:inputVariable id="11" name="fMonth" type="query" value="Int" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="12" name="code" type="query" value="String" valueType="Primitive" pattern="reference">detail/billServiceId</process:inputVariable>
+        <process:inputVariable id="13" name="codeId" type="query" value="Long" valueType="Primitive" pattern="reference">detail/billMainId</process:inputVariable>
+        <process:inputVariable id="14" name="orderTypeId" type="query" value="Int" valueType="Primitive" pattern="reference">detail/typeCode</process:inputVariable>
+        <process:inputVariable id="15" name="rtnBillSign" type="query" value="Int" valueType="Primitive" pattern="reference">rtnBillSign</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -429,6 +464,44 @@
     <figSize height="20" width="40"/>
     <node>assign3</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>invokePojo1</targetNode>
+    </sourceConnections>
+    <targetConnections>link0</targetConnections>
+    <location x="351" y="91"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign4label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">rtnBillSign</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
+    <location x="345" y="127"/>
+    <figSize height="20" width="40"/>
+    <node>assign4</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>invokePojo1</targetNode>
+    </sourceConnections>
+    <targetConnections>link7</targetConnections>
+    <location x="351" y="249"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign5label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">2</process:from>
+      <process:to type="query">rtnBillSign</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
+    <location x="345" y="285"/>
+    <figSize height="20" width="40"/>
+    <node>assign5</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-05-20 17:23:07" date="2018-05-20Z" description="" name="generateRPAccount" version="7.0.0.0"/>
@@ -439,6 +512,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.com.ComGuest" name="guest"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="billTypeCode" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="billTypeId" primitiveType="Int"/>
+    <process:variable description="0代表正常应收应付；1代表只包含采购退货；2代表只包含销售退货" historyStateLocation="client" isArray="false" name="rtnBillSign" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="typeCode" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjStatementMain" name="main"/>

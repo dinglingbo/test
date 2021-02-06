@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Require-Bundle: 
+Bundle-Vendor: chenziming
+eos-webCtxPath: commonPart
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsweb.part.common
+Bundle-Description: 公共的页面
+Bundle-SymbolicName: com.hsweb.part.common
+

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.sales.data.frm.FisRpBill" table="fis_rp_bill">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="rpBillId" type="string">
+            <column length="30" name="rp_bill_id" not-null="true"/>
+        </property>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="guestId" type="int">
+            <column name="guest_id" not-null="true"/>
+        </property>
+        <property name="guestName" type="string">
+            <column length="100" name="guest_name"/>
+        </property>
+        <property name="carId" type="int">
+            <column default="0" name="car_id"/>
+        </property>
+        <property name="carNo" type="string">
+            <column default="''" length="15" name="car_no"/>
+        </property>
+        <property name="carVin" type="string">
+            <column default="''" length="20" name="car_vin"/>
+        </property>
+        <property name="billMainId" type="int">
+            <column default="0" name="bill_main_id"/>
+        </property>
+        <property name="billServiceId" type="string">
+            <column length="30" name="bill_service_id"/>
+        </property>
+        <property name="billTypeId" type="int">
+            <column name="bill_type_id"/>
+        </property>
+        <property name="billTypeCode" type="string">
+            <column length="20" name="bill_type_code"/>
+        </property>
+        <property name="billCode" type="string">
+            <column length="20" name="bill_code"/>
+        </property>
+        <property name="billDc" type="short">
+            <column name="bill_dc"/>
+        </property>
+        <property name="rpAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="rp_amt" precision="10" scale="4"/>
+        </property>
+        <property name="charOffAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="char_off_amt" precision="10" scale="4"/>
+        </property>
+        <property name="trueCharOffAmt" type="big_decimal">
+            <column length="10" name="true_char_off_amt" precision="10" scale="4"/>
+        </property>
+        <property name="noCharOffAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="no_char_off_amt" precision="10" scale="4"/>
+        </property>
+        <property name="preCharOffAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="pre_char_off_amt" precision="10" scale="4"/>
+        </property>
+        <property name="voidAmt" type="big_decimal">
+            <column length="10" name="void_amt" precision="10" scale="4"/>
+        </property>
+        <property name="printTimes" type="int">
+            <column default="0" name="print_times"/>
+        </property>
+        <property name="balanceSign" type="short">
+            <column default="0" name="balance_sign"/>
+        </property>
+        <property name="balancerId" type="string">
+            <column length="20" name="balancer_id"/>
+        </property>
+        <property name="balancer" type="string">
+            <column length="20" name="balancer"/>
+        </property>
+        <property name="balanceDate" type="timestamp">
+            <column name="balance_date"/>
+        </property>
+        <property name="settleSign" type="short">
+            <column name="settle_sign"/>
+        </property>
+        <property name="settlerId" type="string">
+            <column length="20" name="settler_id"/>
+        </property>
+        <property name="settler" type="string">
+            <column length="20" name="settler"/>
+        </property>
+        <property name="settleDate" type="timestamp">
+            <column name="settle_date"/>
+        </property>
+        <property name="settleStatus" type="int">
+            <column name="settle_status"/>
+        </property>
+        <property name="auditSign" type="short">
+            <column default="0" name="audit_sign"/>
+        </property>
+        <property name="auditorId" type="string">
+            <column length="20" name="auditor_id"/>
+        </property>
+        <property name="auditor" type="string">
+            <column length="20" name="auditor"/>
+        </property>
+        <property name="auditDate" type="timestamp">
+            <column name="audit_date"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="200" name="remark"/>
+        </property>
+        <property name="versionNo" type="timestamp">
+            <column name="version_no"/>
+        </property>
+        <property name="creatorId" type="string">
+            <column length="20" name="creator_id"/>
+        </property>
+        <property name="creator" type="string">
+            <column length="20" name="creator"/>
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="create_date"/>
+        </property>
+        <property name="operatorId" type="string">
+            <column length="20" name="operator_id"/>
+        </property>
+        <property name="operator" type="string">
+            <column length="20" name="operator"/>
+        </property>
+        <property name="operateDate" type="timestamp">
+            <column name="operate_date"/>
+        </property>
+        <property name="fYear" type="int">
+            <column name="f_year"/>
+        </property>
+        <property name="fMonth" type="int">
+            <column name="f_month"/>
+        </property>
+        <property name="isDisabled" type="short">
+            <column name="is_disabled"/>
+        </property>
+        <property name="rpTypeId" type="int">
+            <column name="rp_type_id"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.sales.data.frm.FisRpAdvance" table="fis_rp_advance">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="tenantId" type="int">
+            <column name="tenant_id"/>
+        </property>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="billTypeId" type="int">
+            <column name="bill_type_id"/>
+        </property>
+        <property name="billTypeCode" type="string">
+            <column length="20" name="bill_type_code"/>
+        </property>
+        <property name="codeid" type="int">
+            <column default="0" name="codeId"/>
+        </property>
+        <property name="code" type="string">
+            <column length="20" name="code" not-null="true"/>
+        </property>
+        <property name="guestId" type="int">
+            <column default="0" name="guest_id" not-null="true"/>
+        </property>
+        <property name="guestName" type="string">
+            <column length="100" name="guest_name"/>
+        </property>
+        <property name="carId" type="int">
+            <column name="car_id"/>
+        </property>
+        <property name="carNo" type="string">
+            <column length="15" name="car_no"/>
+        </property>
+        <property name="amt" type="big_decimal">
+            <column default="0.00" length="10" name="amt" precision="10" scale="2"/>
+        </property>
+        <property name="deductionAmt" type="big_decimal">
+            <column default="0.00" length="10" name="deduction_amt" precision="10" scale="2"/>
+        </property>
+        <property name="balaAmt" type="big_decimal">
+            <column default="0.00" length="10" name="bala_amt" precision="10" scale="2"/>
+        </property>
+        <property name="billDc" type="short">
+            <column name="bill_dc"/>
+        </property>
+        <property name="status" type="short">
+            <column name="status"/>
+        </property>
+        <property name="isSettle" type="short">
+            <column default="0" name="is_settle"/>
+        </property>
+        <property name="settleer" type="string">
+            <column length="20" name="settleer"/>
+        </property>
+        <property name="settleDate" type="timestamp">
+            <column name="settle_date"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="200" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+</hibernate-mapping>

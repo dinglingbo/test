@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns="com.hsapi.frm.data.fis" xmlns:sdo="commonj.sdo" xmlns:sdoJava="commonj.sdo/java" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="com.hsapi.frm.data.fis">
+    <xs:complexType name="FisGuestBalance">
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+            <xs:element minOccurs="0" name="orgid" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="guestId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="guestName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="fyear" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="fmonth" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="beginDc" nillable="true" type="xs:int"/>
+            <xs:element default="0.0000" minOccurs="0" name="beginBala" nillable="true" type="xs:decimal"/>
+            <xs:element default="0.0000" minOccurs="0" name="debit" nillable="true" type="xs:decimal"/>
+            <xs:element default="0.0000" minOccurs="0" name="credit" nillable="true" type="xs:decimal"/>
+            <xs:element default="0.0000" minOccurs="0" name="ytdDebit" nillable="true" type="xs:decimal"/>
+            <xs:element default="0.0000" minOccurs="0" name="ytdCredit" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="endDc" nillable="true" type="xs:int"/>
+            <xs:element default="0.0000" minOccurs="0" name="endBala" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="versionNo" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="creatorId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="creator" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="createDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="operatorId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="operator" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="operateDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FisRpBillOnline">
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+            <xs:element minOccurs="0" name="id" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="tenantId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="orgid" nillable="true" type="xs:int"/>
+            <xs:element default="0" minOccurs="0" name="serviceId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="serviceCode" nillable="true" type="xs:string"/>
+            <xs:element default="0" minOccurs="0" name="rpId" nillable="true" type="xs:int"/>
+            <xs:element default="0" minOccurs="0" name="billTypeId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="guestId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="guestName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="invoiceType" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="payMethod" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="payDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="payCompleteDate" nillable="true" type="xs:dateTime"/>
+            <xs:element default="0.00" minOccurs="0" name="receiptAmount" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="payNo" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="orderStatus" nillable="true" type="xs:string"/>
+            <xs:element default="0.00" minOccurs="0" name="receiptSummary" nillable="true" type="xs:decimal"/>
+            <xs:element default="0" minOccurs="0" name="syncPaySign" nillable="true" type="xs:short"/>
+            <xs:element default="0" minOccurs="0" name="paySettleTimes" nillable="true" type="xs:int"/>
+            <xs:element default="0" minOccurs="0" name="syncBillSign" nillable="true" type="xs:short"/>
+            <xs:element default="0" minOccurs="0" name="billSettleTimes" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="recorder" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="recordDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="modifier" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="modifyDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FisRpAccountDType">
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+            <xs:element minOccurs="0" name="id" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="mainId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="balaTypeId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="balaTypeCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="balaTypeName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="settAccountId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="settAccountCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="settAccountName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="rpDc" nillable="true" type="xs:short"/>
+            <xs:element default="0.0000" minOccurs="0" name="charOffAmt" nillable="true" type="xs:decimal"/>
+            <xs:element default="0.0000" minOccurs="0" name="feeService" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FisSettleAccountBala">
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+            <xs:element minOccurs="0" name="id" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="orgid" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="settAccountId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="settAccountCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="settAccountName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="fyear" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="fmonth" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="beginDc" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="beginBala" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="debit" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="credit" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="ytdDebit" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="ytdCredit" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="endDc" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="endBala" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="creatorId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="creator" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="createDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="operatorId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="operator" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="operateDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FisRpAccount">
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+            <xs:element minOccurs="0" name="id" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="rpAccountId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="orgid" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="guestId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="guestName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="balaTypeId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="balaTypeCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="balaAccountId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="balaAccountCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="rpDc" nillable="true" type="xs:short"/>
+            <xs:element default="0.0000" minOccurs="0" name="charOffAmt" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="voidAmt" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="trueCharOffAmt" nillable="true" type="xs:decimal"/>
+            <xs:element default="0.0000" minOccurs="0" name="feeService" nillable="true" type="xs:decimal"/>
+            <xs:element default="0.0000" minOccurs="0" name="trueInoutAmt" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="itemQty" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="settleType" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="auditSign" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="auditorId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="auditor" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="auditDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="versionNo" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="creatorId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="creator" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="createDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="operatorId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="operator" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="operateDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="fYear" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="fMonth" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="accountTypeId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="billTypeId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="billTypeCode" nillable="true" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FisRpAccountDetail">
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+            <xs:element minOccurs="0" name="id" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="mainId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="billRpId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="billMainId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="billServiceId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="billTypeId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="billTypeCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="rpDc" nillable="true" type="xs:short"/>
+            <xs:element default="0.0000" minOccurs="0" name="charOffAmt" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="voidAmt" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="auditSign" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="auditorId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="auditor" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="auditDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="versionNo" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="creatorId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="creator" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="createDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="operatorId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="operator" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="operateDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FisRpInternalTransfer">
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+            <xs:element minOccurs="0" name="id" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="orgid" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="serviceId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="itemTypeId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="itemTypeCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="settAccountId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="settAccountCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="settAccountName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="balaTypeId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="balaTypeCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="toSettAccountId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="toAccountCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="toSettAccountName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="rpAmt" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="rpMan" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="rpDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="billStatus" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="adstract" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="creatorId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="creator" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="createDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="operatorId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="operator" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="operateDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="fYear" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="fMonth" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="auditSign" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="auditorId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="auditor" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="auditDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FisRpAdvance">
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+            <xs:element minOccurs="0" name="id" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="tenantId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="orgid" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="billTypeId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="billTypeCode" nillable="true" type="xs:string"/>
+            <xs:element default="0" minOccurs="0" name="codeid" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="code" nillable="true" type="xs:string"/>
+            <xs:element default="0" minOccurs="0" name="guestId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="guestName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="carId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="carNo" nillable="true" type="xs:string"/>
+            <xs:element default="0.00" minOccurs="0" name="amt" nillable="true" type="xs:decimal"/>
+            <xs:element default="0.0000" minOccurs="0" name="charOffAmt" nillable="true" type="xs:decimal"/>
+            <xs:element default="0.00" minOccurs="0" name="deductionAmt" nillable="true" type="xs:decimal"/>
+            <xs:element default="0.00" minOccurs="0" name="balaAmt" nillable="true" type="xs:decimal"/>
+            <xs:element default="0.00" minOccurs="0" name="refundAmt" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="billDc" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="status" nillable="true" type="xs:short"/>
+            <xs:element default="0" minOccurs="0" name="isSettle" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="settleer" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="settleDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="recorder" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="recordDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="modifier" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="modifyDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="refunder" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="refundDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FisRpBill">
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+            <xs:element minOccurs="0" name="id" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="rpBillId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="orgid" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="guestId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="guestName" nillable="true" type="xs:string"/>
+            <xs:element default="0" minOccurs="0" name="carId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="carNo" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="carVin" nillable="true" type="xs:string"/>
+            <xs:element default="0" minOccurs="0" name="billMainId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="billServiceId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="billTypeId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="billTypeCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="billCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="billDc" nillable="true" type="xs:short"/>
+            <xs:element default="0.0000" minOccurs="0" name="rpAmt" nillable="true" type="xs:decimal"/>
+            <xs:element default="0.0000" minOccurs="0" name="charOffAmt" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="trueCharOffAmt" nillable="true" type="xs:decimal"/>
+            <xs:element default="0.0000" minOccurs="0" name="noCharOffAmt" nillable="true" type="xs:decimal"/>
+            <xs:element default="0.0000" minOccurs="0" name="preCharOffAmt" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="voidAmt" nillable="true" type="xs:decimal"/>
+            <xs:element default="0" minOccurs="0" name="printTimes" nillable="true" type="xs:int"/>
+            <xs:element default="0" minOccurs="0" name="balanceSign" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="balancerId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="balancer" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="balanceDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="settleSign" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="settlerId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="settler" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="settleDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="settleStatus" nillable="true" type="xs:int"/>
+            <xs:element default="0" minOccurs="0" name="auditSign" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="auditorId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="auditor" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="auditDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="versionNo" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="creatorId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="creator" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="createDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="operatorId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="operator" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="operateDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="fYear" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="fMonth" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="isDisabled" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="rpTypeId" nillable="true" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FisPreBill">
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+            <xs:element minOccurs="0" name="id" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="billCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="orgid" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="rpBillIds" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="rpBillNames" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="guestId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="guestName" nillable="true" type="xs:string"/>
+            <xs:element default="0" minOccurs="0" name="contactorId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="wechatOpenId" nillable="true" type="xs:string"/>
+            <xs:element default="0" minOccurs="0" name="carId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="carNo" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="carVin" nillable="true" type="xs:string"/>
+            <xs:element default="0.0000" minOccurs="0" name="totalAmt" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="settAccountName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="settAccountId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="settAccountCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="enableSettleDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="settleDate" nillable="true" type="xs:dateTime"/>
+            <xs:element default="0" minOccurs="0" name="settleStatus" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="creatorId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="creator" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="createDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="operatorId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="operator" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="operateDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FisPreBillDetail">
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+            <xs:element minOccurs="0" name="id" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="mainId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="billMainId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="preBillId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="guestId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="guestName" nillable="true" type="xs:string"/>
+            <xs:element default="0" minOccurs="0" name="carId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="carNo" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="billServiceId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="billTypeId" nillable="true" type="xs:int"/>
+            <xs:element default="0.0000" minOccurs="0" name="rpAmt" nillable="true" type="xs:decimal"/>
+            <xs:element default="0.0000" minOccurs="0" name="nowAmt" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="creatorId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="creator" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="createDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="operatorId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="operator" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="operateDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FisRpReverseRecord">
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+            <xs:element minOccurs="0" name="id" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="rpBillId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="orgid" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="guestId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="guestName" nillable="true" type="xs:string"/>
+            <xs:element default="0" minOccurs="0" name="carId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="carNo" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="carVin" nillable="true" type="xs:string"/>
+            <xs:element default="0" minOccurs="0" name="billMainId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="billServiceId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="billTypeId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="billTypeCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="billDc" nillable="true" type="xs:short"/>
+            <xs:element default="0.0000" minOccurs="0" name="rpAmt" nillable="true" type="xs:decimal"/>
+            <xs:element default="0.0000" minOccurs="0" name="charOffAmt" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="trueCharOffAmt" nillable="true" type="xs:decimal"/>
+            <xs:element default="0.0000" minOccurs="0" name="noCharOffAmt" nillable="true" type="xs:decimal"/>
+            <xs:element default="0.0000" minOccurs="0" name="preCharOffAmt" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="voidAmt" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="settleStatus" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="creatorId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="creator" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="createDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

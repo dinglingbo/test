@@ -1,0 +1,15 @@
+<map>
+  <entry>
+    <string>BtnAuthTagTest</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.hsweb.system.auth.BtnAuthTagTest&lt;/b&gt;&lt;br/&gt;&lt;p&gt; * 自定义自结束标签，不含标签体。&#x0D;
+ *&#x0D;
+ * 1、在自定义的类中，重写了父类TagSupport 的两个方法：doStartTag()、doEndTag()，在容器遇到标记开始时会运行doStartTag()，遇到标记结束时运行doEndTag()方法；&#x0D;
+ * 2、doStartTag（）方法的返回值：通常可以取两个值：&#x0D;
+ *      EVAL_BODY_INCLUDE——包含标记体，本例中要编写自结束标记所以不使用该值；&#x0D;
+ *      SKIP_BODY——跳过标记体，即不处理标记体，开发自结束标记应该使用该值。&#x0D;
+ * 3、doEndTag（）方法的返回值：通常可以取两个值：&#x0D;
+ *      SKIP_PAGE——返回这个值，则终止页面执行；&#x0D;
+ *      EVAL_PAGE——返回该值则处理完当前标记后，JSP 页面中止运行。&#x0D;
+&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

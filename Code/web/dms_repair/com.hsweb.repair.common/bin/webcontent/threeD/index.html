@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>车型</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    .container {
+      position: fixed;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      background: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .carBody-canvas {
+      padding: 0px 0 10px;
+    }
+    #baoan {
+      width: 640px;
+      height: 360px;
+    }
+    #baoan1 {
+      width: 640px;
+      height: 360px;
+    }
+    #main {
+      flex: 1;
+      width: 90%;
+      background: #fff;
+      border-radius: 10px 10px 0 0;
+      overflow: auto;
+    }
+    .part-title {
+      float: left;
+      width: 80px;
+      height: 80px;
+      border: 1px solid #ddd;
+      margin: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      background: #fff;
+      cursor: pointer;
+    }
+    .part-title.active {
+      border-color: #f00;
+    }
+    .part-title img {
+      width: 50px;
+      height: 50px;
+    }
+    .carPart-bar {
+      padding: 10px;
+      background: #eee;
+    }
+    .part-item {
+      padding: 10px 20px;
+      border-bottom: 1px solid #ddd;
+    }
+    .cc::after {
+      content: '';
+      clear: both;
+      display: table;
+    }
+    .menu {
+      padding: 10px 0 0;
+    }
+    button {
+      padding: 8px 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="menu j_menu" style="display: none">
+      <button>车身件</button>
+      <button>底盘件</button>
+    </div>
+    <div class="carBody-canvas">
+      <div class="j_car-show" id="baoan"></div>
+      <div class="j_car-show" id="baoan1" style="display: none">
+      </div>
+    </div>
+    <div id="main" style="display: none">
+      <div class="carPart-bar cc j_carPart-bar"></div>
+      <div class="carPart-main j_carPart-main"></div>
+    </div>
+  </div>
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/spritejs/dist/spritejs.min.js"></script>
+  <script src="./body.js"></script>
+  <script src="./chassis.js"></script>
+  <script src="./index.js"></script>
+</body>
+</html>

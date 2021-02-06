@@ -66,6 +66,10 @@
       <process:from type="query" pattern="reference">sellOrderDetail/orderQty</process:from>
       <process:to type="query">orderQty</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/orderQty</process:from>
+      <process:to type="query">sellOrderDetail/outableQty</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
     <location x="-415" y="116"/>
@@ -151,7 +155,7 @@
       <targetNode>assign5</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"/>
+          <process:leftOperand type="query"></process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

@@ -324,7 +324,7 @@
         <process:inputVariable id="1" name="FYear" type="query" value="Int" valueType="Primitive" pattern="reference">FYear</process:inputVariable>
         <process:inputVariable id="2" name="FMonth" type="query" value="Int" valueType="Primitive" pattern="reference">FMonth</process:inputVariable>
         <process:inputVariable id="3" name="dc" type="literal" value="Int" valueType="Primitive" pattern="reference">1</process:inputVariable>
-        <process:inputVariable id="4" name="BillAmt" type="query" value="Float" valueType="Primitive" pattern="reference">initBalance</process:inputVariable>
+        <process:inputVariable id="4" name="BillAmt" type="query" value="Double" valueType="Primitive" pattern="reference">initBalance</process:inputVariable>
         <process:inputVariable id="5" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
@@ -542,7 +542,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.FiSettleAccount" name="accountTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.FiSettleAccount" name="accountCond"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.FiSettleAccount" name="account"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="initBalance" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="initBalance" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.FiSettleAccount" name="temp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="FYear" primitiveType="Int"/>

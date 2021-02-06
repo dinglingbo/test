@@ -1,0 +1,26 @@
+<map>
+  <entry>
+    <string>com.hsapi.system.employee.mac.queryMac(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryMac&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCompany&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.mac.queryMac&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(com.hsapi.system.data.sys.ComMacRecord[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.mac.checkMac(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;checkMac&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;checkMac&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.mac.checkMac&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;macAddress(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.mac.deleteMac(com.hsapi.system.data.sys.ComMacRecord)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;deleteMac&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveMac&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.mac.deleteMac&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;record(com.hsapi.system.data.sys.ComMacRecord):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>mac</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;mac.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;mac&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.mac&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.mac.saveMacs(com.hsapi.system.data.sys.ComMacRecord[], com.hsapi.system.data.sys.ComMacRecord[], com.hsapi.system.data.sys.ComMacRecord[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveMacs&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveMac&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.mac.saveMacs&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addList(com.hsapi.system.data.sys.ComMacRecord[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;delList(com.hsapi.system.data.sys.ComMacRecord[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updList(com.hsapi.system.data.sys.ComMacRecord[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.mac.saveMac(com.hsapi.system.data.sys.ComMacRecord)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveMac&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveMac&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.mac.saveMac&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;record(com.hsapi.system.data.sys.ComMacRecord):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

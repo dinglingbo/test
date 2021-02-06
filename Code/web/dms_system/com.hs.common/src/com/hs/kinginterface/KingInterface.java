@@ -4,20 +4,25 @@
 package com.hs.kinginterface;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import com.eos.engine.component.ILogicComponent;
 import com.eos.system.annotation.Bizlet;
 import com.google.gson.Gson;
+import com.hs.common.DateUtils;
 import com.kingdee.bos.webapi.sdk.K3CloudApi;
 import com.kingdee.bos.webapi.sdk.OperateParam;
 import com.kingdee.bos.webapi.sdk.OperatorResult;
 import com.kingdee.bos.webapi.sdk.QueryParam;
 import com.kingdee.bos.webapi.sdk.QueryResultInfo;
+import com.kingdee.bos.webapi.sdk.RepoError;
 import com.kingdee.bos.webapi.sdk.SaveParam;
 import com.kingdee.bos.webapi.sdk.SaveResult;
 import com.kingdee.bos.webapi.sdk.SuccessEntity;
+import com.primeton.ext.engine.component.LogicComponentFactory;
 
 /**
  * @author dlb
@@ -28,48 +33,81 @@ import com.kingdee.bos.webapi.sdk.SuccessEntity;
 public class KingInterface {
 	
 	/**
-	 * 添加客户资料
+	 * 添加供应商资料
 	 */
 	@Bizlet("")
-	public static HashMap addSupplier(String fullName, String shortName, String orgNum) throws Exception {
-		K3CloudApi api=new K3CloudApi();
-		Supplier s = new Supplier();
-		
-		CommonFNumber orgid = new CommonFNumber();
-		if(orgNum == null) {
-			orgNum = "KY001";
-		}
-		orgid.setFNumber(orgNum);
-		s.setFCreateOrgId(orgid);
-		s.setFUseOrgId(orgid);
-		
-		s.setFNumber(SeqHelper.genNumber("SP"));
-
-		s.setFName(fullName);
-		s.setFShortName(shortName);
-		
-		FFinanceInfo f = new FFinanceInfo();
-		CommonFNumber currency = new CommonFNumber();
-		currency.setFNumber("PRE001");
-		f.setFPayCurrencyId(currency);
-		s.setFFinanceInfo(f);
-		
+	public static HashMap addSupplier(String fullName, String supplierId, String shortName, String orgNum) throws Exception {
+		List<Object> lp = new ArrayList<Object>();
 		HashMap hm = new HashMap();
 		hm.put("code", "E");
-		SaveResult sRet = api.save("BD_Supplier", new SaveParam<Supplier>(s));
-		if (sRet.isSuccessfully()) {
-			hm.put("code", "S");
-			Gson gson = new Gson();
-			List<SuccessEntity> list = sRet.getResult().getResponseStatus().getSuccessEntitys();
-			SuccessEntity successEntity = list.get(0);
-			hm.put("id", successEntity.getId());
-			hm.put("number", successEntity.getNumber());
+		try{
+			lp.add("part");
+			lp.add(supplierId);
+			lp.add("添加供应商资料");
+			lp.add("addSupplier");
+			lp.add(23);
 			
-			submitSupplier(successEntity.getId());
+			K3CloudApi api=new K3CloudApi();
+			Supplier s = new Supplier();
 			
-			auditSupplier(successEntity.getId());
-		} 
-
+			CommonFNumber orgid = new CommonFNumber();
+			if(orgNum == null) {
+				orgNum = "KY001";
+			}
+			orgid.setFNumber(orgNum);
+			s.setFCreateOrgId(orgid);
+			s.setFUseOrgId(orgid);
+			
+			s.setFNumber(supplierId);
+	
+			s.setFName(fullName);
+			s.setFShortName(shortName);
+			
+			FFinanceInfo f = new FFinanceInfo();
+			CommonFNumber currency = new CommonFNumber();
+			currency.setFNumber("PRE001");
+			f.setFPayCurrencyId(currency);
+			s.setFFinanceInfo(f);
+			
+			lp.add(new SaveParam<Supplier>(s).toJson());
+			SaveParam sp = new SaveParam<Supplier>(s);
+			System.out.println(new SaveParam<Supplier>(s).toJson());
+			SaveResult sRet = api.save("BD_Supplier", new SaveParam<Supplier>(s));
+			if (sRet.isSuccessfully()) {
+				hm.put("code", "S");
+				Gson gson = new Gson();
+				List<SuccessEntity> list = sRet.getResult().getResponseStatus().getSuccessEntitys();
+				SuccessEntity successEntity = list.get(0);
+				hm.put("id", successEntity.getId());
+				hm.put("number", successEntity.getNumber());
+				
+				lp.add(successEntity.toString());
+				lp.add(0);
+				lp.add(1);
+				lp.add("保存成功");
+				
+				submitSupplier(successEntity.getId());
+				
+				auditSupplier(successEntity.getId());
+			} 
+	
+			return hm;
+		}catch(Throwable e){
+			lp.add("");
+			lp.add(0);
+			lp.add(0);
+			lp.add("添加供应商资料失败");
+			System.out.println("添加供应商资料失败：" + supplierId + ":" + fullName);
+			e.printStackTrace();
+		}finally{
+			try {
+				Object[] resultRes = callLogicFlowMethd("com.hs.common.uitls", "saveVoucherRecord", lp.toArray(new Object[lp.size()]));
+			} catch (Throwable e) {
+				System.out.println("保存添加供应商资料记录失败：" + supplierId + ":" + fullName);
+				e.printStackTrace();
+			}
+		}
+		
 		return hm;
 		
 	}
@@ -77,7 +115,8 @@ public class KingInterface {
 	/**
 	 * 提交供应商资料
 	 * */
-	private static boolean submitSupplier(String id) throws Exception{
+	@Bizlet("")
+	public static boolean submitSupplier(String id) throws Exception{
 		K3CloudApi api=new K3CloudApi();
 		
 		OperateParam param = new OperateParam();
@@ -94,7 +133,8 @@ public class KingInterface {
 	/**
 	 * 审核供应商资料
 	 * */
-	private static boolean auditSupplier(String id) throws Exception{
+	@Bizlet("")
+	public static boolean auditSupplier(String id) throws Exception{
 		K3CloudApi api=new K3CloudApi();
 	
 		OperateParam param = new OperateParam();
@@ -109,55 +149,116 @@ public class KingInterface {
 	}
 	
 	/**
-	 * 添加供应商资料
+	 * 添加客户资料
 	 */
 	@Bizlet("")
-	public static HashMap addCustom(String fullName, String shortName, String orgNum) throws Exception {
+	public static HashMap addCustom(String fullName, String clientId, String shortName, String orgNum) throws Exception {
 		K3CloudApi api=new K3CloudApi();
 		Customer c = new Customer();
 		
-		CommonFNumber orgid = new CommonFNumber();
-		if(orgNum == null) {
-			orgNum = "KY001";
-		}
-		orgid.setFNumber(orgNum);
-		c.setFCreateOrgId(orgid);
-		
-		c.setFNumber(SeqHelper.genNumber("KH"));
-
-		c.setFName(fullName);
-		c.setFShortName(shortName);
-		
-		CommonFNumber currency = new CommonFNumber();
-		currency.setFNumber("PRE001");
-		c.setFTRADINGCURRID(currency);
-		
-		c.setFPriority("1");
-		
+		List<Object> lp = new ArrayList<Object>();
 		HashMap hm = new HashMap();
 		hm.put("code", "E");
-		SaveResult sRet = api.save("BD_Customer", new SaveParam<Customer>(c));
-		if (sRet.isSuccessfully()) {
-			hm.put("code", "S");
-			Gson gson = new Gson();
-			List<SuccessEntity> list = sRet.getResult().getResponseStatus().getSuccessEntitys();
-			SuccessEntity successEntity = list.get(0);
-			hm.put("id", successEntity.getId());
-			hm.put("number", successEntity.getNumber());
+		try{
+			lp.add("part");
+			lp.add(clientId);
+			lp.add("添加客户资料");
+			lp.add("addCustom");
+			lp.add(22);
+		
+			CommonFNumber orgid = new CommonFNumber();
+			if(orgNum == null) {
+				orgNum = "KY001";
+			}
+			orgid.setFNumber(orgNum);
+			c.setFCreateOrgId(orgid);
 			
-			submitCustom(successEntity.getId());
+			c.setFNumber(clientId);
+		
+			c.setFName(fullName);
+			c.setFShortName(shortName);
 			
-			auditCustom(successEntity.getId());
-		} 
+			CommonFNumber currency = new CommonFNumber();
+			currency.setFNumber("PRE001");
+			c.setFTRADINGCURRID(currency);
+			
+			c.setFPriority("1");
 
+			lp.add(new SaveParam<Customer>(c).toJson());
+			
+			SaveResult sRet = api.save("BD_Customer", new SaveParam<Customer>(c));
+			if (sRet.isSuccessfully()) {
+				hm.put("code", "S");
+				Gson gson = new Gson();
+				List<SuccessEntity> list = sRet.getResult().getResponseStatus().getSuccessEntitys();
+				SuccessEntity successEntity = list.get(0);
+				hm.put("id", successEntity.getId());
+				hm.put("number", successEntity.getNumber());
+				
+				lp.add(successEntity.toString());
+				lp.add(0);
+				lp.add(1);
+				lp.add("添加客户资料成功");
+				
+				submitCustom(successEntity.getId());
+				
+				auditCustom(successEntity.getId());
+			} else{
+				List<RepoError> errs = sRet.getResult().getResponseStatus().getErrors();
+				String errMsg = "";
+				for(int i=0; i<errs.size(); i++) {
+					RepoError re = errs.get(i);
+					errMsg = errMsg + re.getMessage() + ";";
+				}
+				
+				lp.add(errMsg);
+				lp.add(0);
+				lp.add(0);
+				lp.add("添加客户资料失败");
+			}
+		
+			return hm;
+			
+		}catch(Throwable e){
+			lp.add("");
+			lp.add(0);
+			lp.add(0);
+			lp.add("添加客户资料失败");
+			System.out.println("添加客户资料失败：" + clientId + ":" + fullName);
+			e.printStackTrace();
+		}finally{
+			try {
+				Object[] resultRes = callLogicFlowMethd("com.hs.common.uitls", "saveVoucherRecord", lp.toArray(new Object[lp.size()]));
+			} catch (Throwable e) {
+				System.out.println("保存添加客户资料记录失败：" + clientId + ":" + fullName);
+				e.printStackTrace();
+			}
+		}
+		
 		return hm;
 		
+	}
+	
+	@Bizlet("方法调用API")
+	public static Object[] callLogicFlowMethd(String componentName,
+			String operationName, Object... params) throws Throwable {
+		int len = params == null ? 0 : params.length;
+		ILogicComponent logicComponent = LogicComponentFactory
+				.create(componentName);
+		Object[] ps = new Object[len];
+		int idx = 0;
+		for (Object o : params) {
+			ps[idx] = o;
+			idx++;
+		}
+		return logicComponent.invoke(operationName, ps);
 	}
 	
 	/**
 	 * 提交客户资料
 	 * */
-	private static boolean submitCustom(String id) throws Exception{
+	@Bizlet("")
+	public static boolean submitCustom(String id) throws Exception{
 		K3CloudApi api=new K3CloudApi();
 		
 		OperateParam param = new OperateParam();
@@ -174,7 +275,8 @@ public class KingInterface {
 	/**
 	 * 审核客户资料
 	 * */
-	private static boolean auditCustom(String id) throws Exception{
+	@Bizlet("")
+	public static boolean auditCustom(String id) throws Exception{
 		K3CloudApi api=new K3CloudApi();
 	
 		OperateParam param = new OperateParam();
@@ -189,6 +291,292 @@ public class KingInterface {
 		return false;
 	}
 	
+	
+	/**
+	 * 添加部门资料
+	 */
+	@Bizlet("")
+	public static HashMap addDepartment(String deptName, String orgNum) throws Exception {
+		K3CloudApi api=new K3CloudApi();
+		Department c = new Department();
+		
+		CommonFNumber orgid = new CommonFNumber();
+		if(orgNum == null) {
+			orgNum = "KY001";
+		}
+		orgid.setFNumber(orgNum);
+		c.setFCreateOrgId(orgid);
+		c.setFUseOrgId(orgid);
+
+		c.setFName(deptName);
+		
+		CommonFNumber fDeptProperty = new CommonFNumber();
+		fDeptProperty.setFNumber("DP02_SYS");
+		c.setFDeptProperty(fDeptProperty);
+		
+		CommonFNumber fGroup = new CommonFNumber();
+		fGroup.setFNumber("001");
+		c.setFGroup(fGroup);
+		
+		c.setFEffectDate(DateUtils.getDayStartTimeString(new Date()));
+		c.setFLapseDate("9999-12-31 00:00:00");
+		
+		HashMap hm = new HashMap();
+		hm.put("code", "E");
+		SaveResult sRet = api.save("BD_Department", new SaveParam<Department>(c));
+		if (sRet.isSuccessfully()) {
+			hm.put("code", "S");
+			Gson gson = new Gson();
+			List<SuccessEntity> list = sRet.getResult().getResponseStatus().getSuccessEntitys();
+			SuccessEntity successEntity = list.get(0);
+			hm.put("id", successEntity.getId());
+			hm.put("number", successEntity.getNumber());
+			
+			submit("BD_Department", successEntity.getId());
+			
+			audit("BD_Department", successEntity.getId());
+		} 
+
+		return hm;
+		
+	}
+	
+	/**
+	 * 添加员工
+	 */
+	@Bizlet("")
+	public static HashMap addStaff(String name, String staffNumber, String orgNum) throws Exception {
+		K3CloudApi api=new K3CloudApi();
+		Staff c = new Staff();
+		
+		CommonFNumber orgid = new CommonFNumber();
+		if(orgNum == null) {
+			orgNum = "KY001";
+		}
+		orgid.setFNumber(orgNum);
+		c.setFCreateOrgId(orgid);
+		c.setFUseOrgId(orgid);
+
+		c.setFName(name);
+		c.setFJoinDate(DateUtils.getDayStartTimeString(new Date()));
+		c.setFStaffNumber(staffNumber);
+		
+		HashMap hm = new HashMap();
+		hm.put("code", "E");
+		SaveResult sRet = api.save("BD_Empinfo", new SaveParam<Staff>(c));
+		if (sRet.isSuccessfully()) {
+			hm.put("code", "S");
+			Gson gson = new Gson();
+			List<SuccessEntity> list = sRet.getResult().getResponseStatus().getSuccessEntitys();
+			SuccessEntity successEntity = list.get(0);
+			hm.put("id", successEntity.getId());
+			hm.put("number", successEntity.getNumber());
+			
+			submit("BD_Empinfo", successEntity.getId());
+			
+			audit("BD_Empinfo", successEntity.getId());
+		} 
+
+		return hm;
+		
+	}
+	
+	/**
+	 * 添加厂牌
+	 */
+	@Bizlet("")
+	public static HashMap addCarPlate(String name, String carPlateNumber) throws Exception {
+		K3CloudApi api=new K3CloudApi();
+		AssistantData c = new AssistantData();
+		
+		c.setFDataValue(name);
+		c.setFNumber(carPlateNumber);
+
+		CommonFNumber fId = new CommonFNumber();
+		fId.setFNumber("CX");
+		
+		c.setFId(fId);
+		
+		HashMap hm = new HashMap();
+		hm.put("code", "E");
+		SaveResult sRet = api.save("BOS_ASSISTANTDATA_DETAIL", new SaveParam<AssistantData>(c));
+		if (sRet.isSuccessfully()) {
+			hm.put("code", "S");
+			Gson gson = new Gson();
+			List<SuccessEntity> list = sRet.getResult().getResponseStatus().getSuccessEntitys();
+			SuccessEntity successEntity = list.get(0);
+			hm.put("id", successEntity.getId());
+			hm.put("number", successEntity.getNumber());
+			
+			submit("BOS_ASSISTANTDATA_DETAIL", successEntity.getId());
+			
+			audit("BOS_ASSISTANTDATA_DETAIL", successEntity.getId());
+		} 
+
+		return hm;
+		
+	}
+	
+
+	/**
+	 * 添加物料（添加配件基础资料）
+	 */
+	@Bizlet("")
+	public static HashMap addPart(String id, String code, String name, String orgNum) throws Exception {
+		K3CloudApi api=new K3CloudApi();
+		Material c = new Material();
+		
+		c.setFNumber(id);
+		c.setFName(name);
+		c.setFOldNumber(code);
+
+		CommonFNumber orgid = new CommonFNumber();
+		if(orgNum == null) {
+			orgNum = "KY001";
+		}
+		orgid.setFNumber(orgNum);
+		c.setFCreateOrgId(orgid);
+		c.setFUseOrgId(orgid);
+
+		HashMap hm = new HashMap();
+		hm.put("code", "E");
+		SaveResult sRet = api.save("BD_MATERIAL", new SaveParam<Material>(c));
+		if (sRet.isSuccessfully()) {
+			hm.put("code", "S");
+			Gson gson = new Gson();
+			List<SuccessEntity> list = sRet.getResult().getResponseStatus().getSuccessEntitys();
+			SuccessEntity successEntity = list.get(0);
+			hm.put("id", successEntity.getId());
+			hm.put("number", successEntity.getNumber());
+			
+			submit("BD_MATERIAL", successEntity.getId());
+			
+			audit("BD_MATERIAL", successEntity.getId());
+		} 
+
+		return hm;
+		
+	}
+	
+	/**
+	 * 添加仓库  code要保证唯一
+	 */
+	@Bizlet("")
+	public static HashMap addStore(String name, String code, String orgNum) throws Exception {
+		K3CloudApi api=new K3CloudApi();
+		Store c = new Store();
+		
+		c.setFName(name);
+		c.setFNumber(code);
+
+		CommonFNumber orgid = new CommonFNumber();
+		if(orgNum == null) {
+			orgNum = "KY001";
+		}
+		orgid.setFNumber(orgNum);
+		c.setFCreateOrgId(orgid);
+		c.setFUseOrgId(orgid);
+		
+		c.setFStockProperty("1");
+		c.setFStockStatusType("0,1,2,3,4,5,6,7,8");
+		c.setFSortingPriority("1");
+		
+		HashMap hm = new HashMap();
+		hm.put("code", "E");
+		SaveResult sRet = api.save("BD_STOCK", new SaveParam<Store>(c));
+		if (sRet.isSuccessfully()) {
+			hm.put("code", "S");
+			Gson gson = new Gson();
+			List<SuccessEntity> list = sRet.getResult().getResponseStatus().getSuccessEntitys();
+			SuccessEntity successEntity = list.get(0);
+			hm.put("id", successEntity.getId());
+			hm.put("number", successEntity.getNumber());
+			
+			submit("BD_STOCK", successEntity.getId());
+			
+			audit("BD_STOCK", successEntity.getId());
+		} 
+
+		return hm;
+		
+	}
+	
+	/**
+	 * 添加凭证
+	 */
+	@Bizlet("")
+	public static HashMap addVoucher(String name, String orgNum) throws Exception {
+		K3CloudApi api=new K3CloudApi();
+		Store c = new Store();
+		
+		c.setFName(name);
+
+		CommonFNumber orgid = new CommonFNumber();
+		if(orgNum == null) {
+			orgNum = "KY001";
+		}
+		orgid.setFNumber(orgNum);
+		c.setFCreateOrgId(orgid);
+		c.setFUseOrgId(orgid);
+		
+		c.setFStockProperty("1");
+		c.setFStockStatusType("0,1,2,3,4,5,6,7,8");
+		c.setFSortingPriority("1");
+		
+		HashMap hm = new HashMap();
+		hm.put("code", "E");
+		SaveResult sRet = api.save("BD_STOCK", new SaveParam<Store>(c));
+		if (sRet.isSuccessfully()) {
+			hm.put("code", "S");
+			Gson gson = new Gson();
+			List<SuccessEntity> list = sRet.getResult().getResponseStatus().getSuccessEntitys();
+			SuccessEntity successEntity = list.get(0);
+			hm.put("id", successEntity.getId());
+			hm.put("number", successEntity.getNumber());
+			
+			submit("BD_STOCK", successEntity.getId());
+			
+			audit("BD_STOCK", successEntity.getId());
+		} 
+
+		return hm;
+		
+	}
+	
+	/**
+	 * 提交信息
+	 * */
+	private static boolean submit(String formName, String id) throws Exception{
+		K3CloudApi api=new K3CloudApi();
+		
+		OperateParam param = new OperateParam();
+		param.setIds(id);
+		
+		OperatorResult sRet = api.submit(formName, param);
+		if (sRet.isSuccessfully()) {
+			return true;
+		} 
+		
+		return false;
+	}
+	
+	/**
+	 * 审核信息
+	 * */
+	private static boolean audit(String formName, String id) throws Exception{
+		K3CloudApi api=new K3CloudApi();
+	
+		OperateParam param = new OperateParam();
+		//param.setCreateOrgId("KY001");
+		param.setIds(id);
+		
+		OperatorResult sRet = api.audit(formName, param);
+		if (sRet.isSuccessfully()) {
+			return true;
+		} 
+		
+		return false;
+	}
 	
 	public static void main(String[] args) {
 		Gson gson=new Gson();

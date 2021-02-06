@@ -1,0 +1,98 @@
+<map>
+  <entry>
+    <string>com.hsapi.repair.repairService.sureMt.sureMtPart(com.hsapi.repair.data.rps.RpsPartQuote, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sureMtPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sureMtItem&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sureMt.sureMtPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partQuote(com.hsapi.repair.data.rps.RpsPartQuote):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sureMt.queryItemdisPatch(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryItemdisPatch&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryItemdisPatch&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sureMt.queryItemdisPatch&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;itemDispatchList(com.hsapi.repair.data.rps.RpsItemDispatch[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sureMt.genRpsGuestFile(com.hsapi.repair.data.rps.RpsMaintain, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;genRpsGuestFile&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;genRpsGuestFile&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sureMt.genRpsGuestFile&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;maintain(com.hsapi.repair.data.rps.RpsMaintain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;countIn(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;compComeTimes(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sureMt.getRpsMaintainById(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpsMaintainById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getRpsMaintainById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sureMt.getRpsMaintainById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;maintain(com.hsapi.repair.data.rps.RpsMaintain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sureMt.genCrmGuestScout(com.hsapi.repair.data.rps.RpsMaintain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;genCrmGuestScout&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;ne&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sureMt.genCrmGuestScout&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;maintain(com.hsapi.repair.data.rps.RpsMaintain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sureMt.genRepairRecord(com.hsapi.repair.data.rpbse.RpbCarExtend, com.hsapi.repair.data.rps.RpsMaintain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;genRepairRecord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;genRepairRecord&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sureMt.genRepairRecord&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;car(com.hsapi.repair.data.rpbse.RpbCarExtend):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;maintain(com.hsapi.repair.data.rps.RpsMaintain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>sureMt</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sureMt.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sureMt&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sureMt&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sureMt.genRpsItem(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;genRpsItem&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;genRpsItem&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sureMt.genRpsItem&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sureMt.repairSureMt(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;repairSureMt&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;repairSureMt&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sureMt.repairSureMt&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;maintain(com.hsapi.repair.data.rps.RpsMaintain):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sureMt.getRpsCarById(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpsCarById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getRpsContactorById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sureMt.getRpsCarById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;car(com.hsapi.repair.data.rpbse.RpbCar):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sureMt.genCarFileNo(com.hsapi.repair.data.rpbse.RpbCar)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;genCarFileNo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;genCarFileNo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sureMt.genCarFileNo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;car(com.hsapi.repair.data.rpbse.RpbCar):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sureMt.getRpsContactorById(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRpsContactorById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getRpsContactorById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sureMt.getRpsContactorById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;contactor(com.hsapi.repair.data.rpbse.RpbContactor):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sureMt.setItemCheckers(String, String, Int, com.hsapi.repair.data.rps.RpsItem)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;setItemCheckers&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;setItemCheckers&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sureMt.setItemCheckers&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;checkers(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;checkerIds(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;item(com.hsapi.repair.data.rps.RpsItem):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sureMt.getCountIn(com.hsapi.repair.data.rps.RpsMaintain)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCountIn&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getCountIn&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sureMt.getCountIn&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;maintain(com.hsapi.repair.data.rps.RpsMaintain):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;countIn(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sureMt.updateItemDispatch(com.hsapi.repair.data.rps.RpsItem, String, Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateItemDispatch&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;startWork&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sureMt.updateItemDispatch&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rpsItem(com.hsapi.repair.data.rps.RpsItem):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;remark(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;status(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;second(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sureMt.deleteRpsItem(com.hsapi.repair.data.rps.RpsItem, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;deleteRpsItem&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;deleteRpsItem&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sureMt.deleteRpsItem&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;item(com.hsapi.repair.data.rps.RpsItem):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sureMt.updateRpbCarComeTime(com.hsapi.repair.data.rps.RpsMaintain, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateRpbCarComeTime&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateRpbCarComeTime&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sureMt.updateRpbCarComeTime&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;maintain(com.hsapi.repair.data.rps.RpsMaintain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;countIn(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;car(com.hsapi.repair.data.rpbse.RpbCar):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sureMt.noMtRecord(com.hsapi.repair.data.rps.RpsMaintain, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;noMtRecord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;noMtRecord&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sureMt.noMtRecord&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;maintain(com.hsapi.repair.data.rps.RpsMaintain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sureMt.genRpbCarExtend(com.hsapi.repair.data.rps.RpsMaintain, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;genRpbCarExtend&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;genRpsGuestFile&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sureMt.genRpbCarExtend&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;maintain(com.hsapi.repair.data.rps.RpsMaintain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;countIn(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;chainComeTimes(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;carExtend(com.hsapi.repair.data.rpbse.RpbCarExtend):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sureMt.updateMaintainStatus(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateMaintainStatus&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateMaintainStatus&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sureMt.updateMaintainStatus&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;maintain(com.hsapi.repair.data.rps.RpsMaintain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sureMt.deleteRpsPart(com.hsapi.repair.data.rps.RpsPart, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;deleteRpsPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;deleteRpsItem&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sureMt.deleteRpsPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;part(com.hsapi.repair.data.rps.RpsPart):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sureMt.sureMtItem(com.hsapi.repair.data.rps.RpsItemQuote, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sureMtItem&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sureMtItem&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sureMt.sureMtItem&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;itemQuote(com.hsapi.repair.data.rps.RpsItemQuote):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sureMt.addRpsItemDispatch(Int, com.hsapi.repair.data.rps.RpsItem[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;addRpsItemDispatch&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;addRpsItemDispatch&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sureMt.addRpsItemDispatch&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;itemList(com.hsapi.repair.data.rps.RpsItem[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.sureMt.sureMtPackage(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sureMtPackage&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sureMtPackage&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.sureMt.sureMtPackage&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pkgId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

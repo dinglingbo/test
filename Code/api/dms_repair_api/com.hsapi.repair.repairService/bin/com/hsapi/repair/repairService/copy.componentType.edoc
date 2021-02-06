@@ -1,0 +1,14 @@
+<map>
+  <entry>
+    <string>com.hsapi.repair.repairService.copy.prebookTransToQuote(String, String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;prebookTransToQuote&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;prebookTransToQuote&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.copy.prebookTransToQuote&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;预约转报价&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.repairService.copy.testKey()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;testKey&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;testKey&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.copy.testKey&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;itemId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>copy</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;copy.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;copy&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.repairService.copy&lt;/html&gt;</string>
+  </entry>
+</map>

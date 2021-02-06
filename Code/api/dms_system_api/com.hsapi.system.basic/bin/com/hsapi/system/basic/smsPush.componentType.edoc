@@ -1,0 +1,18 @@
+<map>
+  <entry>
+    <string>newcomponent</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;smsPush.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;newcomponent&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.basic.smsPush&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.basic.smsPush.testPushMore(commonj.sdo.DataObject[], String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;testPushMore&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;testPushMore&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.basic.smsPush.testPushMore&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;msg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.basic.smsPush.pushMsg(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;pushMsg&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;testPush&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.basic.smsPush.pushMsg&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;phones(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;message(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.basic.smsPush.sendPostApi(String, String, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sendPostApi&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;setBookWeChatInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.basic.smsPush.sendPostApi&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;key(String):&lt;/b&gt;REPAIR&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;apiName(String):&lt;/b&gt;com.hsapi.wechat.autoServiceBackstage.weChatInterface.sendBookingWeChatTemplateMessage.biz.ext&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;turl(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

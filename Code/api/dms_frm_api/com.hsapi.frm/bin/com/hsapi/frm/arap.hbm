@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.frm.arap.FisRpAccountTransfer" table="fis_rp_account_transfer">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="guestId" type="int">
+            <column name="guest_id"/>
+        </property>
+        <property name="guestFullName" type="string">
+            <column length="100" name="guest_full_name"/>
+        </property>
+        <property name="rpType" type="short">
+            <column name="rp_type"/>
+        </property>
+        <property name="isPrimaryBusiness" type="short">
+            <column default="0" name="is_primary_business"/>
+        </property>
+        <property name="serviceId" type="int">
+            <column name="service_id"/>
+        </property>
+        <property name="serviceCode" type="string">
+            <column length="20" name="service_code"/>
+        </property>
+        <property name="serviceTypeId" type="string">
+            <column length="20" name="service_type_id"/>
+        </property>
+        <property name="rpAmt" type="big_decimal">
+            <column length="10" name="rp_amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="rpAmtYes" type="big_decimal">
+            <column length="10" name="rp_amt_yes" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="rpAmtNo" type="big_decimal">
+            <column length="10" name="rp_amt_no" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="billAmt" type="big_decimal">
+            <column length="10" name="bill_amt" precision="10" scale="2"/>
+        </property>
+        <property name="billStatus" type="short">
+            <column name="bill_status"/>
+        </property>
+        <property name="auditor" type="string">
+            <column length="20" name="auditor"/>
+        </property>
+        <property name="auditDate" type="timestamp">
+            <column name="audit_date"/>
+        </property>
+        <property name="onAccountDate" type="timestamp">
+            <column name="on_account_date"/>
+        </property>
+        <property name="onAccountSurety" type="string">
+            <column length="20" name="on_account_surety"/>
+        </property>
+        <property name="onAccountType" type="string">
+            <column length="10" name="on_account_type"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="100" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="transfer" type="string">
+            <column length="20" name="transfer"/>
+        </property>
+        <property name="transferGuestId" type="string">
+            <column length="20" name="transfer_guest_id"/>
+        </property>
+        <property name="transferGuestName" type="string">
+            <column length="20" name="transfer_guest_name"/>
+        </property>
+        <property name="transferDate" type="timestamp">
+            <column name="transfer_date" not-null="true"/>
+        </property>
+        <property name="column27transferRemark" type="string">
+            <column length="200" name="column_27transfer_remark"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.frm.arap.FisRpCheckOff" table="fis_rp_check_off">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="rpBillId" type="int">
+            <column name="rp_bill_id" not-null="true"/>
+        </property>
+        <property name="rpId" type="int">
+            <column name="rp_id"/>
+        </property>
+        <property name="guestId" type="string">
+            <column length="20" name="guest_id"/>
+        </property>
+        <property name="rpModeType" type="string">
+            <column length="20" name="rp_mode_type"/>
+        </property>
+        <property name="checkOffAmt" type="big_decimal">
+            <column length="10" name="check_off_amt" precision="10" scale="2"/>
+        </property>
+        <property name="checkOffMan" type="string">
+            <column length="20" name="check_off_man"/>
+        </property>
+        <property name="checkOffDate" type="timestamp">
+            <column name="check_off_date"/>
+        </property>
+        <property name="billStatus" type="short">
+            <column name="bill_status"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="200" name="remark"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.frm.arap.FisRpInternalTransfer" table="fis_rp_internal_transfer">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="code" type="string">
+            <column length="20" name="code"/>
+        </property>
+        <property name="settAccountId" type="int">
+            <column name="sett_account_id"/>
+        </property>
+        <property name="settAccountCode" type="string">
+            <column length="20" name="sett_account_code" not-null="true"/>
+        </property>
+        <property name="settAccountName" type="string">
+            <column length="50" name="sett_account_name" not-null="true"/>
+        </property>
+        <property name="toSettAccountId" type="int">
+            <column name="to_sett_account_id"/>
+        </property>
+        <property name="toAccountCode" type="string">
+            <column length="20" name="to_account_code" not-null="true"/>
+        </property>
+        <property name="toSettAccountName" type="string">
+            <column length="50" name="to_sett_account_name" not-null="true"/>
+        </property>
+        <property name="rpAmt" type="big_decimal">
+            <column length="10" name="rp_amt" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="rpMan" type="string">
+            <column length="20" name="rp_man"/>
+        </property>
+        <property name="rpDate" type="timestamp">
+            <column name="rp_date"/>
+        </property>
+        <property name="billStatus" type="big_decimal">
+            <column length="10" name="bill_status" precision="10" scale="0"/>
+        </property>
+        <property name="postMan" type="string">
+            <column length="20" name="post_man"/>
+        </property>
+        <property name="postStatus" type="big_decimal">
+            <column length="10" name="post_status" precision="10" scale="0"/>
+        </property>
+        <property name="adstract" type="string">
+            <column length="100" name="adstract"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="100" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.frm.arap.FisRpVerification" table="fis_rp_verification">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="verificationType" type="short">
+            <column name="verification_type"/>
+        </property>
+        <property name="guestId" type="string">
+            <column length="20" name="guest_id"/>
+        </property>
+        <property name="guestFullName" type="string">
+            <column length="100" name="guest_full_name"/>
+        </property>
+        <property name="fromRpId" type="int">
+            <column name="from_rp_id"/>
+        </property>
+        <property name="toRpId" type="int">
+            <column name="to_rp_id"/>
+        </property>
+        <property name="checkOffAmt" type="big_decimal">
+            <column length="10" name="check_off_amt" precision="10" scale="2"/>
+        </property>
+        <property name="checkOffMan" type="string">
+            <column length="20" name="check_off_man"/>
+        </property>
+        <property name="checkOffDate" type="timestamp">
+            <column name="check_off_date"/>
+        </property>
+        <property name="billStatus" type="short">
+            <column name="bill_status"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="200" name="remark"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.frm.arap.FisSettAccountBala" table="fis_sett_account_bala">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="settAccountId" type="int">
+            <column name="sett_account_id"/>
+        </property>
+        <property name="settAccountCode" type="string">
+            <column length="20" name="sett_account_code" not-null="true"/>
+        </property>
+        <property name="settAccountName" type="string">
+            <column length="50" name="sett_account_name" not-null="true"/>
+        </property>
+        <property name="fyear" type="int">
+            <column name="fyear"/>
+        </property>
+        <property name="fperiod" type="int">
+            <column name="fperiod"/>
+        </property>
+        <property name="beginDirection" type="short">
+            <column name="begin_direction"/>
+        </property>
+        <property name="beginBala" type="big_decimal">
+            <column length="10" name="begin_bala" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="debit" type="big_decimal">
+            <column length="10" name="debit" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="credit" type="big_decimal">
+            <column length="10" name="credit" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="ytdDebit" type="big_decimal">
+            <column length="10" name="ytd_debit" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="ytdCredit" type="big_decimal">
+            <column length="10" name="ytd_credit" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="endDirection" type="short">
+            <column name="end_direction"/>
+        </property>
+        <property name="endBala" type="big_decimal">
+            <column length="10" name="end_bala" not-null="true" precision="10" scale="2"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.frm.arap.FisRpBillListDetail" table="fis_rp_bill_list_detail">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="parentId" type="int">
+            <column name="parent_id"/>
+        </property>
+        <property name="balaTypeId" type="string">
+            <column length="20" name="bala_type_id"/>
+        </property>
+        <property name="balaTypeCode" type="string">
+            <column length="20" name="bala_type_code"/>
+        </property>
+        <property name="settAccountId" type="int">
+            <column name="sett_account_id"/>
+        </property>
+        <property name="settAccountCode" type="string">
+            <column length="20" name="sett_account_code"/>
+        </property>
+        <property name="rpDc" type="short">
+            <column name="rp_dc"/>
+        </property>
+        <property name="charOffAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="char_off_amt" precision="10" scale="4"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="200" name="remark"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.frm.arap.FisRpBillList" table="fis_rp_bill_list">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="code" type="string">
+            <column length="20" name="code"/>
+        </property>
+        <property name="settAccountName" type="string">
+            <column length="50" name="sett_account_name" not-null="true"/>
+        </property>
+        <property name="settAccountCode" type="string">
+            <column length="20" name="sett_account_code" not-null="true"/>
+        </property>
+        <property name="guestId" type="string">
+            <column length="20" name="guest_id"/>
+        </property>
+        <property name="guestFullName" type="string">
+            <column length="50" name="guest_full_name"/>
+        </property>
+        <property name="settAccountId" type="string">
+            <column length="10" name="sett_account_id" not-null="true"/>
+        </property>
+        <property name="rpTypeId" type="short">
+            <column name="rp_type_id"/>
+        </property>
+        <property name="rpModeId" type="string">
+            <column length="20" name="rp_mode_id"/>
+        </property>
+        <property name="rpPurposeId" type="string">
+            <column length="20" name="rp_purpose_id"/>
+        </property>
+        <property name="rpAmt" type="big_decimal">
+            <column length="10" name="rp_amt" precision="10" scale="2"/>
+        </property>
+        <property name="offsetAmt" type="big_decimal">
+            <column length="10" name="offset_amt" precision="10" scale="2"/>
+        </property>
+        <property name="offsetAmtNo" type="big_decimal">
+            <column length="10" name="offset_amt_no" precision="10" scale="2"/>
+        </property>
+        <property name="rpMan" type="string">
+            <column length="20" name="rp_man"/>
+        </property>
+        <property name="rpDate" type="timestamp">
+            <column name="rp_date"/>
+        </property>
+        <property name="billStatus" type="big_decimal">
+            <column length="10" name="bill_status" precision="10" scale="0"/>
+        </property>
+        <property name="postMan" type="string">
+            <column length="20" name="post_man"/>
+        </property>
+        <property name="postStatus" type="short">
+            <column name="post_status"/>
+        </property>
+        <property name="serviceIds" type="string">
+            <column length="1" name="service_ids"/>
+        </property>
+        <property name="adstract" type="string">
+            <column length="100" name="adstract"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="100" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.frm.arap.RpsTicketMain" table="rps_ticket_main">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="code" type="string">
+            <column length="20" name="code"/>
+        </property>
+        <property name="invoiceNo" type="string">
+            <column default="''" length="30" name="invoice_no"/>
+        </property>
+        <property name="invoiceName" type="string">
+            <column default="''" length="50" name="invoice_name"/>
+        </property>
+        <property name="invoiceType" type="string">
+            <column default="''" length="20" name="invoice_type"/>
+        </property>
+        <property name="rate" type="big_decimal">
+            <column default="0.00" length="10" name="rate" precision="10" scale="2"/>
+        </property>
+        <property name="itemQty" type="int">
+            <column default="0" name="item_qty"/>
+        </property>
+        <property name="balaAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="bala_amt" precision="10" scale="4"/>
+        </property>
+        <property name="invoiceAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="invoice_amt" precision="10" scale="4"/>
+        </property>
+        <property name="rateAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="rate_amt" precision="10" scale="4"/>
+        </property>
+        <property name="remark" type="string">
+            <column default="''" length="200" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="date">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="date">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.frm.arap.RpsTicketDetail" table="rps_ticket_detail">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="mainId" type="int">
+            <column name="main_id" not-null="true"/>
+        </property>
+        <property name="servcieId" type="int">
+            <column default="0" name="servcie_id"/>
+        </property>
+        <property name="serviceCode" type="string">
+            <column default="''" length="20" name="service_code"/>
+        </property>
+        <property name="guestId" type="int">
+            <column default="0" name="guest_id"/>
+        </property>
+        <property name="guestName" type="string">
+            <column default="''" length="255" name="guest_name"/>
+        </property>
+        <property name="carId" type="int">
+            <column default="0" name="car_id"/>
+        </property>
+        <property name="carNo" type="string">
+            <column default="''" length="15" name="car_no"/>
+        </property>
+        <property name="invoiceType" type="string">
+            <column default="''" length="20" name="invoice_type"/>
+        </property>
+        <property name="rate" type="big_decimal">
+            <column default="0.00" length="10" name="rate" precision="10" scale="2"/>
+        </property>
+        <property name="invoiceAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="invoice_amt" precision="10" scale="4"/>
+        </property>
+        <property name="rateAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="rate_amt" precision="10" scale="4"/>
+        </property>
+        <property name="balaAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="bala_amt" precision="10" scale="4"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.frm.arap.FisRpAccount" table="fis_rp_account">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="rpAccountId" type="string">
+            <column length="20" name="rp_account_id" not-null="true"/>
+        </property>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="guestId" type="int">
+            <column name="guest_id" not-null="true"/>
+        </property>
+        <property name="guestName" type="string">
+            <column length="100" name="guest_name"/>
+        </property>
+        <property name="balaTypeId" type="int">
+            <column name="bala_type_id"/>
+        </property>
+        <property name="balaTypeCode" type="string">
+            <column length="20" name="bala_type_code"/>
+        </property>
+        <property name="balaAccountId" type="int">
+            <column name="bala_account_id"/>
+        </property>
+        <property name="balaAccountCode" type="string">
+            <column length="20" name="bala_account_code"/>
+        </property>
+        <property name="rpDc" type="short">
+            <column name="rp_dc"/>
+        </property>
+        <property name="charOffAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="char_off_amt" precision="10" scale="4"/>
+        </property>
+        <property name="voidAmt" type="big_decimal">
+            <column length="10" name="void_amt" precision="10" scale="4"/>
+        </property>
+        <property name="trueCharOffAmt" type="big_decimal">
+            <column length="10" name="true_char_off_amt" precision="10" scale="4"/>
+        </property>
+        <property name="itemQty" type="big_decimal">
+            <column length="10" name="item_qty" precision="10" scale="2"/>
+        </property>
+        <property name="settleType" type="string">
+            <column length="20" name="settle_type"/>
+        </property>
+        <property name="auditSign" type="short">
+            <column name="audit_sign"/>
+        </property>
+        <property name="auditorId" type="string">
+            <column length="20" name="auditor_id"/>
+        </property>
+        <property name="auditor" type="string">
+            <column length="20" name="auditor"/>
+        </property>
+        <property name="auditDate" type="timestamp">
+            <column name="audit_date"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="200" name="remark"/>
+        </property>
+        <property name="versionNo" type="timestamp">
+            <column name="version_no"/>
+        </property>
+        <property name="creatorId" type="string">
+            <column length="20" name="creator_id"/>
+        </property>
+        <property name="creator" type="string">
+            <column length="20" name="creator"/>
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="create_date"/>
+        </property>
+        <property name="operatorId" type="string">
+            <column length="20" name="operator_id"/>
+        </property>
+        <property name="operator" type="string">
+            <column length="20" name="operator"/>
+        </property>
+        <property name="operateDate" type="timestamp">
+            <column name="operate_date"/>
+        </property>
+        <property name="fYear" type="int">
+            <column name="f_year"/>
+        </property>
+        <property name="fMonth" type="int">
+            <column name="f_month"/>
+        </property>
+        <property name="accountTypeId" type="int">
+            <column name="account_type_id"/>
+        </property>
+        <property name="billTypeId" type="int">
+            <column name="bill_type_id"/>
+        </property>
+        <property name="billTypeCode" type="string">
+            <column length="20" name="bill_type_code"/>
+        </property>
+    </class>
+</hibernate-mapping>

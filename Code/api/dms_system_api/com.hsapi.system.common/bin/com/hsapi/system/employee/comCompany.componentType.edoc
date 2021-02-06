@@ -1,0 +1,26 @@
+<map>
+  <entry>
+    <string>com.hsapi.system.employee.comCompany.stopOrStartCompany(com.hsapi.system.data.sys.ComCompany)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;stopOrStartCompany&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;employeeDimssion&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.comCompany.stopOrStartCompany&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(com.hsapi.system.data.sys.ComCompany):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.comCompany.getTime()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getTime&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;employeeQuery&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.comCompany.getTime&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.comCompany.comCompanySaves(com.hsapi.system.data.sys.ComCompany)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;comCompanySaves&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;employeeSave&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.comCompany.comCompanySaves&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;com(com.hsapi.system.data.sys.ComCompany):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>comCompany</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;comCompany.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;comCompany&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.comCompany&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.comCompany.comCompanySave(com.hsapi.system.data.sys.ComCompany)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;comCompanySave&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;employeeSave&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.comCompany.comCompanySave&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;comd(com.hsapi.system.data.sys.ComCompany):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.comCompany.comCompanyQuerys(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;comCompanyQuerys&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;employeeQuery&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.comCompany.comCompanyQuerys&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(com.hsapi.system.data.sys.ComCompany[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

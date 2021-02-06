@@ -1,0 +1,14 @@
+<map>
+  <entry>
+    <string>region</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;region.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;region&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.region&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.region.getRegin(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRegin&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;province&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.region.getRegin&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;parentId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;parentId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.region.getAddressUrl(String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getAddressUrl&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getAddressUrl&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.region.getAddressUrl&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;provinceId(String):&lt;/b&gt;省&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;cityId(String):&lt;/b&gt;市&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;countyId(String):&lt;/b&gt;区&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;province(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;city(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;county(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

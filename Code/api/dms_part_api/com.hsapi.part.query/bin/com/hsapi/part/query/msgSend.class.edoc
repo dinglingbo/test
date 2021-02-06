@@ -1,0 +1,12 @@
+<map>
+  <entry>
+    <string>com.hsapi.part.query.msgSend.doGet(java.lang.String, java.lang.String, java.lang.String, java.util.Map&lt;java.lang.String,java.lang.String&gt;, java.util.Map&lt;java.lang.String,java.lang.String&gt;)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hsapi.part.query.msgSend.doGet(String host, String path, String method, Map&lt;String,String&gt; headers, Map&lt;String,String&gt; querys)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; get&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;host&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;path&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;method&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;headers&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;querys&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;dt&gt;抛出：&lt;/dt&gt;&lt;dd&gt;Exception&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>msgSend</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.hsapi.part.query.msgSend&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

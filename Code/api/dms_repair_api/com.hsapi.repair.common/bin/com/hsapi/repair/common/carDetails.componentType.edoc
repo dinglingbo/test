@@ -1,0 +1,18 @@
+<map>
+  <entry>
+    <string>com.hsapi.repair.common.carDetails.searchRpsMaintain()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchRpsMaintain&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchRpsMaintain&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.common.carDetails.searchRpsMaintain&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;RpsMaintain(com.hsapi.repair.data.rps.RpsMaintain[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.common.carDetails.searchComGuest()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchComGuest&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchComGuest&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.common.carDetails.searchComGuest&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;comGuest(com.hsapi.repair.data.common.ComGuest[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.common.carDetails.searchCarMsg(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchCarMsg&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchCarMsg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.common.carDetails.searchCarMsg&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;param(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;RpbCar(com.hsapi.repair.data.rpbse.RpbCar[]):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;车辆信息&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>carDetails</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;carDetails.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;carDetails&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.common.carDetails&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;车辆详情&lt;/html&gt;</string>
+  </entry>
+</map>

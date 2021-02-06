@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.system.product.items">
+    <!--产品分组-->
+    <select id="getPrdtType" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT id, parentId, customId = code, typeId, carBrandId, hsid, name
+		FROM dbo.ST_PrdtType 
+		where 1 = 1
+			<isNull property="carBrandId">and ISNULL(carBrandId, '') = ''</isNull>
+        <isNotNull property="carBrandId">and ISNULL(carBrandId, #carBrandId#) = #carBrandId#</isNotNull>
+        <isNotNull property="type">AND code like '$type$%'</isNotNull>
+        <isNotNull property="parentId">AND parentId = #parentId#</isNotNull>
+        <isNotNull property="noShowParent">AND isnull(parentId,'') != ''</isNotNull>	
+						
+		order by parentId, code
+    </select>
+    <!--套餐包明细1-->
+    <select id="getPkgDetailByCarMt" parameterClass="HashMap" resultClass="HashMap">SELECT pkgCarMtId, type = case when typeid = 0 then '工时' else '配件' end , 
+			packageId, itemNameId, itemKind,  partId, partBrandId, itemCode, itemName, qty, price, amt, amt4s 
+		FROM ST_PackageCarModelDetail 
+		WHERE pkgCarMtId = #pkgCarMtId#
+		ORDER BY TypeID</select>
+    <!--套餐包明细2(已停用)-->
+    <select id="getPkgDetailByPackAgeId" parameterClass="HashMap" resultClass="HashMap">SELECT type, packageId, itemNameId, itemName, itemTypeId, itemKind 
+		FROM vw_pkg_item_part 
+		WHERE packageId = #packageId#</select>
+    <!--Stock1-->
+    <!--    <select id="getStock1" parameterClass="HashMap" resultClass="HashMap">
+		SELECT  a.comp_code compCode, a.part_id partId, a.part_code partCode, w.part_brand_id partBrandId, 
+			w.apply_car_model applyCarModel, w.car_brand_zh carBrandZh, w.name partName, w.part_type_id partTypeId,
+		    a.bala_qty balaQty, w.unit, a.bala_unit_price balaUnitPrice, a.amt, a.bala_amt balaAmt, 
+		    isnull(d.stock_location, '未设置') stockLocation, d.stock_up_limit stockUpLimit, 
+		    d.stock_down_limit stockDownLimit, d.last_enter_date lastEnterDate, d.last_out_date lastOutDate, 
+		    d.suggest_price suggestPrice, 
+		    datediff(dd, CASE WHEN d.last_enter_date &gt;= isnull(d.last_out_date, d.last_enter_date) 
+		    THEN d.last_enter_date ELSE d.last_out_date END, getdate()) stockAge
+		FROM wb_part..pj_invocing a  
+		INNER JOIN (
+		 	SELECT detail_id = MAX(b1.detail_id) 
+		 	FROM wb_part..pj_invocing b1 
+		 	WHERE b1.comp_code = #orgCode#
+		    GROUP BY part_id
+		) b ON a.detail_id = b.detail_id  
+		LEFT JOIN wb_part..pts_location_cyc d ON d.part_id = a.part_id and d.comp_code = #orgCode#
+		LEFT JOIN wb_part..vw_com_attribute w ON w.id = a.part_id 
+		WHERE a.bala_qty &gt; 0 
+			AND a.comp_code = #orgCode#
+			AND REPLACE(a.part_code, ' ', '') IN ($partCodes$)
+    </select>-->
+    <!--Stock2-->
+    <!--    <select id="getStock2" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT  a.comp_code compCode, a.part_id partId, a.part_code partCode, w.part_brand_id partBrandId, 
+			w.apply_car_model applyCarModel, w.car_brand_zh carBrandZh, w.name partName, w.part_type_id partTypeId,
+		    a.bala_qty balaQty, w.unit, a.bala_unit_price balaUnitPrice, a.amt, a.bala_amt balaAmt, 
+		    isnull(d.stock_location, '未设置') stockLocation, d.stock_up_limit stockUpLimit, 
+		    d.stock_down_limit stockDownLimit, d.last_enter_date lastEnterDate, d.last_out_date lastOutDate, 
+		    d.suggest_price suggestPrice, 
+		    datediff(dd, CASE WHEN d.last_enter_date &gt;= isnull(d.last_out_date, d.last_enter_date) 
+		    THEN d.last_enter_date ELSE d.last_out_date END, getdate()) stockAge
+		FROM wb_part..pj_invocing a 
+		INNER JOIN (
+			SELECT detail_id = MAX(b1.detail_id) 
+			FROM wb_part..pj_invocing b1
+			group by comp_code, part_id
+		) b ON a.detail_id = b.detail_id 
+		LEFT JOIN wb_part..pts_location_cyc d ON d.part_id = a.part_id and d.comp_code = a.comp_code
+		LEFT JOIN wb_part..vw_com_attribute w ON w.id = a.part_id 
+		WHERE a.bala_qty &gt; 0 
+			AND REPLACE(a.part_code, ' ', '') IN ($partCodes$)  
+    </select>-->
+    <!--getBrandPart-->
+    <select id="getBrandPart" parameterClass="HashMap" resultClass="HashMap">SELECT DISTINCT b.id, b.code, b.name, b.qualityTypeId, b.brandId, b.parentGroupCode, b.parentGroupId, 
+    		b.groupCode, b.groupId, b.remark, b.hotIndex 
+		FROM ST_PartCommon a 
+		INNER JOIN ST_PartFactory b ON a.PartID = b.ID 
+		WHERE EXISTS (
+		  	SELECT 1 FROM ST_PartCommon 
+			WHERE a.GroupID = GroupID AND PartID = #partId# 
+		) 
+		ORDER BY b.HotIndex DESC</select>
+    <select id="getBrandPartDef2" parameterClass="HashMap" resultClass="com.hsapi.system.product.MyCache">
+        select id, code, name from ST_PartBrandTec
+        WHERE 1=1
+            <isNotNull property="id">AND id = #id#</isNotNull>
+		ORDER BY code
+    </select>
+    <!--getPackage-->
+    <select id="getPackage" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT TOP 500 id, PackageID, PackageTypeID, CarBrandID, CarLevelID, CarLineID, CarModelID, PackageName, 
+		       ItemAmt, PartAmt, packageTotal, PackageAmt, Package4SAmt, CarbrandName, CarLevelName, CarLineName, 
+		       CarModelName, MakeTime, Remark, UseCount 
+		FROM dbo.vw_carmt_pkg_amt a WITH(NOLOCK) 
+		WHERE IsDisabled = 0 
+			<isNotNull property="carModelId">and (a.CarModelID =  #carModelId# or a.CarModelID = '00000000')</isNotNull>
+        <isNull property="carModelId">and ( a.CarModelID = '00000000' )</isNull>
+        <isNotNull property="packageTypeId">AND packageTypeId = #packageTypeId#</isNotNull>
+        <isNotNull property="packageName">AND packageName like '%$packageName$%'</isNotNull>
+			
+	    Order by UseCount DESC
+    </select>
+    <select id="getPackageById" parameterClass="HashMap" resultClass="HashMap">SELECT id, packageId, packageTypeId, carBrandId, carLevelId, 
+    		carLineId, carModelId, packageName, itemAmt, partAmt, packageTotal, packageAmt, 
+    		package4sAmt, carbrandName, carLevelName, carLineName, carModelName, carEngineName, 
+    		makeTime, fileId, fileName, paintQty, useCount 
+		FROM vw_carmt_pkg_amt 
+		WHERE id = #id#</select>
+    <!--getPart-->
+    <select id="getPart" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT DISTINCT c.id, c.code, c.name, d.Name stdName, c.parentGroupCode, 
+    		c.groupCode, c.parentGroupId, c.groupId, c.remark, c.sellPrice4s, c.sellPriceStd 
+        FROM ST_PartFamilyCarModel a 
+		INNER JOIN ST_PartFamilyDetail b ON b.CatID = a.CatID 
+		INNER JOIN ST_PartFactory c ON c.id = b.PartID 
+		LEFT JOIN ST_PartName d ON D.ID = C.PartNameID 
+		WHERE carModelId = #carModelId#
+			
+			<isNotNull property="groupId">AND groupId = #groupId#</isNotNull>
+        <isNotNull property="code">AND c.Code like '%$code$%'</isNotNull>
+        <isNotNull property="name">AND ISNULL(c.Name, '') + ISNULL(d.Name, '') like '%$name$%'</isNotNull>
+    </select>
+    <select id="getPartById" parameterClass="HashMap" resultClass="HashMap">SELECT DISTINCT c.id, c.code, c.name, d.Name stdName, c.parentGroupCode, 
+    		c.groupCode, c.parentGroupId, c.groupId, c.remark, c.sellPrice4s, c.sellPriceStd 
+        FROM ST_PartFamilyCarModel a 
+		INNER JOIN ST_PartFamilyDetail b ON b.CatID = a.CatID 
+		INNER JOIN ST_PartFactory c ON c.id = b.PartID 
+		LEFT JOIN ST_PartName d ON D.ID = C.PartNameID 
+		WHERE c.id = #id#</select>
+    <!--getItem a.CarModelID =  '00009402' -->
+    <select id="getItem" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT top 500  CarModelID = a.CarModelID,ItemID = a.ID, hsItemCode = 'hs' + ItemNameID, ItemNameID, b.TechType,  b.ServiceType, b.ItemKind, ItemName =  b.name,  ItemCode =  a.ItemCode,  Price = ItemPrice, AStandTime = ItemTime, 
+		         AStandSum = A.Amt, Amt4S, FactoryName = NULL, TypeID = NULL, MakeTime = NULL, b.UseCount, a.Remark, b.Business_Type as businessType 
+		 FROM wbstandard.dbo.ST_ItemCarModel a WITH(NOLOCK) INNER JOIN wbstandard.dbo.ST_ItemNameStd b WITH(NOLOCK) ON a.ItemNameID = b.ID 
+		 WHERE 1 = 1
+		 
+		 	<isNotNull property="carModelId">and (a.CarModelID =  #carModelId# or a.CarModelID = '00000000' )</isNotNull>
+        <isNotNull property="id">and (a.ID =  #id# )</isNotNull>
+        <isNull property="carModelId">and ( a.CarModelID = '00000000' )</isNull>
+        <isNotNull property="itemType">AND (b.cartypef = #itemType# or b.cartypes = #itemType# or b.cartypet = #itemType#)</isNotNull>
+        <isNotNull property="businessTypes">AND b.Business_Type in ($businessTypes$)</isNotNull>
+        <isNotNull property="businessType">AND b.Business_Type = #businessType#</isNotNull>
+        <isNotNull property="itemName">AND b.name like '%$itemName$%'</isNotNull>
+        <isNotNull property="partName">AND b.PartName like '%$partName$%'</isNotNull>
+        <isNotNull property="partNameId">AND b.PartNameID = #partNameId#</isNotNull>
+			
+			ORDER BY b.UseCount DESC
+			
+    </select>
+    <select id="getItemById" parameterClass="HashMap" resultClass="HashMap">SELECT itemId = a.ID, hsItemCode = 'hs' + ItemNameID, itemNameId, b.TechType,  b.ServiceType, b.ItemKind, itemName =  b.name,  itemCode =  a.ItemCode,  Price = ItemPrice, astandTime = ItemTime, 
+		         astandSum = A.Amt, Amt4S, FactoryName = NULL, TypeID = NULL, MakeTime = NULL, b.UseCount, a.Remark 
+		 FROM wbstandard.dbo.ST_ItemCarModel a WITH(NOLOCK) INNER JOIN wbstandard.dbo.ST_ItemNameStd b WITH(NOLOCK) ON a.ItemNameID = b.ID 
+		WHERE a.ID = #id#</select>
+    <select id="getHotWord" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">SELECT TOP 50 id = code, name  FROM wbstandard.dbo.ST_PartNameStd 
+	        WHERE 
+			TypeID = 0 		
+		ORDER BY UseCount DESC</select>
+    <parameterMap class="java.util.HashMap" id="parameterMap">
+        <parameter javaType="String" property="id"/>
+    </parameterMap>
+    <resultMap class="java.util.HashMap" id="cacheBrandPartDef">
+        <result column="id" javaType="string" property="id"/>
+        <result column="name" javaType="string" property="name"/>
+        <result column="code" javaType="string" property="code"/>
+    </resultMap>
+    <!--getBrandPartDef-->
+    <select id="getBrandPartDef" parameterMap="parameterMap" resultMap="cacheBrandPartDef">
+        select id, code, name from ST_PartBrandTec
+            <isNotNull property="id">WHERE id = #id#</isNotNull>
+		ORDER BY code
+    </select>
+</sqlMap>

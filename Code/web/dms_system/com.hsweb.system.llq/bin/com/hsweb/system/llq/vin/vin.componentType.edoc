@@ -1,0 +1,10 @@
+<map>
+  <entry>
+    <string>vin</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;vin.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;vin&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsweb.system.llq.vin.vin&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsweb.system.llq.vin.vin.searchHistory(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchHistory&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchHistory&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsweb.system.llq.vin.vin.searchHistory&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;vin(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.alibaba.fastjson.JSONObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

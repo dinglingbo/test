@@ -18,11 +18,11 @@
             <tr>
                 <th class="nui-form-label"><label for="appfuncbtn.name$text">按钮名称：</label></th>
                 <td>    
-                    <input id="appfuncbtn.name" name="appfuncbtn.name" class="nui-textbox nui-form-input" required="true"  vtype="rangeLength:1,20"/>
+                    <input id="appfuncbtn.name" name="appfuncbtn.name" class="nui-textbox nui-form-input" required="true"  vtype="rangeLength:1,50"/>
                 </td>
                 <th class="nui-form-label"><label for="appfuncbtn.code$text">按钮编码：</label></th>
                 <td>    
-                    <input id="appfuncbtn.code" name="appfuncbtn.code" class="nui-textbox nui-form-input" required="true"  vtype="rangeLength:1,20" onvalidation="codevalidation"/>
+                    <input id="appfuncbtn.code" name="appfuncbtn.code" class="nui-textbox nui-form-input" required="true"  vtype="rangeLength:1,100" onvalidation="codevalidation"/>
                 </td>
             </tr>
             <tr class="odd">

@@ -1,0 +1,18 @@
+<map>
+  <entry>
+    <string>userFrom</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;userFrom.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;userFrom&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.userFrom&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.userFrom.getuserFrom(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getuserFrom&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStoreList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.userFrom.getuserFrom&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.system.data.repair.ComDataitems[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.userFrom.saveuserForm(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveuserForm&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveDisclaimer&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.userFrom.saveuserForm&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.userFrom.startorstopUserForm(com.hsapi.system.data.repair.ComDataitems)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;startorstopUserForm&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveDisclaimer&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.userFrom.startorstopUserForm&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(com.hsapi.system.data.repair.ComDataitems):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

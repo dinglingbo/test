@@ -633,7 +633,7 @@
     
     
      
-    <!-- 更新组装明细金额 -->
+    <!-- 更新组装明细金额 
     <update id="updateDetailAmt" parameterClass="java.util.HashMap">
     	UPDATE pj_process_detail a
 			INNER JOIN pj_process_main b ON a.code_id = b.id
@@ -660,8 +660,50 @@
 		WHERE
 			1 = 1
 		AND c.main_id = #mainId#  and d.enter_type_id ='050212'
+    </update> 20200928-->
+    <update id="updateDetailAmt" parameterClass="java.util.HashMap">
+    	UPDATE pj_process_detail a
+			INNER JOIN pj_process_main b ON a.code_id = b.id
+			INNER JOIN (
+				SELECT
+					order_detail_id,
+					order_main_id,
+					main_id,
+					sum(enter_amt) AS sumEnterAmt,
+					sum(no_tax_amt) as sumNoTaxAmt,
+					sum(tax_amt) as sumTaxAmt,
+					sum(exp_enter_amt) as sumExpEnterAmt,
+					sum(tax_cost_amt) as sumTaxCostAmt,
+					sum(no_tax_cost_amt) as sumNoTaxCostAmt,
+					sum(set_cost_amt) as sumSetCostAmt
+				FROM
+					pj_out_detail_chk
+				where  main_id = #mainId# 
+				group by order_detail_id, order_main_id, main_id
+			) c
+			ON a.id = c.order_detail_id AND b.id = c.order_main_id
+			INNER JOIN pj_out_main_chk d on d.id =c.main_id
+		SET 
+			 a.order_amt = sumEnterAmt,
+			 a.order_price = sumEnterAmt/a.order_qty,
+			 a.cost_price = sumEnterAmt/a.order_qty,
+			 a.tax_price = sumTaxAmt/a.order_qty,
+			 a.tax_amt = sumTaxAmt,
+			 a.no_tax_price =sumNoTaxAmt/a.order_qty,
+			 a.no_tax_amt = sumNoTaxAmt,
+			 a.exp_enter_price =sumExpEnterAmt/a.order_qty,
+			 a.exp_enter_amt = sumExpEnterAmt,
+			 a.tax_cost_price =sumTaxCostAmt/a.order_qty,
+			 a.tax_cost_amt = sumTaxCostAmt,
+			 a.no_tax_cost_price =sumNoTaxCostAmt/a.order_qty,
+			 a.no_tax_cost_amt = sumNoTaxCostAmt,
+			 a.set_cost_price =sumSetCostAmt/a.order_qty,
+			 a.set_cost_amt = sumSetCostAmt
+		WHERE
+			1 = 1
+		AND c.main_id = #mainId#  and d.enter_type_id ='050212'
     </update>
-    <!-- 更新组装成品金额 -->
+    <!-- 更新组装成品金额
     <update id="updateProductAmt" parameterClass="java.util.HashMap">
     	UPDATE pj_process_product a
 		INNER JOIN pj_process_main b ON a.main_id = b.id
@@ -689,6 +731,40 @@
 		WHERE
 			1 = 1
 		AND c.main_id = #mainId#  and e.enter_type_id ='050212'
+    </update> 20200928-->
+    <update id="updateProductAmt" parameterClass="java.util.HashMap">
+		update pj_process_product a
+		inner join (
+			SELECT main_id, 
+							sum(order_amt) AS sumEnterAmt,
+							sum(no_tax_amt) as sumNoTaxAmt,
+							sum(tax_amt) as sumTaxAmt,
+							sum(exp_enter_amt) as sumExpEnterAmt,
+							sum(tax_cost_amt) as sumTaxCostAmt,
+							sum(no_tax_cost_amt) as sumNoTaxCostAmt,
+							sum(set_cost_amt) as sumSetCostAmt
+			from pj_process_detail
+			where code_id = #processMainId# group by main_id
+		)b 
+		on a.id = b.main_id
+		SET 
+			 a.order_amt = sumEnterAmt,
+			 a.order_price = sumEnterAmt/a.order_qty,
+			 a.tax_price = sumTaxAmt/a.order_qty,
+			 a.tax_amt = sumTaxAmt,
+			 a.no_tax_price =sumNoTaxAmt/a.order_qty,
+			 a.no_tax_amt = sumNoTaxAmt,
+			 a.exp_enter_price =sumExpEnterAmt/a.order_qty,
+			 a.exp_enter_amt = sumExpEnterAmt,
+			 a.tax_cost_price =sumTaxCostAmt/a.order_qty,
+			 a.tax_cost_amt = sumTaxCostAmt,
+			 a.no_tax_cost_price =sumNoTaxCostAmt/a.order_qty,
+			 a.no_tax_cost_amt = sumNoTaxCostAmt,
+			 a.set_cost_price =sumSetCostAmt/a.order_qty,
+			 a.set_cost_amt = sumSetCostAmt,
+			 a.tax_sign = 1, a.tax_rate = 0.13, 
+			 a.tax_diff = sumTaxAmt - sumNoTaxAmt
+		where a.main_id = #processMainId#
     </update>
     <!-- 更新组装主表金额-->
     <update id="updateMainAmt" parameterClass="java.util.HashMap">

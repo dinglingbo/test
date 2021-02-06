@@ -362,6 +362,9 @@ a {
 			
 			<input type="password" id="password" name="password" value="" class="password_val" placeholder="密码" maxlength="50" />
 		</label>
+		<label style="width:100%;display:none;">
+			<input type="macAddress" id="macAddress" name="macAddress" value="" placeholder="MAC地址" maxlength="50" />
+		</label>
 		<label style="width:100%">
 			
 		   	 <input type="text" class="yzm" name="code"  id="code" style="width:60%" placeholder="验证码" maxlength="9" />
@@ -426,6 +429,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	      			out.println("showError('查询用户信息失败，请联系系统管理员检查数据库连接！')");
 	     		 }else if(resultCode == -4){
 	      			out.println("showError('验证码输入不正确，请重新输入！')");
+	     		 }else if(resultCode == -7){
+	      			out.println("showError('电脑未认证，不能登录！')");
 	     		 }else{
 	      			out.println("showError('未知的异常，请联系系统管理员！')");
 	     		 }
@@ -434,6 +439,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	     	}
 		  %>
 		 var  msgCode = "";
+		 var macAddress = "";
 		 var  kaiguan = 0;//0发请求，1取消请求
 $(function () {
 	openLogin();
@@ -718,6 +724,8 @@ function login(){
 	{
 		$("#password").val($("#password1").val());
 	}
+	
+	getMac();
   
     document.loginForm.submit();
 }
@@ -791,6 +799,18 @@ function login(){
 			  
 			}
 
+
+			function getMac() {
+				$.ajaxSettings.async = false;
+				$.getJSON("https://cang.cn/exam/computerParaConf",function(data){
+					if(data && data.macAddress) {
+			        	macAddress = data.macAddress || "";
+			        	document.getElementById('macAddress').value=macAddress;
+			        }
+			        $.ajaxSettings.async = true;
+			    });
+			    $.ajaxSettings.async = true;
+			}
 
 
 </script>

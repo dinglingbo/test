@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Require-Bundle: com.hsapi.system.dict,com.hs.common,com.eos.foundation
+ ,com.hsapi.part.data
+Bundle-Vendor: chenziming
+eos-webCtxPath: common1
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsapi.part.common
+Bundle-Description: 公共的api
+Bundle-SymbolicName: com.hsapi.part.common
+

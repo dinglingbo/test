@@ -1,0 +1,122 @@
+<map>
+  <entry>
+    <string>com.hsapi.frm.setting.saveFibInComeExpenses(com.hsapi.frm.setting.FibIncomeExpenses)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveFibInComeExpenses&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryComCompany&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.saveFibInComeExpenses&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.frm.setting.FibIncomeExpenses):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.initSettleAccountBalance(com.hsapi.frm.fib.FibSettleAccount[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;initSettleAccountBalance&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;initSettleAccountBalance&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.initSettleAccountBalance&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;settleAccount(com.hsapi.frm.fib.FibSettleAccount[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.queryFiSettleAccount()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryFiSettleAccount&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryComPartType&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.queryFiSettleAccount&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;settleAccount(com.hsapi.frm.fib.FibSettleAccount[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.auditQTAccountList(com.hsapi.frm.fib.FisRpBillList[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;auditQTAccountList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;auditInitRpBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.auditQTAccountList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;accountBill(com.hsapi.frm.fib.FisRpBillList[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.queryAccountSettleBill(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryAccountSettleBill&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryAccountSettleBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.queryAccountSettleBill&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;billRpId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.frm.fib.FisRpAccountDType[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.saveQTAccountList(com.hsapi.frm.fib.FisRpBillList[], com.hsapi.frm.fib.FisRpBillList[], com.hsapi.frm.fib.FisRpBillList[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveQTAccountList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveInitRpBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.saveQTAccountList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;accountAdd(com.hsapi.frm.fib.FisRpBillList[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;accountUpdate(com.hsapi.frm.fib.FisRpBillList[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;accountDelete(com.hsapi.frm.fib.FisRpBillList[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.getDayMoneyReport1(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getDayMoneyReport1&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getDayMoneyReport&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.getDayMoneyReport1&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.deleteFiSettleAccountById(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;deleteFiSettleAccountById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;deleteComPartTypeById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.deleteFiSettleAccountById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.queryIncomeExpenItem(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryIncomeExpenItem&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;查询业务字典类型&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.queryIncomeExpenItem&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;p(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>setting</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;setting.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;setting&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.updateInit(com.hsapi.frm.arap.FisRpAccount)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateInit&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateInit&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.updateInit&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(com.hsapi.frm.arap.FisRpAccount):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.initialAccountBalance(Long, Int, Int, Int, Float)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;initialAccountBalance&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;initialGuestBalance&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.initialAccountBalance&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;settAccountId(Long):&lt;/b&gt;结算账户ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;FYear(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;FMonth(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dc(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;BillAmt(Float):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.queryOtherIncomeAndExpenditure(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryOtherIncomeAndExpenditure&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryOtherIncomeAndExpenditure&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.queryOtherIncomeAndExpenditure&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.saveIncomeExpItem(com.hsapi.frm.setting.FibIncomeExpenses)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveIncomeExpItem&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveQuote&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.saveIncomeExpItem&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.frm.setting.FibIncomeExpenses):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.frm.setting.FibIncomeExpenses):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.updataIncomeExpItem(com.hsapi.frm.setting.FibIncomeExpenses[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updataIncomeExpItem&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveQuote&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.updataIncomeExpItem&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.frm.setting.FibIncomeExpenses[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.updateguarante(com.hsapi.frm.arap.FisRpAccount)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateguarante&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateguarantee&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.updateguarante&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(com.hsapi.frm.arap.FisRpAccount):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.deleteFibInComeExpenses(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;deleteFibInComeExpenses&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;deleteComPartTypeById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.deleteFibInComeExpenses&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.queryOtherIncomeAndExpenditureSummaryshou(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryOtherIncomeAndExpenditureSummaryshou&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryOtherIncomeAndExpenditure&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.queryOtherIncomeAndExpenditureSummaryshou&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.queryOtherIncomeAndExpenditureSummaryzhi(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryOtherIncomeAndExpenditureSummaryzhi&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryOtherIncomeAndExpenditure&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.queryOtherIncomeAndExpenditureSummaryzhi&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.saveFiSettleAccount(com.hsapi.frm.fib.FibSettleAccount, com.hsapi.frm.fib.FibSettleAccountRela[], com.hsapi.frm.fib.FibSettleAccountRela[], com.hsapi.frm.fib.FibSettleAccountRela[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveFiSettleAccount&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryComCompany&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.saveFiSettleAccount&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;settleAccount(com.hsapi.frm.fib.FibSettleAccount):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;settleTypeAdd(com.hsapi.frm.fib.FibSettleAccountRela[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;settleTypeDelete(com.hsapi.frm.fib.FibSettleAccountRela[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;settleTypeUpdate(com.hsapi.frm.fib.FibSettleAccountRela[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;settleAccount(com.hsapi.frm.fib.FibSettleAccount):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.queryAccountSettleType(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryAccountSettleType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryAccountSettleType&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.queryAccountSettleType&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;accountId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fromDb(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.QueryInt(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;QueryInt&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;查询业务字典类型&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.QueryInt&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.getDayMoneyReport2(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getDayMoneyReport2&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getDayMoneyReport&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.getDayMoneyReport2&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.queryAccountList(com.eos.foundation.PageCond, Int, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryAccountList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryAccountList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.queryAccountList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.frm.fib.FisRpBillList[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;结算记录表&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.saveFiSettleAccountBatch(com.hsapi.frm.fib.FibSettleAccount[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveFiSettleAccountBatch&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryComCompany&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.saveFiSettleAccountBatch&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;settleAccount(com.hsapi.frm.fib.FibSettleAccount[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.querySettleType(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;querySettleType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;querySettleType&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.querySettleType&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;dictId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.frm.fib.ComDataitems[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.updateFiSettleAccountDisabled(Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateFiSettleAccountDisabled&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateComPartTypeDisabled&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.updateFiSettleAccountDisabled&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;isDisabled(Int):&lt;/b&gt;0,启用；1,禁用&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.querySettlementAmt(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;querySettlementAmt&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;querySettleType&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.querySettlementAmt&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;p(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rlist(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;clist(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.auditOtherReceive(com.hsapi.frm.fib.FisRpBillList[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;auditOtherReceive&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;auditInitRpBill&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.auditOtherReceive&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;accountBill(com.hsapi.frm.fib.FisRpBillList[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.frm.setting.queryFibInComeExpenses(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryFibInComeExpenses&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryFiInComeExpenses&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.frm.setting.queryFibInComeExpenses&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.frm.fib.FibIncomeExpenses[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

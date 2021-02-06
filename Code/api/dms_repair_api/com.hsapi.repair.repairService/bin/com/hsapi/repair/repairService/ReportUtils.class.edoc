@@ -1,0 +1,11 @@
+<map>
+  <entry>
+    <string>com.hsapi.repair.repairService.ReportUtils.add2Array(java.util.HashMap[])</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap[] com.hsapi.repair.repairService.ReportUtils.add2Array(HashMap[] data)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>ReportUtils</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.hsapi.repair.repairService.ReportUtils&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &lt;dl&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;作者 ding:&lt;/dd&gt;&lt;dt&gt;@version&lt;/dt&gt;&lt;dd&gt;创建时间：2018年12月29日 上午11:10:11 &#x0D;
+ 类说明&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

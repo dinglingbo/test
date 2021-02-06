@@ -69,6 +69,16 @@
       <sourceNode>assign0</sourceNode>
       <targetNode>loopstart0</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link3" name="link3" displayName="连接线" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>assign10</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">guestOrderMain/settleGuestId</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link14</targetConnections>
     <location x="147" y="82"/>
     <size height="28" width="28"/>
@@ -170,6 +180,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link15</targetConnections>
+    <targetConnections>link4</targetConnections>
     <location x="215" y="83"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
@@ -682,6 +693,25 @@
     <location x="-351" y="116"/>
     <figSize height="20" width="40"/>
     <node>assign9</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign10" name="赋值6" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign10</sourceNode>
+      <targetNode>loopstart0</targetNode>
+    </sourceConnections>
+    <targetConnections>link3</targetConnections>
+    <location x="148" y="203"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign10label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">guestOrderMain/guestId</process:from>
+      <process:to type="query">guestOrderMain/settleGuestId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
+    <location x="142" y="239"/>
+    <figSize height="20" width="40"/>
+    <node>assign10</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

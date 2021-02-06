@@ -91,6 +91,30 @@ public class BillStateUtils {
 
 	}
 	
+	@Bizlet("")
+	public static Integer getColumnValueByString(String conColumn, String conContent,
+			String entityName, String resColumn, String dataSource) {
+
+		DataObject cond = com.eos.foundation.data.DataObjectUtil
+				.createDataObject("com.primeton.das.criteria.criteriaType");
+		cond.set("_entity", entityName);
+		cond.set("_expr[1]/" + conColumn, conContent);
+		
+		cond.set("_select/_field", resColumn);
+
+		DataObject[] result = com.eos.foundation.database.DatabaseUtil
+				.queryEntitiesByCriteriaEntity(dataSource, cond);
+		
+		if (result != null && result.length > 0) {
+			Integer tk = result[0].getInt(resColumn);
+			
+			return tk;
+		} else {
+			return null;
+		}
+
+	}
+	
 	@Bizlet("查询实体数据")
 	public static DataObject[] queryEntityByColumn(String conColumn, int conContent,
 			String entityName, String dataSource) {

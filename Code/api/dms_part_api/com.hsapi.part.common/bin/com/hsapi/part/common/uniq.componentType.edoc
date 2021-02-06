@@ -1,0 +1,10 @@
+<map>
+  <entry>
+    <string>uniq</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;uniq.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;uniq&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.uniq&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.uniq.getCompBillNO(String, Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCompBillNO&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;execEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.uniq.getCompBillNO&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;billTypeCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceno(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;billrecords(com.hsapi.part.data.pts.PjBillRecord[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

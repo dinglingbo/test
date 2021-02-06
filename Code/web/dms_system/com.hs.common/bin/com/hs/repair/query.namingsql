@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hs.repair.query">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryRpsMaintain" parameterClass="commonj.sdo.DataObject" resultClass="commonj.sdo.DataObject">select id, car_id as carId, car_no as carNo, car_vin as carVin, enter_date as enterDate, 
+		       out_date as outDate, fault_phen as faultPhen, enter_kilometers as enterKilometers,
+		       service_code as serviceCode
+		from wb_repair.rps_maintain 
+		where orgid = #orgid# and is_settle = 1 
+		      and out_date &gt;= #startDate# 
+		      and out_date &lt; #endDate#
+		      and is_electronics = 1</select>
+    <select id="queryCompany" parameterClass="commonj.sdo.DataObject" resultClass="commonj.sdo.DataObject">select 
+			distinct a.orgid as orgid,
+			a.tenant_id as tenantId,
+			a.code as code,
+			a.name as name,
+			a.short_name as shortName,
+			a.e_record_province as eRecordProvince,
+			a.e_record_repair_no as eRecordRepairNo,
+			a.e_record_user as eRecordUser,
+			a.e_record_pwd as eRecordPwd,
+			a.e_token_url as eTokenUrl,
+			a.e_push_url as ePushUrl
+		from wb_common.com_company a
+		INNER JOIN wb_common.com_params b ON (a.orgid = b.orgid)
+		where a.is_open_system = #isOpenSystem# 
+		      and a.e_record_user is not null 
+		      and a.e_record_pwd is not null
+		      and b.keyid_id = #keyidId#
+              and b.keyid_value = #keyidValue#</select>
+    <select id="queryRpsItem" parameterClass="commonj.sdo.DataObject" resultClass="commonj.sdo.DataObject">select a.service_id as serviceId, a.item_name as itemName, a.item_time as itemItem
+		from wb_repair.rps_item a
+		inner join wb_repair.rps_maintain b
+		on a.service_id = b.id
+		where b.orgid = #orgid# and b.is_settle = 1 
+		      and b.out_date &gt;= #startDate# and b.out_date &lt; #endDate#</select>
+    <select id="queryRpsPart" parameterClass="commonj.sdo.DataObject" resultClass="commonj.sdo.DataObject">select a.service_id as serviceId, a.part_code as partCode, a.part_name as partName, a.qty
+		from wb_repair.rps_part a
+		inner join wb_repair.rps_maintain b
+		on a.service_id = b.id
+		where b.orgid = #orgid# and b.is_settle = 1 and ifnull(a.is_disabled,0) = 0
+		      and b.out_date &gt;= #startDate# and b.out_date &lt; #endDate#</select>
+</sqlMap>

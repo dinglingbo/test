@@ -1,0 +1,34 @@
+<map>
+  <entry>
+    <string>com.hsapi.cloud.part.report.stock.queryStoreIdAndShelf(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryStoreIdAndShelf&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartStoreStocekStoreId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.report.stock.queryStoreIdAndShelf&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>stock</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;stock.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;stock&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.report.stock&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.report.stock.getStorehouse(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getStorehouse&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStorehouse&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.report.stock.getStorehouse&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;storehouse(com.hsapi.cloud.part.data.com.ComStore[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.report.stock.getStoreKingDept(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getStoreKingDept&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStoreKingDept&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.report.stock.getStoreKingDept&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;storeId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.cloud.part.data.pts.PjStoreKingDept[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;根据仓库获取和金蝶部门对应关系&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.report.stock.queryExandStockQtyWithStore(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryExandStockQtyWithStore&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryProductPanorama&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.report.stock.queryExandStockQtyWithStore&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;公司，是否统计禁用&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;storeArr(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stockQty(java.util.List):&lt;/b&gt;库存数量&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;outQty(java.util.List):&lt;/b&gt;出库数量&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;inQty(java.util.List):&lt;/b&gt;入库数量&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;区域、门店、年月&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.report.stock.queryExandStockAmtWithStore(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryExandStockAmtWithStore&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryProductPanorama&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.report.stock.queryExandStockAmtWithStore&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;公司，是否统计禁用&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;storeArr(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;stockAmt(java.util.List):&lt;/b&gt;库存金额&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;outAmt(java.util.List):&lt;/b&gt;出库金额&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;inAmt(java.util.List):&lt;/b&gt;入库金额&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;区域、门店、年月&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.report.stock.saveStoreKingDept(com.hsapi.cloud.part.data.pts.PjStoreKingDept[], com.hsapi.cloud.part.data.pts.PjStoreKingDept[], com.hsapi.cloud.part.data.pts.PjStoreKingDept[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveStoreKingDept&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveStoreKingDept&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.report.stock.saveStoreKingDept&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;addList(com.hsapi.cloud.part.data.pts.PjStoreKingDept[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updList(com.hsapi.cloud.part.data.pts.PjStoreKingDept[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;delList(com.hsapi.cloud.part.data.pts.PjStoreKingDept[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.report.stock.querySellRecord(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;querySellRecord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryEnterRecord&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.report.stock.querySellRecord&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

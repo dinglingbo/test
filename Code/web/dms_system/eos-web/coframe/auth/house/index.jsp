@@ -497,7 +497,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
 	        success : function(text) {
 	            var list = text.rs||{};
 	            if(list.length==0){
-	                showMsg("此用户无法修改","W");
+	                //showMsg("此用户无法修改","W");
 	            }else{
                     if (list[0].backgroundColor != null) {
                         document.getElementById("skin").style.backgroundColor = list[0].backgroundColor;
@@ -536,7 +536,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
         success : function(text) {
             var list = text.rs||{};
             if(list.length==0){
-                showMsg("此用户无法修改","W");
+                //showMsg("此用户无法修改","W");
             }else{
                     nui.open({
                         url: webPath + contextPath + "/com.hs.common.homePageEmployeeEdit.flow?token="+token,

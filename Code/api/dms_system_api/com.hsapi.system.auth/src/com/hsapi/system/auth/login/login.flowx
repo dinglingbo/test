@@ -9,6 +9,7 @@
         <process:parameter description="" historyStateLocation="client" isArray="false" name="userId" primitiveType="String"/>
         <process:parameter description="" historyStateLocation="client" isArray="false" name="password" primitiveType="String"/>
         <process:parameter description="" historyStateLocation="client" isArray="false" name="original_url" primitiveType="String"/>
+        <process:parameter description="" historyStateLocation="client" isArray="false" name="macAddress" primitiveType="String"/>
         <process:parameter description="" historyStateLocation="client" isArray="false" name="code" primitiveType="String"/>
         <process:parameter description="" historyStateLocation="client" isArray="false" name="rCode" primitiveType="String"/>
         <process:parameter anyType="javax.servlet.http.HttpServletRequest" description="" historyStateLocation="client" isArray="false" name="req"/>
@@ -23,6 +24,7 @@
     <targetConnections>link8</targetConnections>
     <targetConnections>link13</targetConnections>
     <targetConnections>link14</targetConnections>
+    <targetConnections>link18</targetConnections>
     <location x="208" y="-15"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
@@ -30,13 +32,13 @@
     <process:returns/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="-28" y="171"/>
-    <figSize height="17" width="25"/>
+    <location x="-31" y="171"/>
+    <figSize height="20" width="31"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="198" y="21"/>
-    <figSize height="17" width="49"/>
+    <location x="192" y="21"/>
+    <figSize height="20" width="61"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="验证登录" displayName="login" type="subprocess">
@@ -76,8 +78,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="219" y="167"/>
-    <figSize height="17" width="49"/>
+    <location x="213" y="167"/>
+    <figSize height="20" width="61"/>
     <node>subprocess0</node>
   </nodes>
   <nodes xsi:type="process:tEnd" description="" id="end1" name="主页" displayName="结束" type="end" contextPath="" method="forward" uri="" variableUri="false">
@@ -89,14 +91,24 @@
     <process:returns/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="752" y="169"/>
-    <figSize height="17" width="25"/>
+    <location x="749" y="169"/>
+    <figSize height="20" width="31"/>
     <node>end1</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="setUserOrgInfo" displayName="setUserOrgInfo" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>assign1</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link15" name="link15" displayName="连接线" type="transition">
+      <sourceNode>subprocess1</sourceNode>
+      <targetNode>subprocess4</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">m:userObject/attributes/isLoginControl</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
     <location x="331" y="132"/>
@@ -119,8 +131,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="299" y="167"/>
-    <figSize height="17" width="91"/>
+    <location x="288" y="167"/>
+    <figSize height="20" width="112"/>
     <node>subprocess1</node>
   </nodes>
   <nodes xsi:type="process:tView" description="" id="view0" name="视图" displayName="redirect.jsp" type="view" contextPath="" method="forward" uri="/coframe/auth/login/redirect.jsp">
@@ -140,15 +152,15 @@
       </process:inputParameters>
     </sourceConnections>
     <targetConnections>link9</targetConnections>
-    <location x="571" y="134"/>
+    <location x="571" y="132"/>
     <size height="28" width="22"/>
     <nodeLabel>view0label</nodeLabel>
     <process:inputParameters/>
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="view0label" name="label" nodeType="label">
-    <location x="570" y="170"/>
-    <figSize height="17" width="25"/>
+    <location x="567" y="168"/>
+    <figSize height="20" width="31"/>
     <node>view0</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="setToggleUserOrgInfo" displayName="setToggleUserOrgInfo" type="subprocess">
@@ -174,8 +186,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="516" y="65"/>
-    <figSize height="17" width="132"/>
+    <location x="500" y="65"/>
+    <figSize height="20" width="164"/>
     <node>subprocess2</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
@@ -200,8 +212,8 @@
     <nodeLabel>assign0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="332" y="66"/>
-    <figSize height="17" width="25"/>
+    <location x="329" y="66"/>
+    <figSize height="20" width="31"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
@@ -211,7 +223,8 @@
     </sourceConnections>
     <targetConnections>link7</targetConnections>
     <targetConnections>link1</targetConnections>
-    <location x="465" y="135"/>
+    <targetConnections>link16</targetConnections>
+    <location x="465" y="132"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
@@ -224,8 +237,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="463" y="171"/>
-    <figSize height="17" width="32"/>
+    <location x="459" y="168"/>
+    <figSize height="20" width="40"/>
     <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
@@ -263,8 +276,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="73" y="171"/>
-    <figSize height="17" width="32"/>
+    <location x="69" y="171"/>
+    <figSize height="20" width="40"/>
     <node>assign2</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
@@ -282,8 +295,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="73" y="96"/>
-    <figSize height="17" width="32"/>
+    <location x="69" y="96"/>
+    <figSize height="20" width="40"/>
     <node>assign3</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess3" name="认证租户" displayName="registerIsdisable" type="subprocess">
@@ -322,9 +335,67 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess3label" name="label" nodeType="label">
-    <location x="139" y="167"/>
-    <figSize height="17" width="49"/>
+    <location x="133" y="167"/>
+    <figSize height="20" width="61"/>
     <node>subprocess3</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess4" name="checkMac" displayName="checkMac" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess4</sourceNode>
+      <targetNode>assign1</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link17" name="link17" displayName="连接线" type="transition">
+      <sourceNode>subprocess4</sourceNode>
+      <targetNode>assign4</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="OBJNE">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link15</targetConnections>
+    <location x="331" y="264"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess4label</nodeLabel>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.system.employee.mac.checkMac</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="macAddress" type="query" value="String" valueType="Primitive" pattern="reference">macAddress</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess4label" name="label" nodeType="label">
+    <location x="307" y="299"/>
+    <figSize height="20" width="74"/>
+    <node>subprocess4</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link17</targetConnections>
+    <location x="273" y="84"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign4label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">-7</process:from>
+      <process:to type="query">result</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
+    <location x="267" y="120"/>
+    <figSize height="20" width="40"/>
+    <node>assign4</node>
   </nodes>
   <topRuler/>
   <leftRuler>

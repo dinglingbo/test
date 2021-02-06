@@ -1,0 +1,30 @@
+<map>
+  <entry>
+    <string>com.hsapi.system.employee.slog.test()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;test&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;test&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.slog.test&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.slog.saveSysUpdateLog(com.hsapi.system.data.sys.SysUpdateLog)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveSysUpdateLog&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveSysUpdateLog&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.slog.saveSysUpdateLog&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;updateLog(com.hsapi.system.data.sys.SysUpdateLog):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updateLog(com.hsapi.system.data.sys.SysUpdateLog):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>slog</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;slog.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;slog&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.slog&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.slog.saveTimerExecuteLog(String, String, String, String, String, Date, Date)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveTimerExecuteLog&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveTimerExecuteLog&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.slog.saveTimerExecuteLog&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;title(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;interfaceName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalNums(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;successNums(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;beginDate(Date):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;endDate(Date):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.slog.getLastLog()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getLastLog&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getLastLog&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.slog.getLastLog&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.system.data.sys.SysUpdateLog):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.slog.getSysUpdateLog(Int, Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getSysUpdateLog&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getSysUpdateLog&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.slog.getSysUpdateLog&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;show(Boolean):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.system.data.sys.SysUpdateLog):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.slog.querySysUpdateLogList(com.eos.foundation.PageCond, Boolean, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;querySysUpdateLogList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;querySysUpdateLogList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.slog.querySysUpdateLogList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;show(Boolean):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.system.data.sys.SysUpdateLog[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

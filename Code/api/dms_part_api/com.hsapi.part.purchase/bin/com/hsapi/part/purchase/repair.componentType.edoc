@@ -1,0 +1,54 @@
+<map>
+  <entry>
+    <string>com.hsapi.part.purchase.repair.getEnterDetailById(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getEnterDetailById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getEnterDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.repair.getEnterDetailById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detail(com.hsapi.part.data.x_pts.PtsEnterDetail):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.repair.afterReapirReturn(String, String, Int, Double, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;afterReapirReturn&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;afterReapir&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.repair.afterReapirReturn&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;outQty(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sellAmt(Double):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;recorder(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.repair.getRepairOut(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRepairOut&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;checkPurchaseIsAudit&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.repair.getRepairOut&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;out(com.hsapi.part.data.x_pts.PtsRepairOut):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.repair.repairReturn(String, String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;repairReturn&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;consumableItemOut&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.repair.repairReturn&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;returnMan(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;returnId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;remark(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pickType(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.repair.antiPartAudit(com.hsapi.part.data.x_pts.PtsRepairOut[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;antiPartAudit&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;partAudit&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.repair.antiPartAudit&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.part.data.x_pts.PtsRepairOut[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.repair.partAudit(com.hsapi.part.data.x_pts.PtsRepairOut[], String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;partAudit&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;partAudit&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.repair.partAudit&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.part.data.x_pts.PtsRepairOut[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.repair.afterReapirOut(String, String, String, String, String, Int, Double, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;afterReapirOut&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;afterReapir&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.repair.afterReapirOut&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;unit(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;outQty(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sellAmt(Double):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;recorder(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.repair.doPartClaimOutReturn(String, Int, String, String, String, String, String, Double, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;doPartClaimOutReturn&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;doPartClaimOutReturn&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.repair.doPartClaimOutReturn&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;claimQty(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;returnRemark(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;recorder(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sourceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pickType(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;backPrice(Double):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;unit(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.repair.getRepairOutByServiceId(String, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRepairOutByServiceId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getRepairOutByServiceId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.repair.getRepairOutByServiceId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;serviceId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.repair.repairOut(com.hsapi.part.data.x_pts.PtsRepairOut)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;repairOut&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;consumableItemOut&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.repair.repairOut&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;out(com.hsapi.part.data.x_pts.PtsRepairOut):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.repair.partClaimOutReturn(commonj.sdo.DataObject[], String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;partClaimOutReturn&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;partClaimOutReturn&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.repair.partClaimOutReturn&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;claimParts(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;serviceCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>repair</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;repair.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;repair&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.repair&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.repair.queryRepairOutList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRepairOutList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRepairOutList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.repair.queryRepairOutList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

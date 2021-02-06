@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<QueryEntityList>
+    <QueryEntity name="com.hsapi.part.data.pts.VwPchsSellOrderMain">
+        <config db="default" type="view"><![CDATA[vw_pchs_sell_order_main]]></config>
+    </QueryEntity>
+</QueryEntityList>

@@ -1,0 +1,10 @@
+<map>
+  <entry>
+    <string>alarmSet</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;alarmSet.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;alarmSet&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.alarmSet&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.alarmSet.saveAlarmSet(com.hsapi.system.data.repair.RpbRemindParam)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveAlarmSet&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveDisclaimer&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.alarmSet.saveAlarmSet&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(com.hsapi.system.data.repair.RpbRemindParam):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

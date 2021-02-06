@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.frm.frmService.finance">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <!--账户结算明细-->
+    <select id="queryAccountDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT a.sett_account_code as settAccountCode,b.orgid as orgid, a.sett_account_name as settAccountName ,a.rp_dc as rpDc, d.char_off_amt as charOffAmt,
+				   b.guest_id as guestId, b.auditor as auditor, b.audit_date as auditDate,
+				   c.full_name as fullName, c.short_name as shortName,e.car_no as carNo ,d.bill_type_id as billTypeId
+			from fis_rp_account_d_type a
+			inner join fis_rp_account b on a.main_id = b.id
+			inner join wb_common.com_guest c on b.guest_id = c.id
+			inner join fis_rp_account_detail d on a.main_id = d.main_id
+			inner join fis_rp_bill e on d.bill_rp_id= e.id
+			
+			where b.audit_sign = 1
+				<isNotEmpty prepend="and" property="orgid">(b.orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="orgids">(b.orgid in ($orgids$))</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(b.audit_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(b.audit_date &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(b.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="settAccountId">(a.sett_account_id = #settAccountId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="rpDc">(a.rp_dc = #rpDc#)</isNotEmpty>
+        <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty> 
+	            order by b.audit_date desc
+    </select>
+    <select id="queryAccountBalance" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT 
+            	a.id as id,
+            	a.orgid as orgid, 
+            	a.sett_account_id as settAccountId, 
+            	a.sett_account_code as settAccountCode,
+            	
+            	a.sett_account_name as settAccountName,
+            	a.fyear as fyear, 
+            	a.fmonth as fmonth, 
+            	a.begin_dc as beginDc,
+            	a.begin_bala as beginBala,
+            	a.debit as debit, 
+            	a.credit as credit, 
+            	a.ytd_debit as ytdDebit,
+            	a.ytd_credit as ytdCredit,
+            	a.end_dc as endDc, 
+            	a.end_bala as endBala
+
+			from fis_settle_account_bala a
+
+			where 1 = 1
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(a.create_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(a.create_date &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="code">(a.sett_account_code = #code#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="name">(a.sett_account_name = #name#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="id">(a.sett_account_id = #id#)</isNotEmpty>
+    </select>
+    <!--收付款明细  rpDc 1收  -1付
+	    SELECT a.bill_main_id as billMainId, a.bill_service_id as billServiceId, a.bill_type_id as billTypeId,
+				       a.bill_type_code as billTypeCode, c.sett_account_id settAccountId, c.char_off_amt as charOffAmt,
+				       d.full_name as fullName, d.short_name as shortName, b.auditor as auditor, b.audit_date as auditDate,
+				       e.is_primary_business as isPrimaryBusiness, b.rp_dc as rpDc
+				from fis_rp_account_detail a
+				inner join fis_rp_account b
+				on a.main_id = b.id
+				inner join fis_rp_account_d_type c
+				on a.main_id = c.main_id
+				inner join wb_common.com_guest d
+				on b.guest_id = d.id
+				inner join fib_income_expenses e
+				on a.bill_type_id = e.id
+    -->
+    <!--<select id="queryRPAccountDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT a.bill_main_id as billMainId, b.orgid as orgid,a.bill_service_id as billServiceId, a.bill_type_id as billTypeId,
+			       a.bill_type_code as billTypeCode, a.char_off_amt as charOffAmt,b.rp_account_id as rpAccountId,b.guest_id as guestId,
+			       d.full_name as fullName, d.short_name as shortName, b.auditor as auditor, b.audit_date as auditDate,
+			       e.is_primary_business as isPrimaryBusiness, b.rp_dc as rpDc, f.car_no as carNo,b.remark as remark,
+			       g.bala_type_code as balaTypeCode,
+			       g.sett_account_id as settAccountId,
+			       g.sett_account_name as settAccountName,
+			       g.char_off_amt as settCharOffAmt
+			       			       
+			from fis_rp_account_detail a
+			inner join fis_rp_account b on a.main_id = b.id
+			inner join wb_common.com_guest d on b.guest_id = d.id
+			inner join fib_income_expenses e on a.bill_type_id = e.id
+			inner join fis_rp_bill f on a.bill_rp_id = f.id
+			inner join fis_rp_account_d_type g on a.main_id = g.main_id 
+			where b.audit_sign = 1 
+			<isNotEmpty prepend="and" property="orgid">
+                (b.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (b.orgid in ($orgids$))
+            </isNotEmpty>
+                <isNotEmpty prepend="and" property="startDate">  
+                    (b.audit_date &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                    (b.audit_date &lt; #endDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="guestId">  
+                    (b.guest_id = #guestId#)
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="billServiceId">  
+                    (a.bill_service_id like '%$billServiceId$%')
+                </isNotEmpty> 
+                <isNotEmpty prepend="and" property="carNo">  
+                    (f.car_no like '%$carNo$%')
+                </isNotEmpty>        
+                <isNotEmpty prepend="and" property="settAccountId">  
+                    (c.sett_account_id = #settAccountId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="rpDc">  
+                    (b.rp_dc = #rpDc#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isMain">  
+                    (e.is_primary_business = #isMain#)
+                </isNotEmpty>
+                <isNotEmpty prepend="order by" property="sortField">  
+	                $sortField$ $sortOrder$
+	            </isNotEmpty> 
+	            order by b.audit_date desc
+    </select>-->
+    <select id="queryRPAccountDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT 
+    			a.id as id,	    
+			    a.orgid as orgid,
+			    a.guest_name as guestName,
+		        a.rp_account_id as rpAccountId,
+		        a.guest_id as guestId,
+		        a.auditor as auditor, 
+		        a.audit_date as auditDate,
+		        a.rp_dc as rpDc, 
+		        a.remark as remark,
+		        c.bala_type_code as balaTypeCode,
+		        c.sett_account_id as settAccountId,
+		        c.sett_account_name as settAccountName,
+		        c.char_off_amt as settCharOffAmt
+			       			       
+			from fis_rp_account a
+			inner join fis_rp_account_d_type c on a.id = c.main_id 
+			where 1 = 1 
+				<isNotEmpty prepend="and" property="carNo">EXISTS (
+							select 1 from fis_rp_account_detail d 
+								inner join fis_rp_bill e on d.bill_rp_id = e.id 
+								where a.id = d.main_id and e.car_no = #carNo# and e.orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="billServiceId">EXISTS (
+							select 1 from fis_rp_account_detail d 
+								inner join fis_rp_bill e on d.bill_rp_id = e.id 
+								where a.id = d.main_id and e.bill_service_id = #billServiceId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="settAccountId">(c.sett_account_id = #settAccountId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
+        <isNotEmpty prepend="and" property="startDate">(a.audit_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(a.audit_date &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="rpDc">(a.rp_dc = #rpDc#)</isNotEmpty>
+        <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty> 
+	            order by a.audit_date desc
+    </select>
+    <!--APP首页收入支出  -->
+    <select id="queryRPAccountAPP" parameterClass="commonj.sdo.DataObject" resultClass="commonj.sdo.DataObject">
+    	SELECT  
+				sum( case when rp_dc =1 then true_char_off_amt end) as income,
+				sum( case when rp_dc =-1 then true_char_off_amt end) as expenditure
+			from  fis_rp_account a
+			where a.audit_sign = 1 
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(a.audit_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(a.audit_date &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="billServiceId">(a.bill_service_id like '%$billServiceId$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="carNo">(a.car_no like '%$carNo$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="settAccountId">(a.sett_account_id = #settAccountId#)</isNotEmpty>
+        <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
+    </select>
+    <!--往来单位余额表 -->
+    <select id="queryGuestBalance" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            select a.orgid as orgid, a.guest_id as guestId, a.fyear as fyear, a.fmonth as fmonth,
+			       a.begin_bala as beginBala, a.debit as debit, a.credit as credit, a.end_bala as endBala,
+			       a.creator as creator, a.create_date as createDate, b.full_name as fullName, 
+			       b.code as code, b.short_name as shortName
+			from fis_guest_balance a
+			inner join wb_common.com_guest b
+			on a.guest_id = b.id
+			where 1 = 1
+				<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(a.create_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(a.create_date &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
+    </select>
+    <!--客户欠款  供应商欠款 -->
+    <select id="queryRPBillDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT a.rp_bill_id as rpBillId, a.orgid as orgid, a.guest_id as guestId, 
+			       b.full_name as fullName, b.code as code, b.short_name as shortName,
+			       a.bill_main_id as billMainId, a.bill_service_id as billServiceId,
+			       a.bill_type_id as billTypeId, a.bill_type_code as billTypeCode,
+			       a.bill_dc as billDc, a.rp_amt as rpAmt,
+			       a.char_off_amt as charOffAmt, a.true_char_off_amt as trueCharOffAmt,
+				   a.no_char_off_amt as noCharOffAmt, a.void_amt as voidAmt,
+				   a.settle_sign as settleSign, a.settler as settler,
+				   a.settle_date as settleDate, a.settle_status as settleStatus,
+				   a.audit_sign as auditSign, a.auditor as auditor,
+				   a.audit_date as auditDate, a.remark as remark, a.rp_type_id as rpTypeId
+			from fis_rp_bill a
+			inner join wb_common.com_guest b
+			on a.guest_id = b.id
+			where a.audit_sign = 1
+                <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(a.audit_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(a.audit_date &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="settleStatus">(a.settle_status = #settleStatus#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="notSettled">(a.no_char_off_amt &gt; 0)</isNotEmpty>
+        <isNotEmpty prepend="and" property="billDc">(a.bill_dc = #billDc#)</isNotEmpty>
+        <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
+    </select>
+    <!--抵扣预收付款查询 -->
+    <select id="querySalesCar" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT a.tenant_id as tenantId, 
+            	   a.id as id,
+		           a.orgid as orgid, 
+		           a.bill_type_id as billTypeId, 
+		           a.bill_type_code as billTypeCode,
+		           a.codeId as codeId, 
+			       a.code as code,
+			       a.guest_id as guestId,
+			       a.guest_name as guestName, 
+			       a.amt as amt,
+			       a.char_off_amt as charOffAmt,
+			       a.deduction_amt as deductionAmt, 
+			       a.refund_amt as refundAmt,
+			       a.bala_amt as balaAmt,
+			       a.status as status, 			       
+			       a.is_settle as isSettle,
+				   a.settleer as settleer, 
+				   a.settle_date as settleDate,
+				   a.remark as remark, 
+				   a.recorder as recorder,
+				   a.record_date as recordDate, 
+				   a.modifier as modifier,
+				   a.modify_date as modifyDate,
+				   a.refunder as refunder,
+				   a.refund_date as refundDate
+			from fis_rp_advance a
+			where 1=1 
+                <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="balaAmt">(a.bala_amt &gt; #balaAmt#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="isSettle">(a.is_settle = #isSettle#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(a.settle_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(a.settle_date &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="settleStatus">(a.status = #settleStatus#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestName">(a.guest_name like '%$guestName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="billDc">(a.bill_dc = #billDc#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="codeId">(a.codeId = #codeId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="code">(a.code = #code#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="billTypeId">(a.bill_type_id = #billTypeId#)</isNotEmpty>
+    </select>
+    <!--结算预收付款查询 -->
+    <select id="querySalesCarForRp" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT a.tenant_id as tenantId, 
+            	   a.id as id,
+		           a.orgid as orgid, 
+		           a.bill_type_id as billTypeId, 
+		           a.bill_type_code as billTypeCode,
+		           a.codeId as codeId, 
+			       a.code as code,
+			       a.guest_id as guestId,
+			       a.guest_name as guestName, 
+			       a.amt as amt,
+			       a.char_off_amt as charOffAmt,
+			       a.deduction_amt as deductionAmt, 
+			       a.bala_amt as balaAmt,
+			       a.status as status, 
+			       a.is_settle as isSettle,
+				   a.settleer as settleer, 
+				   a.settle_date as settleDate,
+				   a.remark as remark, 
+				   a.recorder as recorder,
+				   a.record_date as recordDate, 
+				   a.modifier as modifier,
+				   a.modify_date as modifyDate
+			from fis_rp_advance a
+			where 1=1
+                <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="isSettle">(a.is_settle = #isSettle#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
+        <!--本日 昨日 本周 上周 本月 下月 -->
+        <isNotEmpty prepend="and" property="startDate">(a.settle_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(a.settle_date &lt; #endDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="settleStatus">(a.status = #settleStatus#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="billDc">(a.bill_dc = #billDc#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="codeId">(a.codeId = #codeId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="code">(a.code = #code#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="billTypeId">(a.bill_type_id = #billTypeId#)</isNotEmpty>
+    </select>
+    <!-- 收款明细表点击事件  -->
+    <select id="queryRPAccountDetailForA" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT 
+    			a.id as id,	    
+			    a.bill_rp_id as billRpId,
+			    a.main_id as mainId
+			       			       
+			from fis_rp_account_detail a
+			where 1 = 1 
+			    <isNotEmpty prepend="and" property="mainId">(a.main_id = #mainId#)</isNotEmpty>
+    </select>
+</sqlMap>

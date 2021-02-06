@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.frm.data.com.ComGuest" table="com_guest">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="tenantId" type="int">
+            <column default="0" name="tenant_id" not-null="true"/>
+        </property>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid" not-null="true"/>
+        </property>
+        <property name="code" type="string">
+            <column default="''" length="20" name="code"/>
+        </property>
+        <property name="fullName" type="string">
+            <column default="''" length="200" name="full_name" not-null="true"/>
+        </property>
+        <property name="shortName" type="string">
+            <column default="''" length="50" name="short_name"/>
+        </property>
+        <property name="cardNo" type="string">
+            <column default="''" length="20" name="card_no"/>
+        </property>
+        <property name="pyName" type="string">
+            <column default="''" length="100" name="py_name"/>
+        </property>
+        <property name="guestType" type="string">
+            <column default="''" length="10" name="guest_type"/>
+        </property>
+        <property name="isSupplier" type="short">
+            <column default="0" name="is_supplier"/>
+        </property>
+        <property name="isClient" type="short">
+            <column default="0" name="is_client"/>
+        </property>
+        <property name="contactor" type="string">
+            <column default="''" length="20" name="contactor"/>
+        </property>
+        <property name="contactorTel" type="string">
+            <column default="''" length="20" name="contactor_tel"/>
+        </property>
+        <property name="manager" type="string">
+            <column default="''" length="20" name="manager"/>
+        </property>
+        <property name="managerDuty" type="string">
+            <column default="''" length="20" name="manager_duty"/>
+        </property>
+        <property name="provinceId" type="string">
+            <column default="''" length="20" name="province_id"/>
+        </property>
+        <property name="areaId" type="string">
+            <column default="''" length="20" name="area_id"/>
+        </property>
+        <property name="cityId" type="string">
+            <column default="''" length="20" name="city_id"/>
+        </property>
+        <property name="addr" type="string">
+            <column default="''" length="100" name="addr"/>
+        </property>
+        <property name="postalCode" type="string">
+            <column default="''" length="6" name="postal_code"/>
+        </property>
+        <property name="website" type="string">
+            <column default="''" length="50" name="website"/>
+        </property>
+        <property name="tel" type="string">
+            <column default="''" length="50" name="tel"/>
+        </property>
+        <property name="mobile" type="string">
+            <column default="''" length="50" name="mobile"/>
+        </property>
+        <property name="fax" type="string">
+            <column default="''" length="20" name="fax"/>
+        </property>
+        <property name="email" type="string">
+            <column default="''" length="50" name="email"/>
+        </property>
+        <property name="supplierType" type="string">
+            <column default="''" length="50" name="supplier_type"/>
+        </property>
+        <property name="advantageCarbrandId" type="string">
+            <column default="''" length="50" name="advantage_carbrand_id"/>
+        </property>
+        <property name="instantMsg" type="string">
+            <column default="''" length="20" name="instant_msg"/>
+        </property>
+        <property name="memCarNo" type="string">
+            <column default="''" length="40" name="mem_car_no"/>
+        </property>
+        <property name="memLevelId" type="int">
+            <column default="0" name="mem_level_id"/>
+        </property>
+        <property name="taxpayerCode" type="string">
+            <column default="''" length="30" name="taxpayer_code"/>
+        </property>
+        <property name="taxpayerName" type="string">
+            <column default="''" length="50" name="taxpayer_name"/>
+        </property>
+        <property name="manageAddr" type="string">
+            <column default="''" length="50" name="manage_addr"/>
+        </property>
+        <property name="taxpayerTel" type="string">
+            <column default="''" length="50" name="taxpayer_tel"/>
+        </property>
+        <property name="accountBank" type="string">
+            <column default="''" length="50" name="account_bank"/>
+        </property>
+        <property name="accountBankNo" type="string">
+            <column default="''" length="40" name="account_bank_no"/>
+        </property>
+        <property name="billTypeId" type="string">
+            <column default="''" length="10" name="bill_type_id"/>
+        </property>
+        <property name="settTypeId" type="string">
+            <column default="''" length="10" name="sett_type_id"/>
+        </property>
+        <property name="tgrade" type="string">
+            <column default="''" length="20" name="tgrade"/>
+        </property>
+        <property name="creditLimit" type="big_decimal">
+            <column default="0.0000" length="10" name="credit_limit" precision="10" scale="4"/>
+        </property>
+        <property name="isDisabled" type="short">
+            <column default="0" name="is_disabled"/>
+        </property>
+        <property name="remark" type="string">
+            <column default="''" length="100" name="remark"/>
+        </property>
+        <property name="isInternal" type="short">
+            <column default="0" name="is_internal"/>
+        </property>
+        <property name="isInternalId" type="string">
+            <column default="''" length="20" name="is_internal_id"/>
+        </property>
+        <property name="isNeedPack" type="int">
+            <column default="0" name="is_need_pack"/>
+        </property>
+        <property name="orderIndex" type="int">
+            <column default="0" name="order_index"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="date">
+            <column name="record_date"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="date">
+            <column name="modify_date"/>
+        </property>
+        <property name="defaultLogisticsId" type="int">
+            <column default="0" name="default_logistics_id"/>
+        </property>
+        <property name="defaultLogistics" type="string">
+            <column default="''" length="100" name="default_logistics"/>
+        </property>
+    </class>
+</hibernate-mapping>

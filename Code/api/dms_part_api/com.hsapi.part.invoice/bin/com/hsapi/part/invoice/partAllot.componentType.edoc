@@ -1,0 +1,54 @@
+<map>
+  <entry>
+    <string>com.hsapi.part.invoice.partAllot.queryPjPchsOrderEnterDetailChkListBatch(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjPchsOrderEnterDetailChkListBatch&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partAllot.queryPjPchsOrderEnterDetailChkListBatch&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.partAllot.insertPjAllotDetail(com.hsapi.part.data.pts.PjAllotMain, com.hsapi.part.data.pts.PjAllotDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;insertPjAllotDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;newbiz&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partAllot.insertPjAllotDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.pts.PjAllotMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detail(com.hsapi.part.data.pts.PjAllotDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.partAllot.queryPjAllotMainList(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjAllotMainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partAllot.queryPjAllotMainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjAllotMainList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.partAllot.queryPjAllotTableList(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjAllotTableList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partAllot.queryPjAllotTableList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjAllotDetails(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.partAllot.updateOutableQty(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateOutableQty&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateOutableQty&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partAllot.updateOutableQty&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;param(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.partAllot.savePjAllotAddOrUpdate(com.hsapi.part.data.pts.PjAllotMain, com.hsapi.part.data.pts.PjAllotDetail[], com.hsapi.part.data.pts.PjAllotDetail[], com.hsapi.part.data.pts.PjAllotDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;savePjAllotAddOrUpdate&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePstEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partAllot.savePjAllotAddOrUpdate&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.pts.PjAllotMain):&lt;/b&gt;主表信息&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detailAdd(com.hsapi.part.data.pts.PjAllotDetail[]):&lt;/b&gt;新增&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detailUpdate(com.hsapi.part.data.pts.PjAllotDetail[]):&lt;/b&gt;修改&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detailDelete(com.hsapi.part.data.pts.PjAllotDetail[]):&lt;/b&gt;删除&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.partAllot.allotPartOut(Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;allotPartOut&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;allotPartOut&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partAllot.allotPartOut&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guestName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.partAllot.queryPjAllotDetailList(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjAllotDetailList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partAllot.queryPjAllotDetailList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjAllotDetailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.partAllot.updatePjAllotDetail(com.hsapi.part.data.pts.PjAllotMain, com.hsapi.part.data.pts.PjAllotDetail[], com.hsapi.part.data.pts.PjAllotDetail[], com.hsapi.part.data.pts.PjAllotDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updatePjAllotDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;insertPtsEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partAllot.updatePjAllotDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.pts.PjAllotMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detailAdd(com.hsapi.part.data.pts.PjAllotDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detailUpdate(com.hsapi.part.data.pts.PjAllotDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detailDelete(com.hsapi.part.data.pts.PjAllotDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.partAllot.queryPjAcceptTableList(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjAcceptTableList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partAllot.queryPjAcceptTableList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjAllotDetails(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.partAllot.savePjAllot(com.hsapi.part.data.pts.PjAllotMain, com.hsapi.part.data.pts.PjAllotDetail[], com.hsapi.part.data.pts.PjAllotDetail[], com.hsapi.part.data.pts.PjAllotDetail[], Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;savePjAllot&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePstEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partAllot.savePjAllot&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.pts.PjAllotMain):&lt;/b&gt;主表信息&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detailAdd(com.hsapi.part.data.pts.PjAllotDetail[]):&lt;/b&gt;新增&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detailUpdate(com.hsapi.part.data.pts.PjAllotDetail[]):&lt;/b&gt;修改&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detailDelete(com.hsapi.part.data.pts.PjAllotDetail[]):&lt;/b&gt;删除&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;auditSign(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pjAllotMainList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>auditbiz</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;partAllot.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;auditbiz&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partAllot&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.invoice.partAllot.allotPartEnter(Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;allotPartEnter&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;shiftOutToEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.invoice.partAllot.allotPartEnter&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guestName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;根据移仓出库数据生成移仓入库数据&lt;/html&gt;</string>
+  </entry>
+</map>

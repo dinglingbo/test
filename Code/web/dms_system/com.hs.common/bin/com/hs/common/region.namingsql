@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hs.common.region">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <!--取code,parentid-->
+    <select id="getRegion" parameterClass="HashMap" resultClass="HashMap">SELECT code, parentId, name, shortName, pYCode, areaCode, 
+    		postalCode, longitude, latitude, level, isEnd, longitude, latitude
+		FROM com_area 
+		WHERE parentId=#parentId# AND isDisabled=0</select>
+    <select id="getProvince" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT 
+    	 name as name
+		FROM com_area a
+		WHERE  isDisabled=0
+		<dynamic>
+            <isNotEmpty prepend="and" property="provinceId">a.code = #provinceId#</isNotEmpty>
+        </dynamic>
+    </select>
+    <select id="getCity" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT 
+    	 name as name
+		FROM com_area a
+		WHERE  isDisabled=0
+		<dynamic>
+            <isNotEmpty prepend="and" property="provinceId">a.parentId = #provinceId#</isNotEmpty>
+            <isNotEmpty prepend="and" property="cityId">a.code = #cityId#</isNotEmpty>
+        </dynamic>
+    </select>
+    <select id="getCounty" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT 
+    	 name as name
+		FROM com_area a
+		WHERE  isDisabled=0
+		<dynamic>
+            <isNotEmpty prepend="and" property="cityId">a.parentId = #cityId#</isNotEmpty>
+            <isNotEmpty prepend="and" property="countyId">a.code = #countyId#</isNotEmpty>
+        </dynamic>
+    </select>
+</sqlMap>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.crm.data.crmTelsales">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <sql id="guest_column">SELECT id, orgid, car_no carNo, guest_id guestId, guest_name guestName, address, contacts, sex, mobile, tel,
+    		car_model_id carModelId, car_brand_id carBrandId, car_model carModel, vin vin,
+    		produce_date produceDate, engine_no engineNo, color, 
+    		first_reg_date firstRegDate, care_due_date careDueDate, 
+    		care_due_mileage careDueMileage, annual_inspection_date annualInspectionDate, 
+    		proceeding_sign proceedingSign, first_come_date firstComeDate, 
+    		insure_comp_code insureCompCode, insure_buy_date insureBuyDate, 
+    		insure_due_date insureDueDate, annual_verification_due_date annualVerificationDueDate, 
+    		longitude, latitude, driving_licence_due_date drivingLicenceDueDate, 
+    		visit_man_id visitManId, visit_status visitStatus, prior_scout_date priorScoutDate, 
+    		next_scout_date nextScoutDate, is_continue_scout isContinueScout, remark,
+    		first_scout_date firstScoutDate, is_black isBlack, status, recorder, 
+    		record_date recordDate, modifier, modify_date modifyDate,
+    		id_card_number idCardNumber,car_model_text carModelText
+		FROM crm_guest
+        WHERE orgid = #orgid#</sql>
+    <!--客户资料列表-->
+    <select id="getDatumMgrList" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+        <include refid="guest_column"/>
+        <isNotNull property="visitStatus">AND visit_status = #visitStatus#</isNotNull>
+        <isNotNull property="carNo">AND car_no = #carNo#</isNotNull>
+        <isEqual compareValue="-1" property="assignStatus">
+        </isEqual>
+        <isEqual compareValue="0" property="assignStatus">AND IFNULL(visit_man_id,"0") = 0</isEqual>
+        <isEqual compareValue="1" property="assignStatus">AND IFNULL(visit_man_id,"0") &lt;&gt; 0</isEqual>
+        <isEqual compareValue="2" property="assignStatus">AND next_scout_date &lt; DATE_FORMAT(date_add(now(),interval 1 day),'%Y-%m-%d')</isEqual>
+        <isNotNull property="carBrandId">AND car_brand_id = #carBrandId#</isNotNull>
+        <isNotNull property="visitManId">AND visit_man_id = #visitManId#</isNotNull>
+        <isNotNull property="guestName">AND  guest_name = #guestName#</isNotNull>
+        <isNotNull property="mobile">AND  mobile = #mobile#</isNotNull>
+        <isNotNull property="vin">AND  vin like  '%$vin$%'</isNotNull>
+        <isNotNull property="carModel">AND  car_model = #carModel#</isNotNull>
+        <isNotNull property="engineNo">AND  engine_no like  '%$engineNo$%'</isNotNull>
+        <isNotNull property="address">AND  address like  '%$address$%'</isNotNull>
+    </select>
+    <!--跟踪客户列表-->
+    <select id="getScoutGuestList" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+        <include refid="guest_column"/>
+        <isNotNull property="visitStatus">AND visit_status = #visitStatus#</isNotNull>
+        <isNotNull property="carNo">AND car_no = #carNo#</isNotNull>
+        <isNotNull property="mobile">AND mobile = #mobile#</isNotNull>
+        <isNotNull property="nextScoutDate">AND next_scout_date = #nextScoutDate#</isNotNull>
+        <isNotNull property="carBrandId">AND car_brand_id = #carBrandId#</isNotNull>
+        <isNotNull property="visitManId">AND visit_man_id = #visitManId#</isNotNull>
+        order by next_scout_date  is null,next_scout_date asc
+   	</select>
+    <!--跟踪明细-->
+    <select id="getScoutDetail" parameterClass="HashMap" resultClass="HashMap">select id, scout_content scoutContent, scout_mode scoutMode, scout_result scoutResult,visit_man visitMan,visit_date visitDate
+        FROM crm_talk_detail
+		WHERE orgid = #orgid# And guest_id = #guestId#</select>
+    <!--跟踪明细 所有-->
+    <select id="allTrackDetail" parameterClass="HashMap" resultClass="HashMap">select 1 as type,
+	id, scout_content scoutContent, scout_mode scoutMode, 
+	scout_result scoutResult,visit_man visitMan,visit_date visitDate
+	FROM crm_talk_detail
+	WHERE orgid = #orgid# And guest_id = #guestId#  
+	UNION all 
+	SELECT  2 as type,
+	id,visit_content scoutContent,visit_mode scoutMode,
+	'' scoutResult,visit_man visitMan,visit_date visitDate
+	FROM crm_visit_record
+	WHERE guest_id = #guestId# 
+	
+	ORDER BY visitDate desc</select>
+    <!--业绩录入-->
+    <sql id="achieve_column">select id, service_id serviceId, car_no carNo, deputy_id deputyId, type, status, audit_date auditDate, 
+        audit_reamrk auditReamrk, grade_remark gradeRemark, recorder, record_date recordDate, modifier, orgid,
+        modify_date modifyDate
+        FROM crm_talk_grade
+		WHERE orgid = #orgid#</sql>
+    <select id="getAchieveList" parameterClass="HashMap" resultClass="HashMap">
+        <include refid="achieve_column"/>
+        And deputy_id = #deputyId# 
+        ORDER BY record_date DESC
+   	</select>
+    <!--业绩管理-->
+    <select id="getAchieveMgrList" parameterClass="HashMap" resultClass="HashMap">
+        <include refid="achieve_column"/>
+        <isNotNull property="deputyId">AND deputy_id = #deputyId#</isNotNull>
+        <isNotNull property="status">AND status = #status#</isNotNull>
+        ORDER BY record_date DESC
+   	</select>
+</sqlMap>

@@ -1,0 +1,82 @@
+<map>
+  <entry>
+    <string>com.hs.common.HttpUtils.getHttpByParamAddHeaders(java.lang.String, java.util.Map&lt;java.lang.String,java.lang.String&gt;, java.lang.String, java.util.Map&lt;java.lang.String,java.lang.String&gt;)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.HttpUtils.getHttpByParamAddHeaders(String urlPath, Map&lt;String,String&gt; params, String method, Map&lt;String,String&gt; headers)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.HttpUtils.sendGet(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.HttpUtils.sendGet(String url, String param)&lt;/b&gt;&lt;br/&gt;&lt;p&gt;&#x0D;
+ 发送get请求&#x0D;
+	&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.HttpUtils.sendPost(java.lang.String, java.util.Map&lt;java.lang.String,java.lang.Object&gt;, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.HttpUtils.sendPost(String urlParam, Map&lt;String,Object&gt; params, String charset)&lt;/b&gt;&lt;br/&gt;&lt;p&gt;sendPost&lt;dl&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;liuyc&lt;/dd&gt;&lt;dt&gt;@Description&lt;/dt&gt;&lt;dd&gt;使用HttpURLConnection发送post请求&lt;/dd&gt;&lt;dt&gt;@time&lt;/dt&gt;&lt;dd&gt;2016年5月17日 下午3:26:07&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.HttpUtils.getHttpByGetAddHeaders(java.lang.String, java.util.Map&lt;java.lang.String,java.lang.Object&gt;, java.util.Map&lt;java.lang.String,java.lang.String&gt;)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.HttpUtils.getHttpByGetAddHeaders(String urlPath, Map&lt;String,Object&gt; params, Map&lt;String,String&gt; headers)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.HttpUtils.sendHttpsGet(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.HttpUtils.sendHttpsGet(String url, String param)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.HttpUtils.getHttpByJsonParamAddHeaders(java.lang.String, java.util.Map&lt;java.lang.String,java.lang.String&gt;, java.lang.String, java.util.Map&lt;java.lang.String,java.lang.String&gt;)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.HttpUtils.getHttpByJsonParamAddHeaders(String urlPath, Map&lt;String,String&gt; params, String method, Map&lt;String,String&gt; headers)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.HttpUtils.sendPost2Map(java.lang.String, java.util.HashMap&lt;java.lang.String,java.lang.Object&gt;)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap&lt;String,Object&gt; com.hs.common.HttpUtils.sendPost2Map(String urlParam, HashMap&lt;String,Object&gt; params)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.HttpUtils.doGet(java.lang.String, java.lang.String, java.lang.String, java.util.Map&lt;java.lang.String,java.lang.String&gt;, java.util.Map&lt;java.lang.String,java.lang.String&gt;)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.HttpUtils.doGet(String host, String path, String method, Map&lt;String,String&gt; headers, Map&lt;String,String&gt; querys)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.HttpUtils.getHttpByPost(java.lang.String, java.util.Map&lt;java.lang.String,java.lang.String&gt;)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.HttpUtils.getHttpByPost(String urlPath, Map&lt;String,String&gt; params)&lt;/b&gt;&lt;br/&gt;&lt;p&gt;getHttpByPost&lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;urlPath&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params&lt;/b&gt;&#x0D;
+            &lt;String, String&gt;&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.HttpUtils.send(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.HttpUtils.send(String phones, String message)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.HttpUtils.sendPostByJson(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.HttpUtils.sendPostByJson(String urlParam, String json)&lt;/b&gt;&lt;br/&gt;&lt;p&gt;sendPostByJson&lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;urlParam&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;json&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.HttpUtils.getHttpByJsonParam(java.lang.String, java.util.Map&lt;java.lang.String,java.lang.String&gt;, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.HttpUtils.getHttpByJsonParam(String urlPath, Map&lt;String,String&gt; params, String method)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.HttpUtils.sendOld(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.HttpUtils.sendOld(String phones, String message)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.HttpUtils.getHttpByFormParam(java.lang.String, java.util.Map&lt;java.lang.String,java.lang.Object&gt;, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.HttpUtils.getHttpByFormParam(String urlPath, Map&lt;String,Object&gt; params, String method)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.HttpUtils.sendPost(java.lang.String, java.util.Map&lt;java.lang.String,java.lang.Object&gt;)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.HttpUtils.sendPost(String urlParam, Map&lt;String,Object&gt; params)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>HttpUtils [Http工具类]</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.hs.common.HttpUtils&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &lt;dl&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;chenyy&lt;/dd&gt;&lt;dt&gt;@date&lt;/dt&gt;&lt;dd&gt;2016-07-06 10:19:35&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.HttpUtils.getHttpToByteArray(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;byte[] com.hs.common.HttpUtils.getHttpToByteArray(String urlPath)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 功能：连接网络服务器，获取网上数据,我是用來獲取網上圖片的 参数：URL地址 返回：btye[]&#x0D;
+ &#x0D;
+	&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.HttpUtils.getHttpByGet(java.lang.String, java.util.Map&lt;java.lang.String,java.lang.Object&gt;)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.hs.common.HttpUtils.getHttpByGet(String urlPath, Map&lt;String,Object&gt; params)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 创建人：Guine 时间：2017-08-02 功能：连接网络服务器，获取网上数据 参数：URL地址 返回：string&#x0D;
+ &#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;urlPath&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params&lt;/b&gt;&#x0D;
+            &lt;String, String&gt;&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

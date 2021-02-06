@@ -57,10 +57,6 @@
       <process:from type="query" pattern="reference">partCode</process:from>
       <process:to type="query">params/acode</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">params/orgids</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="124" y="238"/>
@@ -106,16 +102,8 @@
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
-      <process:from type="expression" pattern="reference">s.replaceAll(&quot;0&quot;,&quot;-1&quot;)</process:from>
-      <process:to type="query">s</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">s</process:from>
       <process:to type="query">p/commonIds</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">p/orgids</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -135,10 +123,6 @@
     <process:copy>
       <process:from type="query" pattern="reference">partId</process:from>
       <process:to type="query">params/partId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">params/orgids</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
@@ -282,6 +266,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">part/spec</process:from>
       <process:to type="query">temp/spec</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">part/orgCarBrandId</process:from>
+      <process:to type="query">temp/orgCarBrandId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.repair.baseData.report">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="searchBusinessDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT 
+			a.service_code as serviceCode,
+			a.car_no as carNo,
+			b.car_model as carModel,
+			a.mt_advisor as mtAdvisor,
+			c.full_name as guestFullName,
+			c.short_name as guestShortName,
+			a.service_type_id as serviceTypeId,
+			d.package_amt as packageAmt,
+			d.package_pref_rate as packagePrefRate, 
+			d.package_subtotal as packageSubtotal, 
+			d.part_total_amt as partTotalAmt,
+			d.part_subtotal as partSubtotal, 
+			d.part_manage_exp_amt as partManageExpAmt,
+			d.netin_amt as netinAmt,
+			d.allowance_amt as allowanceAmt,
+			d.total_pref_rate as totalPrefRate, 
+			d.gross_profit as grossProfit, 
+			d.gross_profit_rate as grossProfitRate
+			
+		FROM rps_maintain a 
+		INNER JOIN rpb_car b ON ( a.car_id = b.id )
+		INNER JOIN wb_common.com_guest c on a.guest_id = c.id
+		INNER JOIN rps_settlement d on (a.id = d.service_id ) 
+		WHERE 1=1
+		<isNotEmpty prepend="and" property="sCreateDate">(a.recorder &gt;= #sCreateDate#)</isNotEmpty>
+    </select>
+</sqlMap>

@@ -33,6 +33,7 @@
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
       <process:return id="2" language="com.hsapi.cloud.part.data.pts.PjEnterMainChk" name="enterMain" type="query" valueType="DataObject">enterMain</process:return>
       <process:return id="3" language="com.hsapi.cloud.part.data.pts.PjEnterDetailChk[]" name="enterDetail" type="query" valueType="DataObject">enterDetail</process:return>
+      <process:return id="4" language="String" name="voucherId" type="query" valueType="Primitive">voucherId</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -215,7 +216,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>end2</targetNode>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
     <targetConnections>link7</targetConnections>
@@ -243,7 +244,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>end2</targetNode>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
     <targetConnections>link16</targetConnections>
@@ -391,6 +392,7 @@
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
         <process:outputVariable id="2" name="enterMain" type="query" value="com.hsapi.cloud.part.data.pts.PjEnterMainChk" valueType="DataObject">enterMain</process:outputVariable>
         <process:outputVariable id="3" name="enterDetail" type="query" value="com.hsapi.cloud.part.data.pts.PjEnterDetailChk[]" valueType="DataObject">enterDetail</process:outputVariable>
+        <process:outputVariable id="4" name="voucherId" type="query" value="String" valueType="Primitive">voucherId</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -402,7 +404,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign5</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>end2</targetNode>
     </sourceConnections>
     <targetConnections>link11</targetConnections>
     <targetConnections>link22</targetConnections>
@@ -434,24 +436,25 @@
     <figSize height="20" width="40"/>
     <node>assign8</node>
   </nodes>
-  <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
+  <nodes xsi:type="process:tEnd" id="end2" name="结束2" displayName="结束" type="end">
     <targetConnections>link10</targetConnections>
     <targetConnections>link14</targetConnections>
     <targetConnections>link23</targetConnections>
-    <location x="195" y="472"/>
+    <location x="195" y="476"/>
     <size height="28" width="28"/>
-    <nodeLabel>end1label</nodeLabel>
+    <nodeLabel>end2label</nodeLabel>
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
       <process:return id="2" language="com.hsapi.cloud.part.data.pts.PjEnterMainChk" name="enterMain" type="query" valueType="DataObject">enterMain</process:return>
       <process:return id="3" language="com.hsapi.cloud.part.data.pts.PjEnterDetailChk[]" name="enterDetail" type="query" valueType="DataObject">enterDetail</process:return>
+      <process:return id="4" language="String" name="voucherId" type="query" valueType="Primitive">voucherId</process:return>
     </process:returns>
   </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="189" y="508"/>
+  <nodes xsi:type="model:NodeElementLabel" id="end2label" name="label" nodeType="label">
+    <location x="189" y="512"/>
     <figSize height="20" width="40"/>
-    <node>end1</node>
+    <node>end2</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -473,6 +476,7 @@
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
     <process:output description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjEnterMainChk" name="enterMain"/>
     <process:output description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjEnterDetailChk" name="enterDetail"/>
+    <process:output description="" isArray="false" name="voucherId" primitiveType="String"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

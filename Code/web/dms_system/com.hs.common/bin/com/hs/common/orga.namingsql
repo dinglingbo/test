@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hs.common.orga">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <!--区域下属分店  #deptCode#-->
+    <!--
+    <select id="getAreaComp" parameterClass="java.util.HashMap" resultClass="com.vplus.data.org.MpDepartments">
+		Select DA.dept_name deptName, DA.dept_code deptCode
+		FROM MP_DEPARTMENTS AREA  
+		INNER JOIN MP_DEPARTMENTS DA on instr(DA.tree_id, AREA.tree_id) &gt;0
+		Where 
+		AREA.dept_code=#deptCode#
+		AND DA.dept_type='COMP' AND DA.dept_status='A'
+     </select>
+    -->
+    <!--
+	缓存策略：
+	1、user_id,role_id...
+	2、role_id,res_id...
+	3、res_id,resInfo
+    -->
+    <!--根据用户ID获取用户对应角色ID-->
+    <select id="queryUserRoles" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">SELECT role_id as roleId from com_cap_partyauth 
+    	where party_id = #userId#</select>
+    <!--根据角色ID获取角色对应资源ID-->
+    <select id="queryRoleRes" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">SELECT res_id as resId from com_cap_resauth 
+    	where party_id = #roleId#</select>
+    <!--纯资源详情数据，用于判断新建了资源，但是没有创建对应菜单的数据，例【工单明细表】存在于报表模块，不需要加到菜单，但是需要做权限控制-->
+    <select id="queryAppFunction" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			a.FUNCCODE as funcCode,
+			a.FUNCNAME as funcName,
+			a.FUNCDESC  as funcDesc,
+			a.FUNCACTION as funcaction,
+			a.PARAINFO  as parainfo,
+			a.ISCHECK as ischeck,
+			a.FUNCTYPE as funcType,
+			a.ISMENU as isMenu,
+			a.APP_ID as appId,
+			a.TENANT_ID as tenantId,
+			a.FUNCGROUPID as funcGroupId
+		FROM
+			com_app_function AS a</select>
+    <!--根据资源ID获取资源对应的资源详情-->
+    <select id="queryFunctionInfo" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			a.FUNCCODE as funcCode,
+			a.FUNCNAME as funcName,
+			a.FUNCDESC  as funcDesc,
+			a.FUNCACTION as funcaction,
+			a.PARAINFO  as parainfo,
+			a.ISCHECK as ischeck,
+			a.FUNCTYPE as funcType,
+			a.ISMENU as isMenu,
+			a.APP_ID as appId,
+			a.TENANT_ID as tenantId,
+			a.FUNCGROUPID as funcGroupId
+		FROM
+			com_app_function AS a
+		where a.FUNCCODE = #resId#</select>
+    <!--根据按钮ID获取按钮详情-->
+    <select id="queryBtnInfo" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			a.ID as id,
+			a.RES_ID as resId,
+			a.BTN_AREA as btnArea,
+			a.`CODE` as code,
+			a.`NAME` as name,
+			a.BTN_URL as btnUrl,
+			a.TAG_CONTENT as tagContent,
+			a.TYPE as type,
+			a.BTNDESC as btndesc,
+			a.DISPLAYORDER as displayorder
+		FROM
+		com_app_funcbtn AS a
+		where a.ID = #btnId#</select>
+    <!--根据按钮ID获取按钮详情-->
+    <select id="queryRoleResBtn" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			a.PARTY_ID as partyId,
+			a.PARTY_TYPE as partyType,
+			a.RES_ID as resId,
+			a.RES_TYPE as resType,
+			a.BTN_ID as btnId,
+			a.BTN_AREA as btnArea
+		FROM
+		com_cap_resbtnauth AS a
+		where a.PARTY_ID = #roleId# and a.BTN_AREA = #btnArea#</select>
+    <!--根据资源ID获取资源对应的资源详情-->
+    <select id="queryResInfo" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">SELECT DISTINCT a.menuid, a.menuname, a.menucode, a.imagepath, a.parentsid, b.funccode, 
+				 ifnull(a.DISPLAYORDER,0) as DISPLAYORDER,  b.funcaction, a.EXPANDPATH as expandpath, 
+				 a.APP_ID as appId, b.parainfo as params, b.FUNCTYPE as functype
+		from com_app_function b
+		inner join app_menu a
+		on a.funccode = b.FUNCCODE
+		where b.FUNCCODE = #resId#</select>
+    <!--获取菜单结构-->
+    <select id="queryMenu" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">SELECT m.menuid, m.menuname, m.menucode, m.imagepath, m.parentsid, m.funccode, 
+			   m.DISPLAYORDER, null as funcaction, m.EXPANDPATH as expandpath, 
+			   m.APP_ID as appId, m.parameter as params, 'menu' as functype
+		from app_menu m
+		where ifnull(m.funccode, '') = ''
+		order by m.DISPLAYORDER asc</select>
+    <!--获取所有授权限控制的应用信息com_app_function-->
+    <select id="queryComAppFunction" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">SELECT DISTINCT a.menuid, a.menuname, a.menucode, a.imagepath, a.parentsid, b.funccode, 
+				 a.DISPLAYORDER,  b.funcaction, a.EXPANDPATH as expandpath, 
+				 a.APP_ID as appId, b.parainfo as params, b.FUNCTYPE as functype
+		from com_app_function b
+		inner join app_menu a
+		on a.funccode = b.FUNCCODE</select>
+    <!--根据资源ID获取资源对应的资源详情，用于报表菜单结构输出-->
+    <select id="queryAppFunctionInfo" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			a.FUNCCODE as funccode,
+			a.FUNCNAME as funcname,
+			a.FUNCDESC as funcdesc,
+			a.FUNCACTION as funcaction,
+			a.PARAINFO as parainfo,
+			a.ISCHECK as ischeck,
+			a.FUNCTYPE as functype,
+			a.ISMENU as ismenu,
+			a.APP_ID appid,
+			a.TENANT_ID as tenantid,
+			a.FUNCGROUPID as funcgroupid
+		FROM
+			com_app_function AS a
+		where a.FUNCCODE = #resId#</select>
+    <!--根据公司ID获取公司对应的公司详情-->
+    <select id="queryOrgInfo" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			a.orgid orgid, a.tenant_id tenantId, a.`code` code, a.`name` name,
+			a.short_name shortName, a.province_id provinceId, a.city_id cityId,
+			a.county_id countyId, a.street_address streetAddress, a.address address,
+			a.longitude longitude, a.latitude latitude, a.tel tel, a.fax fax,
+			a.bank_name bankName, a.bank_account_number bankAccountNumber,
+			a.main_brand_id mainBrandId, a.webaddress webaddress, a.wechat_img wechatImg,
+			a.logo_img logoImg, a.soft_open_date softOpenDate, a.part_expire_date partExpireDate,
+			a.is_open_system isOpenSystem, a.is_open_process isOpenProcess,
+			a.is_unify_financial isUnifyFinancial, a.is_account isAccount,
+			a.sett_comp_code settCompCode, a.unsalable_days unsalableDays,
+			a.widen_tax_rate widenTaxRate, a.part_manage_rate partManageRate,
+			a.complain_tel complainTel, a.rescue_tel rescueTel,
+			a.user_qty userQty, a.report_title reportTitle,
+			a.slogan1 slogan1, a.slogan2 slogan2, a.is_data_share isDataShare,
+			a.e_record_province eRecordProvince, a.e_record_repair_no eRecordRepairNo,
+			a.e_record_user eRecordUser, a.e_record_pwd eRecordPwd,
+			a.is_master isMaster, a.remark remark, a.property_name propertyName,
+			a.srm_company_id srmCompanyId, a.srm_guest_id srmGuestId,
+			a.srm_user_id srmUserId, a.srm_user_pd srmUserPd, a.srm_modifier srmModifier,
+			a.srm_modify_date srmModifyDate, a.recorder recorder,
+			a.record_date recordDate, a.modifier modifier, a.modify_date modifyDate,
+			a.king_id as kingId,
+			a.book_id as bookId
+		FROM
+			com_company AS a
+		where a.orgid = #orgid#</select>
+    <!--根据员工ID获取员工对应的兼职公司-->
+    <select id="queryEmpOrg" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">SELECT orgid as orgid, empId as empId, isMain as isMain, 
+		       TENANT_ID as tenantId, APP_ID as appId 
+		from org_emporg
+		where empId = #empId#</select>
+    <!-- 同步注册电商 -->
+    <update id="updateConCompany" parameterClass="java.util.HashMap">update wb_common.com_company 
+			set srm_user_id = #srmUserId#,srm_user_pd = #srmUserPd#	,
+			srm_company_id = #srmCompanyId#,srm_modify_date=#srmModifierDate#,
+			srm_modifier = #srmModifier#
+		where orgid = #orgid#</update>
+    <!-- 根据租户id获取租户信息 -->
+    <select id="queryTenant" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">SELECT
+     	a.tenant_id as tenantId,  
+		a.register_id as registerId,
+		a.code as code,
+		a.tenant_name as tenantName,
+		a.mobile as mobile,
+		a.province_id as provinceId,
+		a.area_id as areaId,
+		a.city_id as cityId,
+		a.addr as addr,
+		a.address as address,
+		a.manager as manager,
+		a.org_qty as orgQty,
+		a.audit_date as auditDate,
+		a.audit_man as auditMan,
+		a.start_date as startDate,
+		a.end_date as endDate,
+		a.sales_man as salesMan,
+		a.referee as referee,
+		a.Invitation_number as InvitationNumber,
+		a.largess_month as largessMonth,
+		a.max_user_qty as maxUserQty,
+		a.first_pay_amt as firstPayAmt,
+		a.next_renew_date as nextRenewDate,
+		a.next_renew_amt as nextRenewAmt,
+		a.is_pay as isPay,
+		a.is_disabled as isDisabled,
+		a.remark as remark,
+		a.recorder as recorder ,
+		a.record_date as recordDate,
+		a.modifier as modifier,
+		a.modify_date as modifyDate,
+		a.stores_qty as storesQty,
+		a.tenant_type as tenantType,
+		a.manager_identity as managerIdentity
+		FROM wb_common.com_tenant a
+		WHERE a.tenant_id = #tenantId#</select>
+</sqlMap>

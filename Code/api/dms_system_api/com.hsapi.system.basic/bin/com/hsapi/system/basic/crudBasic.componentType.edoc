@@ -1,0 +1,10 @@
+<map>
+  <entry>
+    <string>crudBasic</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;crudBasic.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;crudBasic&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.basic.crudBasic&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.basic.crudBasic.queryGuestList(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryGuestList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.basic.crudBasic.queryGuestList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;guest(com.hsapi.cloud.part.data.com.ComGuest[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

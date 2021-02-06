@@ -1,0 +1,15 @@
+<map>
+  <entry>
+    <string>AESCoderUtils</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.harsons.hscp.common.util.AESCoderUtils&lt;/b&gt;&lt;br/&gt;&lt;p&gt;  AES加解密类&#x0D;
+&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.harsons.hscp.common.util.AESCoderUtils.encryptBase64(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.harsons.hscp.common.util.AESCoderUtils.encryptBase64(String context, String key)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.harsons.hscp.common.util.AESCoderUtils.decryptBase64(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;String com.harsons.hscp.common.util.AESCoderUtils.decryptBase64(String context, String key)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

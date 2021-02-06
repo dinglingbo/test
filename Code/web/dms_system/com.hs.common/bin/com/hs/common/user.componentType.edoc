@@ -1,0 +1,46 @@
+<map>
+  <entry>
+    <string>com.hs.common.user.generateId(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generateId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generateId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.user.generateId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;name(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.user.testAPI()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;testAPI&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;testAPI&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.user.testAPI&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;token(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;p(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.user.testCheckAuth()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;testCheckAuth&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;testCheckAuth&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.user.testCheckAuth&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.user.clearResMenu()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;clearResMenu&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;clearResMenu&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.user.clearResMenu&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.user.getOperator(com.hs.data.user.AcOperator)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getOperator&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getOperator&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.user.getOperator&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;acOperator(com.hs.data.user.AcOperator):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;acOperator(com.hs.data.user.AcOperator):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.user.saveEntity(String, commonj.sdo.DataObject, Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveEntity&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveTalkArt&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.user.saveEntity&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;dsName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;forceInsert(Boolean):&lt;/b&gt;强制插入true&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.user.testEncode()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;testEncode&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;testEncode&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.user.testEncode&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;url(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.user.testGuest(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;testGuest&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;testGuest&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.user.testGuest&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;password(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;password(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;c(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;len(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.user.testMenuCache()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;testMenuCache&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;testMenuCache&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.user.testMenuCache&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;menuList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;dbList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.user.test(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;test&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;test&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.user.test&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;userId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;roleList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;resList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;resInfoList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;menuList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>user</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;user.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;user&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.user&lt;/html&gt;</string>
+  </entry>
+</map>

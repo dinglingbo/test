@@ -62,6 +62,13 @@
         <result column="rtnReasonId" javaType="string" property="rtnReasonId"/>
         <result column="orderType" javaType="string" property="orderType"/>
         <result column="directOrgid" javaType="string" property="directOrgid"/>
+        <result column="deptId" javaType="int" property="deptId"/>
+        <result column="kingCode" javaType="string" property="kingCode"/>
+        <result column="showAmt" javaType="double" property="showAmt"/>
+        <result column="businessTypeId" javaType="string" property="businessTypeId"/>
+        <result column="settleGuestId" javaType="int" property="settleGuestId"/>
+        <result column="settleGuestRebateRate" javaType="double" property="settleGuestRebateRate"/>
+        <result column="businessTypeRebateRate" javaType="double" property="businessTypeRebateRate"/>
     </resultMap>
     <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->
     <select id="queryPjPchsOrderMainList" parameterClass="java.util.HashMap" resultMap="pjPchsOrderMainList">
@@ -118,7 +125,14 @@
             M.versionNo,
             M.rtnReasonId,
             M.orderType,
-            M.directOrgid
+            M.directOrgid,
+            M.deptId,
+            M.kingCode,
+            m.showAmt,
+            m.businessTypeId,
+            m.settleGuestId,
+            m.settleGuestRebateRate,
+            m.businessTypeRebateRate
         FROM (
             SELECT DISTINCT
                 A.ID as id,
@@ -172,7 +186,14 @@
                 a.version_no as versionNo,
                 a.rtn_reason_id as rtnReasonId,
                 a.order_type as orderType,
-                a.direct_orgid as directOrgid
+                a.direct_orgid as directOrgid,
+                a.dept_id as deptId,
+                a.king_code as kingCode,
+                a.show_amt as showAmt,
+                a.business_type_id as businessTypeId,
+                a.settle_guest_id as settleGuestId,
+                a.settle_guest_rebate_rate as settleGuestRebateRate,
+                a.business_type_rebate_rate as businessTypeRebateRate
                 FROM
                 DMS_CLOUD_PART.PJ_PCHS_ORDER_MAIN A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
@@ -185,6 +206,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="id"> 
                     (a.id = #id#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="code"> 
+                     (a.code like '%$code$%')
                 </isNotEmpty>
                 
                 <isNotEmpty prepend="and" property="orderTypeId"> 
@@ -250,7 +274,7 @@
                     (A.order_man = #orderMan#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="storeId">  
-                    (c.store_id = #storeId#)
+                    (a.store_id = #storeId#)
                 </isNotEmpty>
             </dynamic>  
             
@@ -308,7 +332,14 @@
                 a.version_no as versionNo,
                 a.rtn_reason_id as rtnReasonId,
                 a.order_type as orderType,
-                a.direct_orgid as directOrgid
+                a.direct_orgid as directOrgid,
+                a.dept_id as deptId,
+                a.king_code as kingCode,
+                a.show_amt as showAmt,
+                a.business_type_id as businessTypeId,
+                a.settle_guest_id as settleGuestId,
+                a.settle_guest_rebate_rate as settleGuestRebateRate,
+                a.business_type_rebate_rate as businessTypeRebateRate
                 FROM
                 DMS_CLOUD_PART.PJ_PCHS_ORDER_MAIN_CHK A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
@@ -325,6 +356,9 @@
                 
                 <isNotEmpty prepend="and" property="orderTypeId"> 
                     (a.order_type_id = #orderTypeId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="code"> 
+                     (a.code like '%$code$%')
                 </isNotEmpty>
                 
                 <isNotEmpty prepend="and" property="isDiffOrder"> 
@@ -384,6 +418,9 @@
                 <isNotEmpty prepend="and" property="orderMan">  
                     (A.order_man = #orderMan#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="storeId">  
+                    (a.store_id = #storeId#)
+                </isNotEmpty>
             </dynamic>  
         )M
     	
@@ -434,6 +471,7 @@
         <result column="comUnit" javaType="string" property="comUnit"/>
         <result column="comSpec" javaType="string" property="comSpec"/>
         <result column="comDirection" javaType="string" property="comDirection"/>
+        <result column="orgCarBrandId" javaType="string" property="orgCarBrandId"/>
     </resultMap>
     <!-- 根据主表ID查询 -->
     <select id="queryPjPchsOrderDetailList" parameterClass="java.util.HashMap" resultMap="pjPchsOrderDetailList">
@@ -480,7 +518,8 @@
             M.comApplyCarModel,
             M.comUnit,
             M.comSpec,
-            M.comDirection
+            M.comDirection,
+            M.orgCarBrandId
         FROM (
             SELECT
                 A.ID AS id,
@@ -524,7 +563,8 @@
                 B.APPLY_CAR_MODEL AS comApplyCarModel,
                 B.UNIT AS comUnit,
                 B.SPEC AS comSpec,
-                B.DIRECTION AS comDirection
+                B.DIRECTION AS comDirection,
+				B.org_car_brand_id AS orgCarBrandId
             FROM
             DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL A
             INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
@@ -579,7 +619,8 @@
                 B.APPLY_CAR_MODEL AS comApplyCarModel,
                 B.UNIT AS comUnit,
                 B.SPEC AS comSpec,
-                B.DIRECTION AS comDirection
+                B.DIRECTION AS comDirection,
+				B.org_car_brand_id AS orgCarBrandId
             FROM
             DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL_CHK A
             INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
@@ -914,6 +955,15 @@
         <result column="taxDiff" javaType="double" property="taxDiff"/>
         <result column="rtnPrice" javaType="double" property="rtnPrice"/>
         <result column="rtnAmt" javaType="double" property="rtnAmt"/> 
+        <result column="expenseAmt" javaType="double" property="expenseAmt"/> 
+        <result column="expEnterPrice" javaType="double" property="expEnterPrice"/> 
+        <result column="expEnterAmt" javaType="double" property="expEnterAmt"/> 
+        <result column="taxCostPrice" javaType="double" property="taxCostPrice"/> 
+        <result column="taxCostAmt" javaType="double" property="taxCostAmt"/> 
+        <result column="noTaxCostPrice" javaType="double" property="noTaxCostPrice"/> 
+        <result column="noTaxCostAmt" javaType="double" property="noTaxCostAmt"/> 
+        <result column="setCostPrice" javaType="double" property="setCostPrice"/> 
+        <result column="setCostAmt" javaType="double" property="setCostAmt"/> 
         <result column="enterDate" javaType="java.sql.Timestamp" property="enterDate"/>
         <result column="prevDetailId" javaType="int" property="prevDetailId"/>
         <result column="orderDetailId" javaType="int" property="orderDetailId"/>
@@ -939,6 +989,7 @@
         <result column="comUnit" javaType="string" property="comUnit"/>
         <result column="comSpec" javaType="string" property="comSpec"/>
         <result column="comDirection" javaType="string" property="comDirection"/>
+        <result column="orgCarBrandId" javaType="string" property="orgCarBrandId"/>
     </resultMap>
     <!-- 根据主表ID查询 -->
     <select id="queryPjEnterDetailList" parameterClass="java.util.HashMap" resultMap="pjEnterDetailList">
@@ -969,6 +1020,15 @@
 			M.taxDiff,
 			M.rtnPrice,
 			M.rtnAmt,
+			M.expenseAmt,
+			M.expEnterPrice,
+			M.expEnterAmt,
+			M.taxCostPrice,
+			M.taxCostAmt,
+			M.noTaxCostPrice,
+			M.noTaxCostAmt,
+			M.setCostPrice,
+			M.setCostAmt,	
 			M.enterDate,
 			M.prevDetailId,
 			M.orderDetailId,
@@ -993,7 +1053,8 @@
 			M.comApplyCarModel,
 			M.comUnit,
 			M.comSpec,
-			M.comDirection
+			M.comDirection,
+			M.orgCarBrandId
         FROM (
             SELECT
 			A.ID AS id,
@@ -1021,6 +1082,15 @@
 			A.TAX_DIFF AS taxDiff,
 			A.RTN_PRICE AS rtnPrice,
 			A.RTN_AMT AS rtnAmt,
+			a.expense_amt as expenseAmt,
+			a.exp_enter_price as expEnterPrice,
+			a.exp_enter_amt as expEnterAmt,
+			a.tax_cost_price as taxCostPrice,
+			a.tax_cost_amt as taxCostAmt,
+			a.no_tax_cost_price as noTaxCostPrice,
+			a.no_tax_cost_amt as noTaxCostAmt,
+			a.set_cost_price as setCostPrice,
+			a.set_cost_amt as setCostAmt,			
 			A.ENTER_DATE AS enterDate,
 			A.PREV_DETAIL_ID AS prevDetailId,
 			A.ORDER_DETAIL_ID AS orderDetailId,
@@ -1045,7 +1115,8 @@
 			B.APPLY_CAR_MODEL AS comApplyCarModel,
 			B.UNIT AS comUnit,
 			B.SPEC AS comSpec,
-			B.DIRECTION AS comDirection
+			B.DIRECTION AS comDirection,
+			b.org_car_brand_id as orgCarBrandId
 			FROM
 			DMS_CLOUD_PART.PJ_ENTER_DETAIL A
 			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
@@ -1084,6 +1155,15 @@
 			A.TAX_DIFF AS taxDiff,
 			A.RTN_PRICE AS rtnPrice,
 			A.RTN_AMT AS rtnAmt,
+			a.expense_amt as expenseAmt,
+			a.exp_enter_price as expEnterPrice,
+			a.exp_enter_amt as expEnterAmt,
+			a.tax_cost_price as taxCostPrice,
+			a.tax_cost_amt as taxCostAmt,
+			a.no_tax_cost_price as noTaxCostPrice,
+			a.no_tax_cost_amt as noTaxCostAmt,
+			a.set_cost_price as setCostPrice,
+			a.set_cost_amt as setCostAmt,	
 			A.ENTER_DATE AS enterDate,
 			A.PREV_DETAIL_ID AS prevDetailId,
 			A.ORDER_DETAIL_ID AS orderDetailId,
@@ -1108,7 +1188,8 @@
 			B.APPLY_CAR_MODEL AS comApplyCarModel,
 			B.UNIT AS comUnit,
 			B.SPEC AS comSpec,
-			B.DIRECTION AS comDirection
+			B.DIRECTION AS comDirection,
+			b.org_car_brand_id as orgCarBrandId
 			FROM
 			DMS_CLOUD_PART.PJ_ENTER_DETAIL_CHK A
 			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
@@ -1428,7 +1509,14 @@
                 a.version_no as versionNo,
                 a.is_diff_order as isDiffOrder,
                 a.order_type as orderType,
-                a.direct_orgid as directOrgid
+                a.direct_orgid as directOrgid,
+                a.dept_id as deptId,
+                a.king_code as kingCode,
+                a.show_amt as showAmt,
+                a.business_type_id as businessTypeId,
+                a.settle_guest_id as settleGuestId,
+                a.settle_guest_rebate_rate as settleGuestRebateRate,
+                a.business_type_rebate_rate as businessTypeRebateRate
                 FROM
                 DMS_CLOUD_PART.PJ_PCHS_ORDER_MAIN A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
@@ -1444,6 +1532,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="isDiffOrder"> 
                     (a.is_diff_order = #isDiffOrder#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="orgCarBrandId"> 
+                    (D.org_car_brand_id = #orgCarBrandId#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="isFinished"> 
                     (A.IS_FINISHED = #isFinished#)
@@ -1575,7 +1666,14 @@
                 a.version_no as versionNo,
                 a.is_diff_order as isDiffOrder,
                 a.order_type as orderType,
-                a.direct_orgid as directOrgid
+                a.direct_orgid as directOrgid,
+                a.dept_id as deptId,
+                a.king_code as kingCode,
+                a.show_amt as showAmt,
+                a.business_type_id as businessTypeId,
+                a.settle_guest_id as settleGuestId,
+                a.settle_guest_rebate_rate as settleGuestRebateRate,
+                a.business_type_rebate_rate as businessTypeRebateRate
                 FROM
                 DMS_CLOUD_PART.PJ_PCHS_ORDER_MAIN_chk A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
@@ -1589,8 +1687,14 @@
                 <isNotEmpty prepend="and" property="id"> 
                     (a.id = #id#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="code">  
+                    (a.code like '%$code$%')
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="isDiffOrder"> 
                     (a.is_diff_order = #isDiffOrder#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="orgCarBrandId"> 
+                    (D.org_car_brand_id = #orgCarBrandId#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="orderTypeId"> 
                     (a.order_type_id = #orderTypeId#)
@@ -1661,12 +1765,12 @@
                     (A.order_man = #orderMan#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="storeId">  
-                    (c.store_id = #storeId#)
+                    (a.store_id = #storeId#)
                 </isNotEmpty>
                 
-                <isNotEmpty prepend="and" property="noGuestOrder">  
+                <!--<isNotEmpty prepend="and" property="noGuestOrder">  
                     (a.source_type !=5)
-                </isNotEmpty>
+                </isNotEmpty>-->
             </dynamic>  
            
         
@@ -1689,6 +1793,8 @@
                 A.ORDER_QTY AS orderQty,
                 A.ORDER_PRICE AS orderPrice,
                 A.ORDER_AMT AS orderAmt,
+                a.show_price as showPrice,
+                a.show_amt as showAmt,
                 A.TAX_SIGN AS taxSign,
                 A.TAX_RATE AS taxRate,
                 A.TAX_PRICE AS taxPrice,
@@ -1709,6 +1815,15 @@
                 A.SOURCE_BILL_TYPE_ID AS sourceBillTypeId,
                 A.REMARK AS remark,
                 a.store_shelf as storeShelf,
+                a.set_cost_price as setCostPrice,
+                a.set_cost_amt as setCostAmt,
+                a.settle_guest_rebate_amt as settleGuestRebateAmt,
+                a.business_type_rebate_amt as businessTypeRebateAmt,
+                a.outable_qty as outableQty,
+                a.rtn_detail_id as rtnDetailId,
+                a.rtn_main_id as rtnMainId,
+                a.show_price as showPrice,
+                a.show_amt as showAmt, 
                 B.CODE AS comPartCode,
                 B.NAME AS comPartName,
                 B.FULL_NAME AS comFullName,
@@ -1719,7 +1834,8 @@
                 B.APPLY_CAR_MODEL AS comApplyCarModel,
                 B.UNIT AS comUnit,
                 B.SPEC AS comSpec,
-                B.DIRECTION AS comDirection
+                B.DIRECTION AS comDirection,
+				B.org_car_brand_id AS orgCarBrandId
             FROM
             DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL A
             INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
@@ -1753,6 +1869,8 @@
                 A.ORDER_QTY AS orderQty,
                 A.ORDER_PRICE AS orderPrice,
                 A.ORDER_AMT AS orderAmt,
+                a.show_price as showPrice,
+                a.show_amt as showAmt,
                 A.TAX_SIGN AS taxSign,
                 A.TAX_RATE AS taxRate,
                 A.TAX_PRICE AS taxPrice,
@@ -1773,6 +1891,16 @@
                 A.SOURCE_BILL_TYPE_ID AS sourceBillTypeId,
                 A.REMARK AS remark,
                 a.store_shelf as storeShelf,
+                a.store_shelf as storeShelf,
+                a.set_cost_price as setCostPrice,
+                a.set_cost_amt as setCostAmt,
+                a.settle_guest_rebate_amt as settleGuestRebateAmt,
+                a.business_type_rebate_amt as businessTypeRebateAmt,
+                a.outable_qty as outableQty,
+                a.rtn_detail_id as rtnDetailId,
+                a.rtn_main_id as rtnMainId,
+                a.show_price as showPrice,
+                a.show_amt as showAmt, 
                 B.CODE AS comPartCode,
                 B.NAME AS comPartName,
                 B.FULL_NAME AS comFullName,
@@ -1783,7 +1911,8 @@
                 B.APPLY_CAR_MODEL AS comApplyCarModel,
                 B.UNIT AS comUnit,
                 B.SPEC AS comSpec,
-                B.DIRECTION AS comDirection
+                B.DIRECTION AS comDirection,
+                b.org_car_brand_id as orgCarBrandId
             FROM
             DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL_chk A
             INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
@@ -1794,6 +1923,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="mainIds">  
                     (A.MAIN_ID in ($mainIds$))
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="partCode">  
+                    (b.code = #partCode#)
                 </isNotEmpty>
             </dynamic>  
            

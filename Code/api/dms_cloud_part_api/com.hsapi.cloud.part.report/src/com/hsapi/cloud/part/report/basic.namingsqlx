@@ -364,7 +364,8 @@
     <select id="queryInvocingOutClient" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     	
             SELECT DISTINCT a.guest_id as guestId, c.`code` as clientCode, c.full_name as fullName,
-                   c.short_name as shortName, c.guest_type as guestType
+                   c.short_name as shortName, c.guest_type as guestType, c.province_id as provinceId,
+                   c.city_id as cityId
 			from pj_invocing a
 			inner join wb_common.com_attribute b
 			on a.part_id = b.id
@@ -405,6 +406,12 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
                     (a.guest_id = #guestId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="provinceId">  
+                    (c.province_id = #provinceId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="cityId">  
+                    (c.city_id = #cityId#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partName">  
                     (b.FULL_NAME like '%$partName$%')
@@ -475,6 +482,41 @@
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (b.code in ($partCodeList$))
                 </isNotEmpty> 
+                
+    </select>
+    
+    <select id="queryDeptMember" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+            SELECT a.name, b.dept_name as deptName
+			from wb_common.com_member a
+			left join wb_common.com_dept b
+			on a.dept_id = b.id
+			where 1 = 1 
+				<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
+                
+    </select>
+    
+    <select id="queryStore" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+            SELECT id as storeId, name
+			from wb_common.com_store 
+			where 1 = 1 
+				<isNotEmpty prepend="and" property="orgid"> 
+                    (orgid = #orgid#)
+                </isNotEmpty>
+                
+    </select>
+    
+        <select id="queryBusinessType" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+            SELECT customid as businessTypeId, name
+			from wb_common.com_dataitems
+			where dictid = '10445' and is_disabled = 0
+				<isNotEmpty prepend="and" property="tenantId"> 
+                    (tenant_id = #tenantId# or tenant_id = 0)
+                </isNotEmpty>
                 
     </select>
     

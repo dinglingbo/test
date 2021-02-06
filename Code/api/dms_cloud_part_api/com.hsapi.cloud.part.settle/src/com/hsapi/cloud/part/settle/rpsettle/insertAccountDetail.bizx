@@ -611,6 +611,10 @@
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
       <process:to type="query">tempRPBill/settler</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(noCharOffAmt-accountTotalAmt)&lt;=0?1:0</process:from>
+      <process:to type="query">tempRPBill/settleSign</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign12label" name="label" nodeType="label">
     <location x="624" y="177"/>
@@ -709,14 +713,14 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.FiRpAccountDetail" name="accountDetail"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.FiRpBill" name="rpBill"/>
-    <process:variable description="单据金额" historyStateLocation="client" isArray="false" name="rpAmt" primitiveType="Float"/>
-    <process:variable description="rpAmt - charOffAmt（未收金额）" historyStateLocation="client" isArray="false" name="noCharOffAmt" primitiveType="Float"/>
-    <process:variable description="收+免（已收金额）" historyStateLocation="client" isArray="false" name="charOffAmt" primitiveType="Float"/>
-    <process:variable description="收" historyStateLocation="client" isArray="false" name="trueCharOffAmt" primitiveType="Float"/>
-    <process:variable description="已免收金额" historyStateLocation="client" isArray="false" name="voidAmt" primitiveType="Float"/>
-    <process:variable description="当前收/付" historyStateLocation="client" isArray="false" name="accountAmt" primitiveType="Float"/>
-    <process:variable description="当前免/惠" historyStateLocation="client" isArray="false" name="accountVoid" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="accountTotalAmt" primitiveType="Float"/>
+    <process:variable description="单据金额" historyStateLocation="client" isArray="false" name="rpAmt" primitiveType="Double"/>
+    <process:variable description="rpAmt - charOffAmt（未收金额）" historyStateLocation="client" isArray="false" name="noCharOffAmt" primitiveType="Double"/>
+    <process:variable description="收+免（已收金额）" historyStateLocation="client" isArray="false" name="charOffAmt" primitiveType="Double"/>
+    <process:variable description="收" historyStateLocation="client" isArray="false" name="trueCharOffAmt" primitiveType="Double"/>
+    <process:variable description="已免收金额" historyStateLocation="client" isArray="false" name="voidAmt" primitiveType="Double"/>
+    <process:variable description="当前收/付" historyStateLocation="client" isArray="false" name="accountAmt" primitiveType="Double"/>
+    <process:variable description="当前免/惠" historyStateLocation="client" isArray="false" name="accountVoid" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="accountTotalAmt" primitiveType="Double"/>
     <process:variable description="用于更新收付款表" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.FiRpBill" name="tempRPBill"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="serviceId" primitiveType="String"/>
     <process:variable description="单据：" historyStateLocation="client" isArray="false" name="msgO" primitiveType="String"/>

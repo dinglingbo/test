@@ -1,0 +1,70 @@
+<map>
+  <entry>
+    <string>com.hsapi.part.common.svr.queryStock(com.eos.foundation.PageCond, Int, Int, java.util.HashMap, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryStock&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryStock&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.svr.queryStock&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;p(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;system(Int):&lt;/b&gt;0华胜；1佳配；2极配&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;stockList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.svr.queryJPStore(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryJPStore&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryJPStore&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.svr.queryJPStore&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;p(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;store(com.hsapi.part.data.pts.PjStore[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.svr.getDictItems(String[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getDictItems&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getDictItems&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.svr.getDictItems&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;dictIdList(String[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;dataItems(com.hsapi.part.data.com.ComDataitems[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.svr.getLocationListByStoreId(String, Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getLocationListByStoreId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getLocationListByStoreId&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.svr.getLocationListByStoreId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;storeId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;locationList(com.hsapi.part.data.com.ComStoreLocation[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.svr.getQualityBrand(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getQualityBrand&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getQualityBrand&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.svr.getQualityBrand&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;qualityId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.svr.getAllPartBrand(Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getAllPartBrand&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getAllPartBrand&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.svr.getAllPartBrand&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;quality(com.hsapi.part.data.com.ComPartBrand[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;brand(com.hsapi.part.data.com.ComPartBrand[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.svr.queryPartName(java.util.HashMap, String, String, com.eos.foundation.PageCond, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPartName&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPartName&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.svr.queryPartName&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partName(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sortOrder(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sortField(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;searchKey(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partNames(com.hsapi.part.data.com.ComPartName[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.svr.getArea(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getArea&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getArrea&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.svr.getArea&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMSg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>svr</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;svr.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;svr&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.svr&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.svr.getProvinceAndCity()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getProvinceAndCity&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getProvinceAndCity&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.svr.getProvinceAndCity&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;province(com.hsapi.part.data.com.ComArea[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;city(com.hsapi.part.data.com.ComArea[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.svr.savePartName(com.hsapi.part.data.com.ComPartName)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;savePartName&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePartName&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.svr.savePartName&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.part.data.com.ComPartName):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.svr.getStoreById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getStoreById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStoreById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.svr.getStoreById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;store(com.hsapi.part.data.com.ComStore):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;sellSign(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.svr.queryChainStock(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryChainStock&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryChainStock&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.svr.queryChainStock&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;chainStock(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.svr.queryLBStore(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryLBStore&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryLBStore&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.svr.queryLBStore&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;p(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;store(com.hsapi.part.data.pts.PjStore[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.svr.getPartTypeTree(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPartTypeTree&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPartTypeTree&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.svr.getPartTypeTree&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;partTypes(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.svr.getGuestByInternalId(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getGuestByInternalId&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getGuestById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.svr.getGuestByInternalId&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;guest(com.hsapi.part.data.com.ComGuest):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.common.svr.getAllCarBrand(Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getAllCarBrand&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getAllCarBrand&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.common.svr.getAllCarBrand&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;carBrands(com.hsapi.part.data.com.ComCarBrand[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

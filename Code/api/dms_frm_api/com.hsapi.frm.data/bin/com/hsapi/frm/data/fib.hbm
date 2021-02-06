@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.frm.data.fib.FibAccountTypeRela" table="fib_account_type_rela">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <composite-id>
+            <key-property name="id" type="int">
+                <column name="id"/>
+            </key-property>
+            <key-property name="customId" type="string">
+                <column length="20" name="custom_id"/>
+            </key-property>
+        </composite-id>
+        <property name="code" type="string">
+            <column length="20" name="code"/>
+        </property>
+        <property name="name" type="string">
+            <column length="50" name="name"/>
+        </property>
+        <property name="customName" type="string">
+            <column length="50" name="custom_name"/>
+        </property>
+        <property name="creatorId" type="string">
+            <column length="20" name="creator_id"/>
+        </property>
+        <property name="creator" type="string">
+            <column length="20" name="creator"/>
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="create_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.frm.data.fib.FibIncomeExpenses" table="fib_income_expenses">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="code" type="string">
+            <column length="20" name="code" not-null="true"/>
+        </property>
+        <property name="name" type="string">
+            <column length="50" name="name" not-null="true"/>
+        </property>
+        <property name="itemTypeId" type="short">
+            <column name="item_type_id" not-null="true"/>
+        </property>
+        <property name="isPrimaryBusiness" type="string">
+            <column length="30" name="is_primary_business"/>
+        </property>
+        <property name="parentId" type="int">
+            <column name="parent_id"/>
+        </property>
+        <property name="isEnd" type="short">
+            <column default="0" name="is_end"/>
+        </property>
+        <property name="levelNum" type="short">
+            <column default="0" name="level_num"/>
+        </property>
+        <property name="isDisabled" type="short">
+            <column default="0" name="is_disabled"/>
+        </property>
+        <property name="creatorId" type="string">
+            <column length="20" name="creator_id"/>
+        </property>
+        <property name="creator" type="string">
+            <column length="20" name="creator"/>
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="create_date"/>
+        </property>
+        <property name="operatorId" type="string">
+            <column length="20" name="operator_id"/>
+        </property>
+        <property name="operator" type="string">
+            <column length="20" name="operator"/>
+        </property>
+        <property name="operateDate" type="timestamp">
+            <column name="operate_date"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="200" name="remark"/>
+        </property>
+        <property name="isSale" type="short">
+            <column default="0" name="is_sale"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.frm.data.fib.FibSettleAccount" table="fib_settle_account">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="code" type="string">
+            <column length="20" name="code" not-null="true"/>
+        </property>
+        <property name="name" type="string">
+            <column length="50" name="name" not-null="true"/>
+        </property>
+        <property name="accountTypeId" type="short">
+            <column name="account_type_id" not-null="true"/>
+        </property>
+        <property name="parentId" type="int">
+            <column name="parent_id"/>
+        </property>
+        <property name="isEnd" type="short">
+            <column default="0" name="is_end"/>
+        </property>
+        <property name="levelNum" type="short">
+            <column default="0" name="level_num"/>
+        </property>
+        <property name="isDisabled" type="short">
+            <column default="0" name="is_disabled"/>
+        </property>
+        <property name="isInit" type="short">
+            <column default="0" name="is_init"/>
+        </property>
+        <property name="initBalance" type="big_decimal">
+            <column length="10" name="init_balance" precision="10" scale="4"/>
+        </property>
+        <property name="curBalance" type="big_decimal">
+            <column length="10" name="cur_balance" precision="10" scale="4"/>
+        </property>
+        <property name="isDefault" type="short">
+            <column default="0" name="is_default"/>
+        </property>
+        <property name="isSystem" type="short">
+            <column default="0" name="is_system"/>
+        </property>
+        <property name="bankName" type="string">
+            <column length="100" name="bank_name"/>
+        </property>
+        <property name="bankAccountNumber" type="string">
+            <column length="50" name="bank_account_number"/>
+        </property>
+        <property name="feeRate" type="big_decimal">
+            <column default="0.00" length="10" name="fee_rate" precision="10" scale="2"/>
+        </property>
+        <property name="feeMax" type="big_decimal">
+            <column default="0.00" length="10" name="fee_max" precision="10" scale="2"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="200" name="remark"/>
+        </property>
+    </class>
+</hibernate-mapping>

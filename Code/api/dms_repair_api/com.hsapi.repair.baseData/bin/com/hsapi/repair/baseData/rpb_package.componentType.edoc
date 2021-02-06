@@ -1,0 +1,50 @@
+<map>
+  <entry>
+    <string>com.hsapi.repair.baseData.rpb_package.savePackage(com.hsapi.repair.data.rpbse.RpbPackage, com.hsapi.repair.data.rpbse.RpbPackageItem[], com.hsapi.repair.data.rpbse.RpbPackageItem[], com.hsapi.repair.data.rpbse.RpbPackageItem[], com.hsapi.repair.data.rpbse.RpbPackagePart[], com.hsapi.repair.data.rpbse.RpbPackagePart[], com.hsapi.repair.data.rpbse.RpbPackagePart[], String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;savePackage&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePackage&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.rpb_package.savePackage&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.repair.data.rpbse.RpbPackage):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;insItems(com.hsapi.repair.data.rpbse.RpbPackageItem[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updItems(com.hsapi.repair.data.rpbse.RpbPackageItem[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;delItems(com.hsapi.repair.data.rpbse.RpbPackageItem[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;insParts(com.hsapi.repair.data.rpbse.RpbPackagePart[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updParts(com.hsapi.repair.data.rpbse.RpbPackagePart[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;delParts(com.hsapi.repair.data.rpbse.RpbPackagePart[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.rpb_package.queryPackagePart(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPackagePart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPackagePart&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.rpb_package.queryPackagePart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;packageId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;parts(com.hsapi.repair.data.rpbse.RpbPackagePart[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.rpb_package.savePackageItemList(com.hsapi.repair.data.rpbse.RpbPackage, com.hsapi.repair.data.rpbse.RpbPackageItem[], com.hsapi.repair.data.rpbse.RpbPackageItem[], com.hsapi.repair.data.rpbse.RpbPackageItem[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;savePackageItemList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePackagePartList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.rpb_package.savePackageItemList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.repair.data.rpbse.RpbPackage):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;insList(com.hsapi.repair.data.rpbse.RpbPackageItem[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updList(com.hsapi.repair.data.rpbse.RpbPackageItem[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;delList(com.hsapi.repair.data.rpbse.RpbPackageItem[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.rpb_package.savePackagePartList(com.hsapi.repair.data.rpbse.RpbPackage, com.hsapi.repair.data.rpbse.RpbPackagePart[], com.hsapi.repair.data.rpbse.RpbPackagePart[], com.hsapi.repair.data.rpbse.RpbPackagePart[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;savePackagePartList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePackagePartList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.rpb_package.savePackagePartList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.repair.data.rpbse.RpbPackage):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;insList(com.hsapi.repair.data.rpbse.RpbPackagePart[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;updList(com.hsapi.repair.data.rpbse.RpbPackagePart[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;delList(com.hsapi.repair.data.rpbse.RpbPackagePart[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.rpb_package.getPackageItem(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPackageItem&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPackageItem&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.rpb_package.getPackageItem&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;packageId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rpbse.RpbPackageItem[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.rpb_package.getPackagePart(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPackagePart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPackageItem&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.rpb_package.getPackagePart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;packageId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.repair.data.rpbse.RpbPackagePart[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.rpb_package.getPackage(com.hsapi.repair.data.rpbse.RpbPackage)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPackage&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPackage&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.rpb_package.getPackage&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;packages(com.hsapi.repair.data.rpbse.RpbPackage):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;packages(com.hsapi.repair.data.rpbse.RpbPackage):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>rpb_package</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;rpb_package.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;rpb_package&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.rpb_package&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.rpb_package.queryPackageItem(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPackageItem&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPackageItem&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.rpb_package.queryPackageItem&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;itemList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.rpb_package.getPackageInfo(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPackageInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPackageInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.rpb_package.getPackageInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;packageId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.rpb_package.getPackageDetail(Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPackageDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPackageDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.rpb_package.getPackageDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;packageId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.repair.baseData.rpb_package.queryPackage(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPackage&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPackage&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.repair.baseData.rpb_package.queryPackage&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

@@ -1,0 +1,66 @@
+<map>
+  <entry>
+    <string>com.hs.kinginterface.KingInterface.addStore(java.lang.String, java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hs.kinginterface.KingInterface.addStore(String name, String code, String orgNum)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 添加仓库  code要保证唯一&#x0D;
+	&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingInterface.auditSupplier(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;boolean com.hs.kinginterface.KingInterface.auditSupplier(String id)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 审核供应商资料&#x0D;
+&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingInterface.addPart(java.lang.String, java.lang.String, java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hs.kinginterface.KingInterface.addPart(String id, String code, String name, String orgNum)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 添加物料（添加配件基础资料）&#x0D;
+	&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingInterface.addStaff(java.lang.String, java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hs.kinginterface.KingInterface.addStaff(String name, String staffNumber, String orgNum)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 添加员工&#x0D;
+	&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingInterface.submitSupplier(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;boolean com.hs.kinginterface.KingInterface.submitSupplier(String id)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 提交供应商资料&#x0D;
+&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingInterface.addDepartment(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hs.kinginterface.KingInterface.addDepartment(String deptName, String orgNum)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 添加部门资料&#x0D;
+	&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingInterface.addCarPlate(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hs.kinginterface.KingInterface.addCarPlate(String name, String carPlateNumber)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 添加厂牌&#x0D;
+	&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>KingInterface</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.hs.kinginterface.KingInterface&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &lt;dl&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;dlb&lt;/dd&gt;&lt;dt&gt;@date&lt;/dt&gt;&lt;dd&gt;2020-01-08 20:55:19&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingInterface.addSupplier(java.lang.String, java.lang.String, java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hs.kinginterface.KingInterface.addSupplier(String fullName, String supplierId, String shortName, String orgNum)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 添加供应商资料&#x0D;
+	&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingInterface.addVoucher(java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hs.kinginterface.KingInterface.addVoucher(String name, String orgNum)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 添加凭证&#x0D;
+	&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingInterface.addCustom(java.lang.String, java.lang.String, java.lang.String, java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;HashMap com.hs.kinginterface.KingInterface.addCustom(String fullName, String clientId, String shortName, String orgNum)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 添加客户资料&#x0D;
+	&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingInterface.auditCustom(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;boolean com.hs.kinginterface.KingInterface.auditCustom(String id)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 审核客户资料&#x0D;
+&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.kinginterface.KingInterface.submitCustom(java.lang.String)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;boolean com.hs.kinginterface.KingInterface.submitCustom(String id)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 提交客户资料&#x0D;
+&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

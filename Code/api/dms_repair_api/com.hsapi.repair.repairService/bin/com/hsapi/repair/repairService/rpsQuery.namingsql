@@ -1,0 +1,2141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.repair.repairService.rpsQuery">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryMaintainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id AS id,
+			a.guest_id AS guestId,
+			a.contactor_id as contactorId,
+			a.service_code AS serviceCode,
+			a.enter_date AS enterDate,
+			a.no_mt_type as noMtType,
+			a.no_mt_file_sign as noMtFileSign,
+			c.full_name AS guestFullName,
+			c.short_name AS guestShortName,
+			SUBSTRING_INDEX(b.car_model,' ',2) as carModel,
+			a.engine_no as boxNo,
+			a.engine_model as boxModel,
+			a.drive_type as driveType,
+			a.car_brand_id as boxBrandId,
+			a.car_id as carId,
+			a.car_vin AS carVin,
+			a.car_no AS carNo,
+			c.tel AS guestTel,
+			c.mobile AS guestMobile,
+			c.addr as streetAddress,
+			b.car_brand_id AS carBrandId,
+			a.mt_advisor AS mtAdvisor,
+			a.`status` AS `status`,
+			a.service_type_id AS serviceTypeId,
+			a.is_settle AS isSettle,
+			a.is_judge AS isJudge,
+			a.remark AS remark,
+			a.bill_type_id AS billTypeId,
+			d.`name` AS contactName,
+			d.mobile AS contactMobile,
+			a.modifier AS modifier,
+			a.modify_date AS modifyDate,
+			a.recorder AS recorder,
+			a.record_date AS recordDate,
+			a.plan_finish_date AS planFinishDate,
+			a.bala_audit_sign AS balaAuditSign,
+			a.bala_auditor AS balaAuditor,
+			a.bala_audit_date AS balaAuditDate,
+			a.insure_comp_id as insureClaimCompId,
+			a.insure_comp_name as insureClaimCompName,
+			b.insure_comp_name AS insureCompName,
+			a.package_amt AS packageAmt,
+			a.is_check AS isCheck,
+			b.insure_no AS insureNo,
+			b.color AS color,
+			a.enter_oil_mass AS enterOilMass,
+			a.enter_kilometers AS enterKilometers,
+			c.addr AS guestAddr,
+			b.engine_no AS engineNo,
+			b.first_reg_date AS firstRegDate,
+			b.annual_verification_due_date AS annualVerificationDueDate,
+			b.insure_due_date AS insureDueDate,
+			b.annual_inspection_date AS annualInspectionDate,
+			b.annual_inspection_no AS annualInspectionNo,
+			a.part_amt AS partAmt,
+			a.sure_mt_sign as sureMtSign,
+			a.sure_mt_date as sureMtDate,
+			a.sure_mt_man as sureMtMan,
+			a.checker as checker,
+			a.check_sign as checkSign,
+			a.check_date as checkDate,
+			a.draw_out_report as drawOutReport,
+			a.out_date as outDate,
+			a.is_out_bill as isOutBill,
+			a.mt_advisor_id as mtAdvisorId,
+			a.is_disabled as isDisabled,
+			a.guest_desc guestDesc,
+			a.fault_phen faultPhen,
+			a.solve_method solveMethod,
+			d.name as name,
+			a.box_service_type_id as boxServiceTypeId,
+			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
+	       inner join rpb_business_type f on e.service_type_id = f.id
+	       where e.service_id = a.id) as serviceTypeName,
+	       d.wechat_open_id as openId,
+			a.part_audit_sign as partAuditSign,
+			a.is_part_notice as isPartNotice
+		FROM
+			rps_maintain a
+			inner JOIN rpb_car b ON ( a.car_id = b.id )
+		  	INNER JOIN wb_common.com_guest c on a.guest_id = c.id
+			inner join rpb_contactor d on (a.contactor_id = d.id and c.id = d.guest_id)
+		WHERE 1 = 1
+			and a.orgid = #orgid#
+		<dynamic>
+            <isNotEmpty prepend="and" property="rid">(a.id = #rid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="noMtType">(a.no_mt_type = #noMtType#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="noMtFileSign">(a.no_mt_file_sign = #noMtFileSign#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isDisabled">(a.is_disabled = #isDisabled#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carId">(a.car_id = #carId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAuditorId">(a.mt_advisor_id = #mtAuditorId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAuditor">(a.mt_advisor = #mtAuditor#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="engineNo">(a.engine_no = #engineNo#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="engineModel">(a.engine_model = #engineModel#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="status">(a.status = #status#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isSettle">(a.is_settle = #isSettle#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="balaAuditSign">(a.bala_audit_sign = #balaAuditSign#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="statusList">(a.status in ($statusList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNoEqual">(a.car_no = #carNoEqual#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">(a.car_no like '%$carNo$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceCode">(a.service_code like '%$serviceCode$%')</isNotEmpty>
+            <!--进厂日期 -->
+            <isNotEmpty prepend="and" property="sEnterDate">(a.enter_date &gt;= #sEnterDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eEnterDate">(a.enter_date &lt; #eEnterDate#)</isNotEmpty>
+            <!--开单日期 -->
+            <isNotEmpty prepend="and" property="sRecordDate">(a.record_date &gt;= #sRecordDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eRecordDate">(a.record_date &lt; #eRecordDate#)</isNotEmpty>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="sOutDate">(a.out_date &gt;= #sOutDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eOutDate">(a.out_date &lt; #eOutDate#)</isNotEmpty>
+            <!--预计完工日期 -->
+            <isNotEmpty prepend="and" property="sPlanFinishDate">(a.plan_finish_date &gt;= #sPlanFinishDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="ePlanFinishDate">(a.plan_finish_date &lt; #ePlanFinishDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="billTypeId">(a.bill_type_id = #billTypeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="notBillTypeId">(a.bill_type_id != #notBillTypeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeId">(a.service_type_id = #serviceTypeId#)</isNotEmpty>
+            <!--是否出库-->
+            <isNotEmpty prepend="and" property="isCheck">(a.is_check= #isCheck#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeIdList">exists(
+					select 1 from wb_repair.rps_service_type g 
+					where a.id = g.service_id and (g.service_type_id in ($serviceTypeIdList$))
+				)</isNotEmpty>
+            <isNotEmpty prepend="and" property="vin">(a.car_vin like '%$vin$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="tel">(c.tel like '%$tel$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">(c.mobile like '%$mobile$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="name">(c.full_name like '%$name$%')</isNotEmpty>
+        </dynamic>  
+        order by a.record_date desc
+	</select>
+    <select id="querySellMaintainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id AS id,
+			a.guest_id AS guestId,
+			a.contactor_id as contactorId,
+			a.service_code AS serviceCode,
+			a.enter_date AS enterDate,
+			c.full_name AS guestFullName,
+			c.short_name AS guestShortName,
+			a.engine_no as boxNo,
+			a.engine_model as boxModel,
+			a.drive_type as driveType,
+			a.car_brand_id as boxBrandId,
+			a.car_id as carId,
+			a.car_vin AS carVin,
+			a.car_no AS carNo,
+			c.tel AS guestTel,
+			c.mobile AS guestMobile,
+			a.mt_advisor AS mtAdvisor,
+			a.`status` AS `status`,
+			a.service_type_id AS serviceTypeId,
+			a.is_settle AS isSettle,
+			a.is_judge AS isJudge,
+			a.remark AS remark,
+			a.bill_type_id AS billTypeId,
+			a.part_audit_sign AS partAuditSign,
+			d.`name` AS contactName,
+			d.mobile AS contactMobile,
+			a.modifier AS modifier,
+			a.modify_date AS modifyDate,
+			a.recorder AS recorder,
+			a.record_date AS recordDate,
+			a.plan_finish_date AS planFinishDate,
+			a.bala_audit_sign AS balaAuditSign,
+			a.bala_auditor AS balaAuditor,
+			a.bala_audit_date AS balaAuditDate,
+			a.insure_comp_id as insureClaimCompId,
+			a.insure_comp_name as insureClaimCompName,
+			a.package_amt AS packageAmt,
+			a.is_check AS isCheck,
+			a.enter_oil_mass AS enterOilMass,
+			a.enter_kilometers AS enterKilometers,
+			c.addr AS guestAddr,
+			a.part_amt AS partAmt,
+			a.sure_mt_sign as sureMtSign,
+			a.sure_mt_date as sureMtDate,
+			a.sure_mt_man as sureMtMan,
+			a.checker as checker,
+			a.check_sign as checkSign,
+			a.check_date as checkDate,
+			a.draw_out_report as drawOutReport,
+			a.out_date as outDate,
+			a.is_out_bill as isOutBill,
+			a.mt_advisor_id as mtAdvisorId,
+			a.is_disabled as isDisabled,
+			a.guest_desc guestDesc,
+			a.fault_phen faultPhen,
+			a.solve_method solveMethod,
+			d.name as name,
+			a.box_service_type_id as boxServiceTypeId,
+			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
+	       inner join rpb_business_type f on e.service_type_id = f.id
+	       where e.service_id = a.id) as serviceTypeName,
+	       d.wechat_open_id as openId
+		FROM
+			rps_maintain a
+		  	INNER JOIN wb_common.com_guest c on a.guest_id = c.id
+			inner join rpb_contactor d on (a.contactor_id = d.id and c.id = d.guest_id)
+		WHERE 1 = 1
+			and a.orgid = #orgid#
+			and   a.is_disabled = 0
+		<dynamic>
+            <isNotEmpty prepend="and" property="rid">(a.id = #rid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isDisabled">(a.is_disabled = #isDisabled#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carId">(a.car_id = #carId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAuditorId">(a.mt_advisor_id = #mtAuditorId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAuditor">(a.mt_advisor = #mtAuditor#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="engineNo">(a.engine_no = #engineNo#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="engineModel">(a.engine_model = #engineModel#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="status">(a.status = #status#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isSettle">(a.is_settle = #isSettle#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="balaAuditSign">(a.bala_audit_sign = #balaAuditSign#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="statusList">(a.status in ($statusList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNoEqual">(a.car_no = #carNoEqual#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">(a.car_no like '%$carNo$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceCode">(a.service_code like '%$serviceCode$%')</isNotEmpty>
+            <!--进厂日期 -->
+            <isNotEmpty prepend="and" property="sEnterDate">(a.enter_date &gt;= #sEnterDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eEnterDate">(a.enter_date &lt; #eEnterDate#)</isNotEmpty>
+            <!--开单日期 -->
+            <isNotEmpty prepend="and" property="sRecordDate">(a.record_date &gt;= #sRecordDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eRecordDate">(a.record_date &lt; #eRecordDate#)</isNotEmpty>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="sOutDate">(a.out_date &gt;= #sOutDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eOutDate">(a.out_date &lt; #eOutDate#)</isNotEmpty>
+            <!--预计完工日期 -->
+            <isNotEmpty prepend="and" property="sPlanFinishDate">(a.plan_finish_date &gt;= #sPlanFinishDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="ePlanFinishDate">(a.plan_finish_date &lt; #ePlanFinishDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="billTypeId">(a.bill_type_id = #billTypeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeId">(a.service_type_id = #serviceTypeId#)</isNotEmpty>
+            <!--是否出库-->
+            <isNotEmpty prepend="and" property="isCheck">(a.is_check= #isCheck#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeIdList">exists(
+					select 1 from wb_repair.rps_service_type g 
+					where a.id = g.service_id and (g.service_type_id in ($serviceTypeIdList$))
+				)</isNotEmpty>
+            <isNotEmpty prepend="and" property="vin">(a.car_vin like '%$vin$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="tel">(c.tel like '%$tel$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">(c.mobile like '%$mobile$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="name">(c.full_name like '%$name$%')</isNotEmpty>
+        </dynamic>  
+        order by a.record_date desc
+	</select>
+    <select id="getMaintainById" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id id,
+			a.status status,
+			a.mt_advisor mtAuditor,
+			a.service_code serviceCode,
+			a.car_no carNo,
+			b.car_brand_id carBrandId,
+			a.service_type_id serviceTypeId,
+			<!--a.mt_type mtType,-->
+			a.mt_advisor_id mtAdvisorId,
+			a.mt_advisor mtAdvisor,
+			a.enter_oil_mass enterOilMass,
+			a.enter_kilometers enterKilometers,
+			a.enter_date enterDate,
+			<!--a.quote_date quoteDate,-->
+			a.sure_mt_date sureMtDate,
+			a.check_date checkDate,
+			a.plan_finish_date planFinishDate,
+			<!--a.service_card serviceCard,--><!--a.is_car_wash isCarWash,-->			
+			a.remark remark,
+			a.guest_desc guestDesc,
+			a.fault_phen faultPhen,
+			a.solve_method solveMethod,
+			a.car_vin carVin,
+			b.car_model carModel,
+			b.engine_no engineNo,
+			d.name contactorName,
+			d.identity identity,
+			d.mobile mobile,
+			a.guest_id guestId,
+			a.contactor_id contactorId,
+			a.car_id carId,
+			<!--a.part_audit_sign partAuditSign,-->
+			a.draw_out_report drawOutReport,
+			<!--a.out_bill_sign outBillSign,
+			a.out_enter_date outEnterDate,
+			a.out_leave_date outLeaveDate,
+			a.out_print_date outPrintDate,-->
+			a.out_date outDate,
+			a.comp_come_times compComeTimes,
+			d.wechat_open_id as openId
+		FROM
+			rps_maintain a
+			inner JOIN rpb_car b ON ( a.car_id = b.id )
+			inner join rpb_contactor d on (a.contactor_id = d.id)
+		WHERE
+			a.id = #id# 
+	</select>
+    <select id="queryRpsPrebook" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id as id,
+			a.orgid as orgid,
+			a.service_code as serviceCode,
+			a.guest_id as guestId,
+			a.car_id as carId,
+			a.car_no as carNo,
+			a.service_type_id as serviceTypeId,
+			a.mt_advisor_id as mtAdvisorId,
+			a.mt_advisor as mtAdvisor,
+			SUBSTRING_INDEX(a.car_model,' ',2) as carModel,
+			a.contactor_id as contactorId,
+			a.contactor_name as contactorName,
+			a.contactor_tel as contactorTel,
+			a.predict_come_date as predictComeDate,
+			a.prebook_source as prebookSource,
+			a.prebook_category as prebookCategory,
+			a.item_id as itemId,
+			a.item_name as itemName,
+			a.item_type as itemType,
+			a.`status` as status,
+			a.is_open_bill as isOpenBill,
+			a.is_judge as isJudge,
+			a.file_type as fileType,
+			a.file_remark as fileRemark,
+			a.fault_desc as faultDesc,
+			a.is_push as isPush,
+			a.push_comp_code as pushCompCode,
+			a.push_comp_name as pushCompName,
+			a.remark as remark,
+			a.recorder as recorder,
+			a.recorder_id recorderId,
+			a.record_date as recordDate,
+			a.modifier as modifier,
+			a.modify_date as modifyDate,
+			c.wechat_open_id as wechatOpenId,
+			c.wechat_service_id wechatServiceId
+			FROM
+				rps_prebook a
+				left join rpb_contactor c on (a.contactor_id = c.id)
+			WHERE 1 = 1
+			and a.orgid = #orgid#
+		<dynamic>
+            <isNotEmpty prepend="and" property="status">(a.status = #status#)</isNotEmpty>
+            <isNull prepend="" property="predictComeDate">
+                <isNotEmpty prepend="and" property="startDate">(a.record_date &gt;= #startDate#)</isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">(a.record_date &lt; #endDate#)</isNotEmpty>
+            </isNull>
+            <isNotNull prepend="" property="predictComeDate">
+                <isNotEmpty prepend="and" property="startDate">(a.predict_come_date &gt;= #startDate#)</isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">(a.predict_come_date &lt; #endDate#)</isNotEmpty>
+            </isNotNull>
+            <isNotEmpty prepend="and" property="contactorName">(a.contactor_name like '%$contactorName$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="contactorTel">(a.contactor_tel like '%$contactorTel$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAuditorId">(a.mt_advisor_id = #mtAuditorId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAuditor">(a.mt_advisor = #mtAuditor#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAdvisorId">(a.mt_advisor_id = #mtAdvisorId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAdvisor">(a.mt_advisor = #mtAdvisor#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isOpenBill">(a.is_open_bill = #isOpenBill#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isJudge">(a.is_judge = #isJudge#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">(a.car_no like '%$carNo$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="prebookSource">(a.prebook_source = #prebookSource#)</isNotEmpty>
+        </dynamic>  
+        order by a.modify_date desc
+	</select>
+    <select id="getRpsItemByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.service_id serviceId,
+			a.item_id itemId,
+			a.item_name itemName,
+			a.item_code itemCode,
+			a.amt amt,
+			<!--a.rece_type_id receTypeId,-->
+			a.item_time itemTime,
+			<!--a.item_kind itemKind,-->
+			a.status status,
+			a.unit_price unitPrice,
+			a.rate/100.0 rate,
+			a.discount_amt discountAmt,
+			a.subtotal subtotal,
+			<!--a.class_name className,--><!--a.worker worker,-->
+			a.begin_date beginDate,
+			a.finish_auditor finishAuditor,
+			a.finish_date finishDate,
+			a.remark
+		FROM
+			rps_item a
+		WHERE
+			a.service_id = #serviceId#
+		<dynamic>
+            <isNull prepend="and" property="withPkg">(ifnull(a.package_id,'') = '')</isNull>
+        </dynamic>
+    </select>
+    <select id="getRpsItemQuoteByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			a.service_id serviceId,
+			a.item_id itemId,
+			a.item_name itemName,
+			a.item_code itemCode,
+			a.amt amt,
+			a.rece_type_id receTypeId,
+			a.item_time itemTime,
+			a.item_kind itemKind,
+			a.status status,
+			a.unit_price unitPrice,
+			a.rate/100.0 rate,
+			a.subtotal subtotal
+		FROM
+			rps_item_quote a
+		WHERE
+			a.service_id = #serviceId#
+		and ifnull(a.package_id,'') = ''</select>
+    <select id="getRpsPartByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.service_id serviceId,
+			a.part_id partId,
+			a.part_name partName,
+			a.part_name_id partNameId,
+			a.part_brand_id partBrandId,
+			a.unit unit,
+			a.part_code partCode,
+			a.amt amt,
+			<!--a.rece_type_id receTypeId,-->
+			a.qty qty,
+			a.status status,
+			a.unit_price unitPrice,
+			a.rate/100.0 rate,
+			a.subtotal subtotal,
+			a.discount_amt discountAmt
+		FROM
+			rps_part a
+		WHERE
+			a.service_id = #serviceId#
+			and a.status &lt; 11
+		<dynamic>
+            <isNull prepend="and" property="withPkg">(ifnull(a.package_id,'') = '')</isNull>
+        </dynamic>
+    </select>
+    <select id="getRpsPartQuoteByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.service_id serviceId,
+			a.part_id partId,
+			a.part_name partName,
+			a.part_name_id partNameId,
+			a.part_brand_id partBrandId,
+			a.unit unit,
+			a.part_code partCode,
+			a.amt amt,
+			a.rece_type_id receTypeId,
+			a.qty qty,
+			a.status status,
+			a.unit_price unitPrice,
+			a.rate/100.0 rate,
+			a.subtotal subtotal
+		FROM
+			rps_part_quote a
+		WHERE
+			a.service_id = #serviceId#
+		<dynamic>
+            <isNull prepend="and" property="withPkg">(ifnull(a.package_id,'') = '')</isNull>
+        </dynamic>
+    </select>
+    <select id="getRpsPackageByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			a.id id,
+			a.service_id serviceId,
+			a.package_name packageName,
+			a.status status,
+			a.pkgamt pkgamt,
+			a.amt amt,
+			a.amt4s amt4s,
+			a.rate rate,
+			a.discount_amt discountAmt,
+			a.subtotal subtotal,
+			a.remark remark
+		FROM
+			rps_package a
+		WHERE
+			a.service_id = #serviceId#</select>
+    <select id="getRpsPackageDetailByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			a.item_name name,
+			a.item_time qty,
+			a.remark remark,
+			'工时' typeName 
+		FROM
+			rps_item_quote a 
+		WHERE
+			a.service_id = #serviceId#
+			AND a.package_id = #packageId# UNION
+		SELECT
+			a.part_name name,
+			a.qty qty,
+			a.remark remark,
+			'配件' typeName 
+		FROM
+			rps_part_quote a 
+		WHERE
+			a.service_id = #serviceId#
+			AND a.package_id = #packageId#</select>
+    <select id="getRpsItemQuoteByPkdId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			a.service_id serviceId,
+			a.item_id itemId,
+			a.item_name itemName,
+			a.item_code itemCode,
+			a.amt amt,
+			a.rece_type_id receTypeId,
+			a.item_time itemTime,
+			a.item_kind itemKind,
+			a.status status,
+			a.unit_price unitPrice,
+			a.rate rate,
+			a.subtotal subtotal,
+			a.item_is_need itemIsNeed,
+			a.discount_amt discountAmt
+		FROM
+			rps_item_quote a
+		WHERE
+			a.package_id = #packageId#</select>
+    <select id="getRpsPartQuoteByPkgId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			a.service_id serviceId,
+			a.part_id partId,
+			a.part_name partName,
+			a.part_name_id partNameId,
+			a.part_brand_id partBrandId,
+			a.unit unit,
+			a.part_code partCode,
+			a.amt amt,
+			a.qty qty,
+			a.status status,
+			a.unit_price unitPrice,
+			a.rate rate,
+			a.subtotal subtotal,
+			a.part_is_need partIsNeed,
+			a.discount_amt discountAmt
+		FROM
+			rps_part_quote a
+		WHERE
+			a.package_id = #packageId#</select>
+    <select id="getRpsItemQuoteToItem" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsItem">SELECT
+			a.service_id serviceId,
+			a.item_id itemId,
+			a.item_code itemCode,
+			a.package_id packageId,
+			a.item_name itemName,
+			a.rece_type_id receTypeId,
+			a.item_kind itemKind,
+			a.item_time itemTime,
+			a.unit_price unitPrice,
+			a.amt amt,
+			1 status,
+			a.subtotal subtotal,
+			a.remark remark,
+			a.recorder recorder,
+			now() recordDate,
+			a.recorder modifier,
+			now() modifyDate 
+		FROM
+			rps_item_quote a 
+		WHERE
+			a.item_id NOT IN ( SELECT item_id FROM rps_item WHERE service_id = #serviceId# ) 
+			AND a.service_id = #serviceId#
+			AND ifnull( a.package_id, '' ) = ''</select>
+    <select id="queryLastMaintainByCarNo" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsMaintain">SELECT
+			a.orgid orgid,
+			a.mt_advisor_id mtAdvisorId,
+			a.mt_advisor as mtAdvisor,
+			a.id id
+		FROM
+			rps_maintain a
+		WHERE
+			a.car_id = #carId#
+			AND a.sure_mt_date = ( SELECT MAX( sure_mt_date ) FROM rps_maintain WHERE sure_mt_date &lt; now() AND car_id = #carId# )</select>
+    <select id="getMaintainCountByCarNo" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsItem">SELECT count(1) count FROM rps_maintain WHERE sure_mt_date &lt; now() AND orgid = #orgid# AND car_id = #carId#</select>
+    <select id="getRpsItemQuoteToItemPkg" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsItem">SELECT
+			a.service_id serviceId,
+			a.item_id itemId,
+			a.item_code itemCode,
+			a.package_id packageId,
+			a.item_name itemName,
+			a.rece_type_id receTypeId,
+			a.item_kind itemKind,
+			a.item_time itemTime,
+			a.unit_price unitPrice,
+			a.amt amt,
+			1 status,
+			a.discount_amt discountAmt,
+			a.rate rate,
+			a.subtotal subtotal,
+			a.remark remark,
+			#userName# recorder,
+			now() recordDate,
+			#userName# modifier,
+			now() modifyDate 
+		FROM
+			rps_item_quote a 
+		WHERE
+			a.package_id = #packageId#</select>
+    <select id="getRpsPartQuoteToPartPkg" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsPart">SELECT
+			a.service_id serviceId,
+			a.part_id partId,
+			a.part_code partCode,
+			a.package_id packageId,
+			a.part_name partName,
+			a.part_name_id partNameId,
+			a.part_is_need partIsNeed,
+			a.part_brand_id partBrandId,
+			a.qty qty,
+			a.discount_amt discountAmt,
+			a.rate rate,
+			a.rece_type_id receTypeId,
+			a.unit_price unitPrice,
+			a.amt amt,
+			1 STATUS,
+			a.subtotal subtotal,
+			a.remark remark,
+			#userName# recorder,
+			now() recordDate,
+			#userName# modifier,
+			now() modifyDate 
+		FROM
+			rps_part_quote a 
+		WHERE
+			a.package_id = #packageId#</select>
+    <select id="getRpsItemToBill" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsItemBill">SELECT
+			service_id serviceId,
+			item_id itemId,
+			item_code itemCode,
+			package_id packageId,
+			item_name itemName,
+			rece_type_id receTypeId,
+			item_is_need itemIsNeed,
+			item_kind itemKind, 
+			item_time itemTime,
+			unit_price unitPrice,
+			amt amt,
+			rate rate,
+			discount_amt discountAmt,
+			subtotal subtotal,
+			status status,
+			remark remark,
+			recorder,
+			record_date recordDate,
+			modifier,
+			modify_date modifyDate
+		FROM
+			rps_item 
+		WHERE
+			service_id = #serviceId#</select>
+    <select id="getRpsPartToBill" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsPartBill">SELECT
+			service_id serviceId,
+			part_id partId,
+			part_code partCode,
+			package_id packageId,
+			part_name partName,
+			rece_type_id receTypeId,
+			part_is_need partIsNeed,
+			qty qty,
+			unit_price unitPrice,
+			unit,
+			amt,
+			rate,
+			discount_amt discountAmt,
+			subtotal,
+			remark,
+			recorder,
+			record_date recordDate,
+			modifier,
+			modify_date modifyDate
+		FROM
+			rps_part 
+		WHERE
+			service_id = #serviceId#
+			AND is_disabled = 0</select>
+    <select id="getRpsItemBillByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			a.service_id serviceId,
+			a.item_id itemId,
+			a.item_name itemName,
+			a.item_code itemCode,
+			a.amt amt,
+			a.rece_type_id receTypeId,
+			a.item_time itemTime,
+			a.item_kind itemKind,
+			a.status status,
+			a.unit_price unitPrice,
+			a.rate/100.0 rate,
+			a.discount_amt discountAmt,
+			a.subtotal subtotal,
+			a.remark
+		FROM
+			rps_item_bill a
+		WHERE
+			a.service_id = #serviceId#
+			AND ifnull( a.package_id, '' ) = ''</select>
+    <select id="getRpsPartBillByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			a.service_id serviceId,
+			a.part_id partId,
+			a.part_name partName,
+			a.part_name_id partNameId,
+			a.part_brand_id partBrandId,
+			a.unit unit,
+			a.part_code partCode,
+			a.amt amt,
+			a.rece_type_id receTypeId,
+			a.qty qty,
+			a.status status,
+			a.unit_price unitPrice,
+			a.rate/100.0 rate,
+			a.subtotal subtotal,
+			a.discount_amt discountAmt
+		FROM
+			rps_part_bill a
+		WHERE
+			a.service_id = #serviceId#
+			AND ifnull( a.package_id, '' ) = ''</select>
+    <select id="billqueryMaintainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id as id,
+			a.guest_id as guestId,
+			a.contactor_id as contactorId,
+			a.service_code as serviceCode,
+			a.enter_date as enterDate,
+			c.full_name as guestFullName,
+			c.short_name as guestShortName,
+			b.car_model as carModel,
+			a.car_vin as carVin,
+			a.car_no as carNo,
+			c.tel as guestTel,
+			c.mobile as guestMobile,
+			b.car_brand_id as carBrandId,
+			a.mt_advisor as mtAdvisor,
+			a.status as status,
+			a.service_type_id as serviceTypeId,
+			a.is_settle as isSettle,
+			a.is_judge as isJudge,
+			a.remark as remark,
+			a.bill_type_id as billTypeId,
+			d.name as contactName,
+			d.mobile as contactMobile,
+			a.modifier as modifier, 
+			a.modify_date as modifyDate, 
+			a.recorder as recorder, 
+			a.record_date as recordDate,
+			a.out_date as outDate,
+			a.plan_finish_date as planFinishDate,
+			b.insure_comp_name as insureCompName,
+			a.package_amt as packageAmt,
+			b.insure_no as insureNo,
+			b.color as color,
+			a.enter_oil_mass as enterOilMass,
+			a.enter_kilometers as enterKilometers,
+			c.addr as guestAddr,
+			b.engine_no as engineNo,
+			b.first_reg_date as firstRegDate,
+			b.annual_verification_due_date as annualVerificationDueDate,
+			b.insure_due_date as insureDueDate,
+			b.annual_inspection_date as annualInspectionDate,
+			b.annual_inspection_no as annualInspectionNo,
+			a.part_amt as partAmt,
+			d.wechat_open_id as openId,
+			a.part_audit_sign as partAuditSign
+		FROM
+			rps_maintain a
+			inner JOIN rpb_car b ON ( a.car_id = b.id )
+		  	INNER JOIN wb_common.com_guest c on a.guest_id = c.id
+			inner join rpb_contactor d on (a.contactor_id = d.id and b.guest_id = d.guest_id)
+		WHERE
+			a.orgid = #orgid#
+		<dynamic>
+            <isNotEmpty prepend="and" property="rid">(a.id = #rid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carId">(a.car_id = #carId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAuditor">(a.mt_advisor = #mtAuditor#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="status">(a.status = #status#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isSettle">(a.is_settle = #isSettle#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="statusList">(a.status in ($statusList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNoEqual">(a.car_no = #carNoEqual#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">(a.car_no like '%$carNo$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceCode">(a.service_code like '%$serviceCode$%')</isNotEmpty>
+            <!--进厂日期 -->
+            <isNotEmpty prepend="and" property="sEnterDate">(a.enter_date &gt;= #sEnterDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eEnterDate">(a.enter_date &lt; #eEnterDate#)</isNotEmpty>
+            <!--开单日期 -->
+            <isNotEmpty prepend="and" property="sRecordDate">(a.record_date &gt;= #sRecordDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eRecordDate">(a.record_date &lt; #eRecordDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="billTypeId">(a.bill_type_id = #billTypeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeId">(a.service_type_id = #serviceTypeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeIdList">(a.service_type_id in ($serviceTypeIdList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="vin">(a.car_vin like '%$vin$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="tel">(c.tel like '%$tel$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="name">(c.full_name like '%$name$%')</isNotEmpty>
+        </dynamic>  
+        order by a.modify_date desc
+	</select>
+    <select id="queryLastCheckMain" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+   
+	    select a.id as id,
+				a.service_id as serviceId,
+				a.car_id as carId,
+				a.car_no as carNo,
+				a.check_main_id  as checkMainId,
+				a.check_main_name as checkMainName,
+				a.check_status as checkStatus,
+				a.enter_kilometers as enterKilometers,
+				a.last_kilometers as lastKilometers,
+				a.mt_advisor_id as mtAdvisorId,
+				a.mt_advisor as mtAdvisor,
+				a.check_man_id as checkManId,
+				a.check_man AS checkMan,
+				a.check_date AS checkDate,
+				a.is_finish AS isFinish,
+				a.finish_date AS finishDate,
+				a.check_point AS checkPoint,
+				a.last_point AS lastPoint,
+				a.repair_advice AS repairAdvice,
+				a.part_advice AS partAdvice,
+				a.remark AS remark,
+				a.recorder AS recorder,
+				a.record_date AS recordDate,
+				a.modifier AS modifier,
+				a.modify_date AS modifyDate
+	    from rps_check_main A
+		where 1=1
+		
+		<isNotEmpty prepend="and" property="carNo">A.car_no = #carNo#</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">A.record_date &lt;  #endDate#</isNotEmpty>
+		ORDER BY record_date DESC
+		limit 1
+   	 </select>
+    <select id="queryCheckMainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+   		   	SELECT
+			A.id as id,
+			A.tenant_id as tenantId,
+			A.orgid as orgid,
+			A.datekey as datekey,
+			A.service_code as serviceCode,
+			A.service_id as serviceId,
+			A.guest_id as guestId,
+			A.contactor_id as contactorId,
+			A.car_id as carId,
+			A.car_no as carNo,
+			A.car_vin as carVin,
+			SUBSTRING_INDEX(b.car_model,' ',2) as carModel,
+			A.check_main_id as checkMainId,
+			A.check_main_name as checkMainName,
+			A.check_status as checkStatus,
+			A.enter_kilometers as enterKilometers,
+			A.last_kilometers as lastKilometers,
+			A.last_check_date as lastCheckDate,
+			A.mt_advisor_id as mtAdvisorId,
+			A.mt_advisor AS mtAdvisor,
+			A.check_man_id AS checkManId,
+			A.check_man AS checkMan,
+			A.check_date AS checkDate,
+			A.is_finish AS isFinish,
+			A.finish_date AS finishDate,
+			A.check_point AS checkPoint,
+			A.last_point AS lastPoint,
+			A.repair_advice AS repairAdvice,
+			A.part_advice AS partAdvice,
+			A.remark AS remark,
+			A.recorder as recorder,
+			A.record_date as recordDate,
+			A.modifier as modifier,
+			A.modify_date as modifyDate
+			from rps_check_main A
+						 inner join rpb_car b on b.id = A.car_id
+			where A.orgid = #orgid# 
+			
+			<isNotEmpty prepend="and" property="carNo">A. car_no like '%$carNo$%'</isNotEmpty>
+        <isNotEmpty prepend="and" property="serviceCode">a.service_code like '%$serviceCode$%'</isNotEmpty>
+        <isNotEmpty prepend="and" property="sRecordDate">(a.record_date &gt;= #sRecordDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eRecordDate">(a.record_date &lt; #eRecordDate#)</isNotEmpty>
+            
+			ORDER BY A.record_date desc
+      </select>
+    <select id="queryRpsPickMain" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+   		   	select 
+				a.id as id,
+				a.datekey as datekey,
+				a.service_code as serviceCode,
+				a.service_id as serviceId,
+				a.guest_id as guestId,
+				a.contactor_id as contactorId,
+				a.car_id as carId,
+				a.car_no as carNo,
+				a.car_vin as carVin,
+				a.enter_kilometers as enterKilometers,
+				a.enter_oil_mass as enterOilMass,
+				a.mt_advisor_id as mtAdvisorId,
+				a.mt_advisor as mtAdvisor,
+				a.`status` as `status`,
+				a.fault_phen as faultPhen,
+				a.old_part_settle as oldPartSettle,
+				a.diagnose_result as diagnoseResult,
+				a.repair_suggest as repairSuggest,
+				a.part_suggest as partSuggest,
+				a.goods as goods,
+				a.remark as remark,
+				a.recorder as recorder,
+				a.record_date as recordDate,
+				a.modifier as modifier,
+				C.mobile guestMobile ,
+				C.name  guestFullName,
+				SUBSTRING_INDEX(d.car_model,' ',2) as carModel,
+				c.wechat_open_id as openId
+			 from rps_pick_main A
+			 LEFT JOIN rps_maintain B on B.id = A.service_id
+			 inner join rpb_contactor C on C.id = A.contactor_id
+			 inner join rpb_car D on D.id = A.car_id
+			where 1=1
+			<isNotEmpty prepend="and" property="orgid">A.orgid = #orgid#</isNotEmpty>
+        <isNotEmpty prepend="and" property="carNo">A. car_no like '%$carNo$%'</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestName">C.name like '%$guestName$%'</isNotEmpty>
+        <isNotEmpty prepend="and" property="serviceCode">B.service_code like '%$serviceCode$%'</isNotEmpty>
+        <isNotEmpty prepend="and" property="sRecordDate">(a.record_date &gt;= #sRecordDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eRecordDate">(a.record_date &lt; #eRecordDate#)</isNotEmpty>
+            
+			ORDER BY A.record_date desc
+      </select>
+    <select id="getRpsPartByMaintainGuestId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+    	    a.id id,
+			a.service_id serviceId,
+			a.part_id partId,
+			a.part_name partName,
+			a.part_name_id partNameId,
+			a.part_brand_id partBrandId,
+			a.unit unit,
+			a.part_code partCode,
+			a.amt amt,
+			a.subtotal subtotal,
+			a.qty qty,
+			a.status status,
+			a.unit_price unitPrice,
+			a.rate*100.0 rate,
+			a.subtotal subtotal,
+			a.discount_amt discountAmt,
+			a.sale_man_id saleManId,
+			a.sale_man saleMan,
+			a.record_date recordDate,
+			a.out_return_qty outReturnQty,
+			a.detail_id detailId,
+			a.pick_qty pickQty,
+			b.service_code  serviceCode,
+			a.part_brand_id partBrandId,
+			a.card_detail_id cardDetailId,
+			a.source_id sourceId
+		FROM
+			rps_part a
+			inner JOIN rps_maintain b ON (a.service_id = b.id )
+		WHERE
+			b.orgid = #orgid#
+			AND b.is_settle = 1
+			AND b.guest_id = #guestId#	
+			AND a.pick_qty &gt; a.out_return_qty
+			AND a.detail_id = 0
+			<dynamic>
+            <isNotEmpty prepend="and" property="serviceCode">(b.service_code = #serviceCode#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(a.part_code = #partCode#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">(a.part_name = #partName#)</isNotEmpty>
+        </dynamic>
+    </select>
+    <select id="queryComprehensive" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id AS id,
+			a.orgid as orgid,
+			a.bill_type_id AS billTypeId,
+			a.service_type_id AS serviceTypeId,
+			a.service_code AS serviceCode,
+			a.guest_id AS guestId,
+			a.contactor_id as contactorId,
+			a.car_id AS carId,
+			a.car_vin AS carVin,
+			a.car_no AS carNo,	
+			a.enter_date AS enterDate,
+			a.sure_mt_sign as sureMtSign,
+			a.sure_mt_date as sureMtDate,
+			a.sure_mt_man as sureMtMan,
+			a.checker as checker,
+			a.check_sign as checkSign,
+			a.check_date as checkDate,
+			a.draw_out_report as drawOutReport,
+			a.out_date as outDate,
+			a.collect_money_date as collectMoneyDate,
+			a.is_out_bill as isOutBill,
+			a.mt_advisor_id as mtAdvisorId,
+			a.is_disabled as isDisabled,
+			a.enter_oil_mass AS enterOilMass,
+			a.enter_kilometers AS enterKilometers,
+			a.mt_advisor AS mtAdvisor,
+			a.`status` AS `status`,
+			a.is_settle AS isSettle,
+			a.is_collect_money as isCollectMoney,			
+			a.is_judge AS isJudge,
+			a.remark AS remark,
+			a.modifier AS modifier,
+			a.modify_date AS modifyDate,
+			a.recorder AS recorder,
+			a.record_date AS recordDate,
+			a.plan_finish_date AS planFinishDate,
+			a.bala_audit_sign AS balaAuditSign,
+			a.bala_auditor AS balaAuditor,
+			a.bala_audit_date AS balaAuditDate,
+			a.is_check AS isCheck,
+			SUBSTRING_INDEX(b.car_model,' ',2) as carModel,
+			b.car_brand_id AS carBrandId,
+			b.insure_comp_name AS insureCompName,
+			b.insure_no AS insureNo,
+			b.engine_no AS engineNo,
+			b.first_reg_date AS firstRegDate,
+			b.annual_verification_due_date AS annualVerificationDueDate,
+			b.insure_due_date AS insureDueDate,
+			b.annual_inspection_date AS annualInspectionDate,
+			b.annual_inspection_no AS annualInspectionNo,
+			b.color AS color,
+			c.full_name AS guestFullName,
+			c.short_name AS guestShortName,
+			c.tel AS guestTel,
+			c.mobile AS guestMobile,
+			c.addr AS guestAddr,
+			c.guest_property guestProperty,	
+			d.package_amt AS packageAmt,
+			d.package_pref_amt AS packagePrefAmt,
+			d.package_subtotal AS packageSubtotal,
+			d.item_total_amt AS itemAmt,
+			d.item_pref_amt AS itemPrefAmt,
+			d.item_subtotal AS itemSubtotal,
+			d.part_total_amt AS partAmt,
+			d.part_pref_amt AS partPrefAmt,
+			d.part_subtotal AS partSubtotal,
+            d.package_subtotal+d.item_subtotal +d.part_subtotal as total,
+			d.other_amt AS otherAmt,
+			d.package_subtotal+d.item_subtotal+d.part_subtotal+d.other_amt AS incomeTotal,
+			d.allowance_amt as allowanceAmt,
+			d.card_times_amt AS cardTimesAmt,
+			d.total_pref_amt AS totalPrefAmt,
+			d.bala_amt AS balaAmt,		
+			d.other_cost_amt AS otherCostAmt,
+			d.part_true_cost AS partTrueCost,
+			d.part_no_tax_cost AS partNoTaxCost,
+			d.part_tax_cost AS partTaxCost,
+			d.tech_deduct_value AS techDeductValue,
+			d.sales_deduct_value AS salesDeductValue,
+			d.advisor_deduct_value AS advisorDeductValue,
+			
+			d.advisor_deduct_value+d.sales_deduct_value+d.tech_deduct_value+d.part_true_cost+d.other_cost_amt AS expenditureTotal,
+			
+			d.total_deduct_amt AS totalDeductAmt,
+			d.gross_profit AS grossProfit,
+			d.gross_profit_rate AS grossProfitRate,
+			d.gross_profit_remark AS grossProfitRemark,
+			d.netin_amt AS netinAmt,
+			d.total_pref_rate AS totalPrefRate,
+			a.engine_model as engineModel,
+			a.engine_no as boxNo,
+			a.engine_model as boxModel,
+			a.drive_type as driveType,
+			b.file_no as fileNo,
+			e.name contactorName,
+			<!--(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
+	       inner join rpb_business_type f on e.service_type_id = f.id
+	       where e.service_id = a.id) as serviceTypeName-->
+	       	(select GROUP_CONCAT(name) from rpb_business_type f 	       
+	       where a.service_type_id = f.id) as serviceTypeName
+		FROM
+			rps_maintain a
+			inner JOIN rpb_car b ON ( a.car_id = b.id )
+		  	INNER JOIN wb_common.com_guest c on a.guest_id = c.id
+		  	INNER JOIN rpb_contactor e on a.contactor_id = e.id
+			inner join rps_settlement d on (a.id =  d.service_id)
+		WHERE 1 = 1 and a.bill_type_id in (0,2,4,6) and a.is_disabled = 0 and a.is_settle = 1
+			
+      <dynamic>
+            <isNotEmpty prepend="and" property="rid">(a.id = #rid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carModel">(replace(b.car_model_full_name,' ','') like '%$carModel$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="itemId">EXISTS (
+							select 1 from rps_item e 
+								where a.id = e.service_id and e.item_id = #itemId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestProperty">(c.guest_property = #guestProperty#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="propertyFeatures">(c.property_features like '%$propertyFeatures$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="isCollectMoney">(a.is_collect_money = #isCollectMoney#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isCollectMoneys">(a.is_collect_money in ($isCollectMoneys$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="isDisabled">(a.is_disabled = #isDisabled#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carId">(a.car_id = #carId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAuditorId">(a.mt_advisor_id = #mtAuditorId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAuditor">(a.mt_advisor = #mtAuditor#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="status">(a.status = #status#)</isNotEmpty>
+            <!--是否审核，isSettle=1 等于审核-->
+            <isNotEmpty prepend="and" property="isSettle">(a.is_settle = #isSettle#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="balaAuditSign">(a.bala_audit_sign = #balaAuditSign#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="statusList">(a.status in ($statusList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNoEqual">(a.car_no = #carNoEqual#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">(a.car_no like '%$carNo$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="engineNo">(a.engine_no = #engineNo#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="engineModel">(a.engine_model = #engineModel#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceCode">(a.service_code like '%$serviceCode$%')</isNotEmpty>
+            <!--进厂日期 -->
+            <isNotEmpty prepend="and" property="sEnterDate">(a.enter_date &gt;= #sEnterDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eEnterDate">(a.enter_date &lt; #eEnterDate#)</isNotEmpty>
+            <!--出厂日期 -->
+            <isNotEmpty prepend="and" property="outDateStart">(a.out_date &gt;= #outDateStart#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="outDateEnd">(a.out_date &lt; #outDateEnd#)</isNotEmpty>
+            <!--收款日期 -->
+            <isNotEmpty prepend="and" property="collectMoneyDateStart">(a.collect_money_date &gt;= #collectMoneyDateStart#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="collectMoneyDateEnd">(a.collect_money_date &lt; #collectMoneyDateEnd#)</isNotEmpty>
+            <!--开单日期 -->
+            <isNotEmpty prepend="and" property="sRecordDate">(a.record_date &gt;= #sRecordDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eRecordDate">(a.record_date &lt; #eRecordDate#)</isNotEmpty>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="sOutDate">(a.out_date &gt;= #sOutDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eOutDate">(a.out_date &lt; #eOutDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="billTypeId">(a.bill_type_id = #billTypeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="billTypeIds">(a.bill_type_id in ($billTypeIds$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="billTypeIdList">(a.bill_type_id in ($billTypeIdList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeId">(a.service_type_id = #serviceTypeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeIds">(a.service_type_id in ($serviceTypeIds$))</isNotEmpty>
+            <!--是否出库-->
+            <isNotEmpty prepend="and" property="isCheck">(a.is_check= #isCheck#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeIdList">exists(
+					select 1 from wb_repair.rps_service_type g 
+					where a.id = g.service_id and (g.service_type_id in ($serviceTypeIdList$))
+				)</isNotEmpty>
+            <isNotEmpty prepend="and" property="vin">(a.car_vin like '%$vin$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="tel">(c.tel like '%$tel$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">(c.mobile like '%$mobile$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="name">(c.full_name like '%$name$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="contactorMobile">(e.mobile like '%$contactorMobile$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="contactorName">(e.name like '%$contactorName$%')</isNotEmpty>
+        </dynamic> 
+        order by a.out_date asc
+	</select>
+    <select id="WechatQueryComprehensive" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id AS id,
+			a.orgid As orgid,
+			a.tenant_id As tenantId,
+			a.guest_id AS guestId,
+			a.contactor_id as contactorId,
+			a.car_id AS carId,
+			a.car_vin AS carVin,
+			a.car_no AS carNo,
+			d.bala_amt AS balaAmt,
+			a.enter_kilometers AS enterKilometers,
+			c.name AS companyName,
+			a.out_date AS outDate,
+			a.service_code serviceCode
+		FROM
+			rps_maintain a
+		  	INNER JOIN wb_common.com_company c on a.orgid = c.orgid
+			inner join rps_settlement d on (a.id =  d.service_id)
+		WHERE a.guest_id = #guestId#
+		and a.orgid = #orgid#
+		<isNotEmpty prepend="and" property="billTypeIds">(a.bill_type_id in ($billTypeIds$))</isNotEmpty>
+        <isNotEmpty prepend="and" property="isSettle">(a.is_settle = #isSettle#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="isDisabled">(a.is_disabled = #isDisabled#)</isNotEmpty>
+         order by a.out_date desc
+	</select>
+    <select id="queryWorkShopItem" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id AS id,
+			a.enter_date AS enterDate,
+			a.car_no AS carNo,
+			a.mt_advisor AS mtAdvisor,
+			a.`status` AS `status`,
+			a.plan_finish_date AS planFinishDate,
+			a.sure_mt_man as sureMtMan,
+		ifnull((select GROUP_CONCAT(item_name) from wb_repair.rps_item b
+	       where b.service_id = a.id),"") as itemName,
+	    ifnull((select GROUP_CONCAT(package_name) from wb_repair.rps_package c
+	       where c.service_id = a.id),"" )as packageName
+
+		FROM
+			rps_maintain a
+		WHERE 1 = 1
+			and a.orgid = #orgid#
+		<dynamic>
+            <isNotEmpty prepend="and" property="isDisabled">(a.is_disabled = #isDisabled#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isSettle">(a.is_settle = #isSettle#)</isNotEmpty>
+        </dynamic>  
+        order by a.plan_finish_date desc
+	</select>
+    <select id="queryAccount" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			sum(b.bala_amt) as accountAmt
+		FROM
+			rps_maintain a
+			inner join rps_settlement b on (a.id =  b.service_id)
+		WHERE 
+		    a.bala_audit_sign = 0
+		    and a.is_settle = 0
+		    and a.status = 2
+			and a.guest_id = #guestId#</select>
+    <select id="queryFrmAccount" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">SELECT
+			sum(no_char_off_amt) as accountAmt
+		FROM
+			wb_frm.fis_rp_bill a
+		WHERE 
+		    a.settle_status != 2
+		    and a.bill_dc = 1
+		    and a.is_disabled = 0
+			and a.guest_id = #guestId#</select>
+    <select id="queryRpsMaintainInfo" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">select 
+				a.id id,a.orgid orgid,a.bill_type_id billTypeId,a.service_code serviceCode,a.guest_id guestId,a.service_type_id serviceTypeId,
+				a.contactor_id contactorId, a.car_id carId,a.comp_come_times compComeTimes,
+				a.chain_come_times chainComeTimes,a.enter_date enterDate,a.enter_kilometers enterKilometers,
+				a.enter_oil_mass enterOilMass,a.mt_advisor mtAdvisor,a.mt_advisor_id mtAdvisorId,a.status,
+				a.out_date outDate,b.car_brand_id carBrandId,
+			    SUBSTRING_INDEX(b.car_model,' ',2) as carModel,
+				b.engine_no engineNo,
+				b.vin carVin, b.car_no carNo,b.car_type carType,d.name contactorName,d.mobile contactorMobile,d.identity,
+				c.full_name guestFullName,c.short_name guestShortName,c.mobile,
+				a.guest_desc guestDesc,a.fault_phen faultPhen,a.solve_method solveMethod,
+				d.wechat_open_id as openId
+			FROM rps_maintain a
+			inner JOIN rpb_car b on b.id = a.car_id
+			inner JOIN wb_common.com_guest c on c.id = a.guest_id 
+			inner JOIN rpb_contactor d on d.id = a.contactor_id
+			where 1=1 and a.orgid = #orgid#
+				and  a.id = #id#</select>
+    <select id="checkBillPart" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">SELECT 1 FROM rps_part AS a
+            WHERE a.service_id = #serviceId# and a.is_disabled = 0 AND a.pick_qty &lt; a.qty</select>
+    <select id="queryRpbBillModelList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+	        a.id id,
+	        a.bill_type_id billTypeId,
+	        a.service_type_id serviceTypeId,
+	        a.model_name modelName,
+	        a.remark remark,
+	        a.car_series_id carSeriesId,
+	        a.car_brand_id carBrandId,
+	        a.recorder recorder,
+	        a.record_date recordDate,
+	        a.modifier modifier,
+	        a.modify_date modifyDate	
+		FROM
+			rpb_bill_model a
+		WHERE
+			a.orgid = #orgid#
+		<dynamic>
+            <isNotEmpty prepend="and" property="billTypeId">(a.bill_type_id = #billTypeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="billTypeIds">(a.bill_type_id = 1 or a.bill_type_id = 2 or a.bill_type_id = 3)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeId">(a.service_type_id = #serviceTypeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="modelName">(a.model_name like '%$modelName$%')</isNotEmpty>
+            <!--创建日期 -->
+            <isNotEmpty prepend="and" property="sRecordDate">(a.record_date &gt;= #sRecordDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eRecordDate">(a.record_date &lt; #eRecordDate#)</isNotEmpty>
+        </dynamic>  
+        order by a.modify_date desc
+	</select>
+    <!--在厂车辆查询 车辆信息，套餐小计，工时小计，配件小计，查询未结算的-->
+    <select id="queryNotSettleMaintain" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT a.id AS id,
+    		a.orgid AS orgid,
+			a.guest_id AS guestId,
+			a.contactor_id as contactorId,
+			a.service_code AS serviceCode,
+			a.enter_date AS enterDate,
+			c.full_name AS guestFullName,
+			c.short_name AS guestShortName,
+			SUBSTRING_INDEX(b.car_model,' ',2) as carModel,
+			a.car_id as carId,
+			a.car_vin AS carVin,
+			a.car_no AS carNo,
+			c.tel AS guestTel,
+			c.mobile AS guestMobile,
+			c.guest_property guestProperty,	
+			b.car_brand_id AS carBrandId,
+			a.mt_advisor AS mtAdvisor,
+			a.`status` AS `status`,
+			a.bill_type_id AS billTypeId,
+			d.`name` AS contactName, 
+			d.mobile AS contactMobile,
+			a.modifier AS modifier,
+			a.modify_date AS modifyDate,
+			a.recorder AS recorder,
+			a.record_date AS recordDate,
+			a.plan_finish_date AS planFinishDate,
+			a.bala_audit_sign AS balaAuditSign,
+			a.bala_auditor AS balaAuditor,
+			a.bala_audit_date AS balaAuditDate,
+			a.insure_comp_id as insureClaimCompId,
+			a.insure_comp_name as insureClaimCompName,
+			b.insure_comp_name AS insureCompName,
+			a.package_amt AS packageAmt,
+			a.is_check AS isCheck,
+			b.insure_no AS insureNo,
+			b.color AS color,
+			a.enter_oil_mass AS enterOilMass,
+			a.enter_kilometers AS enterKilometers,
+			c.addr AS guestAddr,
+			b.engine_no AS engineNo,
+			b.first_reg_date AS firstRegDate,
+			b.annual_verification_due_date AS annualVerificationDueDate,
+			b.insure_due_date AS insureDueDate,
+			b.annual_inspection_date AS annualInspectionDate,
+			b.annual_inspection_no AS annualInspectionNo,
+			a.part_amt AS partAmt,
+			a.sure_mt_sign as sureMtSign,
+			a.sure_mt_date as sureMtDate,
+			a.sure_mt_man as sureMtMan,
+			a.checker as checker,
+			a.check_sign as checkSign,
+			a.check_date as checkDate,
+			a.out_date as outDate,
+			a.collect_money_date as collectMoneyDate,
+			a.is_out_bill as isOutBill,
+			a.is_settle AS isSettle,
+			a.is_collect_money as isCollectMoney,
+			a.mt_advisor_id as mtAdvisorId,
+			a.guest_desc guestDesc,
+			a.fault_phen faultPhen,
+			a.solve_method solveMethod,		
+	    	d.wechat_open_id as openId,
+			<!--(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
+	       inner join rpb_business_type f on e.service_type_id = f.id
+	       where e.service_id = a.id) as serviceTypeName,-->
+	       	(select GROUP_CONCAT(name) from rpb_business_type f 	       
+	       where a.service_type_id = f.id) as serviceTypeName,
+		      ifnull((SELECT sum(g.subtotal) from rps_package g where a.id = g.service_id and g.is_disabled = 0 ),0) as packageSubtotal,
+		      ifnull((SELECT sum(h.subtotal) from rps_item h where a.id = h.service_id ),0) as itemSubtotal,
+		      ifnull((SELECT sum(i.subtotal) from rps_part i where a.id = i.service_id and i.is_disabled = 0),0) as partSubtotal,
+		      ifnull((SELECT sum(g.subtotal) from rps_package g where a.id = g.service_id),0)+
+		      ifnull((SELECT sum(h.subtotal) from rps_item h where a.id = h.service_id),0)+
+		      ifnull((SELECT sum(i.subtotal) from rps_part i where a.id = i.service_id),0) as total 
+		from rps_maintain a
+		inner JOIN rpb_car b ON ( a.car_id = b.id )
+		INNER JOIN wb_common.com_guest c on a.guest_id = c.id
+		inner join rpb_contactor d on (a.contactor_id = d.id and c.id = d.guest_id)
+
+		where a.is_settle = 0 and a.is_disabled = 0 
+		      and a.bill_type_id in (0,2,4,6)
+		<dynamic>
+            <isNotEmpty prepend="and" property="rid">(a.id = #rid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carModel">(replace(b.car_model_full_name,' ','') like '%$carModel$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="itemId">EXISTS (
+							select 1 from rps_item e 
+								where a.id = e.service_id and e.item_id = #itemId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestProperty">(c.guest_property = #guestProperty#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="propertyFeatures">(c.property_features like '%$propertyFeatures$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="isCollectMoney">(a.is_collect_money = #isCollectMoney#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="carId">(a.car_id = #carId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAuditorId">(a.mt_advisor_id = #mtAuditorId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAuditor">(a.mt_advisor = #mtAuditor#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="status">(a.status = #status#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="balaAuditSign">(a.bala_audit_sign = #balaAuditSign#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNoEqual">(a.car_no = #carNoEqual#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">(a.car_no like '%$carNo$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceCode">(a.service_code like '%$serviceCode$%')</isNotEmpty>
+            <!--进厂日期 -->
+            <isNotEmpty prepend="and" property="sEnterDate">(a.enter_date &gt;= #sEnterDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eEnterDate">(a.enter_date &lt; #eEnterDate#)</isNotEmpty>
+            <!--出厂日期 -->
+            <isNotEmpty prepend="and" property="outDateStart">(a.out_date &gt;= #outDateStart#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="outDateEnd">(a.out_date &lt; #outDateEnd#)</isNotEmpty>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="collectMoneyDateStart">(a.collect_money_date &gt;= #collectMoneyDateStart#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="collectMoneyDateEnd">(a.collect_money_date &lt; #collectMoneyDateEnd#)</isNotEmpty>
+            <!--开单日期 -->
+            <isNotEmpty prepend="and" property="sRecordDate">(a.record_date &gt;= #sRecordDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eRecordDate">(a.record_date &lt; #eRecordDate#)</isNotEmpty>
+            <!--预计完工日期 -->
+            <isNotEmpty prepend="and" property="sPlanFinishDate">(a.plan_finish_date &gt;= #sPlanFinishDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="ePlanFinishDate">(a.plan_finish_date &lt; #ePlanFinishDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="billTypeId">(a.bill_type_id = #billTypeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeIds">(a.service_type_id in ($serviceTypeIds$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="billTypeIdList">(a.bill_type_id in ($billTypeIdList$))</isNotEmpty>
+            <!--是否出库-->
+            <isNotEmpty prepend="and" property="isCheck">(a.is_check= #isCheck#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeIdList">exists(
+					select 1 from wb_repair.rps_service_type g 
+					where a.id = g.service_id and (g.service_type_id in ($serviceTypeIdList$))
+				)</isNotEmpty>
+            <isNotEmpty prepend="and" property="vin">(a.car_vin like '%$vin$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="tel">(c.tel like '%$tel$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">(c.mobile like '%$mobile$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="name">(c.full_name like '%$name$%')</isNotEmpty>
+        </dynamic>  
+        order by a.record_date desc
+	</select>
+    <!--查询所有工单， 车辆信息，套餐小计，工时小计，配件小计-->
+    <select id="queryAllMaintain" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT a.id AS id,
+    		a.orgid AS orgid,
+			a.guest_id AS guestId,
+			a.contactor_id as contactorId,
+			a.service_code AS serviceCode,
+			a.enter_date AS enterDate,
+			c.full_name AS guestFullName,
+			SUBSTRING_INDEX(b.car_model,' ',2) as carModel,
+			a.car_id as carId,
+			a.car_vin AS carVin,
+			a.car_no AS carNo,
+			a.mt_advisor AS mtAdvisor,
+			a.`status` AS `status`,
+			a.bill_type_id AS billTypeId,
+			a.modifier AS modifier,
+			a.modify_date AS modifyDate,
+			a.plan_finish_date AS planFinishDate,
+			a.bala_audit_sign AS balaAuditSign,
+			a.bala_auditor AS balaAuditor,
+			a.bala_audit_date AS balaAuditDate,
+			a.insure_comp_id as insureClaimCompId,
+			a.insure_comp_name as insureClaimCompName,
+			a.package_amt AS packageAmtNo,
+			a.is_check AS isCheck,
+			a.enter_oil_mass AS enterOilMass,
+			a.enter_kilometers AS enterKilometers,
+			c.addr AS guestAddr,
+			a.part_amt AS partAmtNo,
+			a.sure_mt_sign as sureMtSign,
+			a.sure_mt_date as sureMtDate,
+			a.sure_mt_man as sureMtMan,
+			a.checker as checker,
+			a.check_sign as checkSign,
+			a.check_date as checkDate,
+			a.out_date as outDate,
+			a.is_out_bill as isOutBill,
+			a.mt_advisor_id as mtAdvisorId,
+			a.guest_desc guestDesc,
+			a.fault_phen faultPhen,
+			a.solve_method solveMethod,
+	    	d.wechat_open_id as openId,
+			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
+	       inner join rpb_business_type f on e.service_type_id = f.id
+	       where e.service_id = a.id) as serviceTypeName,
+		      ifnull((SELECT sum(g.subtotal) from rps_package g where a.id = g.service_id),0) as pkgSubtotalNo,
+		      ifnull((SELECT sum(h.subtotal) from rps_item h where a.id = h.service_id),0) as itemSubtotalNo,
+		      ifnull((SELECT sum(i.subtotal) from rps_part i where a.id = i.service_id),0) as partSubtotalNo,
+		      ifnull((SELECT sum(g.subtotal) from rps_package g where a.id = g.service_id),0)+
+		      ifnull((SELECT sum(h.subtotal) from rps_item h where a.id = h.service_id),0)+
+		      ifnull((SELECT sum(i.subtotal) from rps_part i where a.id = i.service_id),0) as totalNo,
+			w.package_pref_amt AS packagePrefAmt,
+			w.item_pref_amt AS itemPrefAmt,
+			w.part_pref_amt AS partPrefAmt,
+			w.other_amt AS otherAmt,
+			w.package_subtotal+w.item_subtotal+w.part_subtotal+w.other_amt AS incomeTotal,
+			w.allowance_amt as allowanceAmt,
+			w.card_times_amt AS cardTimesAmt,
+			w.total_pref_amt AS totalPrefAmt,
+			w.bala_amt AS balaAmt,		
+			w.other_cost_amt AS otherCostAmt,
+			w.part_true_cost AS partTrueCost,
+			w.part_no_tax_cost AS partNoTaxCost,
+			w.part_tax_cost AS partTaxCost,
+			w.tech_deduct_value AS techDeductValue,
+			w.sales_deduct_value AS salesDeductValue,
+			w.advisor_deduct_value AS advisorDeductValue,			
+			w.advisor_deduct_value+w.sales_deduct_value+w.tech_deduct_value+w.part_true_cost+w.other_cost_amt AS expenditureTotal,			
+			w.total_deduct_amt AS totalDeductAmt,
+			w.gross_profit AS grossProfit,
+			w.gross_profit_rate AS grossProfitRate,
+			w.gross_profit_remark AS grossProfitRemark,
+			w.netin_amt AS netinAmt,
+			w.total_pref_rate AS totalPrefRate,
+			w.record_date as recordDate
+		from rps_maintain a
+		inner JOIN rpb_car b ON ( a.car_id = b.id )
+		INNER JOIN wb_common.com_guest c on a.guest_id = c.id
+		inner join rpb_contactor d on (a.contactor_id = d.id and c.id = d.guest_id)	 
+		left join rps_settlement w on (a.id =  w.service_id)
+		where  a.is_disabled = 0 
+		      and a.bill_type_id in (0,2,4,6)
+		<dynamic>
+            <isNotEmpty prepend="and" property="rid">(a.id = #rid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carModel">(replace(b.car_model_full_name,' ','') like '%$carModel$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="itemId">EXISTS (
+							select 1 from rps_item e 
+								where a.id = e.service_id and e.item_id = #itemId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="carId">(a.car_id = #carId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAuditorId">(a.mt_advisor_id = #mtAuditorId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAuditor">(a.mt_advisor = #mtAuditor#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="status">(a.status = #status#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="balaAuditSign">(a.bala_audit_sign = #balaAuditSign#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNoEqual">(a.car_no = #carNoEqual#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">(a.car_no like '%$carNo$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceCode">(a.service_code like '%$serviceCode$%')</isNotEmpty>
+            <!--进厂日期 -->
+            <isNotEmpty prepend="and" property="sEnterDate">(a.enter_date &gt;= #sEnterDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eEnterDate">(a.enter_date &lt; #eEnterDate#)</isNotEmpty>
+            <!--开单日期 -->
+            <isNotEmpty prepend="and" property="sRecordDate">(a.record_date &gt;= #sRecordDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eRecordDate">(a.record_date &lt; #eRecordDate#)</isNotEmpty>
+            <!--预计完工日期 -->
+            <isNotEmpty prepend="and" property="sPlanFinishDate">(a.plan_finish_date &gt;= #sPlanFinishDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="ePlanFinishDate">(a.plan_finish_date &lt; #ePlanFinishDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="billTypeId">(a.bill_type_id = #billTypeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeId">(a.service_type_id = #serviceTypeId#)</isNotEmpty>
+            <!--是否出库-->
+            <isNotEmpty prepend="and" property="isCheck">(a.is_check= #isCheck#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeIdList">exists(
+					select 1 from wb_repair.rps_service_type g 
+					where a.id = g.service_id and (g.service_type_id in ($serviceTypeIdList$))
+				)</isNotEmpty>
+            <isNotEmpty prepend="and" property="vin">(a.car_vin like '%$vin$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="tel">(c.tel like '%$tel$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">(c.mobile like '%$mobile$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="name">(c.full_name like '%$name$%')</isNotEmpty>
+        </dynamic>  
+        order by a.record_date desc
+	</select>
+    <select id="querySellPart" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id AS id,
+			a.orgid as orgid,
+			a.guest_id AS guestId,
+			a.contactor_id as contactorId,
+			a.service_code AS serviceCode,
+			a.car_id as carId,
+			a.car_vin AS carVin,
+			a.car_no AS carNo,
+			a.mt_advisor AS mtAdvisor,
+			a.`status` AS `status`,
+			a.service_type_id AS serviceTypeId,
+			a.is_settle AS isSettle,
+			a.is_judge AS isJudge,
+			a.remark AS remark,
+			a.bill_type_id AS billTypeId,
+			d.`name` AS contactName,
+			d.mobile AS contactMobile,
+			a.modifier AS modifier,
+			a.modify_date AS modifyDate,
+			a.recorder AS recorder,
+			a.record_date AS recordDate,
+			a.part_amt AS partAmt,
+			a.out_date as outDate,
+			a.is_out_bill as isOutBill,
+			a.mt_advisor_id as mtAdvisorId,
+			a.is_disabled as isDisabled,
+			e.part_code partCode,
+			e.part_name partName,
+			e.qty qty,
+			e.unit_price unitPrice,
+			e.amt amt,
+			e.discount_amt discountAmt,
+			e.subtotal subtotal
+		FROM
+			rps_maintain a
+			inner join rpb_contactor d on (a.contactor_id = d.id)
+			inner join rps_part e on (a.id = e.service_id)
+		WHERE 1 = 1
+			and a.is_settle = 1
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="billTypeId">(a.bill_type_id = #billTypeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="sRecordDate">(a.record_date &gt;= #sRecordDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eRecordDate">(a.record_date &lt; #eRecordDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">(a.car_no like '%$carNo$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="vin">(a.car_vin like '%$vin$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="name">(d.name like '%$name$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="isSettle">(a.is_settle = #isSettle#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="soutDate">(a.out_date &gt;= #soutDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eoutDate">(a.out_date &lt;= #eoutDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(e.part_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">(e.part_code like '%$partName$%')</isNotEmpty>
+        </dynamic> 
+        order by a.modify_date desc
+	</select>
+    <select id="queryReturnPart" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id AS id,
+			a.orgid as orgid,
+			a.guest_id AS guestId,
+			a.contactor_id as contactorId,
+			a.service_code AS serviceCode,
+			a.car_id as carId,
+			a.car_vin AS carVin,
+			a.car_no AS carNo,
+			a.mt_advisor AS mtAdvisor,
+			a.`status` AS `status`,
+			a.service_type_id AS serviceTypeId,
+			a.is_settle AS isSettle,
+			a.is_judge AS isJudge,
+			a.remark AS remark,
+			a.bill_type_id AS billTypeId,
+			d.`name` AS contactName,
+			d.mobile AS contactMobile,
+			a.modifier AS modifier,
+			a.modify_date AS modifyDate,
+			a.recorder AS recorder,
+			a.record_date AS recordDate,
+			a.part_amt AS partAmt,
+			a.out_date as outDate,
+			a.is_out_bill as isOutBill,
+			a.mt_advisor_id as mtAdvisorId,
+			a.is_disabled as isDisabled,
+			e.part_code partCode,
+			e.part_name partName,
+			e.qty qty,
+			e.unit_price unitPrice,
+			e.amt amt,
+			b.car_model carModel,
+			f.unit_price xUnitPrice
+		FROM
+			rps_maintain a
+			inner join rpb_contactor d on (a.contactor_id = d.id)
+			INNER JOIN rpb_car b ON (a.car_id = b.id)
+			inner join rps_part e on (a.id = e.service_id)
+			inner join rps_part f on (e.detail_id = f.id)
+		WHERE 1 = 1
+			and a.status = 2
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="billTypeId">(a.bill_type_id = #billTypeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="sRecordDate">(a.record_date &gt;= #sRecordDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eRecordDate">(a.record_date &lt; #eRecordDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">(a.car_no like '%$carNo$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="vin">(a.car_vin like '%$vin$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="name">(d.name like '%$name$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="isSettle">(a.is_settle = #isSettle#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="soutDate">(a.out_date &gt;= #soutDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eoutDate">(a.out_date &lt;= #eoutDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(e.part_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">(e.part_code like '%$partName$%')</isNotEmpty>
+        </dynamic> 
+        order by a.modify_date desc
+	</select>
+    <select id="queryCheckMainDetailList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+   		   	SELECT
+			A.id as id,
+			A.tenant_id as tenantId,
+			A.orgid as orgid,
+			A.datekey as datekey,
+			A.service_code as serviceCode,
+			A.service_id as serviceId,
+			A.guest_id as guestId,
+			A.contactor_id as contactorId,
+			A.car_id as carId,
+			A.car_no as carNo,
+			A.car_vin as carVin,
+			SUBSTRING_INDEX(b.car_model,' ',2) as carModel,
+			A.check_main_id as checkMainId,
+			A.check_main_name as checkMainName,
+			A.check_status as checkStatus,
+			A.enter_kilometers as enterKilometers,
+			A.last_kilometers as lastKilometers,
+			A.last_check_date as lastCheckDate,
+			A.mt_advisor_id as mtAdvisorId,
+			A.mt_advisor AS mtAdvisor,
+			A.check_man_id AS checkManId,
+			A.check_man AS checkMan,
+			A.check_date AS checkDate,
+			A.is_finish AS isFinish,
+			A.finish_date AS finishDate,
+			A.check_point AS checkPoint,
+			A.last_point AS lastPoint,
+			A.repair_advice AS repairAdvice,
+			A.part_advice AS partAdvice,
+			A.remark AS remark,
+			A.recorder as recorder,
+			A.record_date as recordDate,
+			A.modifier as modifier,
+			A.modify_date as modifyDate,
+			c.name contactName,
+			c.mobile contactMobile
+			from rps_check_main A
+			INNER JOIN rpb_car b ON (a.car_id = b.id)
+		    INNER JOIN rpb_contactor c ON (a.contactor_id = c.id)
+			where 1=1
+			<dynamic>
+            <isNotEmpty prepend="and" property="orgid">(A.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">(A.orgid in ($orgids$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">A. car_no like '%$carNo$%'</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceCode">a.service_code like '%$serviceCode$%'</isNotEmpty>
+            <isNotEmpty prepend="and" property="checkMan">a.check_man like '%$checkMan$%'</isNotEmpty>
+            <isNotEmpty prepend="and" property="name">c.name like '%$name$%'</isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">c.mobile like '%$mobile$%'</isNotEmpty>
+            <isNotEmpty prepend="and" property="sRecordDate">(a.record_date &gt;= #sRecordDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eRecordDate">(a.record_date &lt; #eRecordDate#)</isNotEmpty>
+        </dynamic> 
+			ORDER BY A.record_date desc
+      </select>
+    <select id="queryExpenseSummaryList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+       	SELECT
+       	b.type_code typeCode,
+       	b.type_id typeId,
+       	b.dc dc,
+       	SUM(b.amt) amt,
+       	b.remark remark
+       	    from rps_maintain a
+       	    INNER JOIN rps_expense b ON (a.id = b.service_id )
+			INNER JOIN rpb_car c ON (a.car_id = c.id)
+		    INNER JOIN rpb_contactor d ON (a.contactor_id = d.id)
+		where  a.is_settle = 1
+		<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
+        <isNotEmpty prepend="and" property="carNo">a. car_no like '%$carNo$%'</isNotEmpty>
+        <isNotEmpty prepend="and" property="name">d.name like '%$name$%'</isNotEmpty>
+        <isNotEmpty prepend="and" property="mobile">d.mobile like '%$mobile$%'</isNotEmpty>
+        <isNotEmpty prepend="and" property="mtAdvisorId">a.mt_advisor_id = #mtAdvisorId#</isNotEmpty>
+        <isNotEmpty prepend="and" property="sRecordDate">(a.out_date &gt;= #sRecordDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eRecordDate">(a.out_date &lt; #eRecordDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="typeId">b.type_id = #typeId#</isNotEmpty>
+        <isNotEmpty prepend="and" property="dc">b.dc  = #dc#</isNotEmpty>
+		GROUP BY b.type_id
+       </select>
+    <select id="queryExpenseDetailList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+       	SELECT
+       	b.id id,
+       	b.type_code typeCode,
+       	b.type_id typeId,
+       	b.dc dc,
+       	a.service_code serviceCode,
+       	d.name contactName,
+       	a.car_no carNo,
+       	a.out_date outDate,
+       	a.mt_advisor mtAdvisor,
+       	b.amt amt,
+       	b.remark remark,
+       	b.guest_name guestName
+       	    from rps_maintain a
+       	    INNER JOIN rps_expense b ON (a.id = b.service_id )
+			INNER JOIN rpb_car c ON (a.car_id = c.id)
+		    INNER JOIN rpb_contactor d ON (a.contactor_id = d.id)
+		where a.orgid = #orgid# and a.is_settle = 1
+		and b.type_id = #typeId#
+		<isNotEmpty prepend="and" property="carNo">a. car_no like '%$carNo$%'</isNotEmpty>
+        <isNotEmpty prepend="and" property="name">d.name like '%$name$%'</isNotEmpty>
+        <isNotEmpty prepend="and" property="remark">b.remark like '%$remark$%'</isNotEmpty>
+        <isNotEmpty prepend="and" property="mtAdvisorId">a.mt_advisor_id = #mtAdvisorId#</isNotEmpty>
+        <isNotEmpty prepend="and" property="sRecordDate">(a.out_date &gt;= #sRecordDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="eRecordDate">(a.out_date &lt; #eRecordDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="dc">b.dc  = #dc#</isNotEmpty>
+    </select>
+    <select id="getBalanceStoredInvocing" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject"> 
+		SELECT a.id as id,
+			   a.dc as dc,
+			   a.orgid as orgid,
+			   a.bill_main_id as billMainId,
+			   a.bill_service_id as billServiceId,
+			   a.bill_type_id as billTypeId,
+			   a.guest_id as guestId,
+			   a.guest_name as guestName,
+			   a.car_id as carId,
+			   a.car_no as carNo,
+			   a.card_id as cardId,
+			   a.card_name as cardName,
+			   a.qc_amt as qcAmt,
+			   a.amt as amt,
+			   a.bala_amt as balaAmt
+				
+               FROM rps_stored_invocing a
+               where 1 = 1 and 
+               a.id = (select max(b.id) from rps_stored_invocing b
+               		 where 1 = 1 
+               	<isNotNull prepend="" property="orgid">AND b.orgid = #orgid#</isNotNull>
+        <isNotNull prepend="" property="cardId">AND  b.card_id = #cardId#</isNotNull>
+               		 )
+
+	                
+			
+    </select>
+    <select id="getBalanceCardTimesStoredInvocing" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject"> 
+		SELECT a.id as id,
+			   a.dc as dc,
+			   a.orgid as orgid,
+			   a.bill_main_id as billMainId,
+			   a.bill_service_id as billServiceId,
+			   a.bill_type_id as billTypeId,
+			   a.guest_id as guestId,
+			   a.guest_name as guestName,
+			   a.car_id as carId,
+			   a.car_no as carNo,
+			   
+			   a.prdt_id as prdtId,
+			   a.prdt_name as prdtName,
+			   a.prdt_type as prdtType,			   
+			   a.qc_times as qcTimes,
+			   a.qc_price as qcPrice,
+			   a.qc_amt as qcAmt,			   
+			   a.times as times,
+			   a.price as price,
+			   a.amt as amt,			   
+			   a.bala_times as balaTimes,
+			   a.bala_price as balaPrice,
+			   a.bala_amt as balaAmt
+				
+               FROM rps_card_times_invocing a
+               where 1 = 1 and 
+               a.id = (select max(b.id) from rps_card_times_invocing b
+               		 where 1 = 1 
+               		 
+               	<isNotNull prepend="" property="orgid">AND b.orgid = #orgid#</isNotNull>
+        <isNotNull prepend="" property="prdtId">AND  b.prdt_id = #prdtId#</isNotNull>
+               		 )
+
+	                
+			
+    </select>
+    <select id="queryMaintainListBX" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id AS id,
+			a.engine_model as engineModel,
+			a.car_brand_id as carBrandId,
+			a.guest_id AS guestId,
+			a.contactor_id as contactorId,
+			a.service_code AS serviceCode,
+			a.enter_date AS enterDate,
+			c.full_name AS guestFullName,
+			c.short_name AS guestShortName,
+			a.engine_no as boxNo,
+			a.engine_model as boxModel,
+			a.drive_type as driveType,
+			a.car_id as carId,
+			a.car_vin AS carVin,
+			a.car_no AS carNo,
+			c.tel AS guestTel,
+			c.mobile AS guestMobile,
+			a.mt_advisor AS mtAdvisor,
+			a.`status` AS `status`,
+			a.service_type_id AS serviceTypeId,
+			a.is_settle AS isSettle,
+			a.is_judge AS isJudge,
+			a.remark AS remark,
+			a.bill_type_id AS billTypeId,
+			d.`name` AS contactName,
+			d.mobile AS contactMobile,
+			a.modifier AS modifier,
+			a.modify_date AS modifyDate,
+			a.recorder AS recorder,
+			a.record_date AS recordDate,
+			a.plan_finish_date AS planFinishDate,
+			a.bala_audit_sign AS balaAuditSign,
+			a.bala_auditor AS balaAuditor,
+			a.bala_audit_date AS balaAuditDate,
+			a.insure_comp_id as insureClaimCompId,
+			a.insure_comp_name as insureClaimCompName,
+			a.package_amt AS packageAmt,
+			a.is_check AS isCheck,
+			a.enter_oil_mass AS enterOilMass,
+			a.enter_kilometers AS enterKilometers,
+			c.addr AS guestAddr,
+			a.part_amt AS partAmt,
+			a.sure_mt_sign as sureMtSign,
+			a.sure_mt_date as sureMtDate,
+			a.sure_mt_man as sureMtMan,
+			a.checker as checker,
+			a.check_sign as checkSign,
+			a.check_date as checkDate,
+			a.draw_out_report as drawOutReport,
+			a.out_date as outDate,
+			a.is_out_bill as isOutBill,
+			a.mt_advisor_id as mtAdvisorId,
+			a.is_disabled as isDisabled,
+			a.guest_desc guestDesc,
+			a.fault_phen faultPhen,
+			a.solve_method solveMethod,
+			d.name as name,
+			a.box_service_type_id as boxServiceTypeId,
+			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
+	       inner join rpb_business_type f on e.service_type_id = f.id
+	       where e.service_id = a.id) as serviceTypeName,
+	       d.wechat_open_id as openId
+		FROM
+			rps_maintain a
+		  	INNER JOIN wb_common.com_guest c on a.guest_id = c.id
+			inner join rpb_contactor d on (a.contactor_id = d.id and c.id = d.guest_id)
+		WHERE 1 = 1
+			and a.orgid = #orgid#
+		<dynamic>
+            <isNotEmpty prepend="and" property="rid">(a.id = #rid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isDisabled">(a.is_disabled = #isDisabled#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carId">(a.car_id = #carId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAuditorId">(a.mt_advisor_id = #mtAuditorId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAuditor">(a.mt_advisor = #mtAuditor#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="status">(a.status = #status#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isSettle">(a.is_settle = #isSettle#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="balaAuditSign">(a.bala_audit_sign = #balaAuditSign#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="statusList">(a.status in ($statusList$))</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNoEqual">(a.car_no = #carNoEqual#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">(a.car_no like '%$carNo$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceCode">(a.service_code like '%$serviceCode$%')</isNotEmpty>
+            <!--进厂日期 -->
+            <isNotEmpty prepend="and" property="sEnterDate">(a.enter_date &gt;= #sEnterDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eEnterDate">(a.enter_date &lt; #eEnterDate#)</isNotEmpty>
+            <!--开单日期 -->
+            <isNotEmpty prepend="and" property="sRecordDate">(a.record_date &gt;= #sRecordDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eRecordDate">(a.record_date &lt; #eRecordDate#)</isNotEmpty>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="sOutDate">(a.out_date &gt;= #sOutDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eOutDate">(a.out_date &lt; #eOutDate#)</isNotEmpty>
+            <!--预计完工日期 -->
+            <isNotEmpty prepend="and" property="sPlanFinishDate">(a.plan_finish_date &gt;= #sPlanFinishDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="ePlanFinishDate">(a.plan_finish_date &lt; #ePlanFinishDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="billTypeId">(a.bill_type_id = #billTypeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeId">(a.service_type_id = #serviceTypeId#)</isNotEmpty>
+            <!--是否出库-->
+            <isNotEmpty prepend="and" property="isCheck">(a.is_check= #isCheck#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeIdList">exists(
+					select 1 from wb_repair.rps_service_type g 
+					where a.id = g.service_id and (g.service_type_id in ($serviceTypeIdList$))
+				)</isNotEmpty>
+            <isNotEmpty prepend="and" property="vin">(a.car_vin like '%$vin$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="tel">(c.tel like '%$tel$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">(c.mobile like '%$mobile$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="name">(c.full_name like '%$name$%')</isNotEmpty>
+        </dynamic>  
+        order by a.record_date desc
+	</select>
+    <select id="queryExpensePart" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id AS id,
+			a.service_id as serviceId,
+			a.service_type_id as serviceTypeId,
+			a.part_id AS partId,
+			a.package_id as packageId,
+			a.part_code AS partCode,
+			a.part_name AS partName,
+			a.qty AS qty,
+			a.unit_price AS unitPrice,
+			a.unit as unit,
+			a.amt as amt,
+			a.rate as rate,
+			a.discount_amt as discountAmt,
+			a.subtotal as subtotal,
+			a.bill_package_id as billPackageId,
+			a.remark as remark
+
+		FROM
+			rps_part_bill a 
+		WHERE 1 = 1
+		<dynamic>
+            <isNotEmpty prepend="and" property="ids">(a.id in ($ids$))</isNotEmpty>
+        </dynamic>
+    </select>
+    <select id="queryExpenseItem" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id AS id,
+			a.service_id as serviceId,
+			a.item_id AS itemId,
+			a.package_id as packageId,
+			a.item_code AS itemCode,
+			a.item_name AS itemName,
+			a.item_time AS itemTime,
+			a.unit_price AS unitPrice,
+			a.amt as amt,
+			a.rate as rate,
+			a.discount_amt as discountAmt,
+			a.subtotal as subtotal,
+			a.bill_item_id as billItemId,
+			a.remark as remark
+
+		FROM
+			rps_item_bill a 
+		WHERE 1 = 1
+		<dynamic>
+            <isNotEmpty prepend="and" property="ids">(a.id in ($ids$))</isNotEmpty>
+        </dynamic>
+    </select>
+    <select id="queryExpensePkg" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id AS id,
+			a.service_id as serviceId,
+			a.package_id as packageId,
+			a.package_name AS packageName,
+			a.amt as amt,
+			a.rate as rate,
+			a.discount_amt as discountAmt,
+			a.subtotal as subtotal,
+			a.remark as remark
+
+		FROM
+			rps_package_bill a 
+		WHERE 1 = 1
+		<dynamic>
+            <isNotEmpty prepend="and" property="ids">(a.id in ($ids$))</isNotEmpty>
+        </dynamic>
+    </select>
+    <select id="queryOutBill" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id AS id,
+			a.orgid as orgid,
+			a.source_service_id as sourceServiceId,
+			a.bill_type_id AS billTypeId,
+			a.service_type_id AS serviceTypeId,
+			a.service_code AS serviceCode,
+			a.guest_id AS guestId,
+			a.contactor_id as contactorId,
+			a.car_id AS carId,
+			a.car_vin AS carVin,
+			a.car_no AS carNo,
+			a.item_amt as itemAmt,
+			a.part_amt as partAmt,
+			a.package_amt as packageAmt
+		FROM
+			rps_maintain_bill a
+		WHERE 1 = 1 
+			
+      <dynamic>
+            <isNotEmpty prepend="and" property="ids">(a.source_service_id in ($ids$))</isNotEmpty>
+        </dynamic>
+    </select>
+    <select id="searchContentManagement" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT 
+			a.id as id,
+			a.parent_id As parentId,
+			a.name AS name,
+			a.introduce AS introduce,
+			a.name_sort AS nameSort,
+			a.is_disabled AS isDisabled,
+			b.id AS rid,
+			b.title AS title,
+			b.time AS time,
+			b.brief_introduction AS briefIntroduction,
+			b.specific_content AS specificContent,
+			b.url AS url
+	FROM wb_slog.sys_list_information a
+		INNER JOIN sys_content_management b
+			ON a.id = b.main_id
+			
+		WHERE 1 = 1
+		<dynamic>
+            <isNotEmpty prepend="and" property="parentId">(a.parent_id = #parentId#)</isNotEmpty>
+        </dynamic>
+        <dynamic>
+            <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+        </dynamic>
+        <dynamic>
+            <isNotEmpty prepend="and" property="rid">(b.id = #rid#)</isNotEmpty>
+        </dynamic> 
+        ORDER BY parent_id asc
+	</select>
+    <select id="queryRpsItemList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT a.service_code as serviceCode, a.car_no as carNo, a.car_vin as carVin,
+    	       b.id as id, 
+    	       a.id as serviceId,
+    	       b.stop_reason as stopReason,
+    	       b.back_reason as backReason,
+    	       b.is_back as isBack,
+    	       b.stop_time as stopTime,
+    	       b.work_time as workTime,
+    	       b.back_times as backTimes,
+    	       b.worker_ids as workerIds,
+    	       b.checker_ids as checkerIds,
+    	       b.checkers as checkers,
+    	       b.begin_date as beginDate,
+       		   b.item_name as itemName, b.workers as workers, 
+       		   b.status as status, b.finish_auditor as finisher, b.finish_date as finishDate
+		from rps_maintain a
+		inner join rps_item b
+		on a.id = b.service_id
+		where 1 = 1
+		      and a.status = 1
+		      and a.orgid = #orgid#
+		      <dynamic>
+            <isNotEmpty prepend="and" property="status">(b.`status` = #status#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isFinish">(b.`status` = 3)</isNotEmpty>
+            <isNotEmpty prepend="and" property="notFinish">(b.`status` != 3)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">a.car_no like '%$carNo$%'</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceCode">a.service_code like '%$serviceCode$%'</isNotEmpty>
+        </dynamic>
+		      
+		       and exists(select 1 from rps_item_workers c 
+		      			where b.id = c.main_id 
+		      			    <dynamic>
+            <isNotEmpty prepend="and" property="workerId">(c.worker_id = #workerId#)</isNotEmpty>
+        </dynamic>  
+					        )
+		order by b.modify_date desc
+	
+	</select>
+    <select id="dispatchQueryMaintainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id AS id,
+			a.guest_id AS guestId,
+			a.contactor_id as contactorId,
+			a.service_code AS serviceCode,
+			a.enter_date AS enterDate,
+			a.no_mt_type as noMtType,
+			a.no_mt_file_sign as noMtFileSign,
+			a.engine_no as boxNo,
+			a.engine_model as boxModel,
+			a.drive_type as driveType,
+			a.car_brand_id as boxBrandId,
+			a.car_id as carId,
+			a.car_vin AS carVin,
+			a.car_no AS carNo,
+			a.mt_advisor AS mtAdvisor,
+			a.`status` AS `status`,
+			a.service_type_id AS serviceTypeId,
+			a.is_settle AS isSettle,
+			a.is_judge AS isJudge,
+			a.remark AS remark,
+			a.bill_type_id AS billTypeId,
+			a.modifier AS modifier,
+			a.modify_date AS modifyDate,
+			a.recorder AS recorder,
+			a.record_date AS recordDate,
+			a.plan_finish_date AS planFinishDate,
+			a.bala_audit_sign AS balaAuditSign,
+			a.bala_auditor AS balaAuditor,
+			a.bala_audit_date AS balaAuditDate,
+			a.insure_comp_id as insureClaimCompId,
+			a.insure_comp_name as insureClaimCompName,
+			a.package_amt AS packageAmt,
+			a.is_check AS isCheck,
+			a.enter_oil_mass AS enterOilMass,
+			a.enter_kilometers AS enterKilometers,
+			a.part_amt AS partAmt,
+			a.sure_mt_sign as sureMtSign,
+			a.sure_mt_date as sureMtDate,
+			a.sure_mt_man as sureMtMan,
+			a.checker as checker,
+			a.check_sign as checkSign,
+			a.check_date as checkDate,
+			a.draw_out_report as drawOutReport,
+			a.out_date as outDate,
+			a.is_out_bill as isOutBill,
+			a.mt_advisor_id as mtAdvisorId,
+			a.is_disabled as isDisabled,
+			a.guest_desc guestDesc,
+			a.fault_phen faultPhen,
+			a.solve_method solveMethod
+		FROM
+			wb_repair.rps_maintain a
+		WHERE  a.orgid = #orgid#
+		       and a.bill_type_id in(0,2,4,6)
+		       and a.status = 1
+		<dynamic>
+            <isNotEmpty prepend="and" property="mtAuditorId">(a.mt_advisor_id = #mtAuditorId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="balaAuditSign">(a.bala_audit_sign = #balaAuditSign#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isDisabled">(a.is_disabled = #isDisabled#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAuditor">(a.mt_advisor = #mtAuditor#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">(a.car_no like '%$carNo$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="memberGroupId">exists(
+					select 1 from wb_repair.rps_item_workers b 
+					       INNER JOIN wb_common.com_member c ON  c.empid = b.worker_id
+					where  a.id = b.service_id  and (c.member_group_id = #memberGroupId#)
+				)</isNotEmpty>
+        </dynamic>
+           order by a.record_date desc
+	</select>
+</sqlMap>

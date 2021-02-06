@@ -1,0 +1,11 @@
+ .info-tab tr td{
+	text-align:right;
+}
+
+.complain-tab tr .input-tab{
+	width:100%;
+}
+
+.complain-tab tr .title-tab{
+	text-align:right;
+} 

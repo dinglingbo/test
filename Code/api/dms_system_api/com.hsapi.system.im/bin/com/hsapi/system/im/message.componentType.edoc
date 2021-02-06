@@ -1,0 +1,90 @@
+<map>
+  <entry>
+    <string>com.hsapi.system.im.message.getBoxList(String, String, String, String, String, Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getBoxList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getHistoryMessage&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.im.message.getBoxList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;senduser(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;receiveuser(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;groupid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isread(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;type(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;typeList(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;code(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;msg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pages(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.alibaba.fastjson.JSON[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.im.message.queryGroupName(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryGroupName&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStandardPkg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.im.message.queryGroupName&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;userId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;groupId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;name(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.im.message.getUserInfo(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getUserInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getHistoryMessage&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.im.message.getUserInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;code(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;msg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.alibaba.fastjson.JSON):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.im.message.getGroupInfo(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getGroupInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getHistoryMessage&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.im.message.getGroupInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;groupId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;code(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;msg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.alibaba.fastjson.JSON):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.im.message.getFriendInfo(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getFriendInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getHistoryMessage&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.im.message.getFriendInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;code(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;msg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.alibaba.fastjson.JSON):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.im.message.applyFriend(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;applyFriend&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStandardPkg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.im.message.applyFriend&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;friend(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;code(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;msg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.im.message.editUserFriend(java.util.HashMap, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;editUserFriend&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStandardPkg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.im.message.editUserFriend&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;edit(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;code(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;msg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.alibaba.fastjson.JSON):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.im.message.getChatList(String, String, Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getChatList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getChatList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.im.message.getChatList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;senduser(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;type(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;code(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;msg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pages(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.alibaba.fastjson.JSON[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;count(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.im.message.updateGroupName(String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateGroupName&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStandardPkg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.im.message.updateGroupName&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;userId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;groupId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;name(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;code(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;msg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.alibaba.fastjson.JSON):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.im.message.getUserFriendList(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getUserFriendList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getHistoryMessage&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.im.message.getUserFriendList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;userId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;code(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;msg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pages(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.alibaba.fastjson.JSON):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>message</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;message.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;message&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.im.message&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.im.message.deleteGroup(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;deleteGroup&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStandardPkg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.im.message.deleteGroup&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;userId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;groupId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.im.message.queryUserInfo(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryUserInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStandardPkg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.im.message.queryUserInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;result(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.im.message.editUserType(java.util.HashMap, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;editUserType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStandardPkg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.im.message.editUserType&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;edit(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.im.message.queryGroupUserInfo(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryGroupUserInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStandardPkg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.im.message.queryGroupUserInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;groupId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;result(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.im.message.queryGroupInfo(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryGroupInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStandardPkg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.im.message.queryGroupInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;userId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;result(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.im.message.updateGroup(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateGroup&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStandardPkg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.im.message.updateGroup&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;groupInfo(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.im.message.getOffLineMsg(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getOffLineMsg&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getHistoryMessage&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.im.message.getOffLineMsg&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;receiveuser(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;code(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;msg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pages(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.alibaba.fastjson.JSON[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;count(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.im.message.queryIsFriend(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryIsFriend&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStandardPkg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.im.message.queryIsFriend&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;userId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;friendId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isFriend(Boolean):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.im.message.upateUserInfo(java.util.HashMap, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;upateUserInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStandardPkg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.im.message.upateUserInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;edit(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;code(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;msg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.alibaba.fastjson.JSON):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.im.message.createChat(java.util.HashMap[], java.util.HashMap, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;createChat&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getStandardPkg&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.im.message.createChat&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;members(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;groupManager(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;name(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;code(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;msg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;data(com.alibaba.fastjson.JSON):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.im.message.createUser(String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;createUser&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;createUser&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.im.message.createUser&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;userName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;avatar(String):&lt;/b&gt;头像&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;account(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;code(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;uid(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

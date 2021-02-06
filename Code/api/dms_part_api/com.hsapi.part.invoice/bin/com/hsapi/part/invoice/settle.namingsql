@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.part.invoice.settle">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="getRPAccountList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT
+		A.ORGID as orgid,
+		A.SUPPLIER_ID AS guestId,
+		M.FULL_NAME AS guestName,
+		nvl(SUM(C.CGR), 0) AS cgr,
+		nvl(SUM(C.XSR), 0) AS xsr,
+		0 AS xsc,
+		0 AS cgc,
+		nvl(SUM(C.CGR), 0) + nvl(SUM(C.XSR), 0) as hz
+		FROM
+			FI_RP_BILL_P A
+		INNER JOIN 
+			(SELECT 
+			 B.ID, 
+			 CASE WHEN B.BILL_TYPE_ID = '050101' THEN B.NO_CHAR_OFF_AMT END AS CGR,
+		   	 CASE WHEN B.BILL_TYPE_ID = '050102' THEN -1*B.NO_CHAR_OFF_AMT END AS XSR
+			 FROM 
+				FI_RP_BILL_P B
+			 where 1 = 1 and B.NO_CHAR_OFF_AMT != 0
+			 
+			 <isNotNull prepend="" property="orgid">AND B.ORGID = #orgid#</isNotNull>
+        <isNotNull prepend="" property="beginDate">AND B.CREATE_DATE  &gt;= to_date(#beginDate#,'yyyy-MM-dd HH24:MI:SS')</isNotNull>
+        <isNotNull prepend="" property="endDate">AND B.CREATE_DATE  &lt;= to_date(#endDate#,'yyyy-MM-dd HH24:MI:SS')</isNotNull>
+			 
+			) C
+		 ON A.ID = C.ID
+		 INNER JOIN WB_COMMON.COM_GUEST M
+		 ON A.SUPPLIER_ID = M.GUEST_ID
+		 GROUP BY A.ORGID, A.SUPPLIER_ID, M.FULL_NAME
+		UNION 
+			SELECT
+			D.ORGID as orgid,
+			D.CLIENT_ID AS guestId,
+			N.FULL_NAME AS guestName,
+			0 AS cgr,
+			0 AS xsr,
+			nvl(SUM(F.XSC), 0) AS xsc,
+			nvl(SUM(F.CGC), 0) AS cgc,
+			nvl(SUM(F.XSC), 0) + nvl(SUM(F.CGC), 0) as hz
+			FROM
+				FI_RP_BILL_R D
+			INNER JOIN 
+				(SELECT 
+				 E.ID, 
+				 CASE WHEN E.BILL_TYPE_ID = '050202' THEN E.NO_CHAR_OFF_AMT END AS XSC,
+				 CASE WHEN E.BILL_TYPE_ID = '050201' THEN -1*E.NO_CHAR_OFF_AMT END AS CGC
+				 FROM 
+					FI_RP_BILL_R E
+				 where 1 = 1 and E.NO_CHAR_OFF_AMT != 0
+			 
+			 <isNotNull prepend="" property="orgid">AND E.ORGID = #orgid#</isNotNull>
+        <isNotNull prepend="" property="beginDate">AND E.CREATE_DATE  &gt;= to_date(#beginDate#,'yyyy-MM-dd HH24:MI:SS')</isNotNull>
+        <isNotNull prepend="" property="endDate">AND E.CREATE_DATE  &lt;= to_date(#endDate#,'yyyy-MM-dd HH24:MI:SS')</isNotNull>
+			 
+			) F
+		 ON D.ID = F.ID
+		 INNER JOIN WB_COMMON.COM_GUEST N
+		 ON D.CLIENT_ID = N.GUEST_ID
+		 GROUP BY D.ORGID, D.CLIENT_ID, N.FULL_NAME
+
+    </select>
+</sqlMap>

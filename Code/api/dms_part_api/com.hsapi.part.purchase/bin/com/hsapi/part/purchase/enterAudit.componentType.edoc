@@ -1,0 +1,26 @@
+<map>
+  <entry>
+    <string>com.hsapi.part.purchase.enterAudit.getPtsEnterMain(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPtsEnterMain&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;checkPurchaseIsAudit&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.enterAudit.getPtsEnterMain&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;ptsEnterMain(com.hsapi.part.data.x_pts.PtsEnterMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.enterAudit.auditPtsEnterMainDetail(com.hsapi.part.data.x_pts.PtsEnterMain, com.hsapi.part.data.x_pts.PtsEnterDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;auditPtsEnterMainDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;auditPtsEnterMainDetail&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.enterAudit.auditPtsEnterMainDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.part.data.x_pts.PtsEnterMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.part.data.x_pts.PtsEnterDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.enterAudit.getEnterDetails(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getEnterDetails&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getOutDetails&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.enterAudit.getEnterDetails&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;enterId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;details(com.hsapi.part.data.x_pts.PtsEnterDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>enterAudit</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;enterAudit.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;enterAudit&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.enterAudit&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.enterAudit.getPtsOutDetail(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPtsOutDetail&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;checkPurchaseIsAudit&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.enterAudit.getPtsOutDetail&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;ptsOutDetail(com.hsapi.part.data.x_pts.PtsOutDetail):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.purchase.enterAudit.auditPtsEnterMain(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;auditPtsEnterMain&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;enterAudit&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.purchase.enterAudit.auditPtsEnterMain&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;param(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

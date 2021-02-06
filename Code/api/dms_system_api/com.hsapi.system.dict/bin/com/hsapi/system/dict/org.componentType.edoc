@@ -1,0 +1,26 @@
+<map>
+  <entry>
+    <string>com.hsapi.system.dict.org.queryMember(String, Boolean, String, String, String, String, String, String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryMember&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;查询业务字典项&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.org.queryMember&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;父节点ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;强制从数据库查询&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;memberGroupId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;memberLevelId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isMtadvisor(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isArtificer(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isStockman(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isSalesman(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isPchsStock(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;empId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;systemAccount(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.org.removeCompanyCache(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;removeCompanyCache&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;查询业务字典项&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.org.removeCompanyCache&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;父节点ID&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.org.removeMemberCache(String, String, String, String, String, String, String, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;removeMemberCache&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;查询业务字典项&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.org.removeMemberCache&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;父节点ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;memberGroupId(String):&lt;/b&gt;工作组&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;memberLevelId(String):&lt;/b&gt;技师等级&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isMtadvisor(String):&lt;/b&gt;服务顾问&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isArtificer(String):&lt;/b&gt;服务技师（）&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isStockman(String):&lt;/b&gt;领料人（用于领料人选择）&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isPchsStock(String):&lt;/b&gt;采购/仓库（用于接收配件审核提醒）&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;empId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isSalesman(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;systemAccount(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.org.queryCompany(String, Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryCompany&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCompany&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.org.queryCompany&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;comp(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>org</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;org.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;org&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.org&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.dict.org.getComps(Boolean)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getComps&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;查询业务字典项&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.dict.org.getComps&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;fromDb(Boolean):&lt;/b&gt;强制从数据库查询&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

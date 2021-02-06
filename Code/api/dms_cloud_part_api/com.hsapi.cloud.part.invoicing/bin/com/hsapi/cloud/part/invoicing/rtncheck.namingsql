@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.cloud.part.invoicing.rtncheck">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="getDuplicateSellOrderDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">SELECT a.rtn_detail_id as rtnDetailId, count(*) as c
+		from pj_pchs_order_detail a
+		inner join pj_pchs_order_main b
+		on a.main_id = b.id
+		where b.id = #pchsMainId#
+		GROUP BY a.rtn_detail_id
+		HAVING count(*) &gt; 1</select>
+    <select id="getSellOrderRtnNotContainDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">SELECT b.service_id as serviceId, a.part_id as partId, a.part_code as partCode, 
+		       a.order_qty as orderQty
+		from pj_pchs_order_detail a
+		inner join pj_pchs_order_main b
+		on a.main_id = b.id
+		where b.id = #pchsMainId# and not exists(
+			SELECT 1
+			from pj_sell_order_detail_chk c
+			inner join pj_sell_order_main_chk d
+			on c.main_id = d.id 
+			where d.is_diff_order = 1 and d.order_type_id = 2 
+		        and a.rtn_detail_id = c.id and a.rtn_main_id = c.main_id
+		        and b.business_type_id = d.business_type_id
+				and b.guest_id = d.guest_id and b.settle_guest_id = d.settle_guest_id
+		)</select>
+    <!--用于判断是否存在退货数量大于可退货数量的记录-->
+    <select id="getSellOrderRtnQtyDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">SELECT b.service_id as serviceId, a.part_id as partId, a.part_code as partCode, 
+		       a.order_qty as orderQty, c.outable_qty as outableQty
+        from pj_pchs_order_detail a
+        inner join pj_pchs_order_main b
+        on a.main_id = b.id
+        inner join pj_sell_order_detail_chk c
+        on a.rtn_detail_id = c.id and a.rtn_main_id = c.main_id
+		where b.id = #pchsMainId#
+			  and a.order_qty &gt; c.outable_qty</select>
+    <!--销售退货审核后，用于判断是否有可退货数量小于0的记录-->
+    <select id="getSellOrderOutableQtyDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">SELECT b.service_id as serviceId, a.part_id as partId, a.part_code as partCode, 
+		       a.order_qty as orderQty, c.outable_qty as outableQty
+        from pj_pchs_order_detail_chk a
+        inner join pj_pchs_order_main_chk b
+        on a.main_id = b.id
+        inner join pj_sell_order_detail_chk c
+        on a.rtn_detail_id = c.id and a.rtn_main_id = c.main_id
+		where b.id = #pchsMainId#
+              and c.outable_qty &lt; 0</select>
+    <!--更新销售出库记录的可退货数量-->
+    <update id="updateSellOrderOutableQty" parameterClass="java.util.HashMap">update pj_pchs_order_detail_chk a
+		inner join pj_pchs_order_main_chk b
+		on a.main_id = b.id
+		inner join pj_sell_order_detail_chk c
+		on a.rtn_detail_id = c.id and a.rtn_main_id = c.main_id
+		set c.outable_qty = c.outable_qty - a.order_qty
+		where b.id = #pchsMainId#</update>
+</sqlMap>

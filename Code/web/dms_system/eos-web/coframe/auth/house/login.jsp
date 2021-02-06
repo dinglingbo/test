@@ -486,6 +486,9 @@ a {
                     <label style="width:100%">
                         <input type="password" id="password" name="password" value="" class="password_val" placeholder="密码" maxlength="50" />
                     </label>
+					<label style="width:100%;display:none;">
+						<input type="macAddress" id="macAddress" name="macAddress" value="" placeholder="MAC地址" maxlength="50" />
+					</label>
                     <label style="width:100%; display: flex;align-items: center">
                         <input type="text" class="yzm" name="code" id="code" placeholder="验证码" maxlength="9" /> <span class="yzm_pic"><img id="loginImgVeri" src="../img.jsp" ></span><a href="javascript:reload();" class="change_btn"> 换一张</a>
 
@@ -604,6 +607,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	      			out.println("showError('查询用户信息失败，请联系系统管理员检查数据库连接！')");
 	     		 }else if(resultCode == -4){
 	      			out.println("showError('验证码输入不正确，请重新输入！')");
+	     		 }else if(resultCode == -7){
+	      			out.println("showError('电脑未认证，不能登录！')");
 	     		 }else{
 	      			out.println("showError('未知的异常，请联系系统管理员！')");
 	     		 }
@@ -612,6 +617,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	     	}
 		  %>
 		 var  msgCode = "";
+		 var macAddress = "";
 		 var  kaiguan = 0//0发请求，1取消请求
 $(function () {
 	//显示登录框
@@ -892,6 +898,7 @@ function login(){
    //if (form.isValid() == false) 
    	//return false;
    	
+   	//alert(macAddress);
    	var userId = $("#userId").val();
  	var password = $("#password").val();
  	var code = $("#code").val();
@@ -912,6 +919,8 @@ function login(){
 	{
 		$("#password").val($("#password1").val());
 	}
+	
+	getMac();
   
     document.loginForm.submit();
 }
@@ -983,6 +992,18 @@ function login(){
 			    time--;
 			  }
 			  
+			}
+			
+			
+			function getMac() {
+				$.ajaxSettings.async = false;
+				$.getJSON("https://cang.mac.cn/exam/computerParaConf",function(data){
+					if(data && data.macAddress) {
+			        	macAddress = data.macAddress || "";
+			        }
+			        $.ajaxSettings.async = true;
+			    });
+			    $.ajaxSettings.async = true;
 			}
 
 

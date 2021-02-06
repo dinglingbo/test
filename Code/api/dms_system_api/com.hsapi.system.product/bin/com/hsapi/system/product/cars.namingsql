@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.system.product.cars">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <!--车辆品牌-->
+    <select id="carBrand" parameterClass="HashMap" resultClass="HashMap">SELECT DISTINCT id, nameCn 
+    	FROM ST_CarBrand 
+		WHERE IsPublish=1 AND IsDisabled=0</select>
+    <!--车型-->
+    <select id="carModel" parameterClass="HashMap" resultClass="HashMap">SELECT DISTINCT A.id carModelId, A.carModel, carBrandId, carBrandName, 
+			carLevelName, carLineName, carEngineName, gearBoxName,
+			A.maketimestart + '-' + a.maketimeend makeYear
+		FROM ST_CarMT A 
+		WHERE carBrandId=#carBrandId#
+			And IsDisabled=0</select>
+    <!--按VIN查车型-->
+    <select id="carVinModel" parameterClass="HashMap" resultClass="HashMap">SELECT carModelId, carModelName, carBrandId, carBrandName, carLevelId, carLevelName, 
+			carLineId, carLineName 
+		FROM dbo.fun_getCarmodelByVIN(#vin#)</select>
+</sqlMap>

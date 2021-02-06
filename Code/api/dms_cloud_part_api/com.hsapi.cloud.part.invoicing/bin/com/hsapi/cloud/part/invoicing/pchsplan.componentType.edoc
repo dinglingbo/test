@@ -1,0 +1,58 @@
+<map>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.pchsplan.queryPjPchsPlanDetailList(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjPchsPlanDetailList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderDetailList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.pchsplan.queryPjPchsPlanDetailList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjPchsPlanDetailList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.pchsplan.updatePchsPlanAssistInfo(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updatePchsPlanAssistInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;newbiz&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.pchsplan.updatePchsPlanAssistInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(String):&lt;/b&gt;计划采购的主表ID&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;更新计划采购的上下限，库存，在途等信息&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.pchsplan.planToOrder(Int, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;planToOrder&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;planToOrder&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.pchsplan.planToOrder&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;planId(Int):&lt;/b&gt;计划采购ID&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(Int):&lt;/b&gt;采购订单ID&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pjPchsOrderMainList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.pchsplan.adjustPchsPlan(java.util.HashMap[], String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;adjustPchsPlan&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;adjustPchsPlan&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.pchsplan.adjustPchsPlan&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.pchsplan.getPchsPlanPart(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPchsPlanPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPchsPlanPart&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.pchsplan.getPchsPlanPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.pchsplan.insertPjPchsPlan(com.hsapi.cloud.part.data.pts.PjPchsPlanMain, com.hsapi.cloud.part.data.pts.PjPchsPlanDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;insertPjPchsPlan&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;newbiz&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.pchsplan.insertPjPchsPlan&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.cloud.part.data.pts.PjPchsPlanMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detail(com.hsapi.cloud.part.data.pts.PjPchsPlanDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.pchsplan.generatePchsPlan(String, String, Date, Date, String, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;generatePchsPlan&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;generatePchsPlan&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.pchsplan.generatePchsPlan&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;tenantId(String):&lt;/b&gt;租户&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;partBrandId(String):&lt;/b&gt;品牌&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;startDate(Date):&lt;/b&gt;销售数据开始日期&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;endDate(Date):&lt;/b&gt;销售数据结束日期&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;limitCount(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.pchsplan.getPjPchsPlanDetailById(Long)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getPjPchsPlanDetailById&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getPjPchsPlanDetailById&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.pchsplan.getPjPchsPlanDetailById&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;detailList(com.hsapi.cloud.part.data.pts.PjPchsPlanDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.pchsplan.savePjPchsPlan(com.hsapi.cloud.part.data.pts.PjPchsPlanMain, com.hsapi.cloud.part.data.pts.PjPchsPlanDetail[], com.hsapi.cloud.part.data.pts.PjPchsPlanDetail[], com.hsapi.cloud.part.data.pts.PjPchsPlanDetail[], Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;savePjPchsPlan&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePstEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.pchsplan.savePjPchsPlan&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.cloud.part.data.pts.PjPchsPlanMain):&lt;/b&gt;主表信息&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detailAdd(com.hsapi.cloud.part.data.pts.PjPchsPlanDetail[]):&lt;/b&gt;新增&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detailUpdate(com.hsapi.cloud.part.data.pts.PjPchsPlanDetail[]):&lt;/b&gt;修改&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detailDelete(com.hsapi.cloud.part.data.pts.PjPchsPlanDetail[]):&lt;/b&gt;删除&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;auditSign(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pjPchsPlanMainList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.pchsplan.updatePjPchsDisabled(String, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updatePjPchsDisabled&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updatePjPchsDisabled&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.pchsplan.updatePjPchsDisabled&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;mainId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isDisabled(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.pchsplan.updatePjPchsPlan(com.hsapi.cloud.part.data.pts.PjPchsPlanMain, com.hsapi.cloud.part.data.pts.PjPchsPlanDetail[], com.hsapi.cloud.part.data.pts.PjPchsPlanDetail[], com.hsapi.cloud.part.data.pts.PjPchsPlanDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updatePjPchsPlan&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;insertPtsEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.pchsplan.updatePjPchsPlan&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.cloud.part.data.pts.PjPchsPlanMain):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detailAdd(com.hsapi.cloud.part.data.pts.PjPchsPlanDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detailUpdate(com.hsapi.cloud.part.data.pts.PjPchsPlanDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detailDelete(com.hsapi.cloud.part.data.pts.PjPchsPlanDetail[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.pchsplan.savePjPchsPlanAddOrUpdate(com.hsapi.cloud.part.data.pts.PjPchsPlanMain, com.hsapi.cloud.part.data.pts.PjPchsPlanDetail[], com.hsapi.cloud.part.data.pts.PjPchsPlanDetail[], com.hsapi.cloud.part.data.pts.PjPchsPlanDetail[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;savePjPchsPlanAddOrUpdate&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;savePstEnter&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.pchsplan.savePjPchsPlanAddOrUpdate&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;main(com.hsapi.cloud.part.data.pts.PjPchsPlanMain):&lt;/b&gt;主表信息&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detailAdd(com.hsapi.cloud.part.data.pts.PjPchsPlanDetail[]):&lt;/b&gt;新增&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detailUpdate(com.hsapi.cloud.part.data.pts.PjPchsPlanDetail[]):&lt;/b&gt;修改&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;detailDelete(com.hsapi.cloud.part.data.pts.PjPchsPlanDetail[]):&lt;/b&gt;删除&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;mainId(Long):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.cloud.part.invoicing.pchsplan.queryPjPchsPlanMainList(com.eos.foundation.PageCond, Int, Int, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryPjPchsPlanMainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryPjPchsOrderMainList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.pchsplan.queryPjPchsPlanMainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageIndex(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;pageSize(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;pjPchsPlanMainList(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;totalPage(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>pchsplan</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;pchsplan.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;pchsplan&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.cloud.part.invoicing.pchsplan&lt;/html&gt;</string>
+  </entry>
+</map>

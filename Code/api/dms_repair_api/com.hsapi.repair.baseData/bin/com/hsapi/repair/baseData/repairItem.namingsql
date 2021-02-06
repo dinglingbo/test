@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.repair.baseData.repairItem">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryRpbItemList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id id,
+			a.tenant_id tenantId,
+			a.code code,
+			a.type type,
+			a.name name,
+			a.car_brand_id carBrandId,
+            a.car_series_id carSeriesId,
+			a.car_model_id carModelId,
+			a.item_kind itemKind,
+			a.item_time itemTime,
+			a.unit_price unitPrice,
+			a.amt amt,
+            a.cost_type costType,
+            A.cost_param costParam,
+			a.deduct_amt deductAmt
+		FROM
+			rpb_item a
+		WHERE a.tenant_id = #tenantId#
+		<dynamic>
+            <isNotEmpty prepend="and" property="itemKind">(a.item_kind = #itemKind#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="carBrandId">(a.car_brand_id = #carBrandId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="type">(a.type = #type#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="code">(a.code like '%$code$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="name">(a.name like '%$name$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="namePy">(a.py_name like '%$namePy$%')</isNotEmpty>
+        </dynamic>
+    </select>
+</sqlMap>

@@ -53,7 +53,7 @@
     <location x="1070" y="138"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="4" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.rpAccountSettle</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="account" type="query" value="com.hsapi.cloud.part.data.pts.FiRpAccount" valueType="DataObject" pattern="reference">account</process:inputVariable>
@@ -64,6 +64,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+        <process:outputVariable id="2" name="mainId" type="query" value="Int" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>

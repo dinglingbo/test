@@ -506,6 +506,7 @@
         <process:inputVariable id="1" name="partCode" type="query" value="String" valueType="Primitive" pattern="reference">tmp/code</process:inputVariable>
         <process:inputVariable id="2" name="type" type="literal" value="String" valueType="Primitive" pattern="reference">add</process:inputVariable>
         <process:inputVariable id="3" name="id" type="literal" value="Int" valueType="Primitive" pattern="reference">0</process:inputVariable>
+        <process:inputVariable id="4" name="orgBrandId" type="query" value="String" valueType="Primitive" pattern="reference">tmp/orgCarBrandId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

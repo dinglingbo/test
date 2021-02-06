@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<QueryEntityList>
+    <QueryEntity name="com.hsapi.system.data.sys.VwUserOrg">
+        <config db="default" type="view"><![CDATA[vw_user_org]]></config>
+    </QueryEntity>
+    <QueryEntity name="com.hsapi.system.data.sys.VwUserPosition">
+        <config db="default" type="view"><![CDATA[vw_user_position]]></config>
+    </QueryEntity>
+    <QueryEntity name="com.hsapi.system.data.sys.VwDmsUserinfo">
+        <config db="default" type="view"><![CDATA[vw_dms_userinfo]]></config>
+    </QueryEntity>
+</QueryEntityList>

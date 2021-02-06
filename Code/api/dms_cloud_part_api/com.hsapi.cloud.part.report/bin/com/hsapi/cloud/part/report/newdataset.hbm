@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.cloud.part.report.newdataset.ComTrialRegister" table="com_trial_register">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="type" type="short">
+            <column name="type"/>
+        </property>
+        <property name="mobile" type="string">
+            <column length="11" name="mobile" not-null="true"/>
+        </property>
+        <property name="name" type="string">
+            <column length="20" name="name" not-null="true"/>
+        </property>
+        <property name="companyName" type="string">
+            <column length="20" name="company_name"/>
+        </property>
+        <property name="provinceId" type="string">
+            <column length="20" name="province_id"/>
+        </property>
+        <property name="cityId" type="string">
+            <column length="20" name="city_id"/>
+        </property>
+        <property name="status" type="short">
+            <column default="0" name="status"/>
+        </property>
+        <property name="isDisabled" type="short">
+            <column default="0" name="is_disabled"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.cloud.part.report.newdataset.ComTenant" table="com_tenant">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="tenantId" type="int">
+            <column name="tenant_id"/>
+            <generator class="native"/>
+        </id>
+        <property name="registerId" type="int">
+            <column name="register_id"/>
+        </property>
+        <property name="code" type="string">
+            <column length="5" name="code"/>
+        </property>
+        <property name="mobile" type="string">
+            <column length="20" name="mobile"/>
+        </property>
+        <property name="orgQty" type="int">
+            <column name="org_qty"/>
+        </property>
+        <property name="startDate" type="timestamp">
+            <column name="start_date"/>
+        </property>
+        <property name="endDate" type="timestamp">
+            <column name="end_date"/>
+        </property>
+        <property name="largessMonth" type="short">
+            <column name="largess_month"/>
+        </property>
+        <property name="maxUserQty" type="int">
+            <column name="max_user_qty"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="200" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.cloud.part.report.newdataset.OrgOrganization" table="org_organization">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="orgid" type="big_decimal">
+            <column length="10" name="ORGID" precision="10" scale="0"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgcode" type="string">
+            <column length="32" name="ORGCODE" not-null="true"/>
+        </property>
+        <property name="orgname" type="string">
+            <column length="64" name="ORGNAME"/>
+        </property>
+        <property name="orglevel" type="big_decimal">
+            <column default="1" length="10" name="ORGLEVEL" precision="10" scale="0"/>
+        </property>
+        <property name="orgdegree" type="string">
+            <column length="255" name="ORGDEGREE"/>
+        </property>
+        <property name="orgseq" type="string">
+            <column length="512" name="ORGSEQ"/>
+        </property>
+        <property name="orgtype" type="string">
+            <column length="12" name="ORGTYPE"/>
+        </property>
+        <property name="orgaddr" type="string">
+            <column length="256" name="ORGADDR"/>
+        </property>
+        <property name="zipcode" type="string">
+            <column length="10" name="ZIPCODE"/>
+        </property>
+        <property name="manaposition" type="big_decimal">
+            <column length="10" name="MANAPOSITION" precision="10" scale="0"/>
+        </property>
+        <property name="managerid" type="big_decimal">
+            <column length="10" name="MANAGERID" precision="10" scale="0"/>
+        </property>
+        <property name="orgmanager" type="string">
+            <column length="128" name="ORGMANAGER"/>
+        </property>
+        <property name="linkman" type="string">
+            <column length="30" name="LINKMAN"/>
+        </property>
+        <property name="linktel" type="string">
+            <column length="20" name="LINKTEL"/>
+        </property>
+        <property name="email" type="string">
+            <column length="128" name="EMAIL"/>
+        </property>
+        <property name="weburl" type="string">
+            <column length="512" name="WEBURL"/>
+        </property>
+        <property name="startdate" type="timestamp">
+            <column name="STARTDATE"/>
+        </property>
+        <property name="enddate" type="timestamp">
+            <column name="ENDDATE"/>
+        </property>
+        <property name="status" type="string">
+            <column length="255" name="STATUS"/>
+        </property>
+        <property name="area" type="string">
+            <column length="30" name="AREA"/>
+        </property>
+        <property name="createtime" type="timestamp">
+            <column name="CREATETIME" not-null="true"/>
+        </property>
+        <property name="lastupdate" type="timestamp">
+            <column name="LASTUPDATE" not-null="true"/>
+        </property>
+        <property name="updator" type="big_decimal">
+            <column length="10" name="UPDATOR" precision="10" scale="0"/>
+        </property>
+        <property name="sortno" type="int">
+            <column name="SORTNO"/>
+        </property>
+        <property name="isleaf" type="string">
+            <column length="1" name="ISLEAF"/>
+        </property>
+        <property name="subcount" type="big_decimal">
+            <column length="10" name="SUBCOUNT" precision="10" scale="0"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="512" name="REMARK"/>
+        </property>
+        <property name="tenantId" type="string">
+            <column length="64" name="TENANT_ID" not-null="true"/>
+        </property>
+        <property name="appId" type="string">
+            <column length="64" name="APP_ID"/>
+        </property>
+        <property name="parentorgid" type="big_decimal">
+            <column length="10" name="PARENTORGID" precision="10" scale="0"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.cloud.part.report.newdataset.ComCompany" table="com_company">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="orgid" type="int">
+            <column name="orgid"/>
+            <generator class="native"/>
+        </id>
+        <property name="code" type="string">
+            <column length="5" name="code"/>
+        </property>
+        <property name="name" type="string">
+            <column length="200" name="name"/>
+        </property>
+        <property name="shortName" type="string">
+            <column length="200" name="short_name"/>
+        </property>
+        <property name="provinceId" type="string">
+            <column length="20" name="province_id"/>
+        </property>
+        <property name="cityId" type="string">
+            <column length="20" name="city_id"/>
+        </property>
+        <property name="countyId" type="string">
+            <column length="20" name="county_id"/>
+        </property>
+        <property name="streetAddress" type="string">
+            <column length="200" name="street_address"/>
+        </property>
+        <property name="address" type="string">
+            <column length="200" name="address"/>
+        </property>
+        <property name="longitude" type="string">
+            <column length="20" name="longitude"/>
+        </property>
+        <property name="latitude" type="string">
+            <column length="20" name="latitude"/>
+        </property>
+        <property name="tel" type="string">
+            <column length="20" name="tel"/>
+        </property>
+        <property name="fax" type="string">
+            <column length="20" name="fax"/>
+        </property>
+        <property name="bankName" type="string">
+            <column length="100" name="bank_name"/>
+        </property>
+        <property name="bankAccountNumber" type="string">
+            <column length="50" name="bank_account_number"/>
+        </property>
+        <property name="mainBrandId" type="string">
+            <column length="100" name="main_brand_id"/>
+        </property>
+        <property name="webaddress" type="string">
+            <column length="100" name="webaddress"/>
+        </property>
+        <property name="wechatImg" type="string">
+            <column length="200" name="wechat_img"/>
+        </property>
+        <property name="logoImg" type="string">
+            <column length="200" name="logo_img"/>
+        </property>
+        <property name="softOpenDate" type="timestamp">
+            <column name="soft_open_date"/>
+        </property>
+        <property name="partExpireDate" type="timestamp">
+            <column name="part_expire_date"/>
+        </property>
+        <property name="isOpenSystem" type="short">
+            <column default="0" name="is_open_system"/>
+        </property>
+        <property name="isOpenProcess" type="short">
+            <column default="0" name="is_open_process"/>
+        </property>
+        <property name="isUnifyFinancial" type="short">
+            <column default="0" name="is_unify_financial"/>
+        </property>
+        <property name="isAccount" type="short">
+            <column default="0" name="is_account"/>
+        </property>
+        <property name="unsalableDays" type="short">
+            <column default="120" name="unsalable_days"/>
+        </property>
+        <property name="widenTaxRate" type="big_decimal">
+            <column default="0.00" length="10" name="widen_tax_rate" precision="10" scale="2"/>
+        </property>
+        <property name="partManageRate" type="big_decimal">
+            <column default="0.00" length="10" name="part_manage_rate" precision="10" scale="2"/>
+        </property>
+        <property name="complainTel" type="string">
+            <column length="50" name="complain_tel"/>
+        </property>
+        <property name="rescueTel" type="string">
+            <column length="20" name="rescue_tel"/>
+        </property>
+        <property name="userQty" type="short">
+            <column default="10" name="user_qty"/>
+        </property>
+        <property name="reportTitle" type="string">
+            <column length="50" name="report_title"/>
+        </property>
+        <property name="slogan1" type="string">
+            <column length="50" name="slogan1"/>
+        </property>
+        <property name="slogan2" type="string">
+            <column length="50" name="slogan2"/>
+        </property>
+        <property name="isDataShare" type="short">
+            <column default="0" name="is_data_share"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="200" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+</hibernate-mapping>

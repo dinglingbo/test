@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.system.data.guestMgr">
+    <!--字典项-->
+    <select id="queryGuest" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT id, code, full_name fullName, short_name shortName, guest_type guestType, is_disabled isDisabled
+        FROM com_guest A
+		WHERE 1=1  and a.is_disabled = 0 and a.orgid = #orgid#
+		<isNotNull property="guestType">AND A.guest_type = #guestType#</isNotNull>
+		ORDER BY order_index
+    </select>
+    <select id="queryUserFrom" parameterClass="HashMap" resultClass="com.hsapi.system.data.repair.ComDataitems">
+    	SELECT id, name, is_disabled isDisabled,orgid
+        FROM com_dataitems
+		WHERE dictid='DDT20130703000075' and orgid ='0'  
+		<isNotNull property="userOrgid">OR orgid = #userOrgid#</isNotNull>
+    </select>
+</sqlMap>

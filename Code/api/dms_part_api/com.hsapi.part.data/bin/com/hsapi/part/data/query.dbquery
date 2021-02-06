@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<QueryEntityList>
+    <QueryEntity name="com.hsapi.part.data.query.PtsOutDetailV">
+        <config db="default" type="sql"><![CDATA[SELECT
+	a.detail_id,
+	a.out_id,
+	a.part_id,
+	a.part_code,
+	a.unit,
+	a.out_qty,
+	a.out_backable_qty,
+	a.tax_sign,
+	a.tax_rate,
+	a.tax_rate_amt,
+	a.sell_unit_price,
+	a.sell_amt,
+	a.discount_rate,
+	a.discount_amt,
+	a.discount_last_amt,
+	a.discount_last_unit_price,
+	a.cost_unit_price,
+	a.cost_amt,
+	a.no_tax_cost_unit_price,
+	a.no_tax_cost_amt,
+	a.tax_cost_unit_price,
+	a.tax_cost_amt,
+	a.remark,
+	a.prev_enter_detail_id,
+	a.root_enter_detail_id,
+	a.order_detail_id,
+	a.part_name,
+	a.part_full_name,
+	a.part_name_id,
+	b.apply_car_model,
+	b.part_brand_id
+FROM
+	wb_part.pts_out_detail a
+	LEFT JOIN wb_common.com_attribute b ON ( a.part_id = b.id )]]></config>
+    </QueryEntity>
+    <QueryEntity name="com.hsapi.part.data.query.PtsEnterMainDetailV">
+        <config db="default" type="sql"><![CDATA[SELECT A.ENTER_DATE,
+       A.orgid,
+       A.STORE_ID,
+       A.GUEST_ID,
+       A.GUEST_FULL_NAME,
+       A.BILL_TYPE_ID,
+       A.BILL_STATUS,
+       A.ENTER_TYPE_ID,
+       A.ENTER_TOTAL_QTY,
+       A.BACK_REASON_ID,
+       A.QUOTER,
+       A.BUYER,
+       A.STORE_KEEPER,
+       A.AUDIT_STATUS,
+       A.AUDITOR,
+       A.AUDIT_DATE,
+       A.POST_STATUS,
+       A.POST_MAN,
+       A.POST_DATE,
+       A.RECORDER,
+       A.MODIFIER,
+       A.RECORD_DATE,
+       A.MODIFY_DATE,
+       A.SETT_TYPE,
+       B.DETAIL_ID,
+       B.PART_ID,
+       B.ENTER_ID,
+       B.PART_CODE,
+       C.NAME PART_NAME,
+       C.UNIT,
+       C.APPLY_CAR_MODEL,
+       B.ENTER_QTY,
+       B.OUTABLE_QTY,
+       B.TAX_SIGN,
+       B.TAX_RATE,
+       B.TAX_RATE_AMT,
+       B.TAX_UNIT_PRICE,
+       B.TAX_AMT,
+       B.NO_TAX_UNIT_PRICE,
+       B.NO_TAX_AMT,
+       B.SUGGEST_PRICE,
+       B.SUGGEST_AMT,
+       B.REMARK,
+       B.ORDER_DETAIL_ID,
+       B.PREV_OUT_DETAIL_ID,
+       B.ROOT_ENTER_DETAIL_ID
+  FROM wb_part.PTS_ENTER_MAIN A
+  JOIN wb_part.PTS_ENTER_DETAIL B
+    ON (A.ID = B.ENTER_ID)
+  LEFT JOIN WB_COMMON.COM_ATTRIBUTE C
+    ON (B.PART_ID = C.ID)
+]]></config>
+    </QueryEntity>
+    <QueryEntity name="com.hsapi.part.data.query.PtsOutMainDetailV">
+        <config db="default" type="sql"><![CDATA[SELECT B.OUT_ID,
+       A.OUT_DATE,
+       A.orgid,
+       A.STORE_ID,
+       A.GUEST_ID,
+       A.GUEST_FULL_NAME,
+       A.OUT_TYPE_ID,
+       A.BILL_TYPE_ID,
+       A.BILL_STATUS,
+       A.BACK_REASON_ID,
+       A.CHECKER,
+       A.SELLER,
+       A.STORE_KEEPER,
+       A.AUDIT_STATUS,
+       A.AUDITOR,
+       A.AUDIT_DATE,
+       A.POST_STATUS,
+       A.POST_MAN,
+       A.POST_DATE,
+       A.RECORDER,
+       A.RECORD_DATE,
+       A.MODIFIER,
+       A.MODIFY_DATE,
+       B.DETAIL_ID,
+       B.PART_ID,
+       B.PART_CODE,
+       C.NAME PART_NAME,
+       C.UNIT,
+       B.OUT_QTY,
+       B.OUT_BACKABLE_QTY,
+       B.TAX_SIGN,
+       B.TAX_RATE,
+       B.TAX_RATE_AMT,
+       B.SELL_UNIT_PRICE,
+       B.SELL_AMT,
+       B.DISCOUNT_RATE,
+       B.DISCOUNT_AMT,
+       B.DISCOUNT_LAST_UNIT_PRICE,
+       B.DISCOUNT_LAST_AMT,
+       B.COST_UNIT_PRICE,
+       B.COST_AMT,
+       B.NO_TAX_COST_UNIT_PRICE,
+       B.NO_TAX_COST_AMT,
+       B.TAX_COST_UNIT_PRICE,
+       B.TAX_COST_AMT,
+       B.REMARK,
+       B.PREV_ENTER_DETAIL_ID,
+       B.ROOT_OUT_DETAIL_ID,
+       B.ORDER_DETAIL_ID,
+       C.APPLY_CAR_MODEL
+  FROM wb_part.PTS_OUT_MAIN A
+  JOIN wb_part.PTS_OUT_DETAIL B
+    ON (A.ID = B.OUT_ID)
+  LEFT JOIN WB_COMMON.COM_ATTRIBUTE C
+    ON (B.PART_ID = C.ID)]]></config>
+    </QueryEntity>
+    <QueryEntity name="com.hsapi.part.data.query.PtsEnterDetailV">
+        <config db="default" type="sql"><![CDATA[SELECT
+	a.detail_id,
+	a.enter_id,
+	a.part_id,
+	a.part_code,
+	a.part_name,
+	a.part_full_name,
+	a.unit,
+	a.enter_qty,
+	a.outable_qty,
+	a.tax_sign,
+	a.tax_rate,
+	a.tax_rate_amt,
+	a.tax_unit_price,
+	a.tax_amt,
+	a.no_tax_unit_price,
+	a.no_tax_amt,
+	a.suggest_price,
+	a.suggest_amt,
+	a.remark,
+	a.prev_out_detail_id,
+	a.root_enter_detail_id,
+	b.apply_car_model,
+	b.part_brand_id,
+	c.store_location_id
+FROM
+	wb_part.pts_enter_detail a
+	INNER JOIN wb_part.pts_enter_main d on (d.id = a.enter_id)
+	LEFT JOIN wb_part.pts_cyc_store c on (a.part_id = c.part_id and d.orgid = c.orgid and d.store_id = c.store_id)
+	LEFT JOIN wb_common.com_attribute b ON ( a.part_id = b.id )]]></config>
+    </QueryEntity>
+    <QueryEntity name="com.hsapi.part.data.query.PtsStockCycV">
+        <config db="default" type="sql"><![CDATA[SELECT A.ID,
+       A.PART_ID,
+       A.STORE_ID,
+       A.orgid,
+       A.LAST_SELL_PRICE,
+       A.SUGGEST_PRICE,
+       A.COST_PRICE,
+       A.STORE_LOCATION,
+       A.ORDER_CYC,
+       A.ARRIVE_CYC,
+       A.SAFE_CYC,
+       A.STOCK_UP_LIMIT,
+       A.STOCK_DOWN_LIMIT,
+       A.DAY_SELL_VALUME,
+       A.MONTH_SELL_VALUME,
+       A.LAST_ENTER_DATE,
+       A.LAST_OUT_DATE,
+       A.STOCK_QTY,
+       A.STOCK_PRICE,
+       A.STOCK_AMT,
+       A.UNUSEABLE_DAY,
+       B.CODE              PART_CODE,
+       B.NAME              PART_NAME,
+       B.FULL_NAME         PART_FULL_NAME,
+       B.QUALITY_TYPE_ID,
+       B.PART_BRAND_ID,
+       B.APPLY_CAR_MODEL,
+       B.ABC_TYPE,
+       B.UNIT,
+       B.CAR_TYPE_ID_F,
+       B.CAR_TYPE_ID_S,
+       B.CAR_TYPE_ID_T
+  FROM wb_part.pts_cyc_store A
+  LEFT JOIN WB_COMMON.COM_ATTRIBUTE B
+    ON (A.PART_ID = B.ID)
+]]></config>
+    </QueryEntity>
+</QueryEntityList>

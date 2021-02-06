@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpb.RpbCar" table="rpb_car">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="tenantId" type="int">
+            <column default="0" name="tenant_id" not-null="true"/>
+        </property>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid" not-null="true"/>
+        </property>
+        <property name="carNo" type="string">
+            <column default="''" length="15" name="car_no" not-null="true"/>
+        </property>
+        <property name="isWash" type="short">
+            <column default="0" name="is_wash"/>
+        </property>
+        <property name="guestId" type="int">
+            <column default="0" name="guest_id" not-null="true"/>
+        </property>
+        <property name="carModelId" type="string">
+            <column default="''" length="20" name="car_model_id"/>
+        </property>
+        <property name="carModelIdLy" type="string">
+            <column default="''" length="20" name="car_model_id_ly"/>
+        </property>
+        <property name="carBrandId" type="string">
+            <column default="''" length="20" name="car_brand_id"/>
+        </property>
+        <property name="carModel" type="string">
+            <column default="''" length="100" name="car_model"/>
+        </property>
+        <property name="produceDate" type="date">
+            <column name="produce_date"/>
+        </property>
+        <property name="engineNo" type="string">
+            <column default="''" length="20" name="engine_no"/>
+        </property>
+        <property name="vin" type="string">
+            <column default="''" length="20" name="vin"/>
+        </property>
+        <property name="color" type="string">
+            <column default="''" length="10" name="color"/>
+        </property>
+        <property name="firstRegDate" type="date">
+            <column name="first_reg_date"/>
+        </property>
+        <property name="issuingDate" type="date">
+            <column name="issuing_date"/>
+        </property>
+        <property name="insureCompCode" type="int">
+            <column default="0" name="insure_comp_code"/>
+        </property>
+        <property name="insureCompName" type="string">
+            <column default="''" length="50" name="insure_comp_name"/>
+        </property>
+        <property name="annualVerificationDueDate" type="date">
+            <column name="annual_verification_due_date"/>
+        </property>
+        <property name="insureBuyDate" type="date">
+            <column name="insure_buy_date"/>
+        </property>
+        <property name="annualInspectionNo" type="string">
+            <column default="''" length="30" name="annual_inspection_no"/>
+        </property>
+        <property name="annualInspectionDate" type="date">
+            <column name="annual_inspection_date"/>
+        </property>
+        <property name="insureNo" type="string">
+            <column default="''" length="30" name="insure_no"/>
+        </property>
+        <property name="insureDueDate" type="date">
+            <column name="insure_due_date"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="date">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="date">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpb.RpbContactor" table="rpb_contactor">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="tenantId" type="int">
+            <column default="0" name="tenant_id" not-null="true"/>
+        </property>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid" not-null="true"/>
+        </property>
+        <property name="guestId" type="int">
+            <column default="0" name="guest_id" not-null="true"/>
+        </property>
+        <property name="name" type="string">
+            <column default="''" length="20" name="name" not-null="true"/>
+        </property>
+        <property name="sex" type="short">
+            <column default="1" name="sex"/>
+        </property>
+        <property name="tel" type="string">
+            <column default="''" length="50" name="tel"/>
+        </property>
+        <property name="mobile" type="string">
+            <column default="''" length="50" name="mobile"/>
+        </property>
+        <property name="birthdayType" type="short">
+            <column default="0" name="birthday_type"/>
+        </property>
+        <property name="birthday" type="date">
+            <column name="birthday"/>
+        </property>
+        <property name="idNo" type="string">
+            <column default="''" length="20" name="id_no"/>
+        </property>
+        <property name="idAddress" type="string">
+            <column default="''" length="100" name="id_address"/>
+        </property>
+        <property name="email" type="string">
+            <column default="''" length="20" name="email"/>
+        </property>
+        <property name="qq" type="string">
+            <column default="''" length="20" name="qq"/>
+        </property>
+        <property name="trade" type="string">
+            <column default="''" length="20" name="trade"/>
+        </property>
+        <property name="degree" type="string">
+            <column default="''" length="20" name="degree"/>
+        </property>
+        <property name="duty" type="string">
+            <column default="''" length="20" name="duty"/>
+        </property>
+        <property name="source" type="string">
+            <column default="''" length="20" name="source"/>
+        </property>
+        <property name="groupId" type="string">
+            <column default="''" length="20" name="group_id"/>
+        </property>
+        <property name="identity" type="string">
+            <column default="''" length="20" name="identity"/>
+        </property>
+        <property name="mtCompNow" type="string">
+            <column default="''" length="20" name="mt_comp_now"/>
+        </property>
+        <property name="specialCare" type="string">
+            <column default="''" length="20" name="special_care"/>
+        </property>
+        <property name="traits" type="string">
+            <column default="''" length="20" name="traits"/>
+        </property>
+        <property name="nature" type="string">
+            <column default="''" length="500" name="nature"/>
+        </property>
+        <property name="remark" type="string">
+            <column default="''" length="100" name="remark"/>
+        </property>
+        <property name="isDisabled" type="short">
+            <column default="0" name="is_disabled"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="date">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="date">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.rpb.RpbGuest" table="rpb_guest">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="visitManId" type="int">
+            <column name="visit_man_id"/>
+        </property>
+        <property name="visitStatus" type="short">
+            <column default="0" name="visit_status"/>
+        </property>
+        <property name="firstScoutDate" type="date">
+            <column name="first_scout_date"/>
+        </property>
+        <property name="priorScoutDate" type="date">
+            <column name="prior_scout_date"/>
+        </property>
+        <property name="nextScoutDate" type="date">
+            <column name="next_scout_date"/>
+        </property>
+        <property name="isContinueScout" type="short">
+            <column default="0" name="is_continue_scout"/>
+        </property>
+        <property name="isBlack" type="short">
+            <column default="0" name="is_black"/>
+        </property>
+        <property name="openId" type="string">
+            <column default="''" length="50" name="open_id"/>
+        </property>
+        <property name="chainConsumeAmt" type="big_decimal">
+            <column default="0.00" length="10" name="chain_consume_amt" precision="10" scale="2"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="date">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="date">
+            <column name="modify_date"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -121,6 +121,8 @@
 			a.is_pchs_stock as isPchsStock,
 			a.is_limit_credit as isLimitCredit,
 			a.credit_money as creditMoney,
+			a.dept_id as deptId,
+			a.king_code as kingCode,
 			b.`code` as compCode,
 			b.`name` as compName,
 			b.short_name as compShortName
@@ -146,6 +148,9 @@
               </isNotEmpty>
                <isNotEmpty prepend="and" property="isDimission">  
                     (a.is_dimission = #isDimission#)
+              </isNotEmpty>
+               <isNotEmpty prepend="and" property="deptId">  
+                    (a.dept_id = #deptId#)
               </isNotEmpty>
                <isNotEmpty prepend="and" property="isArtificer">  
                     (a.is_artificer = #isArtificer#)

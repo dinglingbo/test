@@ -88,7 +88,9 @@
 			recorder as recorder,
 			record_date as recordDate,
 			modifier as modifier,
-			modify_date as modifyDate
+			modify_date as modifyDate,
+			a.king_id as kingId,
+			a.book_id as bookId
 		FROM
 			wb_common.com_company a
 		WHERE a.tenant_id = #tenantId#

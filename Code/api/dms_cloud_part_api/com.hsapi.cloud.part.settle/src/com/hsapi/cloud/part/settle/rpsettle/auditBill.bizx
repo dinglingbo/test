@@ -181,13 +181,17 @@
         <process:inputVariable id="2" name="ServiceId" type="query" value="String" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
         <process:inputVariable id="3" name="BillMainId" type="query" value="Long" valueType="Primitive" pattern="reference">mainId</process:inputVariable>
         <process:inputVariable id="4" name="BillTypeId" type="query" value="Int" valueType="Primitive" pattern="reference">billTypeId</process:inputVariable>
-        <process:inputVariable id="5" name="BillAmt" type="query" value="Float" valueType="Primitive" pattern="reference">billAmt</process:inputVariable>
+        <process:inputVariable id="5" name="BillAmt" type="query" value="Double" valueType="Primitive" pattern="reference">billAmt</process:inputVariable>
         <process:inputVariable id="6" name="dc" type="expression" value="Int" valueType="Primitive" pattern="reference">dc*-1</process:inputVariable>
         <process:inputVariable id="7" name="remark" type="query" value="String" valueType="Primitive" pattern="reference">billRemark</process:inputVariable>
         <process:inputVariable id="8" name="BillTypeCode" type="query" value="String" valueType="Primitive" pattern="reference">billTypeCode</process:inputVariable>
         <process:inputVariable id="9" name="orgid" type="query" value="String" valueType="Primitive" pattern="reference">temp/orgid</process:inputVariable>
         <process:inputVariable id="10" name="fYear" type="query" value="Int" valueType="Primitive" pattern="reference">value</process:inputVariable>
         <process:inputVariable id="11" name="fMonth" type="query" value="Int" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="12" name="code" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="13" name="codeId" type="query" value="Long" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="14" name="orderTypeId" type="query" value="Int" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="15" name="rtnBillSign" type="literal" value="Int" valueType="Primitive" pattern="reference">0</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -704,7 +708,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="billTypeId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="billTypeCode" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="dc" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="billAmt" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="billAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="accountSign" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="tmpStro" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="tmpStrt" primitiveType="String"/>

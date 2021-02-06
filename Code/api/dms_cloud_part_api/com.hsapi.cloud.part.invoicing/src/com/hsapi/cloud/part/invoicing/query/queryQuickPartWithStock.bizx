@@ -549,7 +549,6 @@
     <location x="273" y="411"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
-    <process:condition/>
     <process:iterate iterable="localPartList" iterableElement="partTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart1label" name="label" nodeType="label">
@@ -681,6 +680,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">partStock/outableQty</process:from>
       <process:to type="query">epcPart/outableQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">partTemp/orgCarBrandId</process:from>
+      <process:to type="query">epcPart/orgCarBrandId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign15label" name="label" nodeType="label">
@@ -935,6 +938,10 @@
       <process:from type="query" pattern="reference">partStock/outableQty</process:from>
       <process:to type="query">epcPart/outableQty</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">partTemp/orgCarBrandId</process:from>
+      <process:to type="query">epcPart/orgCarBrandId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign17label" name="label" nodeType="label">
     <location x="1013" y="388"/>
@@ -1031,6 +1038,7 @@
     <location x="1035" y="151"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart3label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="attr" iterableElement="partTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend3label" name="label" nodeType="label">
@@ -1140,6 +1148,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">partStock/outableQty</process:from>
       <process:to type="query">epcPart/outableQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">partTemp/orgCarBrandId</process:from>
+      <process:to type="query">epcPart/orgCarBrandId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign20label" name="label" nodeType="label">

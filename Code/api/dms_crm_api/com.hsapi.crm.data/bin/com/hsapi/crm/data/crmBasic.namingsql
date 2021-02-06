@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.crm.data.crmBasic">
+    <!--话术模板-->
+    <select id="getTalkArtList" parameterClass="HashMap" resultClass="com.hsapi.crm.data.crmBasic.CrmTalkArt">
+        SELECT id, orgid, type_id typeId, topic, source, content, recorder, 
+            record_date recordDate, modifier, modify_date modifyDate
+        FROM crm_talk_art
+        WHERE orgid = #orgid#
+        <isNotNull property="typeId">AND type_id = #typeId#</isNotNull>
+        <isNotNull property="source">AND source like '%$source$%'</isNotNull>
+        <isNotNull property="topic">AND topic like '%$topic$%'</isNotNull>
+        <isNotNull property="recorder">AND recorder like '%$recorder$%'</isNotNull>
+    </select>
+    <!--查询商机-->
+    <select id="querySellList" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+        SELECT 
+        	a.id as id,
+        	a.tenant_id as tenantId,
+        	a.orgid as orgid,
+        	a.guest_id as guestId,
+        	a.guest_name as guestName,
+        	a.guest_mobile as guestMobile,
+        	a.car_id as carId,
+        	a.car_no as carNo,
+        	a.chance_type as chanceType,
+        	a.prdt_name as prdtName,
+        	a.prdt_amt as prdtAmt,
+        	a.status as status,
+        	a.chance_man_id as chanceManId,
+        	a.chance_man as chanceMan,
+        	a.plan_finish_date as planFinishDate,
+        	a.next_follow_date as nextFollowDate,
+        	a.chance_content as chanceContent,
+        	a.recorder as recorder,
+        	a.record_date as recordDate,
+        	a.modifier as modifier,
+        	a.modify_date as modifyDate,
+        	a.remark as remark
+        FROM crm_sell_chance_detail a
+        WHERE orgid = #orgid#
+        <isNotEmpty prepend="and" property="guestName">(a.guest_name like '%$guestName$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="status">(a.status = #status#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestMobile">(a.guest_mobile like '%$guestMobile$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="carNo">(a.car_no like '%$carNo$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="chanceManId">(a.chance_man_id = #chanceManId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="guestId">(a.guest_id = #guestId#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="startDate">(a.next_follow_date &gt;= #startDate#)</isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">(a.next_follow_date &lt; #endDate#)</isNotEmpty>
+    </select>
+    <!--短信模板-->
+    <select id="getSmsList" parameterClass="HashMap" resultClass="com.hsapi.crm.data.crmBasic.CrmTemplateMsg">
+        SELECT id, orgcode, type_id typeId, char_count charCount, source, content, recorder, 
+            record_date recordDate, modifier, modify_date modifyDate
+        FROM crm_template_msg
+        WHERE orgid = #orgid#
+        <isNotNull property="typeId">AND type_id = #typeId#</isNotNull>
+        <isNotNull property="source">AND source like '%$source$%'</isNotNull>
+        <isNotNull property="content">AND content like '%$content$%'</isNotNull>
+        <isNotNull property="recorder">AND recorder like '%$recorder$%'</isNotNull>
+    </select>
+</sqlMap>

@@ -239,5 +239,78 @@
 			order by sum(order_amt) desc
 			
     </select>
+    
+    <!--更新销售出库的返点率-->
+    <update id="updateSellOrderRebateRate" parameterClass="java.util.HashMap" >
+		update pj_sell_order_main_chk a
+		inner join wb_common.com_dataitems b
+		on a.business_type_id = b.customid
+		set a.settle_guest_rebate_rate = ifnull(b.property2, 0),
+		    a.business_type_rebate_rate = ifnull(b.property1, 0),
+		    a.is_sync_rebate = 1
+		where a.order_type_id = 2 and b.dictid = '10445'
+		      and a.is_sync_rebate = 0
+	</update>
+	
+	    <!--更新销售出库的返点率-->
+    <update id="updateSellOrderRtnRebateRate" parameterClass="java.util.HashMap" >
+		update pj_pchs_order_main_chk a
+		inner join wb_common.com_dataitems b
+		on a.business_type_id = b.customid
+		set a.settle_guest_rebate_rate = ifnull(b.property2, 0),
+		    a.business_type_rebate_rate = ifnull(b.property1, 0),
+		    a.is_sync_rebate = 1
+		where a.order_type_id = 4 and b.dictid = '10445'
+		      and a.is_sync_rebate = 0
+	</update>
+	
+	    <!--更新销售出库的返点率-->
+    <update id="updateSellOrderOutRebateRate" parameterClass="java.util.HashMap" >
+		update pj_out_main_chk a
+		inner join wb_common.com_dataitems b
+		on a.business_type_id = b.customid
+		set a.settle_guest_rebate_rate = ifnull(b.property2, 0),
+		    a.business_type_rebate_rate = ifnull(b.property1, 0),
+		    a.is_sync_rebate = 1
+		where a.enter_type_id = '050202' and b.dictid = '10445'
+		      and a.is_sync_rebate = 0
+	</update>
+	
+	    <!--更新销售出库的返点率-->
+    <update id="updateSellOrderOutRtnRebateRate" parameterClass="java.util.HashMap" >
+		update pj_enter_main_chk a
+		inner join wb_common.com_dataitems b
+		on a.business_type_id = b.customid
+		set a.settle_guest_rebate_rate = ifnull(b.property2, 0),
+		    a.business_type_rebate_rate = ifnull(b.property1, 0),
+		    a.is_sync_rebate = 1
+		where a.enter_type_id = '050102' and b.dictid = '10445'
+		      and a.is_sync_rebate = 0
+	</update>
+	
+		    <!--更新销售出库明细的返点金额-->
+    <update id="updateSellOrderOutRebateAmt" parameterClass="java.util.HashMap" >
+		update pj_out_detail_chk a
+		inner join pj_out_main_chk b
+		on a.main_id = b.id
+		inner join wb_common.com_dataitems c
+		on b.business_type_id = c.customid
+		set a.business_type_rebate_amt = a.sell_amt * ifnull(c.property1, 0),
+		    a.settle_guest_rebate_amt = a.sell_amt * ifnull(c.property2, 0)
+		where b.enter_type_id = '050202' and c.dictid = '10445'
+		      and b.is_sync_rebate = 0
+	</update>
+			<!--更新销售退货明细的返点金额-->
+	<update id="updateSellOrderOutRtnRebateAmt" parameterClass="java.util.HashMap" >
+		update pj_enter_detail_chk a
+		inner join pj_enter_main_chk b
+		on a.main_id = b.id
+		inner join wb_common.com_dataitems c
+		on b.business_type_id = c.customid
+		set a.business_type_rebate_amt = a.rtn_amt * ifnull(c.property1, 0) * -1.0,
+		    a.settle_guest_rebate_amt = a.rtn_amt * ifnull(c.property2, 0) * -1.0
+		where b.enter_type_id = '050102' and c.dictid = '10445'
+		      and b.is_sync_rebate = 0
+	</update>
 	
 </sqlMap>

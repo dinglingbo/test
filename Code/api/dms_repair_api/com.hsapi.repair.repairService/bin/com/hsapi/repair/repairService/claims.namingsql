@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.repair.repairService.claims">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryClaimsList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id id,
+			a.service_id serviceId,
+			a.service_code serviceCode, 
+			a.claims_type claimsType,
+			a.is_settle isSettle,
+			a.state state,
+			a.record_date recordDate,
+			a.item_amt itemAmt,
+			a.part_amt partAmt,
+			a.other_amt otherAmt,
+			a.agio_amt agioAmt,
+			a.balance_amt balanceAmt,
+			a.jd_deduct_amt jdDeductAmt,
+			a.bj_deduct_amt bjDeductAmt,
+			a.pq_deduct_amt pqDeductAmt,
+			b.service_code maintainServiceCode,
+			b.mt_advisor mtAdvisor,
+			b.sure_mt_date sureMtDate,
+			b.out_date outDate,
+			c.name contactorName,
+			b.car_no carNo,
+			d.car_brand_id carBrandId,
+			d.car_model carModel,
+			a.part_audit partAudit,
+			a.part_auditor partAuditor,
+			a.part_auditdate partAuditdate,
+			a.client_description clientDescription,
+			a.process_description processDescription,
+			a.precautions precautions
+		FROM
+			rps_claims_main a
+			inner join rps_maintain b on (a.service_id = b.id)
+			inner join rpb_contactor c on (b.contactor_id = c.id)
+			inner join rpb_car d on (b.car_id = d.id)
+		WHERE
+			a.orgid = #orgid#
+		<dynamic>
+            <isNotEmpty prepend="and" property="isSettle">(a.is_settle = #isSettle#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="claimsId">(a.id = #claimsId#)</isNotEmpty>
+        </dynamic>
+    </select>
+    <select id="queryClaimsList4Part" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id id,
+			a.service_id serviceId,
+			a.service_code serviceCode, 
+			b.service_code maintainServiceCode,
+			b.car_no carNo
+		FROM
+			rps_claims_main a
+			inner join rps_maintain b on (a.service_id = b.id)
+		WHERE
+			a.orgid = #orgid#
+			and ifnull(a.state, 0) = 0 and ifnull(part_audit,0) = 0
+		<dynamic>
+            <isNotEmpty prepend="and" property="startDate">(a.record_date &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(a.record_date &lt;= #endDate#)</isNotEmpty>
+        </dynamic>
+    </select>
+</sqlMap>

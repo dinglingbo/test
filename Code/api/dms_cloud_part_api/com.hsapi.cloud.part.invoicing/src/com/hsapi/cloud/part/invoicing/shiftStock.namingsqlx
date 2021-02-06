@@ -79,8 +79,17 @@
                 <!--审核状态-->
                     (A.AUDIT_SIGN = #auditSign#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="packSign">  
+                    (a.pack_sign = #packSign#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="storeId">  
+                    (a.store_id = #storeId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="receiveStoreId">  
+                    (a.receive_store_id = #receiveStoreId#)
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
-                    (A.ID in ($serviceIdList$))
+                    (A.service_id in ($serviceIdList$))
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (D.CODE in ($partCodeList$))
@@ -102,6 +111,7 @@
 					A.id as id,
 					A.main_id as mainId,
 					A.store_id as storeId,
+					A.store_shelf as storeShelf,
 					A.receive_store_id as receiveStoreId,
 					A.receive_store_shelf as receiveStoreShelf,
 					A.part_id as partId,
@@ -126,7 +136,8 @@
 					B.apply_car_model AS comApplyCarModel,
 					B.unit AS comUnit,
 					B.spec AS comSpec,
-					B.direction AS comDirection
+					B.direction AS comDirection,
+					b.org_car_brand_id as orgCarBrandId
 			FROM
 						DMS_CLOUD_PART.pj_stock_shift_detail A
 						INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
@@ -142,5 +153,22 @@
         
         ORDER BY a.id asc
     </select>
+    
+    
+    <select id="getShiftOutAmt" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT a.id, a.service_id as serviceId, sum(c.no_tax_cost_amt)  as noTaxCostAmt
+			from pj_out_main_chk a
+			inner join pj_stock_shift_main b
+			on a.code = b.service_id
+			inner join pj_out_detail_chk c
+			on a.id = c.main_id
+			where b.service_id = #serviceId#
+			group by a.id, a.service_id
+    </select>
+    
+    
+    
+    
+    
     
 </sqlMap>

@@ -1,0 +1,42 @@
+<map>
+  <entry>
+    <string>com.hsapi.system.employee.employeeMgr.getImportEmployee(com.hsapi.system.data.sys.ComMember[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getImportEmployee&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getImportPartInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.employeeMgr.getImportEmployee&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.system.data.sys.ComMember[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.employeeMgr.stopOrStartEmployee(com.hsapi.system.data.sys.ComMember)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;stopOrStartEmployee&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;employeeDimssion&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.employeeMgr.stopOrStartEmployee&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(com.hsapi.system.data.sys.ComMember):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.employeeMgr.queryHomePage(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryHomePage&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryCustomerList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.employeeMgr.queryHomePage&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;homePage(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.employeeMgr.employeeQuerys(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;employeeQuerys&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;employeeQuery&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.employeeMgr.employeeQuerys&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(com.hsapi.system.data.sys.ComMember[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.employeeMgr.employeeDimssion(com.hsapi.system.data.sys.ComMember)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;employeeDimssion&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;employeeDimssion&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.employeeMgr.employeeDimssion&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(com.hsapi.system.data.sys.ComMember):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.employeeMgr.savehomePage(com.hsapi.system.data.sys.ComHomePage[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;savehomePage&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveNature&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.employeeMgr.savehomePage&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;homePage(com.hsapi.system.data.sys.ComHomePage[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.employeeMgr.employeeSave(com.hsapi.system.data.sys.ComMember)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;employeeSave&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;employeeSave&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.employeeMgr.employeeSave&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;emp(com.hsapi.system.data.sys.ComMember):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.employeeMgr.setAccount(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;setAccount&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;setPassWord&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.employeeMgr.setAccount&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.employeeMgr.checkEmployeeExists(String, String, Int)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;checkEmployeeExists&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;checkPartExists&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.employeeMgr.checkEmployeeExists&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;idcardno(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;type(String):&lt;/b&gt;add,edit&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;id(Int):&lt;/b&gt;empid&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>employeeMgr</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;employeeMgr.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;employeeMgr&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.employeeMgr&lt;/html&gt;</string>
+  </entry>
+</map>

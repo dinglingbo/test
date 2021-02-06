@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.system.feedback.feedback">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryFeedbackList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id id,
+			a.file_name fileName,
+			a.file_size fileSize,
+			a.file_type fileType,
+			a.file_url fileUrl,
+			a.func_action funcAction,
+			a.func_name funcName,
+			a.orgid orgid,
+			a.orgname orgname,
+			a.question_content questionContent,
+			a.question_source source,
+			a.question_type questionType,
+			a.read_date readDate,
+			a.reader reader,
+			a.record_date recordDate,
+			a.record_mobile recordMobile,
+			a.recorder recorder,
+			a.settle_content settleContent,
+			a.settle_date settleDate,
+			a.settlor settlor,
+			a.status status,
+			a.record_id recordId
+		FROM
+			sys_feedback_record a
+		WHERE
+			1=1
+			<dynamic>
+            <isNotEmpty prepend="and" property="recordId">(a.record_id = #recordId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgname">(a.orgname like '%$orgname$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="recordMobile">(a.record_mobile like '%$recordMobile$%' )</isNotEmpty>
+            <isNotEmpty prepend="and" property="status">(a.status = #status#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="statusList">(a.status in (0,1,2))</isNotEmpty>
+        </dynamic>
+    </select>
+</sqlMap>

@@ -1,0 +1,18 @@
+<map>
+  <entry>
+    <string>com.hsapi.system.employee.roleRight.queryRole(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryRole&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryRole&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.roleRight.queryRole&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(com.hsapi.system.data.sys.CapRole[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>roleRight</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;roleRight.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;roleRight&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.roleRight&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.roleRight.deleteRole(com.hsapi.system.data.sys.CapRole)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;deleteRole&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;deleteRole&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.roleRight.deleteRole&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;capRole(com.hsapi.system.data.sys.CapRole):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.employee.roleRight.saveRole(com.hsapi.system.data.sys.CapRole, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveRole&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveRole&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.employee.roleRight.saveRole&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;capRole(com.hsapi.system.data.sys.CapRole):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;tenantId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;S/E&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

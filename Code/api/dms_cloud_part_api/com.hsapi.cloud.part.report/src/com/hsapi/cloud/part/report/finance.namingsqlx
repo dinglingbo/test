@@ -13,7 +13,8 @@
     	
             SELECT a.sett_account_id as settAccountId,b.orgid as orgid, a.rp_dc as rpDc, a.char_off_amt as charOffAmt,
 				   b.guest_id as guestId, b.auditor as auditor, b.audit_date as auditDate,
-				   c.full_name as fullName, c.short_name as shortName
+				   c.full_name as fullName, c.short_name as shortName, b.remark, 
+				   b.bill_type_id as billTypeId, b.bill_type_code as billTypeCode, b.rp_account_id as rpAccountId
 			from fi_rp_account_d_type a
 			inner join fi_rp_account b
 			on a.main_id = b.id
@@ -41,6 +42,18 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="rpDc">  
                     (a.rp_dc = #rpDc#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isAdvance">  
+                    (b.is_advance = #isAdvance#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="remark">  
+                    (b.remark like '%$remark$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="auditor">  
+                    (b.auditor = #auditor#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="rpAccountId">  
+                    (b.rp_account_id = #rpAccountId#)
                 </isNotEmpty>
                 <isNotEmpty prepend="order by" property="sortField">  
 	                $sortField$ $sortOrder$
@@ -144,6 +157,10 @@
 	            </isNotEmpty> 
     </select>
     		本日 昨日 本周 上周 本月 下月 
+    		
+    		<isNotEmpty prepend="and" property="isAdvance">  
+                    (c.is_advance = #isAdvance#)
+                </isNotEmpty> 
     -->
     <select id="queryRPAccountDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT 
@@ -178,9 +195,7 @@
 								inner join fis_rp_bill e on d.bill_rp_id = e.id 
 								where a.id = d.main_id and e.bill_service_id = #billServiceId#)
 	            </isNotEmpty>                       
-			    <isNotEmpty prepend="and" property="isAdvance">  
-                    (c.is_advance = #isAdvance#)
-                </isNotEmpty>                       
+			                          
 			    <isNotEmpty prepend="and" property="settAccountId">  
                     (c.sett_account_id = #settAccountId#)
                 </isNotEmpty>
@@ -201,6 +216,9 @@
                 </isNotEmpty>     
                 <isNotEmpty prepend="and" property="rpDc">  
                     (a.rp_dc = #rpDc#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isAdvance">  
+                    (a.is_advance = #isAdvance#)
                 </isNotEmpty>
                 <isNotEmpty prepend="order by" property="sortField">  
 	                $sortField$ $sortOrder$
@@ -265,6 +283,9 @@
                 <isNotEmpty prepend="and" property="rpDc">  
                     (f.rp_dc = #rpDc#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="isAdvance">  
+                    (b.is_advance = #isAdvance#)
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="isMain">  
                     (e.is_primary_business = #isMain#)
                 </isNotEmpty>
@@ -316,7 +337,8 @@
 				   a.settle_sign as settleSign, a.settler as settler,
 				   a.settle_date as settleDate, a.settle_status as settleStatus,
 				   a.audit_sign as auditSign, a.auditor as auditor,
-				   a.audit_date as auditDate, a.remark as remark, a.rp_type_id as rpTypeId
+				   a.audit_date as auditDate, a.remark as remark, a.rp_type_id as rpTypeId,
+				   a.f_year as fYear, a.f_month as fMonth
 			from fi_rp_bill a
 			inner join wb_common.com_guest b
 			on a.guest_id = b.id
@@ -336,6 +358,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
                     (a.guest_id = #guestId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="billTypeId">  
+                    (a.bill_type_id = #billTypeId#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="notSettled">  
                     (a.no_char_off_amt > 0)

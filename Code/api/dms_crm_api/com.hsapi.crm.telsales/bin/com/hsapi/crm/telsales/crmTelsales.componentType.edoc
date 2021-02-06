@@ -1,0 +1,30 @@
+<map>
+  <entry>
+    <string>com.hsapi.crm.telsales.crmTelsales.saveScout(com.hsapi.crm.data.crmTelsales.CrmTalkDetail)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveScout&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveTalkArt&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.telsales.crmTelsales.saveScout&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.crm.data.crmTelsales.CrmTalkDetail):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>crmTelsales</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;crmTelsales.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;crmTelsales&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.telsales.crmTelsales&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.telsales.crmTelsales.getScoutGuestList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getScoutGuestList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;get&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.telsales.crmTelsales.getScoutGuestList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;p(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.telsales.crmTelsales.saveComplain(com.hsapi.crm.data.crmTelsales.CrmComplaint)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveComplain&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveTalkArt&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.telsales.crmTelsales.saveComplain&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.crm.data.crmTelsales.CrmComplaint):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.telsales.crmTelsales.saveGuest(com.hsapi.crm.data.crmTelsales.CrmGuest)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveGuest&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveTalkArt&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.telsales.crmTelsales.saveGuest&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(com.hsapi.crm.data.crmTelsales.CrmGuest):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.telsales.crmTelsales.updateGuest(com.hsapi.crm.data.crmTelsales.CrmGuest[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateGuest&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateGuest&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.telsales.crmTelsales.updateGuest&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;datas(com.hsapi.crm.data.crmTelsales.CrmGuest[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.telsales.crmTelsales.getDatumMgrList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getDatumMgrList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;get&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.telsales.crmTelsales.getDatumMgrList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;p(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

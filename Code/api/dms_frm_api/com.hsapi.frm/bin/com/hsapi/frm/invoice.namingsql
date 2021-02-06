@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.frm.invoice">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="searchMain" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+select 			
+			a.guest_id as guestId,
+			a.service_code as serviceCode,
+			a.car_no  as carNo,
+			d.full_name as guestFullName,
+			d.mobile as guestMobile,
+			c.rate_amt as rateAmt,
+			c.invoice_no as invoiceNo,
+			c.invoice_type as invoiceType,
+			c.rate as rate,
+			c.invoice_amt as invoiceAmt,
+			c.invoice_name as invoiceName,
+			c.modifier as modifier,
+			c.record_date as recordDate,
+			c.recorder as recorder,
+			c.remark as remark,
+			a.record_date as recordDateMain
+from wb_repair.rps_maintain a
+left join wb_repair.rps_ticket_detail b
+on a.id = b.servcie_id
+left join wb_repair.rps_ticket_main c
+on b.main_id = c.id
+inner join wb_common.com_guest d
+on a.guest_id = d.id
+inner join rpb_car e
+on a.car_id = e.id
+where a.is_settle = 1 
+	<isNotEmpty prepend="and" property="carNo">(a.car_no like '%$carNo$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="serviceCode">(a.service_code like '%$serviceCode$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="name">(d.full_name like '%$name$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="mobile">(d.mobile like '%$mobile$%')</isNotEmpty>
+        <isNotEmpty prepend="and" property="invoiceNo">(c.invoice_no like '%$invoiceNo$%')</isNotEmpty>
+    </select>
+</sqlMap>

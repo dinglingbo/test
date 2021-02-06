@@ -1,0 +1,14 @@
+<map>
+  <entry>
+    <string>com.hsapi.part.baseDataCrud.x_init.getImportPart(com.hsapi.part.data.com.ComAttribute[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getImportPart&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getImportPartInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.baseDataCrud.x_init.getImportPart&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.part.data.com.ComAttribute[]):&lt;/b&gt;partCode,orderQty,orderPrice&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>init</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;x_init.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;init&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.baseDataCrud.x_init&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.part.baseDataCrud.x_init.getImportGuest(com.hsapi.part.data.com.ComGuest[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getImportGuest&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getImportPartInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.part.baseDataCrud.x_init.getImportGuest&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.part.data.com.ComGuest[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

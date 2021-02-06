@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.hsapi.repair.repairService.guestReport">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <sql id="comeGuest">
+            sum(
+                CASE
+                WHEN B.CHAIN_COME_TIMES = 1
+                AND B.FIRST_COME_DATE &gt;= DATE_SUB(CURDATE(), INTERVAL 1 MONTH) THEN
+                    1
+                END
+            ) AS firstCarNum,
+            sum(
+                CASE
+                WHEN B.CHAIN_COME_TIMES = 2
+                AND B.LAST_COME_DATE &gt;= DATE_SUB(CURDATE(), INTERVAL 1 MONTH) THEN
+                    1
+                END
+            ) AS activeCarNum,
+            sum(
+                CASE
+                WHEN B.CHAIN_COME_TIMES &gt;= 2
+                AND B.LAST_COME_DATE &lt; DATE_SUB(CURDATE(), INTERVAL 30 DAY)
+                AND B.LAST_COME_DATE &gt;= DATE_SUB(CURDATE(), INTERVAL 90 DAY) THEN
+                    1
+                END
+            ) AS stableCarNum,
+            sum(
+                CASE
+                WHEN B.CHAIN_COME_TIMES &gt; 0
+                AND B.LAST_COME_DATE &lt; DATE_SUB(CURDATE(), INTERVAL 90 DAY)
+                AND B.LAST_COME_DATE &gt;= DATE_SUB(CURDATE(), INTERVAL 180 DAY) THEN
+                    1
+                END
+            ) AS sleepCarNum,
+            sum(
+                CASE
+                WHEN B.CHAIN_COME_TIMES &gt; 0
+                AND B.LAST_COME_DATE &lt; DATE_SUB(CURDATE(), INTERVAL 180 DAY) THEN
+                    1
+                END
+            ) AS loseCarNum,
+            sum(
+                CASE
+                WHEN B.CHAIN_COME_TIMES &gt; 1 THEN
+                    1
+                END
+            ) AS allCarNum
+        FROM
+            rpb_car a
+        INNER JOIN rpb_car_extend b ON a.id = b.car_id
+        LEFT JOIN wb_common.com_guest c ON c.id = a.guest_id
+        WHERE 1=1
+        <isNotNull prepend="" property="orgid">AND  a.orgid = #orgid#</isNotNull>
+        <isNotNull prepend="" property="orgids">AND  a.orgid in ($orgids$)</isNotNull>
+    </sql>
+    <!-- 已来厂客户统计  按品牌汇总-->
+    <select id="guestComeSummaryByModel" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        SELECT
+            a.car_model groupName,
+            <include refid="comeGuest"/>
+            group by a.car_model
+    </select>
+    <!-- 已来厂客户统计  按来厂次数汇总-->
+    <select id="guestComeSummaryByComeTimes" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        SELECT
+            b.chain_come_times groupName,	
+            <include refid="comeGuest"/>
+            group by b.chain_come_times
+    </select>
+    <!-- 已来厂客户统计  按销售人员汇总-->
+    <select id="guestComeSummaryBymtAdvisor" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        SELECT
+            b.mt_advisor_id,b.mt_advisor_name groupName,	
+            <include refid="comeGuest"/>
+            group by b.mt_advisor_id,b.mt_advisor_name
+    </select>
+    <sql id="Guest2">
+        count(1) as total,
+        sum(case when a.visit_status = '060701' then 1 end) as goonScout,
+        sum(case when a.visit_status = '060702' then 1 end) as stopScout,
+        sum(case when a.visit_status = '060705' or a.visit_status = '0'  then 1 end) as noScout,
+        sum(case when a.visit_status = '060704' then 1 end) as hasCome,
+        sum(case when a.visit_status &lt;&gt; '060704' then 1 end) as noCome,
+        sum(case when a.status = '0' then 1 end) as effective,
+        sum(case when a.status = '1' then 1 end) as invalid
+        from 
+        wb_crm.crm_guest a 
+        WHERE 1=1
+        <isNotNull prepend="" property="orgid">AND  a.orgid = #orgid#</isNotNull>
+        <isNotNull prepend="" property="orgids">AND  a.orgid in ($orgids$)</isNotNull>
+    </sql>
+    <!-- 未来厂客户统计  按品牌汇总-->
+    <select id="guestTelSummaryByModel" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        SELECT
+            a.car_model groupName,
+            <include refid="Guest2"/>
+            group by a.car_model
+    </select>
+    <!-- 未来厂客户统计  按销售人员汇总-->
+    <select id="guestTelSummaryBymtAdvisor" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        SELECT
+            a.visit_man_id,a.visit_man groupName,	
+            <include refid="Guest2"/>
+            group by a.visit_man_id,a.visit_man
+    </select>
+    <sql id="telGuest">
+        count(1) as total,
+        sum(case when a.visit_result = '1' then 1 end) as effective,
+        sum(case when a.visit_result = '0' then 1 end) as invalid,
+        sum(case when a.visit_status = '060701' then 1 end) as goonScout,
+        sum(case when a.visit_status = '060702' then 1 end) as stopScout,
+        sum(case when a.visit_status = '060703' then 1 end) as keyScout,
+        sum(case when a.visit_status = '060704' then 1 end) as hasCome,
+        case when count(1)= 0 then 0 else ifnull(sum(case when a.visit_status = '060704' then 1 end),0)/count(1)end comeRate,
+        sum(case when a.visit_mode = '011401' then 1 end) as telToScout,
+        sum(case when a.visit_mode = '011402' then 1 end) as infoToScout
+        from 
+        wb_crm.crm_visit_record a 
+        left JOIN wb_crm.crm_guest b on b.id = a.main_id 
+        where a.service_type =1
+        and a.visit_date &gt; #startDate#
+        and a.visit_date &lt; #endDate#
+        <isNotNull prepend="" property="orgid">AND  a.orgid = #orgid#</isNotNull>
+        <isNotNull prepend="" property="orgids">AND  a.orgid in ($orgids$)</isNotNull>
+    </sql>
+    <!-- 电销厂客户统计  按品牌汇总-->
+    <select id="guestTSumByModel" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        SELECT
+            b.car_model groupName,
+            <include refid="telGuest"/>
+        <isNotNull prepend="" property="carModel">AND  b.car_model like '%$carModel$%'</isNotNull>
+            group by b.car_model
+    </select>
+    <!-- 电销厂客户统计  按销售人员汇总-->
+    <select id="guestTSumBymtAdvisor" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        SELECT
+            b.visit_man_id,b.visit_man groupName,	
+            <include refid="telGuest"/>
+        <isNotNull prepend="" property="visitId">AND  b.visit_man_id = #visitId#</isNotNull>
+            group by b.visit_man_id,b.visit_man
+    </select>
+    <!-- 电话销售明细表-->
+    <select id="guestTelDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    select 
+        b.car_no carNo,b.car_model carModel,b.vin,b.guest_id guestId,b.guest_name guestName,
+        b.mobile,a.visit_mode visitMode,a.visit_result visitResult,a.visit_content visitContent,
+        a.visit_date visitDate,a.visit_id visitId ,a.visit_man visitMan,a.visit_status visitStatus,
+        a.orgid
+    from 
+        wb_crm.crm_visit_record a 
+        left JOIN wb_crm.crm_guest b on b.id = a.main_id 
+    where a.service_type =1
+
+        <isNotNull prepend="" property="orgid">AND  a.orgid = #orgid#</isNotNull>
+        <isNotNull prepend="" property="orgids">AND  a.orgid in ($orgids$)</isNotNull>
+        <isNotNull prepend="" property="guestName">AND  b.guest_name like '%$guestName$%'</isNotNull>
+        <isNotNull prepend="" property="carNo">AND  b.car_no like '%$carNo$%'</isNotNull>
+        <isNotNull prepend="" property="carModel">AND  b.car_model like '%$carModel$%'</isNotNull>
+        <isNotNull prepend="" property="mobile">AND  b.mobile like '%$mobile$%'</isNotNull>
+        <isNotNull prepend="" property="visitId">AND  a.visit_id = #visitId#</isNotNull>
+        <isNotNull prepend="" property="visitMode">AND  a.visit_mode =#visitMode#</isNotNull>
+        <isNotNull prepend="" property="visitStatus">AND  a.visit_status = #visitStatus#</isNotNull>
+        <isNotNull prepend="" property="startDate">AND  a.visit_date &gt; #startDate#</isNotNull>
+        <isNotNull prepend="" property="endDate">AND  a.visit_date &lt; #endDate#</isNotNull>
+    </select>
+    <sql id="visitRecord">
+            count(*) as total,
+            sum(case when a.visit_mode = '011401' then 1 end) as telToScout,
+            sum(case when a.visit_mode = '011402' then 1 end) as infoToScout
+        from wb_crm.crm_visit_record a 
+        left JOIN wb_crm.crm_guest b on b.id = a.main_id 
+        where a.service_type &lt;&gt; 1 
+            <isNotNull prepend="" property="orgid">AND  a.orgid = #orgid#</isNotNull>
+        <isNotNull prepend="" property="orgids">AND  a.orgid in ($orgids$)</isNotNull>
+    </sql>
+    <!-- 回访统计  按品牌汇总-->
+    <select id="visitSumByModel" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        SELECT
+            b.car_model groupName,
+            <include refid="visitRecord"/>
+        <isNotNull prepend="" property="carModel">AND  b.car_model like '%$carModel$%'</isNotNull>
+            group by b.car_model
+    </select>
+    <!-- 回访统计  按销售人员汇总-->
+    <select id="visitSumBymtAdvisor" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        SELECT
+            b.visit_man_id,b.visit_man groupName,	
+            <include refid="visitRecord"/>
+        <isNotNull prepend="" property="visitId">AND  b.visit_man_id = #visitId#</isNotNull>
+            group by b.visit_man_id,b.visit_man
+    </select>
+    <!-- 回访统计  按业务类型汇总-->
+    <select id="visitSumByServiceType" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        SELECT
+            a.service_type groupName,	
+            <include refid="visitRecord"/>
+        <isNotNull prepend="" property="serviceType">AND  a.service_type = #serviceType#</isNotNull>
+            group by a.service_type
+    </select>
+    <!-- 回访明细表-->
+    <select id="guestVisitDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        select 
+            b.car_no carNo,b.car_model carModel,b.vin,b.guest_id guestId,c.short_name guestName,
+            c.mobile,a.visit_mode visitMode,a.visit_result visitResult,a.visit_content visitContent,
+            a.visit_date visitDate,a.visit_id visitId ,a.visit_man visitMan,a.visit_status visitStatus,
+            a.service_type serviceType,a.orgid
+        from 
+        wb_crm.crm_visit_record a 
+        left JOIN wb_repair.rpb_car b on b.id = a.car_id 
+        LEFT JOIN wb_common.com_guest c on c.id = b.guest_id 
+        where a.service_type &lt;&gt; 1 
+        <isNotNull prepend="" property="orgid">AND  a.orgid = #orgid#</isNotNull>
+        <isNotNull prepend="" property="orgids">AND  a.orgid in ($orgids$)</isNotNull>
+        <isNotNull prepend="" property="guestName">AND  c.short_name like '%$guestName$%'</isNotNull>
+        <isNotNull prepend="" property="carNo">AND  b.car_no like '%$carNo$%'</isNotNull>
+        <isNotNull prepend="" property="carModel">AND  b.car_model like '%$carModel$%'</isNotNull>
+        <isNotNull prepend="" property="mobile">AND  c.mobile like '%$mobile$%'</isNotNull>
+        <isNotNull prepend="" property="visitId">AND  a.visit_id = #visitId#</isNotNull>
+        <isNotNull prepend="" property="visitMode">AND  a.visit_mode =#visitMode#</isNotNull>
+        <isNotNull prepend="" property="visitStatus">AND  a.visit_status = #visitStatus#</isNotNull>
+        <isNotNull prepend="" property="startDate">AND  a.visit_date &gt; #startDate#</isNotNull>
+        <isNotNull prepend="" property="endDate">AND  a.visit_date &lt; #endDate#</isNotNull>
+        <isNotNull prepend="" property="serviceType">AND  a.service_type = #serviceType#</isNotNull>
+
+        UNION all 
+        select 
+            b.car_no carNo,b.car_model carModel,b.vin,b.guest_id guestId,b.guest_name guestName,
+            b.mobile,a.visit_mode visitMode,a.visit_result visitResult,a.visit_content visitContent,
+            a.visit_date visitDate,a.visit_id visitId ,a.visit_man visitMan,a.visit_status visitStatus,
+            a.service_type serviceType,a.orgid
+        from 
+                wb_crm.crm_visit_record a 
+                left JOIN wb_crm.crm_guest b on b.id = a.main_id 
+        where a.service_type =1 
+        
+        <isNotNull prepend="" property="orgid">AND  a.orgid = #orgid#</isNotNull>
+        <isNotNull prepend="" property="orgids">AND  a.orgid in ($orgids$)</isNotNull>
+        <isNotNull prepend="" property="guestName">AND  b.guest_name like '%$guestName$%'</isNotNull>
+        <isNotNull prepend="" property="carNo">AND  b.car_no like '%$carNo$%'</isNotNull>
+        <isNotNull prepend="" property="carModel">AND  b.car_model like '%$carModel$%'</isNotNull>
+        <isNotNull prepend="" property="mobile">AND  b.mobile like '%$mobile$%'</isNotNull>
+        <isNotNull prepend="" property="visitId">AND  a.visit_id = #visitId#</isNotNull>
+        <isNotNull prepend="" property="visitMode">AND  a.visit_mode =#visitMode#</isNotNull>
+        <isNotNull prepend="" property="visitStatus">AND  a.visit_status = #visitStatus#</isNotNull>
+        <isNotNull prepend="" property="startDate">AND  a.visit_date &gt; #startDate#</isNotNull>
+        <isNotNull prepend="" property="endDate">AND  a.visit_date &lt; #endDate#</isNotNull>
+        <isNotNull prepend="" property="serviceType">AND  a.service_type = #serviceType#</isNotNull>
+    </select>
+    <!-- 总客户数-->
+    <select id="guestTotal" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        SELECT count(*) AS num FROM wb_common.com_guest a WHERE 1=1
+        and a.guest_type = '01020103'
+            <isNotNull prepend="" property="orgid">AND  a.orgid = #orgid#</isNotNull>
+        <isNotNull prepend="" property="orgids">AND  a.orgid in ($orgids$)</isNotNull>
+    </select>
+    <!-- 车辆户数-->
+    <select id="carTotal" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        SELECT 
+            count(*) AS num ,
+            sum(case when b.chain_come_times &gt;= 1  then 1 end ) as hasComeNum ,
+            sum(case when b.chain_come_times &lt;  1 then 1 end ) as noComeNum 
+        FROM	wb_repair.rpb_car a 
+        LEFT JOIN wb_repair.rpb_car_extend b on b.car_id=a.id
+        WHERE 1=1
+        <isNotNull prepend="" property="orgid">AND  a.orgid = #orgid#</isNotNull>
+        <isNotNull prepend="" property="orgids">AND  a.orgid in ($orgids$)</isNotNull>
+    </select>
+    <!-- 禁用车辆-->
+    <select id="carIsDisabledTotal" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        SELECT 
+            count(*) AS isDisabledNum
+        FROM	wb_repair.rpb_car a 
+        LEFT JOIN wb_repair.rpb_car_extend b on b.car_id=a.id
+        WHERE a.is_disabled = 1
+        <isNotNull prepend="" property="orgid">AND  a.orgid = #orgid#</isNotNull>
+        <isNotNull prepend="" property="orgids">AND  a.orgid in ($orgids$)</isNotNull>
+    </select>
+</sqlMap>

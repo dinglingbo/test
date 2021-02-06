@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.repairService.newdataset.RpsTicketMain" table="rps_ticket_main">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="code" type="string">
+            <column length="30" name="code"/>
+        </property>
+        <property name="invoiceNo" type="string">
+            <column default="''" length="30" name="invoice_no"/>
+        </property>
+        <property name="invoiceName" type="string">
+            <column default="''" length="50" name="invoice_name"/>
+        </property>
+        <property name="invoiceType" type="string">
+            <column default="''" length="20" name="invoice_type"/>
+        </property>
+        <property name="rate" type="big_decimal">
+            <column default="0.00" length="18" name="rate" precision="18" scale="2"/>
+        </property>
+        <property name="itemQty" type="int">
+            <column default="0" name="item_qty"/>
+        </property>
+        <property name="balaAmt" type="big_decimal">
+            <column default="0.0000" length="18" name="bala_amt" precision="18" scale="4"/>
+        </property>
+        <property name="invoiceAmt" type="big_decimal">
+            <column default="0.0000" length="18" name="invoice_amt" precision="18" scale="4"/>
+        </property>
+        <property name="rateAmt" type="big_decimal">
+            <column default="0.0000" length="18" name="rate_amt" precision="18" scale="4"/>
+        </property>
+        <property name="remark" type="string">
+            <column default="''" length="200" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="date">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="date">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.repairService.newdataset.RpsTicketDetail" table="rps_ticket_detail">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="mainId" type="int">
+            <column name="main_id" not-null="true"/>
+        </property>
+        <property name="servcieId" type="int">
+            <column default="0" name="servcie_id"/>
+        </property>
+        <property name="serviceCode" type="string">
+            <column default="''" length="20" name="service_code"/>
+        </property>
+        <property name="guestId" type="int">
+            <column default="0" name="guest_id"/>
+        </property>
+        <property name="guestName" type="string">
+            <column default="''" length="255" name="guest_name"/>
+        </property>
+        <property name="carId" type="int">
+            <column default="0" name="car_id"/>
+        </property>
+        <property name="carNo" type="string">
+            <column default="''" length="15" name="car_no"/>
+        </property>
+        <property name="invoiceType" type="string">
+            <column default="''" length="20" name="invoice_type"/>
+        </property>
+        <property name="rate" type="big_decimal">
+            <column default="0.00" length="10" name="rate" precision="10" scale="2"/>
+        </property>
+        <property name="invoiceAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="invoice_amt" precision="10" scale="4"/>
+        </property>
+        <property name="rateAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="rate_amt" precision="10" scale="4"/>
+        </property>
+        <property name="balaAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="bala_amt" precision="10" scale="4"/>
+        </property>
+    </class>
+</hibernate-mapping>

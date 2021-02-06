@@ -1,0 +1,26 @@
+<map>
+  <entry>
+    <string>com.hsapi.system.llq.call.doCall(String, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;doCall&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;doCall&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.llq.call.doCall&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;url(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>call</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;call.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;call&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.llq.call&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.llq.call.doCallV2(String, java.util.HashMap, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;doCallV2&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;doCall&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.llq.call.doCallV2&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;url(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;method(String):&lt;/b&gt;默认get&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.llq.call.Copy_of_MaintenanceCallV(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;Copy_of_MaintenanceCallV&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;doCall&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.llq.call.Copy_of_MaintenanceCallV&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;url(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.llq.call.maintenanceCallV(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;maintenanceCallV&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;doCall&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.llq.call.maintenanceCallV&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;url(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.llq.call.jpCall(String, java.util.HashMap, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;jpCall&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;doCall&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.llq.call.jpCall&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;url(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;method(String):&lt;/b&gt;默认get&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;result(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

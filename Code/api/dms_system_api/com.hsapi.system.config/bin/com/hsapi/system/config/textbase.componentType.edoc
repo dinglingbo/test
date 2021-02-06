@@ -1,0 +1,18 @@
+<map>
+  <entry>
+    <string>com.hsapi.system.config.textbase.updataBase(com.hsapi.system.config.com_bmwUserCfg.ComBmwusercfg)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updataBase&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updataBase&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.textbase.updataBase&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;bmw(com.hsapi.system.config.com_bmwUserCfg.ComBmwusercfg):&lt;/b&gt;base64加密数据实体&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;错误提示&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;更新base数据库&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.textbase.searchBase(com.primeton.das.criteria.criteriaType, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;searchBase&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;searchBase&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.textbase.searchBase&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;criteria(com.primeton.das.criteria.criteriaType):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;bmw(com.hsapi.system.config.com_bmwUserCfg.ComBmwusercfg[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;total(Int):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>textbase</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;textbase.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;textbase&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.textbase&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;base64加密&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.config.textbase.textbase(java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;textbase&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;textbase&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.config.textbase.textbase&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;传进来的要被加密的字符串&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(String):&lt;/b&gt;返回值加密串&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;S/E&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;错误信息&lt;/dd&gt;&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt;base64加密&lt;/html&gt;</string>
+  </entry>
+</map>

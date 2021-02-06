@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Require-Bundle: 
+Bundle-Vendor: Administrator
+eos-webCtxPath: epc
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsweb.system.epc
+Bundle-Description: 
+Bundle-SymbolicName: com.hsweb.system.epc
+

@@ -83,6 +83,14 @@
       <process:to type="query">cond/_expr[2]/_op</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">orgBrandId</process:from>
+      <process:to type="query">cond/_expr[3]/orgCarBrandId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[3]/_op</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>
@@ -304,6 +312,7 @@
     <process:input description="配件编码" isArray="false" name="partCode" primitiveType="String"/>
     <process:input description="add,edit" isArray="false" name="type" primitiveType="String"/>
     <process:input description="配件ID" isArray="false" name="id" primitiveType="Int"/>
+    <process:input description="公司厂牌" isArray="false" name="orgBrandId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

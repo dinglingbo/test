@@ -1,0 +1,58 @@
+<map>
+  <entry>
+    <string>com.hs.common.login.getQNAccessToken()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getQNAccessToken&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getQNAccessToken&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.login.getQNAccessToken&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;token(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;uptoken(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.login.initOrgInfo()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;initOrgInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;initOrgInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.login.initOrgInfo&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.login.getEmpOrgStr(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getEmpOrgStr&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getEmpOrgStr&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.login.getEmpOrgStr&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;empId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;d(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.login.clearAndResetCache(String, String, String, String, Int, Boolean, commonj.sdo.DataObject, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;clearAndResetCache&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;clearAndResetCache&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.login.clearAndResetCache&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;dsName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;nameSqlId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;title(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fromDb(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;expireTimes(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;setDe(Boolean):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;deData(commonj.sdo.DataObject):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.login.authRequried()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;authRequried&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;authRequried&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.login.authRequried&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.login.clearAndResetMenuCache()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;clearAndResetMenuCache&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;clearAndResetMenuCache&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.login.clearAndResetMenuCache&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.login.uniqLogin(Int, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;uniqLogin&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;uniqLogin&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.login.uniqLogin&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;userId(Int):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userType(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errcode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errmsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;json(com.alibaba.fastjson.JSONObject):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.login.uniqApi(String, String, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;uniqApi&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;uniqApi&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.login.uniqApi&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;api(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;userCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;jsonp(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;result(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;map(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>login</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;login.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;login&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.login&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.login.getEmpOrgs(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getEmpOrgs&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getEmpOrgs&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.login.getEmpOrgs&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;empId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;orgs(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.login.clearResCache(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;clearResCache&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;clearAndResetMenuCache&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.login.clearResCache&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;resId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.login.getCompanyLogoUrl()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCompanyLogoUrl&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getQNAccessToken&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.login.getCompanyLogoUrl&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;companyLogoUrl(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.login.getEmpOrgArr(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getEmpOrgArr&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getEmpOrgArr&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.login.getEmpOrgArr&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;empId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hs.common.login.getMenuData(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getMenuData&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;test&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hs.common.login.getMenuData&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;type(String):&lt;/b&gt;app,pc&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;treeNodes(java.util.List):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

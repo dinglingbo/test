@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="rpSettle" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="1、生成应付数据&#xD;&#xA;参数：往来单位ID，往来单位名称，单据ID，单据单号，单据金额，单据类型，操作日期&#xD;&#xA;2.预收预付新增的时候直接审核&#xD;&#xA;2019.12.27" title="Administrator&#x9;17-8-2 下午11:03">
-    <location x="-16" y="-10"/>
-    <size height="116" width="502"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="1、生成应付数据&#xD;&#xA;参数：往来单位ID，往来单位名称，单据ID，单据单号，单据金额，单据类型，操作日期&#xD;&#xA;2.预收预付新增的时候直接审核&#xD;&#xA;2019.12.27&#xD;&#xA;20200804 orderTypeId&#xD;&#xA;1采购订单；2销售订单；3采购退货订单；4销售退货订单" title="Administrator&#x9;17-8-2 下午11:03">
+    <location x="-64" y="-45"/>
+    <size height="178" width="502"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="link1" isDefault="true" type="transition">
@@ -132,6 +132,18 @@
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">f/auditSign</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">f/auditDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">f/auditor</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userId</process:from>
+      <process:to type="query">f/auditorId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
@@ -406,6 +418,18 @@
       <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">f/rpTypeId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">f/auditDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">f/auditor</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userId</process:from>
+      <process:to type="query">f/auditorId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
     <location x="345" y="387"/>
@@ -637,6 +661,26 @@
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/attributes/tenantId</process:from>
       <process:to type="query">tenantId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">code</process:from>
+      <process:to type="query">f/code</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">codeId</process:from>
+      <process:to type="query">f/codeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderTypeId</process:from>
+      <process:to type="query">f/orderTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orgCarBrandId</process:from>
+      <process:to type="query">f/orgCarBrandId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rtnBillSign</process:from>
+      <process:to type="query">f/rtnBillSign</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
@@ -1183,7 +1227,7 @@
     <process:input description="" isArray="false" name="ServiceId" primitiveType="String"/>
     <process:input description="" isArray="false" name="BillMainId" primitiveType="Long"/>
     <process:input description="" isArray="false" name="BillTypeId" primitiveType="Int"/>
-    <process:input description="" isArray="false" name="BillAmt" primitiveType="Float"/>
+    <process:input description="" isArray="false" name="BillAmt" primitiveType="Double"/>
     <process:input description="" isArray="false" name="operateDate" primitiveType="Date"/>
     <process:input description="" isArray="false" name="dc" primitiveType="Int"/>
     <process:input description="" isArray="false" name="remark" primitiveType="String"/>
@@ -1191,6 +1235,11 @@
     <process:input description="" isArray="false" name="orgid" primitiveType="Int"/>
     <process:input description="" isArray="false" name="fYear" primitiveType="Int"/>
     <process:input description="" isArray="false" name="fMonth" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="codeId" primitiveType="Long"/>
+    <process:input description="" isArray="false" name="code" primitiveType="String"/>
+    <process:input description="" isArray="false" name="orderTypeId" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="orgCarBrandId" primitiveType="String"/>
+    <process:input description="0代表正常应收应付；1代表只包含采购退货；2代表只包含销售退货" isArray="false" name="rtnBillSign" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

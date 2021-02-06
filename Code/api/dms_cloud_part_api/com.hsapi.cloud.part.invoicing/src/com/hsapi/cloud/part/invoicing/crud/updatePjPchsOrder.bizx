@@ -198,6 +198,16 @@
       <targetNode>loopstart1</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link47" name="link47" displayName="连接线" type="transition">
+      <sourceNode>assign3</sourceNode>
+      <targetNode>assign2</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">pchsOrderMain/settleGuestId</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link42</targetConnections>
     <location x="-60" y="59"/>
     <size height="28" width="28"/>
@@ -292,6 +302,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link22</targetConnections>
+    <targetConnections>link48</targetConnections>
     <location x="30" y="59"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
@@ -403,6 +414,26 @@
     <process:copy>
       <process:from type="query" pattern="reference">taxRate</process:from>
       <process:to type="query">tmp/taxRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">orderPrice*1.02</process:from>
+      <process:to type="query">tmp/setCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">orderQty*orderPrice*1.02</process:from>
+      <process:to type="query">tmp/setCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderQty</process:from>
+      <process:to type="query">tmp/outableQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/showAmt</process:from>
+      <process:to type="query">showAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mStateAmt+showAmt</process:from>
+      <process:to type="query">mStateAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
@@ -545,6 +576,26 @@
     <process:copy>
       <process:from type="query" pattern="reference">taxRate</process:from>
       <process:to type="query">tmp/taxRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">orderPrice*1.02</process:from>
+      <process:to type="query">tmp/setCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">orderQty*orderPrice*1.02</process:from>
+      <process:to type="query">tmp/setCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderQty</process:from>
+      <process:to type="query">tmp/outableQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/showAmt</process:from>
+      <process:to type="query">showAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mStateAmt+showAmt</process:from>
+      <process:to type="query">mStateAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
@@ -1029,6 +1080,14 @@
       <process:from type="query" pattern="reference">mOrderQty</process:from>
       <process:to type="query">pchsOrderMain/orderQty</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mStateAmt</process:from>
+      <process:to type="query">pchsOrderMain/noStateAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mStateAmt</process:from>
+      <process:to type="query">pchsOrderMain/showAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign16label" name="label" nodeType="label">
     <location x="683" y="92"/>
@@ -1211,6 +1270,25 @@
     <figSize height="20" width="40"/>
     <node>end3</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值12" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link48" name="link48" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>loopstart1</targetNode>
+    </sourceConnections>
+    <targetConnections>link47</targetConnections>
+    <location x="-60" y="225"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign2label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">pchsOrderMain/guestId</process:from>
+      <process:to type="query">pchsOrderMain/settleGuestId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <location x="-70" y="261"/>
+    <figSize height="20" width="49"/>
+    <node>assign2</node>
+  </nodes>
   <topRuler>
     <guides position="-558" horizontal="true"/>
   </topRuler>
@@ -1236,6 +1314,8 @@
     <process:variable description="010101 收据 010102 普票 010103 增票" historyStateLocation="client" isArray="false" name="billTypeId" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.com.ComGuest" name="guest"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="isInner" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="mStateAmt" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="showAmt" primitiveType="Float"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderMain" name="pchsOrderMain"/>

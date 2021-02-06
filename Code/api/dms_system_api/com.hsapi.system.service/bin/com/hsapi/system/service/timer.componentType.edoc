@@ -1,0 +1,34 @@
+<map>
+  <entry>
+    <string>com.hsapi.system.service.timer.getCarNO()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCarNO&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;getCarNO&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.service.timer.getCarNO&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.service.timer.test()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;test&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;test&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.service.timer.test&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>timer</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;timer.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;timer&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.service.timer&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.service.timer.initCarBrandByCarModel()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;initCarBrandByCarModel&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;initCarModelFullNameByVin&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.service.timer.initCarBrandByCarModel&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.service.timer.handleCarVin()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;handleCarVin&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;handleCarNo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.service.timer.handleCarVin&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.service.timer.handleCdrRecord()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;handleCdrRecord&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;handleCdrRecord&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.service.timer.handleCdrRecord&lt;dl&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cdrList(com.alibaba.fastjson.JSON[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.service.timer.handleCarModel()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;handleCarModel&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;handleCarModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.service.timer.handleCarModel&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.service.timer.initCarModelFullNameByVin()</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;initCarModelFullNameByVin&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;initCarModelFullNameByVin&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.service.timer.initCarModelFullNameByVin&lt;/html&gt;</string>
+  </entry>
+</map>

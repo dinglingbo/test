@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns="com.hsapi.cloud.part.data.wbpart" xmlns:sdo="commonj.sdo" xmlns:sdoJava="commonj.sdo/java" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="com.hsapi.cloud.part.data.wbpart">
+    <xs:complexType name="PjPchsOrderDetailChk">
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+            <xs:element minOccurs="0" name="id" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="mainId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="storeId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="partId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="partCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="partName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="fullName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="enterUnitId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="systemUnitId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="orderQty" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="orderPrice" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="orderAmt" nillable="true" type="xs:decimal"/>
+            <xs:element default="0" minOccurs="0" name="taxSign" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="taxRate" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="taxPrice" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="taxAmt" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="noTaxPrice" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="noTaxAmt" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="taxDiff" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="trueEnterQty" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="trueEnterAmt" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="notEnterQty" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="notEnterAmt" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="adjustQty" nillable="true" type="xs:decimal"/>
+            <xs:element default="0" minOccurs="0" name="isFinished" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="finishDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="sellPrice" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="prevDetailId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="sourceDetailId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="sourceMainId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="sourceBillTypeId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="storeShelf" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="goodsCode" nillable="true" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PjPchsOrderMainChk">
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+            <xs:element minOccurs="0" name="id" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="serviceId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="orgid" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="orderTypeId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="guestId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="storeId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="codeId" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="code" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="orderDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="planArriveDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="orderManId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="orderMan" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="billTypeId" nillable="true" type="xs:string"/>
+            <xs:element default="0" minOccurs="0" name="taxSign" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="taxRate" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="taxAmt" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="noTaxAmt" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="taxDiff" nillable="true" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="orderQty" nillable="true" type="xs:decimal"/>
+            <xs:element default="0" minOccurs="0" name="orderItem" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="orderAmt" nillable="true" type="xs:decimal"/>
+            <xs:element default="0" minOccurs="0" name="isFinished" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="finishDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="printTimes" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="printManId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="printMan" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="printDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="auditSign" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="auditorId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="auditor" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="auditDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="versionNo" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="creatorId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="creator" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="createDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="operatorId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="operator" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="operateDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="settleTypeId" nillable="true" type="xs:string"/>
+            <xs:element default="0" minOccurs="0" name="billStatusId" nillable="true" type="xs:int"/>
+            <xs:element default="0" minOccurs="0" name="isInner" nillable="true" type="xs:short"/>
+            <xs:element default="0" minOccurs="0" name="isState" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="stateManId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="stateMan" nillable="true" type="xs:string"/>
+            <xs:element default="0" minOccurs="0" name="stateSign" nillable="true" type="xs:short"/>
+            <xs:element minOccurs="0" name="stateDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="rtnReasonId" nillable="true" type="xs:string"/>
+            <xs:element default="0" minOccurs="0" name="isDiffOrder" nillable="true" type="xs:short"/>
+            <xs:element default="0" minOccurs="0" name="sourceType" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="orderCode" nillable="true" type="xs:string"/>
+            <xs:element default="0" minOccurs="0" name="acceptStatus" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="acceptMan" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="acceptDate" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="acceptCode" nillable="true" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

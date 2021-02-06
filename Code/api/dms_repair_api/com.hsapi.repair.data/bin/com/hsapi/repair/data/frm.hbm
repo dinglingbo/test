@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.repair.data.frm.FisRpAdvance" table="fis_rp_advance">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="tenantId" type="int">
+            <column name="tenant_id"/>
+        </property>
+        <property name="orgid" type="int">
+            <column name="orgid" not-null="true"/>
+        </property>
+        <property name="billTypeId" type="int">
+            <column name="bill_type_id"/>
+        </property>
+        <property name="billTypeCode" type="string">
+            <column length="20" name="bill_type_code"/>
+        </property>
+        <property name="codeid" type="int">
+            <column default="0" name="codeId"/>
+        </property>
+        <property name="code" type="string">
+            <column length="20" name="code"/>
+        </property>
+        <property name="guestId" type="int">
+            <column default="0" name="guest_id" not-null="true"/>
+        </property>
+        <property name="guestName" type="string">
+            <column length="100" name="guest_name"/>
+        </property>
+        <property name="carId" type="int">
+            <column name="car_id"/>
+        </property>
+        <property name="carNo" type="string">
+            <column length="15" name="car_no"/>
+        </property>
+        <property name="amt" type="big_decimal">
+            <column default="0.00" length="10" name="amt" precision="10" scale="2"/>
+        </property>
+        <property name="charOffAmt" type="big_decimal">
+            <column default="0.0000" length="10" name="char_off_amt" precision="10" scale="4"/>
+        </property>
+        <property name="deductionAmt" type="big_decimal">
+            <column default="0.00" length="10" name="deduction_amt" precision="10" scale="2"/>
+        </property>
+        <property name="balaAmt" type="big_decimal">
+            <column default="0.00" length="10" name="bala_amt" precision="10" scale="2"/>
+        </property>
+        <property name="refundAmt" type="big_decimal">
+            <column default="0.00" length="10" name="refund_amt" precision="10" scale="2"/>
+        </property>
+        <property name="billDc" type="short">
+            <column name="bill_dc"/>
+        </property>
+        <property name="status" type="short">
+            <column name="status"/>
+        </property>
+        <property name="isSettle" type="short">
+            <column default="0" name="is_settle"/>
+        </property>
+        <property name="settleer" type="string">
+            <column length="20" name="settleer"/>
+        </property>
+        <property name="settleDate" type="date">
+            <column name="settle_date"/>
+        </property>
+        <property name="remark" type="string">
+            <column length="200" name="remark"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="date">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="date">
+            <column name="modify_date"/>
+        </property>
+        <property name="refunder" type="string">
+            <column length="20" name="refunder"/>
+        </property>
+        <property name="refundDate" type="date">
+            <column name="refund_date"/>
+        </property>
+    </class>
+</hibernate-mapping>

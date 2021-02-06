@@ -623,4 +623,152 @@ public class MenuUtil {
 
 	}
 	
+	@Bizlet
+	public static List  getCloudPartMenuData(String userId, String type, boolean showQuickQuote)throws Throwable  {
+		if(userId == null || userId == "") {
+			return null;
+		}
+		/*
+		 * 1、获取用户对应的角色
+		 * 2、获取角色对应的资源
+		 * 3、取唯一资源ID
+		 * 4、获取资源ID对应的详细资源信息
+		 * 5、拼接并排序
+		 * 6、根据type过滤输出菜单
+		 * */
+		try {
+			//查询用户对应的角色
+			DataObject[] roleArr = ResauthUtils.getUserRoles(userId);
+			DataObject[] menuArr = ResauthUtils.getMenu();	
+	    	if(roleArr.length <= 0 || menuArr.length <= 0) {
+	    		return null;
+	    	}
+			List<DataObject> menuList = Arrays.asList(menuArr);
+			
+			List<DataObject> resList = new ArrayList<DataObject>();
+	    	//查询角色对应的资源
+			for(int i=0; i<roleArr.length; i++) {
+				DataObject roleObj = roleArr[i];
+				String roleId = roleObj.getString("roleId");
+				DataObject[] resArr = ResauthUtils.getRoleRes(roleId);
+				CollectionUtils.addAll(resList, resArr);
+			}
+			//取唯一资源ID			
+			Set<DataObject> set = new HashSet<DataObject>();    //去重
+			set.addAll(resList); 
+			List<DataObject> resIdList = new ArrayList<DataObject>(set);
+			//资源ID对应的详细资源信息
+			List<DataObject> resInfoList = new ArrayList<DataObject>();
+			HashMap ex = new HashMap();
+			for(int j=0; j<resIdList.size(); j++) {
+				DataObject resObj = resIdList.get(j);
+				String resId = resObj.getString("resId");
+				if(!ex.containsKey(resId)) {
+					DataObject[] resInfo = ResauthUtils.getResInfo(resId);
+					CollectionUtils.addAll(resInfoList, resInfo);
+					ex.put(resId, resId);
+				}
+				
+			}
+			Set<DataObject> setAll = new HashSet<DataObject>();    //去重
+			setAll.addAll(menuList);    
+			setAll.addAll(resInfoList);  
+	        List<DataObject> c = new ArrayList<DataObject>(setAll); 
+			//拼接并排序
+			Collections.sort(c, new Comparator<DataObject>() {
+	            public int compare(DataObject arg0, DataObject arg1) {
+	                int hits0 = arg0.getInt("DISPLAYORDER");
+	                int hits1 = arg1.getInt("DISPLAYORDER");
+	                if (hits0 > hits1) {
+	                    return 1;
+	                } else if (hits1 == hits0) {
+	                    return 0;
+	                } else {
+	                    return -1;
+	                }
+	            }
+	        });
+			
+			/*
+			 * 20190716修改
+			 * 判断有没有综合开单  dms_multiple_bill ，洗美开单 dms_wash_bill，理赔开单 dms_claim_bill，波箱开单 waveBox，工单；
+			 * 如果有工单  1026 则 添加计次卡销售，储值卡充值
+			 * */
+			boolean zhBillCheck = false;
+			boolean xcBillCheck = false;
+			boolean lpBillCheck = false;
+			boolean gbBillCheck = false;
+			boolean billCheck = false;
+	        
+	        List<Menu> list=new ArrayList<Menu>();
+	        if(showQuickQuote) {
+	        	/*var item={};
+	        	item.id = "010";
+	        	item.text = "快速报价";
+	        	item.url = webPath + contextPath + "/com.hsweb.cloud.part.purchase.quickSearch.flow";
+	        	item.iconCls = "fa fa-file-text";
+	        	window.parent.activeTab(item);*/
+	        	
+	        	Menu menu=new Menu();
+		        menu.setMenuPrimeKey("010");
+		        menu.setMenuName("快速报价");
+		        menu.setImagePath("fa fa-file-text");
+		        menu.setLinkAction("/purchase/quickSearch_view0.jsp");
+		        menu.setLinkResId(null);
+		        menu.setImageColor(null);
+		        menu.setAppId(null);
+		        menu.setParams(null);
+		        list.add(menu);
+	        }
+	        
+	        for(int i = 0; i<c.size(); i++) {
+	        	DataObject d = c.get(i);
+	        	
+	        	String functype = d.getString("functype");
+	        	if(functype == null || functype == "") {
+	        		functype = "pc";
+	        	}
+	        	if(!functype.equals("app") && !functype.equals("menu")) {
+	        		functype = "pc";
+	        	}
+	        	if(type != null && type != "") {
+	        		if(functype.equals(type) || functype.equals("menu")) {
+	        			String menuName = d.getString("menuname");
+	    	        	String menuPrimeKey = d.getString("menuid");
+	    	        	String imagePath = d.getString("imagepath");
+	    	        	String linkAction = d.getString("funcaction");
+	    	        	String linkResId = d.getString("funccode");
+	    	        	String parentId = d.getString("parentsid");
+	    	        	String imageColor = d.getString("expandpath");
+	    	        	String appId = d.getString("appId");
+	    	        	String params = d.getString("params");
+	    	        	
+	    	        	Menu menu=new Menu();
+	    		        menu.setMenuPrimeKey(menuPrimeKey);
+	    		        menu.setMenuName(menuName);
+	    		        menu.setImagePath(imagePath);
+	    		        menu.setLinkAction(linkAction);
+	    		        menu.setLinkResId(linkResId);
+	    		        menu.setParentId(parentId);
+	    		        menu.setImageColor(imageColor);
+	    		        menu.setAppId(appId);
+	    		        menu.setParams(params);
+	    		        list.add(menu);
+	    		        
+	        		}
+	        	}
+	        	
+	        }
+	        
+	        List<Menu> tree = TreeParser.getTreeList("", list);
+	    	tree = TreeParser.clearTree(tree);
+	    	return tree;
+	    	
+		}catch (Throwable ex) {
+				ex.printStackTrace();
+		}
+		return null;
+
+	}
+	
 }

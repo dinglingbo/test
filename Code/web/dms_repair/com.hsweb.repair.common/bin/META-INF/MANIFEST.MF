@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Require-Bundle: 
+eos-webCtxPath: commonRepair
+Bundle-Vendor: chenziming
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsweb.repair.common
+Bundle-Description: 
+Bundle-SymbolicName: com.hsweb.repair.common
+

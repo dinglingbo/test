@@ -361,6 +361,94 @@
       <process:from type="query" pattern="reference">tmp/taxRate</process:from>
       <process:to type="query">taxRate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/noTaxPrice</process:from>
+      <process:to type="query">noTaxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/taxPrice</process:from>
+      <process:to type="query">taxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/noTaxCostPrice</process:from>
+      <process:to type="query">noTaxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/taxCostPrice</process:from>
+      <process:to type="query">taxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/expEnterPrice</process:from>
+      <process:to type="query">expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/setCostPrice</process:from>
+      <process:to type="query">setCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(orderQty))</process:from>
+      <process:to type="query">d1</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(noTaxCostPrice))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(noTaxCostPrice+&quot;&quot;).length()-(noTaxCostPrice+&quot;&quot;).indexOf(&quot;.&quot;)-1</process:from>
+      <process:to type="query">scale</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">tmp/noTaxCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(taxCostPrice))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(taxCostPrice+&quot;&quot;).length()-(taxCostPrice+&quot;&quot;).indexOf(&quot;.&quot;)-1</process:from>
+      <process:to type="query">scale</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">tmp/taxCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(expEnterPrice))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(expEnterPrice+&quot;&quot;).length()-(expEnterPrice+&quot;&quot;).indexOf(&quot;.&quot;)-1</process:from>
+      <process:to type="query">scale</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">tmp/expEnterAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(setCostPrice))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(setCostPrice+&quot;&quot;).length()-(setCostPrice+&quot;&quot;).indexOf(&quot;.&quot;)-1</process:from>
+      <process:to type="query">scale</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">tmp/setCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(orderPrice))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(orderPrice+&quot;&quot;).length()-(orderPrice+&quot;&quot;).indexOf(&quot;.&quot;)-1</process:from>
+      <process:to type="query">scale</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">tmp/enterAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
     <location x="109" y="92"/>
@@ -467,6 +555,94 @@
     <process:copy>
       <process:from type="query" pattern="reference">tmp/taxRate</process:from>
       <process:to type="query">taxRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/noTaxPrice</process:from>
+      <process:to type="query">noTaxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/taxPrice</process:from>
+      <process:to type="query">taxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/noTaxCostPrice</process:from>
+      <process:to type="query">noTaxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/taxCostPrice</process:from>
+      <process:to type="query">taxCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/expEnterPrice</process:from>
+      <process:to type="query">expEnterPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/setCostPrice</process:from>
+      <process:to type="query">setCostPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(orderQty))</process:from>
+      <process:to type="query">d1</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(noTaxCostPrice))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(noTaxCostPrice+&quot;&quot;).length()-(noTaxCostPrice+&quot;&quot;).indexOf(&quot;.&quot;)-1</process:from>
+      <process:to type="query">scale</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">tmp/noTaxCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(taxCostPrice))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(taxCostPrice+&quot;&quot;).length()-(taxCostPrice+&quot;&quot;).indexOf(&quot;.&quot;)-1</process:from>
+      <process:to type="query">scale</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">tmp/taxCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(expEnterPrice))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(expEnterPrice+&quot;&quot;).length()-(expEnterPrice+&quot;&quot;).indexOf(&quot;.&quot;)-1</process:from>
+      <process:to type="query">scale</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">tmp/expEnterAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(setCostPrice))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(setCostPrice+&quot;&quot;).length()-(setCostPrice+&quot;&quot;).indexOf(&quot;.&quot;)-1</process:from>
+      <process:to type="query">scale</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">tmp/setCostAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(orderPrice))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(orderPrice+&quot;&quot;).length()-(orderPrice+&quot;&quot;).indexOf(&quot;.&quot;)-1</process:from>
+      <process:to type="query">scale</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">tmp/enterAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
@@ -663,44 +839,56 @@
       <process:to type="query">noTaxPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">orderQty*noTaxPrice</process:from>
-      <process:to type="query">noTaxAmt</process:to>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(noTaxPrice))</process:from>
+      <process:to type="query">d2</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">noTaxPrice*1.0*(1+taxRate)</process:from>
-      <process:to type="query">taxPrice</process:to>
+      <process:from type="expression" pattern="reference">(noTaxPrice+&quot;&quot;).length()-(noTaxPrice+&quot;&quot;).indexOf(&quot;.&quot;)-1</process:from>
+      <process:to type="query">scale</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">orderQty*taxPrice</process:from>
-      <process:to type="query">taxAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">noTaxPrice</process:from>
+      <process:from type="expression" pattern="reference">d2.setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
       <process:to type="query">tmp/noTaxPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">noTaxAmt</process:from>
+      <process:from type="expression" pattern="reference">(noTaxPrice+&quot;&quot;).length()-(noTaxPrice+&quot;&quot;).indexOf(&quot;.&quot;)-1</process:from>
+      <process:to type="query">scale</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">noTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
       <process:to type="query">tmp/noTaxAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">taxPrice</process:from>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(1+taxRate))</process:from>
+      <process:to type="query">d3</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d2.multiply(d3).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">taxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d2.multiply(d3).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
       <process:to type="query">tmp/taxPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">taxAmt</process:from>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(taxPrice))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">taxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
       <process:to type="query">tmp/taxAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">taxAmt-noTaxAmt</process:from>
       <process:to type="query">tmp/taxDiff</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">taxPrice</process:from>
-      <process:to type="query">tmp/expEnterPrice</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">taxAmt</process:from>
-      <process:to type="query">tmp/expEnterAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">mTaxAmt+taxAmt</process:from>
@@ -711,7 +899,7 @@
       <process:to type="query">mNoTaxAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">mOrderAmt+(orderQty*orderPrice)</process:from>
+      <process:from type="expression" pattern="reference">mOrderAmt+noTaxAmt</process:from>
       <process:to type="query">mOrderAmt</process:to>
     </process:copy>
     <process:copy>
@@ -746,32 +934,48 @@
       <process:to type="query">taxPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">orderQty*taxPrice</process:from>
-      <process:to type="query">taxAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">taxPrice*1.0/(1+taxRate)</process:from>
-      <process:to type="query">noTaxPrice</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">taxAmt*1.0/(1+taxRate)</process:from>
-      <process:to type="query">noTaxAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">noTaxPrice</process:from>
-      <process:to type="query">tmp/noTaxPrice</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">noTaxAmt</process:from>
-      <process:to type="query">tmp/noTaxAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">taxPrice</process:from>
+      <process:from type="query" pattern="reference">tmp/enterPrice</process:from>
       <process:to type="query">tmp/taxPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">taxAmt</process:from>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(taxPrice))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(taxPrice+&quot;&quot;).length()-(taxPrice+&quot;&quot;).indexOf(&quot;.&quot;)-1</process:from>
+      <process:to type="query">scale</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">taxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
       <process:to type="query">tmp/taxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(1+taxRate))</process:from>
+      <process:to type="query">d3</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d2.divide(d3,4, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">noTaxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d2.divide(d3,4, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">tmp/noTaxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(noTaxPrice))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">noTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">tmp/noTaxAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">taxAmt-noTaxAmt</process:from>
@@ -794,7 +998,7 @@
       <process:to type="query">mNoTaxAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">mOrderAmt+(orderQty*orderPrice)</process:from>
+      <process:from type="expression" pattern="reference">mOrderAmt+taxAmt</process:from>
       <process:to type="query">mOrderAmt</process:to>
     </process:copy>
     <process:copy>
@@ -829,44 +1033,56 @@
       <process:to type="query">noTaxPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">orderQty*noTaxPrice</process:from>
-      <process:to type="query">noTaxAmt</process:to>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(noTaxPrice))</process:from>
+      <process:to type="query">d2</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">noTaxPrice*1.0*(1+taxRate)</process:from>
-      <process:to type="query">taxPrice</process:to>
+      <process:from type="expression" pattern="reference">(orderPrice+&quot;&quot;).length()-(orderPrice+&quot;&quot;).indexOf(&quot;.&quot;)-1</process:from>
+      <process:to type="query">scale</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">orderQty*taxPrice</process:from>
-      <process:to type="query">taxAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">noTaxPrice</process:from>
+      <process:from type="expression" pattern="reference">d2.setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
       <process:to type="query">tmp/noTaxPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">noTaxAmt</process:from>
+      <process:from type="expression" pattern="reference">(orderPrice+&quot;&quot;).length()-(orderPrice+&quot;&quot;).indexOf(&quot;.&quot;)-1</process:from>
+      <process:to type="query">scale</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">noTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
       <process:to type="query">tmp/noTaxAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">taxPrice</process:from>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(1+taxRate))</process:from>
+      <process:to type="query">d3</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d2.multiply(d3).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">taxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d2.multiply(d3).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
       <process:to type="query">tmp/taxPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">taxAmt</process:from>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(taxPrice))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">taxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
       <process:to type="query">tmp/taxAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">taxAmt-noTaxAmt</process:from>
       <process:to type="query">tmp/taxDiff</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">taxPrice</process:from>
-      <process:to type="query">tmp/expEnterPrice</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">taxAmt</process:from>
-      <process:to type="query">tmp/expEnterAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">mTaxAmt+taxAmt</process:from>
@@ -877,7 +1093,7 @@
       <process:to type="query">mNoTaxAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">mOrderAmt+(orderQty*orderPrice)</process:from>
+      <process:from type="expression" pattern="reference">mOrderAmt+noTaxAmt</process:from>
       <process:to type="query">mOrderAmt</process:to>
     </process:copy>
     <process:copy>
@@ -912,44 +1128,52 @@
       <process:to type="query">taxPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">orderQty*taxPrice</process:from>
-      <process:to type="query">taxAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">taxPrice*1.0/(1+taxRate)</process:from>
-      <process:to type="query">noTaxPrice</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">taxAmt*1.0/(1+taxRate)</process:from>
-      <process:to type="query">noTaxAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">noTaxPrice</process:from>
-      <process:to type="query">tmp/noTaxPrice</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">noTaxAmt</process:from>
-      <process:to type="query">tmp/noTaxAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">taxPrice</process:from>
+      <process:from type="query" pattern="reference">tmp/enterPrice</process:from>
       <process:to type="query">tmp/taxPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">taxAmt</process:from>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(taxPrice))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(taxPrice+&quot;&quot;).length()-(taxPrice+&quot;&quot;).indexOf(&quot;.&quot;)-1</process:from>
+      <process:to type="query">scale</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">taxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
       <process:to type="query">tmp/taxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(1+taxRate))</process:from>
+      <process:to type="query">d3</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d2.divide(d3,4, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">noTaxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d2.divide(d3,4, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">tmp/noTaxPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(noTaxPrice))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">noTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.multiply(d2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue()</process:from>
+      <process:to type="query">tmp/noTaxAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">taxAmt-noTaxAmt</process:from>
       <process:to type="query">tmp/taxDiff</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">taxPrice</process:from>
-      <process:to type="query">tmp/expEnterPrice</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">taxAmt</process:from>
-      <process:to type="query">tmp/expEnterAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">mTaxAmt+taxAmt</process:from>
@@ -960,7 +1184,7 @@
       <process:to type="query">mNoTaxAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">mOrderAmt+(orderQty*orderPrice)</process:from>
+      <process:from type="expression" pattern="reference">mOrderAmt+taxAmt</process:from>
       <process:to type="query">mOrderAmt</process:to>
     </process:copy>
     <process:copy>
@@ -1069,6 +1293,14 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="mOrderQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="mRtnAmt" primitiveType="Float"/>
     <process:variable description="010101 收据 010102 普票 010103 增票" historyStateLocation="client" isArray="false" name="billTypeId" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="expEnterPrice" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="taxCostPrice" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="setCostPrice" primitiveType="Float"/>
+    <process:variable description="taxCostPrice-taxPrice+noTaxPrice" historyStateLocation="client" isArray="false" name="noTaxCostPrice" primitiveType="Float"/>
+    <process:variable anyType="java.math.BigDecimal" description="" historyStateLocation="client" isArray="false" name="d1"/>
+    <process:variable anyType="java.math.BigDecimal" description="" historyStateLocation="client" isArray="false" name="d2"/>
+    <process:variable anyType="java.math.BigDecimal" description="" historyStateLocation="client" isArray="false" name="d3"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="scale" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjEnterMain" name="enterMain"/>

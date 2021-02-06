@@ -1,0 +1,38 @@
+<map>
+  <entry>
+    <string>com.hsapi.crm.svr.svr.updateCrmGuest(com.hsapi.crm.data.crmTelsales.CrmGuest)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;updateCrmGuest&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;updateCrmGuest&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.svr.updateCrmGuest&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;crmGuest(com.hsapi.crm.data.crmTelsales.CrmGuest):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.svr.deleteInvest(com.hsapi.crm.data.crm.CrmVisitAchievement)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;deleteInvest&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;deletInvest&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.svr.deleteInvest&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;invest(com.hsapi.crm.data.crm.CrmVisitAchievement):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.svr.saveInvest(com.hsapi.crm.data.crm.CrmVisitAchievement)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveInvest&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveInvest&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.svr.saveInvest&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;invest(com.hsapi.crm.data.crm.CrmVisitAchievement):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;invest(com.hsapi.crm.data.crm.CrmVisitAchievement):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.svr.saveImportGuestInfo(com.hsapi.crm.data.crmTelsales.CrmGuest[])</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveImportGuestInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;saveImportGuestInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.svr.saveImportGuestInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.crm.data.crmTelsales.CrmGuest[]):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;noImportList(com.hsapi.crm.data.crmTelsales.CrmGuest[]):&lt;/b&gt;未导入项&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.svr.aduitInvest(com.hsapi.crm.data.crm.CrmVisitAchievement)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;aduitInvest&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;aduitInvest&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.svr.aduitInvest&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;invest(com.hsapi.crm.data.crm.CrmVisitAchievement):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.svr.isExistGuestInfo(com.hsapi.crm.data.crmTelsales.CrmGuest[], com.hsapi.crm.data.crmTelsales.CrmGuest)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;isExistGuestInfo&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;isExistGuestInfo&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.svr.isExistGuestInfo&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(com.hsapi.crm.data.crmTelsales.CrmGuest[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(com.hsapi.crm.data.crmTelsales.CrmGuest):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;isExist(String):&lt;/b&gt;Y存在    N不存在&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.svr.queryInvestList(com.eos.foundation.PageCond, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryInvestList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryInvestList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.svr.queryInvestList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.crm.svr.svr.queryComplainList(java.util.HashMap, com.eos.foundation.PageCond)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;queryComplainList&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;queryInvestList&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.svr.queryComplainList&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;list(commonj.sdo.DataObject[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;page(com.eos.foundation.PageCond):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>svr</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;svr.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;svr&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.crm.svr.svr&lt;/html&gt;</string>
+  </entry>
+</map>

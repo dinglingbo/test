@@ -1,0 +1,58 @@
+<map>
+  <entry>
+    <string>com.hsapi.system.data.sys.saveCacheKey(String, String, java.util.HashMap, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;saveCacheKey&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;genenCacheKey&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.data.sys.saveCacheKey&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;dsName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;nameSqlId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;title(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.data.sys.removeUserCache(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;removeUserCache&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;removeUserCache&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.data.sys.removeUserCache&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;userKey(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;tokenKey(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>sys</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;sys.componentType&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;sys&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.data.sys&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.data.sys.removeRedisCache(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;removeRedisCache&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;carModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.data.sys.removeRedisCache&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cacheName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.data.sys.getRedisCacheBasic(String, String, java.util.HashMap, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getRedisCacheBasic&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;carModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.data.sys.getRedisCacheBasic&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;dsName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;nameSqlId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;title(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fromDb(String):&lt;/b&gt;强制从数据库查询&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.data.sys.genenOrgCacheKey(String, java.util.HashMap, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;genenOrgCacheKey&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;genenCacheKey&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.data.sys.genenOrgCacheKey&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;nameSqlId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cacheName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;key(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.data.sys.removeRedisCacheBasic(String, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;removeRedisCacheBasic&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;carModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.data.sys.removeRedisCacheBasic&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;nameSqlId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.data.sys.removeOrgCacheByName(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;removeOrgCacheByName&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;removeCacheByNameAndKey&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.data.sys.removeOrgCacheByName&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;nameSqlId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.data.sys.removeCache(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;removeCache&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;carModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.data.sys.removeCache&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cacheName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.data.sys.removeCacheByName(String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;removeCacheByName&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;removeCacheByNameAndKey&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.data.sys.removeCacheByName&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;nameSqlId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.data.sys.getCache(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getCache&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;carModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.data.sys.getCache&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cacheName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;id(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;rs(java.lang.Object[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.data.sys.addSyncLog(String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;addSyncLog&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;addLog&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.data.sys.addSyncLog&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;url(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;msg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.data.sys.genenCacheKey(String, java.util.HashMap)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;genenCacheKey&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;genenCacheKey&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.data.sys.genenCacheKey&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;nameSqlId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;cacheName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;key(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.hsapi.system.data.sys.getOrgRedisCacheBasic(String, String, java.util.HashMap, String, String, String)</string>
+    <string>&lt;html&gt;&lt;b&gt;Name:&lt;/b&gt;getOrgRedisCacheBasic&lt;br&gt;&lt;b&gt;Display Name:&lt;/b&gt;carModel&lt;br&gt;&lt;b&gt;Namespace:&lt;/b&gt;com.hsapi.system.data.sys.getOrgRedisCacheBasic&lt;dl&gt;&lt;dt&gt;Parameters:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;dsName(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;nameSqlId(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;params(java.util.HashMap):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;title(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;fromDb(String):&lt;/b&gt;强制从数据库查询&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;orgid(String):&lt;/b&gt;&lt;/dd&gt;&lt;dt&gt;Return:&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;data(java.util.HashMap[]):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errMsg(String):&lt;/b&gt;&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;errCode(String):&lt;/b&gt;&lt;/dd&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

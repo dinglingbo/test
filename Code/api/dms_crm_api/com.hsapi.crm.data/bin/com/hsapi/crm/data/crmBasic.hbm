@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.crm.data.crmBasic.CrmTalkArt" table="crm_talk_art">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgcode" type="string">
+            <column length="32" name="orgcode"/>
+        </property>
+        <property name="typeId" type="string">
+            <column length="20" name="type_id"/>
+        </property>
+        <property name="topic" type="string">
+            <column length="50" name="topic"/>
+        </property>
+        <property name="source" type="string">
+            <column length="20" name="source"/>
+        </property>
+        <property name="content" type="string">
+            <column length="2000" name="content"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+        <property name="orgid" type="big_decimal">
+            <column length="10" name="orgid" not-null="true" precision="10" scale="0"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.crm.data.crmBasic.CrmTemplateMsg" table="crm_template_msg">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="string">
+            <column length="20" name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="orgcode" type="string">
+            <column length="32" name="orgcode"/>
+        </property>
+        <property name="typeId" type="string">
+            <column length="10" name="type_id"/>
+        </property>
+        <property name="charCount" type="big_decimal">
+            <column length="10" name="char_count" precision="10" scale="0"/>
+        </property>
+        <property name="source" type="string">
+            <column length="10" name="source"/>
+        </property>
+        <property name="content" type="string">
+            <column length="400" name="content"/>
+        </property>
+        <property name="recorder" type="string">
+            <column length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+        <property name="orgid" type="big_decimal">
+            <column length="10" name="orgid" not-null="true" precision="10" scale="0"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.crm.data.crmBasic.RpbCardTimesDetail" table="rpb_card_times_detail">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="cardId" type="int">
+            <column default="0" name="card_id" not-null="true"/>
+        </property>
+        <property name="prdtId" type="string">
+            <column default="''" length="20" name="prdt_id"/>
+        </property>
+        <property name="prdtName" type="string">
+            <column default="''" length="100" name="prdt_name"/>
+        </property>
+        <property name="prdtType" type="short">
+            <column default="0" name="prdt_type"/>
+        </property>
+        <property name="times" type="short">
+            <column default="1" name="times"/>
+        </property>
+        <property name="qty" type="big_decimal">
+            <column default="1.00" length="10" name="qty" precision="10" scale="2"/>
+        </property>
+        <property name="oldPrice" type="big_decimal">
+            <column default="0.00" length="10" name="old_price" precision="10" scale="2"/>
+        </property>
+        <property name="sellPrice" type="big_decimal">
+            <column default="0.00" length="10" name="sell_price" precision="10" scale="2"/>
+        </property>
+        <property name="oldAmt" type="big_decimal">
+            <column default="0.00" length="10" name="old_amt" precision="10" scale="2"/>
+        </property>
+        <property name="sellAmt" type="big_decimal">
+            <column default="0.00" length="10" name="sell_amt" precision="10" scale="2"/>
+        </property>
+        <property name="status" type="short">
+            <column default="0" name="status"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.crm.data.crmBasic.RpbCardTimes" table="rpb_card_times">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <property name="tenantId" type="int">
+            <column default="0" name="tenant_id" not-null="true"/>
+        </property>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid" not-null="true"/>
+        </property>
+        <property name="name" type="string">
+            <column default="''" length="100" name="name"/>
+        </property>
+        <property name="periodValidity" type="short">
+            <column default="-1" name="period_validity"/>
+        </property>
+        <property name="sellAmt" type="big_decimal">
+            <column default="0.00" length="10" name="sell_amt" precision="10" scale="2"/>
+        </property>
+        <property name="totalAmt" type="big_decimal">
+            <column default="0.00" length="10" name="total_amt" precision="10" scale="2"/>
+        </property>
+        <property name="salesDeductType" type="short">
+            <column default="0" name="sales_deduct_type"/>
+        </property>
+        <property name="salesDeductValue" type="big_decimal">
+            <column default="0.00" length="10" name="sales_deduct_value" precision="10" scale="2"/>
+        </property>
+        <property name="useRemark" type="string">
+            <column default="''" length="200" name="use_remark"/>
+        </property>
+        <property name="remark" type="string">
+            <column default="''" length="200" name="remark"/>
+        </property>
+        <property name="status" type="short">
+            <column default="0" name="status"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+    <class dynamic-insert="true" dynamic-update="true" entity-name="com.hsapi.crm.data.crmBasic.RpbCardStored" table="rpb_card_stored">
+        <tuplizer class="com.primeton.server.das.tuplizer.SDOEntityTuplizer" entity-mode="sdo"/>
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="tenantId" type="int">
+            <column default="0" name="tenant_id" not-null="true"/>
+        </property>
+        <property name="orgid" type="int">
+            <column default="0" name="orgid" not-null="true"/>
+        </property>
+        <property name="useRange" type="short">
+            <column default="0" name="use_range"/>
+        </property>
+        <property name="name" type="string">
+            <column default="''" length="100" name="name"/>
+        </property>
+        <property name="periodValidity" type="short">
+            <column default="-1" name="period_validity"/>
+        </property>
+        <property name="rechargeAmt" type="big_decimal">
+            <column default="0.00" length="10" name="recharge_amt" precision="10" scale="2"/>
+        </property>
+        <property name="giveAmt" type="big_decimal">
+            <column default="0.00" length="10" name="give_amt" precision="10" scale="2"/>
+        </property>
+        <property name="canModify" type="short">
+            <column default="1" name="can_modify"/>
+        </property>
+        <property name="totalAmt" type="big_decimal">
+            <column default="0.00" length="10" name="total_amt" precision="10" scale="2"/>
+        </property>
+        <property name="packageRate" type="short">
+            <column default="0" name="package_rate"/>
+        </property>
+        <property name="itemRate" type="short">
+            <column default="0" name="item_rate"/>
+        </property>
+        <property name="partRate" type="short">
+            <column default="0" name="part_rate"/>
+        </property>
+        <property name="salesDeductType" type="short">
+            <column default="0" name="sales_deduct_type"/>
+        </property>
+        <property name="salesDeductValue" type="big_decimal">
+            <column default="0.00" length="10" name="sales_deduct_value" precision="10" scale="2"/>
+        </property>
+        <property name="useRemark" type="string">
+            <column default="''" length="200" name="use_remark"/>
+        </property>
+        <property name="remark" type="string">
+            <column default="''" length="200" name="remark"/>
+        </property>
+        <property name="status" type="short">
+            <column default="0" name="status"/>
+        </property>
+        <property name="recorder" type="string">
+            <column default="''" length="20" name="recorder"/>
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" not-null="true"/>
+        </property>
+        <property name="modifier" type="string">
+            <column default="''" length="20" name="modifier"/>
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date"/>
+        </property>
+    </class>
+</hibernate-mapping>
